@@ -4,15 +4,64 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Damage _damage;
+
+    private void Awake()
     {
-        
+        _damage = new Damage();
     }
 
-    // Update is called once per frame
-    void Update()
+    // 유닛을 자신의 속도에 대해 delta만큼 곱한 값으로 가속합니다.
+    public virtual void Move(float delta)
     {
-        
+
     }
+
+    // 유닛을 position까지 이동시킵니다.
+    public virtual void MoveTo(Vector3 position)
+    {
+
+    }
+
+    // 유닛을 jumpForce 만큼 점프시킵니다.
+    public virtual void Jump(float jumpForce)
+    {
+
+    }
+
+    // 유닛의 공격을 처리합니다.
+    public virtual void Attack()
+    {
+    }
+
+    // 유닛의 피격을 처리합니다.
+    public virtual void HandleHit(ref Damage inputDamage)
+    {
+
+    }
+
+    // 유닛 공격의 데미지를 조정합니다.
+    public Unit SetDamagePower(float power)
+    {
+        _damage.power = power;
+
+        return this;
+    }
+
+    // 유닛 공격의 넉백을 조정합니다.
+    public Unit SetDamageKnockBack(Vector2 knockBack)
+    {
+        _damage.knockBack = knockBack;
+
+        return this;
+    }
+
+    // 유닛 공격의 상태이상을 조정합니다.
+    public Unit SetDamageAbnormal(AbnormalState abnormal)
+    {
+        _damage.abnormal = abnormal;
+
+        return this;
+    }
+
 }
