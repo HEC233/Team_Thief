@@ -24,6 +24,7 @@ public abstract class CustomFSMStateBase : IFSMStateBase
 
 public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase>, IActor
 {
+    [SerializeField]
     private PlayerUnit _unit = null;
 
     public PlayerUnit Unit => _unit;
@@ -36,7 +37,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     void Init()
     {
-        SetUnit(GetComponentInChildren<PlayerUnit>());
+        GameManager.instance.SetControlUnit(this);
     }
 
     private class IdleState : CustomFSMStateBase
@@ -59,12 +60,17 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            
+            if (condition == TransitionCondition.LeftMove || condition == TransitionCondition.RightMove)
+                return true;
+
+            return false;
         }
     }
     
     private  class MoveState : CustomFSMStateBase
     {
+        float _inputDir = 1;
+
         public MoveState(PlayerFSMSystem system) : base(system)
         {
         }
@@ -75,15 +81,28 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void Update()
         {
+            SystemMgr.Unit.Move(0);
         }
 
         public override void EndState()
         {
+            SystemMgr.Unit.MoveStop();
         }
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.LeftMove)
+            {
+                SystemMgr.Unit.CheckMovementDir(_inputDir * - 1);
+                return false;
+            }
+            else if (condition == TransitionCondition.RightMove)
+            {
+                SystemMgr.Unit.CheckMovementDir(_inputDir);
+                return false;
+            }
             
+            return true;
         }
     }
 
@@ -101,7 +120,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         if (CheckStateChangeAbleCondition(condition) == false)
             return false;
-        
+
+        // Left Move, Right Move에 대한 스테이트를 새로 만들기 싫어서 예외 처리 진행 함.
+        if (condition == TransitionCondition.LeftMove || condition == TransitionCondition.RightMove)
+        {
+            ChangeState(TransitionCondition.Move);
+        }
+
         ChangeState(condition);
         return true;
     }
