@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Unit은 외부에 보이는 인터페이스.
 public class PlayerUnit : Unit
 {
     // 이동 관련 컨트롤러
@@ -24,6 +26,9 @@ public class PlayerUnit : Unit
 
     public override void Move(float delta)
     {
+        // Vector2 dir = moveUtil.moveforce(5);
+        // Rigidbody2D.addfoce(dir);
+        
         _playerMovementCtrl.Move(_facingDir);
     }
 
@@ -31,6 +36,12 @@ public class PlayerUnit : Unit
     {
         _playerMovementCtrl.MoveStop();
     }
+
+    public bool IsRunningInertia()
+    {
+        return _playerMovementCtrl.IsRunningInertia();
+    }
+    
     
     public override void Jump(float jumpForce)
     {

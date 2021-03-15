@@ -6,6 +6,19 @@ public enum AniState
 {
     Idle = 0,
     Move,
+    RunningInertia,
+    Jump,
+    Attack,
+    Dash,
+    Hit,
+    Fall,
+    Contact,
+    DoubleJump,
+    Attack2,
+    Attack3,
+    JumpAttack,
+    Skll1,
+    Backstep,
 }
 
 public class AnimationCtrl : MonoBehaviour

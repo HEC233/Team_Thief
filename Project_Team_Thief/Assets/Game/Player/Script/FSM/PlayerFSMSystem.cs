@@ -22,6 +22,8 @@ public abstract class CustomFSMStateBase : IFSMStateBase
     public abstract bool Transition(TransitionCondition condition);
 }
 
+//FSM은 스테이트 닦이가 아니고 스테이트들이 공통적으로 필요로 하는 함수 가져도 OK
+// OnTrriger와 같은 유니티 이벤트 함수 가져도 OK.
 public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase>, IActor
 {
     [SerializeField]
@@ -29,6 +31,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     public PlayerUnit Unit => _unit;
 
+    [SerializeField] 
+    private AnimationCtrl _animationCtrl;
+
+    public AnimationCtrl AnimationCtrl => _animationCtrl;
+
+    // 애니메이션 관련 상태 변수
+    private bool _isRunningInertiaAniEnd = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -48,10 +58,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Idle);
         }
 
         public override void Update()
         {
+            
         }
 
         public override void EndState()
@@ -66,7 +78,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return false;
         }
     }
-    
+    // 스테이트 단계에서 상태를 바꿀 지 체크를 하면서 변경 가능 상태가 되면 bool 값을 바꾸는 형태
+    // 로 하든 머 어떻게 컨트롤 해서 그 때부터 키매니저가 주는 상태 전이 이벤트를 받을 수 있도록.
     private  class MoveState : CustomFSMStateBase
     {
         float _inputDir = 1;
@@ -77,6 +90,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Move);
         }
 
         public override void Update()
@@ -101,6 +115,49 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 SystemMgr.Unit.CheckMovementDir(_inputDir);
                 return false;
             }
+            else if (condition == TransitionCondition.Idle)
+            {
+                Debug.Log(SystemMgr.Unit.IsRunningInertia());
+                if (SystemMgr.Unit.IsRunningInertia())
+                {
+                    SystemMgr.ChangeState(TransitionCondition.RunningInertia);
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+    }
+    
+    private class RunningInertia : CustomFSMStateBase
+    {
+        public RunningInertia(PlayerFSMSystem system) : base(system)
+        {
+            
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.RunningInertia);
+        }
+
+        public override void Update()
+        {
+            
+        }
+
+        public override void EndState()
+        {
+            SystemMgr._isRunningInertiaAniEnd = false;
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (condition == TransitionCondition.Idle)
+            {
+                if (SystemMgr._isRunningInertiaAniEnd == false)
+                    return false;
+            }
             
             return true;
         }
@@ -111,6 +168,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     {
         AddState(TransitionCondition.Idle, new IdleState(this));
         AddState(TransitionCondition.Move, new MoveState(this));
+        AddState(TransitionCondition.RunningInertia, new RunningInertia(this));
     }
     
     public bool Transition(TransitionCondition condition)
@@ -129,6 +187,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         ChangeState(condition);
         return true;
+    }
+ 
+    
+    // 애니메이션 이벤트 관련 호출 함수
+    public void RunningInertiaAniEndEvent()
+    {
+        _isRunningInertiaAniEnd = true;
     }
 
     private void SetUnit(PlayerUnit unit)
