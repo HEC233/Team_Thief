@@ -9,6 +9,7 @@ public enum TransitionCondition
     LeftMove = 2,
     RightMove = 3,
     RunningInertia = 4,
+    Jump = 5,
 }
 
 public interface IActor

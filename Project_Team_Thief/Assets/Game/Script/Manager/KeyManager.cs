@@ -19,6 +19,10 @@ public class KeyManager : MonoBehaviour
         {
             controlUnit.Transition(TransitionCondition.Idle);
         }
+        else if (Input.GetKey(KeyCode.C))
+        {
+            controlUnit.Transition(TransitionCondition.Jump);
+        }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             controlUnit.Transition(TransitionCondition.LeftMove);

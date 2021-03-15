@@ -6,10 +6,17 @@ public class PlayerMovementCtrl : MonoBehaviour
 {
     [SerializeField] 
     private Rigidbody2D _rigidbody2D;
-
+    
+    // 이동 관련 변수
     private float _curSpeed = 0.0f;
     private float _minSpeed = 0.8f;
     private float _maxSpeed = 6.5f;
+    
+    // 점프 관련 변수
+    private float _jumpPower = 1.0f;
+    
+    // 시간 관련 변수
+    private float _scale = 1;
     
     void Init()
     {
@@ -18,10 +25,11 @@ public class PlayerMovementCtrl : MonoBehaviour
     
     // 향후에는 데이터 센터 클래스라던가 데이터를 가지고 있는 함수에서 직접 호출로 받아 올 수 있도록
     // 수정 할 예정
-    public void SetVariable(float minSpeed, float maxSpeed)
+    public void SetVariable(float minSpeed, float maxSpeed, float jumpPower)
     {
         _minSpeed = minSpeed;
         _maxSpeed = maxSpeed;
+        _jumpPower = jumpPower;
     }
 
     public void Move(float dir)
@@ -29,9 +37,7 @@ public class PlayerMovementCtrl : MonoBehaviour
         _rigidbody2D.AddForce(new Vector2(_minSpeed * dir, 0), ForceMode2D.Impulse);
 
         if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
-            _rigidbody2D.velocity = new Vector2(_maxSpeed * dir, 0);
-        
-        Debug.Log("Velocity : " + _rigidbody2D.velocity);
+            _rigidbody2D.velocity = new Vector2(_maxSpeed * dir, _rigidbody2D.velocity.y);
     }
 
     public void MoveStop()
@@ -46,6 +52,7 @@ public class PlayerMovementCtrl : MonoBehaviour
 
     public void Jump(float jumpForce)
     {
-        
+        var power = new Vector3(_rigidbody2D.velocity.x, _jumpPower * _scale, 0.0f);
+        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 }

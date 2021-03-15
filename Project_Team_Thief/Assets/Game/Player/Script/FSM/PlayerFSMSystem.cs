@@ -63,7 +63,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void Update()
         {
-            
+            SystemMgr.Unit.Progress();
         }
 
         public override void EndState()
@@ -72,10 +72,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.LeftMove || condition == TransitionCondition.RightMove)
-                return true;
+            // if (condition == TransitionCondition.LeftMove || condition == TransitionCondition.RightMove)
+            //     return true;
 
-            return false;
+            return true;
         }
     }
     // 스테이트 단계에서 상태를 바꿀 지 체크를 하면서 변경 가능 상태가 되면 bool 값을 바꾸는 형태
@@ -95,6 +95,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void Update()
         {
+            SystemMgr.Unit.Progress();
             SystemMgr.Unit.Move(0);
         }
 
@@ -117,7 +118,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             else if (condition == TransitionCondition.Idle)
             {
-                Debug.Log(SystemMgr.Unit.IsRunningInertia());
                 if (SystemMgr.Unit.IsRunningInertia())
                 {
                     SystemMgr.ChangeState(TransitionCondition.RunningInertia);
@@ -129,9 +129,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         }
     }
     
-    private class RunningInertia : CustomFSMStateBase
+    private class RunningInertiaState : CustomFSMStateBase
     {
-        public RunningInertia(PlayerFSMSystem system) : base(system)
+        public RunningInertiaState(PlayerFSMSystem system) : base(system)
         {
             
         }
@@ -143,7 +143,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void Update()
         {
-            
+            SystemMgr.Unit.Progress();
         }
 
         public override void EndState()
@@ -162,20 +162,81 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return true;
         }
     }
+    
+    private class JumpState : CustomFSMStateBase
+    {
+        private bool _isJumping = false;
+        private float _jumpTime = 0.0f;
+        private bool _isJumpKeyPress = true;
+        
+        public JumpState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            if (SystemMgr.Unit.CheckIsJumpAble())
+            {
+                SystemMgr.AnimationCtrl.PlayAni(AniState.Jump);
+                SystemMgr.Unit.Jump(0);
+                _jumpTime = SystemMgr.Unit.MaxJumpTime;
+                _isJumping = true;
+                _isJumpKeyPress = true;
+            }
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                _isJumpKeyPress = false;
+            }
+
+            if (_isJumpKeyPress == true)
+            {
+                _jumpTime -= 0.016f;
+
+                if (_jumpTime >= 0)
+                {
+                    Debug.Log("asdasdsad");
+                    SystemMgr.Unit.Jump(0);
+                }
+            }
+
+            if (SystemMgr.Unit.IsGround == true)
+            {
+                _isJumping = false;
+            }
+        }
+
+        public override void EndState()
+        {
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (_isJumping == true)
+            {
+                return false;
+            }
+            
+            return true;
+        }
+    }
 
     // Update is called once per frame
     protected override void RegisterState()
     {
         AddState(TransitionCondition.Idle, new IdleState(this));
         AddState(TransitionCondition.Move, new MoveState(this));
-        AddState(TransitionCondition.RunningInertia, new RunningInertia(this));
+        AddState(TransitionCondition.RunningInertia, new RunningInertiaState(this));
+        AddState(TransitionCondition.Jump, new JumpState(this));
     }
     
     public bool Transition(TransitionCondition condition)
     {
-        if (CurrState == condition)
-            return false;
-
         if (CheckStateChangeAbleCondition(condition) == false)
             return false;
 
@@ -184,6 +245,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             ChangeState(TransitionCondition.Move);
         }
+
+        if (CurrState == condition)
+            return true;
+
+        if (CurrState == condition)
+            return false;
 
         ChangeState(condition);
         return true;
