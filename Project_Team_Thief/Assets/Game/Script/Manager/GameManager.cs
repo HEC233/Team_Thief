@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] 
     private KeyManager _keyManger;
-    
+    public Grid grid;
     // Start is called before the first frame update
     void Awake()
     {
@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         
+        TileCoordClass.SetGrid(grid);
     }
     
     public void SetControlUnit(IActor unit)
