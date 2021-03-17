@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    private Damage _damage;
+    protected Damage _damage;
 
     private void Awake()
     {
         _damage = new Damage();
     }
 
+    // 아무 행동을 하고 있지 않는 기본 상태입니다.
+    public virtual void Idle()
+    {
+        
+    }
+    
     // 유닛을 자신의 속도에 대해 delta만큼 곱한 값으로 가속합니다.
     public virtual void Move(float delta)
     {
