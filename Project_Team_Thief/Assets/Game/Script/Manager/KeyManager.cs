@@ -36,6 +36,6 @@ public class KeyManager : MonoBehaviour
     public void SetControlUnit(IActor unit)
     {
         controlUnit = unit;
-        Debug.Log("Is On");
+        //Debug.Log("Is On");
     }
 }

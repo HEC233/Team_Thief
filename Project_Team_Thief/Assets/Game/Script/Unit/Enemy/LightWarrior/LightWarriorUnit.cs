@@ -8,7 +8,8 @@ public class LightWarriorUnit : Unit
     [SerializeField]
     private bool isOnGround = false;
 
-    public float maxSpeed = 2;
+    public float maxSpeed = 0.5f;
+    public float accelation = 100;
 
     public Transform footPosition; 
 
@@ -39,7 +40,7 @@ public class LightWarriorUnit : Unit
 
     public override void Move(float delta)
     {
-        _rigid.AddForce(new Vector2(delta * 100, 0));
+        _rigid.AddForce(new Vector2(delta * accelation, 0));
     }
 
     public override void MoveTo(Vector3 position)
