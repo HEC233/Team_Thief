@@ -38,6 +38,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     // 애니메이션 관련 상태 변수
     private bool _isRunningInertiaAniEnd = false;
+    public bool isJumpKeyPress = false;
     
     // Start is called before the first frame update
     void Start()
@@ -101,7 +102,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
-            SystemMgr.Unit.MoveStop();
+            //SystemMgr.Unit.MoveStop();
         }
 
         public override bool Transition(TransitionCondition condition)
@@ -120,9 +121,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 if (SystemMgr.Unit.IsRunningInertia())
                 {
+                    SystemMgr.Unit.MoveStop();
                     SystemMgr.ChangeState(TransitionCondition.RunningInertia);
                     return false;
                 }
+                SystemMgr.Unit.MoveStop();
             }
             
             return true;
@@ -165,9 +168,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     
     private class JumpState : CustomFSMStateBase
     {
+        private float _inputDir = 1;
         private bool _isJumping = false;
         private float _jumpTime = 0.0f;
-        private bool _isJumpKeyPress = true;
+        private Coroutine jumpKeyDetectCoroutine;
         
         public JumpState(PlayerFSMSystem system) : base(system)
         {
@@ -175,55 +179,69 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
-            if (SystemMgr.Unit.CheckIsJumpAble())
+            if (SystemMgr.isJumpKeyPress == false)
             {
-                SystemMgr.AnimationCtrl.PlayAni(AniState.Jump);
-                SystemMgr.Unit.Jump(0);
-                _jumpTime = SystemMgr.Unit.MaxJumpTime;
-                _isJumping = true;
-                _isJumpKeyPress = true;
+                if (SystemMgr.Unit.CheckIsJumpAble())
+                {
+                    SystemMgr.AnimationCtrl.PlayAni(AniState.Jump);
+                    SystemMgr.Unit.Jump(0);
+                    _jumpTime = SystemMgr.Unit.MaxJumpTime;
+                    _isJumping = true;
+                    SystemMgr.isJumpKeyPress = true;
+
+                    jumpKeyDetectCoroutine = SystemMgr.StartCoroutine(JumpKeyPressDetectCoroutine());
+                }
             }
         }
 
         public override void Update()
         {
             SystemMgr.Unit.Progress();
-
-            if (Input.GetKeyUp(KeyCode.C))
-            {
-                _isJumpKeyPress = false;
-            }
-
-            if (_isJumpKeyPress == true)
-            {
-                _jumpTime -= 0.016f;
-
-                if (_jumpTime >= 0)
-                {
-                    Debug.Log("asdasdsad");
-                    SystemMgr.Unit.Jump(0);
-                }
-            }
-
-            if (SystemMgr.Unit.IsGround == true)
-            {
+            
+            if(SystemMgr.Unit.IsGround == true)
                 _isJumping = false;
-            }
         }
 
         public override void EndState()
         {
-        }
 
+        }
+        
         public override bool Transition(TransitionCondition condition)
         {
             if (_isJumping == true)
             {
+                if (condition == TransitionCondition.Jump)
+                {
+                    SystemMgr.Unit.AddJumpForce();
+                }
+                if (condition == TransitionCondition.LeftMove)
+                {
+                    SystemMgr.Unit.CheckMovementDir(_inputDir * - 1);
+                    SystemMgr.Unit.Move(0);
+                }
+                if (condition == TransitionCondition.RightMove)
+                {
+                    SystemMgr.Unit.CheckMovementDir(_inputDir);
+                    SystemMgr.Unit.Move(0);
+                }
                 return false;
             }
             
             return true;
         }
+
+        IEnumerator JumpKeyPressDetectCoroutine()
+        {
+            while (SystemMgr.isJumpKeyPress)
+            {
+                if (Input.GetKeyUp(KeyCode.C))
+                    SystemMgr.isJumpKeyPress = false;
+                
+                yield return null;
+            }
+        }
+        
     }
 
     // Update is called once per frame
@@ -240,6 +258,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         if (CheckStateChangeAbleCondition(condition) == false)
             return false;
 
+        if (condition == TransitionCondition.Jump)
+        {
+            if (isJumpKeyPress == true) // 점프키가 계속 눌려있는 경우를 체크
+                return false;
+        }
+
         // Left Move, Right Move에 대한 스테이트를 새로 만들기 싫어서 예외 처리 진행 함.
         if (condition == TransitionCondition.LeftMove || condition == TransitionCondition.RightMove)
         {
@@ -248,9 +272,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         if (CurrState == condition)
             return true;
-
-        if (CurrState == condition)
-            return false;
 
         ChangeState(condition);
         return true;

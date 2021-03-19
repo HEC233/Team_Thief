@@ -6,6 +6,10 @@ using UnityEngine;
 // Unit은 외부에 보이는 인터페이스.
 public class PlayerUnit : Unit
 {
+    
+    [SerializeField] 
+    private Rigidbody2D _rigidbody2D;
+    
     // 이동 관련 컨트롤러
     [SerializeField] 
     private PlayerMovementCtrl _playerMovementCtrl;
@@ -15,6 +19,7 @@ public class PlayerUnit : Unit
     bool _isFacingRight = true;
     
     // Ground Check
+    [SerializeField]
     private bool _isGround = true;
     public bool IsGround => _isGround;
 
@@ -23,17 +28,34 @@ public class PlayerUnit : Unit
     public Vector2 groundCheckBoxSize;
     public LayerMask groundLayer;
 
+    // 시간 관련 변수
+    private float _scale = 1;
+    
+    ///////////////////////////// 데이터로 관리 할 변수
     // 점프 관련 변수
-    //private bool _isJumpAble = false;
     private int _jumpCount = 0;
     private float _coyoteTime = 0.2f;
-    
-    // 데이터로 관리 할 변수
     private float _maxCoyoteTime = 0.2f; 
     private int _maxJumpCount = 2;
     private float _maxJumpTime = 0.1f;
-
     public float MaxJumpTime => _maxJumpTime;
+    
+    [SerializeField]
+    private float _jumpPower = 5.0f;
+    
+    [SerializeField] 
+    private float _addAllJumpPpower = 8.0f;
+    
+    [SerializeField]
+    private float _addJumpPower = 4f;
+
+    // 이동 관련 변수
+    private float _curSpeed = 0.0f;
+    private float _minSpeed = 0.8f;
+    private float _maxSpeed = 6.5f;
+    private float _moveStopSpeed = 1.0f;
+    
+    //////////////////////////// 데이터로 관리 할 변수
 
     void Start()
     {
@@ -42,7 +64,7 @@ public class PlayerUnit : Unit
 
     void Init()
     {
-        SetVariable(0.2f, 2, 0.08f);
+        SetVariable(0.2f, 2, 0.4f);
     }
     
     // 향후에는 데이터 센터 클래스라던가 데이터를 가지고 있는 함수에서 직접 호출로 받아 올 수 있도록
@@ -77,28 +99,47 @@ public class PlayerUnit : Unit
 
     public override void Move(float delta)
     {
+
+        _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0), ForceMode2D.Impulse);
+        
+        if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
+            _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
+        
         // Vector2 dir = moveUtil.moveforce(5);
         // Rigidbody2D.addfoce(dir);
-        
-        _playerMovementCtrl.Move(_facingDir);
+        //_playerMovementCtrl.Move(_facingDir);
     }
 
     public void MoveStop()
     {
-        _playerMovementCtrl.MoveStop();
+        _rigidbody2D.velocity = new Vector2(_moveStopSpeed * _facingDir, _rigidbody2D.velocity.y);
+        //_playerMovementCtrl.MoveStop();
     }
 
     public bool IsRunningInertia()
     {
-        return _playerMovementCtrl.IsRunningInertia();
+        return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 0.2f ? true : false;
+
+        //return _playerMovementCtrl.IsRunningInertia();
     }
     
     
     public override void Jump(float jumpForce)
     {
         _jumpCount--;
-        
-        _playerMovementCtrl.Jump(0);
+        _isGround = false;
+        //_playerMovementCtrl.Jump(0);
+        var power = new Vector3(0, _jumpPower * _scale, 0.0f);
+        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+    
+
+    public void AddJumpForce()
+    {
+        _rigidbody2D.AddForce((new Vector2(0, _addJumpPower) * _addAllJumpPpower) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+
+        //_playerMovementCtrl.asd();
+        //_playerMovementCtrl.AddJumpForce();
     }
 
     public bool CheckIsJumpAble()
@@ -118,6 +159,7 @@ public class PlayerUnit : Unit
     {
         _jumpCount = _maxJumpCount;
         _coyoteTime = _maxCoyoteTime;
+        _playerMovementCtrl.ResetJumpVal();
     }
 
     public override void Attack()
@@ -129,6 +171,12 @@ public class PlayerUnit : Unit
     {
         base.HandleHit(ref inputDamage);
     }
+
+    public Vector3 GetVelocity()
+    {
+        return _rigidbody2D.velocity;
+    }
+    
     
     public void CheckMovementDir(float inputDir)
     {
@@ -159,6 +207,12 @@ public class PlayerUnit : Unit
         }
         else if (_isGround == true)
         {
+            if (GetVelocity().y >= 1.0f)
+            {
+                _isGround = false;
+                return;
+            }
+
             ResetJumpVal();
         }
     }
