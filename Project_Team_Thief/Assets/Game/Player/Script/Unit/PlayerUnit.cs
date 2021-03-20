@@ -180,8 +180,10 @@ public class PlayerUnit : Unit
     }
 
     private float _rollPerMoveX = 0;
+    [SerializeField]
     private float _rollGoalX = 10;
-    private float _rollTime = 1.5f;
+    [SerializeField]
+    public float _rollTime = 1.5f;
     private int counter = 0;
     Vector2 power = Vector2.zero;
     public void AddRollPower()

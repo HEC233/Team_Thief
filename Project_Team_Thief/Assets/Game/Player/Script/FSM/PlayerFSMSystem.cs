@@ -338,6 +338,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         IEnumerator RollCoroutine()
         {
+            _rollTime = SystemMgr.Unit._rollTime;
             timer = 0.0f;
             while (timer < _rollTime)
             {
