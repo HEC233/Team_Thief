@@ -38,6 +38,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     // 애니메이션 관련 상태 변수
     private bool _isRunningInertiaAniEnd = false;
+    private bool _isRollAniEnd = false;
     public bool isJumpKeyPress = false;
     
     // Start is called before the first frame update
@@ -198,8 +199,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.Unit.Progress();
             
-            if(SystemMgr.Unit.IsGround == true)
-                _isJumping = false;
+            if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
+                SystemMgr.ChangeState(TransitionCondition.Falling);
+            
+            // if(SystemMgr.Unit.IsGround == true)
+            //     _isJumping = false;
         }
 
         public override void EndState()
@@ -228,7 +232,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return false;
             }
             
-            return true;
+            return false;
         }
 
         IEnumerator JumpKeyPressDetectCoroutine()
@@ -243,6 +247,108 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         }
         
     }
+    
+    private class FallingState : CustomFSMStateBase
+    {
+        private bool _isFaill = true;
+        private float _inputDir = 1;
+
+        public FallingState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            _isFaill = true;
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Fall);
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+
+            if(SystemMgr.Unit.IsGround == true)
+                _isFaill = false;
+        }
+
+        public override void EndState()
+        {
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (_isFaill)
+            {
+                if (condition == TransitionCondition.LeftMove)
+                {
+                    SystemMgr.Unit.CheckMovementDir(_inputDir * - 1);
+                    SystemMgr.Unit.Move(0);
+                }
+                if (condition == TransitionCondition.RightMove)
+                {
+                    SystemMgr.Unit.CheckMovementDir(_inputDir);
+                    SystemMgr.Unit.Move(0);
+                }
+                
+                return false;
+            }
+
+            return true;
+        }
+    }
+    
+    private class RollState : CustomFSMStateBase
+    {
+        public RollState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Roll);
+            SystemMgr.StartCoroutine(RollCoroutine());
+            //SystemMgr.Unit.Roll();
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+            //SystemMgr.Unit.AddRollPower();
+        }
+
+        public override void EndState()
+        {
+            SystemMgr._isRollAniEnd = false;
+            SystemMgr.Unit.MoveStop();
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            // if (SystemMgr._isRollAniEnd == false)
+            // {
+            //     return false;
+            // }
+            return false;
+
+            return true;
+        }
+
+        private float _rollTime = 1.5f;
+        float timer = 0.0f;
+
+        IEnumerator RollCoroutine()
+        {
+            timer = 0.0f;
+            while (timer < _rollTime)
+            {
+                timer += Time.fixedDeltaTime;
+                SystemMgr.Unit.AddRollPower();
+                Debug.Log("Call");
+                yield return new WaitForFixedUpdate();
+            }
+            //SystemMgr.Unit.MoveStop();
+        }
+    }
 
     // Update is called once per frame
     protected override void RegisterState()
@@ -251,6 +357,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Move, new MoveState(this));
         AddState(TransitionCondition.RunningInertia, new RunningInertiaState(this));
         AddState(TransitionCondition.Jump, new JumpState(this));
+        AddState(TransitionCondition.Falling, new FallingState(this));
+        AddState(TransitionCondition.Roll, new RollState(this));
     }
     
     public bool Transition(TransitionCondition condition)
@@ -282,6 +390,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     public void RunningInertiaAniEndEvent()
     {
         _isRunningInertiaAniEnd = true;
+    }
+
+    public void RollAniEndEvent()
+    {
+        _isRollAniEnd = true;
     }
 
     private void SetUnit(PlayerUnit unit)

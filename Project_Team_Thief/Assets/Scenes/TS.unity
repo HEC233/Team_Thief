@@ -1018,6 +1018,7 @@ GameObject:
   - component: {fileID: 927398462}
   - component: {fileID: 927398464}
   - component: {fileID: 927398463}
+  - component: {fileID: 927398465}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1064,6 +1065,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _keyManger: {fileID: 927398463}
+--- !u!114 &927398465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927398461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7e58cad12647849b83bee758e485a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1085417208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,6 +1113,7 @@ MonoBehaviour:
   _isInit: 0
   _unit: {fileID: 1105592736}
   _animationCtrl: {fileID: 17657521}
+  isJumpKeyPress: 0
 --- !u!4 &1085417210
 Transform:
   m_ObjectHideFlags: 0
@@ -1196,6 +1210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 1085417212}
   _playerMovementCtrl: {fileID: 1105592738}
+  _isGround: 1
   groundCheck: {fileID: 126958681}
   groundCheckBoxSize: {x: 0.8, y: 0.01}
   groundLayer:
@@ -1379,6 +1394,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1085417209}
         m_MethodName: RunningInertiaAniEndEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1085417209}
+        m_MethodName: RollAniEndEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -31,6 +31,10 @@ public class KeyManager : MonoBehaviour
         {
             controlUnit.Transition(TransitionCondition.RightMove);
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            controlUnit.Transition(TransitionCondition.Roll);
+        }
     }
 
     public void SetControlUnit(IActor unit)

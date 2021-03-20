@@ -55,6 +55,9 @@ public class PlayerUnit : Unit
     private float _maxSpeed = 6.5f;
     private float _moveStopSpeed = 1.0f;
     
+    // 구르기 관련 변수
+    private float _rollSpeed = 8.0f;
+    
     //////////////////////////// 데이터로 관리 할 변수
 
     void Start()
@@ -89,6 +92,11 @@ public class PlayerUnit : Unit
     public void Progress()
     {
         CheckGround();
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            _rigidbody2D.MovePosition(new Vector2(0,0));
+        }
     }
     
     private void OnDrawGizmos()
@@ -160,6 +168,48 @@ public class PlayerUnit : Unit
         _jumpCount = _maxJumpCount;
         _coyoteTime = _maxCoyoteTime;
         _playerMovementCtrl.ResetJumpVal();
+    }
+
+    public void Roll()
+    {
+        Debug.Log("Roll Func Call");
+        _rigidbody2D.velocity = Vector2.zero;
+        
+        var power = new Vector2(_rollSpeed * _facingDir, 0);
+        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+
+    private float _rollPerMoveX = 0;
+    private float _rollGoalX = 10;
+    private float _rollTime = 1.5f;
+    private int counter = 0;
+    Vector2 power = Vector2.zero;
+    public void AddRollPower()
+    {
+        if (counter < (int) (_rollTime / Time.fixedDeltaTime))
+        {
+            counter++;
+            _rollPerMoveX = _rollGoalX / (_rollTime / Time.fixedDeltaTime);
+            power = new Vector2(_rollPerMoveX * _facingDir, 0);
+            //Debug.Log(Physics2D.gravity * Time.deltaTime);
+            //power += Physics2D.gravity * Time.deltaTime;
+            power += new Vector2(transform.position.x, transform.position.y);
+
+            if (IsGround == false)
+                power += Physics2D.gravity * Time.fixedDeltaTime;
+            
+            _rigidbody2D.MovePosition(power);
+        }
+        else
+        {
+            _rigidbody2D.velocity = new Vector2(0, power.y);
+            counter = 0;
+        }
+    }
+
+    public void RollStop()
+    {
+        _rigidbody2D.velocity = new Vector2(2.0f, 0.0f);
     }
 
     public override void Attack()

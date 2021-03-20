@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        
+
+        Application.targetFrameRate = 60;
     }
     
     public void SetControlUnit(IActor unit)
