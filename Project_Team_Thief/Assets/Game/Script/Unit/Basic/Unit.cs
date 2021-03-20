@@ -1,16 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Unit : MonoBehaviour
 {
-    private Damage _damage;
+    protected Damage _damage;
+    [SerializeField]
+    protected LayerMask _groundLayer;
+    protected Rigidbody2D _rigid;
 
     private void Awake()
     {
         _damage = new Damage();
+        _rigid = GetComponent<Rigidbody2D>();
+        Assert.IsNotNull(_rigid);
     }
 
+    // 아무 행동을 하고 있지 않는 기본 상태입니다.
+    public virtual void Idle()
+    {
+        
+    }
+    
     // 유닛을 자신의 속도에 대해 delta만큼 곱한 값으로 가속합니다.
     public virtual void Move(float delta)
     {
@@ -38,6 +50,11 @@ public class Unit : MonoBehaviour
     public virtual void HandleHit(ref Damage inputDamage)
     {
 
+    }
+
+    public Vector2 GetSpeed()
+    {
+        return _rigid.velocity;
     }
 
     // 유닛 공격의 데미지를 조정합니다.

@@ -6,6 +6,6 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestPhysicsMat
-  friction: 0.4
-  bounciness: 1.2
+  m_Name: Ground
+  friction: 2
+  bounciness: 0

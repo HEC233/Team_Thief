@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+    
+    [SerializeField] 
+    private KeyManager _keyManger;
+    public Grid grid;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         
+        TileCoordClass.SetGrid(grid);
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void SetControlUnit(IActor unit)
     {
-        
+        _keyManger.SetControlUnit(unit);
     }
 }
