@@ -93,10 +93,10 @@ public class PlayerUnit : Unit
     {
         CheckGround();
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            _rigidbody2D.MovePosition(new Vector2(0,0));
-        }
+        // if (Input.GetKeyDown(KeyCode.F))
+        // {
+        //     _rigidbody2D.MovePosition(new Vector2(0,0));
+        // }
     }
     
     private void OnDrawGizmos()
@@ -130,17 +130,26 @@ public class PlayerUnit : Unit
 
         //return _playerMovementCtrl.IsRunningInertia();
     }
-    
-    
+
+
     public override void Jump(float jumpForce)
     {
         _jumpCount--;
         _isGround = false;
+
+        var power = new Vector3(0, _jumpPower * _scale, 0.0f);
+        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+        
         //_playerMovementCtrl.Jump(0);
+    }
+
+    public void DoubleJump()
+    {
+        _jumpCount--;
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
         var power = new Vector3(0, _jumpPower * _scale, 0.0f);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
-    
 
     public void AddJumpForce()
     {
@@ -154,11 +163,11 @@ public class PlayerUnit : Unit
     {
         if (_coyoteTime >= 0.0f)
         {
-            if (_jumpCount >= 1)
-            {
-                return true;
-            }
+            _coyoteTime = -1;
+            return true;
         }
+        else if (_jumpCount >= 1)
+            return true;
 
         return false;
     }

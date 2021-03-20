@@ -66,6 +66,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void Update()
         {
             SystemMgr.Unit.Progress();
+            
+            if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
+                SystemMgr.ChangeState(TransitionCondition.Falling);
         }
 
         public override void EndState()
@@ -74,9 +77,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            // if (condition == TransitionCondition.LeftMove || condition == TransitionCondition.RightMove)
-            //     return true;
-
             return true;
         }
     }
@@ -99,6 +99,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.Unit.Progress();
             SystemMgr.Unit.Move(0);
+            
+            if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
+                SystemMgr.ChangeState(TransitionCondition.Falling);
         }
 
         public override void EndState()
@@ -170,29 +173,16 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private class JumpState : CustomFSMStateBase
     {
         private float _inputDir = 1;
-        private bool _isJumping = false;
-        private float _jumpTime = 0.0f;
-        private Coroutine jumpKeyDetectCoroutine;
-        
+
         public JumpState(PlayerFSMSystem system) : base(system)
         {
         }
 
         public override void StartState()
         {
-            if (SystemMgr.isJumpKeyPress == false)
-            {
-                if (SystemMgr.Unit.CheckIsJumpAble())
-                {
-                    SystemMgr.AnimationCtrl.PlayAni(AniState.Jump);
-                    SystemMgr.Unit.Jump(0);
-                    _jumpTime = SystemMgr.Unit.MaxJumpTime;
-                    _isJumping = true;
-                    SystemMgr.isJumpKeyPress = true;
-
-                    jumpKeyDetectCoroutine = SystemMgr.StartCoroutine(JumpKeyPressDetectCoroutine());
-                }
-            }
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Jump);
+            SystemMgr.Unit.Jump(0);
+            SystemMgr.StartJumpKeyPressDetectCoroutine();
         }
 
         public override void Update()
@@ -201,51 +191,92 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
                 SystemMgr.ChangeState(TransitionCondition.Falling);
-            
-            // if(SystemMgr.Unit.IsGround == true)
-            //     _isJumping = false;
         }
 
         public override void EndState()
         {
 
         }
-        
+
         public override bool Transition(TransitionCondition condition)
         {
-            if (_isJumping == true)
+            if (SystemMgr.isJumpKeyPress == false)
             {
                 if (condition == TransitionCondition.Jump)
                 {
-                    SystemMgr.Unit.AddJumpForce();
+                    SystemMgr.ChangeState(TransitionCondition.DoubleJump);
+                    return false;
                 }
-                if (condition == TransitionCondition.LeftMove)
-                {
-                    SystemMgr.Unit.CheckMovementDir(_inputDir * - 1);
-                    SystemMgr.Unit.Move(0);
-                }
-                if (condition == TransitionCondition.RightMove)
-                {
-                    SystemMgr.Unit.CheckMovementDir(_inputDir);
-                    SystemMgr.Unit.Move(0);
-                }
-                return false;
             }
-            
+
+            if (condition == TransitionCondition.Jump)
+            {
+                SystemMgr.Unit.AddJumpForce();
+            }
+
+            if (condition == TransitionCondition.LeftMove)
+            {
+                SystemMgr.Unit.CheckMovementDir(_inputDir * -1);
+                SystemMgr.Unit.Move(0);
+            }
+
+            if (condition == TransitionCondition.RightMove)
+            {
+                SystemMgr.Unit.CheckMovementDir(_inputDir);
+                SystemMgr.Unit.Move(0);
+            }
+
             return false;
         }
-
-        IEnumerator JumpKeyPressDetectCoroutine()
-        {
-            while (SystemMgr.isJumpKeyPress)
-            {
-                if (Input.GetKeyUp(KeyCode.C))
-                    SystemMgr.isJumpKeyPress = false;
-                
-                yield return null;
-            }
-        }
+    }
+    
+    private class DoubleJump : CustomFSMStateBase
+    {
+        private float _inputDir = 1;
         
+        public DoubleJump(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Jump);
+            SystemMgr.Unit.DoubleJump();
+            SystemMgr.StartJumpKeyPressDetectCoroutine();
+
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+            
+            if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
+                SystemMgr.ChangeState(TransitionCondition.Falling);
+        }
+
+        public override void EndState()
+        {
+            
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (condition == TransitionCondition.Jump)
+            {
+                SystemMgr.Unit.AddJumpForce();
+            }
+            if (condition == TransitionCondition.LeftMove)
+            {
+                SystemMgr.Unit.CheckMovementDir(_inputDir * - 1);
+                SystemMgr.Unit.Move(0);
+            }
+            if (condition == TransitionCondition.RightMove)
+            {
+                SystemMgr.Unit.CheckMovementDir(_inputDir);
+                SystemMgr.Unit.Move(0);
+            }
+            return false;
+        }
     }
     
     private class FallingState : CustomFSMStateBase
@@ -279,6 +310,18 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (_isFaill)
             {
+                if (condition == TransitionCondition.Jump)
+                {
+                    if (SystemMgr.isJumpKeyPress == false)
+                    {
+                        if (SystemMgr.Unit.CheckIsJumpAble() == true)
+                        {
+                            SystemMgr.ChangeState(TransitionCondition.DoubleJump);
+                            return false;
+                        }
+                    }
+                }
+                
                 if (condition == TransitionCondition.LeftMove)
                 {
                     SystemMgr.Unit.CheckMovementDir(_inputDir * - 1);
@@ -293,6 +336,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return false;
             }
 
+            if (condition == TransitionCondition.Jump)
+            {
+                if (SystemMgr.isJumpKeyPress == true)
+                    SystemMgr.ChangeState(TransitionCondition.Idle);
+            }
+            
             return true;
         }
     }
@@ -358,6 +407,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Move, new MoveState(this));
         AddState(TransitionCondition.RunningInertia, new RunningInertiaState(this));
         AddState(TransitionCondition.Jump, new JumpState(this));
+        AddState(TransitionCondition.DoubleJump, new DoubleJump(this));
         AddState(TransitionCondition.Falling, new FallingState(this));
         AddState(TransitionCondition.Roll, new RollState(this));
     }
@@ -380,7 +430,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         }
 
         if (CurrState == condition)
-            return true;
+            return false;
 
         ChangeState(condition);
         return true;
@@ -396,6 +446,24 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     public void RollAniEndEvent()
     {
         _isRollAniEnd = true;
+    }
+
+    public void StartJumpKeyPressDetectCoroutine()
+    {
+        StartCoroutine(JumpKeyPressDetectCoroutine());
+    }
+    
+    IEnumerator JumpKeyPressDetectCoroutine()
+    {
+        isJumpKeyPress = true;
+        
+        while (isJumpKeyPress)
+        {
+            if (Input.GetKeyUp(KeyCode.C))
+                isJumpKeyPress = false;
+                
+            yield return null;
+        }
     }
 
     private void SetUnit(PlayerUnit unit)
