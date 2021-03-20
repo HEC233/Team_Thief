@@ -11,6 +11,8 @@ public enum TransitionCondition
     RunningInertia = 4,
     Jump = 5,
     StopMove = 6,
+    Skill1,
+    Skill2,
 }
 
 public interface IActor

@@ -234,6 +234,7 @@ namespace LWAIState
                         {
                             _jumpAttackCool = 2.0f;
                             Debug.Log("광전사 점프 어택 발생");
+                            ai.actor.Transition(TransitionCondition.Skill1);
 
                             _state = InnerState.Reset;
                             _timeCheck = 0.5f;
@@ -246,6 +247,7 @@ namespace LWAIState
                         {
                             _swingAttackCool = 2.0f;
                             Debug.Log("광전사 스윙 어택 발생");
+                            ai.actor.Transition(TransitionCondition.Skill2);
 
                             _state = InnerState.Reset;
                             _timeCheck = 0.5f;
