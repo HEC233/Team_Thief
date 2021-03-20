@@ -45,10 +45,10 @@ public static class TileCoordClass
         BoxCollider2D collider = new BoxCollider2D();
         bool result = Physics2D.BoxCast(coord.TileCoordToPosition(), _grid.cellSize * 0.9f, 0, Vector2.zero, 0, layerMask).collider != null;
 
-        if (result)
-            Debug.Log(coord + " 뭔가 있음");
-        else
-            Debug.Log(coord + " 뭔가 없음");
+        //if (result)
+        //    Debug.Log(coord + " 뭔가 있음");
+        //else
+        //    Debug.Log(coord + " 뭔가 없음");
 
         return result;
     }
