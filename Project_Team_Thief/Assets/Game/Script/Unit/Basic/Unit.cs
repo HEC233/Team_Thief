@@ -41,7 +41,7 @@ public class Unit : MonoBehaviour
     }
 
     // 유닛의 피격을 처리합니다.
-    public virtual void HandleHit(ref Damage inputDamage)
+    public virtual void HandleHit(in Damage inputDamage)
     {
 
     }

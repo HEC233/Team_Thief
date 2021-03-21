@@ -228,9 +228,9 @@ public class PlayerUnit : Unit
         base.Attack();
     }
 
-    public override void HandleHit(ref Damage inputDamage)
+    public override void HandleHit(in Damage inputDamage)
     {
-        base.HandleHit(ref inputDamage);
+        base.HandleHit(in inputDamage);
     }
 
     public Vector3 GetVelocity()
