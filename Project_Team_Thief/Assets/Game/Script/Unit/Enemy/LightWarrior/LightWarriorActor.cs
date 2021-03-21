@@ -9,15 +9,21 @@ public class LightWarriorActor : MonoBehaviour, IActor
     public LightWarriorUnit unit;
     LWState _curState;
 
+    public Idle idle = new Idle();
+    public Move move = new Move();
+    public Die die = new Die();
+
     private void Awake()
     {
         unit = GetComponentInParent<LightWarriorUnit>();
         Assert.IsNotNull(unit);
+        unit.hitEvent.AddListener(HitTransition);
+        unit.dieEvent.AddListener(DieTransition);
     }
 
     private void Start()
     {
-        _curState = new Idle();
+        _curState = idle;
         _curState.Enter(this);
     }
 
@@ -28,6 +34,8 @@ public class LightWarriorActor : MonoBehaviour, IActor
 
     public bool Transition(TransitionCondition condition)
     {
+        if (condition == TransitionCondition.Die)
+            ChangeState(die);
         _curState.Transition(this, condition);
         return false;
     }
@@ -38,6 +46,9 @@ public class LightWarriorActor : MonoBehaviour, IActor
         _curState = newState;
         _curState.Enter(this);
     }
+
+    private void HitTransition() { Transition(TransitionCondition.Hit); }
+    private void DieTransition() { Transition(TransitionCondition.Die); }
 }
 
 namespace LightWarrior
@@ -50,6 +61,7 @@ namespace LightWarrior
         public abstract bool Transition(LightWarriorActor actor, TransitionCondition condition);
     }
 
+    //=====================================================================
     public class Idle : LWState
     {
         public override void Enter(LightWarriorActor actor)
@@ -70,16 +82,15 @@ namespace LightWarrior
             {
                 case TransitionCondition.RightMove:
                 case TransitionCondition.LeftMove:
-                case TransitionCondition.StopMove:
-                    actor.ChangeState(new Move());
+                    actor.ChangeState(actor.move);
                     return true;
-                    break;
             }
 
             return false;
         }
     }
 
+    //=====================================================================
     public class Move : LWState
     {
         private enum InnerState
@@ -116,18 +127,38 @@ namespace LightWarrior
                     if (innerState == InnerState.left)
                         actor.unit.Idle();
                     actor.unit.Move(1);
-                    break;
+                    return true;
                 case TransitionCondition.LeftMove:
                     if (innerState == InnerState.right)
                         actor.unit.Idle();
                     actor.unit.Move(-1);
-                    break;
+                    return true;
                 case TransitionCondition.StopMove:
-                    actor.unit.Idle();
-                    break;
+                    actor.ChangeState(actor.idle);
+                    return true;
             }
             return false;
         }
     }
 
+    //=====================================================================
+    public class Die : LWState
+    {
+        public override void Enter(LightWarriorActor actor)
+        {
+        }
+
+        public override void Exit(LightWarriorActor actor)
+        {
+        }
+
+        public override void Process(LightWarriorActor actor)
+        {
+        }
+
+        public override bool Transition(LightWarriorActor actor, TransitionCondition condition)
+        {
+            return false;
+        }
+    }
 }
