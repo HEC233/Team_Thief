@@ -56,7 +56,8 @@ public class LightWarriorUnit : Unit
     {
     }
 
-    public override void HandleHit(ref Damage inputDamage)
+    public override void HandleHit(in Damage inputDamage)
     {
+
     }
 }
