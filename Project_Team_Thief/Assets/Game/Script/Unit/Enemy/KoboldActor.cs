@@ -13,7 +13,7 @@ public class KoboldActor : MonoBehaviour, IActor
         _curState.Process(this);
     }
 
-    public bool Transition(TransitionCondition condition)
+    public bool Transition(TransitionCondition condition, object param = null)
     {
         _curState.Transition(this, condition);
         return false;
