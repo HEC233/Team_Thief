@@ -235,7 +235,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Jump, new JumpState(this));
     }
     
-    public bool Transition(TransitionCondition condition)
+    public bool Transition(TransitionCondition condition, object param = null)
     {
         if (CheckStateChangeAbleCondition(condition) == false)
             return false;
