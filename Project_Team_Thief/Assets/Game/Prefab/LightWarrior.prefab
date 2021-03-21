@@ -314,24 +314,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _hp: 0
-  attackBox: {fileID: 4577946334256479123}
+  attackBox:
+  - {fileID: 4577946334256479123}
   hitBoxLayer:
     serializedVersion: 2
     m_Bits: 1024
-  contactFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 1024
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
 --- !u!70 &4734626809255155482
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

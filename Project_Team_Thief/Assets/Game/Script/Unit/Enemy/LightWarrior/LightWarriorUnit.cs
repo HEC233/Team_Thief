@@ -23,7 +23,8 @@ public class LightWarriorUnit : Unit
     private float _hp;
 
     // 공격에 관한 값들, 계속 힙에 할당되는걸 막고자 클래스 변수로 만들어 놓았다.
-    public BoxCollider2D attackBox;
+    public List<BoxCollider2D> attackBox = new List<BoxCollider2D>();
+    private int _curAttackBox = 0;
     public LayerMask hitBoxLayer;
     ContactFilter2D contactFilter = new ContactFilter2D();
     List<Collider2D> result = new List<Collider2D>();
@@ -77,13 +78,24 @@ public class LightWarriorUnit : Unit
         _rigid.AddForce(new Vector2(0, jumpForce));
     }
 
+    public void SetAttackBox(bool isDirectionRight, int index = -1)
+    {
+        if (isDirectionRight)
+        {
+            // 보는 방향이 달라졌을때의 처리를 위한 공간
+        }
+
+        if (index > -1)
+            _curAttackBox = index;
+    }
+
     public override void Attack()
     {
         // 히트박스 레이어와 접촉해 있는지 판단
-        if(attackBox.IsTouchingLayers(hitBoxLayer))
+        if(attackBox[_curAttackBox].IsTouchingLayers(hitBoxLayer))
         {
             // 접촉해 있는 히트박스레이어인 콜라이더들 가져오기
-            attackBox.OverlapCollider(contactFilter, result);
+            attackBox[_curAttackBox].OverlapCollider(contactFilter, result);
             foreach(var c in result)
             {
                 // 콜라이더로 부터 Unit 추출
@@ -98,6 +110,7 @@ public class LightWarriorUnit : Unit
 
     public override void HandleHit(in Damage inputDamage)
     {
+        // 대미지 상정방식 기획서에 맞게 변경 필요
         _hp -= inputDamage.power;
         _rigid.AddForce(inputDamage.knockBack);
 
