@@ -1273,7 +1273,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _hp: 0
-  attackBox: {fileID: 0}
+  attackBox: []
+  hitBoxLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!23 &1051828670
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2310,7 +2313,7 @@ PrefabInstance:
     - target: {fileID: 8718974564337716242, guid: e972f2be0e9e66840a07f6b053f57afe,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e972f2be0e9e66840a07f6b053f57afe, type: 3}

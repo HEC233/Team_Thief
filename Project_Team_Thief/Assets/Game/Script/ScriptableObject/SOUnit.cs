@@ -16,6 +16,7 @@ public class SOUnit : ScriptableObject
 
     public float hp;
     public float reduceHit;
+
     public float skillDamage;
     public float criticalValue;
     public int attackCount;

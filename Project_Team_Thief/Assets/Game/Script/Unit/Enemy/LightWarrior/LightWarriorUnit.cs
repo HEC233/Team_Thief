@@ -10,6 +10,9 @@ public class LightWarriorUnit : Unit
 
     public SOUnit data;
     public float accelation = 100;
+    private bool _isHorizontalMoving = false;
+    private bool _isVerticalMoving = false;
+    private Vector2 _nextAddingForce = Vector2.zero;
 
     public Transform footPosition;
 
@@ -32,6 +35,8 @@ public class LightWarriorUnit : Unit
     private void Start()
     {
         _unitName = data.unitName;
+        _isHorizontalMoving = false;
+        _isVerticalMoving = false;
 
         _hp = data.hp;
 
@@ -39,7 +44,7 @@ public class LightWarriorUnit : Unit
         contactFilter.useLayerMask = true;
         contactFilter.SetLayerMask(hitBoxLayer);
 
-        //--------------------------
+        //---------- for test ----------------
         SetDamagePower(0).SetDamageKnockBack(new Vector2(200, 200));
     }
 
@@ -49,6 +54,9 @@ public class LightWarriorUnit : Unit
 
     void FixedUpdate()
     {
+        _rigid.AddForce(_nextAddingForce);
+        _nextAddingForce = Vector2.zero;
+
         isOnGround = Physics2D.Raycast(footPosition.position, Vector2.down, 0.2f, _groundLayer);
 
         if (isOnGround)
@@ -56,7 +64,11 @@ public class LightWarriorUnit : Unit
             Vector2 velocity = _rigid.velocity;
             if (velocity.sqrMagnitude > data.maxSpeed * data.maxSpeed)
                 _rigid.velocity = velocity.normalized * data.maxSpeed;
+            _isVerticalMoving = false;
         }
+
+        if (Mathf.Approximately(GetSpeed().x, 0.0f))
+            _isHorizontalMoving = false;
     }
 
     public override void Idle()
@@ -64,9 +76,25 @@ public class LightWarriorUnit : Unit
         _rigid.velocity = new Vector2(0.0f, _rigid.velocity.y);
     }
 
+    /*
+     * 변경안 : minSpeed가 적용되도록 해야 한다.
+     * 지금은 피직스 매터리얼의 Friction(마찰)값으로 속도를 줄여주고 있는데
+     * 이것을 제거하고 스크립트 내에서 자체적으로 속도를 줄여주도록 해야할까?
+     * 이동여부 불리언을 만들고 이동시작시 minSpeed로 속도를 바꿔주고
+     * accelation만큼 가속해주다 maxSpeed로 클램핑을 해주고
+     * 주기적으로 내부에서 속도값을 줄여주는 방식으로
+     * 흠... 이러면 지금이랑 다를게 뭐지?
+     * 점프와 관련된 부분을 이렇게 하면 될까?
+     */ 
     public override void Move(float delta)
     {
-        _rigid.AddForce(new Vector2(delta * accelation, 0));
+        if (!_isHorizontalMoving)
+        {
+            _rigid.velocity = new Vector2(delta * data.minSpeed, _rigid.velocity.y);
+            _isHorizontalMoving = true;
+        }
+        else
+            _nextAddingForce = _nextAddingForce + new Vector2(delta * accelation, 0);
     }
 
     public override void MoveTo(Vector3 position)
@@ -75,7 +103,14 @@ public class LightWarriorUnit : Unit
 
     public override void Jump(float jumpForce)
     {
-        _rigid.AddForce(new Vector2(0, jumpForce));
+        if (!_isVerticalMoving)
+        {
+           // _rigid.velocity = new Vector2(_rigid.velocity.x, data.minJumpPower);
+            _rigid.velocity = new Vector2(_rigid.velocity.x, jumpForce);
+            _isHorizontalMoving = true;
+        }
+        else
+            _nextAddingForce = _nextAddingForce + new Vector2(0, jumpForce);
     }
 
     public void SetAttackBox(bool isDirectionRight, int index = -1)
@@ -89,8 +124,21 @@ public class LightWarriorUnit : Unit
             _curAttackBox = index;
     }
 
+    IEnumerator AttackMove()
+    {
+        //_rigid.MovePosition(new )
+        // 여기 어떻게 구현해야 되지?
+        // 단순 더하기는 안되고
+        // 리지드바디에 addposition은 고정주기로 안해도 문제가 없는걸까?
+
+        yield return null;
+    }
+
     public override void Attack()
     {
+        // 앞뒤 딜레이는 여기서 구현하는게 나을까 애니메이션을 관장하는 액터에서 처리하는게 나을까
+        // 개인적으로 액터가 낫다고 생각은 한다.
+
         // 히트박스 레이어와 접촉해 있는지 판단
         if(attackBox[_curAttackBox].IsTouchingLayers(hitBoxLayer))
         {
@@ -105,13 +153,21 @@ public class LightWarriorUnit : Unit
                     continue;
                 u.HandleHit(_damage);
             }
+            /*
+            GameManager.instance.cameraMng.Shake(data.cameraShakeIntensity, data.cameraShakeCount);
+            GameManager.instance.timeMng.BulletTime(data.bulletTimeLength);
+            GameManager.instance.timeMng.HitStop(data.hitstopLength);
+             */
         }
+
+        StopAllCoroutines();
+        StartCoroutine(AttackMove());
     }
 
     public override void HandleHit(in Damage inputDamage)
     {
         // 대미지 상정방식 기획서에 맞게 변경 필요
-        _hp -= inputDamage.power;
+        _hp -= inputDamage.power * data.reduceHit;
         _rigid.AddForce(inputDamage.knockBack);
 
         if (_hp <= 0)

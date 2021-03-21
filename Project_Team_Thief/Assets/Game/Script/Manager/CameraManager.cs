@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public void Shake()
+    public void Shake(float intensity, int count)
+    {
+
+    }
+
+    public void Shake(string unitName)
     {
 
     }

@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 8718974563859108415}
   - component: {fileID: 8718974563859108409}
   - component: {fileID: 4734626809255155482}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LightWarrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
