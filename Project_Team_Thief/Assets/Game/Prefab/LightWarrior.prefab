@@ -246,7 +246,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   isOnGround: 0
-  maxSpeed: 2
+  data: {fileID: 11400000, guid: 6f9ddd582b707654b9a09d26e53743f9, type: 2}
   accelation: 100
   footPosition: {fileID: 824521593790033727}
 --- !u!70 &4734626809255155482
@@ -355,5 +355,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  isLookRight: 0
   target: {fileID: 0}
   color: {fileID: 0}

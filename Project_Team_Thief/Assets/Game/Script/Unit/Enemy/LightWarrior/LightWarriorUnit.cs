@@ -8,7 +8,7 @@ public class LightWarriorUnit : Unit
     [SerializeField]
     private bool isOnGround = false;
 
-    public float maxSpeed = 0.5f;
+    public SOUnit data;
     public float accelation = 100;
 
     public Transform footPosition; 
@@ -28,8 +28,8 @@ public class LightWarriorUnit : Unit
         if (isOnGround)
         {
             Vector2 velocity = _rigid.velocity;
-            if (velocity.sqrMagnitude > maxSpeed * maxSpeed)
-                _rigid.velocity = velocity.normalized * maxSpeed;
+            if (velocity.sqrMagnitude > data.maxSpeed * data.maxSpeed)
+                _rigid.velocity = velocity.normalized * data.maxSpeed;
         }
     }
 
