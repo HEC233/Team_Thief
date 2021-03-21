@@ -7,6 +7,7 @@ public class LightWarriorUnit : Unit
 {
     [SerializeField]
     private bool isOnGround = false;
+    private bool skipGroundCheck = false;
 
     public SOUnit data;
     public float accelation = 100;
@@ -57,7 +58,10 @@ public class LightWarriorUnit : Unit
         _rigid.AddForce(_nextAddingForce);
         _nextAddingForce = Vector2.zero;
 
-        isOnGround = Physics2D.Raycast(footPosition.position, Vector2.down, 0.2f, _groundLayer);
+        if (skipGroundCheck)
+            isOnGround = Physics2D.Raycast(footPosition.position, Vector2.down, Mathf.Epsilon, _groundLayer);
+        else
+            skipGroundCheck = false;
 
         if (isOnGround)
         {
@@ -94,7 +98,7 @@ public class LightWarriorUnit : Unit
             _isHorizontalMoving = true;
         }
         else
-            _nextAddingForce = _nextAddingForce + new Vector2(delta * accelation, 0);
+            _nextAddingForce = new Vector2(delta * accelation, _nextAddingForce.y);
     }
 
     public override void MoveTo(Vector3 position)
@@ -106,11 +110,11 @@ public class LightWarriorUnit : Unit
         if (!_isVerticalMoving)
         {
            // _rigid.velocity = new Vector2(_rigid.velocity.x, data.minJumpPower);
-            _rigid.velocity = new Vector2(_rigid.velocity.x, jumpForce);
+            _rigid.velocity = new Vector2(_rigid.velocity.x, data.minJumpPower);
             _isHorizontalMoving = true;
         }
         else
-            _nextAddingForce = _nextAddingForce + new Vector2(0, jumpForce);
+            _nextAddingForce = new Vector2(_nextAddingForce.x, jumpForce);
     }
 
     public void SetAttackBox(bool isDirectionRight, int index = -1)
@@ -168,7 +172,9 @@ public class LightWarriorUnit : Unit
     {
         // 대미지 상정방식 기획서에 맞게 변경 필요
         _hp -= inputDamage.power * data.reduceHit;
-        _rigid.AddForce(inputDamage.knockBack);
+        _rigid.AddForce(inputDamage.knockBack, ForceMode2D.Force);
+        //isOnGround = false;
+        //skipGroundCheck = true;
 
         if (_hp <= 0)
         {
