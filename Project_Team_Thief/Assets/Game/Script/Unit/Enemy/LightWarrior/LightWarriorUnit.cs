@@ -13,6 +13,7 @@ public class LightWarriorUnit : Unit
 
     public Transform footPosition;
 
+    // 유닛이 피해를 입으면 애니메이션을 관장하는 액터또한 알아야 한다. 사이의 중계를 위한 이벤트
     [HideInInspector]
     public UnityEvent hitEvent;
     [HideInInspector]
@@ -21,6 +22,7 @@ public class LightWarriorUnit : Unit
     [SerializeField]
     private float _hp;
 
+    // 공격에 관한 값들, 계속 힙에 할당되는걸 막고자 클래스 변수로 만들어 놓았다.
     public BoxCollider2D attackBox;
     public LayerMask hitBoxLayer;
     ContactFilter2D contactFilter = new ContactFilter2D();
@@ -77,12 +79,16 @@ public class LightWarriorUnit : Unit
 
     public override void Attack()
     {
+        // 히트박스 레이어와 접촉해 있는지 판단
         if(attackBox.IsTouchingLayers(hitBoxLayer))
         {
+            // 접촉해 있는 히트박스레이어인 콜라이더들 가져오기
             attackBox.OverlapCollider(contactFilter, result);
             foreach(var c in result)
             {
+                // 콜라이더로 부터 Unit 추출
                 var u = c.GetComponentInParent<Unit>();
+                // 유닛이 자기자신이거나 없으면 예외처리
                 if (u == null || u == this)
                     continue;
                 u.HandleHit(_damage);

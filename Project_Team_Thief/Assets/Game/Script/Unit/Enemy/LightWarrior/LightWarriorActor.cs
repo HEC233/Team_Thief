@@ -46,7 +46,8 @@ public class LightWarriorActor : MonoBehaviour, IActor
         _curState = newState;
         _curState.Enter(this);
     }
-
+    
+    // 피격, 사망 이벤트는 간단하게 트랜지션을 발동시켜주는 것으로 구현하였다.
     private void HitTransition() { Transition(TransitionCondition.Hit); }
     private void DieTransition() { Transition(TransitionCondition.Die); }
 }
