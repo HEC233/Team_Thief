@@ -46,7 +46,7 @@ public class LightWarriorUnit : Unit
         contactFilter.SetLayerMask(hitBoxLayer);
 
         //---------- for test ----------------
-        SetDamagePower(0).SetDamageKnockBack(new Vector2(200, 200));
+        SetDamagePower(data.skillDamage).SetDamageKnockBack(new Vector2(200, 200));
     }
 
     void Update()
@@ -58,7 +58,7 @@ public class LightWarriorUnit : Unit
         _rigid.AddForce(_nextAddingForce);
         _nextAddingForce = Vector2.zero;
 
-        if (skipGroundCheck)
+        if (!skipGroundCheck)
             isOnGround = Physics2D.Raycast(footPosition.position, Vector2.down, Mathf.Epsilon, _groundLayer);
         else
             skipGroundCheck = false;

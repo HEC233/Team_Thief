@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5526478712000158899}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8718974563859108414}
@@ -305,7 +305,7 @@ MonoBehaviour:
     m_Bits: 256
   isOnGround: 0
   data: {fileID: 11400000, guid: 6f9ddd582b707654b9a09d26e53743f9, type: 2}
-  accelation: 100
+  accelation: 2
   footPosition: {fileID: 824521593790033727}
   hitEvent:
     m_PersistentCalls:

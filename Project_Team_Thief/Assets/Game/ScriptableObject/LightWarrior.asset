@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: LightWarrior
   m_EditorClassIdentifier: 
   unitName: LightWarrior
-  minSpeed: 0
-  maxSpeed: 0
+  minSpeed: 1
+  maxSpeed: 3
   minJumpPower: 0
   maxJumpPower: 0
   jumpCount: 0
-  hp: 0
-  reduceHit: 0
-  skillDamage: 0
+  hp: 100
+  reduceHit: 1
+  skillDamage: 10
   criticalValue: 0
   attackCount: 0
   attackInterval: 0

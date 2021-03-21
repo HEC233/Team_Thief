@@ -233,6 +233,9 @@ namespace LWAIState
                         if (_jumpAttackCool <= 0)
                         {
                             _jumpAttackCool = 2.0f;
+#if TEST
+                            ai.color.Set(Color.magenta);
+#endif
                             Debug.Log("광전사 점프 어택 발생");
                             /*
                              * 여기서 전이조건을 넘겨줄 것이다.
@@ -253,6 +256,9 @@ namespace LWAIState
                         if (_swingAttackCool <= 0)
                         {
                             _swingAttackCool = 2.0f;
+#if TEST
+                            ai.color.Set(Color.magenta);
+#endif
                             Debug.Log("광전사 스윙 어택 발생");
                             ai.actor.Transition(TransitionCondition.Skill2);
 
@@ -295,6 +301,10 @@ namespace LWAIState
 
                     if (_timeCheck <= 0)
                     {
+#if TEST
+                        ai.color.Set(Color.red);
+#endif
+
                         if (!ai.CheckSight())
                             ai.ChangeState(ai.search);
                         else
