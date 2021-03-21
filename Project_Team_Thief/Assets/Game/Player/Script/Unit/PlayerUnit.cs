@@ -55,8 +55,15 @@ public class PlayerUnit : Unit
     private float _maxSpeed = 6.5f;
     private float _moveStopSpeed = 1.0f;
     
+    [Header("Roll Variable")]
+    [SerializeField]
+    private float _rollGoalX = 10;
+    [SerializeField]
+    public float _rollTime = 1.5f;
     // 구르기 관련 변수
-    private float _rollSpeed = 8.0f;
+    private float _rollSpeed = 0.5f;
+    [SerializeField] 
+    private PhysicsMaterial2D _rollPhysicMaterial;
     
     //////////////////////////// 데이터로 관리 할 변수
 
@@ -179,48 +186,56 @@ public class PlayerUnit : Unit
         _playerMovementCtrl.ResetJumpVal();
     }
 
+    public void SetRoll()
+    {
+        _rigidbody2D.sharedMaterial = _rollPhysicMaterial;
+        _rollSpeed = (1 / _rollTime) * _rollGoalX;
+    }
+
     public void Roll()
     {
-        Debug.Log("Roll Func Call");
-        _rigidbody2D.velocity = Vector2.zero;
-        
-        var power = new Vector2(_rollSpeed * _facingDir, 0);
+        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+
+        var power = new Vector2((_rollSpeed) * _facingDir, 0);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
-    private float _rollPerMoveX = 0;
-    [SerializeField]
-    private float _rollGoalX = 10;
-    [SerializeField]
-    public float _rollTime = 1.5f;
-    private int counter = 0;
-    Vector2 power = Vector2.zero;
-    public void AddRollPower()
+    public void EndRoll()
     {
-        if (counter < (int) (_rollTime / Time.fixedDeltaTime))
-        {
-            counter++;
-            _rollPerMoveX = _rollGoalX / (_rollTime / Time.fixedDeltaTime);
-            power = new Vector2(_rollPerMoveX * _facingDir, 0);
-            //Debug.Log(Physics2D.gravity * Time.deltaTime);
-            //power += Physics2D.gravity * Time.deltaTime;
-            power += new Vector2(transform.position.x, transform.position.y);
-
-            if (IsGround == false)
-                power += Physics2D.gravity * Time.fixedDeltaTime;
-            
-            _rigidbody2D.MovePosition(power);
-        }
-        else
-        {
-            _rigidbody2D.velocity = new Vector2(0, power.y);
-            counter = 0;
-        }
+        _rigidbody2D.sharedMaterial = null;
     }
+    
+    // private int counter = 0;
+    // Vector2 power = Vector2.zero;
+    // public void AddRollPower()
+    // {
+    //     if (counter < (int) (_rollTime / Time.fixedDeltaTime))
+    //     {
+    //         counter++;
+    //         _rollPerMoveX = _rollGoalX / (_rollTime / Time.fixedDeltaTime);
+    //         power = new Vector2(_rollPerMoveX * _facingDir, 0);
+    //         //Debug.Log(Physics2D.gravity * Time.deltaTime);
+    //         //power += Physics2D.gravity * Time.deltaTime;
+    //         power += new Vector2(transform.position.x, transform.position.y);
+    //
+    //         if (IsGround == false)
+    //             power += Physics2D.gravity * Time.fixedDeltaTime;
+    //         
+    //         _rigidbody2D.MovePosition(power);
+    //     }
+    //     else
+    //     {
+    //         _rigidbody2D.velocity = new Vector2(0, power.y);
+    //         counter = 0;
+    //     }
+    // }
 
     public void RollStop()
     {
-        _rigidbody2D.velocity = new Vector2(2.0f, 0.0f);
+        if (IsGround)
+            _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
+        // else
+        //     _rigidbody2D.velocity = new Vector2(0.0f, _rigidbody2D.velocity.y);
     }
 
     public override void Attack()

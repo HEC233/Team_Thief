@@ -1196,7 +1196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085417208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.21, z: 0}
+  m_LocalPosition: {x: 0, y: 0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1105592737}
@@ -1293,8 +1293,9 @@ MonoBehaviour:
   _jumpPower: 5
   _addAllJumpPpower: 2
   _addJumpPower: 1
-  _rollGoalX: 10
-  _rollTime: 1.5
+  _rollGoalX: 3
+  _rollTime: 0.2
+  _rollPhysicMaterial: {fileID: 6200000, guid: 0e7642ea732b545419a6500214d5f143, type: 2}
 --- !u!4 &1105592737
 Transform:
   m_ObjectHideFlags: 0

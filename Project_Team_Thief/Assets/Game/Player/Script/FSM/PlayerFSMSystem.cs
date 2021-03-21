@@ -348,6 +348,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     
     private class RollState : CustomFSMStateBase
     {
+        private float _rollTime = 1.5f;
+        private float _timer = 0.0f;
+        private bool _isRollEnd = true;
+        
         public RollState(PlayerFSMSystem system) : base(system)
         {
         }
@@ -355,48 +359,44 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.Roll);
+            SystemMgr.Unit.SetRoll();
             SystemMgr.StartCoroutine(RollCoroutine());
-            //SystemMgr.Unit.Roll();
         }
 
         public override void Update()
         {
             SystemMgr.Unit.Progress();
-            //SystemMgr.Unit.AddRollPower();
         }
 
         public override void EndState()
         {
+            SystemMgr.Unit.EndRoll();
             SystemMgr._isRollAniEnd = false;
-            SystemMgr.Unit.MoveStop();
         }
 
         public override bool Transition(TransitionCondition condition)
         {
-            // if (SystemMgr._isRollAniEnd == false)
-            // {
-            //     return false;
-            // }
-            return false;
-
+            if (_isRollEnd == true)
+            {
+                return false;
+            }
+            
             return true;
         }
 
-        private float _rollTime = 1.5f;
-        float timer = 0.0f;
-
         IEnumerator RollCoroutine()
         {
+            _isRollEnd = true;
             _rollTime = SystemMgr.Unit._rollTime;
-            timer = 0.0f;
-            while (timer < _rollTime)
+            _timer = 0.02f;
+            while (_timer < _rollTime)
             {
-                timer += Time.fixedDeltaTime;
-                SystemMgr.Unit.AddRollPower();
-                Debug.Log("Call");
+                _timer += Time.fixedDeltaTime;
+                SystemMgr.Unit.Roll();
                 yield return new WaitForFixedUpdate();
             }
-            //SystemMgr.Unit.MoveStop();
+            SystemMgr.Unit.RollStop();
+            _isRollEnd = false;
         }
     }
 
