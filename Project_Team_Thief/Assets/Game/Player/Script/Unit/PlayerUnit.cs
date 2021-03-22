@@ -39,6 +39,10 @@ public class PlayerUnit : Unit
     private int _maxJumpCount = 2;
     private float _maxJumpTime = 0.1f;
     public float MaxJumpTime => _maxJumpTime;
+
+    [Header("Jump Variable")] 
+    [SerializeField]
+    private float _jumpScale = 1.0f;
     
     [SerializeField]
     private float _jumpPower = 5.0f;
@@ -144,7 +148,8 @@ public class PlayerUnit : Unit
         _jumpCount--;
         _isGround = false;
 
-        var power = new Vector3(0, _jumpPower * _scale, 0.0f);
+        var power = new Vector3(0, _jumpPower * _jumpScale, 0.0f);
+        _rigidbody2D.gravityScale = _jumpScale * _jumpScale;
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
         
         //_playerMovementCtrl.Jump(0);
@@ -154,13 +159,13 @@ public class PlayerUnit : Unit
     {
         _jumpCount--;
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
-        var power = new Vector3(0, _jumpPower * _scale, 0.0f);
+        var power = new Vector3(0, _jumpPower * _jumpScale, 0.0f);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
     public void AddJumpForce()
     {
-        _rigidbody2D.AddForce((new Vector2(0, _addJumpPower) * _addAllJumpPpower) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        _rigidbody2D.AddForce((new Vector2(0, _addJumpPower) * _addAllJumpPpower) * _jumpScale * Time.fixedDeltaTime, ForceMode2D.Impulse);
 
         //_playerMovementCtrl.asd();
         //_playerMovementCtrl.AddJumpForce();

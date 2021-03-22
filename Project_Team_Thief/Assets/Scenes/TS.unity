@@ -1290,6 +1290,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  _jumpScale: 2
   _jumpPower: 5
   _addAllJumpPpower: 2
   _addJumpPower: 1
