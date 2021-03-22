@@ -67,6 +67,27 @@ public class LightWarriorAI : MonoBehaviour
             return false;
     }
 
+    private void OnDrawGizmos()
+    {
+        if (target != null)
+        {
+            if (isLookRight)
+            {
+                Debug.DrawLine((_myCoord + new Vector2Int(-5, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-5, -2)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(-5, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(10, -2)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(10, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(10, 3)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(10, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-5, 3)).TileCoordToPosition3(), Color.red);
+            }
+            else
+            {
+                Debug.DrawLine((_myCoord + new Vector2Int(5, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(5, -2)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(5, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-10, -2)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(-10, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-10, 3)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(-10, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(5, 3)).TileCoordToPosition3(), Color.red);
+            }
+        }
+    }
+
     // 움직일 수 있는 지 판별
     public bool CheckMovable(bool isGoingRight)
     {
@@ -159,7 +180,7 @@ namespace LWAIState
             if (_isMoving)
                 Move();
             else
-                Idle();
+                Stop();
 
             if (ai.CheckSight())
                 ai.ChangeState(ai.combat);
@@ -177,9 +198,9 @@ namespace LWAIState
             ai.actor.Transition(ai.isLookRight ? TransitionCondition.RightMove : TransitionCondition.LeftMove);
         }
 
-        private void Idle()
+        private void Stop()
         {
-            ai.actor.Transition(TransitionCondition.Idle);
+            ai.actor.Transition(TransitionCondition.StopMove);
 #if (TEST)
             ai.color.Set(Color.white);
 #endif
@@ -282,6 +303,7 @@ namespace LWAIState
                     if (_timeCheck <= 0)
                     {
                         _state = InnerState.Attack;
+                        ai.actor.Transition(TransitionCondition.Idle);
                     }
                     break;
                 //-----------------------------------------

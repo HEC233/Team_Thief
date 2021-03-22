@@ -84,6 +84,7 @@ namespace LightWarrior
                 case TransitionCondition.RightMove:
                 case TransitionCondition.LeftMove:
                     actor.ChangeState(actor.move);
+                    actor.Transition(condition);
                     return true;
             }
 
@@ -135,6 +136,10 @@ namespace LightWarrior
                     actor.unit.Move(-1);
                     return true;
                 case TransitionCondition.StopMove:
+                    actor.unit.MoveStop();
+                    return true;
+                case TransitionCondition.Idle:
+                    actor.unit.Idle();
                     actor.ChangeState(actor.idle);
                     return true;
             }

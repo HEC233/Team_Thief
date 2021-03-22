@@ -80,6 +80,14 @@ public class LightWarriorUnit : Unit
         _rigid.velocity = new Vector2(0.0f, _rigid.velocity.y);
     }
 
+    public void MoveStop()
+    {
+        if (_isHorizontalMoving)
+        {
+            _rigid.velocity = _rigid.velocity.normalized;
+        }
+    }
+
     /*
      * 변경안 : minSpeed가 적용되도록 해야 한다.
      * 지금은 피직스 매터리얼의 Friction(마찰)값으로 속도를 줄여주고 있는데
