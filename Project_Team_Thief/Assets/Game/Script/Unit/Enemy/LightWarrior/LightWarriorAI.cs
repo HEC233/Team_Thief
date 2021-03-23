@@ -86,6 +86,19 @@ public class LightWarriorAI : MonoBehaviour
                 Debug.DrawLine((_myCoord + new Vector2Int(-10, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(5, 3)).TileCoordToPosition3(), Color.red);
             }
         }
+
+        if (isLookRight)
+        {
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(1, 1)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(1, 0)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(1, -1)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+        }
+        else
+        {
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(-1, 1)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(-1, 0)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(-1, -1)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+        }
     }
 
     // 움직일 수 있는 지 판별
@@ -113,11 +126,12 @@ public class LightWarriorAI : MonoBehaviour
     }
 
     // ai와 타겟유닛 사이의 거리를 반환
-    public int GetDistance()
+    public int GetDistance(bool isAbsolute = true)
     {
         if (target != null)
         {
-            return Mathf.Abs(target.transform.TileCoord().x - transform.TileCoord().x);
+            int result = target.transform.TileCoord().x - transform.TileCoord().x;
+            return isAbsolute ? Mathf.Abs(result) : result;
         }
 
         return int.MaxValue;
@@ -214,8 +228,7 @@ namespace LWAIState
     {
         LightWarriorAI ai;
 
-        private float _jumpAttackCool;
-        private float _swingAttackCool;
+        private float _AttackCool;
         private float _timeCheck;
 
         private enum InnerState
@@ -227,8 +240,7 @@ namespace LWAIState
         public override void Enter(LightWarriorAI ai)
         {
             this.ai = ai;
-            _jumpAttackCool = 0;
-            _swingAttackCool = 0;
+            _AttackCool = 0;
             _timeCheck = 0;
             _state = InnerState.Attack;
 #if TEST
@@ -251,37 +263,18 @@ namespace LWAIState
                 case InnerState.Attack:
                     if (ai.GetDistance() > 5)
                     {
-                        if (_jumpAttackCool <= 0)
-                        {
-                            _jumpAttackCool = 2.0f;
-#if TEST
-                            ai.color.Set(Color.magenta);
-#endif
-                            Debug.Log("광전사 점프 어택 발생");
-                            /*
-                             * 여기서 전이조건을 넘겨줄 것이다.
-                             * 그런데 특정 유닛만 콕 집어서 공격하고 싶다면 어떻게 해야할까?
-                             * 플레이어와 적 유닛이 겹쳐있을때 적유닛의 공격에 적유닛도 피해를 입는것은 광역기가 아닌 이상 이상할 것이다.
-                             * 그렇다면, 공격하고 싶은 유닛만 선택해 줘야하는데 이걸 전이조건으로 일일히 넘겨주는 것은 사실상 불가능하다.
-                             * 그렇기에 어느 유닛을 공격하고 싶은것인지 인수(패러미터)넘겨주어야 할것 같은데 그럴려면 인터페이스를 수정해야 한다.
-                             */
-                            ai.actor.Transition(TransitionCondition.Skill1);
 
-                            _state = InnerState.Reset;
-                            _timeCheck = 0.5f;
-                            break;
-                        }
                     }
                     else
                     {
-                        if (_swingAttackCool <= 0)
+                        if (_AttackCool <= 0)
                         {
-                            _swingAttackCool = 2.0f;
+                            _AttackCool = 2.0f;
 #if TEST
                             ai.color.Set(Color.magenta);
 #endif
-                            Debug.Log("광전사 스윙 어택 발생");
-                            ai.actor.Transition(TransitionCondition.Skill2);
+                            ai.actor.Transition(ai.GetDistance(false) > 0 ? TransitionCondition.SetAttackBoxRight : TransitionCondition.SetAttackBoxLeft);
+                            ai.actor.Transition(TransitionCondition.Attack);
 
                             _state = InnerState.Reset;
                             _timeCheck = 0.5f;
@@ -313,7 +306,7 @@ namespace LWAIState
 
                     if (_timeCheck <= 0)
                     {
-                        _state = InnerState.Attack;
+                        _state = InnerState.Move;
                     }
                     break;
                 //-----------------------------------------
@@ -336,8 +329,7 @@ namespace LWAIState
                  //-----------------------------------------
             }
 
-            _jumpAttackCool -= Time.deltaTime;
-            _swingAttackCool -= Time.deltaTime;
+            _AttackCool -= Time.deltaTime;
             _timeCheck -= Time.deltaTime;
 
         }

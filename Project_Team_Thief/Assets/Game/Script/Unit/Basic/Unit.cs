@@ -53,6 +53,11 @@ public class Unit : MonoBehaviour
 
     }
 
+    public virtual void HandleDeath()
+    {
+
+    }
+
     public Vector2 GetSpeed()
     {
         return _rigid.velocity;

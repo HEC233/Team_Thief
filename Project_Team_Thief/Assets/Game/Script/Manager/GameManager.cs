@@ -6,10 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public CameraManager cameraMng = new CameraManager();
-    public TimeManager timeMng = new TimeManager();
-    public SoundManager soundMng = new SoundManager();
-    public UIManager uiMng = new UIManager();
+    public CameraManager cameraMng;
+    public TimeManager timeMng;
+    public SoundManager soundMng;
+    public UIManager uiMng;
     
     [SerializeField] 
     private KeyManager _keyManger;

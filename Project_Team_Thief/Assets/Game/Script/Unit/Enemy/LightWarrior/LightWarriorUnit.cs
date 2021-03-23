@@ -32,6 +32,7 @@ public class LightWarriorUnit : Unit
     public LayerMask hitBoxLayer;
     ContactFilter2D contactFilter = new ContactFilter2D();
     List<Collider2D> result = new List<Collider2D>();
+    private bool isLookRight = true;
 
     private void Start()
     {
@@ -46,7 +47,7 @@ public class LightWarriorUnit : Unit
         contactFilter.SetLayerMask(hitBoxLayer);
 
         //---------- for test ----------------
-        SetDamagePower(data.skillDamage).SetDamageKnockBack(new Vector2(200, 200));
+        SetDamagePower(data.skillDamage)/*.SetDamageKnockBack(new Vector2(200, 200))*/;
     }
 
     void Update()
@@ -127,8 +128,12 @@ public class LightWarriorUnit : Unit
 
     public void SetAttackBox(bool isDirectionRight, int index = -1)
     {
-        if (isDirectionRight)
+        if (isLookRight != isDirectionRight)
         {
+            foreach(var box in attackBox)
+            {
+                box.offset = new Vector2(-box.offset.x, box.offset.y);
+            }
             // 보는 방향이 달라졌을때의 처리를 위한 공간
         }
 
@@ -192,5 +197,10 @@ public class LightWarriorUnit : Unit
         {
             hitEvent.Invoke();
         }
+    }
+
+    public override void HandleDeath()
+    {
+        DestroyImmediate(this.gameObject);
     }
 }

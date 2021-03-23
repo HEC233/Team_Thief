@@ -23,23 +23,35 @@ public static class TileCoordClass
 
     public static Vector2Int TileCoord(this Vector3 vector)
     {
+        if (_grid == null)
+            return Vector2Int.zero;
+
         return new Vector2Int(Mathf.FloorToInt((vector.x - _grid.transform.position.x) / _grid.cellSize.x),
             Mathf.FloorToInt((vector.y - _grid.transform.position.y) / _grid.cellSize.y));
     }
 
     public static Vector3 TileCoordToPosition3(this Vector2Int tileCoord)
     {
+        if (_grid == null)
+            return Vector3.zero;
+
         return new Vector3(_grid.transform.position.x + tileCoord.x + (_grid.cellSize.x / 2),
             _grid.transform.position.y + tileCoord.y + (_grid.cellSize.y / 2), 0);
     }
     public static Vector2 TileCoordToPosition(this Vector2Int tileCoord)
     {
+        if (_grid == null)
+            return Vector2.zero;
+
         return new Vector2(_grid.transform.position.x + tileCoord.x + (_grid.cellSize.x / 2),
             _grid.transform.position.y + tileCoord.y + (_grid.cellSize.y / 2));
     }
 
     public static bool CheckObjectExist(this Vector2Int tileCoord, LayerMask layerMask, int deltaX = 0, int deltaY = 0)
     {
+        if (_grid == null)
+            return false;
+
         Vector2Int coord =  new Vector2Int(tileCoord.x + deltaX, tileCoord.y + deltaY);
 
         BoxCollider2D collider = new BoxCollider2D();
