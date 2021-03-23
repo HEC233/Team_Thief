@@ -67,6 +67,40 @@ public class LightWarriorAI : MonoBehaviour
             return false;
     }
 
+    private void OnDrawGizmos()
+    {
+        if (target != null)
+        {
+            if (isLookRight)
+            {
+                Debug.DrawLine((_myCoord + new Vector2Int(-5, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-5, -2)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(-5, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(10, -2)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(10, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(10, 3)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(10, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-5, 3)).TileCoordToPosition3(), Color.red);
+            }
+            else
+            {
+                Debug.DrawLine((_myCoord + new Vector2Int(5, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(5, -2)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(5, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-10, -2)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(-10, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-10, 3)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(-10, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(5, 3)).TileCoordToPosition3(), Color.red);
+            }
+        }
+
+        if (isLookRight)
+        {
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(1, 1)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(1, 0)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(1, -1)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+        }
+        else
+        {
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(-1, 1)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(-1, 0)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+            Gizmos.DrawCube((transform.TileCoord() + new Vector2Int(-1, -1)).TileCoordToPosition3(), new Vector3(0.5f, 0.5f, 1));
+        }
+    }
+
     // 움직일 수 있는 지 판별
     public bool CheckMovable(bool isGoingRight)
     {
@@ -92,11 +126,12 @@ public class LightWarriorAI : MonoBehaviour
     }
 
     // ai와 타겟유닛 사이의 거리를 반환
-    public int GetDistance()
+    public int GetDistance(bool isAbsolute = true)
     {
         if (target != null)
         {
-            return Mathf.Abs(target.transform.TileCoord().x - transform.TileCoord().x);
+            int result = target.transform.TileCoord().x - transform.TileCoord().x;
+            return isAbsolute ? Mathf.Abs(result) : result;
         }
 
         return int.MaxValue;
@@ -125,12 +160,15 @@ namespace LWAIState
         private float _timeCheck;
         private bool _isMoving;
         LightWarriorAI ai;
+        private Vector2Int _lastCoord;
+        private Vector2Int _curCoord;
 
         public override void Enter(LightWarriorAI ai)
         {
             _timeCheck = 0;
             _isMoving = false;
             this.ai = ai;
+            _lastCoord = ai.transform.TileCoord();
         }
         public override void Exit()
         {
@@ -159,7 +197,7 @@ namespace LWAIState
             if (_isMoving)
                 Move();
             else
-                Idle();
+                Stop();
 
             if (ai.CheckSight())
                 ai.ChangeState(ai.combat);
@@ -167,9 +205,12 @@ namespace LWAIState
 
         private void Move()
         {
-            if (!ai.CheckMovable(ai.isLookRight))
+            _curCoord = ai.transform.TileCoord();
+            if (_lastCoord != _curCoord)
             {
-                ai.isLookRight = !ai.isLookRight;
+                _lastCoord = _curCoord;
+                if (!ai.CheckMovable(ai.isLookRight))
+                    ai.isLookRight = !ai.isLookRight;
             }
 #if (TEST)
             ai.color.Set(Color.blue);
@@ -177,9 +218,9 @@ namespace LWAIState
             ai.actor.Transition(ai.isLookRight ? TransitionCondition.RightMove : TransitionCondition.LeftMove);
         }
 
-        private void Idle()
+        private void Stop()
         {
-            ai.actor.Transition(TransitionCondition.Idle);
+            ai.actor.Transition(TransitionCondition.StopMove);
 #if (TEST)
             ai.color.Set(Color.white);
 #endif
@@ -193,9 +234,10 @@ namespace LWAIState
     {
         LightWarriorAI ai;
 
-        private float _jumpAttackCool;
-        private float _swingAttackCool;
+        private float _AttackCool;
         private float _timeCheck;
+        private Vector2Int _lastCoord;
+        private Vector2Int _curCoord;
 
         private enum InnerState
         {
@@ -206,10 +248,10 @@ namespace LWAIState
         public override void Enter(LightWarriorAI ai)
         {
             this.ai = ai;
-            _jumpAttackCool = 0;
-            _swingAttackCool = 0;
+            _AttackCool = 0;
             _timeCheck = 0;
             _state = InnerState.Attack;
+            _lastCoord = ai.transform.TileCoord();
 #if TEST
             ai.color.Set(Color.red);
 #endif
@@ -230,24 +272,18 @@ namespace LWAIState
                 case InnerState.Attack:
                     if (ai.GetDistance() > 5)
                     {
-                        if (_jumpAttackCool <= 0)
-                        {
-                            _jumpAttackCool = 2.0f;
-                            Debug.Log("광전사 점프 어택 발생");
-                            ai.actor.Transition(TransitionCondition.Skill1);
 
-                            _state = InnerState.Reset;
-                            _timeCheck = 0.5f;
-                            break;
-                        }
                     }
                     else
                     {
-                        if (_swingAttackCool <= 0)
+                        if (_AttackCool <= 0)
                         {
-                            _swingAttackCool = 2.0f;
-                            Debug.Log("광전사 스윙 어택 발생");
-                            ai.actor.Transition(TransitionCondition.Skill2);
+                            _AttackCool = 2.0f;
+#if TEST
+                            ai.color.Set(Color.magenta);
+#endif
+                            ai.actor.Transition(ai.GetDistance(false) > 0 ? TransitionCondition.SetAttackBoxRight : TransitionCondition.SetAttackBoxLeft);
+                            ai.actor.Transition(TransitionCondition.Attack);
 
                             _state = InnerState.Reset;
                             _timeCheck = 0.5f;
@@ -261,14 +297,19 @@ namespace LWAIState
                 case InnerState.Move:
                     ai.isLookRight = ai.transform.position.x < ai.target.transform.position.x;
 
-                    if (!ai.CheckMovable(ai.isLookRight))
-                        _state = InnerState.Wait;
+                    if (_lastCoord != _curCoord)
+                    {
+                        _lastCoord = _curCoord;
+                        if (!ai.CheckMovable(ai.isLookRight))
+                            _state = InnerState.Wait;
+                    }
                     else
                         ai.actor.Transition(ai.isLookRight ? TransitionCondition.RightMove : TransitionCondition.LeftMove);
 
                     if (_timeCheck <= 0)
                     {
                         _state = InnerState.Attack;
+                        ai.actor.Transition(TransitionCondition.Idle);
                     }
                     break;
                 //-----------------------------------------
@@ -278,7 +319,7 @@ namespace LWAIState
 
                     if (_timeCheck <= 0)
                     {
-                        _state = InnerState.Attack;
+                        _state = InnerState.Move;
                     }
                     break;
                 //-----------------------------------------
@@ -288,6 +329,10 @@ namespace LWAIState
 
                     if (_timeCheck <= 0)
                     {
+#if TEST
+                        ai.color.Set(Color.red);
+#endif
+
                         if (!ai.CheckSight())
                             ai.ChangeState(ai.search);
                         else
@@ -297,8 +342,7 @@ namespace LWAIState
                  //-----------------------------------------
             }
 
-            _jumpAttackCool -= Time.deltaTime;
-            _swingAttackCool -= Time.deltaTime;
+            _AttackCool -= Time.deltaTime;
             _timeCheck -= Time.deltaTime;
 
         }

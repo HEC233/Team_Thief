@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 
 public class Unit : MonoBehaviour
 {
+    protected string _unitName;
     protected Damage _damage;
     [SerializeField]
     protected LayerMask _groundLayer;
@@ -52,6 +53,11 @@ public class Unit : MonoBehaviour
 
     }
 
+    public virtual void HandleDeath()
+    {
+
+    }
+
     public Vector2 GetSpeed()
     {
         return _rigid.velocity;
@@ -81,4 +87,8 @@ public class Unit : MonoBehaviour
         return this;
     }
 
+    public string GetUnitName()
+    {
+        return _unitName;
+    }
 }

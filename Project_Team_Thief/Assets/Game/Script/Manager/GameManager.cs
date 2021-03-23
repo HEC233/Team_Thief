@@ -5,6 +5,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public CameraManager cameraMng;
+    public TimeManager timeMng;
+    public SoundManager soundMng;
+    public UIManager uiMng;
     
     [SerializeField] 
     private KeyManager _keyManger;
