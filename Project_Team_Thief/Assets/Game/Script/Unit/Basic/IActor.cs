@@ -13,6 +13,7 @@ public enum TransitionCondition
     DoubleJump = 7,
     Falling = 8,
     Roll = 9,
+    Wallslideing = 10,
 }
 
 public interface IActor

@@ -10,6 +10,7 @@ public enum AniState
     Jump,
     Fall,
     Roll,
+    Wallslideing,
     Attack,
     Hit,
     Contact,
@@ -31,5 +32,10 @@ public class AnimationCtrl : MonoBehaviour
     public void PlayAni(AniState aniState)
     {
         Animator.SetInteger("State", (int) aniState);
+    }
+
+    public float GetCurAniTime()
+    {
+        return Animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
     }
 }

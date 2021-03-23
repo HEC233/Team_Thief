@@ -55,8 +55,12 @@ public class PlayerUnit : Unit
 
     // 이동 관련 변수
     private float _curSpeed = 0.0f;
+    [Header("Move Variable")]
+    [SerializeField]
     private float _minSpeed = 0.8f;
+    [SerializeField]
     private float _maxSpeed = 6.5f;
+    [SerializeField]
     private float _moveStopSpeed = 1.0f;
     
     [Header("Roll Variable")]
@@ -68,8 +72,18 @@ public class PlayerUnit : Unit
     private float _rollSpeed = 0.5f;
     [SerializeField] 
     private PhysicsMaterial2D _rollPhysicMaterial;
-    
+
     //////////////////////////// 데이터로 관리 할 변수
+
+    // WallSlideing Variable
+    [Header("Wallslideing Variable")]
+    [SerializeField]
+    private Transform _handTr;
+    public LayerMask wallLayerMask;
+    RaycastHit2D _wallRayCastHit2D;
+    private bool _isWallTouch = false;
+
+    private float _originalGravityScale = 0;
 
     void Start()
     {
@@ -91,7 +105,8 @@ public class PlayerUnit : Unit
 
         _jumpCount = _maxJumpCount;
         _coyoteTime = _maxCoyoteTime;
-        
+
+        _originalGravityScale = _rigidbody2D.gravityScale;
     }
     
 
@@ -161,6 +176,11 @@ public class PlayerUnit : Unit
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
         var power = new Vector3(0, _jumpPower * _jumpScale, 0.0f);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+
+    public void JumpMoveStop()
+    {
+        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
     }
 
     public void AddJumpForce()
@@ -243,6 +263,12 @@ public class PlayerUnit : Unit
         //     _rigidbody2D.velocity = new Vector2(0.0f, _rigidbody2D.velocity.y);
     }
 
+    public void WallSlideing()
+    {
+        _rigidbody2D.gravityScale = 0;
+        _rigidbody2D.velocity = Vector2.zero;
+    }
+
     public override void Attack()
     {
         base.Attack();
@@ -296,6 +322,13 @@ public class PlayerUnit : Unit
 
             ResetJumpVal();
         }
+    }
+
+    // raycast 말고 그냥  OnTrriger는 어떨까?
+    public bool CheckWallslideing()
+    {
+        _isWallTouch = Physics2D.Raycast(_handTr.position, Vector2.right * _facingDir, 0.1f, wallLayerMask);
+        return _isWallTouch;
     }
     
 }

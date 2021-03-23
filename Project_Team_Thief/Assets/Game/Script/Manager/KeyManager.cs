@@ -35,6 +35,9 @@ public class KeyManager : MonoBehaviour
         {
             controlUnit.Transition(TransitionCondition.Roll);
         }
+        if (Input.GetKey(KeyCode.UpArrow))
+            controlUnit.Transition(TransitionCondition.Wallslideing);
+        
     }
 
     public void SetControlUnit(IActor unit)
