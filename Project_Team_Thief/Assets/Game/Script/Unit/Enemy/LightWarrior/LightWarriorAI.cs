@@ -160,12 +160,15 @@ namespace LWAIState
         private float _timeCheck;
         private bool _isMoving;
         LightWarriorAI ai;
+        private Vector2Int _lastCoord;
+        private Vector2Int _curCoord;
 
         public override void Enter(LightWarriorAI ai)
         {
             _timeCheck = 0;
             _isMoving = false;
             this.ai = ai;
+            _lastCoord = ai.transform.TileCoord();
         }
         public override void Exit()
         {
@@ -202,9 +205,12 @@ namespace LWAIState
 
         private void Move()
         {
-            if (!ai.CheckMovable(ai.isLookRight))
+            _curCoord = ai.transform.TileCoord();
+            if (_lastCoord != _curCoord)
             {
-                ai.isLookRight = !ai.isLookRight;
+                _lastCoord = _curCoord;
+                if (!ai.CheckMovable(ai.isLookRight))
+                    ai.isLookRight = !ai.isLookRight;
             }
 #if (TEST)
             ai.color.Set(Color.blue);
@@ -230,6 +236,8 @@ namespace LWAIState
 
         private float _AttackCool;
         private float _timeCheck;
+        private Vector2Int _lastCoord;
+        private Vector2Int _curCoord;
 
         private enum InnerState
         {
@@ -243,6 +251,7 @@ namespace LWAIState
             _AttackCool = 0;
             _timeCheck = 0;
             _state = InnerState.Attack;
+            _lastCoord = ai.transform.TileCoord();
 #if TEST
             ai.color.Set(Color.red);
 #endif
@@ -288,8 +297,12 @@ namespace LWAIState
                 case InnerState.Move:
                     ai.isLookRight = ai.transform.position.x < ai.target.transform.position.x;
 
-                    if (!ai.CheckMovable(ai.isLookRight))
-                        _state = InnerState.Wait;
+                    if (_lastCoord != _curCoord)
+                    {
+                        _lastCoord = _curCoord;
+                        if (!ai.CheckMovable(ai.isLookRight))
+                            _state = InnerState.Wait;
+                    }
                     else
                         ai.actor.Transition(ai.isLookRight ? TransitionCondition.RightMove : TransitionCondition.LeftMove);
 
