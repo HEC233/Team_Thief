@@ -79,7 +79,7 @@ namespace PS.Util.DeveloperConsole
 
             if(result.Length != 0)
             {
-                textField.text = textField.text + "\n@" + result;
+                textField.text = textField.text + "\n@ " + result;
             }
 
             inputField.text = string.Empty;

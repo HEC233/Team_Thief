@@ -36,14 +36,10 @@ namespace PS.Util.DeveloperConsole
                     continue;
                 }
 
-                if (c.Process(out result, args))
-                {
-                    return string.Empty;
-                }
-                else
-                {
-                    return result;
-                }
+                if(!c.Process(out result, args))
+                    result = "Command Failed : " + result;
+
+                return result;
             }
 
             result = "there's no command";
