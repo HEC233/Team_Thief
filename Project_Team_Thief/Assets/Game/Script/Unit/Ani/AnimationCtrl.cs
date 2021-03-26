@@ -8,10 +8,11 @@ public enum AniState
     Move,
     RunningInertia,
     Jump,
-    Attack,
-    Dash,
-    Hit,
     Fall,
+    Roll,
+    Wallslideing,
+    Attack,
+    Hit,
     Contact,
     DoubleJump,
     Attack2,
@@ -19,6 +20,7 @@ public enum AniState
     JumpAttack,
     Skll1,
     Backstep,
+    Dash,
 }
 
 public class AnimationCtrl : MonoBehaviour
@@ -31,5 +33,10 @@ public class AnimationCtrl : MonoBehaviour
     public void PlayAni(AniState aniState)
     {
         Animator.SetInteger("State", (int) aniState);
+    }
+
+    public float GetCurAniTime()
+    {
+        return Animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
     }
 }

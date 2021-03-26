@@ -5,9 +5,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public CameraManager cameraMng;
+    public TimeManager timeMng;
+    public SoundManager soundMng;
+    public UIManager uiMng;
     
     [SerializeField] 
     private KeyManager _keyManger;
+    public Grid grid;
     // Start is called before the first frame update
     void Awake()
     {
@@ -19,9 +25,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+<<<<<<< HEAD
         
-        Application.targetFrameRate = 60;
         TileCoordClass.SetGrid(grid);
+=======
+
+        Application.targetFrameRate = 60;
+>>>>>>> PlayerMovement
     }
     
     public void SetControlUnit(IActor unit)

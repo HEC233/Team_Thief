@@ -10,6 +10,7 @@ public enum TransitionCondition
     RightMove = 3,
     RunningInertia = 4,
     Jump = 5,
+<<<<<<< HEAD
     StopMove = 6,
     Skill1,
     Skill2,
@@ -18,18 +19,19 @@ public enum TransitionCondition
     Attack,
     SetAttackBoxRight,
     SetAttackBoxLeft,
-
+=======
     DoubleJump = 7,
     Falling = 8,
     Roll = 9,
     Wallslideing = 10,
     WallJump = 11,
     Dash = 99,
+>>>>>>> PlayerMovement
 }
 
-// transition?? 추�??�인 ?�이?��? ?�겨주고 ?��? 경우가 ?�길?? ?�으?? Object�? ?�기?? 법을 ?�의?�자
+// transition에 추가적인 데이터를 넘겨주고 싶은 경우가 생길수 있으니 Object를 넘기는 법을 상의하자
 public interface IActor
 {
-    // ?�이조건?? ?�공?�으�? 처리?�면 True�? 반환?�도�? ?�다.
+    // 전이조건을 성공적으로 처리하면 True를 반환하도록 한다.
     bool Transition(TransitionCondition condition, object param = null);
 }

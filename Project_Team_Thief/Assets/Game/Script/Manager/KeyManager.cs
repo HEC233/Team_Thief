@@ -19,18 +19,25 @@ public class KeyManager : MonoBehaviour
         {
             controlUnit.Transition(TransitionCondition.Idle);
         }
-        else if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.C))
         {
             controlUnit.Transition(TransitionCondition.Jump);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             controlUnit.Transition(TransitionCondition.LeftMove);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             controlUnit.Transition(TransitionCondition.RightMove);
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            controlUnit.Transition(TransitionCondition.Roll);
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+            controlUnit.Transition(TransitionCondition.Wallslideing);
+        
     }
 
     public void SetControlUnit(IActor unit)
