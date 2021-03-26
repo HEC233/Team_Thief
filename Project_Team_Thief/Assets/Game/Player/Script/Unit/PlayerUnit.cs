@@ -15,8 +15,8 @@ public class PlayerUnit : Unit
     private PlayerMovementCtrl _playerMovementCtrl;
     
     // 방향 관련 변수
-    float _facingDir = 1;
-    bool _isFacingRight = true;
+    private float _facingDir = 1;
+    private bool _isFacingRight = true;
     
     // Ground Check
     [SerializeField]
@@ -82,6 +82,12 @@ public class PlayerUnit : Unit
     public LayerMask wallLayerMask;
     RaycastHit2D _wallRayCastHit2D;
     private bool _isWallTouch = false;
+    [SerializeField]
+    private float _wallJumpPowerX;
+    [SerializeField]
+    private float _wallJumpPowerY;
+    [SerializeField]
+    private float _wallSlideingUpPower = 0;
 
     private float _originalGravityScale = 0;
 
@@ -265,8 +271,32 @@ public class PlayerUnit : Unit
 
     public void WallSlideing()
     {
-        _rigidbody2D.gravityScale = 0;
+        //_rigidbody2D.AddForce(new Vector2(0, _wallSlideingUpPower), ForceMode2D.Impulse);
+        _rigidbody2D.gravityScale -= _wallSlideingUpPower;
+
+        if (_rigidbody2D.gravityScale <= 0)
+        {
+            _rigidbody2D.velocity = Vector2.zero;
+            _rigidbody2D.gravityScale = 0;
+        }
+    }
+
+    public void WallSlideStateStart()
+    {
+        //_rigidbody2D.velocity = Vector2.zero;
+    }
+    
+    public void WallJump()
+    {
+        _rigidbody2D.gravityScale = _originalGravityScale;
         _rigidbody2D.velocity = Vector2.zero;
+        _rigidbody2D.AddForce(new Vector2(_wallJumpPowerX * _facingDir * -1, _wallJumpPowerY) , ForceMode2D.Impulse);
+        Flip();
+    }
+
+    public void WallReset()
+    {
+        _rigidbody2D.gravityScale = _originalGravityScale;
     }
 
     public override void Attack()

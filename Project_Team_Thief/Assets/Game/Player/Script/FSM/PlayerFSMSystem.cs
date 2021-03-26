@@ -258,7 +258,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.Unit.Progress();
             
-            if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
+            if (SystemMgr.Unit.CheckWallslideing())
+                SystemMgr.ChangeState(TransitionCondition.Wallslideing);
+            else if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
                 SystemMgr.ChangeState(TransitionCondition.Falling);
         }
 
@@ -311,6 +313,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.Unit.Progress();
 
+            if (SystemMgr.Unit.CheckWallslideing())
+                SystemMgr.ChangeState(TransitionCondition.Wallslideing);
+            
             if(SystemMgr.Unit.IsGround == true)
                 _isFaill = false;
         }
@@ -420,13 +425,17 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private class WallslideingState : CustomFSMStateBase
     {
+        private bool _isFristWallJump = false;
+        
         public WallslideingState(PlayerFSMSystem system) : base(system)
         {
         }
 
         public override void StartState()
         {
+            _isFristWallJump = true;
             SystemMgr.AnimationCtrl.PlayAni(AniState.Wallslideing);
+            SystemMgr.Unit.WallSlideStateStart();
         }
 
         public override void Update()
@@ -436,23 +445,91 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
-
+            SystemMgr.Unit.WallReset();
         }
 
         public override bool Transition(TransitionCondition condition)
         {
-            if(condition == TransitionCondition.Idle)
-            {
-                if (SystemMgr.Unit.IsGround)
-                    return true;
-            }
+            if (SystemMgr.Unit.IsGround)
+                return true;
 
+            if (condition == TransitionCondition.Idle)
+            {
+                SystemMgr.Unit.WallReset();
+            }
+            
             if (SystemMgr.Unit.CheckWallslideing() == true)
             {
                 if (condition == TransitionCondition.Wallslideing)
+                {
                     SystemMgr.Unit.WallSlideing();
+                }
+
+                if (SystemMgr.isJumpKeyPress == false)
+                {
+                    if (condition == TransitionCondition.Jump)
+                    {
+                        SystemMgr.ChangeState(TransitionCondition.WallJump);
+                    }
+                }
             }
 
+            return false;
+        }
+    }
+    
+    private class WallJumpState : CustomFSMStateBase
+    {
+        private float _inputDir = 0;
+        public WallJumpState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.Unit.WallJump();
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Jump);
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+            
+            // if (_inputDir >= 0 && SystemMgr.Unit.GetVelocity().x >= 0)
+            // {
+            if (SystemMgr.Unit.CheckWallslideing())
+                SystemMgr.ChangeState(TransitionCondition.Wallslideing);
+            else if (SystemMgr.Unit.GetVelocity().y <= 0)
+                SystemMgr.ChangeState(TransitionCondition.Falling);
+            // }
+            // else if (_inputDir <= 0 && SystemMgr.Unit.GetVelocity().x <= 0)
+            // {
+            //     if (SystemMgr.Unit.CheckWallslideing())
+            //         SystemMgr.ChangeState(TransitionCondition.Wallslideing);
+            // }
+        }
+
+        public override void EndState()
+        {
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (SystemMgr.Unit.IsGround)
+                return true;
+
+            // if (condition == TransitionCondition.LeftMove)
+            // {
+            //     _inputDir = -1;
+            //     SystemMgr.Unit.CheckMovementDir(_inputDir);
+            // }
+            //
+            // if (condition == TransitionCondition.RightMove)
+            // {
+            //     _inputDir = 1;
+            //     SystemMgr.Unit.CheckMovementDir(_inputDir);
+            // }
+            //
             return false;
         }
     }
@@ -468,6 +545,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Falling, new FallingState(this));
         AddState(TransitionCondition.Roll, new RollState(this));
         AddState(TransitionCondition.Wallslideing, new WallslideingState(this));
+        AddState(TransitionCondition.WallJump, new WallJumpState(this));
     }
     
     public bool Transition(TransitionCondition condition, object param = null)
