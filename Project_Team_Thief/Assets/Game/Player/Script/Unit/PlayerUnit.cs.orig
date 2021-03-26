@@ -335,6 +335,10 @@ public class PlayerUnit : Unit
     }
 
     public override void HandleHit(in Damage inputDamage)
+<<<<<<< HEAD
+    {
+        base.HandleHit(in inputDamage);
+=======
     {
         base.HandleHit(in inputDamage);
     }
@@ -342,6 +346,7 @@ public class PlayerUnit : Unit
     public Vector3 GetVelocity()
     {
         return _rigidbody2D.velocity;
+>>>>>>> PlayerMovement
     }
     
     

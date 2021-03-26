@@ -25,8 +25,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        Application.targetFrameRate = 60;
+<<<<<<< HEAD
+        
         TileCoordClass.SetGrid(grid);
+=======
+
+        Application.targetFrameRate = 60;
+>>>>>>> PlayerMovement
     }
     
     public void SetControlUnit(IActor unit)
