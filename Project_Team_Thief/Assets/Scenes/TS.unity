@@ -1355,7 +1355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085417208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.36, y: 0.044, z: 0}
+  m_LocalPosition: {x: 0, y: 0.044, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1105592737}
@@ -1422,7 +1422,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1105592737}
   - component: {fileID: 1105592736}
-  - component: {fileID: 1105592738}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -1443,7 +1442,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 1085417212}
-  _playerMovementCtrl: {fileID: 1105592738}
   _isGround: 1
   groundCheck: {fileID: 126958681}
   groundCheckBoxSize: {x: 0.5, y: 0.01}
@@ -1458,7 +1456,8 @@ MonoBehaviour:
   _maxSpeed: 6.5
   _moveStopSpeed: 1
   _rollGoalX: 3
-  _rollTime: 0.2
+  _rollTime: 0.6
+  _rollCoolTime: 2
   _rollPhysicMaterial: {fileID: 6200000, guid: 0e7642ea732b545419a6500214d5f143, type: 2}
   _handTr: {fileID: 1760947973}
   wallLayerMask:
@@ -1481,25 +1480,6 @@ Transform:
   m_Father: {fileID: 1085417210}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1105592738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105592735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414b2123433a6354c8724489d7201f0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody2D: {fileID: 1085417212}
-  _jumpPower: 5
-  _addAllJumpPpower: 4
-  _curJumpPower: 0
-  _addJumpPower: 1
-  isFristJumpFuncCall: 0
-  isForce: 1
 --- !u!1 &1233414377
 GameObject:
   m_ObjectHideFlags: 0

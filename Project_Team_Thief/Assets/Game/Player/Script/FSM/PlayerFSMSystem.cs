@@ -374,6 +374,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private float _rollTime = 1.5f;
         private float _timer = 0.0f;
         private bool _isRollEnd = true;
+        private bool _isRollAble = true;
+        private float _rollCoolTime = 0;
         
         public RollState(PlayerFSMSystem system) : base(system)
         {
@@ -381,9 +383,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
-            SystemMgr.AnimationCtrl.PlayAni(AniState.Roll);
-            SystemMgr.Unit.SetRoll();
-            SystemMgr.StartCoroutine(RollCoroutine());
+            if (SystemMgr.Unit.IsRollAble)
+            {
+                SystemMgr.AnimationCtrl.PlayAni(AniState.Roll);
+                SystemMgr.Unit.SetRoll();
+                SystemMgr.StartCoroutine(RollCoroutine());
+                //SystemMgr.StartCoroutine(RollCoolTimeCoroutine());
+            }
         }
 
         public override void Update()
@@ -399,6 +405,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (SystemMgr.Unit.IsRollAble == false)
+                return true;
+            
             if (_isRollEnd == true)
             {
                 return false;
@@ -410,7 +419,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         IEnumerator RollCoroutine()
         {
             _isRollEnd = true;
-            _rollTime = SystemMgr.Unit._rollTime;
+            _rollTime = SystemMgr.Unit.RollTime;
             _timer = 0.02f;
             while (_timer < _rollTime)
             {
@@ -421,6 +430,59 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Unit.RollStop();
             _isRollEnd = false;
         }
+    }
+    
+    private class DashState : CustomFSMStateBase
+    {
+        private float _dashTime = 1.5f;
+        private float _timer = 0.0f;
+        private bool _isDashEnd = true;
+        public DashState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Dash);
+            SystemMgr.Unit.SetDash();
+            SystemMgr.StartCoroutine(DashCoroutine());
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+        }
+
+        public override void EndState()
+        {
+            SystemMgr.Unit.EndRoll();
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (_isDashEnd == true)
+            {
+                return false;
+            }
+            
+            return true;
+        }
+        
+        IEnumerator DashCoroutine()
+        {
+            _isDashEnd = true;
+            _dashTime = SystemMgr.Unit.DashTime;
+            _timer = 0.02f;
+            while (_timer < _dashTime)
+            {
+                _timer += Time.fixedDeltaTime;
+                SystemMgr.Unit.Dash();
+                yield return new WaitForFixedUpdate();
+            }
+            SystemMgr.Unit.EndDash();
+            _isDashEnd = false;
+        }
+        
     }
 
     private class WallslideingState : CustomFSMStateBase
@@ -495,18 +557,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.Unit.Progress();
             
-            // if (_inputDir >= 0 && SystemMgr.Unit.GetVelocity().x >= 0)
-            // {
             if (SystemMgr.Unit.CheckWallslideing())
                 SystemMgr.ChangeState(TransitionCondition.Wallslideing);
             else if (SystemMgr.Unit.GetVelocity().y <= 0)
                 SystemMgr.ChangeState(TransitionCondition.Falling);
-            // }
-            // else if (_inputDir <= 0 && SystemMgr.Unit.GetVelocity().x <= 0)
-            // {
-            //     if (SystemMgr.Unit.CheckWallslideing())
-            //         SystemMgr.ChangeState(TransitionCondition.Wallslideing);
-            // }
         }
 
         public override void EndState()
@@ -517,19 +571,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (SystemMgr.Unit.IsGround)
                 return true;
-
-            // if (condition == TransitionCondition.LeftMove)
-            // {
-            //     _inputDir = -1;
-            //     SystemMgr.Unit.CheckMovementDir(_inputDir);
-            // }
-            //
-            // if (condition == TransitionCondition.RightMove)
-            // {
-            //     _inputDir = 1;
-            //     SystemMgr.Unit.CheckMovementDir(_inputDir);
-            // }
-            //
+            
             return false;
         }
     }
@@ -546,6 +588,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Roll, new RollState(this));
         AddState(TransitionCondition.Wallslideing, new WallslideingState(this));
         AddState(TransitionCondition.WallJump, new WallJumpState(this));
+        AddState(TransitionCondition.Dash, new DashState(this));
     }
     
     public bool Transition(TransitionCondition condition, object param = null)
@@ -558,7 +601,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (isJumpKeyPress == true) // 점프키가 계속 눌려있는 경우를 체크
                 return false;
         }
-
+        
         // Left Move, Right Move에 대한 스테이트를 새로 만들기 싫어서 예외 처리 진행 함.
         if (condition == TransitionCondition.LeftMove || condition == TransitionCondition.RightMove)
         {

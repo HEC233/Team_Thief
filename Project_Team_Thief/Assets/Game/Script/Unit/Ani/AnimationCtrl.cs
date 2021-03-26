@@ -20,6 +20,7 @@ public enum AniState
     JumpAttack,
     Skll1,
     Backstep,
+    Dash,
 }
 
 public class AnimationCtrl : MonoBehaviour

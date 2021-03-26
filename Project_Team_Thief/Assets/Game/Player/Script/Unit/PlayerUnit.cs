@@ -9,11 +9,7 @@ public class PlayerUnit : Unit
     
     [SerializeField] 
     private Rigidbody2D _rigidbody2D;
-    
-    // 이동 관련 컨트롤러
-    [SerializeField] 
-    private PlayerMovementCtrl _playerMovementCtrl;
-    
+
     // 방향 관련 변수
     private float _facingDir = 1;
     private bool _isFacingRight = true;
@@ -54,8 +50,8 @@ public class PlayerUnit : Unit
     private float _addJumpPower = 4f;
 
     // 이동 관련 변수
-    private float _curSpeed = 0.0f;
     [Header("Move Variable")]
+    private float _curSpeed = 0.0f;
     [SerializeField]
     private float _minSpeed = 0.8f;
     [SerializeField]
@@ -63,13 +59,21 @@ public class PlayerUnit : Unit
     [SerializeField]
     private float _moveStopSpeed = 1.0f;
     
+    // 구르기 관련 변수
     [Header("Roll Variable")]
     [SerializeField]
     private float _rollGoalX = 10;
     [SerializeField]
-    public float _rollTime = 1.5f;
-    // 구르기 관련 변수
+    private float _rollTime = 0.0f;
+
+    public float RollTime => _rollTime;
+    
     private float _rollSpeed = 0.5f;
+    [SerializeField]
+    private float _rollCoolTime;
+    private bool _isRollAble = true;
+    public bool IsRollAble => _isRollAble;
+    
     [SerializeField] 
     private PhysicsMaterial2D _rollPhysicMaterial;
 
@@ -214,7 +218,7 @@ public class PlayerUnit : Unit
     {
         _jumpCount = _maxJumpCount;
         _coyoteTime = _maxCoyoteTime;
-        _playerMovementCtrl.ResetJumpVal();
+
     }
 
     public void SetRoll()
@@ -226,7 +230,7 @@ public class PlayerUnit : Unit
     public void Roll()
     {
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-
+        Debug.Log("_rollSpeed : " + _rollSpeed);
         var power = new Vector2((_rollSpeed) * _facingDir, 0);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
@@ -234,6 +238,8 @@ public class PlayerUnit : Unit
     public void EndRoll()
     {
         _rigidbody2D.sharedMaterial = null;
+        if (_isRollAble == true)
+            StartCoroutine(RollCoolTimeCoroutine());
     }
     
     // private int counter = 0;
@@ -267,6 +273,30 @@ public class PlayerUnit : Unit
             _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
         // else
         //     _rigidbody2D.velocity = new Vector2(0.0f, _rigidbody2D.velocity.y);
+    }
+
+    private float _dashTime = 0;
+    private float _dashGoalX = 0;
+    private float _dashSpeed = 0;
+    public float DashTime => _dashTime;
+    
+    public void SetDash()
+    {
+        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+        _dashSpeed = (1 / _dashTime) * _dashGoalX;
+    }
+
+    public void Dash()
+    {
+        _rigidbody2D.velocity = Vector2.zero;
+
+        var power = new Vector2((_rollSpeed) * _facingDir, 0);
+        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+
+    public void EndDash()
+    {
+        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void WallSlideing()
@@ -359,6 +389,19 @@ public class PlayerUnit : Unit
     {
         _isWallTouch = Physics2D.Raycast(_handTr.position, Vector2.right * _facingDir, 0.1f, wallLayerMask);
         return _isWallTouch;
+    }
+
+    IEnumerator RollCoolTimeCoroutine()
+    {
+        _isRollAble = false;
+        float timer = 0.0f;
+        while (timer < _rollCoolTime)
+        {
+            timer += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _isRollAble = true;
     }
     
 }
