@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
     private void Awake()
     {
         _damage = new Damage();
-        _rigid = GetComponent<Rigidbody2D>();
+        _rigid = GetComponentInParent<Rigidbody2D>();
         Assert.IsNotNull(_rigid);
     }
 

@@ -27,8 +27,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8718974563859108414}
-  m_RootOrder: 4
+  m_Father: {fileID: 8718974564337716243}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8709189946703866030
 GameObject:
@@ -54,12 +54,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8709189946703866030}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8718974563859108414}
-  m_RootOrder: 3
+  m_Father: {fileID: 8718974564337716243}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4577946334256479123
 BoxCollider2D:
@@ -239,7 +239,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8718974563859108414}
   - component: {fileID: 8718974563859108415}
-  - component: {fileID: 8718974563859108409}
   - component: {fileID: 4734626809255155482}
   m_Layer: 11
   m_Name: LightWarrior
@@ -261,9 +260,6 @@ Transform:
   m_Children:
   - {fileID: 8718974563011285687}
   - {fileID: 8718974564337716243}
-  - {fileID: 8718974564173690099}
-  - {fileID: 4412578914230935761}
-  - {fileID: 824521593790033727}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -288,37 +284,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8718974563859108409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8718974563859108410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acb87aa2cb1df934c927b9b8affc82e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  isOnGround: 0
-  data: {fileID: 11400000, guid: 6f9ddd582b707654b9a09d26e53743f9, type: 2}
-  accelation: 2
-  footPosition: {fileID: 824521593790033727}
-  hitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  dieEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  _hp: 0
-  attackBox:
-  - {fileID: 4577946334256479123}
-  hitBoxLayer:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!70 &4734626809255155482
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -359,12 +324,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8718974564173690092}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8718974563859108414}
-  m_RootOrder: 2
+  m_Father: {fileID: 8718974564337716243}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3453449943746913576
 BoxCollider2D:
@@ -403,6 +368,7 @@ GameObject:
   - component: {fileID: 8718974564337716243}
   - component: {fileID: 8718974564337716241}
   - component: {fileID: 8718974564337716242}
+  - component: {fileID: 8257896219759015587}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -420,7 +386,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8718974564173690099}
+  - {fileID: 4412578914230935761}
+  - {fileID: 824521593790033727}
   m_Father: {fileID: 8718974563859108414}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -436,7 +405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b248f9b4cf36bf4c8ba87e1526aaeb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 8718974563859108409}
+  unit: {fileID: 8257896219759015587}
+  animCtrl: {fileID: 3429290343674522108}
 --- !u!114 &8718974564337716242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,4 +424,35 @@ MonoBehaviour:
     m_Bits: 256
   isLookRight: 0
   target: {fileID: 0}
-  color: {fileID: 0}
+  color: {fileID: 1993786811823018311}
+--- !u!114 &8257896219759015587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718974564337716236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb87aa2cb1df934c927b9b8affc82e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  isOnGround: 0
+  data: {fileID: 11400000, guid: 6f9ddd582b707654b9a09d26e53743f9, type: 2}
+  accelation: 20
+  footPosition: {fileID: 824521593790033727}
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  dieEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _hp: 0
+  attackBox:
+  - {fileID: 4577946334256479123}
+  hitBoxLayer:
+    serializedVersion: 2
+    m_Bits: 1024

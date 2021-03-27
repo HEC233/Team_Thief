@@ -30,9 +30,6 @@ public class LightWarriorAI : MonoBehaviour
         actor = GetComponent<LightWarriorActor>();
         _curState = search;
         _curState.Enter(this);
-#if (TEST)
-        color = GetComponentInParent<LightWarriorUnit>().GetComponentInChildren<TestColor>();
-#endif
     }
 
     public void ChangeState(AIState newState)

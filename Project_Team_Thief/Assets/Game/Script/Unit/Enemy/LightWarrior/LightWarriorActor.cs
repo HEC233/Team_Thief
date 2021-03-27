@@ -7,6 +7,7 @@ using LightWarrior;
 public class LightWarriorActor : MonoBehaviour, IActor
 {
     public LightWarriorUnit unit;
+    public AnimationCtrl animCtrl;
     LWState _curState;
 
     public Idle idle = new Idle();
