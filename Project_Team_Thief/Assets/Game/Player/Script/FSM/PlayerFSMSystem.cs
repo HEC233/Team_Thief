@@ -584,8 +584,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     
     private class BasicAttackState : CustomFSMStateBase
     {
-        private int _attackIndex = 0;
-        private int _nextAttackIndex = 0;
+        private int _basicAttackIndex = 0;
+        private int _nextBasicAttackIndex = 0;
         private float _attackInputTime = 0.0f;
         private float _attackBeInputTime = 0.0f;
         private float _attackTime = 0.5f;
@@ -607,7 +607,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             _attackBeInputTime = Time.time;
-            SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_attackIndex]);
+            SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
             SystemMgr.Unit.SetBasicAttack();
         }
 
@@ -618,8 +618,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
-            _attackIndex = 0;
-            _nextAttackIndex = 0;
+            _basicAttackIndex = 0;
+            _nextBasicAttackIndex = 0;
             _attackInputTime = 0;
             _attackBeInputTime = 0;
             _timer = 0.0f;
@@ -639,7 +639,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
                 if (_attackInputTime - _attackBeInputTime <= _attackTime)
                 {
-                    _nextAttackIndex = _attackIndex + 1;
+                    _nextBasicAttackIndex = _basicAttackIndex + 1;
                 }
 
                 _attackBeInputTime = Time.time;
@@ -674,19 +674,19 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         private void EndOrNextCheck()
         {
-            if (_attackIndex != _nextAttackIndex)
+            if (_basicAttackIndex != _nextBasicAttackIndex)
             {
-                if (_nextAttackIndex > _basicAttackAniArr.Length - 1)
+                if (_nextBasicAttackIndex > _basicAttackAniArr.Length - 1)
                 {
-                    _attackIndex = 0;
-                    _nextAttackIndex = 0;
+                    _basicAttackIndex = 0;
+                    _nextBasicAttackIndex = 0;
                 }
                 else
                 {
-                    _attackIndex = _nextAttackIndex;
+                    _basicAttackIndex = _nextBasicAttackIndex;
                 }
                 
-                SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_attackIndex]);
+                SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
             }
             else
             {
@@ -698,20 +698,21 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private void BasicAttackCall()
         {
-            SystemMgr.Unit.BasicAttack(_attackIndex);
+            SystemMgr.Unit.BasicAttack(_basicAttackIndex);
         }
 
         IEnumerator BasicAttackMoveCoroutine()
         {
             _isNotEndCoroutine = true;
-            _BasicAttackMoveTime = SystemMgr.Unit.BasicAttackMoveTime;
+            _BasicAttackMoveTime = SystemMgr.Unit.BasicAttackMoveTimeArr[_basicAttackIndex];
             _timer = 0.02f;
             while (_timer < _BasicAttackMoveTime)
             {
                 _timer += Time.fixedDeltaTime;
-                SystemMgr.Unit.BasicAttackMove();
+                SystemMgr.Unit.BasicAttackMove(_basicAttackIndex);
                 yield return new WaitForFixedUpdate();
             }
+            
             SystemMgr.Unit.EndBasicAttack();
             _isNotEndCoroutine = false;
         }

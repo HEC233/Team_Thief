@@ -97,13 +97,14 @@ public class PlayerUnit : Unit
     [SerializeField]
     private float _basicAttackTime = 0.5f;
     public float BasicAttackTime => _basicAttackTime;
-    [SerializeField] 
-    private float _basicAttackMoveTime = 0.0f;
-    public float BasicAttackMoveTime => _basicAttackMoveTime;
-    private float _basicAttackMoveSpeed = 0.0f;
-    [SerializeField]
-    private float _basicAttackMoveGoalX = 0.0f;
 
+    [SerializeField] 
+    private float[] _basicAttackMoveTimeArr;
+    public float[] BasicAttackMoveTimeArr => _basicAttackMoveTimeArr;
+    [SerializeField] 
+    private float[] _basicAttackMoveGoalXArr;
+    private float _basicAttackMoveSpeed = 0.0f;
+    
     //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
@@ -345,7 +346,7 @@ public class PlayerUnit : Unit
     public void SetBasicAttack()
     {
         _rigidbody2D.sharedMaterial = _rollPhysicMaterial;
-        _basicAttackMoveSpeed = (1 / _basicAttackMoveTime) * _basicAttackMoveGoalX;
+        _rigidbody2D.velocity = Vector2.zero;
     }
 
     public void BasicAttack(int attackIndex)
@@ -353,8 +354,11 @@ public class PlayerUnit : Unit
         Debug.Log("AttackIndex : " + attackIndex);
     }
 
-    public void BasicAttackMove()
+    public void BasicAttackMove(int basicAttackIndex)
     {
+        _basicAttackMoveSpeed = 
+            (1 / _basicAttackMoveTimeArr[basicAttackIndex]) * _basicAttackMoveGoalXArr[basicAttackIndex];
+        
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
 
         var power = new Vector2((_basicAttackMoveSpeed) * _facingDir, 0);
@@ -379,6 +383,12 @@ public class PlayerUnit : Unit
 
     public override void HandleHit(in Damage inputDamage)
     {
+        // hit는 fsm에게 unityAction을 이용해서
+        // 신호를 넘겨줘서 해당 스테이트에서 알아서 처리하도록.
+        // 왜? FSM은 상태 변화를 담당하는거고
+        // 유닛은 기능에 대한 내용만 있으니 유닛에서 FSM의 changeState를 호출해버리면
+        // FSM의 기능이 사라지기 때문에.
+        
         base.HandleHit(in inputDamage);
     }
 
