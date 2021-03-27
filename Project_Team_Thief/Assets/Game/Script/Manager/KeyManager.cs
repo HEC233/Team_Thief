@@ -37,7 +37,10 @@ public class KeyManager : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.UpArrow))
             controlUnit.Transition(TransitionCondition.Wallslideing);
-        
+        if (Input.GetKeyDown(KeyCode.X))
+            controlUnit.Transition(TransitionCondition.Attack);
+
+
     }
 
     public void SetControlUnit(IActor unit)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 // Unit은 외부에 보이는 인터페이스.
@@ -76,9 +77,7 @@ public class PlayerUnit : Unit
     
     [SerializeField] 
     private PhysicsMaterial2D _rollPhysicMaterial;
-
-    //////////////////////////// 데이터로 관리 할 변수
-
+    
     // WallSlideing Variable
     [Header("Wallslideing Variable")]
     [SerializeField]
@@ -92,6 +91,20 @@ public class PlayerUnit : Unit
     private float _wallJumpPowerY;
     [SerializeField]
     private float _wallSlideingUpPower = 0;
+    
+    // BasicAttack Variable
+    [Header("BasicAttack Variable")] 
+    [SerializeField]
+    private float _basicAttackTime = 0.5f;
+    public float BasicAttackTime => _basicAttackTime;
+    [SerializeField] 
+    private float _basicAttackMoveTime = 0.0f;
+    public float BasicAttackMoveTime => _basicAttackMoveTime;
+    private float _basicAttackMoveSpeed = 0.0f;
+    [SerializeField]
+    private float _basicAttackMoveGoalX = 0.0f;
+
+    //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
 
@@ -327,6 +340,36 @@ public class PlayerUnit : Unit
     public void WallReset()
     {
         _rigidbody2D.gravityScale = _originalGravityScale;
+    }
+    
+    public void SetBasicAttack()
+    {
+        _rigidbody2D.sharedMaterial = _rollPhysicMaterial;
+        _basicAttackMoveSpeed = (1 / _basicAttackMoveTime) * _basicAttackMoveGoalX;
+    }
+
+    public void BasicAttack(int attackIndex)
+    {
+        Debug.Log("AttackIndex : " + attackIndex);
+    }
+
+    public void BasicAttackMove()
+    {
+        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+
+        var power = new Vector2((_basicAttackMoveSpeed) * _facingDir, 0);
+        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+    
+    public void EndBasicAttack()
+    {
+        _rigidbody2D.sharedMaterial = null;
+    }
+    
+    public void BasicAttackMoveStop()
+    {
+        if (IsGround)
+            _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
     }
 
     public override void Attack()
