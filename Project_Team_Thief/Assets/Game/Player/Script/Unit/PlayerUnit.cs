@@ -59,6 +59,8 @@ public class PlayerUnit : Unit
     private float _maxSpeed = 6.5f;
     [SerializeField]
     private float _moveStopSpeed = 1.0f;
+
+    private bool _isTouchMaxSpeed = false;
     
     // 구르기 관련 변수
     [Header("Roll Variable")]
@@ -159,10 +161,13 @@ public class PlayerUnit : Unit
     {
 
         _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0), ForceMode2D.Impulse);
-        
+
         if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
+        {
             _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
-        
+            _isTouchMaxSpeed = true;
+        }
+
         // Vector2 dir = moveUtil.moveforce(5);
         // Rigidbody2D.addfoce(dir);
         //_playerMovementCtrl.Move(_facingDir);
@@ -176,14 +181,21 @@ public class PlayerUnit : Unit
 
     public bool IsRunningInertia()
     {
-        return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 0.2f ? true : false;
+        if (_isTouchMaxSpeed == true)
+        {
+            _isTouchMaxSpeed = false;
+            return true;
+        }
 
+        return false;
+        //return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 0.2f ? true : false;
         //return _playerMovementCtrl.IsRunningInertia();
     }
 
 
     public override void Jump(float jumpForce)
     {
+        _coyoteTime = 0.0f;
         _jumpCount--;
         _isGround = false;
 
@@ -244,7 +256,6 @@ public class PlayerUnit : Unit
     public void Roll()
     {
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-        Debug.Log("_rollSpeed : " + _rollSpeed);
         var power = new Vector2((_rollSpeed) * _facingDir, 0);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
@@ -381,6 +392,19 @@ public class PlayerUnit : Unit
         base.Attack();
     }
 
+    public void BasicJumpAttack()
+    {
+        
+    }
+
+    public void BasicJumpMove(int inputDir)
+    {
+        _rigidbody2D.AddForce(new Vector2(_minSpeed * inputDir, 0), ForceMode2D.Impulse);
+        
+        if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
+            _rigidbody2D.velocity = new Vector2(_maxSpeed * inputDir, _rigidbody2D.velocity.y);
+    }
+    
     public override void HandleHit(in Damage inputDamage)
     {
         // hit는 fsm에게 unityAction을 이용해서
