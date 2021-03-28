@@ -466,9 +466,6 @@ public class PlayerUnit : Unit
         // 왜? FSM은 상태 변화를 담당하는거고
         // 유닛은 기능에 대한 내용만 있으니 유닛에서 FSM의 changeState를 호출해버리면
         // FSM의 기능이 사라지기 때문에.
-        
-        Debug.Log("Player Hit");
-        
         if(_isInvincibility == true)
             return;
 
@@ -567,19 +564,21 @@ public class PlayerUnit : Unit
         float _totalTick = 0.0f;
         float _tick = 0.0f;
         int count = 0;
-
+        
+        _spriteRenderer.color = new Color32(255, 255, 255, 127);
+        
         while (_totalTick <= _hitInvincibilityTime)
         {
             _totalTick += Time.fixedDeltaTime;
-            _tick += Time.fixedDeltaTime;
-
             if (_totalTick >= _hitInvincibilityTime * _hitInvincibilityTwinkleTime)
             {
+
+                _tick += Time.fixedDeltaTime;
                 if (_tick >= 0.1f)
                 {
                     count++;
 
-                    if (count % 2 == 0)
+                    if (count % 2 == 1)
                     {
                         _spriteRenderer.color = new Color32(255, 255, 255, 127);
                     }
@@ -587,14 +586,14 @@ public class PlayerUnit : Unit
                     {
                         _spriteRenderer.color = new Color32(255, 255, 255, 255);
                     }
+                    _tick = 0;
                 }
 
-                _tick = 0;
             }
             
             yield return new WaitForFixedUpdate();
         }
-
+        _spriteRenderer.color = new Color32(255, 255, 255, 255);
         _isInvincibility = false;
     }
     
