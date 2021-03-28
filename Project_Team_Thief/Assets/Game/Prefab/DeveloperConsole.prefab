@@ -834,6 +834,7 @@ MonoBehaviour:
   commands:
   - {fileID: 11400000, guid: 31c5b6342e18bb24585bed11495eec95, type: 2}
   - {fileID: 11400000, guid: 9bc868feb1528d845a1d8ad9b9c99a28, type: 2}
+  - {fileID: 11400000, guid: c6c77d57b916ada48aa83a02df44e1bb, type: 2}
   uiCanvas: {fileID: 6955650756945750464}
   inputField: {fileID: 6955650756298685249}
   textField: {fileID: 1506168138909264075}
