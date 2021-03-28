@@ -46,7 +46,7 @@ public class KeyManager : MonoBehaviour
         //Debug.Log("Is On");
     }
 
-    public IActor GetControlUnit()
+    public IActor GetControlActor()
     {
         return controlUnit;
     }

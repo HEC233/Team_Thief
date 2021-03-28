@@ -437,11 +437,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb87aa2cb1df934c927b9b8affc82e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unitData: {fileID: 11400000, guid: 6f9ddd582b707654b9a09d26e53743f9, type: 2}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 256
   isOnGround: 0
-  data: {fileID: 11400000, guid: 6f9ddd582b707654b9a09d26e53743f9, type: 2}
   accelation: 20
   footPosition: {fileID: 824521593790033727}
   hitEvent:

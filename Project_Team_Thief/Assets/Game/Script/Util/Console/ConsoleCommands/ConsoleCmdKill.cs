@@ -14,19 +14,21 @@ namespace PS.Util.DeveloperConsole.Commands
 
             if (gameMng != null)
             {
-                IActor controlUnit = gameMng.GetControlUnit();
-                if(controlUnit != null)
+                IActor controlActor = gameMng.GetControlActor();
+                if (controlActor != null)
                 {
-                    if (controlUnit.Transition(TransitionCondition.ForceKill))
+                    if (controlActor.Transition(TransitionCondition.ForceKill))
                     {
                         resultMsg = returnTxt;
                         return true;
                     }
-                    resultMsg = "failed kill";
+                    returnTxt = "failed kill";
                 }
-                resultMsg = "controlling unit doesn't exist";
+                else
+                    returnTxt = "controlling unit doesn't exist";
             }
-            resultMsg = "GameManager doesn't exist";
+            else
+                returnTxt = "GameManager doesn't exist";
 
             resultMsg = returnTxt;
             return false;

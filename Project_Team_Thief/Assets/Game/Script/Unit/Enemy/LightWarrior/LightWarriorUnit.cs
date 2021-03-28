@@ -79,11 +79,15 @@ public class LightWarriorUnit : Unit
         _rigid.velocity = new Vector2(0.0f, _rigid.velocity.y);
     }
 
+    // 서서히 멈추게 하기 위해서 추가한 함수
+    // 그런데 그라운드 피직스 매터리얼에 마찰값을 줘도 갑자기 작동을 안함 왜지?
+    // 그래서 일단 정지시키도록 해놨음
     public void MoveStop()
     {
         if (_isHorizontalMoving)
         {
-            _rigid.velocity = _rigid.velocity.normalized;
+            //_rigid.velocity = _rigid.velocity.normalized;
+            _rigid.velocity = Vector2.zero;
         }
     }
 
@@ -199,6 +203,6 @@ public class LightWarriorUnit : Unit
 
     public override void HandleDeath()
     {
-        DestroyImmediate(this.gameObject);
+        DestroyImmediate(transform.parent.gameObject);
     }
 }

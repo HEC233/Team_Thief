@@ -37,6 +37,7 @@ public class LightWarriorActor : MonoBehaviour, IActor
 
     public bool Transition(TransitionCondition condition, object param = null)
     {
+        // common change, this transition can occur in any state
         switch (condition)
         {
             case TransitionCondition.SetAttackBoxRight:
@@ -53,6 +54,9 @@ public class LightWarriorActor : MonoBehaviour, IActor
                 return true;
             case TransitionCondition.Attack:
                 ChangeState(attack);
+                return true;
+            case TransitionCondition.ForceKill:
+                ChangeState(die);
                 return true;
         }
             
