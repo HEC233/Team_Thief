@@ -23,6 +23,9 @@ public abstract class AttackBase : MonoBehaviour
     [SerializeField, Tooltip("이펙트가 표시되는가?")]
     protected bool _isDisplyFx;
 
+    [SerializeField, Tooltip("효과음이 재생되는가?")]
+    protected bool _isPlaySFX;
+    
     [Header ("Values")]
     [SerializeField]
     protected float _hitStopTime;
@@ -42,6 +45,7 @@ public abstract class AttackBase : MonoBehaviour
     protected float _cameraShakePower;
     [SerializeField]
     protected LayerMask _hitLayerMask;
+    // 재생 될 SFX에 대한 Enum 값을 선택하도록 하는게 좋을 듯.
 
     protected Damage _damage;
     protected float _minAttackDamage;
@@ -66,7 +70,7 @@ public abstract class AttackBase : MonoBehaviour
 
     public abstract void AttackDamage();
 
-    public abstract void SetDamage(float min, float max);
+    public abstract void SetDamage(in Damage damage);
 
     public abstract void CameraShake();
 }

@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 15247112}
   - component: {fileID: 15247113}
+  - component: {fileID: 15247114}
   m_Layer: 10
   m_Name: BasicAttack1
   m_TagString: Untagged
@@ -178,6 +179,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.42, y: 1.51}
   m_EdgeRadius: 0
+--- !u!114 &15247114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15247111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dbb04fa8ee8fa048a299c270c3a2fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAbleCritical: 0
+  _isAbleFlash: 0
+  _isAbleHitStop: 0
+  _isAbleBulltTime: 0
+  _isAbleCameraShake: 0
+  _isDisplyFx: 0
+  _isPlaySFX: 0
+  _hitStopTime: 0
+  _bulltTime: 0
+  _bulletTimeScale: 0
+  _shakeTime: 0
+  _flashTime: 0
+  _criticalPercentage: 0
+  _camerShakeTime: 0
+  _cameraShakePower: 0
+  _hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _fxGO: {fileID: 0}
+  _flashGO: {fileID: 0}
+  _basicAttackCollider2D: {fileID: 15247113}
 --- !u!1 &17657519
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 146919058}
   - component: {fileID: 146919059}
+  - component: {fileID: 146919060}
   m_Layer: 10
   m_Name: BasicAttack2
   m_TagString: Untagged
@@ -428,6 +463,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.42, y: 1.51}
   m_EdgeRadius: 0
+--- !u!114 &146919060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146919057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dbb04fa8ee8fa048a299c270c3a2fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAbleCritical: 0
+  _isAbleFlash: 0
+  _isAbleHitStop: 0
+  _isAbleBulltTime: 0
+  _isAbleCameraShake: 0
+  _isDisplyFx: 0
+  _isPlaySFX: 0
+  _hitStopTime: 0
+  _bulltTime: 0
+  _bulletTimeScale: 0
+  _shakeTime: 0
+  _flashTime: 0
+  _criticalPercentage: 0
+  _camerShakeTime: 0
+  _cameraShakePower: 0
+  _hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _fxGO: {fileID: 0}
+  _flashGO: {fileID: 0}
+  _basicAttackCollider2D: {fileID: 146919059}
 --- !u!1 &408852743
 GameObject:
   m_ObjectHideFlags: 3
@@ -1421,6 +1489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 708137760}
   - component: {fileID: 708137761}
+  - component: {fileID: 708137762}
   m_Layer: 10
   m_Name: JumpAttack
   m_TagString: Untagged
@@ -1468,6 +1537,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.42, y: 1.51}
   m_EdgeRadius: 0
+--- !u!114 &708137762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708137759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dbb04fa8ee8fa048a299c270c3a2fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAbleCritical: 0
+  _isAbleFlash: 0
+  _isAbleHitStop: 0
+  _isAbleBulltTime: 0
+  _isAbleCameraShake: 0
+  _isDisplyFx: 0
+  _isPlaySFX: 0
+  _hitStopTime: 0
+  _bulltTime: 0
+  _bulletTimeScale: 0
+  _shakeTime: 0
+  _flashTime: 0
+  _criticalPercentage: 0
+  _camerShakeTime: 0
+  _cameraShakePower: 0
+  _hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _fxGO: {fileID: 0}
+  _flashGO: {fileID: 0}
+  _basicAttackCollider2D: {fileID: 708137761}
 --- !u!1 &927398461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,7 +1690,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085417208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.79, y: 0.044, z: 0}
+  m_LocalPosition: {x: -8.07, y: 0.044, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1105592737}
@@ -1679,12 +1781,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _rigidbody2D: {fileID: 1085417212}
+  _spriteRenderer: {fileID: 0}
   _isGround: 1
   groundCheck: {fileID: 126958681}
   groundCheckBoxSize: {x: 0.5, y: 0.01}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  _maxHp: 0
+  _curHp: 0
+  _decreaseHp: 0
   _jumpScale: 2.3
   _jumpPower: 5
   _addAllJumpPpower: 2.5
@@ -1712,6 +1818,17 @@ MonoBehaviour:
   - 0
   - 0.2
   - 0.5
+  _basicAttackMinDamage: 0
+  _basicAtaackMaxDamage: 0
+  _basicAttackKnockBack: {x: 2, y: 2}
+  _basicAttackCtrlArr:
+  - {fileID: 15247114}
+  - {fileID: 146919060}
+  - {fileID: 1874662389}
+  _basicJumpAttackCtrl: {fileID: 708137762}
+  _hitInvincibilityTime: 1
+  _hitInvincibilityTwinkleTime: 0.5
+  _hitTime: 0.2
 --- !u!4 &1105592737
 Transform:
   m_ObjectHideFlags: 0
@@ -2392,6 +2509,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1874662387}
   - component: {fileID: 1874662388}
+  - component: {fileID: 1874662389}
   m_Layer: 10
   m_Name: BasicAttack3
   m_TagString: Untagged
@@ -2439,6 +2557,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.42, y: 1.51}
   m_EdgeRadius: 0
+--- !u!114 &1874662389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874662386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dbb04fa8ee8fa048a299c270c3a2fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAbleCritical: 0
+  _isAbleFlash: 0
+  _isAbleHitStop: 0
+  _isAbleBulltTime: 0
+  _isAbleCameraShake: 0
+  _isDisplyFx: 0
+  _isPlaySFX: 0
+  _hitStopTime: 0
+  _bulltTime: 0
+  _bulletTimeScale: 0
+  _shakeTime: 0
+  _flashTime: 0
+  _criticalPercentage: 0
+  _camerShakeTime: 0
+  _cameraShakePower: 0
+  _hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _fxGO: {fileID: 0}
+  _flashGO: {fileID: 0}
+  _basicAttackCollider2D: {fileID: 1874662388}
 --- !u!1 &1967566875
 GameObject:
   m_ObjectHideFlags: 0

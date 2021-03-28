@@ -56,6 +56,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     void Init()
     {
         GameManager.instance.SetControlUnit(this);
+        Unit.hitEvent += UnitHitEventCall;
     }
 
     private class IdleState : CustomFSMStateBase
@@ -838,6 +839,55 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Unit.BasicJumpAttack();
         }
     }
+    
+    private class HitState : CustomFSMStateBase
+    {
+        private bool _isHitEnd = false;
+        public HitState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Hit);
+            SystemMgr.Unit.Hit();
+            SystemMgr.Unit.HitKnockBack();
+            SystemMgr.StartCoroutine(HitTimeCalcCorotine());
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+        }
+
+        public override void EndState()
+        {
+            SystemMgr.Unit.ResetHitDamage();
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (_isHitEnd == true)
+                return false;
+            
+            return true;
+        }
+
+        IEnumerator HitTimeCalcCorotine()
+        {
+            _isHitEnd = true;
+            float _time = 0.02f;
+            float _hitTime = SystemMgr.Unit.HitTime;
+            
+            while (_time <= _hitTime)
+            {
+                _time += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isHitEnd = false;
+        }
+    }
 
     protected override void RegisterState()
     {
@@ -853,6 +903,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Dash, new DashState(this));
         AddState(TransitionCondition.Attack, new BasicAttackState(this));
         AddState(TransitionCondition.JumpAttack, new BasicJumpAttack(this));
+        AddState(TransitionCondition.Hit, new HitState(this));
     }
     
     public bool Transition(TransitionCondition condition, object param = null)
@@ -900,7 +951,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     {
         OnBasicAttackCallEvent?.Invoke();
     }
-    
+
+    public void UnitHitEventCall()
+    {
+        ChangeState(TransitionCondition.Hit);
+    }
 
     public void StartJumpKeyPressDetectCoroutine()
     {

@@ -1,15 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 
 // Unit은 외부에 보이는 인터페이스.
 public class PlayerUnit : Unit
 {
+    // FSM에게 상태 전이를 전달해 주기 위한 이벤트
+    public event UnityAction hitEvent;
     
     [SerializeField] 
     private Rigidbody2D _rigidbody2D;
+
+    [SerializeField] 
+    private SpriteRenderer _spriteRenderer;
 
     // 방향 관련 변수
     private float _facingDir = 1;
@@ -29,6 +36,14 @@ public class PlayerUnit : Unit
     private float _scale = 1;
     
     ///////////////////////////// 데이터로 관리 할 변수
+    // 기본 스탯
+    [SerializeField]
+    private float _maxHp;
+    [SerializeField]
+    private float _curHp;
+    [SerializeField]
+    private float _decreaseHp;
+    
     // 점프 관련 변수
     private int _jumpCount = 0;
     private float _coyoteTime = 0.2f;
@@ -106,10 +121,35 @@ public class PlayerUnit : Unit
     [SerializeField] 
     private float[] _basicAttackMoveGoalXArr;
     private float _basicAttackMoveSpeed = 0.0f;
+
+    [SerializeField] 
+    private float _basicAttackMinDamage;
+    [SerializeField]
+    private float _basicAtaackMaxDamage;
+    [SerializeField] 
+    private Vector2 _basicAttackKnockBack;
+    private Damage _basicAttackDamage;
+    [SerializeField]
+    private BasicAttackCtrl[] _basicAttackCtrlArr;
+
+    [SerializeField]
+    private BasicAttackCtrl _basicJumpAttackCtrl;
+    
+    // hit Variable
+    [SerializeField]
+    private float _hitInvincibilityTime = 1.0f;
+    [SerializeField] 
+    private float _hitInvincibilityTwinkleTime = 0.5f;
+    [SerializeField]
+    private float _hitTime = 0.0f;
+
+    public float HitTime => _hitTime;
+    private bool _isInvincibility = false;
     
     //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
+    private Damage _hitDamage;
 
     void Start()
     {
@@ -133,6 +173,11 @@ public class PlayerUnit : Unit
         _coyoteTime = _maxCoyoteTime;
 
         _originalGravityScale = _rigidbody2D.gravityScale;
+
+        _curHp = _maxHp;
+        
+        _basicAttackDamage = new Damage();
+        _hitDamage = new Damage();
     }
     
 
@@ -353,6 +398,12 @@ public class PlayerUnit : Unit
     {
         _rigidbody2D.gravityScale = _originalGravityScale;
     }
+
+    private void SetBasicDamage()
+    {
+        _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage);
+        _basicAttackDamage.knockBack = _basicAttackKnockBack;
+    }
     
     public void SetBasicAttack()
     {
@@ -362,7 +413,8 @@ public class PlayerUnit : Unit
 
     public void BasicAttack(int attackIndex)
     {
-        Debug.Log("AttackIndex : " + attackIndex);
+        SetBasicDamage();
+        _basicAttackCtrlArr[attackIndex].gameObject.SetActive(true);
     }
 
     public void BasicAttackMove(int basicAttackIndex)
@@ -394,7 +446,7 @@ public class PlayerUnit : Unit
 
     public void BasicJumpAttack()
     {
-        
+        _basicJumpAttackCtrl.gameObject.SetActive(true);   
     }
 
     public void BasicJumpMove(int inputDir)
@@ -412,9 +464,32 @@ public class PlayerUnit : Unit
         // 왜? FSM은 상태 변화를 담당하는거고
         // 유닛은 기능에 대한 내용만 있으니 유닛에서 FSM의 changeState를 호출해버리면
         // FSM의 기능이 사라지기 때문에.
-        
-        base.HandleHit(in inputDamage);
+        if(_isInvincibility == true)
+            return;
+
+        _hitDamage = inputDamage;
+        hitEvent?.Invoke();
     }
+
+    public void Hit()
+    {
+        _curHp -= _hitDamage.power * _decreaseHp;
+        StartCoroutine(invincibilityTimeCoroutine());
+        
+        if(_curHp < 0)
+            Debug.LogError("플레이어 사망");
+    }
+
+    public void HitKnockBack()
+    {
+        _rigidbody2D.AddForce(_hitDamage.knockBack, ForceMode2D.Impulse);
+    }
+
+    public void ResetHitDamage()
+    {
+        _hitDamage = new Damage();
+    }
+    
 
     public Vector3 GetVelocity()
     {
@@ -479,6 +554,43 @@ public class PlayerUnit : Unit
         }
 
         _isRollAble = true;
+    }
+    
+    IEnumerator invincibilityTimeCoroutine()
+    {
+        _isInvincibility = true;
+        float _totalTick = 0.0f;
+        float _tick = 0.0f;
+        int count = 0;
+
+        while (_totalTick <= _hitInvincibilityTime)
+        {
+            _totalTick += Time.fixedDeltaTime;
+            _tick += Time.fixedDeltaTime;
+
+            if (_totalTick >= _hitInvincibilityTime * _hitInvincibilityTwinkleTime)
+            {
+                if (_tick >= 0.1f)
+                {
+                    count++;
+
+                    if (count % 2 == 0)
+                    {
+                        _spriteRenderer.color = new Color32(255, 255, 255, 127);
+                    }
+                    else
+                    {
+                        _spriteRenderer.color = new Color32(255, 255, 255, 255);
+                    }
+                }
+
+                _tick = 0;
+            }
+            
+            yield return new WaitForFixedUpdate();
+        }
+
+        _isInvincibility = false;
     }
     
 }
