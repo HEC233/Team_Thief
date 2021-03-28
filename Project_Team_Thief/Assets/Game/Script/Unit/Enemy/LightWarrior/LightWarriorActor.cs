@@ -92,6 +92,7 @@ namespace LightWarrior
     {
         public override void Enter(LightWarriorActor actor)
         {
+            actor.animCtrl.PlayAni(AniState.Idle);
         }
 
         public override void Exit(LightWarriorActor actor)
@@ -148,19 +149,24 @@ namespace LightWarrior
 
         public override bool Transition(LightWarriorActor actor, TransitionCondition condition)
         {
-            switch(condition)
+            switch (condition)
             {
                 case TransitionCondition.RightMove:
                     if (innerState == InnerState.left)
                         actor.unit.Idle();
+                    actor.animCtrl.SetFlip(true);
+                    actor.animCtrl.PlayAni(AniState.Move);
                     actor.unit.Move(1);
                     return true;
                 case TransitionCondition.LeftMove:
                     if (innerState == InnerState.right)
                         actor.unit.Idle();
+                    actor.animCtrl.SetFlip(false);
+                    actor.animCtrl.PlayAni(AniState.Move);
                     actor.unit.Move(-1);
                     return true;
                 case TransitionCondition.StopMove:
+                    actor.animCtrl.PlayAni(AniState.Idle);
                     actor.unit.MoveStop();
                     return true;
                 case TransitionCondition.Idle:

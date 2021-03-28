@@ -27,6 +27,7 @@ public class AnimationCtrl : MonoBehaviour
 {
     [SerializeField]
     private Animator _animator = null;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     public Animator Animator => _animator;
 
@@ -38,5 +39,15 @@ public class AnimationCtrl : MonoBehaviour
     public float GetCurAniTime()
     {
         return Animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
+    }
+
+    public void Flip()
+    {
+        spriteRenderer.flipX = !spriteRenderer.flipX;
+    }
+
+    public void SetFlip(bool value)
+    {
+        spriteRenderer.flipX = value;
     }
 }

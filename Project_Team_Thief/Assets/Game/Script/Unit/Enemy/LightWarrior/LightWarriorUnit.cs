@@ -10,7 +10,6 @@ public class LightWarriorUnit : Unit
     private bool skipGroundCheck = false;
 
     public float accelation = 100;
-    private bool _isHorizontalMoving = false;
     private bool _isVerticalMoving = false;
     private Vector2 _nextAddingForce = Vector2.zero;
 
@@ -32,10 +31,13 @@ public class LightWarriorUnit : Unit
     ContactFilter2D contactFilter = new ContactFilter2D();
     List<Collider2D> result = new List<Collider2D>();
     private bool isLookRight = true;
+    private bool IsHorizontalMoving
+    {
+        get { return !Mathf.Approximately(GetSpeed().x, 0.0f); }
+    }
 
     private void Start()
     {
-        _isHorizontalMoving = false;
         _isVerticalMoving = false;
 
         _hp = _unitData.hp;
@@ -69,9 +71,6 @@ public class LightWarriorUnit : Unit
                 _rigid.velocity = velocity.normalized * _unitData.maxSpeed;
             _isVerticalMoving = false;
         }
-
-        if (Mathf.Approximately(GetSpeed().x, 0.0f))
-            _isHorizontalMoving = false;
     }
 
     public override void Idle()
@@ -84,11 +83,12 @@ public class LightWarriorUnit : Unit
     // 그래서 일단 정지시키도록 해놨음
     public void MoveStop()
     {
-        if (_isHorizontalMoving)
+        if (IsHorizontalMoving)
         {
             //_rigid.velocity = _rigid.velocity.normalized;
             _rigid.velocity = Vector2.zero;
         }
+        //_rigid.velocity = Vector2.zero;
     }
 
     /*
@@ -103,10 +103,9 @@ public class LightWarriorUnit : Unit
      */ 
     public override void Move(float delta)
     {
-        if (!_isHorizontalMoving)
+        if (!IsHorizontalMoving)
         {
             _rigid.velocity = new Vector2(delta * _unitData.minSpeed, _rigid.velocity.y);
-            _isHorizontalMoving = true;
         }
         else
             _nextAddingForce = new Vector2(delta * accelation, _nextAddingForce.y);
@@ -122,7 +121,7 @@ public class LightWarriorUnit : Unit
         {
            // _rigid.velocity = new Vector2(_rigid.velocity.x, data.minJumpPower);
             _rigid.velocity = new Vector2(_rigid.velocity.x, _unitData.minJumpPower);
-            _isHorizontalMoving = true;
+            _isVerticalMoving = true;
         }
         else
             _nextAddingForce = new Vector2(_nextAddingForce.x, jumpForce);
