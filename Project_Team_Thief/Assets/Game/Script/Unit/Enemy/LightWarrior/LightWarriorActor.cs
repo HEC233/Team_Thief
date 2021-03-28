@@ -37,19 +37,26 @@ public class LightWarriorActor : MonoBehaviour, IActor
 
     public bool Transition(TransitionCondition condition, object param = null)
     {
-        if (condition == TransitionCondition.SetAttackBoxRight)
-            unit.SetAttackBox(true);
-        if (condition == TransitionCondition.SetAttackBoxLeft)
-            unit.SetAttackBox(false);
-        if (condition == TransitionCondition.Hit)
-            ChangeState(hit);
-        if (condition == TransitionCondition.Die)
-            ChangeState(die);
-        if (condition == TransitionCondition.Attack)
-            ChangeState(attack);
+        switch (condition)
+        {
+            case TransitionCondition.SetAttackBoxRight:
+                unit.SetAttackBox(true);
+                return true;
+            case TransitionCondition.SetAttackBoxLeft:
+                unit.SetAttackBox(false);
+                return true;
+            case TransitionCondition.Hit:
+                ChangeState(hit);
+                return true;
+            case TransitionCondition.Die:
+                ChangeState(die);
+                return true;
+            case TransitionCondition.Attack:
+                ChangeState(attack);
+                return true;
+        }
             
-        _curState.Transition(this, condition);
-        return false;
+        return _curState.Transition(this, condition);
     }
 
     public void ChangeState(LWState newState)
@@ -98,8 +105,7 @@ namespace LightWarrior
                 case TransitionCondition.RightMove:
                 case TransitionCondition.LeftMove:
                     actor.ChangeState(actor.move);
-                    actor.Transition(condition);
-                    return true;
+                    return actor.Transition(condition);
             }
 
             return false;
@@ -118,6 +124,7 @@ namespace LightWarrior
 
         public override void Enter(LightWarriorActor actor)
         {
+            innerState = InnerState.stop;
         }
 
         public override void Exit(LightWarriorActor actor)
@@ -127,12 +134,12 @@ namespace LightWarrior
         public override void Process(LightWarriorActor actor)
         {
             _horizontalSpeed = actor.unit.GetSpeed().x;
-            if (_horizontalSpeed > 0)
+            if (Mathf.Approximately(_horizontalSpeed, 0))
+                innerState = InnerState.stop;
+            else if (_horizontalSpeed > 0)
                 innerState = InnerState.right;
             else if (_horizontalSpeed < 0)
                 innerState = InnerState.left;
-            else
-                innerState = InnerState.stop;
         }
 
         public override bool Transition(LightWarriorActor actor, TransitionCondition condition)

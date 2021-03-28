@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 public class Unit : MonoBehaviour
 {
-    protected string _unitName;
+    [SerializeField] protected SOUnit _unitData;
     protected Damage _damage;
     [SerializeField]
     protected LayerMask _groundLayer;
@@ -89,6 +89,6 @@ public class Unit : MonoBehaviour
 
     public string GetUnitName()
     {
-        return _unitName;
+        return _unitData.name;
     }
 }

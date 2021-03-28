@@ -33,4 +33,9 @@ public class GameManager : MonoBehaviour
     {
         _keyManger.SetControlUnit(unit);
     }
+
+    public IActor GetControlUnit()
+    {
+        return _keyManger.GetControlUnit();
+    }
 }
