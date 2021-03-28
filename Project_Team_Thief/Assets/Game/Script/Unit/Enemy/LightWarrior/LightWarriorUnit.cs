@@ -186,7 +186,7 @@ public class LightWarriorUnit : Unit
     {
         // 대미지 상정방식 기획서에 맞게 변경 필요
         _hp -= inputDamage.power * _unitData.reduceHit;
-        _rigid.AddForce(inputDamage.knockBack, ForceMode2D.Force);
+        _rigid.AddForce(inputDamage.knockBack, ForceMode2D.Impulse);
         //isOnGround = false;
         //skipGroundCheck = true;
 

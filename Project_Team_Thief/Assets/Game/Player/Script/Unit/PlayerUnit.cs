@@ -414,7 +414,9 @@ public class PlayerUnit : Unit
     public void BasicAttack(int attackIndex)
     {
         SetBasicDamage();
-        _basicAttackCtrlArr[attackIndex].gameObject.SetActive(true);
+        _basicAttackCtrlArr[attackIndex].SetDamage(_basicAttackDamage);
+        //_basicAttackCtrlArr[attackIndex].gameObject.SetActive(true);
+        _basicAttackCtrlArr[attackIndex].Progress();
     }
 
     public void BasicAttackMove(int basicAttackIndex)
@@ -464,6 +466,9 @@ public class PlayerUnit : Unit
         // 왜? FSM은 상태 변화를 담당하는거고
         // 유닛은 기능에 대한 내용만 있으니 유닛에서 FSM의 changeState를 호출해버리면
         // FSM의 기능이 사라지기 때문에.
+        
+        Debug.Log("Player Hit");
+        
         if(_isInvincibility == true)
             return;
 

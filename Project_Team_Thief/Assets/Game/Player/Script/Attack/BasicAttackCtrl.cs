@@ -21,7 +21,7 @@ public class BasicAttackCtrl : AttackBase
         if(_isInit == false)
             Init();
             
-        Progress();
+        //Progress();
     }
 
     private void Init()
@@ -31,9 +31,16 @@ public class BasicAttackCtrl : AttackBase
         _contactFilter2D.useTriggers = true;
         _contactFilter2D.useLayerMask = true;
         _contactFilter2D.layerMask = _hitLayerMask;
+        
+        //this.gameObject.SetActive(false);
     }
 
-    private void Progress()
+    // private void Update()
+    // {
+    //     Debug.Log("isTouching : " + _basicAttackCollider2D.IsTouchingLayers(_hitLayerMask));
+    // }
+
+    public void Progress()
     {
         PlayFx();
         PlaySfx();
@@ -41,8 +48,7 @@ public class BasicAttackCtrl : AttackBase
         HitStop();
         CameraShake();
         
-        Debug.Log("Attack!!");
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 
     public override void Flash()
@@ -90,7 +96,7 @@ public class BasicAttackCtrl : AttackBase
             foreach (var item in result)
             {
                 if (item.gameObject.CompareTag("Player"))
-                    return;
+                    continue;
 
                 item.GetComponentInParent<Unit>().HandleHit(_damage);
             }
