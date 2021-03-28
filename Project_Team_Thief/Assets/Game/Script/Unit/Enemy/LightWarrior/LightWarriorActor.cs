@@ -40,12 +40,6 @@ public class LightWarriorActor : MonoBehaviour, IActor
         // common change, this transition can occur in any state
         switch (condition)
         {
-            case TransitionCondition.SetAttackBoxRight:
-                unit.SetAttackBox(true);
-                return true;
-            case TransitionCondition.SetAttackBoxLeft:
-                unit.SetAttackBox(false);
-                return true;
             case TransitionCondition.Hit:
                 ChangeState(hit);
                 return true;

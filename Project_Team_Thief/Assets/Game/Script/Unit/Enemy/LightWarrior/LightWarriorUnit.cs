@@ -30,7 +30,7 @@ public class LightWarriorUnit : Unit
     public LayerMask hitBoxLayer;
     ContactFilter2D contactFilter = new ContactFilter2D();
     List<Collider2D> result = new List<Collider2D>();
-    private bool isLookRight = true;
+    private bool isLookRight = false;
     private bool IsHorizontalMoving
     {
         get { return !Mathf.Approximately(GetSpeed().x, 0.0f); }
@@ -109,6 +109,8 @@ public class LightWarriorUnit : Unit
         }
         else
             _nextAddingForce = new Vector2(delta * accelation, _nextAddingForce.y);
+
+        SetAttackBoxDir(GetSpeed().x > 0);
     }
 
     public override void MoveTo(Vector3 position)
@@ -127,19 +129,23 @@ public class LightWarriorUnit : Unit
             _nextAddingForce = new Vector2(_nextAddingForce.x, jumpForce);
     }
 
-    public void SetAttackBox(bool isDirectionRight, int index = -1)
+    public void SetAttackBox(int index)
+    {
+        if (index > -1 && index < attackBox.Count)
+            _curAttackBox = index;
+    }
+
+    public void SetAttackBoxDir(bool isDirectionRight)
     {
         if (isLookRight != isDirectionRight)
         {
-            foreach(var box in attackBox)
+            foreach (var box in attackBox)
             {
                 box.offset = new Vector2(-box.offset.x, box.offset.y);
             }
+            isLookRight = isDirectionRight;
             // 보는 방향이 달라졌을때의 처리를 위한 공간
         }
-
-        if (index > -1)
-            _curAttackBox = index;
     }
 
     IEnumerator AttackMove()
@@ -154,6 +160,8 @@ public class LightWarriorUnit : Unit
 
     public override void Attack()
     {
+
+
         // 앞뒤 딜레이는 여기서 구현하는게 나을까 애니메이션을 관장하는 액터에서 처리하는게 나을까
         // 개인적으로 액터가 낫다고 생각은 한다.
 

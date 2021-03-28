@@ -280,7 +280,7 @@ namespace LWAIState
 #if TEST
                             ai.color.Set(Color.magenta);
 #endif
-                            ai.actor.Transition(ai.GetDistance(false) > 0 ? TransitionCondition.SetAttackBoxRight : TransitionCondition.SetAttackBoxLeft);
+                            //ai.actor.Transition(ai.GetDistance(false) > 0 ? TransitionCondition.SetAttackBoxRight : TransitionCondition.SetAttackBoxLeft);
                             ai.actor.Transition(TransitionCondition.Attack);
 
                             _state = InnerState.Reset;
