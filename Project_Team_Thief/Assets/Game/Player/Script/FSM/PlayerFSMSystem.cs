@@ -83,6 +83,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Wallslideing)
+                return false;
+            
             return true;
         }
     }
