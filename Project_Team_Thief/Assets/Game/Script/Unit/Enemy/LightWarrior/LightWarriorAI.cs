@@ -275,6 +275,7 @@ namespace LWAIState
                     {
                         if (_AttackCool <= 0)
                         {
+                            ai.actor.Transition(TransitionCondition.StopMove);
                             _AttackCool = 2.0f;
 #if TEST
                             ai.color.Set(Color.magenta);
@@ -294,25 +295,30 @@ namespace LWAIState
                 case InnerState.Move:
                     ai.isLookRight = ai.transform.position.x < ai.target.transform.position.x;
 
-                    if (_lastCoord != _curCoord)
+                    //_curCoord = ai.transform.TileCoord();
+                    //if (_lastCoord != _curCoord)
+                    //{
+                    //    _lastCoord = _curCoord;
+                    if (!ai.CheckMovable(ai.isLookRight))
                     {
-                        _lastCoord = _curCoord;
-                        if (!ai.CheckMovable(ai.isLookRight))
-                            _state = InnerState.Wait;
+                        _state = InnerState.Wait;
                     }
+                    //}
                     else
                         ai.actor.Transition(ai.isLookRight ? TransitionCondition.RightMove : TransitionCondition.LeftMove);
 
                     if (_timeCheck <= 0)
                     {
-                        _state = InnerState.Attack;
-                        ai.actor.Transition(TransitionCondition.Idle);
+                        if (!ai.CheckSight())
+                            ai.ChangeState(ai.search);
+                        else
+                            _state = InnerState.Attack;
                     }
                     break;
                 //-----------------------------------------
                 case InnerState.Wait:
 
-                    ai.actor.Transition(TransitionCondition.Idle);
+                    ai.actor.Transition(TransitionCondition.StopMove);
 
                     if (_timeCheck <= 0)
                     {
