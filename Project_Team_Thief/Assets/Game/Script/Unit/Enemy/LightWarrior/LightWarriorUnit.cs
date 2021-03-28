@@ -9,7 +9,6 @@ public class LightWarriorUnit : Unit
     private bool isOnGround = false;
     private bool skipGroundCheck = false;
 
-    public SOUnit data;
     public float accelation = 100;
     private bool _isHorizontalMoving = false;
     private bool _isVerticalMoving = false;
@@ -36,18 +35,17 @@ public class LightWarriorUnit : Unit
 
     private void Start()
     {
-        _unitName = data.unitName;
         _isHorizontalMoving = false;
         _isVerticalMoving = false;
 
-        _hp = data.hp;
+        _hp = _unitData.hp;
 
         contactFilter.useTriggers = true;
         contactFilter.useLayerMask = true;
         contactFilter.SetLayerMask(hitBoxLayer);
 
         //---------- for test ----------------
-        SetDamagePower(data.skillDamage)/*.SetDamageKnockBack(new Vector2(200, 200))*/;
+        SetDamagePower(_unitData.skillDamage)/*.SetDamageKnockBack(new Vector2(200, 200))*/;
     }
 
     void Update()
@@ -67,8 +65,8 @@ public class LightWarriorUnit : Unit
         if (isOnGround)
         {
             Vector2 velocity = _rigid.velocity;
-            if (velocity.sqrMagnitude > data.maxSpeed * data.maxSpeed)
-                _rigid.velocity = velocity.normalized * data.maxSpeed;
+            if (velocity.sqrMagnitude > _unitData.maxSpeed * _unitData.maxSpeed)
+                _rigid.velocity = velocity.normalized * _unitData.maxSpeed;
             _isVerticalMoving = false;
         }
 
@@ -103,7 +101,7 @@ public class LightWarriorUnit : Unit
     {
         if (!_isHorizontalMoving)
         {
-            _rigid.velocity = new Vector2(delta * data.minSpeed, _rigid.velocity.y);
+            _rigid.velocity = new Vector2(delta * _unitData.minSpeed, _rigid.velocity.y);
             _isHorizontalMoving = true;
         }
         else
@@ -119,7 +117,7 @@ public class LightWarriorUnit : Unit
         if (!_isVerticalMoving)
         {
            // _rigid.velocity = new Vector2(_rigid.velocity.x, data.minJumpPower);
-            _rigid.velocity = new Vector2(_rigid.velocity.x, data.minJumpPower);
+            _rigid.velocity = new Vector2(_rigid.velocity.x, _unitData.minJumpPower);
             _isHorizontalMoving = true;
         }
         else
@@ -184,7 +182,7 @@ public class LightWarriorUnit : Unit
     public override void HandleHit(in Damage inputDamage)
     {
         // 대미지 상정방식 기획서에 맞게 변경 필요
-        _hp -= inputDamage.power * data.reduceHit;
+        _hp -= inputDamage.power * _unitData.reduceHit;
         _rigid.AddForce(inputDamage.knockBack, ForceMode2D.Force);
         //isOnGround = false;
         //skipGroundCheck = true;

@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Spawn Command
   m_EditorClassIdentifier: 
   command: spawn
+  unit:
+  - {fileID: 8718974563859108410, guid: e972f2be0e9e66840a07f6b053f57afe, type: 3}
