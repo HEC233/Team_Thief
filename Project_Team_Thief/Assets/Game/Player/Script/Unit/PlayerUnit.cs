@@ -1,14 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 
 // Unit은 외부에 보이는 인터페이스.
 public class PlayerUnit : Unit
 {
+    // FSM에게 상태 전이를 전달해 주기 위한 이벤트
+    public event UnityAction hitEvent;
     
     [SerializeField] 
     private Rigidbody2D _rigidbody2D;
+
+    [SerializeField] 
+    private SpriteRenderer _spriteRenderer;
 
     // 방향 관련 변수
     private float _facingDir = 1;
@@ -28,6 +36,14 @@ public class PlayerUnit : Unit
     private float _scale = 1;
     
     ///////////////////////////// 데이터로 관리 할 변수
+    // 기본 스탯
+    [SerializeField]
+    private float _maxHp;
+    [SerializeField]
+    private float _curHp;
+    [SerializeField]
+    private float _decreaseHp;
+    
     // 점프 관련 변수
     private int _jumpCount = 0;
     private float _coyoteTime = 0.2f;
@@ -58,6 +74,8 @@ public class PlayerUnit : Unit
     private float _maxSpeed = 6.5f;
     [SerializeField]
     private float _moveStopSpeed = 1.0f;
+
+    private bool _isTouchMaxSpeed = false;
     
     // 구르기 관련 변수
     [Header("Roll Variable")]
@@ -76,9 +94,7 @@ public class PlayerUnit : Unit
     
     [SerializeField] 
     private PhysicsMaterial2D _rollPhysicMaterial;
-
-    //////////////////////////// 데이터로 관리 할 변수
-
+    
     // WallSlideing Variable
     [Header("Wallslideing Variable")]
     [SerializeField]
@@ -92,8 +108,48 @@ public class PlayerUnit : Unit
     private float _wallJumpPowerY;
     [SerializeField]
     private float _wallSlideingUpPower = 0;
+    
+    // BasicAttack Variable
+    [Header("BasicAttack Variable")] 
+    [SerializeField]
+    private float _basicAttackTime = 0.5f;
+    public float BasicAttackTime => _basicAttackTime;
+
+    [SerializeField] 
+    private float[] _basicAttackMoveTimeArr;
+    public float[] BasicAttackMoveTimeArr => _basicAttackMoveTimeArr;
+    [SerializeField] 
+    private float[] _basicAttackMoveGoalXArr;
+    private float _basicAttackMoveSpeed = 0.0f;
+
+    [SerializeField] 
+    private float _basicAttackMinDamage;
+    [SerializeField]
+    private float _basicAtaackMaxDamage;
+    [SerializeField] 
+    private Vector2 _basicAttackKnockBack;
+    private Damage _basicAttackDamage;
+    [SerializeField]
+    private BasicAttackCtrl[] _basicAttackCtrlArr;
+
+    [SerializeField]
+    private BasicAttackCtrl _basicJumpAttackCtrl;
+    
+    // hit Variable
+    [SerializeField]
+    private float _hitInvincibilityTime = 1.0f;
+    [SerializeField] 
+    private float _hitInvincibilityTwinkleTime = 0.5f;
+    [SerializeField]
+    private float _hitTime = 0.0f;
+
+    public float HitTime => _hitTime;
+    private bool _isInvincibility = false;
+    
+    //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
+    private Damage _hitDamage;
 
     void Start()
     {
@@ -117,6 +173,11 @@ public class PlayerUnit : Unit
         _coyoteTime = _maxCoyoteTime;
 
         _originalGravityScale = _rigidbody2D.gravityScale;
+
+        _curHp = _maxHp;
+        
+        _basicAttackDamage = new Damage();
+        _hitDamage = new Damage();
     }
     
 
@@ -145,10 +206,13 @@ public class PlayerUnit : Unit
     {
 
         _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0), ForceMode2D.Impulse);
-        
+
         if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
+        {
             _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
-        
+            _isTouchMaxSpeed = true;
+        }
+
         // Vector2 dir = moveUtil.moveforce(5);
         // Rigidbody2D.addfoce(dir);
         //_playerMovementCtrl.Move(_facingDir);
@@ -162,14 +226,21 @@ public class PlayerUnit : Unit
 
     public bool IsRunningInertia()
     {
-        return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 0.2f ? true : false;
+        if (_isTouchMaxSpeed == true)
+        {
+            _isTouchMaxSpeed = false;
+            return true;
+        }
 
+        return false;
+        //return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 0.2f ? true : false;
         //return _playerMovementCtrl.IsRunningInertia();
     }
 
 
     public override void Jump(float jumpForce)
     {
+        _coyoteTime = 0.0f;
         _jumpCount--;
         _isGround = false;
 
@@ -230,7 +301,6 @@ public class PlayerUnit : Unit
     public void Roll()
     {
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-        Debug.Log("_rollSpeed : " + _rollSpeed);
         var power = new Vector2((_rollSpeed) * _facingDir, 0);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
@@ -329,15 +399,97 @@ public class PlayerUnit : Unit
         _rigidbody2D.gravityScale = _originalGravityScale;
     }
 
+    private void SetBasicDamage()
+    {
+        _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage);
+        _basicAttackDamage.knockBack = _basicAttackKnockBack;
+    }
+    
+    public void SetBasicAttack()
+    {
+        _rigidbody2D.sharedMaterial = _rollPhysicMaterial;
+        _rigidbody2D.velocity = Vector2.zero;
+    }
+
+    public void BasicAttack(int attackIndex)
+    {
+        SetBasicDamage();
+        _basicAttackCtrlArr[attackIndex].gameObject.SetActive(true);
+    }
+
+    public void BasicAttackMove(int basicAttackIndex)
+    {
+        _basicAttackMoveSpeed = 
+            (1 / _basicAttackMoveTimeArr[basicAttackIndex]) * _basicAttackMoveGoalXArr[basicAttackIndex];
+        
+        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+
+        var power = new Vector2((_basicAttackMoveSpeed) * _facingDir, 0);
+        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+    
+    public void EndBasicAttack()
+    {
+        _rigidbody2D.sharedMaterial = null;
+    }
+    
+    public void BasicAttackMoveStop()
+    {
+        if (IsGround)
+            _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
+    }
+
     public override void Attack()
     {
         base.Attack();
     }
 
+    public void BasicJumpAttack()
+    {
+        _basicJumpAttackCtrl.gameObject.SetActive(true);   
+    }
+
+    public void BasicJumpMove(int inputDir)
+    {
+        _rigidbody2D.AddForce(new Vector2(_minSpeed * inputDir, 0), ForceMode2D.Impulse);
+        
+        if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
+            _rigidbody2D.velocity = new Vector2(_maxSpeed * inputDir, _rigidbody2D.velocity.y);
+    }
+    
     public override void HandleHit(in Damage inputDamage)
     {
-        base.HandleHit(in inputDamage);
+        // hit는 fsm에게 unityAction을 이용해서
+        // 신호를 넘겨줘서 해당 스테이트에서 알아서 처리하도록.
+        // 왜? FSM은 상태 변화를 담당하는거고
+        // 유닛은 기능에 대한 내용만 있으니 유닛에서 FSM의 changeState를 호출해버리면
+        // FSM의 기능이 사라지기 때문에.
+        if(_isInvincibility == true)
+            return;
+
+        _hitDamage = inputDamage;
+        hitEvent?.Invoke();
     }
+
+    public void Hit()
+    {
+        _curHp -= _hitDamage.power * _decreaseHp;
+        StartCoroutine(invincibilityTimeCoroutine());
+        
+        if(_curHp < 0)
+            Debug.LogError("플레이어 사망");
+    }
+
+    public void HitKnockBack()
+    {
+        _rigidbody2D.AddForce(_hitDamage.knockBack, ForceMode2D.Impulse);
+    }
+
+    public void ResetHitDamage()
+    {
+        _hitDamage = new Damage();
+    }
+    
 
     public Vector3 GetVelocity()
     {
@@ -402,6 +554,43 @@ public class PlayerUnit : Unit
         }
 
         _isRollAble = true;
+    }
+    
+    IEnumerator invincibilityTimeCoroutine()
+    {
+        _isInvincibility = true;
+        float _totalTick = 0.0f;
+        float _tick = 0.0f;
+        int count = 0;
+
+        while (_totalTick <= _hitInvincibilityTime)
+        {
+            _totalTick += Time.fixedDeltaTime;
+            _tick += Time.fixedDeltaTime;
+
+            if (_totalTick >= _hitInvincibilityTime * _hitInvincibilityTwinkleTime)
+            {
+                if (_tick >= 0.1f)
+                {
+                    count++;
+
+                    if (count % 2 == 0)
+                    {
+                        _spriteRenderer.color = new Color32(255, 255, 255, 127);
+                    }
+                    else
+                    {
+                        _spriteRenderer.color = new Color32(255, 255, 255, 255);
+                    }
+                }
+
+                _tick = 0;
+            }
+            
+            yield return new WaitForFixedUpdate();
+        }
+
+        _isInvincibility = false;
     }
     
 }

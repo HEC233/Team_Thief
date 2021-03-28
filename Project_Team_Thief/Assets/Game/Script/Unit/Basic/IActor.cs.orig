@@ -5,13 +5,17 @@ using System.Collections.Generic;
 public enum TransitionCondition
 {
     Idle = 0,
-    Move = 1,
-    LeftMove = 2,
-    RightMove = 3,
-    RunningInertia = 4,
-    Jump = 5,
-<<<<<<< HEAD
-    StopMove = 6,
+    Move,
+    LeftMove,
+    RightMove,
+    RunningInertia,
+    Jump,
+    DoubleJump,
+    Falling,
+    Roll,
+    Wallslideing,
+    WallJump,
+    StopMove,
     Skill1,
     Skill2,
     Hit,
@@ -19,14 +23,12 @@ public enum TransitionCondition
     Attack,
     SetAttackBoxRight,
     SetAttackBoxLeft,
+<<<<<<< HEAD
+    ForceKill,
 =======
-    DoubleJump = 7,
-    Falling = 8,
-    Roll = 9,
-    Wallslideing = 10,
-    WallJump = 11,
+    JumpAttack,
+>>>>>>> PlayerAttack
     Dash = 99,
->>>>>>> PlayerMovement
 }
 
 // transition에 추가적인 데이터를 넘겨주고 싶은 경우가 생길수 있으니 Object를 넘기는 법을 상의하자

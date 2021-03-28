@@ -24,6 +24,7 @@ public enum TransitionCondition
     SetAttackBoxRight,
     SetAttackBoxLeft,
     ForceKill,
+    JumpAttack,
     Dash = 99,
 }
 

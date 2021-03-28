@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class CustomFSMStateBase : IFSMStateBase
 {
@@ -41,6 +42,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private bool _isRollAniEnd = false;
     public bool isJumpKeyPress = false;
     
+    // 각 상태와 연결 될 유니티 이벤트
+    // 기본 공격 관련
+    public event UnityAction OnBasicAttackEndAniEvent = null;
+    public event UnityAction OnBasicAttackCallEvent = null; 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +56,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     void Init()
     {
         GameManager.instance.SetControlUnit(this);
+        Unit.hitEvent += UnitHitEventCall;
     }
 
     private class IdleState : CustomFSMStateBase
@@ -77,6 +84,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Wallslideing)
+                return false;
+            
             return true;
         }
     }
@@ -234,6 +244,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 SystemMgr.Unit.Move(0);
             }
 
+            if (condition == TransitionCondition.Attack)
+            {
+                SystemMgr.ChangeState(TransitionCondition.JumpAttack);
+            }
+
             return false;
         }
     }
@@ -289,6 +304,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 SystemMgr.Unit.CheckMovementDir(_inputDir);
                 SystemMgr.Unit.Move(0);
+            }
+            
+            if (condition == TransitionCondition.Attack)
+            {
+                SystemMgr.ChangeState(TransitionCondition.JumpAttack);
             }
             return false;
         }
@@ -354,6 +374,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 {
                     SystemMgr.Unit.CheckMovementDir(_inputDir);
                     SystemMgr.Unit.Move(0);
+                }
+                if (condition == TransitionCondition.Attack)
+                {
+                    SystemMgr.ChangeState(TransitionCondition.JumpAttack);
                 }
                 
                 return false;
@@ -534,6 +558,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                         SystemMgr.ChangeState(TransitionCondition.WallJump);
                     }
                 }
+                
+                if (condition == TransitionCondition.Attack)
+                    SystemMgr.ChangeState(TransitionCondition.JumpAttack);
             }
 
             return false;
@@ -575,8 +602,293 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return false;
         }
     }
+    
+    private class BasicAttackState : CustomFSMStateBase
+    {
+        private int _basicAttackIndex = 0;
+        private int _nextBasicAttackIndex = 0;
+        private float _attackInputTime = 0.0f;
+        private float _attackBeInputTime = 0.0f;
+        private float _attackTime = 0.5f;
+        private bool _isBasicAttackEnd = false;
+        private float _timer = 0.0f;
+        private float _BasicAttackMoveTime = 0.0f;
+        private bool _isNotEndCoroutine = false;
+        private bool _isBasicAttackAniEnd = false;
 
-    // Update is called once per frame
+        private AniState[] _basicAttackAniArr =
+            new AniState[] {AniState.Attack, AniState.Attack2, AniState.Attack3};
+        
+        public BasicAttackState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            _attackBeInputTime = Time.time;
+            SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
+            SystemMgr.Unit.SetBasicAttack();
+
+            SystemMgr.OnBasicAttackEndAniEvent += EndOrNextCheck;
+            SystemMgr.OnBasicAttackCallEvent += BasicAttackCall;
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+            
+            if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
+                SystemMgr.ChangeState(TransitionCondition.Falling);
+            
+        }
+
+        public override void EndState()
+        {
+            _basicAttackIndex = 0;
+            _nextBasicAttackIndex = 0;
+            _attackInputTime = 0;
+            _attackBeInputTime = 0;
+            _timer = 0.0f;
+            _BasicAttackMoveTime = 0.0f;
+            _isBasicAttackEnd = false;
+            _isNotEndCoroutine = false;
+            _isBasicAttackAniEnd = false;
+            SystemMgr.Unit.EndBasicAttack();
+            SystemMgr.Unit.BasicAttackMoveStop();
+            
+            SystemMgr.OnBasicAttackEndAniEvent -= EndOrNextCheck;
+            SystemMgr.OnBasicAttackCallEvent -= BasicAttackCall;
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (condition == TransitionCondition.Attack)
+            {
+                _attackInputTime = Time.time;
+
+                if (_attackInputTime - _attackBeInputTime <= _attackTime)
+                {
+                    _nextBasicAttackIndex = _basicAttackIndex + 1;
+                }
+
+                _attackBeInputTime = Time.time;
+            }
+
+            if (_isBasicAttackAniEnd)
+            {
+                if (condition == TransitionCondition.LeftMove)
+                {
+                    SystemMgr.Unit.CheckMovementDir(-1);
+                    
+                    if (_isNotEndCoroutine == false)
+                        SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
+                }
+
+                if (condition == TransitionCondition.RightMove)
+                {
+                    SystemMgr.Unit.CheckMovementDir(1);
+                    
+                    if (_isNotEndCoroutine == false)
+                        SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
+                }
+
+                _isBasicAttackAniEnd = false;
+            }
+
+            if (SystemMgr.AnimationCtrl.GetCurAniTime() >= 0.6f)
+            {
+                if (condition == TransitionCondition.Roll)
+                {
+                    return true;
+                }
+
+                if (condition == TransitionCondition.Jump)
+                {
+                    return true;
+                }
+            }
+
+            if (_isBasicAttackEnd == false)
+                return false;
+            
+            return true;
+        }
+
+        private void EndOrNextCheck()
+        {
+            if (_basicAttackIndex != _nextBasicAttackIndex)
+            {
+                if (_nextBasicAttackIndex > _basicAttackAniArr.Length - 1)
+                {
+                    _basicAttackIndex = 0;
+                    _nextBasicAttackIndex = 0;
+                }
+                else
+                {
+                    _basicAttackIndex = _nextBasicAttackIndex;
+                }
+                
+                SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
+            }
+            else
+            {
+                _isBasicAttackEnd = true;
+            }
+
+            _isBasicAttackAniEnd = true;
+        }
+        
+        private void BasicAttackCall()
+        {
+            SystemMgr.Unit.BasicAttack(_basicAttackIndex);
+        }
+
+        IEnumerator BasicAttackMoveCoroutine()
+        {
+            _isNotEndCoroutine = true;
+            _BasicAttackMoveTime = SystemMgr.Unit.BasicAttackMoveTimeArr[_basicAttackIndex];
+            _timer = 0.02f;
+            while (_timer < _BasicAttackMoveTime)
+            {
+                _timer += Time.fixedDeltaTime;
+                SystemMgr.Unit.BasicAttackMove(_basicAttackIndex);
+                yield return new WaitForFixedUpdate();
+            }
+            
+            SystemMgr.Unit.EndBasicAttack();
+            _isNotEndCoroutine = false;
+        }
+    }
+    
+    private class BasicJumpAttack : CustomFSMStateBase
+    {
+        private bool _isBasicjumpAttackAniEnd = false;
+        
+        public BasicJumpAttack(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.OnBasicAttackEndAniEvent += BasicJumpAttackAniEnd;
+            SystemMgr.OnBasicAttackCallEvent += BasicJumpAttackCall;
+
+            SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack);
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+        }
+
+        public override void EndState()
+        {
+            SystemMgr.OnBasicAttackEndAniEvent -= BasicJumpAttackAniEnd;
+            SystemMgr.OnBasicAttackCallEvent -= BasicJumpAttackCall;
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            
+            if (condition == TransitionCondition.Jump)
+            {
+                if (SystemMgr.isJumpKeyPress == false)
+                {
+                    if (SystemMgr.Unit.CheckIsJumpAble() == true)
+                    {
+                        if (SystemMgr.AnimationCtrl.GetCurAniTime() >= 0.6)
+                        {
+                            SystemMgr.ChangeState(TransitionCondition.DoubleJump);
+                            return false;
+                        }
+                    }
+                }
+            }
+            
+            if (condition == TransitionCondition.LeftMove)
+            {
+                //SystemMgr.Unit.CheckMovementDir(_inputDir * - 1);
+                SystemMgr.Unit.BasicJumpMove(-1);
+            }
+            if (condition == TransitionCondition.RightMove)
+            {
+                //SystemMgr.Unit.CheckMovementDir(_inputDir);
+                SystemMgr.Unit.BasicJumpMove(1);
+            }
+
+            if (_isBasicjumpAttackAniEnd == false)
+                return false;
+            else
+            {
+                if (SystemMgr.Unit.IsGround == false)
+                    SystemMgr.ChangeState(TransitionCondition.Falling);
+                else
+                    SystemMgr.ChangeState(TransitionCondition.Idle);
+            }
+
+            return false;
+        }
+
+        private void BasicJumpAttackAniEnd()
+        {
+            _isBasicjumpAttackAniEnd = true;
+        }
+
+        private void BasicJumpAttackCall()
+        {
+            SystemMgr.Unit.BasicJumpAttack();
+        }
+    }
+    
+    private class HitState : CustomFSMStateBase
+    {
+        private bool _isHitEnd = false;
+        public HitState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Hit);
+            SystemMgr.Unit.Hit();
+            SystemMgr.Unit.HitKnockBack();
+            SystemMgr.StartCoroutine(HitTimeCalcCorotine());
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+        }
+
+        public override void EndState()
+        {
+            SystemMgr.Unit.ResetHitDamage();
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (_isHitEnd == true)
+                return false;
+            
+            return true;
+        }
+
+        IEnumerator HitTimeCalcCorotine()
+        {
+            _isHitEnd = true;
+            float _time = 0.02f;
+            float _hitTime = SystemMgr.Unit.HitTime;
+            
+            while (_time <= _hitTime)
+            {
+                _time += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isHitEnd = false;
+        }
+    }
+
     protected override void RegisterState()
     {
         AddState(TransitionCondition.Idle, new IdleState(this));
@@ -589,6 +901,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Wallslideing, new WallslideingState(this));
         AddState(TransitionCondition.WallJump, new WallJumpState(this));
         AddState(TransitionCondition.Dash, new DashState(this));
+        AddState(TransitionCondition.Attack, new BasicAttackState(this));
+        AddState(TransitionCondition.JumpAttack, new BasicJumpAttack(this));
+        AddState(TransitionCondition.Hit, new HitState(this));
     }
     
     public bool Transition(TransitionCondition condition, object param = null)
@@ -625,6 +940,21 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     public void RollAniEndEvent()
     {
         _isRollAniEnd = true;
+    }
+
+    public void BasicAttackAniEndEvent()
+    {
+        OnBasicAttackEndAniEvent?.Invoke();
+    }
+
+    public void BasicAttackCallEvent()
+    {
+        OnBasicAttackCallEvent?.Invoke();
+    }
+
+    public void UnitHitEventCall()
+    {
+        ChangeState(TransitionCondition.Hit);
     }
 
     public void StartJumpKeyPressDetectCoroutine()
