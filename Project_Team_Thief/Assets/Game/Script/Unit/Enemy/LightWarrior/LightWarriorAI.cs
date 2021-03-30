@@ -20,6 +20,21 @@ public class LightWarriorAI : MonoBehaviour
     public Search search = new Search();
     public Combat combat = new Combat();
 
+    [Header("Sight")]
+    [SerializeField] private int frontView;
+    [SerializeField] private int rearView;
+    [SerializeField] private int upperView;
+    [SerializeField] private int underView;
+
+    [Header("Movement")]
+    [SerializeField] public Vector2 IdleTimeLength = Vector2.zero;
+    [SerializeField] public Vector2 walkTimeLength = Vector2.zero;
+
+    [Header("Combat")]
+    [SerializeField] public int attackDistance;
+    [SerializeField] public Vector2 followTimeLength = Vector2.zero;
+
+
 #if (TEST)
     public TestColor color;
 #endif
@@ -58,7 +73,7 @@ public class LightWarriorAI : MonoBehaviour
         if (!isLookRight)
             viewBox.x = -viewBox.x;
 
-        if (viewBox.x >= -5 && viewBox.x <= 10 && viewBox.y <= 3 && viewBox.y >= -2)
+        if (viewBox.x >= rearView && viewBox.x <= frontView && viewBox.y <= upperView && viewBox.y >= underView)
             return true;
         else
             return false;
@@ -70,17 +85,17 @@ public class LightWarriorAI : MonoBehaviour
         {
             if (isLookRight)
             {
-                Debug.DrawLine((_myCoord + new Vector2Int(-5, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-5, -2)).TileCoordToPosition3(), Color.red);
-                Debug.DrawLine((_myCoord + new Vector2Int(-5, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(10, -2)).TileCoordToPosition3(), Color.red);
-                Debug.DrawLine((_myCoord + new Vector2Int(10, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(10, 3)).TileCoordToPosition3(), Color.red);
-                Debug.DrawLine((_myCoord + new Vector2Int(10, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-5, 3)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(rearView, upperView)).TileCoordToPosition3(), (_myCoord + new Vector2Int(rearView, underView)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(rearView, underView)).TileCoordToPosition3(), (_myCoord + new Vector2Int(frontView, underView)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(frontView, underView)).TileCoordToPosition3(), (_myCoord + new Vector2Int(frontView, upperView)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(frontView, upperView)).TileCoordToPosition3(), (_myCoord + new Vector2Int(rearView, upperView)).TileCoordToPosition3(), Color.red);
             }
             else
             {
-                Debug.DrawLine((_myCoord + new Vector2Int(5, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(5, -2)).TileCoordToPosition3(), Color.red);
-                Debug.DrawLine((_myCoord + new Vector2Int(5, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-10, -2)).TileCoordToPosition3(), Color.red);
-                Debug.DrawLine((_myCoord + new Vector2Int(-10, -2)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-10, 3)).TileCoordToPosition3(), Color.red);
-                Debug.DrawLine((_myCoord + new Vector2Int(-10, 3)).TileCoordToPosition3(), (_myCoord + new Vector2Int(5, 3)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(-rearView, upperView)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-rearView, underView)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(-rearView, underView)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-frontView, underView)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(-frontView, underView)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-frontView, upperView)).TileCoordToPosition3(), Color.red);
+                Debug.DrawLine((_myCoord + new Vector2Int(-frontView, upperView)).TileCoordToPosition3(), (_myCoord + new Vector2Int(-rearView, upperView)).TileCoordToPosition3(), Color.red);
             }
         }
 
@@ -182,12 +197,12 @@ namespace LWAIState
                         ai.isLookRight = true;
                     else
                         ai.isLookRight = false;
-                    _timeCheck = Random.Range(1, 3);
+                    _timeCheck = Random.Range(ai.walkTimeLength.x, ai.walkTimeLength.y);
                 }
                 else
                 {
                     _isMoving = false;
-                    _timeCheck = Random.Range(1, 5);
+                    _timeCheck = Random.Range(ai.IdleTimeLength.x, ai.IdleTimeLength.y);
                 }
             }
 
@@ -267,7 +282,7 @@ namespace LWAIState
                 // 스킬 사용 후 스킬이 끝날때까지 기다려주는 처리 필요
                 //-----------------------------------------
                 case InnerState.Attack:
-                    if (ai.GetDistance() > 5)
+                    if (ai.GetDistance() > ai.attackDistance)
                     {
 
                     }
@@ -289,7 +304,7 @@ namespace LWAIState
                         }
                     }
                     _state = InnerState.Move;
-                    _timeCheck = Random.Range(0.5f, 1.0f);
+                    _timeCheck = Random.Range(ai.followTimeLength.x, ai.followTimeLength.y);
                     break;
                 //-----------------------------------------
                 case InnerState.Move:

@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4412578914230935761}
   - component: {fileID: 4577946334256479123}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: AttackBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.0226393, y: 0.9889146}
+  m_Offset: {x: -1.5, y: 1.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -85,7 +85,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.870838, y: 1.9856203}
+  m_Size: {x: 5, y: 2.5}
   m_EdgeRadius: 0
 --- !u!1 &8718974563011285680
 GameObject:
@@ -426,6 +426,14 @@ MonoBehaviour:
     m_Bits: 256
   isLookRight: 0
   target: {fileID: 0}
+  frontView: 10
+  rearView: -5
+  upperView: 4
+  underView: -1
+  IdleTimeLength: {x: 1, y: 5}
+  walkTimeLength: {x: 1, y: 3}
+  attackDistance: 5
+  followTimeLength: {x: 0.5, y: 1}
   color: {fileID: 1993786811823018311}
 --- !u!114 &8257896219759015587
 MonoBehaviour:
@@ -443,6 +451,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  _customTimeScale: 1
   isOnGround: 0
   accelation: 20
   footPosition: {fileID: 824521593790033727}
