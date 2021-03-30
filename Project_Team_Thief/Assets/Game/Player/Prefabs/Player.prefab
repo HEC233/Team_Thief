@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 1542053513146765890}
   - component: {fileID: 1542053513146765893}
   - component: {fileID: 1542053513146765892}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: BasicAttack3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1542053513146765890
 Transform:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -475,16 +475,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _rigidbody2D: {fileID: 1542053513835489101}
-  _spriteRenderer: {fileID: 0}
+  _spriteRenderer: {fileID: 1542053513506992558}
   _isGround: 1
   groundCheck: {fileID: 1542053514894491112}
   groundCheckBoxSize: {x: 0.5, y: 0.01}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  _maxHp: 0
+  _maxHp: 100
   _curHp: 0
-  _decreaseHp: 0
+  _decreaseHp: 0.2
   _jumpScale: 2.3
   _jumpPower: 5
   _addAllJumpPpower: 2.5
@@ -512,9 +512,9 @@ MonoBehaviour:
   - 0
   - 0.2
   - 0.5
-  _basicAttackMinDamage: 0
-  _basicAtaackMaxDamage: 0
-  _basicAttackKnockBack: {x: 2, y: 2}
+  _basicAttackMinDamage: 10
+  _basicAtaackMaxDamage: 20
+  _basicAttackKnockBack: {x: 4, y: 4}
   _basicAttackCtrlArr:
   - {fileID: 1542053514905396923}
   - {fileID: 1542053514773876517}
@@ -522,7 +522,7 @@ MonoBehaviour:
   _basicJumpAttackCtrl: {fileID: 1542053514262991507}
   _hitInvincibilityTime: 1
   _hitInvincibilityTwinkleTime: 0.5
-  _hitTime: 0.2
+  _hitTime: 2
 --- !u!1 &1542053514262991534
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,13 +534,13 @@ GameObject:
   - component: {fileID: 1542053514262991505}
   - component: {fileID: 1542053514262991504}
   - component: {fileID: 1542053514262991507}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: JumpAttack
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1542053514262991505
 Transform:
   m_ObjectHideFlags: 0
@@ -565,7 +565,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 1542053514303975200}
   m_Layer: 10
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -682,13 +682,13 @@ GameObject:
   - component: {fileID: 1542053514773876515}
   - component: {fileID: 1542053514773876514}
   - component: {fileID: 1542053514773876517}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: BasicAttack2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1542053514773876515
 Transform:
   m_ObjectHideFlags: 0
@@ -713,7 +713,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -803,13 +803,13 @@ GameObject:
   - component: {fileID: 1542053514905396921}
   - component: {fileID: 1542053514905396920}
   - component: {fileID: 1542053514905396923}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: BasicAttack1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1542053514905396921
 Transform:
   m_ObjectHideFlags: 0
@@ -834,7 +834,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

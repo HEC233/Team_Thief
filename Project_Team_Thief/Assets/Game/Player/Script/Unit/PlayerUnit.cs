@@ -33,7 +33,7 @@ public class PlayerUnit : Unit
     public LayerMask groundLayer;
 
     // 시간 관련 변수
-    private float _scale = 1;
+    private float _timeScale = 1;
     
     ///////////////////////////// 데이터로 관리 할 변수
     // 기본 스탯
@@ -205,7 +205,7 @@ public class PlayerUnit : Unit
     public override void Move(float delta)
     {
 
-        _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0), ForceMode2D.Impulse);
+        _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0) * _timeScale, ForceMode2D.Impulse);
 
         if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
         {
@@ -244,10 +244,10 @@ public class PlayerUnit : Unit
         _jumpCount--;
         _isGround = false;
 
-        var power = new Vector3(0, _jumpPower * _jumpScale, 0.0f);
-        _rigidbody2D.gravityScale = _jumpScale * _jumpScale;
+        var power = new Vector3(0, _jumpPower * _timeScale, 0.0f);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
-        
+
+        //_rigidbody2D.gravityScale = _jumpScale * _jumpScale;
         //_playerMovementCtrl.Jump(0);
     }
 
@@ -255,7 +255,7 @@ public class PlayerUnit : Unit
     {
         _jumpCount--;
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
-        var power = new Vector3(0, _jumpPower * _jumpScale, 0.0f);
+        var power = new Vector3(0, _jumpPower * _timeScale, 0.0f);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -266,7 +266,7 @@ public class PlayerUnit : Unit
 
     public void AddJumpForce()
     {
-        _rigidbody2D.AddForce((new Vector2(0, _addJumpPower) * _addAllJumpPpower) * _jumpScale * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        _rigidbody2D.AddForce((new Vector2(0, _addJumpPower) * _addAllJumpPpower) * _timeScale * GameManager.instance.timeMng.FixedDeltaTime, ForceMode2D.Impulse);
 
         //_playerMovementCtrl.asd();
         //_playerMovementCtrl.AddJumpForce();
@@ -484,6 +484,7 @@ public class PlayerUnit : Unit
 
     public void HitKnockBack()
     {
+        _rigidbody2D.velocity = Vector2.zero;
         _rigidbody2D.AddForce(_hitDamage.knockBack, ForceMode2D.Impulse);
     }
 
@@ -492,6 +493,34 @@ public class PlayerUnit : Unit
         _hitDamage = new Damage();
     }
     
+    public void StartBulletTime(float timeScale)
+    {
+        _timeScale = timeScale;
+
+        _maxSpeed = _maxSpeed * _timeScale;
+        _rigidbody2D.velocity *= _timeScale;
+        _rigidbody2D.gravityScale *= _timeScale * _timeScale;
+    }
+
+    public void EndBulletTime(float timeScale)
+    {
+        _maxSpeed = _maxSpeed * (1 / _timeScale);
+        Debug.Log("MaxSpeed : " + _maxSpeed);
+        _timeScale = timeScale;
+
+        _rigidbody2D.velocity /= _timeScale;
+        _rigidbody2D.gravityScale = _originalGravityScale;
+    }
+
+    public void StartHitStop(float timeScale)
+    {
+        _timeScale = timeScale;
+    }
+
+    public void EndHitStop(float timeScale)
+    {
+        _timeScale = timeScale;
+    }
 
     public Vector3 GetVelocity()
     {
@@ -524,7 +553,7 @@ public class PlayerUnit : Unit
 
         if(_isGround == false)
         {
-            _coyoteTime -= Time.deltaTime;
+            _coyoteTime -= GameManager.instance.timeMng.FixedDeltaTime;
         }
         else if (_isGround == true)
         {
@@ -551,7 +580,7 @@ public class PlayerUnit : Unit
         float timer = 0.0f;
         while (timer < _rollCoolTime)
         {
-            timer += Time.fixedDeltaTime;
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
 
@@ -569,11 +598,11 @@ public class PlayerUnit : Unit
         
         while (_totalTick <= _hitInvincibilityTime)
         {
-            _totalTick += Time.fixedDeltaTime;
+            _totalTick += GameManager.instance.timeMng.FixedDeltaTime;
             if (_totalTick >= _hitInvincibilityTime * _hitInvincibilityTwinkleTime)
             {
 
-                _tick += Time.fixedDeltaTime;
+                _tick += GameManager.instance.timeMng.FixedDeltaTime;
                 if (_tick >= 0.1f)
                 {
                     count++;

@@ -50,4 +50,9 @@ public class AnimationCtrl : MonoBehaviour
     {
         spriteRenderer.flipX = value;
     }
+
+    public void SetAnimationTimeSclae(float timeScale)
+    {
+        _animator.speed = timeScale;
+    }
 }

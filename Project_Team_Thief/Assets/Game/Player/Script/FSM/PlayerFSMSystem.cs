@@ -56,6 +56,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     void Init()
     {
         GameManager.instance.SetControlUnit(this);
+        GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvnetCall;
+        GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
+        GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
+        GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvnetCall;
         Unit.hitEvent += UnitHitEventCall;
     }
 
@@ -447,7 +451,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _timer = 0.02f;
             while (_timer < _rollTime)
             {
-                _timer += Time.fixedDeltaTime;
+                _timer += GameManager.instance.timeMng.FixedDeltaTime;
                 SystemMgr.Unit.Roll();
                 yield return new WaitForFixedUpdate();
             }
@@ -499,7 +503,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _timer = 0.02f;
             while (_timer < _dashTime)
             {
-                _timer += Time.fixedDeltaTime;
+                _timer += GameManager.instance.timeMng.FixedDeltaTime;
                 SystemMgr.Unit.Dash();
                 yield return new WaitForFixedUpdate();
             }
@@ -750,7 +754,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _timer = 0.02f;
             while (_timer < _BasicAttackMoveTime)
             {
-                _timer += Time.fixedDeltaTime;
+                _timer += GameManager.instance.timeMng.FixedDeltaTime;
                 SystemMgr.Unit.BasicAttackMove(_basicAttackIndex);
                 yield return new WaitForFixedUpdate();
             }
@@ -881,7 +885,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             while (_time <= _hitTime)
             {
-                _time += Time.fixedDeltaTime;
+                _time += GameManager.instance.timeMng.FixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
@@ -961,7 +965,34 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     {
         StartCoroutine(JumpKeyPressDetectCoroutine());
     }
+
+    // Time 관련
+    private void StartBulletTimeEvnetCall(float _timeScale)
+    {
+        Unit.StartBulletTime(_timeScale);
+        AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+    }
+
+    private void EndBulletTimeEventCall(float _timeScale)
+    {
+        Unit.EndBulletTime(_timeScale);
+        AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+    }
+
+    private void StartHitStopEventCall(float _timeScale)
+    {
+        Unit.StartHitStop(_timeScale);
+        AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+    }
+
+    private void EndHitStopEvnetCall(float _timeScale)
+    {
+        Unit.EndHitStop(_timeScale);
+        AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+    }
     
+    // Time 관련
+
     IEnumerator JumpKeyPressDetectCoroutine()
     {
         isJumpKeyPress = true;
