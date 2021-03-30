@@ -6,56 +6,76 @@ namespace PS.Shadow
 {
     public class ShadowParticle : MonoBehaviour
     {
+        [SerializeField] private SpriteRenderer spriteRenderer;
         private VectorField _vectorField;
-        private Vector2 _dir;
+        private Vector2 _vel;
         private int _cycle;
 
         public ShadowParticle next;
 
+        private bool _useGravity = false;
         private bool _useDrag = false;
-        public void SetVectorField(VectorField vectorField)
+
+        public VectorField VectorField
         {
-            _vectorField = vectorField;
+            set { _vectorField = value; }
         }
 
-        public void SetUseDrag(bool value)
+        public bool UseGravity
         {
-            _useDrag = value;
+            set { _useGravity = value; }
+        }
+        public bool UseDrag
+        {
+            set { _useDrag = value; }
         }
 
-        public void Init(Vector3 pos, Vector2 direction, int lifeCycle)
+        public void Init(Vector3 pos, Vector2 velocity, int lifeCycle, ParticlePool pool = null)
         {
             transform.position = pos;
-            _dir = direction;
+            _vel = velocity;
             _cycle = lifeCycle;
-            StartCoroutine(process());
+            StartCoroutine(process(pool));
+            next = null;
         }
 
-        IEnumerator process()
+        IEnumerator process(ParticlePool pool)
         {
+            Color color = spriteRenderer.color;
+            int fullcycle = _cycle;
             while (_cycle-- > 0)
             {
                 Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position) / 10;
 
                 VectorCell vc = _vectorField.GetVector((int)screenPos.x, (int)screenPos.y);
 
-                transform.Translate(vc.x, vc.y, 0);
+                _vel += vc.vector * 0.02f;
 
-                transform.Translate(_dir);
+                if (_useGravity)
+                    transform.Translate(new Vector3(0, -0.1f, 0));
                 if (_useDrag)
-                    _dir = _dir * 0.8f;
+                    _vel = _vel * 0.9f;
 
-                yield return new WaitForSeconds(0.033f);
+                transform.Translate(_vel);
+
+                spriteRenderer.color = new Color(color.r, color.g, color.b, (float)_cycle / fullcycle);
+
+                yield return new WaitForSeconds(0.02f);
             }
 
-            End();
+            End(pool);
         }
 
-        public void End()
+        public void End(ParticlePool pool)
         {
             gameObject.SetActive(false);
 
-
+            if (pool != null)
+            {
+                var temp = pool.head;
+                pool.head = this;
+                next = temp;
+            }
         }
     }
 }
