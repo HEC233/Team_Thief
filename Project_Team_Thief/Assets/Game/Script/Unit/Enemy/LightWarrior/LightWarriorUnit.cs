@@ -36,6 +36,12 @@ public class LightWarriorUnit : Unit
         get { return !Mathf.Approximately(GetSpeed().x, 0.0f); }
     }
 
+    public override void TimeScaleChange(float customTimeScale)
+    {
+        _customTimeScale = customTimeScale;
+        _rigid.gravityScale = customTimeScale;
+    }
+
     private void Start()
     {
         _isVerticalMoving = false;
@@ -56,7 +62,7 @@ public class LightWarriorUnit : Unit
 
     void FixedUpdate()
     {
-        _rigid.AddForce(_nextAddingForce);
+        _rigid.AddForce(_nextAddingForce * _customTimeScale);
         _nextAddingForce = Vector2.zero;
 
         if (!skipGroundCheck)

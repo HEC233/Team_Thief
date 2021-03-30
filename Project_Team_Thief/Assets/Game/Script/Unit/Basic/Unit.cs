@@ -11,6 +11,11 @@ public class Unit : MonoBehaviour
     protected LayerMask _groundLayer;
     protected Rigidbody2D _rigid;
 
+    [SerializeField] protected float _customTimeScale = 1.0f;
+
+    public virtual void TimeScaleChange(float customTimeScale)
+    { }
+
     private void Awake()
     {
         _damage = new Damage();
