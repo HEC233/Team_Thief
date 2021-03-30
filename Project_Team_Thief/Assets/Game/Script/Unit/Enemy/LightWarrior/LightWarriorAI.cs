@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LWAIState;
+using PS.Util.Tile;
 
 public class LightWarriorAI : MonoBehaviour
 {
