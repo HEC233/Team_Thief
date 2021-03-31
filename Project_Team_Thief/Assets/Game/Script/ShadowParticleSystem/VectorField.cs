@@ -19,12 +19,18 @@ namespace PS.Shadow
             vector.Set(x, y);
             flag = true;
         }
+        public void Set(Vector2 vector)
+        {
+            this.vector = vector;
+            flag = true;
+        }
     }
 
     public class VectorField
     {
         private readonly int _xLength, _yLength;
         private VectorCell[,] _field;
+        private Vector2Int _cellPixelSize;
 
         private void Swap(ref int a, ref int b)
         {
@@ -32,16 +38,33 @@ namespace PS.Shadow
             b = a ^ b;
             a = a ^ b;
         }
-
-        public VectorField(int xLength, int yLength)
+        private void Swap(ref float a, ref float b)
         {
-            _xLength = xLength;
-            _yLength = yLength;
+            float temp = a;
+            a = b;
+            b = temp;
+        }
+
+        public VectorField(int xLength, int yLength, Vector2Int cellPixelSize)
+        {
+            _cellPixelSize = cellPixelSize;
+            _xLength = xLength / cellPixelSize.x;
+            _yLength = yLength / cellPixelSize.y;
             _field = new VectorCell[_yLength, _xLength];
         }
 
         public ref VectorCell GetVector(int xCoor, int yCoor)
         {
+            xCoor = xCoor < 0 ? 0 : xCoor >= _xLength ? _xLength - 1 : xCoor;
+            yCoor = yCoor < 0 ? 0 : yCoor >= _yLength ? _yLength - 1 : yCoor;
+
+            return ref _field[yCoor, xCoor];
+        }
+        
+        public ref VectorCell GetVectorWithScreenPos(float xScreenCoor, float yScreenCoor)
+        {
+            int xCoor = (int)xScreenCoor / _cellPixelSize.x;
+            int yCoor = (int)yScreenCoor / _cellPixelSize.y;
             xCoor = xCoor < 0 ? 0 : xCoor >= _xLength ? _xLength - 1 : xCoor;
             yCoor = yCoor < 0 ? 0 : yCoor >= _yLength ? _yLength - 1 : yCoor;
 
@@ -55,6 +78,11 @@ namespace PS.Shadow
 
         public VectorCell[,] GetField(int left, int down, int right, int up)
         {
+            left /= _cellPixelSize.x;
+            right /= _cellPixelSize.x;
+            down /= _cellPixelSize.y;
+            up /= _cellPixelSize.y;
+
             if (left > right)
                 Swap(ref left, ref right);
             if (down > up)
@@ -74,6 +102,11 @@ namespace PS.Shadow
 
         public void SetField(int left, int down, int right, int up, VectorCell cell)
         {
+            left /= _cellPixelSize.x;
+            right /= _cellPixelSize.x;
+            down /= _cellPixelSize.y;
+            up /= _cellPixelSize.y;
+
             if (left > right)
                 Swap(ref left, ref right);
             if (down > up)

@@ -45,9 +45,9 @@ namespace PS.Shadow
             int fullcycle = _cycle;
             while (_cycle-- > 0)
             {
-                Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position) / 10;
+                Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
-                VectorCell vc = _vectorField.GetVector((int)screenPos.x, (int)screenPos.y);
+                VectorCell vc = _vectorField.GetVectorWithScreenPos(screenPos.x, screenPos.y);
 
                 _vel += vc.vector * 0.02f;
 

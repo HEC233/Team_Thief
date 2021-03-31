@@ -11,13 +11,17 @@ namespace PS.Shadow
         VectorField vectorField;
         public GameObject particleObject;
         [SerializeField] private int particleCount;
+        [SerializeField, Tooltip("플레이어 움직임에 따른 벡터장의 크기변화 스케일")] private float fieldChangePower = 1;
+        [SerializeField, Tooltip("벡터장의 한 셀의 픽셀 크기")] private Vector2Int fieldCellSize = new Vector2Int(10,10);
+        // 이건 임시
+        [SerializeField] private bool useGravity = true;
 
         private List<BoxCollider2D> objectOnVectorField = new List<BoxCollider2D>();
         private List<Vector3> prevPos = new List<Vector3>();
 
         private void Start()
         {
-            vectorField = new VectorField(Screen.width / 10, Screen.height / 10);
+            vectorField = new VectorField(Screen.width, Screen.height, fieldCellSize);
             particles.Creat(particleCount, particleObject, vectorField, transform);
 
             StartCoroutine(vectorField.FieldRecoveryCoroutine());
@@ -38,7 +42,8 @@ namespace PS.Shadow
                     var ursc = Camera.main.WorldToScreenPoint(objectOnVectorField[i].bounds.center + urv);
                     var dlsc = Camera.main.WorldToScreenPoint(objectOnVectorField[i].bounds.center + dlv);
 
-                    vectorField.SetField((int)dlsc.x / 10, (int)dlsc.y / 10, (int)ursc.x / 10, (int)ursc.y / 10, new VectorCell(dif.x, dif.y));
+                    dif *= fieldChangePower;
+                    vectorField.SetField((int)dlsc.x, (int)dlsc.y, (int)ursc.x, (int)ursc.y, new VectorCell(dif.x, dif.y));
 
                     prevPos[i] = objectOnVectorField[i].bounds.center;
                 }
@@ -55,7 +60,7 @@ namespace PS.Shadow
                 float theta = Random.Range(0, 360);
                 p.Init(pos, new Vector2(Mathf.Cos(theta), Mathf.Sin(theta)) * speed * 0.02f * Random.Range(0.8f, 1.2f), (int)lifeTime * 50, particles);
                 p.UseDrag = useDrag;
-                p.UseGravity = true;
+                p.UseGravity = useGravity;
             }
         }
 

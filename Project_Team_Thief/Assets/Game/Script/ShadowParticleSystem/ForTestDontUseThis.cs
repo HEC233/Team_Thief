@@ -8,6 +8,12 @@ public class ForTestDontUseThis : MonoBehaviour
     public GameObject player;
     public ShadowParticleSystem sp;
 
+    public Vector3 startPos = Vector3.zero;
+    public int burstParticleCount;
+    public int particleSpeed;
+    public int particleLifeTime;
+    public bool useDrag;
+
     private void Start()
     {
         sp.RegistCollider(player.GetComponent<BoxCollider2D>());
@@ -15,6 +21,6 @@ public class ForTestDontUseThis : MonoBehaviour
 
     public void Func()
     {
-        sp.Burst(new Vector3(0, 3, 0), 50, 10, 2, false);
+        sp.Burst(startPos, burstParticleCount, particleSpeed, particleLifeTime, useDrag);
     }
 }
