@@ -13,7 +13,13 @@ public class TimeManager : MonoBehaviour
     public event UnityAction<float> endBulletTimeEvent;
 
     private bool _isBulletTime = false;
+
+    public bool IsBulletTime => _isBulletTime;
+
     private bool _isHitStop = false;
+
+    public bool IsHitStop => _isHitStop;
+
     private float _timeScale = 1;
     private float _prevTimeScale = 0;
 
@@ -24,7 +30,7 @@ public class TimeManager : MonoBehaviour
     {
         // Test Code
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            BulletTime(0.2f, 1);
+            BulletTime(0.2f, 1f);
         else if (Input.GetKeyDown(KeyCode.Alpha2))
             HitStop(0, 0.4f);
     }
@@ -72,10 +78,15 @@ public class TimeManager : MonoBehaviour
         while(tick <= time)
         {
             // 히트 스탑을 포함하기 위함.
-            tick += Time.fixedDeltaTime * _timeScale;
+            if (_isHitStop == false)
+            {
+                tick += Time.fixedDeltaTime;
+            }
+
             yield return new WaitForFixedUpdate();
         }
 
+        _isBulletTime = false;
         _timeScale = 1;
         endBulletTimeEvent?.Invoke(_timeScale);
     }
@@ -100,5 +111,7 @@ public class TimeManager : MonoBehaviour
             _timeScale = 1;
             endHitstopEvent?.Invoke(_timeScale);
         }
+
+        _isHitStop = false;
     }
 }

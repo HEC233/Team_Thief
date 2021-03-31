@@ -149,6 +149,7 @@ public class PlayerUnit : Unit
     //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
+    private Vector2 _hitstopPrevVelocity = Vector2.zero;
     private Damage _hitDamage;
 
     void Start()
@@ -301,7 +302,7 @@ public class PlayerUnit : Unit
     public void Roll()
     {
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-        var power = new Vector2((_rollSpeed) * _facingDir, 0);
+        var power = new Vector2((_rollSpeed) * _facingDir * _timeScale, 0);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -360,7 +361,7 @@ public class PlayerUnit : Unit
     {
         _rigidbody2D.velocity = Vector2.zero;
 
-        var power = new Vector2((_rollSpeed) * _facingDir, 0);
+        var power = new Vector2((_rollSpeed) * _facingDir * _timeScale, 0);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -388,15 +389,20 @@ public class PlayerUnit : Unit
     
     public void WallJump()
     {
-        _rigidbody2D.gravityScale = _originalGravityScale;
+        if (GameManager.instance.timeMng.IsBulletTime == false)
+            _rigidbody2D.gravityScale = _originalGravityScale;
+        
         _rigidbody2D.velocity = Vector2.zero;
-        _rigidbody2D.AddForce(new Vector2(_wallJumpPowerX * _facingDir * -1, _wallJumpPowerY) , ForceMode2D.Impulse);
+        _rigidbody2D.AddForce(new Vector2(_wallJumpPowerX * _facingDir * -1, _wallJumpPowerY) * _timeScale , ForceMode2D.Impulse);
         Flip();
     }
 
     public void WallReset()
     {
-        _rigidbody2D.gravityScale = _originalGravityScale;
+        if (GameManager.instance.timeMng.IsBulletTime == false)
+        {
+            _rigidbody2D.gravityScale = _originalGravityScale;
+        }
     }
 
     private void SetBasicDamage()
@@ -426,7 +432,7 @@ public class PlayerUnit : Unit
         
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
 
-        var power = new Vector2((_basicAttackMoveSpeed) * _facingDir, 0);
+        var power = new Vector2((_basicAttackMoveSpeed) * _facingDir * _timeScale, 0);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
     
@@ -453,7 +459,7 @@ public class PlayerUnit : Unit
 
     public void BasicJumpMove(int inputDir)
     {
-        _rigidbody2D.AddForce(new Vector2(_minSpeed * inputDir, 0), ForceMode2D.Impulse);
+        _rigidbody2D.AddForce(new Vector2(_minSpeed * inputDir * _timeScale, 0), ForceMode2D.Impulse);
         
         if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
             _rigidbody2D.velocity = new Vector2(_maxSpeed * inputDir, _rigidbody2D.velocity.y);
@@ -505,21 +511,24 @@ public class PlayerUnit : Unit
     public void EndBulletTime(float timeScale)
     {
         _maxSpeed = _maxSpeed * (1 / _timeScale);
-        Debug.Log("MaxSpeed : " + _maxSpeed);
         _timeScale = timeScale;
-
+        
         _rigidbody2D.velocity /= _timeScale;
-        _rigidbody2D.gravityScale = _originalGravityScale;
+        _rigidbody2D.gravityScale = _originalGravityScale; 
     }
 
     public void StartHitStop(float timeScale)
     {
         _timeScale = timeScale;
+        _hitstopPrevVelocity = _rigidbody2D.velocity;
+        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void EndHitStop(float timeScale)
     {
         _timeScale = timeScale;
+        _rigidbody2D.velocity = _hitstopPrevVelocity;
+        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public Vector3 GetVelocity()
