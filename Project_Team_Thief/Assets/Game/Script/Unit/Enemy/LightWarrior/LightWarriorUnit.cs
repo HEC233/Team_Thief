@@ -36,10 +36,28 @@ public class LightWarriorUnit : Unit
         get { return !Mathf.Approximately(GetSpeed().x, 0.0f); }
     }
 
-    public override void TimeScaleChange(float customTimeScale)
+    private float _originalGravityScale = 1.0f;
+    private float _maxSpeed;
+    private float _minSpeed;
+    private float _jumpPower;
+    public override void TimeScaleChangeEnter(float customTimeScale)
     {
         _customTimeScale = customTimeScale;
-        _rigid.gravityScale = customTimeScale;
+        _rigid.velocity *= _customTimeScale;
+        _originalGravityScale = _rigid.gravityScale;
+        _rigid.gravityScale *= _customTimeScale * _customTimeScale;
+        _maxSpeed = _unitData.maxSpeed * _customTimeScale;
+        _minSpeed = _unitData.minSpeed * _customTimeScale;
+        _jumpPower = _unitData.minJumpPower * _customTimeScale;
+    }
+    public override void TimeScaleChangeExit()
+    {
+        _rigid.velocity /= _customTimeScale;
+        _rigid.gravityScale = _originalGravityScale;
+        _customTimeScale = 1.0f;
+        _maxSpeed = _unitData.maxSpeed;
+        _minSpeed = _unitData.minSpeed;
+        _jumpPower = _unitData.minJumpPower;
     }
 
     private void Start()
@@ -51,6 +69,10 @@ public class LightWarriorUnit : Unit
         contactFilter.useTriggers = true;
         contactFilter.useLayerMask = true;
         contactFilter.SetLayerMask(hitBoxLayer);
+
+        _maxSpeed = _unitData.maxSpeed;
+        _minSpeed = _unitData.minSpeed;
+        _jumpPower = _unitData.minJumpPower;
 
         //---------- for test ----------------
         SetDamagePower(_unitData.skillDamage)/*.SetDamageKnockBack(new Vector2(200, 200))*/;
@@ -73,8 +95,8 @@ public class LightWarriorUnit : Unit
         if (isOnGround)
         {
             Vector2 velocity = _rigid.velocity;
-            if (velocity.sqrMagnitude > _unitData.maxSpeed * _unitData.maxSpeed)
-                _rigid.velocity = velocity.normalized * _unitData.maxSpeed;
+            if (velocity.sqrMagnitude > _maxSpeed * _maxSpeed)
+                _rigid.velocity = velocity.normalized * _maxSpeed;
             _isVerticalMoving = false;
         }
     }
@@ -111,7 +133,7 @@ public class LightWarriorUnit : Unit
     {
         if (!IsHorizontalMoving)
         {
-            _rigid.velocity = new Vector2(delta * _unitData.minSpeed, _rigid.velocity.y);
+            _rigid.velocity = new Vector2(delta * _minSpeed, _rigid.velocity.y);
         }
         else
             _nextAddingForce = new Vector2(delta * accelation, _nextAddingForce.y);
@@ -127,8 +149,7 @@ public class LightWarriorUnit : Unit
     {
         if (!_isVerticalMoving)
         {
-           // _rigid.velocity = new Vector2(_rigid.velocity.x, data.minJumpPower);
-            _rigid.velocity = new Vector2(_rigid.velocity.x, _unitData.minJumpPower);
+            _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpPower);
             _isVerticalMoving = true;
         }
         else

@@ -13,7 +13,9 @@ public class Unit : MonoBehaviour
 
     [SerializeField] protected float _customTimeScale = 1.0f;
 
-    public virtual void TimeScaleChange(float customTimeScale)
+    public virtual void TimeScaleChangeEnter(float customTimeScale)
+    { }
+    public virtual void TimeScaleChangeExit()
     { }
 
     private void Awake()

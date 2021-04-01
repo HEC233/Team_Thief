@@ -29,6 +29,15 @@ public class LightWarriorActor : MonoBehaviour, IActor
     {
         _curState = idle;
         _curState.Enter(this);
+
+        var v = GameManager.instance.timeMng;
+        if (v)
+        {
+            v.startBulletTimeEvent += TimeScaleChangeEnterCallback;
+            v.endBulletTimeEvent += TimeScaleChangeExitCallback;
+            v.startHitstopEvent += TimeScaleChangeEnterCallback;
+            v.endHitstopEvent += TimeScaleChangeExitCallback;
+        }
     }
 
     private void Update()
@@ -61,10 +70,15 @@ public class LightWarriorActor : MonoBehaviour, IActor
         _curState.Enter(this);
     }
 
-    private void TimeScaleChangeCallback(float customTimeScale)
+    private void TimeScaleChangeEnterCallback(float customTimeScale)
     {
         animCtrl.SetSpeed(customTimeScale);
-        unit.TimeScaleChange(customTimeScale);
+        unit.TimeScaleChangeEnter(customTimeScale);
+    }
+    private void TimeScaleChangeExitCallback(float customTimeScale)
+    {
+        animCtrl.SetSpeed(1.0f);
+        unit.TimeScaleChangeExit();
     }
     
     // 피격, 사망 이벤트는 간단하게 트랜지션을 발동시켜주는 것으로 구현하였다.
@@ -199,6 +213,9 @@ namespace LightWarrior
                     return true;
                 case TransitionCondition.Attack:
                     actor.ChangeState(actor.attack);
+                    return true;
+                case TransitionCondition.Jump:
+                    actor.unit.Jump(10);
                     return true;
             }
             return false;
