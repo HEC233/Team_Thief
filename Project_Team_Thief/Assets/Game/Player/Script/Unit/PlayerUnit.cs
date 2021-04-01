@@ -601,7 +601,6 @@ public class PlayerUnit : Unit
         while (timer < _rollCoolTime)
         {
             timer += GameManager.instance.timeMng.FixedDeltaTime;
-            _rigidbody2D.gravityScale = 0;
             yield return new WaitForFixedUpdate();
         }
 

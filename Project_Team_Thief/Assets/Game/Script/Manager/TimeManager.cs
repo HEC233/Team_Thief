@@ -32,7 +32,7 @@ public class TimeManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
             BulletTime(0.2f, 0.3f);
         else if (Input.GetKeyDown(KeyCode.Alpha2))
-            HitStop(0, 1.0f);
+            HitStop(1.0f);
     }
 
     public void BulletTime(float timeScale, float time)
@@ -51,7 +51,7 @@ public class TimeManager : MonoBehaviour
     // 만약 공중에 있을 때 Hitstop이 걸린다면?? 우째??
     // 공격 간 시간을 허용해주는 타임은 이걸 적용 해야하나?
     // 리지드 바디의 프리즈를 이용해서 잠깐 폭력 멈춰두는건?
-    public void HitStop(float timeScale, float time)
+    public void HitStop(float time)
     {
         // 불릿 타임 중 히트 스탑이 호출 될 경우 히트 스탑이 끝난 뒤 불릿 타임으로 돌아가기 위해.
         if(_isBulletTime == true)
@@ -60,7 +60,7 @@ public class TimeManager : MonoBehaviour
         }
 
         _isHitStop = true;
-        _timeScale = timeScale;
+        _timeScale = 0;
         startHitstopEvent?.Invoke(_timeScale);
         StartCoroutine(HitStopTimerCoroutine(time));
     }
