@@ -1,31 +1,37 @@
 fileFormatVersion: 2
-guid: 7d29d6734a1874e4aab44999eda32d09
+guid: ae56be6440a044241a18a82b9116605e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1052980791870345520
-    second: SP_Lightwarrior_Idle_0
+      213: -394679181881279678
+    second: SP_Lightwarrior_Die_0
   - first:
-      213: 1781870620294058168
-    second: SP_Lightwarrior_Idle_1
+      213: 3772282653685989379
+    second: SP_Lightwarrior_Die_1
   - first:
-      213: -1512292219760168326
-    second: SP_Lightwarrior_Idle_2
+      213: 8515093418863345266
+    second: SP_Lightwarrior_Die_2
   - first:
-      213: -5233032472794251221
-    second: SP_Lightwarrior_Idle_3
+      213: 312423201745099270
+    second: SP_Lightwarrior_Die_3
   - first:
-      213: -3997628814341234773
-    second: SP_Lightwarrior_Idle_4
+      213: -1813364333114966096
+    second: SP_Lightwarrior_Die_4
   - first:
-      213: -7261965678548221947
-    second: SP_Lightwarrior_Idle_5
+      213: 113518559937569299
+    second: SP_Lightwarrior_Die_5
   - first:
-      213: -1102821188479252606
-    second: SP_Lightwarrior_Idle_6
+      213: 5899537354912325611
+    second: SP_Lightwarrior_Die_6
   - first:
-      213: 1530016082856055083
-    second: SP_Lightwarrior_Idle_7
+      213: -6913447393052442252
+    second: SP_Lightwarrior_Die_7
+  - first:
+      213: -8777160165719132053
+    second: SP_Lightwarrior_Die_8
+  - first:
+      213: -9082958076697117543
+    second: SP_Lightwarrior_Die_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -107,35 +113,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SP_Lightwarrior_Idle_0
+      name: SP_Lightwarrior_Die_0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 031ddb68370fc9e00800000000000000
-      internalID: 1052980791870345520
+      spriteID: 24b79bb0061d58af0800000000000000
+      internalID: -394679181881279678
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_Lightwarrior_Idle_1
+      name: SP_Lightwarrior_Die_1
       rect:
         serializedVersion: 2
         x: 96
@@ -170,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b0155e63e97ab810800000000000000
-      internalID: 1781870620294058168
+      spriteID: 300425d4617d95430800000000000000
+      internalID: 3772282653685989379
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_Lightwarrior_Idle_2
+      name: SP_Lightwarrior_Die_2
       rect:
         serializedVersion: 2
         x: 192
@@ -191,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a72bb941d32430be0800000000000000
-      internalID: -1512292219760168326
+      spriteID: 27ebd9c7950bb2670800000000000000
+      internalID: 8515093418863345266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_Lightwarrior_Idle_3
+      name: SP_Lightwarrior_Die_3
       rect:
         serializedVersion: 2
         x: 288
@@ -212,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b20c30911b88067b0800000000000000
-      internalID: -5233032472794251221
+      spriteID: 60a5b972f33f55400800000000000000
+      internalID: 312423201745099270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_Lightwarrior_Idle_4
+      name: SP_Lightwarrior_Die_4
       rect:
         serializedVersion: 2
         x: 384
@@ -233,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: baf135116c19588c0800000000000000
-      internalID: -3997628814341234773
+      spriteID: 0bfb1542fb2a5d6e0800000000000000
+      internalID: -1813364333114966096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_Lightwarrior_Idle_5
+      name: SP_Lightwarrior_Die_5
       rect:
         serializedVersion: 2
         x: 480
@@ -254,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5000e0fd0b0583b90800000000000000
-      internalID: -7261965678548221947
+      spriteID: 3122e70678c439100800000000000000
+      internalID: 113518559937569299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_Lightwarrior_Idle_6
+      name: SP_Lightwarrior_Die_6
       rect:
         serializedVersion: 2
         x: 576
@@ -275,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2878be9d8fdf1b0f0800000000000000
-      internalID: -1102821188479252606
+      spriteID: bef52ba97fd5fd150800000000000000
+      internalID: 5899537354912325611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_Lightwarrior_Idle_7
+      name: SP_Lightwarrior_Die_7
       rect:
         serializedVersion: 2
         x: 672
@@ -296,8 +278,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b21154f5585bb3510800000000000000
-      internalID: 1530016082856055083
+      spriteID: 47142cb99308e00a0800000000000000
+      internalID: -6913447393052442252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Lightwarrior_Die_8
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 96
+        height: 106
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b683a992553413680800000000000000
+      internalID: -8777160165719132053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Lightwarrior_Die_9
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 96
+        height: 106
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99cf3b8b0c9d2f180800000000000000
+      internalID: -9082958076697117543
       vertices: []
       indices: 
       edges: []
