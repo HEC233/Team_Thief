@@ -110,6 +110,6 @@ public class BasicAttackCtrl : AttackBase
 
     public override void SetDamage(in Damage damage)
     {
-
+        _damage = damage;
     }
 }
