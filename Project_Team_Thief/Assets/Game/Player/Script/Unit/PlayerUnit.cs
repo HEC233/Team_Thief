@@ -221,7 +221,8 @@ public class PlayerUnit : Unit
 
     public void MoveStop()
     {
-        _rigidbody2D.velocity = new Vector2(_moveStopSpeed * _facingDir, _rigidbody2D.velocity.y);
+        if (GameManager.instance.timeMng.IsBulletTime == false && GameManager.instance.timeMng.IsHitStop == false)
+            _rigidbody2D.velocity = new Vector2(_moveStopSpeed * _facingDir, _rigidbody2D.velocity.y);
         //_playerMovementCtrl.MoveStop();
     }
 
@@ -512,9 +513,10 @@ public class PlayerUnit : Unit
     public void EndBulletTime(float timeScale)
     {
         _maxSpeed = _maxSpeed * (1 / _timeScale);
+        _rigidbody2D.velocity *= 1 / _timeScale; 
+
         _timeScale = timeScale;
 
-        _rigidbody2D.velocity /= _timeScale;
         //_rigidbody2D.velocity = _hitstopPrevVelocity;
         _rigidbody2D.gravityScale = _originalGravityScale; 
     }
