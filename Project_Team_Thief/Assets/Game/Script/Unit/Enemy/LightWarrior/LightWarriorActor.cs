@@ -41,14 +41,8 @@ public class LightWarriorActor : MonoBehaviour, IActor
         // common change, this transition can occur in any state
         switch (condition)
         {
-            case TransitionCondition.Hit:
-                ChangeState(hit);
-                return true;
             case TransitionCondition.Die:
                 ChangeState(die);
-                return true;
-            case TransitionCondition.Attack:
-                ChangeState(attack);
                 return true;
             case TransitionCondition.ForceKill:
                 ChangeState(die);
@@ -60,7 +54,7 @@ public class LightWarriorActor : MonoBehaviour, IActor
 
     public void ChangeState(LWState newState)
     {
-        if (_curState == newState)
+        if (_curState == newState && _curState != hit)
             return;
         _curState.Exit(this);
         _curState = newState;
@@ -132,6 +126,12 @@ namespace LightWarrior
                 case TransitionCondition.LeftMove:
                     actor.ChangeState(actor.move);
                     return actor.Transition(condition);
+                case TransitionCondition.Hit:
+                    actor.ChangeState(actor.hit);
+                    return true;
+                case TransitionCondition.Attack:
+                    actor.ChangeState(actor.attack);
+                    return true;
             }
 
             return false;
@@ -194,6 +194,12 @@ namespace LightWarrior
                     actor.unit.Idle();
                     actor.ChangeState(actor.idle);
                     return true;
+                case TransitionCondition.Hit:
+                    actor.ChangeState(actor.hit);
+                    return true;
+                case TransitionCondition.Attack:
+                    actor.ChangeState(actor.attack);
+                    return true;
             }
             return false;
         }
@@ -227,6 +233,12 @@ namespace LightWarrior
 
         public override bool Transition(LightWarriorActor actor, TransitionCondition condition)
         {
+            switch (condition)
+            {
+                case TransitionCondition.Hit:
+                    timeCheck = 1.0f;
+                    return true;
+            }
             return false;
         }
     }
@@ -307,6 +319,9 @@ namespace LightWarrior
         {
             switch(condition)
             {
+                case TransitionCondition.Hit:
+                    actor.ChangeState(actor.hit);
+                    return true;
             }
 
             return false;
