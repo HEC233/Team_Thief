@@ -126,12 +126,13 @@ public class PlayerUnit : Unit
     private float _basicAttackMinDamage;
     [SerializeField]
     private float _basicAtaackMaxDamage;
-    [SerializeField] 
-    private Vector2 _basicAttackKnockBack;
+    // [SerializeField] 
+    // private Vector2 _basicAttackKnockBack;
     private Damage _basicAttackDamage;
     [SerializeField]
     private BasicAttackCtrl[] _basicAttackCtrlArr;
-
+    [SerializeField]
+    private Vector2[] _basicAttackKnockBackArr;
     [SerializeField]
     private BasicAttackCtrl _basicJumpAttackCtrl;
     
@@ -398,10 +399,10 @@ public class PlayerUnit : Unit
         }
     }
 
-    private void SetBasicDamage()
+    private void SetBasicDamage(int attackIndex)
     {
         _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage);
-        _basicAttackDamage.knockBack = _basicAttackKnockBack;
+        _basicAttackDamage.knockBack = _basicAttackKnockBackArr[attackIndex];
     }
     
     public void SetBasicAttack()
@@ -412,7 +413,7 @@ public class PlayerUnit : Unit
 
     public void BasicAttack(int attackIndex)
     {
-        SetBasicDamage();
+        SetBasicDamage(attackIndex);
         _basicAttackCtrlArr[attackIndex].SetDamage(_basicAttackDamage);
         //_basicAttackCtrlArr[attackIndex].gameObject.SetActive(true);
         _basicAttackCtrlArr[attackIndex].Progress();
