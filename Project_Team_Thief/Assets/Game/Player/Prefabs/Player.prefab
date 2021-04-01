@@ -474,6 +474,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  _customTimeScale: 1
   _rigidbody2D: {fileID: 1542053513835489101}
   _spriteRenderer: {fileID: 1542053513506992558}
   _isGround: 1
@@ -486,9 +487,9 @@ MonoBehaviour:
   _curHp: 0
   _decreaseHp: 0.2
   _jumpScale: 2.3
-  _jumpPower: 5
-  _addAllJumpPpower: 2.5
-  _addJumpPower: 3.4
+  _jumpPower: 11.5
+  _addAllJumpPpower: 4
+  _addJumpPower: 4.5
   _minSpeed: 0.8
   _maxSpeed: 6.5
   _moveStopSpeed: 1
@@ -514,11 +515,14 @@ MonoBehaviour:
   - 0.5
   _basicAttackMinDamage: 10
   _basicAtaackMaxDamage: 20
-  _basicAttackKnockBack: {x: 4, y: 4}
   _basicAttackCtrlArr:
   - {fileID: 1542053514905396923}
   - {fileID: 1542053514773876517}
   - {fileID: 1542053513146765892}
+  _basicAttackKnockBackArr:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   _basicJumpAttackCtrl: {fileID: 1542053514262991507}
   _hitInvincibilityTime: 1
   _hitInvincibilityTwinkleTime: 0.5

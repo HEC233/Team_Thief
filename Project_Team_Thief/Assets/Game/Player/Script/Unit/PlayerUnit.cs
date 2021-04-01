@@ -402,7 +402,7 @@ public class PlayerUnit : Unit
     private void SetBasicDamage(int attackIndex)
     {
         _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage);
-        _basicAttackDamage.knockBack = _basicAttackKnockBackArr[attackIndex];
+        _basicAttackDamage.knockBack = new Vector2(_basicAttackKnockBackArr[attackIndex].x * _facingDir, _basicAttackKnockBackArr[attackIndex].y);
     }
     
     public void SetBasicAttack()
