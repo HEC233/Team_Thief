@@ -15,6 +15,7 @@ public class LightWarriorActor : MonoBehaviour, IActor
     public Hit hit = new Hit();
     public Die die = new Die();
     public Attack attack = new Attack();
+    public static Null nullState = new Null();
 
     private void Awake()
     {
@@ -87,6 +88,26 @@ namespace LightWarrior
         public abstract bool Transition(LightWarriorActor actor, TransitionCondition condition);
     }
 
+    //=====================================================================
+    public class Null : LWState
+    {
+        public override void Enter(LightWarriorActor actor)
+        {
+        }
+
+        public override void Exit(LightWarriorActor actor)
+        {
+        }
+
+        public override void Process(LightWarriorActor actor)
+        {
+        }
+
+        public override bool Transition(LightWarriorActor actor, TransitionCondition condition)
+        {
+            return false;
+        }
+    }
     //=====================================================================
     public class Idle : LWState
     {
@@ -181,8 +202,12 @@ namespace LightWarrior
     //=====================================================================
     public class Hit : LWState
     {
+        private float timeCheck;
+
         public override void Enter(LightWarriorActor actor)
         {
+            actor.animCtrl.PlayAni(AniState.Hit);
+            timeCheck = 1.0f;
         }
 
         public override void Exit(LightWarriorActor actor)
@@ -191,6 +216,13 @@ namespace LightWarrior
 
         public override void Process(LightWarriorActor actor)
         {
+            //timeCheck += GameManager.instance.timeMng.customTimeWhere???
+            timeCheck -= Time.deltaTime;
+
+            if(timeCheck < 0)
+            {
+                actor.ChangeState(actor.idle);
+            }
         }
 
         public override bool Transition(LightWarriorActor actor, TransitionCondition condition)
@@ -202,18 +234,28 @@ namespace LightWarrior
     //=====================================================================
     public class Die : LWState
     {
+        private float timeCheck;
+
         public override void Enter(LightWarriorActor actor)
         {
-            Debug.Log("으악 죽었다");
-            actor.unit.HandleDeath();
+            actor.animCtrl.PlayAni(AniState.Die);
+            timeCheck = 0.5f;
         }
 
         public override void Exit(LightWarriorActor actor)
         {
+            actor.unit.HandleDeath();
         }
 
         public override void Process(LightWarriorActor actor)
         {
+            //timeCheck += GameManager.instance.timeMng.customTimeWhere???
+            timeCheck -= Time.deltaTime;
+
+            if (timeCheck < 0)
+            {
+                actor.ChangeState(LightWarriorActor.nullState);
+            }
         }
 
         public override bool Transition(LightWarriorActor actor, TransitionCondition condition)
@@ -225,10 +267,14 @@ namespace LightWarrior
     //=====================================================================s
     public class Attack : LWState
     {
+        private float timeCheck;
+        private bool isAttacked;
         public override void Enter(LightWarriorActor actor)
         {
+            actor.animCtrl.PlayAni(AniState.AttackReady);
             actor.unit.Idle();
-            actor.unit.Attack();
+            timeCheck = 0.5f;
+            isAttacked = false;
         }
 
         public override void Exit(LightWarriorActor actor)
@@ -238,16 +284,29 @@ namespace LightWarrior
 
         public override void Process(LightWarriorActor actor)
         {
-            Transition(actor, TransitionCondition.Idle);
+            //timeCheck += GameManager.instance.timeMng.customTimeWhere???
+            timeCheck -= Time.deltaTime;
+
+            if (timeCheck < 0)
+            {
+                if (!isAttacked)
+                {
+                    actor.animCtrl.PlayAni(AniState.Attack);
+                    actor.unit.Attack();
+                    isAttacked = true;
+                    timeCheck = 0.5f;
+                }
+                else
+                {
+                    actor.ChangeState(actor.idle);
+                }
+            }
         }
 
         public override bool Transition(LightWarriorActor actor, TransitionCondition condition)
         {
             switch(condition)
             {
-                case TransitionCondition.Idle:
-                    actor.ChangeState(actor.idle);
-                    return true;
             }
 
             return false;
