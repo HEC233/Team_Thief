@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Material
+  m_Name: Rune
   m_Shader: {fileID: -6465566751694194690, guid: 8a7360ca22d3de24fbf2afa857bc9635,
     type: 3}
   m_ShaderKeywords: 
@@ -43,7 +43,7 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     m_Colors:
-    - Color_8F8A545C: {r: 2.2703688, g: 0.46848878, b: 0, a: 0}
+    - Color_8F8A545C: {r: 2.270603, g: 0.118879735, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
