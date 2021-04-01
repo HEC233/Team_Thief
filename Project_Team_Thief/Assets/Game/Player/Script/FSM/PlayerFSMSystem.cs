@@ -56,6 +56,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     void Init()
     {
         GameManager.instance.SetControlUnit(this);
+        GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvnetCall;
+        GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
+        GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
+        GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvnetCall;
         Unit.hitEvent += UnitHitEventCall;
     }
 
@@ -111,7 +115,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Unit.Move(0);
             
             if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
-                SystemMgr.ChangeState(TransitionCondition.Falling);
+                SystemMgr.Transition(TransitionCondition.Falling);
         }
 
         public override void EndState()
@@ -136,7 +140,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 if (SystemMgr.Unit.IsRunningInertia())
                 {
                     SystemMgr.Unit.MoveStop();
-                    SystemMgr.ChangeState(TransitionCondition.RunningInertia);
+                    SystemMgr.Transition(TransitionCondition.RunningInertia);
                     return false;
                 }
                 SystemMgr.Unit.MoveStop();
@@ -201,9 +205,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
 
             if (SystemMgr.Unit.CheckWallslideing())
-                SystemMgr.ChangeState(TransitionCondition.Wallslideing);
+                SystemMgr.Transition(TransitionCondition.Wallslideing);
             else if (SystemMgr.Unit.GetVelocity().y <= -0.1f)
-                SystemMgr.ChangeState(TransitionCondition.Falling);
+                SystemMgr.Transition(TransitionCondition.Falling);
         }
 
         public override void EndState()
@@ -217,15 +221,20 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 if (condition == TransitionCondition.Jump)
                 {
-                    SystemMgr.ChangeState(TransitionCondition.DoubleJump);
-                    return false;
+                    Debug.Log("더블 점프");
+                    SystemMgr.Transition(TransitionCondition.DoubleJump);
+                    //return true;
                 }
             }
 
-            if(condition == TransitionCondition.Idle)
-            {
-                //SystemMgr.Unit.JumpMoveStop();
-            }
+            if (condition == TransitionCondition.DoubleJump)
+                return true;
+            
+            if (condition == TransitionCondition.Wallslideing)
+                return true;
+            
+            if (SystemMgr.Unit.IsGround == true)
+                return true;
 
             if (condition == TransitionCondition.Jump)
             {
@@ -246,7 +255,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             if (condition == TransitionCondition.Attack)
             {
-                SystemMgr.ChangeState(TransitionCondition.JumpAttack);
+                SystemMgr.Transition(TransitionCondition.JumpAttack);
             }
 
             return false;
@@ -274,9 +283,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Unit.Progress();
             
             if (SystemMgr.Unit.CheckWallslideing())
-                SystemMgr.ChangeState(TransitionCondition.Wallslideing);
+                SystemMgr.Transition(TransitionCondition.Wallslideing);
             else if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
-                SystemMgr.ChangeState(TransitionCondition.Falling);
+                SystemMgr.Transition(TransitionCondition.Falling);
         }
 
         public override void EndState()
@@ -286,6 +295,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (SystemMgr.Unit.IsGround == true)
+                return true;
+            
+            if (condition == TransitionCondition.Wallslideing)
+                return true;
+            
             if (condition == TransitionCondition.Idle)
             {
                 SystemMgr.Unit.JumpMoveStop();
@@ -308,7 +323,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             if (condition == TransitionCondition.Attack)
             {
-                SystemMgr.ChangeState(TransitionCondition.JumpAttack);
+                SystemMgr.Transition(TransitionCondition.JumpAttack);
             }
             return false;
         }
@@ -334,7 +349,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Unit.Progress();
 
             if (SystemMgr.Unit.CheckWallslideing())
-                SystemMgr.ChangeState(TransitionCondition.Wallslideing);
+                SystemMgr.Transition(TransitionCondition.Wallslideing);
             
             if(SystemMgr.Unit.IsGround == true)
                 _isFaill = false;
@@ -352,17 +367,21 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 {
                     if (SystemMgr.isJumpKeyPress == false)
                     {
+                        // 코요테를 여기서 체크해서 일반점프인지 나눠야 할 듯
                         if (SystemMgr.Unit.CheckIsJumpAble() == true)
                         {
-                            SystemMgr.ChangeState(TransitionCondition.DoubleJump);
+                            SystemMgr.Transition(TransitionCondition.DoubleJump);
                             return false;
                         }
                     }
                 }
 
+                if (condition == TransitionCondition.Wallslideing)
+                    return true;
+
                 if (condition == TransitionCondition.Idle)
                 {
-                    SystemMgr.Unit.JumpMoveStop();
+                    //SystemMgr.Unit.JumpMoveStop();
                 }
 
                 if (condition == TransitionCondition.LeftMove)
@@ -377,7 +396,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 }
                 if (condition == TransitionCondition.Attack)
                 {
-                    SystemMgr.ChangeState(TransitionCondition.JumpAttack);
+                    SystemMgr.Transition(TransitionCondition.JumpAttack);
                 }
                 
                 return false;
@@ -386,7 +405,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.Jump)
             {
                 if (SystemMgr.isJumpKeyPress == true)
-                    SystemMgr.ChangeState(TransitionCondition.Idle);
+                    SystemMgr.Transition(TransitionCondition.Idle);
             }
             
             return true;
@@ -444,10 +463,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             _isRollEnd = true;
             _rollTime = SystemMgr.Unit.RollTime;
-            _timer = 0.02f;
-            while (_timer < _rollTime)
+            _timer = 0.0f;
+            while (_timer + GameManager.instance.timeMng.FixedDeltaTime < _rollTime)
             {
-                _timer += Time.fixedDeltaTime;
+                _timer += GameManager.instance.timeMng.FixedDeltaTime;
+                Debug.Log("asdasd");
                 SystemMgr.Unit.Roll();
                 yield return new WaitForFixedUpdate();
             }
@@ -499,7 +519,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _timer = 0.02f;
             while (_timer < _dashTime)
             {
-                _timer += Time.fixedDeltaTime;
+                _timer += GameManager.instance.timeMng.FixedDeltaTime;
                 SystemMgr.Unit.Dash();
                 yield return new WaitForFixedUpdate();
             }
@@ -539,6 +559,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (SystemMgr.Unit.IsGround)
                 return true;
 
+            if (condition == TransitionCondition.WallJump)
+                return true;
+            
             if (condition == TransitionCondition.Idle)
             {
                 SystemMgr.Unit.WallReset();
@@ -555,12 +578,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 {
                     if (condition == TransitionCondition.Jump)
                     {
-                        SystemMgr.ChangeState(TransitionCondition.WallJump);
+                        SystemMgr.Transition(TransitionCondition.WallJump);
                     }
                 }
                 
                 if (condition == TransitionCondition.Attack)
-                    SystemMgr.ChangeState(TransitionCondition.JumpAttack);
+                    SystemMgr.Transition(TransitionCondition.JumpAttack);
             }
 
             return false;
@@ -585,9 +608,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Unit.Progress();
             
             if (SystemMgr.Unit.CheckWallslideing())
-                SystemMgr.ChangeState(TransitionCondition.Wallslideing);
+                SystemMgr.Transition(TransitionCondition.Wallslideing);
             else if (SystemMgr.Unit.GetVelocity().y <= 0)
-                SystemMgr.ChangeState(TransitionCondition.Falling);
+                SystemMgr.Transition(TransitionCondition.Falling);
         }
 
         public override void EndState()
@@ -597,6 +620,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override bool Transition(TransitionCondition condition)
         {
             if (SystemMgr.Unit.IsGround)
+                return true;
+
+            if (condition == TransitionCondition.Wallslideing)
+                return true;
+
+            if (condition == TransitionCondition.Falling)
                 return true;
             
             return false;
@@ -638,7 +667,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Unit.Progress();
             
             if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
-                SystemMgr.ChangeState(TransitionCondition.Falling);
+                SystemMgr.Transition(TransitionCondition.Falling);
             
         }
 
@@ -750,7 +779,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _timer = 0.02f;
             while (_timer < _BasicAttackMoveTime)
             {
-                _timer += Time.fixedDeltaTime;
+                _timer += GameManager.instance.timeMng.FixedDeltaTime;
                 SystemMgr.Unit.BasicAttackMove(_basicAttackIndex);
                 yield return new WaitForFixedUpdate();
             }
@@ -798,7 +827,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                     {
                         if (SystemMgr.AnimationCtrl.GetCurAniTime() >= 0.6)
                         {
-                            SystemMgr.ChangeState(TransitionCondition.DoubleJump);
+                            SystemMgr.Transition(TransitionCondition.DoubleJump);
                             return false;
                         }
                     }
@@ -821,9 +850,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             else
             {
                 if (SystemMgr.Unit.IsGround == false)
-                    SystemMgr.ChangeState(TransitionCondition.Falling);
+                    SystemMgr.Transition(TransitionCondition.Falling);
                 else
-                    SystemMgr.ChangeState(TransitionCondition.Idle);
+                    SystemMgr.Transition(TransitionCondition.Idle);
             }
 
             return false;
@@ -881,7 +910,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             while (_time <= _hitTime)
             {
-                _time += Time.fixedDeltaTime;
+                _time += GameManager.instance.timeMng.FixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
@@ -923,6 +952,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             ChangeState(TransitionCondition.Move);
         }
 
+        if (GameManager.instance.timeMng.IsHitStop == true)
+            return false;
+        
         if (CurrState == condition)
             return false;
 
@@ -954,14 +986,41 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     public void UnitHitEventCall()
     {
-        ChangeState(TransitionCondition.Hit);
+        Transition(TransitionCondition.Hit);
     }
 
     public void StartJumpKeyPressDetectCoroutine()
     {
         StartCoroutine(JumpKeyPressDetectCoroutine());
     }
+
+    // Time 관련
+    private void StartBulletTimeEvnetCall(float _timeScale)
+    {
+        Unit.StartBulletTime(_timeScale);
+        AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+    }
+
+    private void EndBulletTimeEventCall(float _timeScale)
+    {
+        Unit.EndBulletTime(_timeScale);
+        AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+    }
+
+    private void StartHitStopEventCall(float _timeScale)
+    {
+        Unit.StartHitStop(_timeScale);
+        AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+    }
+
+    private void EndHitStopEvnetCall(float _timeScale)
+    {
+        Unit.EndHitStop(_timeScale);
+        AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+    }
     
+    // Time 관련
+
     IEnumerator JumpKeyPressDetectCoroutine()
     {
         isJumpKeyPress = true;
