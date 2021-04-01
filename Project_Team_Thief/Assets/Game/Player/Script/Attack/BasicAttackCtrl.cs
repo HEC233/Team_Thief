@@ -61,12 +61,16 @@ public class BasicAttackCtrl : AttackBase
     {
         if (_isAbleHitStop == false)
             return;
+
+        GameManager.instance.timeMng.HitStop(_hitStopTime);
     }
 
     public override void BulltTime()
     {
         if (_isAbleBulltTime == false)
             return;
+        
+        GameManager.instance.timeMng.BulletTime(_bulletTimeScale, _bulltTime);
     }
 
     public override void PlayFx()
@@ -106,6 +110,6 @@ public class BasicAttackCtrl : AttackBase
 
     public override void SetDamage(in Damage damage)
     {
-        _damage = damage;
+
     }
 }
