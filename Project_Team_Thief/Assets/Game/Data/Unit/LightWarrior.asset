@@ -15,7 +15,7 @@ MonoBehaviour:
   unitName: LightWarrior
   minSpeed: 1
   maxSpeed: 3
-  minJumpPower: 0
+  minJumpPower: 10
   maxJumpPower: 0
   jumpCount: 0
   hp: 100

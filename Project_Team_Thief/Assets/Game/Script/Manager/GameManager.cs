@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PS.Util.Tile;
+using PS.Shadow;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class GameManager : MonoBehaviour
     public TimeManager timeMng;
     public SoundManager soundMng;
     public UIManager uiMng;
-    
+
+    public ShadowParticleSystem shadow;
+
     [SerializeField] 
     private KeyManager _keyManger;
     public Grid grid;
