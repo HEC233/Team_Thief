@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: d050ad851ba11b84da03f2d447e14e4f
+guid: 9cf9cfac6f8b8db47bcd5177bd21aa51
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7338874405650690604
-    second: Sp_PC_Attack3_0
+      213: -8336686942358152253
+    second: Sp_PC_Attack2_0
   - first:
-      213: -3741877903307600593
-    second: Sp_PC_Attack3_1
+      213: 6385853760765006821
+    second: Sp_PC_Attack2_1
   - first:
-      213: -1084799438971229178
-    second: Sp_PC_Attack3_2
+      213: -8871933028699794228
+    second: Sp_PC_Attack2_2
+  - first:
+      213: 7929046372609397668
+    second: Sp_PC_Attack2_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -96,7 +99,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sp_PC_Attack3_0
+      name: Sp_PC_Attack2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -110,14 +113,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c22f300936be8d560800000000000000
-      internalID: 7338874405650690604
+      spriteID: 3cbda1545632e4c80800000000000000
+      internalID: -8336686942358152253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_PC_Attack3_1
+      name: Sp_PC_Attack2_1
       rect:
         serializedVersion: 2
         x: 96
@@ -131,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2d877c4fdd221cc0800000000000000
-      internalID: -3741877903307600593
+      spriteID: 5e39df5692c1f9850800000000000000
+      internalID: 6385853760765006821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_PC_Attack3_2
+      name: Sp_PC_Attack2_2
       rect:
         serializedVersion: 2
         x: 192
@@ -152,8 +155,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60ca39368a402f0f0800000000000000
-      internalID: -1084799438971229178
+      spriteID: cc41b497aef80e480800000000000000
+      internalID: -8871933028699794228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sp_PC_Attack2_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 96
+      alignment: 9
+      pivot: {x: 0.25, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a39bfe7aa1a90e60800000000000000
+      internalID: 7929046372609397668
       vertices: []
       indices: 
       edges: []
@@ -167,9 +191,7 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: 09afbb54f54238f49b540452c85f3828, type: 3}
-      name: _Emission
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
