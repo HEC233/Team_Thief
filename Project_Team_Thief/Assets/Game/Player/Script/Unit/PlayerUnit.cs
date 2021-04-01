@@ -504,6 +504,7 @@ public class PlayerUnit : Unit
         _timeScale = timeScale;
 
         _maxSpeed = _maxSpeed * _timeScale;
+        _hitstopPrevVelocity = _rigidbody2D.velocity; 
         _rigidbody2D.velocity *= _timeScale;
         _rigidbody2D.gravityScale *= _timeScale * _timeScale;
     }
@@ -512,23 +513,30 @@ public class PlayerUnit : Unit
     {
         _maxSpeed = _maxSpeed * (1 / _timeScale);
         _timeScale = timeScale;
-        
+
         _rigidbody2D.velocity /= _timeScale;
+        //_rigidbody2D.velocity = _hitstopPrevVelocity;
         _rigidbody2D.gravityScale = _originalGravityScale; 
     }
 
+    private bool _isHitstop = false;
+    
     public void StartHitStop(float timeScale)
     {
         _timeScale = timeScale;
+        _isHitstop = true;
         _hitstopPrevVelocity = _rigidbody2D.velocity;
-        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+        _rigidbody2D.velocity = _hitstopPrevVelocity;
+        StartCoroutine(HitstopMoveCoroutine());
+        //_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void EndHitStop(float timeScale)
     {
+        _isHitstop = false;
         _timeScale = timeScale;
         _rigidbody2D.velocity = _hitstopPrevVelocity;
-        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public Vector3 GetVelocity()
@@ -581,6 +589,16 @@ public class PlayerUnit : Unit
     {
         _isWallTouch = Physics2D.Raycast(_handTr.position, Vector2.right * _facingDir, 0.1f, wallLayerMask);
         return _isWallTouch;
+    }
+
+    IEnumerator HitstopMoveCoroutine()
+    {
+        while (_isHitstop)
+        {
+            Debug.Log("Hitstop : " + _hitstopPrevVelocity);
+            _rigidbody2D.velocity = _hitstopPrevVelocity;
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     IEnumerator RollCoolTimeCoroutine()

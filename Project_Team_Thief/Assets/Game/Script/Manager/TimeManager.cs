@@ -30,9 +30,9 @@ public class TimeManager : MonoBehaviour
     {
         // Test Code
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            BulletTime(0.2f, 1f);
+            BulletTime(0.2f, 0.3f);
         else if (Input.GetKeyDown(KeyCode.Alpha2))
-            HitStop(0, 0.4f);
+            HitStop(0, 1.0f);
     }
 
     public void BulletTime(float timeScale, float time)
