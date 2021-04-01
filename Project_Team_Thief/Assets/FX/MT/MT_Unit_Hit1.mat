@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MT_Unlit_CriHit
+  m_Name: MT_Unit_Hit1
   m_Shader: {fileID: -6465566751694194690, guid: 67809e6025c99424fac79f107a0edad6,
     type: 3}
   m_ShaderKeywords: 
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_6A6C175C:
-        m_Texture: {fileID: 2800000, guid: 8b63ea8e4c7c7d7458e7752d34738f5e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1d2d4fc82ccc6834fb12c5e17d2627bd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlphaTex:
