@@ -30,6 +30,11 @@ public class LightWarriorActor : MonoBehaviour, IActor
         _curState = idle;
         _curState.Enter(this);
 
+        RegistEventForGameManager();
+    }
+
+    public void RegistEventForGameManager()
+    {
         var v = GameManager.instance.timeMng;
         if (v)
         {
@@ -37,6 +42,18 @@ public class LightWarriorActor : MonoBehaviour, IActor
             v.endBulletTimeEvent += TimeScaleChangeExitCallback;
             v.startHitstopEvent += TimeScaleChangeEnterCallback;
             v.endHitstopEvent += TimeScaleChangeExitCallback;
+        }
+    }
+
+    public void UnregistEventForGameManager()
+    {
+        var v = GameManager.instance.timeMng;
+        if (v)
+        {
+            v.startBulletTimeEvent -= TimeScaleChangeEnterCallback;
+            v.endBulletTimeEvent -= TimeScaleChangeExitCallback;
+            v.startHitstopEvent -= TimeScaleChangeEnterCallback;
+            v.endHitstopEvent -= TimeScaleChangeExitCallback;
         }
     }
 
@@ -274,6 +291,8 @@ namespace LightWarrior
         public override void Exit(LightWarriorActor actor)
         {
             actor.unit.HandleDeath();
+
+            actor.UnregistEventForGameManager();
         }
 
         public override void Process(LightWarriorActor actor)
