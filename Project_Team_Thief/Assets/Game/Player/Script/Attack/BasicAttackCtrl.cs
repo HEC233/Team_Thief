@@ -90,6 +90,7 @@ public class BasicAttackCtrl : AttackBase
 
     public override void AttackDamage()
     {
+        // 다음 프레임에 활성화가 되기 때문에 바로 끄면 체크 X
         if (_basicAttackCollider2D.IsTouchingLayers(_hitLayerMask))
         {
             _basicAttackCollider2D.OverlapCollider(_contactFilter2D, result);

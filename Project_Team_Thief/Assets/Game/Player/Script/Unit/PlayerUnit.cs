@@ -216,14 +216,12 @@ public class PlayerUnit : Unit
 
         // Vector2 dir = moveUtil.moveforce(5);
         // Rigidbody2D.addfoce(dir);
-        //_playerMovementCtrl.Move(_facingDir);
     }
 
     public void MoveStop()
     {
         if (GameManager.instance.timeMng.IsBulletTime == false && GameManager.instance.timeMng.IsHitStop == false)
             _rigidbody2D.velocity = new Vector2(_moveStopSpeed * _facingDir, _rigidbody2D.velocity.y);
-        //_playerMovementCtrl.MoveStop();
     }
 
     public bool IsRunningInertia()
@@ -236,7 +234,6 @@ public class PlayerUnit : Unit
 
         return false;
         //return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 0.2f ? true : false;
-        //return _playerMovementCtrl.IsRunningInertia();
     }
 
 
@@ -250,7 +247,6 @@ public class PlayerUnit : Unit
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
 
         //_rigidbody2D.gravityScale = _jumpScale * _jumpScale;
-        //_playerMovementCtrl.Jump(0);
     }
 
     public void DoubleJump()
@@ -269,9 +265,6 @@ public class PlayerUnit : Unit
     public void AddJumpForce()
     {
         _rigidbody2D.AddForce((new Vector2(0, _addJumpPower) * _addAllJumpPpower) * _timeScale * GameManager.instance.timeMng.FixedDeltaTime, ForceMode2D.Impulse);
-
-        //_playerMovementCtrl.asd();
-        //_playerMovementCtrl.AddJumpForce();
     }
 
     public bool CheckIsJumpAble()
@@ -291,7 +284,6 @@ public class PlayerUnit : Unit
     {
         _jumpCount = _maxJumpCount;
         _coyoteTime = _maxCoyoteTime;
-
     }
 
     public void SetRoll()
@@ -516,8 +508,7 @@ public class PlayerUnit : Unit
         _rigidbody2D.velocity *= 1 / _timeScale; 
 
         _timeScale = timeScale;
-
-        //_rigidbody2D.velocity = _hitstopPrevVelocity;
+        
         _rigidbody2D.gravityScale = _originalGravityScale; 
     }
 
@@ -597,7 +588,6 @@ public class PlayerUnit : Unit
     {
         while (_isHitstop)
         {
-            Debug.Log("Hitstop : " + _hitstopPrevVelocity);
             _rigidbody2D.velocity = _hitstopPrevVelocity;
             yield return new WaitForFixedUpdate();
         }
@@ -610,6 +600,7 @@ public class PlayerUnit : Unit
         while (timer < _rollCoolTime)
         {
             timer += GameManager.instance.timeMng.FixedDeltaTime;
+            _rigidbody2D.gravityScale = 0;
             yield return new WaitForFixedUpdate();
         }
 
