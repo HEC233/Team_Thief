@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+using PS.FX;
+
 public class LightWarriorUnit : Unit
 {
+    //
+    public EffectSystem fx;
+    //
+
     [SerializeField]
     private bool isOnGround = false;
     private bool skipGroundCheck = false;
@@ -40,9 +46,11 @@ public class LightWarriorUnit : Unit
     private float _maxSpeed;
     private float _minSpeed;
     private float _jumpPower;
+    private Vector2 _originalVelocity;
     public override void TimeScaleChangeEnter(float customTimeScale)
     {
         _customTimeScale = customTimeScale;
+        _originalVelocity = _rigid.velocity;
         _rigid.velocity *= _customTimeScale;
         _originalGravityScale = _rigid.gravityScale;
         _rigid.gravityScale *= _customTimeScale * _customTimeScale;
@@ -52,7 +60,7 @@ public class LightWarriorUnit : Unit
     }
     public override void TimeScaleChangeExit()
     {
-        _rigid.velocity /= _customTimeScale;
+        if (_customTimeScale != 0) _rigid.velocity /= _customTimeScale; else _rigid.velocity = _originalVelocity;
         _rigid.gravityScale = _originalGravityScale;
         _customTimeScale = 1.0f;
         _maxSpeed = _unitData.maxSpeed;
@@ -224,6 +232,9 @@ public class LightWarriorUnit : Unit
         _rigid.AddForce(inputDamage.knockBack, ForceMode2D.Impulse);
         //isOnGround = false;
         //skipGroundCheck = true;
+
+        if(fx)
+            fx.Play("Hit1", transform.position);
 
         if (_hp <= 0)
         {

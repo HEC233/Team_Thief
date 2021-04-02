@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PS.Util.Tile;
+using PS.FX;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     public TimeManager timeMng;
     public SoundManager soundMng;
     public UIManager uiMng;
+    public EffectSystem FX;
     
     [SerializeField] 
     private KeyManager _keyManger;
