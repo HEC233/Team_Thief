@@ -320,8 +320,14 @@ namespace LWAIState
                         _state = InnerState.Wait;
                     }
                     //}
-                    else
+                    else if (ai.GetDistance(true) > 1)
+                    {
                         ai.actor.Transition(ai.isLookRight ? TransitionCondition.RightMove : TransitionCondition.LeftMove);
+                    }
+                    else
+                    {
+                        ai.actor.Transition(TransitionCondition.StopMove);
+                    }
 
                     if (_timeCheck <= 0)
                     {
