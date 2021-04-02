@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1538129261949825093}
   - component: {fileID: 8876750676583336633}
   m_Layer: 0
-  m_Name: P_Unit_Hit1
+  m_Name: P_Unit_Hit3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -550,8 +550,8 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4.452335
-      minScalar: 4.1887903
+      scalar: 1.3089969
+      minScalar: 1.2566371
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4825,7 +4825,7 @@ GameObject:
   - component: {fileID: 1211942426735619732}
   - component: {fileID: 8985666176542984586}
   m_Layer: 0
-  m_Name: P_Unit_Hit1_1
+  m_Name: P_Unit_Hit3_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5362,8 +5362,8 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.0029670596
-      minScalar: 0.6632251
+      scalar: 0.75049156
+      minScalar: 0.29670596
       maxCurve:
         serializedVersion: 2
         m_Curve:
