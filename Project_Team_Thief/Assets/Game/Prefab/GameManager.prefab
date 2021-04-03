@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7033489ed66355948ae4b3003870fe5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cinemachineBrain: {fileID: 0}
 --- !u!114 &1997881170352566880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +144,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c913062675e4c4546bf03744a1549fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effects: []
+  effects:
+  - name: Hit1
+    prefab: {fileID: 3686808143394889169, guid: a53ee9fffb3b35e44ad3b0539ae0b862,
+      type: 3}
+  - name: Hit2
+    prefab: {fileID: 3686808143394889169, guid: 5409d26ec13608c4992b0b22d6b2d165,
+      type: 3}
+  - name: Hit3
+    prefab: {fileID: 3686808143394889169, guid: 7d459d78149de2643ab620ab297a1e9e,
+      type: 3}
+  - name: imsi_bungyeonghae
+    prefab: {fileID: 399070007637419649, guid: 7f5ac952823040c45bb3554c05782c03, type: 3}
 --- !u!114 &-5078904260765545550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,8 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0387e3b731aaaf24ea0a5961f16daa2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleObject: {fileID: 0}
-  particleCount: 0
+  particleObject: {fileID: 2100064571684846465, guid: d836b1ff62c235742a7219b15cf3909a,
+    type: 3}
+  particleCount: 1000
   fieldChangePower: 1
   fieldCellSize: {x: 10, y: 10}
-  useGravity: 1
+  useGravity: 0
