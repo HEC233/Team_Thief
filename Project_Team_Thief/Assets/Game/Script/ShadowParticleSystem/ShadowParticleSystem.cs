@@ -16,8 +16,10 @@ namespace PS.Shadow
         // 이건 임시
         [SerializeField] private bool useGravity = true;
 
-        private List<BoxCollider2D> objectOnVectorField = new List<BoxCollider2D>();
-        private List<Vector3> prevPos = new List<Vector3>();
+        private List<BoxCollider2D> boxObjectOnVectorField = new List<BoxCollider2D>();
+        private List<CapsuleCollider2D> capsuleObjectOnVectorField = new List<CapsuleCollider2D>();
+        private List<Vector3> prevBoxPos = new List<Vector3>();
+        private List<Vector3> prevCapsulePos = new List<Vector3>();
 
         private void Start()
         {
@@ -30,22 +32,40 @@ namespace PS.Shadow
 
         private void Update()
         {
-            for (int i = 0; i < objectOnVectorField.Count; i++)
+            for (int i = 0; i < boxObjectOnVectorField.Count; i++)
             {
-                Vector3 dif = objectOnVectorField[i].bounds.center - prevPos[i];
+                Vector3 dif = boxObjectOnVectorField[i].bounds.center - prevBoxPos[i];
 
                 if (dif.sqrMagnitude > 0.1f)
                 {
-                    Vector3 urv = objectOnVectorField[i].size / 2 + objectOnVectorField[i].offset;
-                    Vector3 dlv = -objectOnVectorField[i].size / 2 + objectOnVectorField[i].offset;
+                    Vector3 urv = boxObjectOnVectorField[i].size / 2 + boxObjectOnVectorField[i].offset;
+                    Vector3 dlv = -boxObjectOnVectorField[i].size / 2 + boxObjectOnVectorField[i].offset;
 
-                    var ursc = Camera.main.WorldToScreenPoint(objectOnVectorField[i].bounds.center + urv);
-                    var dlsc = Camera.main.WorldToScreenPoint(objectOnVectorField[i].bounds.center + dlv);
+                    var ursc = Camera.main.WorldToScreenPoint(boxObjectOnVectorField[i].bounds.center + urv);
+                    var dlsc = Camera.main.WorldToScreenPoint(boxObjectOnVectorField[i].bounds.center + dlv);
 
                     dif *= fieldChangePower;
                     vectorField.SetField((int)dlsc.x, (int)dlsc.y, (int)ursc.x, (int)ursc.y, new VectorCell(dif.x, dif.y));
 
-                    prevPos[i] = objectOnVectorField[i].bounds.center;
+                    prevBoxPos[i] = boxObjectOnVectorField[i].bounds.center;
+                }
+            }
+            for (int i = 0; i < capsuleObjectOnVectorField.Count; i++)
+            {
+                Vector3 dif = capsuleObjectOnVectorField[i].bounds.center - prevCapsulePos[i];
+
+                if (dif.sqrMagnitude > 0.1f)
+                {
+                    Vector3 urv = capsuleObjectOnVectorField[i].size / 2 + capsuleObjectOnVectorField[i].offset;
+                    Vector3 dlv = -capsuleObjectOnVectorField[i].size / 2 + capsuleObjectOnVectorField[i].offset;
+
+                    var ursc = Camera.main.WorldToScreenPoint(capsuleObjectOnVectorField[i].bounds.center + urv);
+                    var dlsc = Camera.main.WorldToScreenPoint(capsuleObjectOnVectorField[i].bounds.center + dlv);
+
+                    dif *= fieldChangePower;
+                    vectorField.SetField((int)dlsc.x, (int)dlsc.y, (int)ursc.x, (int)ursc.y, new VectorCell(dif.x, dif.y));
+
+                    prevCapsulePos[i] = capsuleObjectOnVectorField[i].bounds.center;
                 }
             }
         }
@@ -66,8 +86,23 @@ namespace PS.Shadow
 
         public void RegistCollider(BoxCollider2D collider)
         {
-            objectOnVectorField.Add(collider);
-            prevPos.Add(collider.bounds.center);
+            boxObjectOnVectorField.Add(collider);
+            prevBoxPos.Add(collider.bounds.center);
+        }
+        public void RegistCollider(CapsuleCollider2D collider)
+        {
+            capsuleObjectOnVectorField.Add(collider);
+            prevCapsulePos.Add(collider.bounds.center);
+        }
+        public void UnregistCollider(BoxCollider2D collider)
+        {
+            prevBoxPos.RemoveAt(boxObjectOnVectorField.IndexOf(collider));
+            boxObjectOnVectorField.Remove(collider);
+        }
+        public void UnregistCollider(CapsuleCollider2D collider)
+        {
+            prevCapsulePos.RemoveAt(capsuleObjectOnVectorField.IndexOf(collider));
+            capsuleObjectOnVectorField.Remove(collider);
         }
     }
 }

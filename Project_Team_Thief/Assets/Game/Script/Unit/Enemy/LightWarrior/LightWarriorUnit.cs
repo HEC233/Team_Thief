@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using PS.Shadow;
 
 using PS.FX;
 
@@ -81,6 +82,9 @@ public class LightWarriorUnit : Unit
         _maxSpeed = _unitData.maxSpeed;
         _minSpeed = _unitData.minSpeed;
         _jumpPower = _unitData.minJumpPower;
+
+
+        GameManager.instance.shadow.RegistCollider(_rigid.GetComponent<CapsuleCollider2D>());
 
         //---------- for test ----------------
         SetDamagePower(_unitData.skillDamage)/*.SetDamageKnockBack(new Vector2(200, 200))*/;
@@ -249,6 +253,8 @@ public class LightWarriorUnit : Unit
 
     public override void HandleDeath()
     {
+        GameManager.instance.shadow.UnregistCollider(_rigid.GetComponent<CapsuleCollider2D>());
+
         DestroyImmediate(transform.parent.gameObject);
     }
 }
