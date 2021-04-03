@@ -1,12 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PS.Util.Tile;
-<<<<<<< HEAD
 using PS.FX;
-=======
 using PS.Shadow;
->>>>>>> particleTest
 
 public class GameManager : MonoBehaviour
 {
@@ -16,14 +13,11 @@ public class GameManager : MonoBehaviour
     public TimeManager timeMng;
     public SoundManager soundMng;
     public UIManager uiMng;
-<<<<<<< HEAD
     public EffectSystem FX;
     
-=======
 
     public ShadowParticleSystem shadow;
 
->>>>>>> particleTest
     [SerializeField] 
     private KeyManager _keyManger;
     public Grid grid;
