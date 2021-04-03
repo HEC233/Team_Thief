@@ -403,7 +403,7 @@ public class PlayerUnit : Unit
 
     public void WallSlideStateStart()
     {
-        Debug.Log("WallStart");
+        //Debug.Log("WallStart");
         _SlideingFx.SetActive(true);    // FxCtrl로 이전할 예정.
     }
     

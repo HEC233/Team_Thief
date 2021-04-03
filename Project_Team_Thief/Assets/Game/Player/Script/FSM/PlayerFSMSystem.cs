@@ -556,6 +556,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             _isFristWallJump = true;
             SystemMgr.AnimationCtrl.PlayAni(AniState.Wallslideing);
+            //SystemMgr._fxCtrl.PlayParticle(FxAniEnum.SlidingFx);
             SystemMgr.Unit.WallSlideStateStart();
         }
 
