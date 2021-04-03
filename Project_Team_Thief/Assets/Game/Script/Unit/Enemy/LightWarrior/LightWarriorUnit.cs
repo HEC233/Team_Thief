@@ -212,7 +212,8 @@ public class LightWarriorUnit : Unit
                 // 유닛이 자기자신이거나 없으면 예외처리
                 if (u == null || u == this)
                     continue;
-                u.HandleHit(_damage);
+                if (u.tag == "Player")
+                    u.HandleHit(_damage);
             }
             /*
             GameManager.instance.cameraMng.Shake(data.cameraShakeIntensity, data.cameraShakeCount);

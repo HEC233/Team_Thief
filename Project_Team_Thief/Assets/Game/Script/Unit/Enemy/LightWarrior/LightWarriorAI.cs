@@ -46,6 +46,11 @@ public class LightWarriorAI : MonoBehaviour
         actor = GetComponent<LightWarriorActor>();
         _curState = search;
         _curState.Enter(this);
+
+        if(GameManager.instance.GetControlActor() != null)
+        {
+            SetTarget(GameManager.instance.GetControlActor().GetUnit());
+        }
     }
 
     public void ChangeState(AIState newState)

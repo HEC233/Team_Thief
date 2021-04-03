@@ -25,6 +25,11 @@ public class KoboldActor : MonoBehaviour, IActor
         _curState = newState;
         _curState.Enter(this);
     }
+
+    public Unit GetUnit()
+    {
+        return _kobold;
+    }
 }
 
 namespace Kobold

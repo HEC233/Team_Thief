@@ -17,6 +17,8 @@ public class LightWarriorActor : MonoBehaviour, IActor
     public Attack attack = new Attack();
     public static Null nullState = new Null();
 
+    
+
     private void Awake()
     {
         unit = GetComponentInParent<LightWarriorUnit>();
@@ -101,6 +103,11 @@ public class LightWarriorActor : MonoBehaviour, IActor
     // 피격, 사망 이벤트는 간단하게 트랜지션을 발동시켜주는 것으로 구현하였다.
     private void HitTransition() { Transition(TransitionCondition.Hit); }
     private void DieTransition() { Transition(TransitionCondition.Die); }
+
+    public Unit GetUnit()
+    {
+        return unit;
+    }
 }
 
 namespace LightWarrior

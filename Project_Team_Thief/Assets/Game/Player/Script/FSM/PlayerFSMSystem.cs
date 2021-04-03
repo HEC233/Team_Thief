@@ -1060,5 +1060,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         _unit = unit;
     }
-    
+
+    public Unit GetUnit()
+    {
+        return _unit;
+    }
 }
