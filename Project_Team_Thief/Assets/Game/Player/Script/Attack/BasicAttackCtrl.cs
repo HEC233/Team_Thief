@@ -13,6 +13,7 @@ public class BasicAttackCtrl : AttackBase
     private List<Collider2D> result = new List<Collider2D>();
     private bool _isInit = false;
     private bool _isEnter = false;
+    public bool alwaysEnter = false;
     
     private void OnEnable()
     {
@@ -32,14 +33,7 @@ public class BasicAttackCtrl : AttackBase
         _contactFilter2D.useTriggers = true;
         _contactFilter2D.useLayerMask = true;
         _contactFilter2D.layerMask = _hitLayerMask;
-        
-        //this.gameObject.SetActive(false);
     }
-
-    // private void Update()
-    // {
-    //     Debug.Log("isTouching : " + _basicAttackCollider2D.IsTouchingLayers(_hitLayerMask));
-    // }
 
     public void Progress()
     {
@@ -48,12 +42,11 @@ public class BasicAttackCtrl : AttackBase
 
         AttackDamage();
 
-        if (_isEnter == true)
+        if (_isEnter == true || alwaysEnter == true)
         {
             HitStop();
             CameraShake();
         }
-        //this.gameObject.SetActive(false);
     }
 
     public override void Flash()
@@ -95,6 +88,7 @@ public class BasicAttackCtrl : AttackBase
         if (_isAbleCameraShake == false)
             return;
         
+        GameManager.instance.cameraMng.Shake(_cameraShakeAmplitudeGain, _cameraShakeFrequencyGain, _camerShakeTime);
     }
 
     public override void AttackDamage()

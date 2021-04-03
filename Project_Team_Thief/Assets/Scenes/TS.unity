@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 408852747}
   - component: {fileID: 408852746}
   - component: {fileID: 408852745}
+  - component: {fileID: 408852748}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -386,6 +387,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &408852748
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408852743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &476451541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,6 +1233,7 @@ GameObject:
   - component: {fileID: 927398463}
   - component: {fileID: 927398465}
   - component: {fileID: 927398466}
+  - component: {fileID: 927398467}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1260,10 +1279,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83aba1311f028e4b99edc9dd5c44206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraMng: {fileID: 0}
+  cameraMng: {fileID: 927398467}
   timeMng: {fileID: 927398466}
   soundMng: {fileID: 0}
   uiMng: {fileID: 0}
+  FX: {fileID: 0}
   _keyManger: {fileID: 927398463}
   grid: {fileID: 516169943}
 --- !u!114 &927398465
@@ -1290,6 +1310,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e0badc6d37ce448bb4f3497c7be144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &927398467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927398461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7033489ed66355948ae4b3003870fe5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cinemachineBrain: {fileID: 56695114}
 --- !u!1 &1233414377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,7 +1856,18 @@ MonoBehaviour:
     m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 927398467}
+          m_MethodName: OnLiveChange
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 408852744}
 --- !u!4 &1371156113
