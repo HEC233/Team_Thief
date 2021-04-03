@@ -193,7 +193,7 @@ namespace LWAIState
         }
         public override void Process()
         {
-            _timeCheck -= Time.deltaTime;
+            _timeCheck -= GameManager.instance.timeMng.DeltaTime;
             if(_timeCheck <= 0)
             {
                 if (Random.value > 0.5f)
@@ -372,8 +372,8 @@ namespace LWAIState
                  //-----------------------------------------
             }
 
-            _AttackCool -= Time.deltaTime;
-            _timeCheck -= Time.deltaTime;
+            _AttackCool -= GameManager.instance.timeMng.DeltaTime;
+            _timeCheck -= GameManager.instance.timeMng.DeltaTime;
 
         }
     }

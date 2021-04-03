@@ -8,10 +8,6 @@ using PS.FX;
 
 public class LightWarriorUnit : Unit
 {
-    //
-    public EffectSystem fx;
-    //
-
     [SerializeField]
     private bool isOnGround = false;
     private bool skipGroundCheck = false;
@@ -238,8 +234,23 @@ public class LightWarriorUnit : Unit
         //isOnGround = false;
         //skipGroundCheck = true;
 
-        if(fx)
-            fx.Play("Hit1", transform.position);
+        if (GameManager.instance.FX)
+        {
+            string fxName = string.Empty;
+            switch(inputDamage.additionalInfo)
+            {
+                case 0:
+                    fxName = "Hit1";
+                    break;
+                case 1:
+                    fxName = "Hit2";
+                    break;
+                case 2:
+                    fxName = "Hit3";
+                    break;
+            }
+            GameManager.instance.FX.Play(fxName, inputDamage.hitPosition);
+        }
 
         if (_hp <= 0)
         {

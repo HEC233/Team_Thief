@@ -264,7 +264,7 @@ namespace LightWarrior
         public override void Process(LightWarriorActor actor)
         {
             //timeCheck += GameManager.instance.timeMng.customTimeWhere???
-            timeCheck -= Time.deltaTime;
+            timeCheck -= GameManager.instance.timeMng.DeltaTime;
 
             if(timeCheck < 0)
             {
@@ -305,7 +305,7 @@ namespace LightWarrior
         public override void Process(LightWarriorActor actor)
         {
             //timeCheck += GameManager.instance.timeMng.customTimeWhere???
-            timeCheck -= Time.deltaTime;
+            timeCheck -= GameManager.instance.timeMng.DeltaTime;
 
             if (timeCheck < 0)
             {
@@ -340,7 +340,7 @@ namespace LightWarrior
         public override void Process(LightWarriorActor actor)
         {
             //timeCheck += GameManager.instance.timeMng.customTimeWhere???
-            timeCheck -= Time.deltaTime;
+            timeCheck -= GameManager.instance.timeMng.DeltaTime;
 
             if (timeCheck < 0)
             {

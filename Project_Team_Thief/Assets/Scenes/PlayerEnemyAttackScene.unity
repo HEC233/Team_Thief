@@ -1229,6 +1229,44 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2141984162371750092, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: effects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141984162371750092, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: effects.Array.data[0].name
+      value: Hit1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141984162371750092, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: effects.Array.data[1].name
+      value: Hit2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141984162371750092, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: effects.Array.data[2].name
+      value: Hit3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141984162371750092, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: effects.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 3686808143394889169, guid: a53ee9fffb3b35e44ad3b0539ae0b862,
+        type: 3}
+    - target: {fileID: 2141984162371750092, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: effects.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 3686808143394889169, guid: 5409d26ec13608c4992b0b22d6b2d165,
+        type: 3}
+    - target: {fileID: 2141984162371750092, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: effects.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 3686808143394889169, guid: 7d459d78149de2643ab620ab297a1e9e,
+        type: 3}
     - target: {fileID: 4990086937456659570, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: m_RootOrder
