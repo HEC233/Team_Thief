@@ -11250,7 +11250,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.3
+  m_Intensity: 0.2
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -28902,11 +28902,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8718974563011285686, guid: e972f2be0e9e66840a07f6b053f57afe,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8718974563859108410, guid: e972f2be0e9e66840a07f6b053f57afe,
         type: 3}
       propertyPath: m_Name
@@ -29339,12 +29334,12 @@ PrefabInstance:
     - target: {fileID: 1542053513835489099, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.28
+      value: 5.29
       objectReference: {fileID: 0}
     - target: {fileID: 1542053513835489099, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.33
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 1542053513835489099, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
