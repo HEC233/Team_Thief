@@ -10,8 +10,9 @@ namespace PS.Shadow
         private VectorField _vectorField;
         private Vector2 _vel;
         private int _cycle;
+        [SerializeField] private AnimationCurve lifeTimeOfAlpha;
 
-        public ShadowParticle next;
+        [HideInInspector] public ShadowParticle next;
 
         private bool _useGravity = false;
         private bool _useDrag = false;
@@ -58,7 +59,7 @@ namespace PS.Shadow
 
                 transform.Translate(_vel);
 
-                spriteRenderer.color = new Color(color.r, color.g, color.b, (float)_cycle / fullcycle);
+                spriteRenderer.color = new Color(color.r, color.g, color.b, lifeTimeOfAlpha.Evaluate((float)(fullcycle - _cycle) / fullcycle));
 
                 yield return new WaitForSeconds(0.02f);
             }

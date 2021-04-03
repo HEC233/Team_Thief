@@ -252,6 +252,11 @@ public class LightWarriorUnit : Unit
             GameManager.instance.FX.Play(fxName, inputDamage.hitPosition);
         }
 
+        if(GameManager.instance.shadow)
+        {
+            GameManager.instance.shadow.Burst(inputDamage.hitPosition, 50, 10, 5, true);
+        }
+
         if (_hp <= 0)
         {
             dieEvent.Invoke();
