@@ -12,7 +12,8 @@ public class BasicAttackCtrl : AttackBase
     private ContactFilter2D _contactFilter2D;
     private List<Collider2D> result = new List<Collider2D>();
     private bool _isInit = false;
-
+    private bool _isEnter = false;
+    
     private void OnEnable()
     {
         if(_basicAttackCollider2D == null)
@@ -42,12 +43,16 @@ public class BasicAttackCtrl : AttackBase
 
     public void Progress()
     {
-        PlayFx();
         PlaySfx();
+        PlayFx();
+
         AttackDamage();
-        HitStop();
-        CameraShake();
-        
+
+        if (_isEnter == true)
+        {
+            HitStop();
+            CameraShake();
+        }
         //this.gameObject.SetActive(false);
     }
 
@@ -94,6 +99,8 @@ public class BasicAttackCtrl : AttackBase
 
     public override void AttackDamage()
     {
+        _isEnter = false;
+        
         // 다음 프레임에 활성화가 되기 때문에 바로 끄면 체크 X
         if (_basicAttackCollider2D.IsTouchingLayers(_hitLayerMask))
         {
@@ -103,6 +110,7 @@ public class BasicAttackCtrl : AttackBase
                 if (item.gameObject.CompareTag("Player"))
                     continue;
 
+                _isEnter = true;
                 item.GetComponentInParent<Unit>().HandleHit(_damage);
             }
         }

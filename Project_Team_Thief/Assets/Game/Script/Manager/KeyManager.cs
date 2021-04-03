@@ -33,7 +33,7 @@ public class KeyManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            controlUnit.Transition(TransitionCondition.Roll);
+            controlUnit.Transition(TransitionCondition.Dash);
         }
         if (Input.GetKey(KeyCode.UpArrow))
             controlUnit.Transition(TransitionCondition.Wallslideing);

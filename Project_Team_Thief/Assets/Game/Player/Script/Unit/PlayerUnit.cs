@@ -95,6 +95,21 @@ public class PlayerUnit : Unit
     [SerializeField] 
     private PhysicsMaterial2D _rollPhysicMaterial;
     
+    [Header("Dash Variable")]
+    [SerializeField]
+    private float _dashTime = 0;
+    [SerializeField]
+    private float _dashGoalX = 0;
+
+    [SerializeField]
+    private float _dashCoolTime;
+    
+    private bool _isDashAble = true;
+    public bool isDashAble => _isDashAble;
+    private float _dashSpeed = 0;
+    public float DashTime => _dashTime;
+    
+    
     // WallSlideing Variable
     [Header("Wallslideing Variable")]
     [SerializeField]
@@ -137,21 +152,25 @@ public class PlayerUnit : Unit
     private BasicAttackCtrl _basicJumpAttackCtrl;
     
     // hit Variable
+    [Header("Hit Variable")]
     [SerializeField]
     private float _hitInvincibilityTime = 1.0f;
     [SerializeField] 
     private float _hitInvincibilityTwinkleTime = 0.5f;
     [SerializeField]
     private float _hitTime = 0.0f;
-
     public float HitTime => _hitTime;
     private bool _isInvincibility = false;
     
     //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
+    
     private Vector2 _hitstopPrevVelocity = Vector2.zero;
     private Damage _hitDamage;
+
+    [SerializeField]
+    private GameObject _SlideingFx;
 
     void Start()
     {
@@ -221,7 +240,7 @@ public class PlayerUnit : Unit
 
     public void MoveStop()
     {
-        if (GameManager.instance.timeMng.IsBulletTime == false && GameManager.instance.timeMng.IsHitStop == false)
+        if (GameManager.instance.timeMng.IsBulletTime == false)
             _rigidbody2D.velocity = new Vector2(_moveStopSpeed * _facingDir, _rigidbody2D.velocity.y);
     }
 
@@ -275,8 +294,8 @@ public class PlayerUnit : Unit
             _coyoteTime = -1;
             return true;
         }
-        else if (_jumpCount >= 1)
-            return true;
+        // else if (_jumpCount >= 1)
+        //     return true;
 
         return false;
     }
@@ -339,29 +358,35 @@ public class PlayerUnit : Unit
         // else
         //     _rigidbody2D.velocity = new Vector2(0.0f, _rigidbody2D.velocity.y);
     }
-
-    private float _dashTime = 0;
-    private float _dashGoalX = 0;
-    private float _dashSpeed = 0;
-    public float DashTime => _dashTime;
+    
     
     public void SetDash()
     {
-        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+        _rigidbody2D.sharedMaterial = _rollPhysicMaterial;
         _dashSpeed = (1 / _dashTime) * _dashGoalX;
+        _rigidbody2D.gravityScale = 0;
+        //_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+
     }
 
     public void Dash()
     {
         _rigidbody2D.velocity = Vector2.zero;
 
-        var power = new Vector2((_rollSpeed) * _facingDir * _timeScale, 0);
+        var power = new Vector2((_dashSpeed) * _facingDir * _timeScale, 0);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+
+    public void DashStop()
+    {
+        _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
     }
 
     public void EndDash()
     {
-        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        _rigidbody2D.gravityScale = _originalGravityScale;
+        _rigidbody2D.sharedMaterial = null;
     }
 
     public void WallSlideing()
@@ -378,7 +403,8 @@ public class PlayerUnit : Unit
 
     public void WallSlideStateStart()
     {
-        //_rigidbody2D.velocity = Vector2.zero;
+        Debug.Log("WallStart");
+        _SlideingFx.SetActive(true);    // FxCtrl로 이전할 예정.
     }
     
     public void WallJump()
@@ -390,6 +416,12 @@ public class PlayerUnit : Unit
         _rigidbody2D.AddForce(new Vector2(_wallJumpPowerX * _facingDir * -1, _wallJumpPowerY) * _timeScale , ForceMode2D.Impulse);
         Flip();
     }
+
+    public void WallEnd()
+    {
+        _SlideingFx.SetActive(false);
+    }
+    
 
     public void WallReset()
     {
@@ -498,7 +530,6 @@ public class PlayerUnit : Unit
         _timeScale = timeScale;
 
         _maxSpeed = _maxSpeed * _timeScale;
-        _hitstopPrevVelocity = _rigidbody2D.velocity; 
         _rigidbody2D.velocity *= _timeScale;
         _rigidbody2D.gravityScale *= _timeScale * _timeScale;
     }
@@ -520,17 +551,17 @@ public class PlayerUnit : Unit
         _timeScale = timeScale;
         _isHitstop = true;
         _hitstopPrevVelocity = _rigidbody2D.velocity;
-        _rigidbody2D.velocity = _hitstopPrevVelocity;
-        StartCoroutine(HitstopMoveCoroutine());
-        //_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+        //_rigidbody2D.velocity = _hitstopPrevVelocity;
+        //StartCoroutine(HitstopMoveCoroutine());
+        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void EndHitStop(float timeScale)
     {
         _isHitstop = false;
+        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
         _timeScale = timeScale;
         _rigidbody2D.velocity = _hitstopPrevVelocity;
-        //_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public Vector3 GetVelocity()
@@ -605,6 +636,19 @@ public class PlayerUnit : Unit
         }
 
         _isRollAble = true;
+    }
+    
+    IEnumerator DashCoolTimeCoroutine()
+    {
+        _isDashAble = false;
+        float timer = 0.0f;
+        while (timer < _dashCoolTime)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _isDashAble = true;
     }
     
     IEnumerator invincibilityTimeCoroutine()

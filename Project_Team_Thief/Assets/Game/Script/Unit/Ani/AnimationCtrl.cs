@@ -31,16 +31,16 @@ public class AnimationCtrl : MonoBehaviour
     private Animator _animator = null;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    public Animator Animator => _animator;
+    //public Animator Animator => _animator;
 
     public void PlayAni(AniState aniState)
     {
-        Animator.SetInteger("State", (int) aniState);
+        _animator.SetInteger("State", (int) aniState);
     }
 
     public float GetCurAniTime()
     {
-        return Animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
+        return _animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
     }
 
     public void Flip()
@@ -55,7 +55,7 @@ public class AnimationCtrl : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        Animator.speed = speed;
+        _animator.speed = speed;
     }
     public void SetAnimationTimeSclae(float timeScale)
     {
