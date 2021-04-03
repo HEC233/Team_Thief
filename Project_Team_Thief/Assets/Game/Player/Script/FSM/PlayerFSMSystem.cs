@@ -35,6 +35,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     [SerializeField] 
     private AnimationCtrl _animationCtrl;
 
+    [SerializeField]
+    private FxCtrl _fxCtrl;
+
     public AnimationCtrl AnimationCtrl => _animationCtrl;
 
     // 애니메이션 관련 상태 변수
@@ -219,16 +222,20 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (SystemMgr.isJumpKeyPress == false)
             {
-                if (condition == TransitionCondition.Jump)
-                {
-                    Debug.Log("더블 점프");
-                    SystemMgr.Transition(TransitionCondition.DoubleJump);
-                    //return true;
-                }
+                // if (condition == TransitionCondition.Jump)
+                // {
+                //     Debug.Log("더블 점프");
+                //     SystemMgr.Transition(TransitionCondition.DoubleJump);
+                //     //return true;
+                // }
             }
+            
 
-            if (condition == TransitionCondition.DoubleJump)
-                return true;
+            // if (condition == TransitionCondition.DoubleJump)
+            //     return true;
+            
+            if (condition == TransitionCondition.Idle)
+                SystemMgr.Unit.JumpMoveStop();
             
             if (condition == TransitionCondition.Wallslideing)
                 return true;
@@ -295,6 +302,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            // 기능 삭제
+            return false;
+            
             if (SystemMgr.Unit.IsGround == true)
                 return true;
             
@@ -370,8 +380,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                         // 코요테를 여기서 체크해서 일반점프인지 나눠야 할 듯
                         if (SystemMgr.Unit.CheckIsJumpAble() == true)
                         {
-                            SystemMgr.Transition(TransitionCondition.DoubleJump);
-                            return false;
+                             SystemMgr.Transition(TransitionCondition.Jump);
+                             return false;
                         }
                     }
                 }
@@ -467,7 +477,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             while (_timer + GameManager.instance.timeMng.FixedDeltaTime < _rollTime)
             {
                 _timer += GameManager.instance.timeMng.FixedDeltaTime;
-                Debug.Log("asdasd");
                 SystemMgr.Unit.Roll();
                 yield return new WaitForFixedUpdate();
             }
@@ -478,7 +487,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     
     private class DashState : CustomFSMStateBase
     {
-        private float _dashTime = 1.5f;
+        private float _dashTime = 0.5f;
         private float _timer = 0.0f;
         private bool _isDashEnd = true;
         public DashState(PlayerFSMSystem system) : base(system)
@@ -487,9 +496,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
-            SystemMgr.AnimationCtrl.PlayAni(AniState.Dash);
-            SystemMgr.Unit.SetDash();
-            SystemMgr.StartCoroutine(DashCoroutine());
+            if (SystemMgr.Unit.isDashAble)
+            {
+                SystemMgr.AnimationCtrl.PlayAni(AniState.Roll);
+                SystemMgr.Unit.SetDash();
+                SystemMgr.StartCoroutine(DashCoroutine());
+            }
         }
 
         public override void Update()
@@ -499,11 +511,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
-            SystemMgr.Unit.EndRoll();
+            SystemMgr.Unit.EndDash();
         }
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (SystemMgr.Unit.isDashAble == false)
+                return true;
+            
             if (_isDashEnd == true)
             {
                 return false;
@@ -516,14 +531,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             _isDashEnd = true;
             _dashTime = SystemMgr.Unit.DashTime;
-            _timer = 0.02f;
-            while (_timer < _dashTime)
+            _timer = 0.0f;
+            while (_timer + GameManager.instance.timeMng.FixedDeltaTime < _dashTime)
             {
                 _timer += GameManager.instance.timeMng.FixedDeltaTime;
                 SystemMgr.Unit.Dash();
                 yield return new WaitForFixedUpdate();
             }
-            SystemMgr.Unit.EndDash();
+            SystemMgr.Unit.DashStop();
             _isDashEnd = false;
         }
         
@@ -551,6 +566,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
+            SystemMgr.Unit.WallEnd();
             SystemMgr.Unit.WallReset();
         }
 
