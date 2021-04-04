@@ -328,7 +328,7 @@ namespace LightWarrior
         {
             actor.animCtrl.PlayAni(AniState.AttackReady);
             actor.unit.Idle();
-            timeCheck = 0.5f;
+            timeCheck = actor.unit.AttackEnterDelay;
             isAttacked = false;
         }
 
@@ -349,7 +349,7 @@ namespace LightWarrior
                     actor.animCtrl.PlayAni(AniState.Attack);
                     actor.unit.Attack();
                     isAttacked = true;
-                    timeCheck = 0.5f;
+                    timeCheck = actor.unit.AttackEndDelay;
                 }
                 else
                 {

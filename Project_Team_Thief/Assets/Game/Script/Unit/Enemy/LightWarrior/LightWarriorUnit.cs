@@ -34,6 +34,11 @@ public class LightWarriorUnit : Unit
     ContactFilter2D contactFilter = new ContactFilter2D();
     List<Collider2D> result = new List<Collider2D>();
     private bool isLookRight = false;
+
+    public float AttackEnterDelay { get { return _unitData.enterDelay; }}
+    public float AttackEndDelay { get { return _unitData.endDelay; }}
+
+
     private bool IsHorizontalMoving
     {
         get { return !Mathf.Approximately(GetSpeed().x, 0.0f); }
