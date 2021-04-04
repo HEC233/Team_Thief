@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4625193648843838309}
   - component: {fileID: 2937123400567520871}
   - component: {fileID: 7469412939726285077}
+  - component: {fileID: 5108125215429806490}
   m_Layer: 0
   m_Name: P_PC_JumpFX
   m_TagString: Untagged
@@ -4812,3 +4813,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5108125215429806490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916663110621897615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystems:
+  - {fileID: 2937123400567520871}
