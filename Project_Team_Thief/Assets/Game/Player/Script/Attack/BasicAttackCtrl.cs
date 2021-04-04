@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using NUnit.Framework;
 using UnityEngine;
 using Assert = UnityEngine.Assertions.Assert;
@@ -9,6 +10,8 @@ public class BasicAttackCtrl : AttackBase
 {
     [SerializeField] 
     private BoxCollider2D _basicAttackCollider2D;
+    [SerializeField]
+    private CinemachineImpulseSource _cinemachineImpulseSource;
     private ContactFilter2D _contactFilter2D;
     private List<Collider2D> result = new List<Collider2D>();
     private bool _isInit = false;
@@ -87,8 +90,8 @@ public class BasicAttackCtrl : AttackBase
     {
         if (_isAbleCameraShake == false)
             return;
-        
-        GameManager.instance.cameraMng.Shake(_cameraShakeAmplitudeGain, _cameraShakeFrequencyGain, _camerShakeTime);
+        _cinemachineImpulseSource.GenerateImpulse();
+        //GameManager.instance.cameraMng.Shake(_cameraShakeAmplitudeGain, _cameraShakeFrequencyGain, _camerShakeTime);
     }
 
     public override void AttackDamage()

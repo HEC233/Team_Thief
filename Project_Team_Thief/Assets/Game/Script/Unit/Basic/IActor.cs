@@ -13,6 +13,7 @@ public enum TransitionCondition
     DoubleJump,
     Falling,
     Roll,
+    WallClimbing,
     Wallslideing,
     WallJump,
     StopMove,

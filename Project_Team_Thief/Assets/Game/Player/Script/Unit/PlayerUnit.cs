@@ -44,6 +44,18 @@ public class PlayerUnit : Unit
     [SerializeField]
     private float _decreaseHp;
     
+    // 이동 관련 변수
+    [Header("Move Variable")]
+    [SerializeField]
+    private float _minSpeed = 0.8f;
+    [SerializeField]
+    private float _maxSpeed = 6.5f;
+    [SerializeField]
+    private float _moveStopSpeed = 1.0f;
+    private float _curSpeed = 0.0f;
+
+    private bool _isTouchMaxSpeed = false;
+    
     // 점프 관련 변수
     private int _jumpCount = 0;
     private float _coyoteTime = 0.2f;
@@ -64,18 +76,6 @@ public class PlayerUnit : Unit
     
     [SerializeField]
     private float _addJumpPower = 4f;
-
-    // 이동 관련 변수
-    [Header("Move Variable")]
-    private float _curSpeed = 0.0f;
-    [SerializeField]
-    private float _minSpeed = 0.8f;
-    [SerializeField]
-    private float _maxSpeed = 6.5f;
-    [SerializeField]
-    private float _moveStopSpeed = 1.0f;
-
-    private bool _isTouchMaxSpeed = false;
     
     // 구르기 관련 변수
     [Header("Roll Variable")]
