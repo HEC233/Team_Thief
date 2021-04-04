@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//#define VISUALIZATION
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,8 +29,50 @@ namespace PS.Shadow
             particles.Creat(particleCount, particleObject, vectorField, transform);
 
             StartCoroutine(vectorField.FieldRecoveryCoroutine());
-
+            StartCoroutine(VectorFieldScroll());
         }
+
+        IEnumerator VectorFieldScroll()
+        {
+            var wait = new WaitForSeconds(0.02f);
+            Vector3 prevCameraPos = Camera.main.transform.position;
+            while(true)
+            {
+                Vector3 diffPos = Camera.main.WorldToScreenPoint(prevCameraPos);
+                diffPos -= new Vector3(Screen.width / 2, Screen.height / 2);
+
+                int diffx = (int)(diffPos.x / fieldCellSize.x);
+                int diffy = (int)(diffPos.y / fieldCellSize.y);
+                if (diffx != 0 || diffy != 0)
+                {
+                    prevCameraPos = Camera.main.transform.position;
+                    vectorField.MoveField(diffx, diffy);
+                }
+                yield return wait;
+            }
+        }
+
+#if VISUALIZATION
+        private void OnDrawGizmos()
+        {
+            if (vectorField != null)
+            {
+                for (int x = 0; x < Screen.width / fieldCellSize.x; x++)
+                {
+                    for (int y = 0; y < Screen.height / fieldCellSize.y; y++)
+                    {
+                        var v = vectorField.GetVector(x, y).vector;
+                        if (v.magnitude <= 0.001f)
+                            Gizmos.color = new Color(0, 0, 0, 0.1f);
+                        else
+                            Gizmos.color = new Color(Mathf.Abs(0.5f + v.normalized.x / 2), Mathf.Abs(0.5f + v.normalized.y / 2), 0, 0.1f);
+                        var pos = Camera.main.ScreenToWorldPoint(new Vector3(x * fieldCellSize.x, y * fieldCellSize.y, 0));
+                        Gizmos.DrawCube(pos, Vector3.one * 0.25f);
+                    }
+                }
+            }
+        }
+#endif
 
         private void Update()
         {

@@ -121,6 +121,92 @@ namespace PS.Shadow
             }
         }
 
+        public void MoveField(int horizonal, int vertical)
+        {
+            if (horizonal > 0)
+            {
+                int i = _xLength - 1;
+                while (i >= horizonal)
+                {
+                    for(int j = 0; j < _yLength; j++)
+                    {
+                        GetVector(i, j).vector = GetVector(i - horizonal, j).vector;
+                    }
+                    i--;
+                }
+                while(i >= 0)
+                {
+                    for (int j = 0; j < _yLength; j++)
+                    {
+                        GetVector(i, j).vector = Vector2.zero;
+                    }
+                    i--;
+                }
+            }
+            else if (horizonal < 0)
+            {
+                int i = 0;
+                while (i < _xLength + horizonal)
+                {
+                    for (int j = 0; j < _yLength; j++)
+                    {
+                        GetVector(i, j).vector = GetVector(i - horizonal, j).vector;
+                    }
+                    i++;
+                }
+                while (i < _xLength)
+                {
+                    for (int j = 0; j < _yLength; j++)
+                    {
+                        GetVector(i, j).vector = Vector2.zero;
+                    }
+                    i++;
+                }
+            }
+
+            if (vertical > 0)
+            {
+                int j = _yLength - 1;
+                while (j >= vertical)
+                {
+                    for (int i = 0; i < _xLength; i++)
+                    {
+                        GetVector(i, j).vector = GetVector(i, j - vertical).vector;
+                    }
+                    j--;
+                }
+                while (j >= 0)
+                {
+                    for (int i = 0; i < _xLength; i++)
+                    {
+                        GetVector(i, j).vector = Vector2.zero;
+                    }
+                    j--;
+                }
+            }
+            else if (vertical < 0)
+            {
+                int j = 0;
+                while (j < _yLength + vertical)
+                {
+                    for (int i = 0; i < _xLength; i++)
+                    {
+                        GetVector(i, j).vector = GetVector(i, j - vertical).vector;
+                    }
+                    j++;
+                }
+                while (j < _yLength)
+                {
+                    for (int i = 0; i < _xLength; i++)
+                    {
+                        GetVector(i, j).vector = Vector2.zero;
+                    }
+                    j++;
+                }
+            }
+
+        }
+
         public IEnumerator FieldRecoveryCoroutine()
         {
             bool loop = true;
