@@ -66,6 +66,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
         GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvnetCall;
         Unit.hitEvent += UnitHitEventCall;
+
+        //==================== 고재협이 편집함 ==================
+        GameManager.instance.shadow.RegistCollider(GetComponent<BoxCollider2D>());
+        //=======================================================
     }
 
     private class IdleState : CustomFSMStateBase
