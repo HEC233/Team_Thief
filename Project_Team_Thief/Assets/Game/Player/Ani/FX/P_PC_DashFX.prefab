@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8234273074698588115}
   - component: {fileID: 8256714765040702304}
   - component: {fileID: 8638165222524187448}
+  - component: {fileID: 3975153100891718325}
   m_Layer: 0
   m_Name: P_PC_DashFX
   m_TagString: Untagged
@@ -4812,3 +4813,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &3975153100891718325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5397316996065833135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystems:
+  - {fileID: 8256714765040702304}

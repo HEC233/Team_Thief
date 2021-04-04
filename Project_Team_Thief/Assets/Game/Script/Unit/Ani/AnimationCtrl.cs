@@ -9,7 +9,7 @@ public enum AniState
     RunningInertia,
     Jump,
     Fall,
-    Roll,
+    Dash,
     Wallslideing,
     Attack,
     Attack2,
@@ -20,7 +20,6 @@ public enum AniState
     DoubleJump,
     Skll1,
     Backstep,
-    Dash,
     Die,
     AttackReady,
 }
