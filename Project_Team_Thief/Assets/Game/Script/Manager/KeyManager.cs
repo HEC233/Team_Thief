@@ -70,8 +70,6 @@ public class KeyManager : MonoBehaviour
         {
             controlUnit.Transition(TransitionCondition.Idle);
         }
-        
-
     }
 
     public void SetControlUnit(IActor unit)

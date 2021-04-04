@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using LightWarrior;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -127,7 +128,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
-            //SystemMgr.Unit.MoveStop();
+            //SystemMgr.Unit.MoveEnd();
         }
 
         public override bool Transition(TransitionCondition condition)
@@ -144,16 +145,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 SystemMgr.Unit.Move(0);
                 return false;
             }
-            // else if (condition == TransitionCondition.Idle)
-            // {
-            //     if (SystemMgr.Unit.IsRunningInertia())
-            //     {
-            //         SystemMgr.Unit.MoveStop();
-            //         SystemMgr.Transition(TransitionCondition.RunningInertia);
-            //         return false;
-            //     }
-            //     SystemMgr.Unit.MoveStop();
-            // }
+            else if (condition == TransitionCondition.Idle)
+            {
+                SystemMgr.Transition(TransitionCondition.StopMove);
+                return false;
+            }
 
             if (condition == TransitionCondition.Wallslideing)
                 return false;
@@ -173,7 +169,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             if (SystemMgr.Unit.IsRunningInertia())
+            {
                 SystemMgr.Transition(TransitionCondition.RunningInertia);
+            }
             else
                 SystemMgr.Transition(TransitionCondition.Idle);
             
@@ -230,6 +228,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             if (condition == TransitionCondition.Wallslideing)
                 return false;
+            // if (condition == TransitionCondition.StopMove)
+            //     return false;
             
             return true;
         }
@@ -254,7 +254,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void Update()
         {
             SystemMgr.Unit.Progress();
-
 
             if (SystemMgr.Unit.CheckWallslideing())
                 SystemMgr.Transition(TransitionCondition.WallClimbing);
@@ -513,7 +512,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (SystemMgr.Unit.IsRollAble)
             {
-                SystemMgr.AnimationCtrl.PlayAni(AniState.Roll);
+                //SystemMgr.AnimationCtrl.PlayAni(AniState.Dash);
                 SystemMgr.Unit.SetRoll();
                 SystemMgr.StartCoroutine(RollCoroutine());
                 //SystemMgr.StartCoroutine(RollCoolTimeCoroutine());
@@ -573,7 +572,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (SystemMgr.Unit.isDashAble)
             {
-                SystemMgr.AnimationCtrl.PlayAni(AniState.Roll);
+                SystemMgr.AnimationCtrl.PlayAni(AniState.Dash);
+                SystemMgr._fxCtrl.PlayParticle(FxAniEnum.DashFx, SystemMgr.Unit.FacingDir);
                 SystemMgr.Unit.SetDash();
                 SystemMgr.StartCoroutine(DashCoroutine());
             }
@@ -820,7 +820,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             if (SystemMgr.AnimationCtrl.GetCurAniTime() >= 0.6f)
             {
-                if (condition == TransitionCondition.Roll)
+                if (condition == TransitionCondition.Dash)
                 {
                     return true;
                 }
@@ -1117,7 +1117,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Jump, new JumpState(this));
         AddState(TransitionCondition.DoubleJump, new DoubleJump(this));
         AddState(TransitionCondition.Falling, new FallingState(this));
-        AddState(TransitionCondition.Roll, new RollState(this));
+        //AddState(TransitionCondition.Roll, new RollState(this));
         AddState(TransitionCondition.WallClimbing, new WallClimbingState(this));
         AddState(TransitionCondition.Wallslideing, new WallslideingState(this));
         AddState(TransitionCondition.WallJump, new WallJumpState(this));

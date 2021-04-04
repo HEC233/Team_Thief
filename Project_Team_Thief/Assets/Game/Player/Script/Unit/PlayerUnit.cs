@@ -22,6 +22,8 @@ public class PlayerUnit : Unit
     private float _facingDir = 1;
     private bool _isFacingRight = true;
     
+    public float FacingDir => _facingDir;
+
     // Ground Check
     [SerializeField]
     private bool _isGround = true;
@@ -239,8 +241,15 @@ public class PlayerUnit : Unit
             _rigidbody2D.velocity = new Vector2(_moveStopSpeed * _facingDir, _rigidbody2D.velocity.y);
     }
 
+    public void MoveEnd()
+    {
+        _isTouchMaxSpeed = false;
+    }
+
     public bool IsRunningInertia()
     {
+        //return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 1.0f ? true : false;
+        
         if (_isTouchMaxSpeed == true)
         {
             _isTouchMaxSpeed = false;
@@ -248,7 +257,7 @@ public class PlayerUnit : Unit
         }
 
         return false;
-        //return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 0.2f ? true : false;
+        
     }
 
 
