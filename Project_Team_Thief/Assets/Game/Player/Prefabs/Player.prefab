@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae090e2704215449b193963baf2ecb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fxAnimator: {fileID: 0}
+  _fxAnimator: {fileID: 4427280222664978861}
   _effectSystem: {fileID: 0}
 --- !u!1 &1542053513146765891
 GameObject:
@@ -122,18 +122,14 @@ MonoBehaviour:
   _isAbleFlash: 0
   _isAbleHitStop: 0
   _isAbleBulltTime: 0
-  _isAbleCameraShake: 0
+  _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 0
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
-  _shakeTime: 0
   _flashTime: 0
   _criticalPercentage: 0
-  _camerShakeTime: 0
-  _cameraShakeAmplitudeGain: 0
-  _cameraShakeFrequencyGain: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -585,14 +581,9 @@ MonoBehaviour:
   _minSpeed: 0.8
   _maxSpeed: 6.5
   _moveStopSpeed: 1
-  _jumpScale: 2.3
-  _jumpPower: 11.5
+  _jumpPower: 15
   _addAllJumpPpower: 4
   _addJumpPower: 4.5
-  _rollGoalX: 3
-  _rollTime: 0.6
-  _rollCoolTime: 2
-  _rollPhysicMaterial: {fileID: 6200000, guid: 0e7642ea732b545419a6500214d5f143, type: 2}
   _dashTime: 0.6
   _dashGoalX: 3
   _dashCoolTime: 2
@@ -707,12 +698,8 @@ MonoBehaviour:
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
-  _shakeTime: 0
   _flashTime: 0
   _criticalPercentage: 0
-  _camerShakeTime: 0
-  _cameraShakeAmplitudeGain: 0
-  _cameraShakeFrequencyGain: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -853,18 +840,14 @@ MonoBehaviour:
   _isAbleFlash: 0
   _isAbleHitStop: 0
   _isAbleBulltTime: 0
-  _isAbleCameraShake: 0
+  _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 0
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
-  _shakeTime: 0
   _flashTime: 0
   _criticalPercentage: 0
-  _camerShakeTime: 0
-  _cameraShakeAmplitudeGain: 0
-  _cameraShakeFrequencyGain: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -887,7 +870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ImpulseDefinition:
     m_ImpulseChannel: 1
-    m_RawSignal: {fileID: 11400000, guid: 7eb6739696869c54f822c793aa14891c, type: 2}
+    m_RawSignal: {fileID: 11400000, guid: ab5e8c5544421b348bf91b448897405f, type: 2}
     m_AmplitudeGain: 1
     m_FrequencyGain: 1
     m_RepeatMode: 0
@@ -1026,12 +1009,8 @@ MonoBehaviour:
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
-  _shakeTime: 0
   _flashTime: 0
   _criticalPercentage: 0
-  _camerShakeTime: 0
-  _cameraShakeAmplitudeGain: 0
-  _cameraShakeFrequencyGain: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -1154,7 +1133,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5336181760457021665}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 817378417}
