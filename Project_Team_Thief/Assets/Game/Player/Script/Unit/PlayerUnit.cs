@@ -67,29 +67,27 @@ public class PlayerUnit : Unit
     [Header("Jump Variable")]
     [SerializeField]
     private float _jumpPower = 5.0f;
-    
     [SerializeField] 
     private float _addAllJumpPpower = 8.0f;
-    
     [SerializeField]
     private float _addJumpPower = 4f;
     
     // 구르기 관련 변수
-    [Header("Roll Variable")]
-    [SerializeField]
+    //[Header("Roll Variable")]
+    //[SerializeField]
     private float _rollGoalX = 10;
-    [SerializeField]
+    //[SerializeField]
     private float _rollTime = 0.0f;
 
     public float RollTime => _rollTime;
     
     private float _rollSpeed = 0.5f;
-    [SerializeField]
+    //[SerializeField]
     private float _rollCoolTime;
     private bool _isRollAble = true;
     public bool IsRollAble => _isRollAble;
     
-    [SerializeField] 
+    //[SerializeField] 
     private PhysicsMaterial2D _rollPhysicMaterial;
     
     [Header("Dash Variable")]

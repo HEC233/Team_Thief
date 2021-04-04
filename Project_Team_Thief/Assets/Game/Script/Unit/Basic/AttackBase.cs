@@ -34,17 +34,15 @@ public abstract class AttackBase : MonoBehaviour
     [SerializeField]
     protected float _bulletTimeScale;
     [SerializeField]
-    protected float _shakeTime;
-    [SerializeField]
     protected float _flashTime;
     [SerializeField]
     protected float _criticalPercentage;
-    [SerializeField]
-    protected float _camerShakeTime;
-    [SerializeField]
-    protected float _cameraShakeAmplitudeGain;
-    [SerializeField] 
-    protected float _cameraShakeFrequencyGain;
+    // [SerializeField]
+    // protected float _camerShakeTime;
+    // [SerializeField]
+    // protected float _cameraShakeAmplitudeGain;
+    // [SerializeField] 
+    // protected float _cameraShakeFrequencyGain;
     [SerializeField]
     protected LayerMask _hitLayerMask;
     // 재생 될 SFX에 대한 Enum 값을 선택하도록 하는게 좋을 듯.
