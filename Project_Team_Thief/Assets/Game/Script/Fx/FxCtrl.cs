@@ -24,6 +24,6 @@ public class FxCtrl : MonoBehaviour
 
     public void PlayParticle(FxAniEnum fxAniEnum)
     {
-        _effectSystem.Play(fxAniEnum.ToString(), transform.position);
+        GameManager.instance.FX.Play(fxAniEnum.ToString(), transform.position);
     }
 }

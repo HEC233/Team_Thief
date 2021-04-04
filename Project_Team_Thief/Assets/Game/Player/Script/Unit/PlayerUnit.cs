@@ -64,10 +64,7 @@ public class PlayerUnit : Unit
     private float _maxJumpTime = 0.1f;
     public float MaxJumpTime => _maxJumpTime;
 
-    [Header("Jump Variable")] 
-    [SerializeField]
-    private float _jumpScale = 1.0f;
-    
+    [Header("Jump Variable")]
     [SerializeField]
     private float _jumpPower = 5.0f;
     
