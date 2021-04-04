@@ -8,7 +8,7 @@ using PS.Util.Tile;
 
 public class LightWarriorAI : MonoBehaviour
 {
-    public LayerMask groundLayer;
+    public LayerMask unMovableLayer;
     public bool isLookRight;
 
     public Unit target;
@@ -127,16 +127,16 @@ public class LightWarriorAI : MonoBehaviour
         if (isGoingRight)
         {
             result = (
-                !nowTileCoord.CheckObjectExist(groundLayer, 1, 1) &
-                !nowTileCoord.CheckObjectExist(groundLayer, 1, 0) &
-                nowTileCoord.CheckObjectExist(groundLayer, 1, -1));
+                !nowTileCoord.CheckObjectExist(unMovableLayer, 1, 1) &
+                !nowTileCoord.CheckObjectExist(unMovableLayer, 1, 0) &
+                nowTileCoord.CheckObjectExist(unMovableLayer, 1, -1));
         }
         else
         {
             result = (
-                !nowTileCoord.CheckObjectExist(groundLayer, -1, 1) &
-                !nowTileCoord.CheckObjectExist(groundLayer, -1, 0) &
-                nowTileCoord.CheckObjectExist(groundLayer, -1, -1));
+                !nowTileCoord.CheckObjectExist(unMovableLayer, -1, 1) &
+                !nowTileCoord.CheckObjectExist(unMovableLayer, -1, 0) &
+                nowTileCoord.CheckObjectExist(unMovableLayer, -1, -1));
         }
 
         Debug.Log("이동 가능 한지의 여부 " + result);
