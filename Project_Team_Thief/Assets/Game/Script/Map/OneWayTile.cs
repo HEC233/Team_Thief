@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 public class OneWayTile : MonoBehaviour
 {
     private PlatformEffector2D platformEfc = null;
+    public LayerMask playerLayer;
 
     private void Awake()
     {
@@ -35,9 +36,13 @@ public class OneWayTile : MonoBehaviour
         GameObject go = Instantiate(this.gameObject, transform);
         PlatformEffector2D childPlatformEfc = go.GetComponent<PlatformEffector2D>();
 
+        //go.GetComponent<TilemapRenderer>().enabled = false;
+        //platformEfc.colliderMask = (int)0x00000100;
+        //childPlatformEfc.colliderMask = (int)0x7FFFFEFF;
+        //childPlatformEfc.surfaceArc = 360;
         go.GetComponent<TilemapRenderer>().enabled = false;
-        platformEfc.colliderMask = (int)0x00000100;
-        childPlatformEfc.colliderMask = (int)0x7FFFFEFF;
+        platformEfc.colliderMask = playerLayer;
+        childPlatformEfc.colliderMask = (int)0x7FFFFFFF - playerLayer;
         childPlatformEfc.surfaceArc = 360;
         FlipDirection(true);
     }
