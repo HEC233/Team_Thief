@@ -11,6 +11,7 @@ public class LightWarriorUnit : Unit
     [SerializeField]
     private bool isOnGround = false;
     private bool skipGroundCheck = false;
+    private float skipGroundCheckTime = 0;
 
     public float accelation = 100;
     private bool _isVerticalMoving = false;
@@ -34,6 +35,11 @@ public class LightWarriorUnit : Unit
     ContactFilter2D contactFilter = new ContactFilter2D();
     List<Collider2D> result = new List<Collider2D>();
     private bool isLookRight = false;
+
+    public float AttackEnterDelay { get { return _unitData.enterDelay; }}
+    public float AttackEndDelay { get { return _unitData.endDelay; }}
+
+
     private bool IsHorizontalMoving
     {
         get { return !Mathf.Approximately(GetSpeed().x, 0.0f); }
@@ -95,10 +101,18 @@ public class LightWarriorUnit : Unit
         _rigid.AddForce(_nextAddingForce * _customTimeScale);
         _nextAddingForce = Vector2.zero;
 
-        if (!skipGroundCheck)
+        //if (!skipGroundCheck)
+        //    isOnGround = Physics2D.Raycast(footPosition.position, Vector2.down, Mathf.Epsilon, _groundLayer);
+        //else
+        //    skipGroundCheck = false;
+        if (skipGroundCheckTime <= 0.0f)
+        {
             isOnGround = Physics2D.Raycast(footPosition.position, Vector2.down, Mathf.Epsilon, _groundLayer);
+        }
         else
-            skipGroundCheck = false;
+        {
+            skipGroundCheckTime -= GameManager.instance.timeMng.DeltaTime;
+        }
 
         if (isOnGround)
         {
@@ -231,8 +245,9 @@ public class LightWarriorUnit : Unit
         // 대미지 상정방식 기획서에 맞게 변경 필요
         _hp -= inputDamage.power * _unitData.reduceHit;  
         _rigid.AddForce(inputDamage.knockBack, ForceMode2D.Impulse);
-        //isOnGround = false;
-        //skipGroundCheck = true;
+        isOnGround = false;
+        skipGroundCheck = true;
+        skipGroundCheckTime = 0.1f;
 
         if (GameManager.instance.FX)
         {

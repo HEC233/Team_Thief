@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_SH_PlayerGlow
-  m_Shader: {fileID: -6465566751694194690, guid: cb4bc7eb7fcbbe44b82742c2059b30f7,
+  m_Name: MT_ShadowParticle
+  m_Shader: {fileID: -6465566751694194690, guid: 89ff13e1a2ee7c2479bc1a783367beca,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Emission:
+    - Texture2D_AD23BCA4:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -28,6 +28,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    m_Floats:
+    - Vector1_149E183D: 1
     m_Colors:
-    - Color_EF346309: {r: 0, g: 1.2418898, b: 7.9066987, a: 0}
+    - Color_83AF726A: {r: 1, g: 1, b: 1, a: 1}
+    - Color_CFBECB58: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_932492FA: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_FFE69AFC: {r: 1, g: 1, b: 0, a: 0}
