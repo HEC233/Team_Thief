@@ -24,4 +24,6 @@ public struct Damage
     public float power;
     public Vector2 knockBack;
     public AbnormalState abnormal;
+    public Vector3 hitPosition;
+    public int additionalInfo;
 }

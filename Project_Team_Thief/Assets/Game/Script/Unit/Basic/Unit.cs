@@ -93,6 +93,13 @@ public class Unit : MonoBehaviour
 
         return this;
     }
+    
+    public Unit SetHitPosition(Vector3 position)
+    {
+        _damage.hitPosition = position;
+
+        return this;
+    }
 
     public string GetUnitName()
     {

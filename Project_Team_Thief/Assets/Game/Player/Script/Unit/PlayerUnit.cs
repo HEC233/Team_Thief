@@ -430,6 +430,9 @@ public class PlayerUnit : Unit
     {
         _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage);
         _basicAttackDamage.knockBack = new Vector2(_basicAttackKnockBackArr[attackIndex].x * _facingDir, _basicAttackKnockBackArr[attackIndex].y);
+        //============== 고재협이 편집함 ======================
+        _basicAttackDamage.additionalInfo = attackIndex;
+        //=====================================================
     }
     
     public void SetBasicAttack()

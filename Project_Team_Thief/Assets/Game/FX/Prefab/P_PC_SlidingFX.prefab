@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6915186309504633234}
   - component: {fileID: 2749858315112568443}
   - component: {fileID: 1481420667904425125}
+  - component: {fileID: 1359036927804796070}
   m_Layer: 0
   m_Name: P_PC_SlidingFX
   m_TagString: Untagged
@@ -4754,3 +4755,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1359036927804796070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399070007637419649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystems:
+  - {fileID: 2749858315112568443}

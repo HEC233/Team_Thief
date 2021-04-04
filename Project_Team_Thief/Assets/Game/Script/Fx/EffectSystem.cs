@@ -27,10 +27,32 @@ namespace PS.FX
                 activeEffectPool.Add(fx.name, new List<GameObject>());
             }
 
+            var timeMng = GameManager.instance.timeMng;
+            if (timeMng)
+            {
+                timeMng.startBulletTimeEvent += TimeScaleChangeCallback;
+                timeMng.endBulletTimeEvent += TimeScaleChangeCallback;
+                timeMng.startHitstopEvent += TimeScaleChangeCallback;
+                timeMng.endHitstopEvent += TimeScaleChangeCallback;
+            }
+
             StartCoroutine(EndEffectChecker());
         }
 
-        public ParticleSystem Play(string effectName, Vector3 position, Quaternion quaternion)
+        private void TimeScaleChangeCallback(float customTimeScale)
+        {
+            foreach (var e in effects)
+            {
+                var checkPool = activeEffectPool[e.name];
+                foreach(var efx in checkPool)
+                {
+                    efx.GetComponent<EffectController>().SetSpeed(customTimeScale);
+                }
+            }
+        }
+
+
+        public EffectController Play(string effectName, Vector3 position, Quaternion quaternion)
         {
             if(!effectPool.ContainsKey(effectName))
             {
@@ -60,7 +82,7 @@ namespace PS.FX
                 }
             }
 
-            var particle = effect.GetComponent<ParticleSystem>();
+            var particle = effect.GetComponent<EffectController>();
             if (particle)
             {
                 effect.SetActive(true);
@@ -76,7 +98,7 @@ namespace PS.FX
             return null;
         }
 
-        public ParticleSystem Play(string effectName, Vector3 position)
+        public EffectController Play(string effectName, Vector3 position)
         {
             return Play(effectName, position, Quaternion.identity);
         }
@@ -91,7 +113,7 @@ namespace PS.FX
                     int iter = 0;
                     while(iter < checkPool.Count)
                     {
-                        if(checkPool[iter].GetComponent<ParticleSystem>().isStopped)
+                        if(checkPool[iter].GetComponent<EffectController>().isStopped)
                         {
                             checkPool[iter].SetActive(false);
                             effectPool[e.name].Add(checkPool[iter]);
