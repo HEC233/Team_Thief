@@ -13,7 +13,7 @@ public class KeyManager : MonoBehaviour
     {
         
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -30,10 +30,11 @@ public class KeyManager : MonoBehaviour
                     pressedInput.Add(code);
                 }
             }
-
-            if (Input.GetKey(KeyCode.C))
-                controlUnit.Transition(TransitionCondition.Jump);
             
+            if (Input.GetKey(KeyCode.C))
+            {
+                controlUnit.Transition(TransitionCondition.Jump);
+            }
             if (Input.GetKey(KeyCode.LeftArrow))
                 controlUnit.Transition(TransitionCondition.LeftMove);
 
@@ -49,27 +50,27 @@ public class KeyManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X))
                 controlUnit.Transition(TransitionCondition.Attack);
 
-            List<KeyCode> releasedInput = new List<KeyCode>();
+             List<KeyCode> releasedInput = new List<KeyCode>();
+            
+             foreach (KeyCode code in m_activeInputs)
+             {
+                 releasedInput.Add(code);
+            
+                 if (!pressedInput.Contains(code))
+                 {
+                     releasedInput.Remove(code);
+                     
+                     if (code == KeyCode.LeftArrow || code == KeyCode.RightArrow)
+                         controlUnit.Transition(TransitionCondition.Idle);
+                 }
+             }
 
-            foreach (KeyCode code in m_activeInputs)
-            {
-                releasedInput.Add(code);
-
-                if (!pressedInput.Contains(code))
-                {
-                    releasedInput.Remove(code);
-                    
-                    if (code == KeyCode.LeftArrow || code == KeyCode.RightArrow)
-                        controlUnit.Transition(TransitionCondition.StopMove);
-                }
-            }
-
-            m_activeInputs = releasedInput;
+              m_activeInputs = releasedInput;
         }
-        else
-        {
-            controlUnit.Transition(TransitionCondition.Idle);
-        }
+         else
+         {
+             controlUnit.Transition(TransitionCondition.Idle);
+         }
     }
 
     public void SetControlUnit(IActor unit)

@@ -37,6 +37,11 @@ public class Unit : MonoBehaviour
 
     }
 
+    public virtual void Move()
+    {
+        
+    }
+
     // 유닛을 position까지 이동시킵니다.
     public virtual void MoveTo(Vector3 position)
     {
@@ -47,6 +52,11 @@ public class Unit : MonoBehaviour
     public virtual void Jump(float jumpForce)
     {
 
+    }
+
+    public virtual void Jump()
+    {
+        
     }
 
     // 유닛의 공격을 처리합니다.

@@ -90,7 +90,7 @@ public class PlayerUnit : Unit
     public bool IsRollAble => _isRollAble;
     
     //[SerializeField] 
-    private PhysicsMaterial2D _rollPhysicMaterial;
+    private PhysicsMaterial2D _dashPhysicMaterial;
     
     [Header("Dash Variable")]
     [SerializeField]
@@ -120,6 +120,8 @@ public class PlayerUnit : Unit
     private float _wallJumpPowerY;
     [SerializeField]
     private float _wallSlideingUpPower = 0;
+    [SerializeField] 
+    private float _wallSlideingGravityScale = 1;
     
     // BasicAttack Variable
     [Header("BasicAttack Variable")] 
@@ -138,8 +140,7 @@ public class PlayerUnit : Unit
     private float _basicAttackMinDamage;
     [SerializeField]
     private float _basicAtaackMaxDamage;
-    // [SerializeField] 
-    // private Vector2 _basicAttackKnockBack;
+
     private Damage _basicAttackDamage;
     [SerializeField]
     private BasicAttackCtrl[] _basicAttackCtrlArr;
@@ -207,11 +208,6 @@ public class PlayerUnit : Unit
     public void Progress()
     {
         CheckGround();
-
-        // if (Input.GetKeyDown(KeyCode.F))
-        // {
-        //     _rigidbody2D.MovePosition(new Vector2(0,0));
-        // }
     }
     
     private void OnDrawGizmos()
@@ -220,9 +216,8 @@ public class PlayerUnit : Unit
             Gizmos.DrawWireCube(groundCheck.position, groundCheckBoxSize);
     }
 
-    public override void Move(float delta)
+    public override void Move()
     {
-
         _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0) * _timeScale, ForceMode2D.Impulse);
 
         if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
@@ -261,7 +256,7 @@ public class PlayerUnit : Unit
     }
 
 
-    public override void Jump(float jumpForce)
+    public override void Jump()
     {
         _coyoteTime = 0.0f;
         _jumpCount--;
@@ -269,8 +264,6 @@ public class PlayerUnit : Unit
 
         var power = new Vector3(0, _jumpPower * _timeScale, 0.0f);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
-
-        //_rigidbody2D.gravityScale = _jumpScale * _jumpScale;
     }
 
     public void DoubleJump()
@@ -298,9 +291,7 @@ public class PlayerUnit : Unit
             _coyoteTime = -1;
             return true;
         }
-        // else if (_jumpCount >= 1)
-        //     return true;
-
+        
         return false;
     }
 
@@ -312,7 +303,7 @@ public class PlayerUnit : Unit
 
     public void SetRoll()
     {
-        _rigidbody2D.sharedMaterial = _rollPhysicMaterial;
+        _rigidbody2D.sharedMaterial = _dashPhysicMaterial;
         _rollSpeed = (1 / _rollTime) * _rollGoalX;
     }
 
@@ -359,17 +350,14 @@ public class PlayerUnit : Unit
     {
         if (IsGround)
             _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-        // else
-        //     _rigidbody2D.velocity = new Vector2(0.0f, _rigidbody2D.velocity.y);
     }
     
     
     public void SetDash()
     {
-        _rigidbody2D.sharedMaterial = _rollPhysicMaterial;
+        _rigidbody2D.sharedMaterial = _dashPhysicMaterial;
         _dashSpeed = (1 / _dashTime) * _dashGoalX;
         _rigidbody2D.gravityScale = 0;
-        //_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
 
     }
 
@@ -388,14 +376,15 @@ public class PlayerUnit : Unit
 
     public void EndDash()
     {
-        //_rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
         _rigidbody2D.gravityScale = _originalGravityScale;
         _rigidbody2D.sharedMaterial = null;
+        
+        if (_isDashAble == true)
+            StartCoroutine(DashCoolTimeCoroutine());
     }
 
     public void WallSlideing()
     {
-        //_rigidbody2D.AddForce(new Vector2(0, _wallSlideingUpPower), ForceMode2D.Impulse);
         _rigidbody2D.gravityScale -= _wallSlideingUpPower;
 
         if (_rigidbody2D.gravityScale <= 0)
@@ -407,8 +396,8 @@ public class PlayerUnit : Unit
 
     public void WallSlideStateStart()
     {
-        //Debug.Log("WallStart");
         _SlideingFx.SetActive(true);    // FxCtrl로 이전할 예정.
+        _rigidbody2D.gravityScale = _wallSlideingGravityScale;
     }
     
     public void WallJump()
@@ -424,6 +413,7 @@ public class PlayerUnit : Unit
     public void WallEnd()
     {
         _SlideingFx.SetActive(false);
+        _rigidbody2D.gravityScale = _originalGravityScale;
     }
     
 
@@ -431,7 +421,7 @@ public class PlayerUnit : Unit
     {
         if (GameManager.instance.timeMng.IsBulletTime == false)
         {
-            _rigidbody2D.gravityScale = _originalGravityScale;
+            _rigidbody2D.gravityScale = _wallSlideingGravityScale;
         }
     }
 
@@ -446,7 +436,7 @@ public class PlayerUnit : Unit
     
     public void SetBasicAttack()
     {
-        _rigidbody2D.sharedMaterial = _rollPhysicMaterial;
+        _rigidbody2D.sharedMaterial = _dashPhysicMaterial;
         _rigidbody2D.velocity = Vector2.zero;
     }
 
@@ -454,7 +444,6 @@ public class PlayerUnit : Unit
     {
         SetBasicDamage(attackIndex);
         _basicAttackCtrlArr[attackIndex].SetDamage(_basicAttackDamage);
-        //_basicAttackCtrlArr[attackIndex].gameObject.SetActive(true);
         _basicAttackCtrlArr[attackIndex].Progress();
     }
 
@@ -515,7 +504,7 @@ public class PlayerUnit : Unit
     public void Hit()
     {
         _curHp -= _hitDamage.power * _decreaseHp;
-        StartCoroutine(invincibilityTimeCoroutine());
+        StartCoroutine(InvincibilityTimeCoroutine());
         
         if(_curHp < 0)
             Debug.LogError("플레이어 사망");
@@ -558,8 +547,6 @@ public class PlayerUnit : Unit
         _timeScale = timeScale;
         _isHitstop = true;
         _hitstopPrevVelocity = _rigidbody2D.velocity;
-        //_rigidbody2D.velocity = _hitstopPrevVelocity;
-        //StartCoroutine(HitstopMoveCoroutine());
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
@@ -658,7 +645,7 @@ public class PlayerUnit : Unit
         _isDashAble = true;
     }
     
-    IEnumerator invincibilityTimeCoroutine()
+    IEnumerator InvincibilityTimeCoroutine()
     {
         _isInvincibility = true;
         float _totalTick = 0.0f;

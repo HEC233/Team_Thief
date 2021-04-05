@@ -28,7 +28,7 @@ public class FxCtrl : MonoBehaviour
         Quaternion _quaternion = Quaternion.identity;
         if (dir == -1)
             _quaternion = Quaternion.Euler(0, -180, 0);
-        Debug.Log(dir);
+        
         GameManager.instance.FX.Play(fxAniEnum.ToString(), transform.position, _quaternion);
     }
 }
