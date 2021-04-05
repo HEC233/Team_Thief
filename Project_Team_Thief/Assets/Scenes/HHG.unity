@@ -29180,18 +29180,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1343864178 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 880093929, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1933568657}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1380999396
 GameObject:
   m_ObjectHideFlags: 0
@@ -30235,7 +30223,7 @@ PrefabInstance:
     - target: {fileID: 1542053513146765892, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: _hitStopTime
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1542053513146765892, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
@@ -30246,7 +30234,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _cinemachineImpulseSource
       value: 
-      objectReference: {fileID: 1343864178}
+      objectReference: {fileID: 0}
     - target: {fileID: 1542053513146765893, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: m_Size.x
@@ -30319,6 +30307,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1542053513848848401, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
+      propertyPath: _hitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542053513848848401, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
       propertyPath: _dashTime
       value: 0.2
       objectReference: {fileID: 0}
@@ -30385,7 +30378,7 @@ PrefabInstance:
     - target: {fileID: 1542053513848848401, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: _basicAttackKnockBackArr.Array.data[1].y
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1542053513848848401, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
@@ -30397,11 +30390,6 @@ PrefabInstance:
       propertyPath: _basicAttackKnockBackArr.Array.data[2].y
       value: -15
       objectReference: {fileID: 0}
-    - target: {fileID: 1542053514262991507, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
-        type: 3}
-      propertyPath: _cinemachineImpulseSource
-      value: 
-      objectReference: {fileID: 162521396}
     - target: {fileID: 1542053514773876514, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: m_Size.x
@@ -30415,23 +30403,13 @@ PrefabInstance:
     - target: {fileID: 1542053514773876517, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: _hitStopTime
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1542053514773876517, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: _isAbleFlash
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1542053514773876517, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
-        type: 3}
-      propertyPath: _isAbleHitStop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1542053514773876517, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
-        type: 3}
-      propertyPath: _cinemachineImpulseSource
-      value: 
-      objectReference: {fileID: 395305598}
     - target: {fileID: 1542053514905396920, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: m_Size.x
@@ -30442,6 +30420,16 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 2.7440166
       objectReference: {fileID: 0}
+    - target: {fileID: 1542053514262991507, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
+      propertyPath: _cinemachineImpulseSource
+      value: 
+      objectReference: {fileID: 162521396}
+    - target: {fileID: 1542053514773876517, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
+      propertyPath: _cinemachineImpulseSource
+      value: 
+      objectReference: {fileID: 395305598}
     - target: {fileID: 1542053514905396923, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: alwaysEnter
@@ -30450,7 +30438,7 @@ PrefabInstance:
     - target: {fileID: 1542053514905396923, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: _hitStopTime
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1542053514905396923, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
