@@ -266,7 +266,7 @@ namespace LightWarrior
             //timeCheck += GameManager.instance.timeMng.customTimeWhere???
             timeCheck -= GameManager.instance.timeMng.DeltaTime;
 
-            if(timeCheck < 0)
+            if(timeCheck < 0 && actor.unit.IsOnGround)
             {
                 actor.ChangeState(actor.idle);
             }

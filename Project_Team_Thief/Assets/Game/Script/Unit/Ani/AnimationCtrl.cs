@@ -28,7 +28,7 @@ public class AnimationCtrl : MonoBehaviour
 {
     [SerializeField]
     private Animator _animator = null;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     //public Animator Animator => _animator;
 
@@ -44,12 +44,12 @@ public class AnimationCtrl : MonoBehaviour
 
     public void Flip()
     {
-        spriteRenderer.flipX = !spriteRenderer.flipX;
+        _spriteRenderer.flipX = !_spriteRenderer.flipX;
     }
 
     public void SetFlip(bool value)
     {
-        spriteRenderer.flipX = value;
+        _spriteRenderer.flipX = value;
     }
 
     public void SetSpeed(float speed)
@@ -59,5 +59,10 @@ public class AnimationCtrl : MonoBehaviour
     public void SetAnimationTimeSclae(float timeScale)
     {
         _animator.speed = timeScale;
+    }
+
+    public void SetColor(Color color)
+    {
+        _spriteRenderer.color = color;
     }
 }

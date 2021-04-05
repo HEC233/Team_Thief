@@ -93,8 +93,24 @@ public class TimeManager : MonoBehaviour
         endBulletTimeEvent?.Invoke(_timeScale);
     }
 
+    //public delegate bool ReadyCheckFunc();
+    //public List<ReadyCheckFunc> hitStopReadyCheckList = new List<ReadyCheckFunc>();
+
     IEnumerator HitStopTimerCoroutine(float time)
     {
+        //bool isReady = false;
+        //while(!isReady)
+        //{
+        //    isReady = true;
+        //    foreach(var func in hitStopReadyCheckList)
+        //    {
+        //        if (!func())
+        //            isReady = false;
+        //    }
+        //    yield return null;
+        //}
+        //hitStopReadyCheckList.Clear();
+
         yield return null;  // 피격 FX 1프레임 출력을 위한 대기
         startHitstopEvent?.Invoke(_timeScale);
 
