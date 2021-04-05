@@ -39,6 +39,7 @@ public class TimeManager : MonoBehaviour
     {
         _isBulletTime = true;
         _timeScale = timeScale;
+        startBulletTimeEvent?.Invoke(_timeScale);
         StartCoroutine(BulletTimeTimerCoroutine(time));
     }
 
@@ -60,6 +61,7 @@ public class TimeManager : MonoBehaviour
 
         _isHitStop = true;
         _timeScale = 0;
+        startHitstopEvent?.Invoke(_timeScale);
         StartCoroutine(HitStopTimerCoroutine(time));
     }
 
@@ -71,10 +73,6 @@ public class TimeManager : MonoBehaviour
     // 코루틴을 나눈 것 또한 독자적인 시간 카운팅이 필요할 가능성이 높아 보이기 때문.
     IEnumerator BulletTimeTimerCoroutine(float time)
     {
-        yield return null; // 피격 FX 1프레임 출력을 위한 대기
-        
-        startBulletTimeEvent?.Invoke(_timeScale);
-
         float tick = 0.0f;
 
         while(tick <= time)
@@ -95,9 +93,6 @@ public class TimeManager : MonoBehaviour
 
     IEnumerator HitStopTimerCoroutine(float time)
     {
-        yield return null;  // 피격 FX 1프레임 출력을 위한 대기
-        startHitstopEvent?.Invoke(_timeScale);
-
         float tick = 0.0f;
         float prevTimeScale = _timeScale;
         while (tick <= time)
