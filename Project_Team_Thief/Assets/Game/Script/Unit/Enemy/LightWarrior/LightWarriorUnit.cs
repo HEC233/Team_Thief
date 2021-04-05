@@ -12,6 +12,7 @@ public class LightWarriorUnit : Unit
     private bool isOnGround = false;
     private bool skipGroundCheck = false;
     private float skipGroundCheckTime = 0;
+    public bool IsOnGround { get { return isOnGround; } }
 
     public float accelation = 100;
     private bool _isVerticalMoving = false;
@@ -264,7 +265,8 @@ public class LightWarriorUnit : Unit
                     fxName = "Hit3";
                     break;
             }
-            GameManager.instance.FX.Play(fxName, inputDamage.hitPosition);
+            var effect = GameManager.instance?.FX.Play(fxName, inputDamage.hitPosition);
+            //GameManager.instance?.timeMng.hitStopReadyCheckList.Add(effect.IsPlaying);
         }
 
         if(GameManager.instance.shadow)

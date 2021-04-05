@@ -67,8 +67,8 @@ namespace PS.FX
                 if(!pool[i].activeSelf)
                 {
                     effect = pool[i];
+                    pool.Remove(effect);
                 }
-                pool.Remove(effect);
             }
             if(effect == null)
             {
@@ -92,11 +92,8 @@ namespace PS.FX
                 particle.Play();
 
                 activeEffectPool[effectName].Add(effect);
-
-                return particle;
             }
-
-            return null;
+            return particle;
         }
 
         public EffectController Play(string effectName, Vector3 position)
@@ -116,6 +113,7 @@ namespace PS.FX
                     {
                         if(checkPool[iter].GetComponent<EffectController>().isStopped)
                         {
+                            checkPool[iter].GetComponent<EffectController>().SetSpeed(1);
                             checkPool[iter].SetActive(false);
                             effectPool[e.name].Add(checkPool[iter]);
                             checkPool.RemoveAt(iter);
