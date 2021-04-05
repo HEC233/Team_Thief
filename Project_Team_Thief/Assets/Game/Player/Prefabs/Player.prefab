@@ -93,7 +93,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.96260405, y: 0.43065786}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -104,7 +104,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.42, y: 1.51}
+  m_Size: {x: 4.2754292, y: 2.371316}
   m_EdgeRadius: 0
 --- !u!114 &1542053513146765892
 MonoBehaviour:
@@ -120,12 +120,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAbleCritical: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 0
+  _isAbleHitStop: 1
   _isAbleBulltTime: 0
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 0
-  _hitStopTime: 0
+  _hitStopTime: 0.094
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   _fxGO: {fileID: 0}
   _flashGO: {fileID: 0}
   _basicAttackCollider2D: {fileID: 1542053513146765893}
-  _cinemachineImpulseSource: {fileID: 0}
+  _cinemachineImpulseSource: {fileID: 880093929}
   alwaysEnter: 0
 --- !u!114 &880093929
 MonoBehaviour:
@@ -579,30 +579,30 @@ MonoBehaviour:
   _curHp: 0
   _decreaseHp: 0.2
   _minSpeed: 0.8
-  _maxSpeed: 6.5
+  _maxSpeed: 7.5
   _moveStopSpeed: 1
   _jumpPower: 15
-  _addAllJumpPpower: 4
-  _addJumpPower: 4.5
-  _dashTime: 0.6
-  _dashGoalX: 3
-  _dashCoolTime: 2
+  _addAllJumpPpower: 2
+  _addJumpPower: 3.5
+  _dashTime: 0.2
+  _dashGoalX: 5
+  _dashCoolTime: 0.5
   _handTr: {fileID: 1542053513159863988}
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 4096
   _wallJumpPowerX: 15
   _wallJumpPowerY: 15
-  _wallSlideingUpPower: 0.6
+  _wallSlideingUpPower: 0.5
   _basicAttackTime: 0.5
   _basicAttackMoveTimeArr:
   - 0
-  - 0.1
-  - 0.1
+  - 0.06
+  - 0.03
   _basicAttackMoveGoalXArr:
   - 0
-  - 0.2
   - 0.5
+  - 0.15
   _basicAttackMinDamage: 10
   _basicAtaackMaxDamage: 20
   _basicAttackCtrlArr:
@@ -610,13 +610,13 @@ MonoBehaviour:
   - {fileID: 1542053514773876517}
   - {fileID: 1542053513146765892}
   _basicAttackKnockBackArr:
-  - {x: 1, y: 1}
-  - {x: 2, y: 2}
-  - {x: 3, y: 3}
+  - {x: 7, y: 0}
+  - {x: 0, y: 5}
+  - {x: 0, y: -15}
   _basicJumpAttackCtrl: {fileID: 1542053514262991507}
   _hitInvincibilityTime: 1
   _hitInvincibilityTwinkleTime: 0.5
-  _hitTime: 2
+  _hitTime: 0.5
   _SlideingFx: {fileID: 1220389250567162997}
 --- !u!1 &1542053514262991534
 GameObject:
@@ -629,6 +629,7 @@ GameObject:
   - component: {fileID: 1542053514262991505}
   - component: {fileID: 1542053514262991504}
   - component: {fileID: 1542053514262991507}
+  - component: {fileID: 162521396}
   m_Layer: 13
   m_Name: JumpAttack
   m_TagString: Player
@@ -663,7 +664,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.11051166, y: 0.21452188}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -674,7 +675,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.42, y: 1.51}
+  m_Size: {x: 3.0451725, y: 2.433097}
   m_EdgeRadius: 0
 --- !u!114 &1542053514262991507
 MonoBehaviour:
@@ -706,8 +707,50 @@ MonoBehaviour:
   _fxGO: {fileID: 0}
   _flashGO: {fileID: 0}
   _basicAttackCollider2D: {fileID: 1542053514262991504}
-  _cinemachineImpulseSource: {fileID: 0}
+  _cinemachineImpulseSource: {fileID: 162521396}
   alwaysEnter: 0
+--- !u!114 &162521396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542053514262991534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 11400000, guid: 7eb6739696869c54f822c793aa14891c, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &1542053514303975230
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,7 +854,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.4068923, y: 0.6467786}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -822,7 +865,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.42, y: 1.51}
+  m_Size: {x: 3.2387643, y: 2.8035574}
   m_EdgeRadius: 0
 --- !u!114 &1542053514773876517
 MonoBehaviour:
@@ -843,7 +886,7 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 0
-  _hitStopTime: 0
+  _hitStopTime: 0.094
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -854,7 +897,7 @@ MonoBehaviour:
   _fxGO: {fileID: 0}
   _flashGO: {fileID: 0}
   _basicAttackCollider2D: {fileID: 1542053514773876514}
-  _cinemachineImpulseSource: {fileID: 0}
+  _cinemachineImpulseSource: {fileID: 118430823}
   alwaysEnter: 0
 --- !u!114 &118430823
 MonoBehaviour:
@@ -974,7 +1017,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.067812204, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -985,7 +1028,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.42, y: 1.51}
+  m_Size: {x: 2.4837713, y: 1.51}
   m_EdgeRadius: 0
 --- !u!114 &1542053514905396923
 MonoBehaviour:
@@ -1001,12 +1044,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAbleCritical: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 0
+  _isAbleHitStop: 1
   _isAbleBulltTime: 0
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 0
-  _hitStopTime: 0
+  _hitStopTime: 0.094
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -1018,7 +1061,7 @@ MonoBehaviour:
   _flashGO: {fileID: 0}
   _basicAttackCollider2D: {fileID: 1542053514905396920}
   _cinemachineImpulseSource: {fileID: 1849541954}
-  alwaysEnter: 1
+  alwaysEnter: 0
 --- !u!114 &1849541954
 MonoBehaviour:
   m_ObjectHideFlags: 0
