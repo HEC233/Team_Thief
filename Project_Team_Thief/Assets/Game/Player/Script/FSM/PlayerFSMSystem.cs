@@ -729,7 +729,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private AniState[] _basicAttackAniArr =
             new AniState[] {AniState.Attack, AniState.Attack2, AniState.Attack3};
 
-        private AniState[] _basicAttackAniArr2 = new AniState[] {};
+        private FxAniEnum[] _basicAttackFxAniArr = new FxAniEnum[]
+            {FxAniEnum.BasicAttack, FxAniEnum.BasicAttack2, FxAniEnum.BasicAttack3};
+        
         
         public BasicAttackState(PlayerFSMSystem system) : base(system)
         {
@@ -738,6 +740,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
+            SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
+            
             _attackBeInputTime = Time.time;
             SystemMgr.Unit.SetBasicAttack();
 
@@ -826,6 +830,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         private void EndOrNextCheck()
         {
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+            
             if (_basicAttackIndex != _nextBasicAttackIndex)
             {
                 if (_nextBasicAttackIndex > _basicAttackAniArr.Length - 1)
@@ -839,6 +845,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 }
                 
                 SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
+                SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
             }
             else
             {
@@ -882,6 +889,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.BasicJumpAttack);
 
             SystemMgr.OnBasicAttackEndAniEvent += BasicJumpAttackAniEnd;
             SystemMgr.OnBasicAttackCallEvent += BasicJumpAttackCall;
@@ -904,6 +912,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
+            _isBasicjumpAttackAniEnd = false;
+            
             SystemMgr.OnBasicAttackEndAniEvent -= BasicJumpAttackAniEnd;
             SystemMgr.OnBasicAttackCallEvent -= BasicJumpAttackCall;
         }
@@ -974,6 +984,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         private void BasicJumpAttackAniEnd()
         {
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
             _isBasicjumpAttackAniEnd = true;
         }
 

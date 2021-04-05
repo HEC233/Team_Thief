@@ -5,9 +5,13 @@ using PS.FX;
 
 public enum FxAniEnum
 {
-    SlidingFx,
+    Idle = 0,
     JumpFx,
     DashFx,
+    BasicAttack,
+    BasicAttack2,
+    BasicAttack3,
+    BasicJumpAttack,
 }
 
 public class FxCtrl : MonoBehaviour
