@@ -476,7 +476,9 @@ public class PlayerUnit : Unit
 
     public void BasicJumpAttack()
     {
-        _basicJumpAttackCtrl.gameObject.SetActive(true);   
+        SetBasicDamage(3);
+        _basicJumpAttackCtrl.SetDamage(_basicAttackDamage);
+        _basicJumpAttackCtrl.Progress();
     }
 
     public void BasicJumpMove(int inputDir)

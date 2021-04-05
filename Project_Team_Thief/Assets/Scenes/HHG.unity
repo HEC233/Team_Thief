@@ -27923,12 +27923,12 @@ PrefabInstance:
     - target: {fileID: 7260877962462582348, guid: 005d8633bdd43d7438effcb1a5f9ee49,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.01
+      value: 2.31
       objectReference: {fileID: 0}
     - target: {fileID: 7260877962462582348, guid: 005d8633bdd43d7438effcb1a5f9ee49,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18
+      value: 17.62
       objectReference: {fileID: 0}
     - target: {fileID: 7260877962462582348, guid: 005d8633bdd43d7438effcb1a5f9ee49,
         type: 3}
@@ -29468,7 +29468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319905620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.01, y: 0.18, z: -10}
+  m_LocalPosition: {x: 2.31, y: 17.62, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -30761,6 +30761,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 30f6fdc64d7f9dc45a854922cce1c272, type: 2}
     - target: {fileID: 1542053513146765892, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
+      propertyPath: _sfxClip
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542053513146765892, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
       propertyPath: _hitStopTime
       value: 0.095
       objectReference: {fileID: 0}
@@ -30794,6 +30799,11 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.50255084
       objectReference: {fileID: 0}
+    - target: {fileID: 1542053513506992556, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
+      propertyPath: _events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AniEndEvent
+      objectReference: {fileID: 0}
     - target: {fileID: 1542053513835489097, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: m_Name
@@ -30807,12 +30817,12 @@ PrefabInstance:
     - target: {fileID: 1542053513835489099, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.01
+      value: 2.31
       objectReference: {fileID: 0}
     - target: {fileID: 1542053513835489099, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18
+      value: 17.62
       objectReference: {fileID: 0}
     - target: {fileID: 1542053513835489099, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
@@ -30896,6 +30906,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1542053513848848401, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
+      propertyPath: _basicAttackKnockBackArr.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542053513848848401, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
       propertyPath: _basicAttackMoveTimeArr.Array.data[1]
       value: 0.045
       objectReference: {fileID: 0}
@@ -30943,6 +30958,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _basicAttackKnockBackArr.Array.data[2].y
       value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542053513848848401, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
+      propertyPath: _basicAttackKnockBackArr.Array.data[3].x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542053513848848401, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
+      propertyPath: _basicAttackKnockBackArr.Array.data[3].y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1542053514262991504, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
@@ -31006,6 +31031,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1542053514773876517, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
+      propertyPath: _sfxClip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542053514773876517, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
       propertyPath: _hitStopTime
       value: 0.095
       objectReference: {fileID: 0}
@@ -31037,7 +31067,7 @@ PrefabInstance:
     - target: {fileID: 1542053514905396923, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: _isPlaySFX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1542053514905396923, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
