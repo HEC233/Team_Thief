@@ -90,7 +90,6 @@ public class BasicAttackCtrl : AttackBase
     {
         if (_isAbleCameraShake == false)
             return;
-        
         _cinemachineImpulseSource.GenerateImpulse();
         //GameManager.instance.cameraMng.Shake(_cameraShakeAmplitudeGain, _cameraShakeFrequencyGain, _camerShakeTime);
     }
