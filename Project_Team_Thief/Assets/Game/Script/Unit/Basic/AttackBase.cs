@@ -37,6 +37,9 @@ public abstract class AttackBase : MonoBehaviour
     protected float _flashTime;
     [SerializeField]
     protected float _criticalPercentage;
+    [SerializeField]
+    protected SFXClip _sfxClip;
+    
     // [SerializeField]
     // protected float _camerShakeTime;
     // [SerializeField]

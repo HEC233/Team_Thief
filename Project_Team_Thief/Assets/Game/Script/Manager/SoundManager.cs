@@ -1,15 +1,49 @@
-﻿using System.Collections;
+﻿using System;using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum SFXClip
+{
+    BasicAttack = 0,
+    BasicAttack2,
+    BasicAttack3,
+}
 
 public class SoundManager : MonoBehaviour
 {
     private int _curBGM;
 
-    // 효과음 재생 soundId는 아직 어떤 형태일지 정해지지 않았습니다.
-    public void PlaySFX(int soundId)
-    {
+    [SerializeField]
+    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip[] _sfx;
 
+    private void Start()
+    {
+        Bind();
+    }
+
+    private void Bind()
+    {
+        GameManager.instance.timeMng.startHitstopEvent += StartHitStopEvent;
+        GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvent;
+        GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvent;
+        GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEvent;
+    }
+
+    private void UnBind()
+    {
+        GameManager.instance.timeMng.startHitstopEvent -= StartHitStopEvent;
+        GameManager.instance.timeMng.endHitstopEvent -= EndHitStopEvent;
+        GameManager.instance.timeMng.startBulletTimeEvent -= StartBulletTimeEvent;
+        GameManager.instance.timeMng.endBulletTimeEvent -= EndBulletTimeEvent;
+    }
+
+    // 효과음 재생 soundId는 아직 어떤 형태일지 정해지지 않았습니다.
+    public void PlaySFX(SFXClip sfxClip)
+    {
+        _audioSource.clip = _sfx[(int)sfxClip];
+        _audioSource.Play();        
     }
 
     // bgm은 기본적으로 루프이기 때문에 다음과 같은 구조로 작성하였음.
@@ -30,5 +64,26 @@ public class SoundManager : MonoBehaviour
     public void ChangeBGM(int soundId)
     {
         _curBGM = soundId;
-    }    
+    }
+
+    private void StartHitStopEvent(float timeScale)
+    {
+        _audioSource.pitch = timeScale;
+    }
+
+    private void EndHitStopEvent(float timeScale)
+    {
+        _audioSource.pitch = timeScale;
+    }
+
+    private void StartBulletTimeEvent(float timeScale)
+    {
+        _audioSource.pitch = timeScale;
+    }
+
+    private void EndBulletTimeEvent(float timeScale)
+    {
+        _audioSource.pitch = timeScale;
+    }
+    
 }

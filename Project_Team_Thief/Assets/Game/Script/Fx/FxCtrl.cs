@@ -5,9 +5,13 @@ using PS.FX;
 
 public enum FxAniEnum
 {
-    SlidingFx,
+    Idle = 0,
     JumpFx,
     DashFx,
+    BasicAttack,
+    BasicAttack2,
+    BasicAttack3,
+    BasicJumpAttack,
 }
 
 public class FxCtrl : MonoBehaviour
@@ -28,7 +32,7 @@ public class FxCtrl : MonoBehaviour
         Quaternion _quaternion = Quaternion.identity;
         if (dir == -1)
             _quaternion = Quaternion.Euler(0, -180, 0);
-        Debug.Log(dir);
+        
         GameManager.instance.FX.Play(fxAniEnum.ToString(), transform.position, _quaternion);
     }
 }

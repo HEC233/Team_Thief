@@ -250,10 +250,16 @@ namespace LightWarrior
     public class Hit : LWState
     {
         private float timeCheck;
+        private bool firstHitAnim = true;
 
         public override void Enter(LightWarriorActor actor)
         {
-            actor.animCtrl.PlayAni(AniState.Hit);
+            if (firstHitAnim)
+                actor.animCtrl.PlayAni(AniState.Hit);
+            else
+                actor.animCtrl.PlayAni(AniState.Hit2);
+            firstHitAnim = !firstHitAnim;
+
             timeCheck = 1.0f;
         }
 
@@ -266,7 +272,7 @@ namespace LightWarrior
             //timeCheck += GameManager.instance.timeMng.customTimeWhere???
             timeCheck -= GameManager.instance.timeMng.DeltaTime;
 
-            if(timeCheck < 0)
+            if(timeCheck < 0 && actor.unit.IsOnGround)
             {
                 actor.ChangeState(actor.idle);
             }
@@ -277,6 +283,11 @@ namespace LightWarrior
             switch (condition)
             {
                 case TransitionCondition.Hit:
+                    if (firstHitAnim)
+                        actor.animCtrl.PlayAni(AniState.Hit);
+                    else
+                        actor.animCtrl.PlayAni(AniState.Hit2);
+                    firstHitAnim = !firstHitAnim;
                     timeCheck = 1.0f;
                     return true;
             }
