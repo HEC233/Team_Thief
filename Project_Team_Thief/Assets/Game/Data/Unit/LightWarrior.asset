@@ -18,7 +18,7 @@ MonoBehaviour:
   minJumpPower: 10
   maxJumpPower: 0
   jumpCount: 0
-  hp: 500
+  hp: 200
   reduceHit: 1
   skillDamage: 40
   criticalValue: 0
