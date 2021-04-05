@@ -22,6 +22,7 @@ public enum AniState
     Backstep,
     Die,
     AttackReady,
+    Hit2,
 }
 
 public class AnimationCtrl : MonoBehaviour
