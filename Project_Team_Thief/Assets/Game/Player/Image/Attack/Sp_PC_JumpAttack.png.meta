@@ -1,7 +1,16 @@
 fileFormatVersion: 2
-guid: b91ce441dc92b0f419394b17c22e3846
+guid: eb71d9ad1e64a36428de77baf4f18768
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4154082669452366182
+    second: Sp_PC_JumpAttack_0
+  - first:
+      213: 4195069270363280902
+    second: Sp_PC_JumpAttack_1
+  - first:
+      213: -2524543457313729171
+    second: Sp_PC_JumpAttack_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -97,11 +106,74 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Sp_PC_JumpAttack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 96
+      alignment: 9
+      pivot: {x: 0.43, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9e6fa742dbb956c0800000000000000
+      internalID: -4154082669452366182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sp_PC_JumpAttack_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 96
+        height: 96
+      alignment: 9
+      pivot: {x: 0.43, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60619246641e73a30800000000000000
+      internalID: 4195069270363280902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sp_PC_JumpAttack_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 96
+      alignment: 9
+      pivot: {x: 0.43, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6557c6e91507fcd0800000000000000
+      internalID: -2524543457313729171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f5c57885e27b547449de20c2bfa7e9d0
     internalID: 0
     vertices: []
     indices: 

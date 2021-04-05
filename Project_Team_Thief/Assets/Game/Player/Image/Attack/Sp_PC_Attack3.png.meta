@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: -1084799438971229178
     second: Sp_PC_Attack3_2
+  - first:
+      213: 8447123866867204195
+    second: Sp_PC_Attack3_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -92,6 +95,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -101,10 +116,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
+        width: 192
         height: 96
       alignment: 9
-      pivot: {x: 0.25, y: 0}
+      pivot: {x: 0.35, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -120,12 +135,12 @@ TextureImporter:
       name: Sp_PC_Attack3_1
       rect:
         serializedVersion: 2
-        x: 96
+        x: 192
         y: 0
-        width: 96
+        width: 192
         height: 96
       alignment: 9
-      pivot: {x: 0.25, y: 0}
+      pivot: {x: 0.35, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,12 +156,12 @@ TextureImporter:
       name: Sp_PC_Attack3_2
       rect:
         serializedVersion: 2
-        x: 192
+        x: 384
         y: 0
-        width: 96
+        width: 192
         height: 96
       alignment: 9
-      pivot: {x: 0.25, y: 0}
+      pivot: {x: 0.35, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -158,18 +173,37 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Sp_PC_Attack3_3
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 192
+        height: 96
+      alignment: 9
+      pivot: {x: 0.35, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3600852f6663a3570800000000000000
+      internalID: 8447123866867204195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 78da736a96bf29c43b71d818c45f8aca
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: 09afbb54f54238f49b540452c85f3828, type: 3}
-      name: _Emission
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
