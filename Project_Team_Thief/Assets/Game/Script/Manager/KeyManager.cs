@@ -59,9 +59,10 @@ public class KeyManager : MonoBehaviour
                  if (!pressedInput.Contains(code))
                  {
                      releasedInput.Remove(code);
-                     
+
                      if (code == KeyCode.LeftArrow || code == KeyCode.RightArrow)
-                         controlUnit.Transition(TransitionCondition.Idle);
+                         controlUnit.Transition(TransitionCondition.StopMove);
+                     //controlUnit.Transition(TransitionCondition.Idle);
                  }
              }
 
@@ -69,7 +70,7 @@ public class KeyManager : MonoBehaviour
         }
          else
          {
-             controlUnit.Transition(TransitionCondition.Idle);
+             controlUnit.Transition(TransitionCondition.None);
          }
     }
 

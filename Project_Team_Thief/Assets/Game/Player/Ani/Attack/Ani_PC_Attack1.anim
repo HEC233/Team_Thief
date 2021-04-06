@@ -86,7 +86,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 3
     messageOptions: 0
-  - time: 0.2
+  - time: 0.21666667
     functionName: EventCall
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -100,7 +100,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (condition == TransitionCondition.Wallslideing)
                 return false;
-            
+            if (condition == TransitionCondition.None)
+                return false;
             return true;
         }
     }
@@ -146,7 +147,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 SystemMgr.Unit.Move();
                 return false;
             }
-            else if (condition == TransitionCondition.Idle)
+            else if (condition == TransitionCondition.None)
             {
                 SystemMgr.Transition(TransitionCondition.StopMove);
                 return false;
@@ -190,6 +191,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.Wallslideing)
                 return false;
 
+            if (condition == TransitionCondition.None)
+                return false;
+            
             return true;
         }
     }
@@ -224,10 +228,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (condition == TransitionCondition.Wallslideing)
                 return false;
-            if (condition == TransitionCondition.Idle)
+            if (condition == TransitionCondition.None)
             {
-                if (_isAniEnd == false)
-                    return false;
+                return false;
             }
             
             return true;
@@ -311,7 +314,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 SystemMgr.Unit.Move();
             }
             
-            if (condition == TransitionCondition.Idle)
+            if (condition == TransitionCondition.None)
                 SystemMgr.Unit.JumpMoveStop();
 
             if (condition == TransitionCondition.Attack)
@@ -446,9 +449,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 if (condition == TransitionCondition.Dash)
                     return true;
 
-                if (condition == TransitionCondition.Idle)
+                if (condition == TransitionCondition.JumpAttack)
+                    return true;
+
+                if (condition == TransitionCondition.None)
                 {
-                    //SystemMgr.Unit.JumpMoveStop();
+                    return false;
                 }
 
                 if (condition == TransitionCondition.LeftMove)
@@ -631,6 +637,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void Update()
         {
             SystemMgr.Unit.Progress();
+
+            if (SystemMgr.Unit.IsGround)
+                SystemMgr.Transition(TransitionCondition.Idle);
         }
 
         public override void EndState()
@@ -662,7 +671,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                     }
                 }
                 
-                if (condition == TransitionCondition.Idle)
+                if (condition == TransitionCondition.None)
                     SystemMgr.Unit.WallReset();
 
             }
@@ -725,6 +734,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private float _BasicAttackMoveTime = 0.0f;
         private bool _isNotEndCoroutine = false;
         private bool _isBasicAttackAniEnd = false;
+        private float _basicAttackDelay = 0.0f;
+        private bool _isBasicAttackAble = true;
 
         private AniState[] _basicAttackAniArr =
             new AniState[] {AniState.Attack, AniState.Attack2, AniState.Attack3};
@@ -739,20 +750,24 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
-            SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
-            SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
-            
-            _attackBeInputTime = Time.time;
-            SystemMgr.Unit.SetBasicAttack();
+            Debug.Log("isStart?");
+
 
             SystemMgr.OnBasicAttackEndAniEvent += EndOrNextCheck;
             SystemMgr.OnBasicAttackCallEvent += BasicAttackCall;
+
+            SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
+            SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
+
+            _attackBeInputTime = Time.time;
+            SystemMgr.Unit.SetBasicAttack();
+
         }
 
         public override void Update()
         {
             SystemMgr.Unit.Progress();
-            
+
             if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
                 SystemMgr.Transition(TransitionCondition.Falling);
             
@@ -760,8 +775,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
+            Debug.Log("isEnd");     
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
 
+
+            SystemMgr.Unit.EndBasicAttack();
+            SystemMgr.Unit.BasicAttackMoveStop();
+            
             _basicAttackIndex = 0;
             _nextBasicAttackIndex = 0;
             _attackInputTime = 0;
@@ -771,8 +791,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isBasicAttackEnd = false;
             _isNotEndCoroutine = false;
             _isBasicAttackAniEnd = false;
-            SystemMgr.Unit.EndBasicAttack();
-            SystemMgr.Unit.BasicAttackMoveStop();
             
             SystemMgr.OnBasicAttackEndAniEvent -= EndOrNextCheck;
             SystemMgr.OnBasicAttackCallEvent -= BasicAttackCall;
@@ -780,6 +798,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (_isBasicAttackEnd == true || _isBasicAttackAble == false)
+            {
+                if (condition == TransitionCondition.None)
+                    return false;
+                
+                return true;
+            }
+
             if (condition == TransitionCondition.Attack)
             {
                 _attackInputTime = Time.time;
@@ -790,6 +816,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 }
 
                 _attackBeInputTime = Time.time;
+
+                return false;
             }
 
             if (_isBasicAttackAniEnd)
@@ -816,24 +844,18 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (SystemMgr.AnimationCtrl.GetCurAniTime() >= 0.6f)
             {
                 if (condition == TransitionCondition.Dash)
-                {
                     return true;
-                }
 
                 if (condition == TransitionCondition.Jump)
                     return true;
             }
-
-            if (_isBasicAttackEnd == false)
-                return false;
-
-            return true;
+            
+            return false;
         }
 
         private void EndOrNextCheck()
         {
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
-            
+            Debug.Log("isEnd?");
             if (_basicAttackIndex != _nextBasicAttackIndex)
             {
                 if (_nextBasicAttackIndex > _basicAttackAniArr.Length - 1)
@@ -846,20 +868,21 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                     _basicAttackIndex = _nextBasicAttackIndex;
                 }
                 
+                
                 SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
                 SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
             }
             else
             {
                 _isBasicAttackEnd = true;
-                SystemMgr.Transition(TransitionCondition.Idle);
+                 SystemMgr.Transition(TransitionCondition.Idle);
             }
-
             _isBasicAttackAniEnd = true;
         }
         
         private void BasicAttackCall()
         {
+            Debug.Log("isAttack?");
             SystemMgr.Unit.BasicAttack(_basicAttackIndex);
         }
 
@@ -878,6 +901,23 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Unit.EndBasicAttack();
             _isNotEndCoroutine = false;
         }
+
+        IEnumerator BasicAttackDelayCoroutine()
+        {
+            float _timer = 0.0f;
+
+            _isBasicAttackAble = false;
+            _basicAttackDelay = SystemMgr.Unit.BasicAttackDelay;
+            
+            while (_timer < _basicAttackDelay)
+            {
+                _timer += GameManager.instance.timeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isBasicAttackAble = true;
+        }
+        
     }
     
     private class BasicJumpAttack : CustomFSMStateBase
@@ -915,6 +955,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void EndState()
         {
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+            
             _isBasicjumpAttackAniEnd = false;
             
             SystemMgr.OnBasicAttackEndAniEvent -= BasicJumpAttackAniEnd;
@@ -989,10 +1030,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
             _isBasicjumpAttackAniEnd = true;
+            
+            SystemMgr.Transition(TransitionCondition.Idle);
         }
 
         private void BasicJumpAttackCall()
         {
+            Debug.Log("JumpAttackCall");
             SystemMgr.Unit.BasicJumpAttack();
         }
     }
@@ -1027,7 +1071,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (_isHitEnd == true)
                 return false;
-            
+
+            if (condition == TransitionCondition.None)
+                return false;
             return true;
         }
 
@@ -1044,6 +1090,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isHitEnd = false;
+            SystemMgr.Transition(TransitionCondition.Idle);
         }
     }
 
@@ -1063,6 +1110,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void Update()
         {
             SystemMgr.Unit.Progress();
+
+            if (SystemMgr.Unit.IsGround)
+                SystemMgr.Transition(TransitionCondition.Idle);
         }
 
         public override void EndState()
@@ -1074,7 +1124,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override bool Transition(TransitionCondition condition)
         {
             if (SystemMgr.Unit.IsGround)
+            {
+                if (condition == TransitionCondition.None)
+                    return false;
                 return true;
+            }
 
             if (condition == TransitionCondition.WallJump)
                 return true;
@@ -1082,7 +1136,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             if (SystemMgr.Unit.CheckWallslideing() == true)
             {
-                if (condition == TransitionCondition.Idle)
+                if (condition == TransitionCondition.None)
                 {
                     SystemMgr.Unit.WallReset();
                 }
@@ -1179,28 +1233,36 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     }
 
     // Time 관련
+    
     private void StartBulletTimeEvnetCall(float _timeScale)
     {
         Unit.StartBulletTime(_timeScale);
         AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+        _fxCtrl.SetAnimationTimeSclae(_timeScale);
     }
 
     private void EndBulletTimeEventCall(float _timeScale)
     {
         Unit.EndBulletTime(_timeScale);
         AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+        _fxCtrl.SetAnimationTimeSclae(_timeScale);
+
     }
 
     private void StartHitStopEventCall(float _timeScale)
     {
         Unit.StartHitStop(_timeScale);
         AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+        _fxCtrl.SetAnimationTimeSclae(_timeScale);
+
     }
 
     private void EndHitStopEvnetCall(float _timeScale)
     {
         Unit.EndHitStop(_timeScale);
         AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+        _fxCtrl.SetAnimationTimeSclae(_timeScale);
+
     }
     
     // Time 관련

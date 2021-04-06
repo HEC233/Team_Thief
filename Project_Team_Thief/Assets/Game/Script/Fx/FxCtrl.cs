@@ -24,6 +24,7 @@ public class FxCtrl : MonoBehaviour
     
     public void PlayAni(FxAniEnum fxAniEnum)
     {
+        _fxAnimator.Rebind();
         _fxAnimator.SetInteger("State", (int) fxAniEnum);
     }
 
@@ -35,4 +36,10 @@ public class FxCtrl : MonoBehaviour
         
         GameManager.instance.FX.Play(fxAniEnum.ToString(), transform.position, _quaternion);
     }
+
+    public void SetAnimationTimeSclae(float timeScale)
+    {
+        _fxAnimator.speed = timeScale;
+    }
+
 }

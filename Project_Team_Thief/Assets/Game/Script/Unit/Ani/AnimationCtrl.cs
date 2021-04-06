@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,12 +36,18 @@ public class AnimationCtrl : MonoBehaviour
 
     public void PlayAni(AniState aniState)
     {
+        _animator.Rebind();
         _animator.SetInteger("State", (int) aniState);
     }
 
     public float GetCurAniTime()
     {
         return _animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
+    }
+
+    public int GetCurrentPlayAni()
+    {
+        return _animator.GetInteger("State");
     }
 
     public void Flip()

@@ -128,6 +128,9 @@ public class PlayerUnit : Unit
     [SerializeField]
     private float _basicAttackTime = 0.5f;
     public float BasicAttackTime => _basicAttackTime;
+    [SerializeField]
+    private float _basicAttackDelay = 0.0f;
+    public float BasicAttackDelay => _basicAttackDelay;
 
     [SerializeField] 
     private float[] _basicAttackMoveTimeArr;
@@ -140,6 +143,7 @@ public class PlayerUnit : Unit
     private float _basicAttackMinDamage;
     [SerializeField]
     private float _basicAtaackMaxDamage;
+
 
     private Damage _basicAttackDamage;
     [SerializeField]

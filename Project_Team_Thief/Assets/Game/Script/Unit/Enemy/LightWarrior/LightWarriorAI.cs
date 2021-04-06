@@ -139,7 +139,7 @@ public class LightWarriorAI : MonoBehaviour
                 nowTileCoord.CheckObjectExist(unMovableLayer, -1, -1));
         }
 
-        Debug.Log("이동 가능 한지의 여부 " + result);
+        //Debug.Log("이동 가능 한지의 여부 " + result);
         return result;
     }
 
