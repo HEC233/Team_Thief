@@ -42,8 +42,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     public AnimationCtrl AnimationCtrl => _animationCtrl;
 
+    [SerializeField]
+    private BattleIdleCtrl _battleIdleCtrl;
+    
     // 애니메이션 관련 상태 변수
     public bool isJumpKeyPress = false;
+    private bool _isBattleIdle = false;
+    private bool _beforeFalling = false;
     
     // 각 상태와 연결 될 유니티 이벤트
     // 애니메이션 관련 이벤트
@@ -51,8 +56,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     
     // 기본 공격 관련
     public event UnityAction OnBasicAttackEndAniEvent = null;
-    public event UnityAction OnBasicAttackCallEvent = null; 
-    
+    public event UnityAction OnBasicAttackCallEvent = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,16 +66,22 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     void Init()
     {
+        Bind();
+        
+        //==================== 고재협이 편집함 ==================
+        GameManager.instance.shadow.RegistCollider(GetComponent<BoxCollider2D>());
+        //=======================================================
+    }
+
+    private void Bind()
+    {
         GameManager.instance.SetControlUnit(this);
         GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvnetCall;
         GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
         GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
         GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvnetCall;
         Unit.hitEvent += UnitHitEventCall;
-
-        //==================== 고재협이 편집함 ==================
-        GameManager.instance.shadow.RegistCollider(GetComponent<BoxCollider2D>());
-        //=======================================================
+        _battleIdleCtrl.OnIsBattleIdleEvent += OnIsBattleIdleEventCall;
     }
 
     private class IdleState : CustomFSMStateBase
@@ -81,7 +92,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
-            SystemMgr.AnimationCtrl.PlayAni(AniState.Idle);
+            if (SystemMgr._isBattleIdle == true)
+                SystemMgr.AnimationCtrl.PlayAni(AniState.BattleIdle);
+            else
+                SystemMgr.AnimationCtrl.PlayAni(AniState.Idle);
         }
 
         public override void Update()
@@ -89,7 +103,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Unit.Progress();
             
             if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
-                SystemMgr.ChangeState(TransitionCondition.Falling);
+                SystemMgr.Transition(TransitionCondition.Falling);
         }
 
         public override void EndState()
@@ -118,6 +132,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.Move);
+
+            if (SystemMgr._beforeFalling == true)
+            {
+                SystemMgr.Unit.SetVelocityMaxMoveSpeed();
+                SystemMgr._beforeFalling = false;
+            }
         }
 
         public override void Update()
@@ -406,6 +426,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.Fall);
+            SystemMgr._beforeFalling = true;
             _isFaill = true;
         }
 
@@ -419,7 +440,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (SystemMgr.Unit.IsGround == true)
             {
                 _isFaill = false;
-                SystemMgr.Transition(TransitionCondition.Idle);
+                //SystemMgr.Transition(TransitionCondition.Idle);
             }
         }
 
@@ -483,7 +504,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                         return false;
                     }
                 }
-
+                
+                if (condition == TransitionCondition.None)
+                    SystemMgr.Transition(TransitionCondition.Idle);
+                
                 if (condition == TransitionCondition.Wallslideing)
                     return false;
             
@@ -1230,6 +1254,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     public void StartJumpKeyPressDetectCoroutine()
     {
         StartCoroutine(JumpKeyPressDetectCoroutine());
+    }
+
+    private void OnIsBattleIdleEventCall(bool isBattle)
+    {
+        _isBattleIdle = isBattle;
     }
 
     // Time 관련

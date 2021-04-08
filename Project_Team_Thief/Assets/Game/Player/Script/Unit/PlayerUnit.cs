@@ -234,6 +234,12 @@ public class PlayerUnit : Unit
         // Rigidbody2D.addfoce(dir);
     }
 
+    public void SetVelocityMaxMoveSpeed()
+    {
+        _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
+        _isTouchMaxSpeed = true;
+    }
+
     public void MoveStop()
     {
         if (GameManager.instance.timeMng.IsBulletTime == false)
@@ -401,6 +407,7 @@ public class PlayerUnit : Unit
     public void WallSlideStateStart()
     {
         _SlideingFx.SetActive(true);    // FxCtrl로 이전할 예정.
+        _rigidbody2D.velocity = Vector2.zero;
         _rigidbody2D.gravityScale = _wallSlideingGravityScale;
     }
     

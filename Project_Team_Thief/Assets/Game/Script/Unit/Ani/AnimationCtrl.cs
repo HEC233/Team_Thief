@@ -6,24 +6,25 @@ using UnityEngine;
 public enum AniState
 {
     Idle = 0,
-    Move,
-    RunningInertia,
-    Jump,
-    Fall,
-    Dash,
-    Wallslideing,
-    Attack,
-    Attack2,
-    Attack3,
-    JumpAttack,
-    Hit,
-    Contact,
-    DoubleJump,
-    Skll1,
-    Backstep,
-    Die,
-    AttackReady,
-    Hit2,
+    Move,           // 1
+    RunningInertia, // 2
+    Jump,           // 3
+    Fall,           // 4
+    Dash,           // 5
+    Wallslideing,   // 6
+    Attack,         // 7
+    Attack2,        // 8
+    Attack3,        // 9
+    JumpAttack,     // 10
+    Hit,            // 11
+    Contact,        // 12
+    DoubleJump,     // 13
+    Skll1,          // 14
+    Backstep,       // 15
+    Die,            // 16
+    AttackReady,    // 17
+    Hit2,           // 18
+    BattleIdle,     // 19
 }
 
 public class AnimationCtrl : MonoBehaviour
