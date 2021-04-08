@@ -66,18 +66,21 @@ public class LightWarriorActor : MonoBehaviour, IActor
 
     public bool Transition(TransitionCondition condition, object param = null)
     {
-        // common change, this transition can occur in any state
-        switch (condition)
+        bool returnValue = _curState.Transition(this, condition);
+        if (!returnValue)
         {
-            case TransitionCondition.Die:
-                ChangeState(die);
-                return true;
-            case TransitionCondition.ForceKill:
-                ChangeState(die);
-                return true;
+            // common change, this transition can occur in any state
+            switch (condition)
+            {
+                case TransitionCondition.Die:
+                    ChangeState(die);
+                    return true;
+                case TransitionCondition.ForceKill:
+                    ChangeState(die);
+                    return true;
+            }
         }
-            
-        return _curState.Transition(this, condition);
+        return returnValue;
     }
 
     public void ChangeState(LWState newState)
