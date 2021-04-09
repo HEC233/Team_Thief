@@ -97,6 +97,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 SystemMgr.AnimationCtrl.PlayAni(AniState.BattleIdle);
             else
                 SystemMgr.AnimationCtrl.PlayAni(AniState.Idle);
+
+            SystemMgr._beforeFalling = false;
         }
 
         public override void Update()
@@ -1054,7 +1056,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         private void BasicJumpAttackCall()
         {
-            Debug.Log("JumpAttackCall");
             SystemMgr.Unit.BasicJumpAttack();
         }
     }

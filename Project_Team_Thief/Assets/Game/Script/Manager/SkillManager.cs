@@ -49,6 +49,7 @@ public class SkillManager : MonoBehaviour
     private void Init()
     {
         _skillCtrls = new List<SkillCtrl>();
+        _skillDatas = new Dictionary<string, SOSkillData>();
         
         SetSkillDic();
         CreateSkillCtrl();
