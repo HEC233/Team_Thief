@@ -80,6 +80,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
         GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
         GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvnetCall;
+        GameManager.instance.skillMgr.OnSkillCastEvent += OnSkillCastEventCall;
         Unit.hitEvent += UnitHitEventCall;
         _battleIdleCtrl.OnIsBattleIdleEvent += OnIsBattleIdleEventCall;
     }
@@ -774,10 +775,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
-            Debug.Log("isStart?");
-
-
-            SystemMgr.OnBasicAttackEndAniEvent += EndOrNextCheck;
+                SystemMgr.OnBasicAttackEndAniEvent += EndOrNextCheck;
             SystemMgr.OnBasicAttackCallEvent += BasicAttackCall;
 
             SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
@@ -799,9 +797,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
-            Debug.Log("isEnd");     
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
-
 
             SystemMgr.Unit.EndBasicAttack();
             SystemMgr.Unit.BasicAttackMoveStop();
@@ -879,7 +875,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         private void EndOrNextCheck()
         {
-            Debug.Log("isEnd?");
             if (_basicAttackIndex != _nextBasicAttackIndex)
             {
                 if (_nextBasicAttackIndex > _basicAttackAniArr.Length - 1)
@@ -906,7 +901,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private void BasicAttackCall()
         {
-            Debug.Log("isAttack?");
             SystemMgr.Unit.BasicAttack(_basicAttackIndex);
         }
 
@@ -1259,6 +1253,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private void OnIsBattleIdleEventCall(bool isBattle)
     {
         _isBattleIdle = isBattle;
+    }
+
+    private void OnSkillCastEventCall(SOSkillData soSkillData)
+    {
+        // 스킬data를 이렇게 넘겨주는 게 옳은걸까?
+        // data를 필요로하는 건 sate. skilldata를 전달 해주는게 아닌 skillmanager에 getter를 구현해 놓는게 맞는 거 아닌가?
+        
     }
 
     // Time 관련

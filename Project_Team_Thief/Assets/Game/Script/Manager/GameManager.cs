@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public UIManager uiMng;
     public EffectSystem FX;
     
+    public SkillManager skillMgr;
+    
 
     public ShadowParticleSystem shadow;
 

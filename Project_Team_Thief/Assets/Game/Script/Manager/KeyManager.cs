@@ -67,11 +67,27 @@ public class KeyManager : MonoBehaviour
              }
 
               m_activeInputs = releasedInput;
+              
+              /// 스킬 입력 처리
+              if (Input.GetKeyDown(KeyCode.LeftArrow))
+                  GameManager.instance.skillMgr.Inputkey('L');
+              else if (Input.GetKeyDown(KeyCode.RightArrow))
+                  GameManager.instance.skillMgr.Inputkey('R');
+              else if (Input.GetKeyDown(KeyCode.Z))
+                  GameManager.instance.skillMgr.Inputkey('Z');
+              else if (Input.GetKeyDown(KeyCode.X))
+                  GameManager.instance.skillMgr.Inputkey('X');
+              else if (Input.GetKeyDown(KeyCode.C))
+                  GameManager.instance.skillMgr.Inputkey('C');
+              else if (Input.GetKeyDown(KeyCode.Space))
+                  GameManager.instance.skillMgr.Inputkey('S');
+              /// 스킬 입력 처리
         }
          else
          {
              controlUnit.Transition(TransitionCondition.None);
          }
+        
     }
 
     public void SetControlUnit(IActor unit)
