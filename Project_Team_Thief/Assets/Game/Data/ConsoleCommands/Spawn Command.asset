@@ -15,3 +15,4 @@ MonoBehaviour:
   command: spawn
   unit:
   - {fileID: 8718974563859108410, guid: e972f2be0e9e66840a07f6b053f57afe, type: 3}
+  - {fileID: 6964507193525842026, guid: 403847deb9dc8a743884034b63902be2, type: 3}

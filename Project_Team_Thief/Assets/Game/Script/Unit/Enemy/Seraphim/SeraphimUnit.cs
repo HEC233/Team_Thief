@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class LightWarriorUnit : MonsterUnit
+public class SeraphimUnit : MonsterUnit
 {
+    public void BackStep(Vector2 ImpulseForce)
+    {
+        _rigid.AddForce(ImpulseForce, ForceMode2D.Impulse);
+        skipGroundCheckTime = 0.1f;
+        isOnGround = false;
+    }
+
     IEnumerator AttackMove()
     {
         //_rigid.MovePosition(new )
@@ -17,15 +24,17 @@ public class LightWarriorUnit : MonsterUnit
 
     public override void Attack()
     {
+
+
         // 앞뒤 딜레이는 여기서 구현하는게 나을까 애니메이션을 관장하는 액터에서 처리하는게 나을까
         // 개인적으로 액터가 낫다고 생각은 한다.
 
         // 히트박스 레이어와 접촉해 있는지 판단
-        if(attackBox[_curAttackBox].IsTouchingLayers(hitBoxLayer))
+        if (attackBox[_curAttackBox].IsTouchingLayers(hitBoxLayer))
         {
             // 접촉해 있는 히트박스레이어인 콜라이더들 가져오기
             attackBox[_curAttackBox].OverlapCollider(contactFilter, result);
-            foreach(var c in result)
+            foreach (var c in result)
             {
                 // 콜라이더로 부터 Unit 추출
                 var u = c.GetComponentInParent<Unit>();
@@ -49,7 +58,7 @@ public class LightWarriorUnit : MonsterUnit
     public override void HandleHit(in Damage inputDamage)
     {
         // 대미지 상정방식 기획서에 맞게 변경 필요
-        _hp -= inputDamage.power * _unitData.reduceHit;  
+        _hp -= inputDamage.power * _unitData.reduceHit;
         _rigid.AddForce(inputDamage.knockBack, ForceMode2D.Impulse);
         isOnGround = false;
         skipGroundCheck = true;
@@ -61,29 +70,6 @@ public class LightWarriorUnit : MonsterUnit
         }
         else
         {
-            if (GameManager.instance.FX)
-            {
-                string fxName = string.Empty;
-                switch (inputDamage.additionalInfo)
-                {
-                    case 0:
-                        fxName = "Hit1";
-                        break;
-                    case 1:
-                        fxName = "Hit2";
-                        break;
-                    case 2:
-                        fxName = "Hit3";
-                        break;
-                }
-                var effect = GameManager.instance?.FX.Play(fxName, inputDamage.hitPosition);
-                //GameManager.instance?.timeMng.hitStopReadyCheckList.Add(effect.IsPlaying);
-            }
-
-            if (GameManager.instance.shadow)
-            {
-                GameManager.instance.shadow.Burst(inputDamage.hitPosition, 50, 10, 5, true);
-            }
             hitEvent.Invoke();
         }
     }

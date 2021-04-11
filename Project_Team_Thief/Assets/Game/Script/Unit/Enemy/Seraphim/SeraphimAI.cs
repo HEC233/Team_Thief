@@ -1,12 +1,10 @@
-﻿//#define TEST
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PS.Enemy.LightWarrior.AI;
+using PS.Enemy.Seraphim.AI;
 using PS.Util.Tile;
 
-public class LightWarriorAI : MonoBehaviour
+public class SeraphimAI : MonoBehaviour
 {
     public LayerMask unMovableLayer;
     public bool isLookRight;
@@ -18,6 +16,10 @@ public class LightWarriorAI : MonoBehaviour
     private Vector2Int _myCoord;
     private Vector2Int _targetCoord;
 
+    private bool isActionEnd = false;
+    public bool IsActionEnd { get { if (isActionEnd) { isActionEnd = false; return true; } else return false; } }
+    public void ActionEndCallback() { isActionEnd = true; }
+
     public Search search = new Search();
     public Combat combat = new Combat();
 
@@ -28,26 +30,23 @@ public class LightWarriorAI : MonoBehaviour
     [SerializeField] private int underView;
 
     [Header("Movement")]
-    [SerializeField] public Vector2 IdleTimeLength = Vector2.zero;
-    [SerializeField] public Vector2 walkTimeLength = Vector2.zero;
+    public Vector2 IdleTimeLength = Vector2.zero;
+    public Vector2 walkTimeLength = Vector2.zero;
 
     [Header("Combat")]
-    [SerializeField] public int attackDistance;
-    [SerializeField] public Vector2 followTimeLength = Vector2.zero;
-
-
-#if (TEST)
-    public TestColor color;
-#endif
+    public int attackDistance;
+    public Vector2 keepDistanceTimeLength = Vector2.zero;
+    public float shotCoolTime;
+    public float backStepCoolTime;
 
     private void Start()
     {
         isLookRight = true;
-        actor = GetComponent<LightWarriorActor>();
+        actor = GetComponent<SeraphimActor>();
         _curState = search;
         _curState.Enter(this);
 
-        if(GameManager.instance.GetControlActor() != null)
+        if (GameManager.instance.GetControlActor() != null)
         {
             SetTarget(GameManager.instance.GetControlActor().GetUnit());
         }
@@ -64,7 +63,7 @@ public class LightWarriorAI : MonoBehaviour
     {
         target = newTarget;
     }
-    
+
     // 시야에 목표가 있는지 판단
     public bool CheckSight()
     {
@@ -161,11 +160,11 @@ public class LightWarriorAI : MonoBehaviour
     }
 }
 
-namespace PS.Enemy.LightWarrior.AI
+namespace PS.Enemy.Seraphim.AI
 {
     public abstract class AIState
     {
-        public abstract void Enter(LightWarriorAI ai);
+        public abstract void Enter(SeraphimAI ai);
         public abstract void Process();
         public abstract void Exit();
     }
@@ -177,11 +176,11 @@ namespace PS.Enemy.LightWarrior.AI
     {
         private float _timeCheck;
         private bool _isMoving;
-        LightWarriorAI ai;
+        SeraphimAI ai;
         private Vector2Int _lastCoord;
         private Vector2Int _curCoord;
 
-        public override void Enter(LightWarriorAI ai)
+        public override void Enter(SeraphimAI ai)
         {
             _timeCheck = 0;
             _isMoving = false;
@@ -230,18 +229,12 @@ namespace PS.Enemy.LightWarrior.AI
                 if (!ai.CheckMovable(ai.isLookRight))
                     ai.isLookRight = !ai.isLookRight;
             }
-#if (TEST)
-            ai.color.Set(Color.blue);
-#endif
             ai.actor.Transition(ai.isLookRight ? TransitionCondition.RightMove : TransitionCondition.LeftMove);
         }
 
         private void Stop()
         {
             ai.actor.Transition(TransitionCondition.StopMove);
-#if (TEST)
-            ai.color.Set(Color.white);
-#endif
         }
     }
 
@@ -250,84 +243,146 @@ namespace PS.Enemy.LightWarrior.AI
      */
     public class Combat : AIState
     {
-        LightWarriorAI ai;
+        SeraphimAI ai;
 
-        private float _AttackCool;
+        private float _shotCool;
+        private float _backStepCool;
         private float _timeCheck;
-        private Vector2Int _lastCoord;
-        private Vector2Int _curCoord;
 
         private enum InnerState
         {
-            Attack,Move,Wait,Reset
+            Shot, BackStep, KeepDistance, Wait, Rest, CheckDistance
         }
         private InnerState _state;
 
-        public override void Enter(LightWarriorAI ai)
+        public override void Enter(SeraphimAI ai)
         {
             this.ai = ai;
-            _AttackCool = 0;
+            _shotCool = 0;
+            _backStepCool = 0;
             _timeCheck = 0;
-            _state = InnerState.Attack;
-            _lastCoord = ai.transform.TileCoord();
-#if TEST
-            ai.color.Set(Color.red);
-#endif
+            _state = InnerState.Wait;
         }
+
         public override void Exit()
         {
-
-#if TEST
-            ai.color.Set(Color.white);
-#endif
         }
+
         public override void Process()
         {
             switch (_state)
             {
-                // 스킬 사용 후 스킬이 끝날때까지 기다려주는 처리 필요
-                //-----------------------------------------
-                case InnerState.Attack:
-                    if (ai.GetDistance() > ai.attackDistance)
-                    {
+                case InnerState.CheckDistance:
 
+                    if(ai.GetDistance(false) > 0)
+                    {
+                        ai.actor.Transition(TransitionCondition.LookRight);
                     }
                     else
                     {
-                        if (_AttackCool <= 0)
+                        ai.actor.Transition(TransitionCondition.LookLeft);
+                    }
+                    if(!ai.CheckSight())
+                    {
+                        ai.ChangeState(ai.search);
+                        return;
+                    }
+                    if (ai.GetDistance(true) > ai.attackDistance)
+                    {
+                        _state = InnerState.KeepDistance;
+                    }
+                    else if (ai.GetDistance(true) > 3)
+                    {
+                        if (_shotCool <= 0)
                         {
+                            _state = InnerState.Shot;
                             ai.actor.Transition(TransitionCondition.StopMove);
-                            _AttackCool = 2.0f;
-#if TEST
-                            ai.color.Set(Color.magenta);
-#endif
-                            //ai.actor.Transition(ai.GetDistance(false) > 0 ? TransitionCondition.SetAttackBoxRight : TransitionCondition.SetAttackBoxLeft);
                             ai.actor.Transition(TransitionCondition.Attack);
-
-                            _state = InnerState.Reset;
-                            _timeCheck = 0.5f;
-                            break;
+                            _shotCool = ai.shotCoolTime;
+                        }
+                        else
+                        {
+                            _state = InnerState.KeepDistance;
                         }
                     }
-                    _state = InnerState.Move;
-                    _timeCheck = Random.Range(ai.followTimeLength.x, ai.followTimeLength.y);
-                    break;
-                //-----------------------------------------
-                case InnerState.Move:
-                    ai.isLookRight = ai.transform.position.x < ai.target.transform.position.x;
-
-                    //_curCoord = ai.transform.TileCoord();
-                    //if (_lastCoord != _curCoord)
-                    //{
-                    //    _lastCoord = _curCoord;
-                    if (!ai.CheckMovable(ai.isLookRight))
+                    else
                     {
-                        _state = InnerState.Wait;
+                        
+                        if(Random.value <= 0.8f)
+                        {
+                            if (_shotCool <= 0)
+                            {
+                                _state = InnerState.Shot;
+                                ai.actor.Transition(TransitionCondition.StopMove);
+                                ai.actor.Transition(TransitionCondition.Attack);
+                                _shotCool = ai.shotCoolTime;
+                            }
+                            else
+                            {
+                                _state = InnerState.KeepDistance;
+                            }
+                        }
+                        else
+                        {
+                            if (_backStepCool <= 0)
+                            {
+                                _state = InnerState.BackStep;
+                                ai.actor.Transition(TransitionCondition.StopMove);
+                                if (ai.transform.position.x < ai.target.transform.position.x)
+                                    ai.actor.Transition(TransitionCondition.BackStepLeft);
+                                else
+                                    ai.actor.Transition(TransitionCondition.BackStepRight);
+                                _backStepCool = ai.backStepCoolTime;
+                            }
+                            else
+                            {
+                                _state = InnerState.KeepDistance;
+                            }
+                        }
                     }
-                    //}
-                    else if (ai.GetDistance(true) > 1)
+                    if(_state == InnerState.KeepDistance)
                     {
-                        ai.actor.Transition(ai.isLookRight ? TransitionCondition.RightMove : TransitionCondition.LeftMove);
+                        _timeCheck = Random.Range(ai.keepDistanceTimeLength.x, ai.keepDistanceTimeLength.y);
+                    }
+                    break;
+                case InnerState.Shot:
+
+                    if (ai.IsActionEnd)
+                    {
+                        _state = InnerState.Rest;
+                        _timeCheck = 0.5f;
+                    }
+                    break;
+                case InnerState.BackStep:
+
+                    if (ai.IsActionEnd)
+                    {
+                        _state = InnerState.Shot;
+                        ai.actor.Transition(TransitionCondition.StopMove);
+                        ai.actor.Transition(TransitionCondition.Attack);
+                    }
+
+                    break;
+                case InnerState.KeepDistance:
+
+                    ai.isLookRight = ai.transform.position.x < ai.target.transform.position.x;
+                    bool moveRight = ai.isLookRight;
+
+                    if (ai.GetDistance() != ai.attackDistance)
+                    {
+                        if (ai.GetDistance() < ai.attackDistance)
+                        {
+                            moveRight = !moveRight;
+                        }
+
+                        if (!ai.CheckMovable(moveRight))
+                        {
+                            _state = InnerState.Wait;
+                        }
+                        else
+                        {
+                            ai.actor.Transition(moveRight ? TransitionCondition.RightMove : TransitionCondition.LeftMove);
+                        }
                     }
                     else
                     {
@@ -335,46 +390,32 @@ namespace PS.Enemy.LightWarrior.AI
                     }
 
                     if (_timeCheck <= 0)
-                    {
-                        if (!ai.CheckSight())
-                            ai.ChangeState(ai.search);
-                        else
-                            _state = InnerState.Attack;
-                    }
+                        _state = InnerState.CheckDistance;
+
                     break;
-                //-----------------------------------------
                 case InnerState.Wait:
 
                     ai.actor.Transition(TransitionCondition.StopMove);
 
                     if (_timeCheck <= 0)
-                    {
-                        _state = InnerState.Move;
-                    }
-                    break;
-                //-----------------------------------------
-                case InnerState.Reset:
+                        _state = InnerState.CheckDistance;
 
-                    ai.actor.Transition(TransitionCondition.Idle);
+                    break;
+                case InnerState.Rest:
+
+                    ai.actor.Transition(TransitionCondition.StopMove);
 
                     if (_timeCheck <= 0)
                     {
-#if TEST
-                        ai.color.Set(Color.red);
-#endif
-
-                        if (!ai.CheckSight())
-                            ai.ChangeState(ai.search);
-                        else
-                            _state = InnerState.Attack;
+                        _state = InnerState.CheckDistance;
                     }
+
                     break;
-                 //-----------------------------------------
             }
 
-            _AttackCool -= GameManager.instance.timeMng.DeltaTime;
+            _shotCool -= GameManager.instance.timeMng.DeltaTime;
+            _backStepCool -= GameManager.instance.timeMng.DeltaTime;
             _timeCheck -= GameManager.instance.timeMng.DeltaTime;
-
         }
     }
 }
