@@ -1,0 +1,26 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameSkillObject : MonoBehaviour
+{
+    [SerializeField]
+    private SkillControllerBase _controller = null;
+
+    public void InitSkill(SkillControllerBase controller)
+    {
+        _controller = controller;
+        _controller.OnEndSkill += EndSkillEvent;
+        _controller.Invoke();
+    }
+
+    private void EndSkillEvent()
+    {
+
+    }
+
+    public void Release()
+    {
+        _controller = null;
+    }
+}
