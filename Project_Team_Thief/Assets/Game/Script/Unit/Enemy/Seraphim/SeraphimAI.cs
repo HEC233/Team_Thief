@@ -49,7 +49,8 @@ public class SeraphimAI : MonoBehaviour
     public int attackDistance;
     public Vector2 keepDistanceTimeLength = Vector2.zero;
     public float shotCoolTime;
-    public float backStepCoolTime;
+    public float backStepCoolTime;    
+    public float backStep = 0.8f;
 
     private void Start()
     {
@@ -328,7 +329,7 @@ namespace PS.Enemy.Seraphim.AI
                     else
                     {
                         
-                        if(Random.value <= 0.8f)
+                        if(Random.value >= ai.backStep)
                         {
                             if (_shotCool <= 0)
                             {
