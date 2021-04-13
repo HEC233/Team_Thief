@@ -19,6 +19,9 @@ public class SeraphimActor : MonoBehaviour, IActor
     public BackStep backStep = new BackStep();
     public static Null nullState = new Null();
 
+    public SeraphimFireFXCtrl fireFX;
+    [HideInInspector] public bool flipValue = false;
+
     public Vector2 BackStepPower = new Vector2();
 
     public Unit GetUnit()
@@ -42,12 +45,14 @@ public class SeraphimActor : MonoBehaviour, IActor
                     result = true;
                     break;
                 case TransitionCondition.LookRight:
-                    animCtrl.SetFlip(true);
+                    flipValue = true;
+                    animCtrl.SetFlip(flipValue);
                     unit.SetAttackBoxDir(true);
                     result = true;
                     break;
                 case TransitionCondition.LookLeft:
-                    animCtrl.SetFlip(false);
+                    flipValue = false;
+                    animCtrl.SetFlip(flipValue);
                     unit.SetAttackBoxDir(false);
                     result = true;
                     break;
@@ -217,14 +222,16 @@ namespace PS.Enemy.Seraphim
                 case TransitionCondition.RightMove:
                     if (innerState == InnerState.left)
                         actor.unit.Idle();
-                    actor.animCtrl.SetFlip(true);
+                    actor.flipValue = true;
+                    actor.animCtrl.SetFlip(actor.flipValue);
                     actor.animCtrl.PlayAni(AniState.Move);
                     actor.unit.Move(1);
                     return true;
                 case TransitionCondition.LeftMove:
                     if (innerState == InnerState.right)
                         actor.unit.Idle();
-                    actor.animCtrl.SetFlip(false);
+                    actor.flipValue = false;
+                    actor.animCtrl.SetFlip(actor.flipValue);
                     actor.animCtrl.PlayAni(AniState.Move);
                     actor.unit.Move(-1);
                     return true;
@@ -416,6 +423,8 @@ namespace PS.Enemy.Seraphim
                 {
                     actor.animCtrl.PlayAni(AniState.Attack);
                     actor.unit.Attack();
+                    actor.fireFX.gameObject.SetActive(true);
+                    actor.fireFX.SetFlip(actor.flipValue);
                     isAttacked = true;
                     timeCheck = actor.unit.AttackEndDelay;
                 }
