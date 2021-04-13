@@ -17,7 +17,19 @@ public class SeraphimAI : MonoBehaviour
     private Vector2Int _targetCoord;
 
     private bool isActionEnd = false;
-    public bool IsActionEnd { get { if (isActionEnd) { isActionEnd = false; return true; } else return false; } }
+    public bool IsActionEnd 
+    { 
+        get 
+        { 
+            if (isActionEnd) 
+            { 
+                isActionEnd = false; 
+                return true; 
+            } 
+            else 
+                return false; 
+        } 
+    }
     public void ActionEndCallback() { isActionEnd = true; }
 
     public Search search = new Search();
@@ -300,11 +312,13 @@ namespace PS.Enemy.Seraphim.AI
                     else if (ai.GetDistance(true) > 3)
                     {
                         if (_shotCool <= 0)
-                        {
-                            _state = InnerState.Shot;
+                        {;
                             ai.actor.Transition(TransitionCondition.StopMove);
-                            ai.actor.Transition(TransitionCondition.Attack);
-                            _shotCool = ai.shotCoolTime;
+                            if (ai.actor.Transition(TransitionCondition.Attack))
+                            {
+                                _state = InnerState.Shot;
+                                _shotCool = ai.shotCoolTime;
+                            }
                         }
                         else
                         {
@@ -318,10 +332,12 @@ namespace PS.Enemy.Seraphim.AI
                         {
                             if (_shotCool <= 0)
                             {
-                                _state = InnerState.Shot;
                                 ai.actor.Transition(TransitionCondition.StopMove);
-                                ai.actor.Transition(TransitionCondition.Attack);
-                                _shotCool = ai.shotCoolTime;
+                                if (ai.actor.Transition(TransitionCondition.Attack))
+                                {
+                                    _state = InnerState.Shot;
+                                    _shotCool = ai.shotCoolTime;
+                                }
                             }
                             else
                             {
@@ -332,13 +348,17 @@ namespace PS.Enemy.Seraphim.AI
                         {
                             if (_backStepCool <= 0)
                             {
-                                _state = InnerState.BackStep;
+                                bool result;
                                 ai.actor.Transition(TransitionCondition.StopMove);
                                 if (ai.transform.position.x < ai.target.transform.position.x)
-                                    ai.actor.Transition(TransitionCondition.BackStepLeft);
+                                    result = ai.actor.Transition(TransitionCondition.BackStepLeft);
                                 else
-                                    ai.actor.Transition(TransitionCondition.BackStepRight);
-                                _backStepCool = ai.backStepCoolTime;
+                                    result = ai.actor.Transition(TransitionCondition.BackStepRight);
+                                if (result)
+                                {
+                                    _state = InnerState.BackStep;
+                                    _backStepCool = ai.backStepCoolTime;
+                                }
                             }
                             else
                             {
@@ -363,9 +383,15 @@ namespace PS.Enemy.Seraphim.AI
 
                     if (ai.IsActionEnd)
                     {
-                        _state = InnerState.Shot;
                         ai.actor.Transition(TransitionCondition.StopMove);
-                        ai.actor.Transition(TransitionCondition.Attack);
+                        if (ai.actor.Transition(TransitionCondition.Attack))
+                        {
+                            _state = InnerState.Shot;
+                        }
+                        else
+                        {
+                            _state = InnerState.CheckDistance;
+                        }
                     }
 
                     break;
