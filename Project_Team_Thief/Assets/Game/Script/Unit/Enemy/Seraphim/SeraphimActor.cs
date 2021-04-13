@@ -37,6 +37,10 @@ public class SeraphimActor : MonoBehaviour, IActor
             switch (condition)
             {
                 case TransitionCondition.Hit:
+                    ChangeState(hit);
+                    result = true;
+                    break;
+                case TransitionCondition.Die:
                     ChangeState(die);
                     result = true;
                     break;
