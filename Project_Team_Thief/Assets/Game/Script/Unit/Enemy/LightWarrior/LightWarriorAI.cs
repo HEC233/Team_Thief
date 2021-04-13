@@ -47,7 +47,12 @@ public class LightWarriorAI : MonoBehaviour
         _curState = search;
         _curState.Enter(this);
 
-        if(GameManager.instance.GetControlActor() != null)
+        StartCoroutine(TargetSetCoroutine());
+    }
+    IEnumerator TargetSetCoroutine()
+    {
+        yield return null;
+        if (GameManager.instance.GetControlActor() != null)
         {
             SetTarget(GameManager.instance.GetControlActor().GetUnit());
         }

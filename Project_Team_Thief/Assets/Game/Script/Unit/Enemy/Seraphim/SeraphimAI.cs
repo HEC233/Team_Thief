@@ -46,6 +46,12 @@ public class SeraphimAI : MonoBehaviour
         _curState = search;
         _curState.Enter(this);
 
+        StartCoroutine(TargetSetCoroutine());
+    }
+
+    IEnumerator TargetSetCoroutine()
+    {
+        yield return null; 
         if (GameManager.instance.GetControlActor() != null)
         {
             SetTarget(GameManager.instance.GetControlActor().GetUnit());
