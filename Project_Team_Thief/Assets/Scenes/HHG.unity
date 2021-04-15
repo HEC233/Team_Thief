@@ -34148,6 +34148,7 @@ GameObject:
   - component: {fileID: 1319905621}
   - component: {fileID: 1319905624}
   - component: {fileID: 1319905625}
+  - component: {fileID: 1319905626}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -34285,6 +34286,26 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1319905626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319905620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssetsPPU: 48
+  m_RefResolutionX: 585
+  m_RefResolutionY: 270
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!1 &1380999396
 GameObject:
   m_ObjectHideFlags: 0
@@ -40132,6 +40153,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 757774234259567965, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.90625
+      objectReference: {fileID: 0}
+    - target: {fileID: 757774234259567965, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 4.84375
+      objectReference: {fileID: 0}
+    - target: {fileID: 757774234259567965, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1542053513835489096, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: _battleIdleCtrl
