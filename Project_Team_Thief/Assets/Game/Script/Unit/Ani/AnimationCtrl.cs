@@ -37,6 +37,8 @@ public class AnimationCtrl : MonoBehaviour
 
     public void PlayAni(AniState aniState)
     {
+        if (_animator.GetInteger("State") == (int)aniState)
+            return;
         _animator.Rebind();
         _animator.SetInteger("State", (int) aniState);
     }

@@ -22,10 +22,12 @@ public enum TransitionCondition
     Hit,
     Die,
     Attack,
-    SetAttackBoxRight,
-    SetAttackBoxLeft,
+    LookRight,
+    LookLeft,
     ForceKill,
     JumpAttack,
+    BackStepRight,
+    BackStepLeft,
     None,
 }
 

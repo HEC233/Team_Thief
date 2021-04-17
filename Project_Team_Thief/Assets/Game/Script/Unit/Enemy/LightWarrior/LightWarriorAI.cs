@@ -3,7 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LWAIState;
+using PS.Enemy.LightWarrior.AI;
 using PS.Util.Tile;
 
 public class LightWarriorAI : MonoBehaviour
@@ -47,7 +47,12 @@ public class LightWarriorAI : MonoBehaviour
         _curState = search;
         _curState.Enter(this);
 
-        if(GameManager.instance.GetControlActor() != null)
+        StartCoroutine(TargetSetCoroutine());
+    }
+    IEnumerator TargetSetCoroutine()
+    {
+        yield return null;
+        if (GameManager.instance.GetControlActor() != null)
         {
             SetTarget(GameManager.instance.GetControlActor().GetUnit());
         }
@@ -161,7 +166,7 @@ public class LightWarriorAI : MonoBehaviour
     }
 }
 
-namespace LWAIState
+namespace PS.Enemy.LightWarrior.AI
 {
     public abstract class AIState
     {
@@ -194,7 +199,7 @@ namespace LWAIState
         public override void Process()
         {
             _timeCheck -= GameManager.instance.timeMng.DeltaTime;
-            if(_timeCheck <= 0)
+            if (_timeCheck <= 0)
             {
                 if (Random.value > 0.5f)
                 {
@@ -242,8 +247,8 @@ namespace LWAIState
 #if (TEST)
             ai.color.Set(Color.white);
 #endif
+        }
     }
-}
 
     /*
      * 전투 상태!

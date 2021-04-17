@@ -20,7 +20,7 @@ namespace PS.Util.DeveloperConsole.Commands
                     var unitComponent = unit[i].GetComponentInChildren<Unit>();
                     if (unitComponent && unitComponent.GetUnitName() == args[0])
                     {
-                        Instantiate(unit[i], Vector3.zero, Quaternion.identity);
+                        Instantiate(unit[i], GameManager.instance.GetControlActor().GetUnit().transform.position, Quaternion.identity);
                         resultMsg = returnTxt;
                         return true;
                     }
