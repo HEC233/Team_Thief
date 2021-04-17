@@ -105,8 +105,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             else
                 SystemMgr.AnimationCtrl.PlayAni(AniState.Idle);
 
+<<<<<<< HEAD
             SystemMgr._beforeFalling = false;
+=======
             SystemMgr.ShadowFsmSystem.Transition(TransitionCondition.Idle);
+>>>>>>> development
         }
 
         public override void Update()

@@ -29,6 +29,11 @@ public enum TransitionCondition
     BackStepRight,
     BackStepLeft,
     None,
+    
+    
+    // Shadow
+    Default,
+    Off,
 }
 
 // transition에 추가적인 데이터를 넘겨주고 싶은 경우가 생길수 있으니 Object를 넘기는 법을 상의하자
@@ -39,3 +44,5 @@ public interface IActor
 
     Unit GetUnit();
 }
+
+

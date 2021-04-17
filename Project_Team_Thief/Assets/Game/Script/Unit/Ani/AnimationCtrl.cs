@@ -76,4 +76,9 @@ public class AnimationCtrl : MonoBehaviour
     {
         _spriteRenderer.color = color;
     }
+
+    public void SetOnOffSpriteRenderer(bool active)
+    {
+        _spriteRenderer.enabled = active;
+    }
 }
