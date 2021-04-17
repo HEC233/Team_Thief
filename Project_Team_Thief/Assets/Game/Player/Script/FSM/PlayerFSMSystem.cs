@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using LightWarrior;
@@ -44,7 +45,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     [SerializeField]
     private BattleIdleCtrl _battleIdleCtrl;
-    
+
+    // FSM이 FSM을 컨트롤 해도 괜찮을까? 2중 FSM인가?
+    [SerializeField]
+    private ShadowFSMSystem _shadowFsmSystem;
+
+    public ShadowFSMSystem ShadowFsmSystem => _shadowFsmSystem;
+
     // 애니메이션 관련 상태 변수
     public bool isJumpKeyPress = false;
     private bool _isBattleIdle = false;
@@ -59,12 +66,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     public event UnityAction OnBasicAttackCallEvent = null;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Init();
     }
 
-    void Init()
+    private void Init()
     {
         Bind();
         
@@ -96,6 +103,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 SystemMgr.AnimationCtrl.PlayAni(AniState.BattleIdle);
             else
                 SystemMgr.AnimationCtrl.PlayAni(AniState.Idle);
+
+            SystemMgr.ShadowFsmSystem.Transition(TransitionCondition.Idle);
         }
 
         public override void Update()
@@ -132,12 +141,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.Move);
-
+            
             if (SystemMgr._beforeFalling == true)
             {
                 SystemMgr.Unit.SetVelocityMaxMoveSpeed();
                 SystemMgr._beforeFalling = false;
             }
+
+            SystemMgr.ShadowFsmSystem.Transition(TransitionCondition.Move);
         }
 
         public override void Update()
@@ -231,6 +242,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.AnimationCtrl.PlayAni(AniState.RunningInertia);
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEventFunc;
             _isAniEnd = false;
+
+            SystemMgr.ShadowFsmSystem.Transition(TransitionCondition.RunningInertia);
         }
 
         public override void Update()
@@ -278,6 +291,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             SystemMgr.Unit.Jump();
             SystemMgr.StartJumpKeyPressDetectCoroutine();
+
+            SystemMgr.ShadowFsmSystem.Transition(TransitionCondition.Jump);
         }
 
         public override void Update()
@@ -428,6 +443,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.AnimationCtrl.PlayAni(AniState.Fall);
             SystemMgr._beforeFalling = true;
             _isFaill = true;
+
+            SystemMgr.ShadowFsmSystem.Transition(TransitionCondition.Falling);
         }
 
         public override void Update()
@@ -597,6 +614,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 
                 SystemMgr.Unit.SetDash();
                 SystemMgr.StartCoroutine(DashCoroutine());
+
+                SystemMgr.ShadowFsmSystem.Transition(TransitionCondition.Dash);
             }
         }
 
@@ -656,6 +675,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             _isFristWallJump = true;
             SystemMgr.Unit.WallSlideStateStart();
+
+            
         }
 
         public override void Update()
@@ -786,6 +807,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _attackBeInputTime = Time.time;
             SystemMgr.Unit.SetBasicAttack();
 
+            SystemMgr.ShadowFsmSystem.Transition(TransitionCondition.Off);
         }
 
         public override void Update()
@@ -959,6 +981,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             SystemMgr.OnBasicAttackEndAniEvent += BasicJumpAttackAniEnd;
             SystemMgr.OnBasicAttackCallEvent += BasicJumpAttackCall;
+
+            SystemMgr.ShadowFsmSystem.Transition(TransitionCondition.Off);
         }
 
         public override void Update()
@@ -1129,6 +1153,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.AnimationCtrl.PlayAni(AniState.Wallslideing);
             
             SystemMgr.Unit.WallSlideStateStart();
+            
+            SystemMgr.ShadowFsmSystem.Transition(TransitionCondition.Wallslideing);
         }
 
         public override void Update()

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7715960334125049636}
   - component: {fileID: 2141984162371750092}
   - component: {fileID: -5078904260765545550}
+  - component: {fileID: 505907386}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -78,7 +79,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4990086937456659575}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e7e58cad12647849b83bee758e485a9, type: 3}
   m_Name: 
@@ -120,6 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be4b08966a9d3a46819277d48e68921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 505907386}
+  _sfx:
+  - {fileID: 8300000, guid: f683404a5dac10f4e9b1c0e8fd8d8fdd, type: 3}
+  - {fileID: 8300000, guid: 7690183f5677f824f8ed78316ed3d3ca, type: 3}
+  - {fileID: 8300000, guid: 7bce2e61a641f3447a5cbc6d6ccde1ab, type: 3}
 --- !u!114 &7715960334125049636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +162,12 @@ MonoBehaviour:
       type: 3}
   - name: imsi_bungyeonghae
     prefab: {fileID: 399070007637419649, guid: 7f5ac952823040c45bb3554c05782c03, type: 3}
+  - name: JumpFx
+    prefab: {fileID: 3916663110621897615, guid: cdd41e0e209598e46b12ce39f6df2e11,
+      type: 3}
+  - name: DashFx
+    prefab: {fileID: 5397316996065833135, guid: de6dfcf11c19d31408c39851d20acfce,
+      type: 3}
 --- !u!114 &-5078904260765545550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,3 +186,99 @@ MonoBehaviour:
   fieldChangePower: 1
   fieldCellSize: {x: 10, y: 10}
   useGravity: 0
+--- !u!82 &505907386
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4990086937456659575}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
