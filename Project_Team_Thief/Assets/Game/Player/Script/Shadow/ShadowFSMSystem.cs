@@ -35,12 +35,22 @@ public class ShadowFSMSystem : FSMSystem<TransitionCondition, ShadowFSMStateBase
     [SerializeField]
     private FxCtrl _fxCtrl;
 
+    public AniState changeAniState;
+    
+
     private void Start()
     {
         
     }
     
     private void Init()
+    {
+        changeAniState = AniState.Idle;
+        
+        Bind();
+    }
+
+    private void Bind()
     {
         
     }
@@ -53,6 +63,8 @@ public class ShadowFSMSystem : FSMSystem<TransitionCondition, ShadowFSMStateBase
 
         public override void StartState()
         {
+            PlayDefaultAni(SystemMgr.changeAniState);
+            SystemMgr.changeAniState = AniState.Idle;
         }
 
         public override void Update()
@@ -118,20 +130,28 @@ public class ShadowFSMSystem : FSMSystem<TransitionCondition, ShadowFSMStateBase
                 return true;
 
             if (condition == TransitionCondition.Idle)
-                SystemMgr.Transition(TransitionCondition.Default);
-            if (condition == TransitionCondition.Move)
-                SystemMgr.Transition(TransitionCondition.Default);
-            if (condition == TransitionCondition.RunningInertia)
-                SystemMgr.Transition(TransitionCondition.Default);
-            if (condition == TransitionCondition.Jump)
-                SystemMgr.Transition(TransitionCondition.Default);
-            if (condition == TransitionCondition.Falling)
-                SystemMgr.Transition(TransitionCondition.Default);
-            if (condition == TransitionCondition.Dash)
-                SystemMgr.Transition(TransitionCondition.Default);
-            if (condition == TransitionCondition.Wallslideing)
-                SystemMgr.Transition(TransitionCondition.Default);
+                SystemMgr.changeAniState = AniState.Idle;
 
+            if (condition == TransitionCondition.Move)
+                SystemMgr.changeAniState = AniState.Move;
+
+            if (condition == TransitionCondition.RunningInertia)
+                SystemMgr.changeAniState = AniState.RunningInertia;
+
+            if (condition == TransitionCondition.Jump)
+                SystemMgr.changeAniState = AniState.Jump;
+
+            if (condition == TransitionCondition.Falling)
+                SystemMgr.changeAniState = AniState.Fall;
+
+            if (condition == TransitionCondition.Dash)
+                SystemMgr.changeAniState = AniState.Dash;
+
+            if (condition == TransitionCondition.Wallslideing)
+                SystemMgr.changeAniState = AniState.Wallslideing;
+            
+         
+            SystemMgr.Transition(TransitionCondition.Default);
             return false;
         }
     }
