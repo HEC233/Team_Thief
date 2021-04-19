@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15b88e6cbc79d345996ab7274088a45, type: 3}
-  m_Name: Skill2
+  m_Script: {fileID: 11500000, guid: 484f46132f38df34b8c13b876f9708d2, type: 3}
+  m_Name: ShadowWalkCommandData2
   m_EditorClassIdentifier: 
-  skillName: Skill2
-  skillCommand: LLRX
+  commandString: RRZ
+  skillName: ShadowWalk

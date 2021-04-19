@@ -87,9 +87,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
         GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
         GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvnetCall;
-        GameManager.instance.skillMgr.OnSkillCastEvent += OnSkillCastEventCall;
         Unit.hitEvent += UnitHitEventCall;
         _battleIdleCtrl.OnIsBattleIdleEvent += OnIsBattleIdleEventCall;
+        
+        //GameManager.instance.skillMgr.OnSkillCastEvent += OnSkillCastEventCall;
     }
 
     private class IdleState : CustomFSMStateBase
@@ -1281,7 +1282,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         _isBattleIdle = isBattle;
     }
 
-    private void OnSkillCastEventCall(SOSkillData soSkillData)
+    private void OnSkillCastEventCall()
     {
         // 스킬data를 이렇게 넘겨주는 게 옳은걸까?
         // data를 필요로하는 건 sate. skilldata를 전달 해주는게 아닌 skillmanager에 getter를 구현해 놓는게 맞는 거 아닌가?

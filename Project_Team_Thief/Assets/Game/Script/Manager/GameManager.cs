@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     public SoundManager soundMng;
     public UIManager uiMng;
     public EffectSystem FX;
-    
-    public SkillManager skillMgr;
+
+    public CommandManager commandManager;
     
 
     public ShadowParticleSystem shadow;

@@ -17,3 +17,6 @@ public class AttackSkillController : SkillControllerBase
         yield return null;
     }
 }
+
+// 그럼 Unit의 Rigidbody를 가져와서 여기서 컨트롤해도 괜찮을까?
+// -> 이건 커플링인가?
