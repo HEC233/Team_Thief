@@ -118,7 +118,7 @@ namespace PS.Event
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("다음 이벤트");
-            _event.followingEvent = EditorGUILayout.IntField(_event.followingEvent);
+            _event.followingEvent = EditorGUILayout.TextField(_event.followingEvent);
             EditorGUILayout.EndHorizontal();
 
 

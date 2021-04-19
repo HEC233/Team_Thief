@@ -53,7 +53,7 @@ namespace PS.Event
         public bool stoptime;
         public bool skipable;
         //getter
-        public int followingEvent;
+        public string followingEvent;
 
         public List<CutSceneData> cutScenes;
     }
