@@ -18,6 +18,7 @@ public class CommandManager : MonoBehaviour
 
     public event UnityAction<string> OnCommandCastEvent;
     // 커맨드가 입력됐을 때 데이터를 어떻게 전달 해야 할 까?
+    // SkillDataLibrary Class를 하나 만들어서 거기서 받아오는건 어떨까?
 
     private void Start()
     {

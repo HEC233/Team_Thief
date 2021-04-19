@@ -5,6 +5,9 @@ using UnityEngine;
 public class AttackSkillController : SkillControllerBase
 {
     private AttackSkillData AttackData => SkillData as AttackSkillData;
+    
+    // 스킬의 시전자는 생성자에서 가져온다.
+    // 요컨데 할당, 해제 때 잘 해라. 
     public AttackSkillController(GameSkillObject skillObject, SkillDataBase data) : base(skillObject, data) { }
 
     public override void Invoke()
@@ -14,7 +17,13 @@ public class AttackSkillController : SkillControllerBase
 
     private IEnumerator AttackRoutine()
     {
+        //GameManager.instance. >> player
         yield return null;
+    }
+
+    public void SetUnit(Unit unit)
+    {
+        
     }
 }
 
