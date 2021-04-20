@@ -30,6 +30,7 @@ namespace PS.Event
     {
         public string eventIndex;
         public string name;
+        public string stopCondition;
         public EventType eventType;
         public TriggerType triggerType;
         [StructLayout(LayoutKind.Explicit)]

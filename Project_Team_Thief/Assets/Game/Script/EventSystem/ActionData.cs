@@ -9,7 +9,7 @@ namespace PS.Event
         Dialog, CutScene, RestrictStart, RestrictEnd,
         Spawn, CameraChange, CameraShake, CameraZoom,
         CharacterMove, CharacterAnimation, Effect,
-        SFX, BGMChange, BGMEnd, BGMStart,
+        SFX, BGMChange, BGMEnd, BGMStart
     }
 
     public enum CameraShakeIntensity
@@ -17,12 +17,16 @@ namespace PS.Event
         Strong, Wick
     }
 
+    public enum PositionSetMethod
+    {
+        Absolute, Relative
+    }
+
     [System.Serializable]
     public class ActionData
     {
         public ActionType type;
         public float actionLength;
-        public float enterDelay;
 
         // for Dialog
         public string dialogName;
@@ -56,6 +60,8 @@ namespace PS.Event
 
         // for Effect
         public string effectName;
+        public PositionSetMethod positionSetMethod;
+        public string originPointObject;
         public Vector2Int effectPos;
 
         // for SFX

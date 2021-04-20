@@ -18,12 +18,11 @@ namespace PS.Event
                 var halfWidth = position.width * 0.5f;
 
                 var indexRect = new Rect(position) { width = halfWidth };
-                var nameRect = new Rect(position) { width = halfWidth, x = position.x + halfWidth + 2 };
-                var actionCountRect = new Rect(position) { y = indexRect.y + EditorGUIUtility.singleLineHeight + 2 };
+                var actionCountRect = new Rect(position) { width = halfWidth, x = position.x + halfWidth + 2 };
+                //var actionCountRect = new Rect(position) { y = indexRect.y + EditorGUIUtility.singleLineHeight + 2 };
                 var actionTimeRect = new Rect(position) { y = actionCountRect.y + EditorGUIUtility.singleLineHeight + 2 };
                 var skipableRect = new Rect(position) { y = actionTimeRect.y + EditorGUIUtility.singleLineHeight + 2, width = halfWidth };
                 var autopassRect = new Rect(position) { x = position.x + halfWidth + 2, y = actionTimeRect.y + EditorGUIUtility.singleLineHeight + 2, width = halfWidth };
-                var actionsRect = new Rect();
 
                 var IndexProperty = property.FindPropertyRelative("cutSceneIndex");
                 var nameProperty = property.FindPropertyRelative("cutSceneName");
@@ -36,7 +35,7 @@ namespace PS.Event
 
                 EditorGUIUtility.labelWidth = 40;
                 IndexProperty.stringValue = EditorGUI.TextField(indexRect, "컷 번호", IndexProperty.stringValue);
-                nameProperty.stringValue = EditorGUI.TextField(nameRect, "이름", nameProperty.stringValue);
+                //nameProperty.stringValue = EditorGUI.TextField(nameRect, "이름", nameProperty.stringValue);
                 EditorGUI.LabelField(actionCountRect, "포함 연출 수 " + actionsProperty.arraySize.ToString());
                 EditorGUIUtility.labelWidth = 80;
                 actionTimeProperty.floatValue = EditorGUI.FloatField(actionTimeRect, "연출시간", actionTimeProperty.floatValue);
@@ -47,7 +46,7 @@ namespace PS.Event
                 float newY = skipableRect.y + EditorGUIUtility.singleLineHeight + 2;
                 for (int i = 0; i < actionsProperty.arraySize; i++)
                 {
-                    EditorGUI.LabelField(new Rect(position) { y = newY}, "#" + (i + 1).ToString());
+                    EditorGUI.LabelField(new Rect(position) { y = newY}, "   #" + (i + 1).ToString());
                     newY += EditorGUIUtility.singleLineHeight;
                     var action = actionsProperty.GetArrayElementAtIndex(i);
                     EditorGUI.PropertyField(new Rect(position) { y = newY, height = EditorGUI.GetPropertyHeight(action) }, action);

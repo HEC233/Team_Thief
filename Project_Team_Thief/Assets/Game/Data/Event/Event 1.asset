@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5623813672781d648940f5c75d0f6afb, type: 3}
   m_Name: Event 1
   m_EditorClassIdentifier: 
-  eventIndex: 00
+  eventIndex: 01
   name: "\uD14C\uC2A4\uD2B82"
+  stopCondition: 
   eventType: 0
-  triggerType: 3
+  triggerType: 1
   playAmount: 0
   playCount: 1
   stoptime: 0
@@ -23,14 +24,12 @@ MonoBehaviour:
   followingEvent: 
   cutScenes:
   - cutSceneIndex: 00_0
-    cutSceneName: 
-    actionTime: 0
-    skipable: 0
+    actionTime: 1000
+    skipable: 1
     autopass: 0
     actions:
-    - type: 4
+    - type: 10
       actionLength: 0
-      enterDelay: 0
       dialogName: 
       image: {fileID: 0}
       leftDown: {x: 0, y: 0}
@@ -43,18 +42,24 @@ MonoBehaviour:
       cameraSize: 0
       movePos: {x: 0, y: 0}
       animationName: 
-      effectName: 
+      effectName: Hit1
+      positionSetMethod: 1
+      originPointObject: Seraphim
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 
-    - type: 4
+  - cutSceneIndex: 01_1
+    actionTime: 1000
+    skipable: 1
+    autopass: 0
+    actions:
+    - type: 10
       actionLength: 0
-      enterDelay: 0
       dialogName: 
       image: {fileID: 0}
       leftDown: {x: 0, y: 0}
       rightUp: {x: 0, y: 0}
-      unitName: "\uD14C\uC2A4\uD2B84"
+      unitName: 
       spawnPos: {x: 0, y: 0}
       count: 0
       cameraName: 
@@ -62,7 +67,9 @@ MonoBehaviour:
       cameraSize: 0
       movePos: {x: 0, y: 0}
       animationName: 
-      effectName: 
+      effectName: Hit2
+      positionSetMethod: 1
+      originPointObject: Seraphim
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 

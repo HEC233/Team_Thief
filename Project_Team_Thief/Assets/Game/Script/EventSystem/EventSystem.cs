@@ -2,16 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PS.Event;
+using PS.Util.Tile;
 
 public class EventSystem : MonoBehaviour
 {
-    private class ProgressInfo
-    {
-        public int currentCutScene;
-        public int currentAction;
-        public int leftCount;
-    }
-
     public List<PS.Event.Event> events;
 
     private List<string> nextEventQueue = new List<string>();
@@ -26,11 +20,12 @@ public class EventSystem : MonoBehaviour
 
     IEnumerator Process(PS.Event.Event data)
     {
-        ProgressInfo info = new ProgressInfo();
-        info.leftCount = data.playCount;
+        int leftCount = data.playCount;
 
-        while (data.playAmount == PlayAmount.Infinite || (data.playAmount == PlayAmount.Finite && info.leftCount-- > 0))
+        // 이벤트가 남은 횟수만큼 반복
+        while (data.playAmount == PlayAmount.Infinite || (data.playAmount == PlayAmount.Finite && leftCount-- > 0))
         {
+            // 이벤트가 발동조건을 만족 할때까지 반복
             bool returnValue = false;
             while (!returnValue)
             {
@@ -46,27 +41,63 @@ public class EventSystem : MonoBehaviour
                         returnValue = ComeCheck();
                         break;
                     case TriggerType.Next:
-                        returnValue = NextCheck(data.name);
+                        returnValue = NextCheck(data.eventIndex);
                         break;
                 }
                 yield return null;
             }
 
-            info.currentCutScene = 0;
-            info.currentAction = 0;
+            // 이벤트가 사용할 값들 초기화
+            int currentCutScene = 0;
+            int currentAction = 0;
+            float startTime = Time.realtimeSinceStartup;
+            float passedTime = startTime;
+            bool actionSkipPressed = false;
+            bool skip = false;
 
             while (true)
             {
-                if (info.currentCutScene >= data.cutScenes.Count)
+                //여기서 이벤트 자체 스킵 체크 해줘야 함 미치곘네
+
+                actionSkipPressed = Input.GetKeyDown(KeyCode.Space);
+                skip = skip || (actionSkipPressed && data.cutScenes[currentCutScene].skipable);
+                // 스킵을 버튼이 눌렸는지
+                // 컷신을 모두 보면 이번 이벤트를 끝냄
+                if (currentCutScene >= data.cutScenes.Count)
                     break;
-                if (info.currentAction >= data.cutScenes[info.currentCutScene].actions.Count)
+                // 연출이 모두 끝나면 다음 컷씬으로 넘어감
+                if (currentAction >= data.cutScenes[currentCutScene].actions.Count)
                 {
-                    info.currentAction = 0;
-                    info.currentCutScene++;
+                    passedTime = Time.realtimeSinceStartup - startTime;
+                    // 컷씬 시간이 남아있는지 그리고 스킵넘기기가 가능하며 스킵을 안헀는지 체크
+                    if (data.cutScenes[currentCutScene].actionTime - passedTime >= 0 && !skip)
+                    {
+                        yield return null;
+                        continue;
+                    }
+                    // 컷씬 넘기기를 했는지 체크
+                    if (!data.cutScenes[currentCutScene].autopass && !actionSkipPressed)
+                    {
+                        yield return null;
+                        continue;
+                    }
+                    // 다음 컷씬으로 넘어가는 처리
+                    currentAction = 0;
+                    currentCutScene++;
+                    startTime = Time.realtimeSinceStartup;
+                    skip = false;
                     continue;
                 }
 
-                var actionData = data.cutScenes[info.currentCutScene].actions[info.currentAction];
+                float time;
+                var actionData = data.cutScenes[currentCutScene].actions[currentAction];
+                // 스킵을 했을때, 한프레임안에 다 처리해야 하고 다음 컷씬으로 넘어감.
+                if (skip)
+                    time = 0;
+                // 스킵을 하지 않았을때, 여러프레임에 거쳐서 할수있음
+                else
+                    time = actionData.actionLength;
+                
                 switch (actionData.type)
                 {
                     case ActionType.Dialog:
@@ -92,6 +123,7 @@ public class EventSystem : MonoBehaviour
                     case ActionType.CharacterAnimation:
                         break;
                     case ActionType.Effect:
+                        yield return StartCoroutine(Effect(actionData.effectName, actionData.positionSetMethod, actionData.originPointObject, actionData.effectPos));
                         break;
                     case ActionType.SFX:
                         break;
@@ -102,12 +134,20 @@ public class EventSystem : MonoBehaviour
                     case ActionType.BGMStart:
                         break;
                 }
-
-                info.currentAction++;
-                yield return null;
+                currentAction++;
+                if (skip)
+                    continue;
+                else
+                    yield return null;
             }
 
+            // 여기서 이벤트 종료조건 검사 해줘야 함
+            if (data.stopCondition != string.Empty)
+            {
 
+            }
+
+            // 이벤트가 끝나면 다음 따라올 이벤트를 넣어줌
             nextEventQueue.Add(data.followingEvent);
         }
 
@@ -165,6 +205,7 @@ public class EventSystem : MonoBehaviour
 
     private IEnumerator CameraShake(CameraShakeIntensity intensity)
     {
+
         yield return null;
     }
 
@@ -183,8 +224,17 @@ public class EventSystem : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator Effect(string effectName, Vector2Int effectPos)
+    private IEnumerator Effect(string effectName, PositionSetMethod method, string objectName, Vector2Int effectPos)
     {
+        if (method == PositionSetMethod.Absolute)
+            GameManager.instance?.FX.Play(effectName, effectPos.TileCoordToPosition3(), Quaternion.identity);
+        else if (method == PositionSetMethod.Relative)
+        {
+            var obj = GameObject.Find(objectName);
+            if(obj)
+                GameManager.instance?.FX.Play(effectName, obj.transform.position + effectPos.TileCoordToPosition3(), Quaternion.identity);
+        }
+
         yield return null;
     }
 

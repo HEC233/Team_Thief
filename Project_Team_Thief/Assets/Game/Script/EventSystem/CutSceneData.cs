@@ -9,7 +9,6 @@ namespace PS.Event
     public class CutSceneData
     {
         public string cutSceneIndex;
-        public string cutSceneName;
 
         public float actionTime;
         public bool skipable;

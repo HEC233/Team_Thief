@@ -13,29 +13,27 @@ MonoBehaviour:
   m_Name: Event
   m_EditorClassIdentifier: 
   eventIndex: 00
-  name: 
-  eventType: 0
-  triggerType: 1
+  name: "\uD14C\uC2A4\uD2B8\uC6A9"
+  eventType: 1
+  triggerType: 0
   playAmount: 0
-  playCount: 3
+  playCount: 2
   stoptime: 0
   skipable: 0
-  followingEvent: 
+  followingEvent: 01
   cutScenes:
   - cutSceneIndex: 00_0
-    cutSceneName: 
     actionTime: 0
     skipable: 0
     autopass: 0
     actions:
-    - type: 4
+    - type: 14
       actionLength: 0
-      enterDelay: 0
       dialogName: 
       image: {fileID: 0}
       leftDown: {x: 0, y: 0}
       rightUp: {x: 0, y: 0}
-      unitName: "\uD14C\uC2A4\uD2B81"
+      unitName: 
       spawnPos: {x: 0, y: 0}
       count: 0
       cameraName: 
@@ -44,25 +42,8 @@ MonoBehaviour:
       movePos: {x: 0, y: 0}
       animationName: 
       effectName: 
-      effectPos: {x: 0, y: 0}
-      sfxName: 
-      bgmName: 
-    - type: 4
-      actionLength: 0
-      enterDelay: 0
-      dialogName: 
-      image: {fileID: 0}
-      leftDown: {x: 0, y: 0}
-      rightUp: {x: 0, y: 0}
-      unitName: "\uD14C\uC2A4\uD2B82"
-      spawnPos: {x: 0, y: 0}
-      count: 0
-      cameraName: 
-      intensity: 0
-      cameraSize: 0
-      movePos: {x: 0, y: 0}
-      animationName: 
-      effectName: 
+      positionSetMethod: 0
+      originPointObject: 
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 

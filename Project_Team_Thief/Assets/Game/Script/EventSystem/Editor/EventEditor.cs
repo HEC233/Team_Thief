@@ -25,7 +25,10 @@ namespace PS.Event
                 //return EditorGUI.GetPropertyHeight(cutScenes.GetArrayElementAtIndex(index)); 
                 float height = EditorGUIUtility.singleLineHeight * 5;
                 var actionsProperty = cutScenes.GetArrayElementAtIndex(index).FindPropertyRelative("actions");
-                height += EditorGUI.GetPropertyHeight(actionsProperty);
+                for (int i = 0; i < actionsProperty.arraySize; i++)
+                {
+                    height += EditorGUI.GetPropertyHeight(actionsProperty.GetArrayElementAtIndex(i));
+                }
                 height += actionsProperty.arraySize * EditorGUIUtility.singleLineHeight;
                 return height;
             };
@@ -55,15 +58,18 @@ namespace PS.Event
             _event.eventIndex = EditorGUILayout.TextField(_event.eventIndex);
             EditorGUILayout.EndHorizontal();
 
+            float originalWidth = EditorGUIUtility.labelWidth;
+            EditorGUIUtility.labelWidth = 80;
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("이벤트 이름");
             _event.name = EditorGUILayout.TextField(_event.name);
-            EditorGUILayout.EndHorizontal();
+            //EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal();
+            //EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("이벤트 종류");
             _event.eventType = (EventType)EditorGUILayout.EnumPopup(_event.eventType);
             EditorGUILayout.EndHorizontal();
+            EditorGUIUtility.labelWidth = originalWidth;
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("시작조건");
@@ -100,7 +106,7 @@ namespace PS.Event
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("종료조건");
-            EditorGUILayout.TextField("");
+            _event.stopCondition = EditorGUILayout.TextField(_event.stopCondition);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
