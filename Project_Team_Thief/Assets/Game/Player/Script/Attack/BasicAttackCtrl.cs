@@ -21,7 +21,7 @@ public class BasicAttackCtrl : AttackBase
     private void OnEnable()
     {
         if(_basicAttackCollider2D == null)
-            Assert.IsNotNull("_basicAttackCollider Noll");
+            Assert.IsNotNull("_basicAttackCollider Null");
         
         if(_isInit == false)
             Init();

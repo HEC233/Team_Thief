@@ -89,4 +89,17 @@ public abstract class FSMSystem<EnumType, State> : MonoBehaviour where EnumType 
         
         _fsmData.Add(type, fsmState);
     }
+
+    protected bool GetContainsKey(EnumType type)
+    {
+        return _fsmData.ContainsKey(type);
+    }
+
+    protected State GetState(EnumType type)
+    {
+        if (_fsmData.ContainsKey(type) == false)
+            return default(State);
+
+        return _fsmData[type];
+    }
 }

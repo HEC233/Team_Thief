@@ -17,6 +17,9 @@ public class KeyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (controlUnit == null)
+            return;
+
         List<KeyCode> pressedInput = new List<KeyCode>();
         
         if (Input.anyKey || Input.anyKeyDown)

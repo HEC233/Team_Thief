@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2141984162371750092}
   - component: {fileID: -5078904260765545550}
   - component: {fileID: 505907386}
-  - component: {fileID: 3147689351217371151}
+  - component: {fileID: 7279758012565860687}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -58,7 +58,7 @@ MonoBehaviour:
   soundMng: {fileID: 1997881170352566880}
   uiMng: {fileID: 7715960334125049636}
   FX: {fileID: 2141984162371750092}
-  skillMgr: {fileID: 3147689351217371151}
+  commandManager: {fileID: 7279758012565860687}
   shadow: {fileID: -5078904260765545550}
   _keyManger: {fileID: 4990086937456659572}
   grid: {fileID: 0}
@@ -284,7 +284,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3147689351217371151
+--- !u!114 &7279758012565860687
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,7 +293,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4990086937456659575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c42e858a6a145849b7c6f2883380594, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cbd028b80ea99e479df29883ff553f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soSkillDatas: []
+  _commandInputTime: 0.3
+  _soCommandDatas:
+  - {fileID: 11400000, guid: befb1d0d8808f7a44b14106db7ea3b90, type: 2}
+  - {fileID: 11400000, guid: 3b538f794429f9446a4753b21aa9905a, type: 2}

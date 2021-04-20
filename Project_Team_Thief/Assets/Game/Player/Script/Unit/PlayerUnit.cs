@@ -163,6 +163,14 @@ public class PlayerUnit : Unit
     private float _hitTime = 0.0f;
     public float HitTime => _hitTime;
     private bool _isInvincibility = false;
+
+    // Skill Variable
+
+    // Shadow Walk
+    [SerializeField]
+    private ShadowWalkColCtrl _shadowWalkColCtrl;
+    private float _skillShadowWalkNumberOfTimes;
+    private float _skillShadowWalkCoolTime;
     
     //////////////////////////// 데이터로 관리 할 변수
 
@@ -533,7 +541,23 @@ public class PlayerUnit : Unit
     {
         _hitDamage = new Damage();
     }
-    
+
+    public Shadow GetAbleShadowWalk()
+    {
+        if (_skillShadowWalkNumberOfTimes > 0)
+        {
+            _skillShadowWalkNumberOfTimes--;
+            return _shadowWalkColCtrl.CheckAreaInsideShadow();
+        }
+
+        if (_skillShadowWalkNumberOfTimes < 0)
+        {
+            // 코루틴 작동
+        }
+
+        return null;
+    }
+
     public void StartBulletTime(float timeScale)
     {
         _timeScale = timeScale;

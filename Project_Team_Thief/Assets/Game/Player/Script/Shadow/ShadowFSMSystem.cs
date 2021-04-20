@@ -164,6 +164,9 @@ public class ShadowFSMSystem : FSMSystem<TransitionCondition, ShadowFSMStateBase
 
     public bool Transition(TransitionCondition condition, object param = null)
     {
+        //if (GetContainsKey(condition) == false)
+        //    return false;
+
         if (CheckStateChangeAbleCondition(condition) == false)
             return false;
         

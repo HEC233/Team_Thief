@@ -75,7 +75,6 @@ public class CommandManager : MonoBehaviour
             {
                 if (_commandCtrls[i].CheckCommand() == true)
                 {
-                    Debug.Log(_commandCtrls[i].CommandData.skillName);
                     OnCommandCastEvent?.Invoke(_commandCtrls[i].CommandData.skillName);
                     ResetAllCommandList();
                     break;

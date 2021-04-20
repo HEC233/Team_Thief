@@ -89,8 +89,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvnetCall;
         Unit.hitEvent += UnitHitEventCall;
         _battleIdleCtrl.OnIsBattleIdleEvent += OnIsBattleIdleEventCall;
-        
-        //GameManager.instance.skillMgr.OnSkillCastEvent += OnSkillCastEventCall;
+
+        GameManager.instance.commandManager.OnCommandCastEvent += OnCommandCastEventCall;
     }
 
     private class IdleState : CustomFSMStateBase
@@ -1204,6 +1204,45 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         }
     }
 
+    private class SkillShadowWalkState : CustomFSMStateBase, ISkillStateBase
+    {
+        private Shadow _inAreaShadow = null;
+
+        public SkillShadowWalkState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillShadowWalk);
+        }
+ 
+
+        public override void Update()
+        {
+
+        }
+
+        public override void EndState()
+        {
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            return false;
+        }
+
+        public bool IsAbleTransition()
+        {
+            _inAreaShadow = SystemMgr.Unit.GetAbleShadowWalk();
+
+            if (_inAreaShadow == null)
+                return false;
+
+            return true;
+        }
+    }
+
     protected override void RegisterState()
     {
         AddState(TransitionCondition.Idle, new IdleState(this));
@@ -1221,6 +1260,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Attack, new BasicAttackState(this));
         AddState(TransitionCondition.JumpAttack, new BasicJumpAttack(this));
         AddState(TransitionCondition.Hit, new HitState(this));
+        AddState(TransitionCondition.SkillShadowWalk, new SkillShadowWalkState(this));
     }
     
     public bool Transition(TransitionCondition condition, object param = null)
@@ -1282,15 +1322,57 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         _isBattleIdle = isBattle;
     }
 
-    private void OnSkillCastEventCall()
+    private void OnCommandCastEventCall(string skillName)
     {
-        // 스킬data를 이렇게 넘겨주는 게 옳은걸까?
-        // data를 필요로하는 건 sate. skilldata를 전달 해주는게 아닌 skillmanager에 getter를 구현해 놓는게 맞는 거 아닌가?
-        
+        var condition = ChangeSkillNameToTransitionCondition(skillName);
+
+        if (condition == TransitionCondition.None)
+            return;
+
+        if (CheckSkillPossibleConditions(condition) == true)
+            Transition(condition);
+    }
+
+    private TransitionCondition ChangeSkillNameToTransitionCondition(string skillName)
+    {
+        switch (skillName)
+        {
+            case "ShadowWalk":
+                return TransitionCondition.SkillShadowWalk;
+                break;
+            
+            default:
+                break;
+        }
+
+        return TransitionCondition.None;
+    }
+
+    private bool CheckSkillPossibleConditions(TransitionCondition condition)
+    {
+        if (CurrState == TransitionCondition.Hit)
+            return false;
+
+        // 가져 올 State가 Skill이라는 확정사항이므로 괜찮은걸까?
+        var state = GetState(condition) as ISkillStateBase;
+
+        return state.IsAbleTransition();
+
+        switch (condition)
+        {
+            case TransitionCondition.SkillShadowWalk:
+                
+                break;
+
+            default:
+                break;
+        }
+
+        return true;
     }
 
     // Time 관련
-    
+
     private void StartBulletTimeEvnetCall(float _timeScale)
     {
         Unit.StartBulletTime(_timeScale);
