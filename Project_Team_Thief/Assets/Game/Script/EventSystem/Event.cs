@@ -25,6 +25,20 @@ namespace PS.Event
         Finite, Infinite
     }
 
+    [StructLayout(LayoutKind.Explicit), System.Serializable]
+    public struct TriggerCondition
+    {
+        // for Talk
+        //[FieldOffset(0)]
+        // for Arrive
+        //[FieldOffset(0)]
+        // for Come
+        [FieldOffset(0)] public CmpType xCmp;
+        [FieldOffset(4)] public int xValue;
+        [FieldOffset(8)] public CmpType yCmp;
+        [FieldOffset(12)] public int yValue;
+    }
+
     [CreateAssetMenu(fileName = "Event", menuName = "ScriptableObject/Event")]
     public class Event : ScriptableObject
     {
@@ -33,20 +47,8 @@ namespace PS.Event
         public string stopCondition;
         public EventType eventType;
         public TriggerType triggerType;
-        [StructLayout(LayoutKind.Explicit)]
-        public struct TriggerCondition
-        {
-            // for Talk
-            //[FieldOffset(0)]
-            // for Arrive
-            //[FieldOffset(0)]
-            // for Come
-            [FieldOffset(0)] public CmpType xCmp;
-            [FieldOffset(4)] public int xValue;
-            [FieldOffset(8)] public CmpType yCmp;
-            [FieldOffset(12)] public int yValue;
-        }
-        public TriggerCondition trigger;
+        
+        public TriggerCondition trigger = new TriggerCondition();
 
         //EndCondition
         public PlayAmount playAmount;

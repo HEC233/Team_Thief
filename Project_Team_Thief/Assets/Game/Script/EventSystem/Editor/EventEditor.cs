@@ -76,6 +76,7 @@ namespace PS.Event
             _event.triggerType = (TriggerType)EditorGUILayout.EnumPopup(_event.triggerType);
             EditorGUILayout.EndHorizontal();
 
+            PS.Event.TriggerCondition newTrigger = new TriggerCondition();
             switch (_event.triggerType)
             {
                 case TriggerType.Arrive:
@@ -85,15 +86,15 @@ namespace PS.Event
                     EditorGUILayout.BeginVertical();
                     EditorGUILayout.LabelField("X");
                     EditorGUILayout.BeginHorizontal();
-                    if (CmpType.None != (_event.trigger.xCmp = (CmpType)EditorGUILayout.EnumPopup(_event.trigger.xCmp)))
-                        _event.trigger.xValue = EditorGUILayout.IntField(_event.trigger.xValue);
+                    if (CmpType.None != (newTrigger.xCmp = (CmpType)EditorGUILayout.EnumPopup(_event.trigger.xCmp)))
+                        newTrigger.xValue = EditorGUILayout.IntField(_event.trigger.xValue);
                     EditorGUILayout.EndHorizontal();
                     EditorGUILayout.EndVertical();
                     EditorGUILayout.BeginVertical();
                     EditorGUILayout.LabelField("Y");
                     EditorGUILayout.BeginHorizontal();
-                    if (CmpType.None != (_event.trigger.yCmp = (CmpType)EditorGUILayout.EnumPopup(_event.trigger.yCmp)))
-                        _event.trigger.yValue = EditorGUILayout.IntField(_event.trigger.yValue);
+                    if (CmpType.None != (newTrigger.yCmp = (CmpType)EditorGUILayout.EnumPopup(_event.trigger.yCmp)))
+                        newTrigger.yValue = EditorGUILayout.IntField(_event.trigger.yValue);
                     EditorGUILayout.EndHorizontal();
                     EditorGUILayout.EndVertical();
                     EditorGUILayout.EndHorizontal();
@@ -103,6 +104,7 @@ namespace PS.Event
                 case TriggerType.Next:
                     break;
             }
+            _event.trigger = newTrigger;
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("종료조건");

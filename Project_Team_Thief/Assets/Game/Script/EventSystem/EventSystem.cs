@@ -38,7 +38,7 @@ public class EventSystem : MonoBehaviour
                         returnValue = ArriveCheck();
                         break;
                     case TriggerType.Come:
-                        returnValue = ComeCheck();
+                        returnValue = ComeCheck(data.trigger);
                         break;
                     case TriggerType.Next:
                         returnValue = NextCheck(data.eventIndex);
@@ -59,12 +59,13 @@ public class EventSystem : MonoBehaviour
             {
                 //여기서 이벤트 자체 스킵 체크 해줘야 함 미치곘네
 
-                actionSkipPressed = Input.GetKeyDown(KeyCode.Space);
-                skip = skip || (actionSkipPressed && data.cutScenes[currentCutScene].skipable);
-                // 스킵을 버튼이 눌렸는지
                 // 컷신을 모두 보면 이번 이벤트를 끝냄
                 if (currentCutScene >= data.cutScenes.Count)
                     break;
+
+                actionSkipPressed = Input.GetKeyDown(KeyCode.Space);
+                skip = skip || (actionSkipPressed && data.cutScenes[currentCutScene].skipable);
+                // 스킵을 버튼이 눌렸는지
                 // 연출이 모두 끝나면 다음 컷씬으로 넘어감
                 if (currentAction >= data.cutScenes[currentCutScene].actions.Count)
                 {
@@ -161,9 +162,19 @@ public class EventSystem : MonoBehaviour
     {
         return true;
     }
-    private bool ComeCheck()
+    private bool ComeCheck(PS.Event.TriggerCondition trigger)
     {
-        return false;
+        Unit player = GameManager.instance?.GetControlActor()?.GetUnit();
+        if (player == null) return false;
+        var pos = GameManager.instance.GetControlActor().GetUnit().transform.TileCoord();
+        return ((trigger.xCmp == CmpType.Bigger && trigger.xValue < pos.x) ||
+            (trigger.xCmp == CmpType.Equal && trigger.xValue == pos.x) ||
+            (trigger.xCmp == CmpType.Smaller && trigger.xValue > pos.x) ||
+            (trigger.xCmp == CmpType.None)) &&
+            ((trigger.yCmp == CmpType.Bigger && trigger.yValue < pos.y) ||
+            (trigger.yCmp == CmpType.Equal && trigger.yValue == pos.y) ||
+            (trigger.yCmp == CmpType.Smaller && trigger.yValue > pos.y) ||
+            (trigger.yCmp == CmpType.None));
     }
     private bool NextCheck(string name)
     {
