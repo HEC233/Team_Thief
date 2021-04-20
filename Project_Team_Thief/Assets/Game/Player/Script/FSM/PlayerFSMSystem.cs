@@ -1331,6 +1331,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         if (CheckSkillPossibleConditions(condition) == true)
             Transition(condition);
+
+        Debug.Log("CheckSkillPossibleConditions(condition) : " + CheckSkillPossibleConditions(condition));
+
     }
 
     private TransitionCondition ChangeSkillNameToTransitionCondition(string skillName)
