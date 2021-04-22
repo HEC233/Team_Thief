@@ -16,7 +16,8 @@ public class GameSkillObject : MonoBehaviour
 
     private void EndSkillEvent()
     {
-
+        _controller.Release();
+        Release();
     }
 
     public void Release()

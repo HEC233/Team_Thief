@@ -8,8 +8,8 @@ public class AttackSkillData : SkillDataBase
     private float _damagePer = 1.0f;
     public float DamagePer => _damagePer;
 
-    public override SkillControllerBase GetSkillController(GameSkillObject skillObject)
+    public override SkillControllerBase GetSkillController(GameSkillObject skillObject, Unit unit)
     {
-        return new AttackSkillController(skillObject, this);
+        return new AttackSkillController(skillObject, this, unit);
     }
 }

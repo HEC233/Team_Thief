@@ -16,6 +16,6 @@ public class SkillTestCode : MonoBehaviour
         if (skillObject == null)
             return;
 
-        skillObject.InitSkill(_skillData.GetSkillController(skillObject)); 
+        //skillObject.InitSkill(_skillData.GetSkillController(skillObject)); 
     }
 }

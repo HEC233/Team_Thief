@@ -26,6 +26,7 @@ public enum AniState
     Hit2,           // 18
     BattleIdle,     // 19
     SkillShadowWalk,// 20
+    ShadowControl,  // 21
 }
 
 public class AnimationCtrl : MonoBehaviour

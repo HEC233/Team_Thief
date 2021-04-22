@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public SoundManager soundMng;
     public UIManager uiMng;
     public EffectSystem FX;
+    public GameSkillMgr GameSkillMgr;
 
     public CommandManager commandManager;
     

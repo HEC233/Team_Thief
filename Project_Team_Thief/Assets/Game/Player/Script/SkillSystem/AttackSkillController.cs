@@ -8,7 +8,7 @@ public class AttackSkillController : SkillControllerBase
     
     // 스킬의 시전자는 생성자에서 가져온다.
     // 요컨데 할당, 해제 때 잘 해라. 
-    public AttackSkillController(GameSkillObject skillObject, SkillDataBase data) : base(skillObject, data) { }
+    public AttackSkillController(GameSkillObject skillObject, SkillDataBase data, Unit unit) : base(skillObject, data, unit) { }
 
     public override void Invoke()
     {

@@ -24,5 +24,5 @@ public abstract class SkillDataBase : ScriptableObject
     public float EncroachmentPer => _encroachmentPer;
 
     // Unit까지 넣어주자.
-    public abstract SkillControllerBase GetSkillController(GameSkillObject skillObject);
+    public abstract SkillControllerBase GetSkillController(GameSkillObject skillObject, Unit unit);
 }

@@ -11,12 +11,17 @@ public abstract class SkillControllerBase
     private SkillDataBase _skillData = null;
     public SkillDataBase SkillData => _skillData;
 
-    public event UnityAction OnEndSkill = null;
+    private Unit _unit;
 
-    public SkillControllerBase(GameSkillObject skillObject, SkillDataBase data)
+    public Unit Unit => _unit;
+
+    public UnityAction OnEndSkill = null;
+
+    public SkillControllerBase(GameSkillObject skillObject, SkillDataBase data, Unit unit)
     {
         _skillObject = skillObject;
         _skillData = data;
+        _unit = unit;
     }
 
     public abstract void Invoke();

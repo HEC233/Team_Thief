@@ -1207,14 +1207,17 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private class SkillShadowWalkState : CustomFSMStateBase, ISkillStateBase
     {
         private Shadow _inAreaShadow = null;
-
+        private GameSkillObject _gameSkillObject;
+        
         public SkillShadowWalkState(PlayerFSMSystem system) : base(system)
         {
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
         }
 
         public override void StartState()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillShadowWalk);
+            _gameSkillObject = SystemMgr.Unit.InvokeShadowWalkSkill();
         }
  
 
@@ -1225,11 +1228,21 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
+            
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
         }
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Idle)
+                return true;
+            
             return false;
+        }
+
+        private void OnAnimationEndEvnetCall()
+        {
+            SystemMgr.Transition(TransitionCondition.Idle);
         }
 
         public bool IsAbleTransition()

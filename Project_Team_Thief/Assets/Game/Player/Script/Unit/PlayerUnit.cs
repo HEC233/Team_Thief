@@ -14,8 +14,10 @@ public class PlayerUnit : Unit
     
     [SerializeField] 
     private Rigidbody2D _rigidbody2D;
+    
+    public Rigidbody2D Rigidbody2D => _rigidbody2D;
 
-    [SerializeField] 
+    [SerializeField]
     private SpriteRenderer _spriteRenderer;
 
     // 방향 관련 변수
@@ -165,10 +167,12 @@ public class PlayerUnit : Unit
     private bool _isInvincibility = false;
 
     // Skill Variable
-
+    [Header("Skill Variable")]
     // Shadow Walk
     [SerializeField]
     private ShadowWalkColCtrl _shadowWalkColCtrl;
+    [SerializeField]
+    private ShadowWalkSkillData _shadowWalkSkillData;
     private float _skillShadowWalkNumberOfTimes;
     private float _skillShadowWalkCoolTime;
     
@@ -209,6 +213,9 @@ public class PlayerUnit : Unit
         
         _basicAttackDamage = new Damage();
         _hitDamage = new Damage();
+        
+        _skillShadowWalkNumberOfTimes = 2;
+        _skillShadowWalkCoolTime = 5.0f;
     }
     
 
@@ -542,11 +549,14 @@ public class PlayerUnit : Unit
         _hitDamage = new Damage();
     }
 
+    public Shadow _dumyShadow;
+    
     public Shadow GetAbleShadowWalk()
     {
         if (_skillShadowWalkNumberOfTimes > 0)
         {
             _skillShadowWalkNumberOfTimes--;
+            _dumyShadow = _shadowWalkColCtrl.CheckAreaInsideShadow();
             return _shadowWalkColCtrl.CheckAreaInsideShadow();
         }
 
@@ -556,6 +566,18 @@ public class PlayerUnit : Unit
         }
 
         return null;
+    }
+
+    public GameSkillObject InvokeShadowWalkSkill()
+    {
+        //todo 스킬이 한 번만 작동함.
+        // 디버그 필요.
+        var skillObject = GameManager.instance.GameSkillMgr.GetSkillObject();
+        if (skillObject == null)
+            return null;
+        
+        skillObject.InitSkill(_shadowWalkSkillData.GetSkillController(skillObject, this));
+        return skillObject;
     }
 
     public void StartBulletTime(float timeScale)
