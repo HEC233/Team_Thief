@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MT_Save
+  m_Name: MT_Save2
   m_Shader: {fileID: -6465566751694194690, guid: 67809e6025c99424fac79f107a0edad6,
     type: 3}
   m_ShaderKeywords: 
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_6A6C175C:
-        m_Texture: {fileID: 2800000, guid: 4f8d8a3e93ed61946800886a5182e604, type: 3}
+        m_Texture: {fileID: 2800000, guid: f4b9422611e47904a926a5c35131b92d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_AD23BCA4:
