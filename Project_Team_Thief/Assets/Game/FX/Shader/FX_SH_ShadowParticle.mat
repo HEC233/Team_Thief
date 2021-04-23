@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Mask
-  m_Shader: {fileID: -6465566751694194690, guid: 4b6fc30590ce62d42b03b3ccea4a65e7,
+  m_Name: FX_SH_ShadowParticle
+  m_Shader: {fileID: -6465566751694194690, guid: 89ff13e1a2ee7c2479bc1a783367beca,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,15 +20,13 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_DF026923:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - Vector1_FE5779CB: 0.776
+    m_Floats: []
     m_Colors:
-    - Color_E6B846D1: {r: 0.20002669, g: 0.27374753, b: 0.2924528, a: 1}
+    - Color_83AF726A: {r: 1, g: 1, b: 1, a: 1}
+    - Color_CFBECB58: {r: 17.215052, g: 7.739204, b: 28.784409, a: 0}
+    - Vector2_932492FA: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_FFE69AFC: {r: 1, g: 1, b: 0, a: 0}

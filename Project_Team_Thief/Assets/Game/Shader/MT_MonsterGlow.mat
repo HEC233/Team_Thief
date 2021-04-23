@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Mask
-  m_Shader: {fileID: -6465566751694194690, guid: 4b6fc30590ce62d42b03b3ccea4a65e7,
+  m_Name: MT_MonsterGlow
+  m_Shader: {fileID: -6465566751694194690, guid: da9b8ed7ac2502840a3fb6dcc97ad02b,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,15 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_DF026923:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - Vector1_FE5779CB: 0.776
+    m_Floats: []
     m_Colors:
-    - Color_E6B846D1: {r: 0.20002669, g: 0.27374753, b: 0.2924528, a: 1}
+    - Color_FEBE0066: {r: 4.867144, g: 1.7582877, b: 0, a: 1}

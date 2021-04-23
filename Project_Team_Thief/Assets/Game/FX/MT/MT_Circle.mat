@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rune
-  m_Shader: {fileID: -6465566751694194690, guid: 8a7360ca22d3de24fbf2afa857bc9635,
+  m_Name: MT_Circle
+  m_Shader: {fileID: -6465566751694194690, guid: ea9f6d5165313d44f95979eaa0aff3f0,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,6 +20,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_6A6C175C:
+        m_Texture: {fileID: 2800000, guid: 1d2d4fc82ccc6834fb12c5e17d2627bd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_AD23BCA4:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_D374CA55:
+        m_Texture: {fileID: 2800000, guid: ab68fc0512c5af84396cf3170249de40, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _AlphaTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -29,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c53394f4d96594a4b9e6b14b581e082b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -41,9 +53,16 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_149E183D: 0
     - _EnableExternalAlpha: 0
     m_Colors:
-    - Color_8F8A545C: {r: 2.6082377, g: 0.13655695, b: 0, a: 0}
+    - Color_2B69FBE2: {r: 0.78431374, g: 0, b: 4, a: 1}
+    - Color_83AF726A: {r: 1, g: 1, b: 1, a: 1}
+    - Color_CFBECB58: {r: 0, g: 0, b: 0, a: 0}
+    - Color_EF346309: {r: 0, g: 1.008161, b: 6.498019, a: 0}
+    - Color_FEBE0066: {r: 2.3710017, g: 0, b: 7.4642644, a: 1}
+    - Vector2_932492FA: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_FFE69AFC: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

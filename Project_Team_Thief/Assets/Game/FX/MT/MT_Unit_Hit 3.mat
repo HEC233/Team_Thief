@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rune
-  m_Shader: {fileID: -6465566751694194690, guid: 8a7360ca22d3de24fbf2afa857bc9635,
+  m_Name: MT_Unit_Hit 3
+  m_Shader: {fileID: -6465566751694194690, guid: da9b8ed7ac2502840a3fb6dcc97ad02b,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,16 +20,20 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_6A6C175C:
+        m_Texture: {fileID: 2800000, guid: 8215c38c7d977c642be2d9b16c07dbfa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_AD23BCA4:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _AlphaTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Emission:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 9474b3e20282e744eb11a0df4e5f11fd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -41,9 +45,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_149E183D: 0
     - _EnableExternalAlpha: 0
     m_Colors:
-    - Color_8F8A545C: {r: 2.6082377, g: 0.13655695, b: 0, a: 0}
+    - Color_83AF726A: {r: 1, g: 1, b: 1, a: 1}
+    - Color_CFBECB58: {r: 0, g: 0, b: 0, a: 0}
+    - Color_FEBE0066: {r: 5.312634, g: 4.438403, b: 8.574187, a: 1}
+    - Vector2_932492FA: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_FFE69AFC: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
