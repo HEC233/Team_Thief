@@ -122,7 +122,7 @@ namespace PS.Shadow
                 if (p == null) break;
 
                 float theta = Random.Range(0, 360);
-                p.Init(pos, new Vector2(Mathf.Cos(theta), Mathf.Sin(theta)) * speed * 0.02f * Random.Range(0.8f, 1.2f), (int)lifeTime * 50, particles);
+                p.Init(pos, new Vector2(Mathf.Cos(theta), Mathf.Sin(theta)) * speed * 0.02f * Random.Range(0.8f, 1.2f), (int)lifeTime * 15, particles);
                 p.UseDrag = useDrag;
                 p.UseGravity = useGravity;
             }
