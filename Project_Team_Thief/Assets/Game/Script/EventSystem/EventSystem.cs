@@ -204,7 +204,7 @@ public class EventSystem : MonoBehaviour
 
     private IEnumerator Spawn(string unitName, Vector2Int spawnPos, int count)
     {
-        Debug.Log(unitName + "스폰 명령이 넘어왔어요 ㅎ,,");
+        GameManager.instance?.spawner.SpawnMany(unitName, spawnPos.TileCoordToPosition3(), count);
 
         yield break;
     }

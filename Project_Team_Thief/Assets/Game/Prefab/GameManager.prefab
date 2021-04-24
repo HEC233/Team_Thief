@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7715960334125049636}
   - component: {fileID: 2141984162371750092}
   - component: {fileID: -5078904260765545550}
+  - component: {fileID: 4338766310013919787}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -56,6 +57,7 @@ MonoBehaviour:
   soundMng: {fileID: 1997881170352566880}
   uiMng: {fileID: 7715960334125049636}
   FX: {fileID: 2141984162371750092}
+  spawner: {fileID: 4338766310013919787}
   shadow: {fileID: -5078904260765545550}
   _keyManger: {fileID: 4990086937456659572}
   grid: {fileID: 0}
@@ -120,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be4b08966a9d3a46819277d48e68921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 0}
+  _sfx: []
 --- !u!114 &7715960334125049636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,3 +178,18 @@ MonoBehaviour:
   fieldChangePower: 1
   fieldCellSize: {x: 10, y: 10}
   useGravity: 0
+--- !u!114 &4338766310013919787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4990086937456659575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3330f173e6794c4a801ac5e25ae62ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit:
+  - {fileID: 8718974563859108410, guid: e972f2be0e9e66840a07f6b053f57afe, type: 3}
+  - {fileID: 6964507193525842026, guid: 403847deb9dc8a743884034b63902be2, type: 3}
