@@ -10,7 +10,7 @@ Material:
   m_Name: MT_PC_JumpFX
   m_Shader: {fileID: -6465566751694194690, guid: 67809e6025c99424fac79f107a0edad6,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

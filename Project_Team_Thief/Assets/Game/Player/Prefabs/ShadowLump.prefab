@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4039990490401057905}
   - component: {fileID: 4039990490401057907}
   - component: {fileID: 4039990490401057906}
+  - component: {fileID: 223565124961563852}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -93,7 +94,7 @@ Animator:
   m_GameObject: {fileID: 4039990490401057904}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b3b0d4613fa8fa244bf4aca5b46f7d0e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5495b11f866b0cd4598d6e62f4fcc242, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -102,6 +103,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &223565124961563852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039990490401057904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f18bb180f9d9e4a9659fa76b1f41c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _events:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2847954241968139790}
+        m_MethodName: OnSpawnAniEndEventCall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2847954241968139790}
+        m_MethodName: OnDieAnimationEndEventCall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4039990490796257598
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,9 +155,9 @@ GameObject:
   - component: {fileID: 8142921156682714584}
   - component: {fileID: 3035876394373243306}
   - component: {fileID: 7328166920115579492}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: ShadowLump
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +194,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _customTimeScale: 1
-  _moveSpped: 0
+  _moveSpped: 20
   _rigidbody2D: {fileID: 3035876394373243306}
   _animationCtrl: {fileID: 4039990491399736923}
 --- !u!61 &8142921156682714584

@@ -87,6 +87,8 @@ namespace PS.FX
             {
                 effect.SetActive(true);
                 effect.transform.position = position;
+                Debug.Log(effect.transform.position);
+                Debug.Log(position);
                 effect.transform.rotation = quaternion;
                 
                 particle.Play();

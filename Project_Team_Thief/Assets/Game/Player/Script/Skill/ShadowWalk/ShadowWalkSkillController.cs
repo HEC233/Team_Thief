@@ -14,11 +14,12 @@ public class ShadowWalkSkillController : SkillControllerBase
     {
         _shadowWalkSkillData = SkillData as ShadowWalkSkillData;
         _unit = Unit as PlayerUnit;
-        var transform = _unit.shadowWalkShadow.transform;
-        _unit.Rigidbody2D.MovePosition(transform.position);
+        var shadowTransform = _unit.shadowWalkShadow.transform;
+        _unit.Rigidbody2D.MovePosition(shadowTransform.position);
         
         _unit.shadowWalkShadow.ChangeControlState(_shadowWalkSkillData.ControlTime);
         CrateShadowLump();
+        GameManager.instance.FX.Play("UlimFx", shadowTransform.position);
         OnEndSkill?.Invoke();
     }
 
@@ -30,7 +31,7 @@ public class ShadowWalkSkillController : SkillControllerBase
                 GameObject.Instantiate(_shadowWalkSkillData.ShadowLumpGameObject);
             
             shadowLump.transform.position = _unit.shadowWalkShadow.transform.position;
-            shadowLump.GetComponent<ShadowLumpUnit>().Init();
+            shadowLump.GetComponent<ShadowLumpUnit>().Init(_shadowWalkSkillData.ControlTime);
         }
     }
 }

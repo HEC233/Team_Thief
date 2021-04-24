@@ -4956,6 +4956,7 @@ GameObject:
   - component: {fileID: 7663036625346907718}
   - component: {fileID: 7663036625346907716}
   - component: {fileID: 7663036625346907717}
+  - component: {fileID: 2704210108130543861}
   m_Layer: 9
   m_Name: P_Ulim
   m_TagString: Untagged
@@ -4993,7 +4994,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -9768,3 +9769,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2704210108130543861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663036625346907719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystems:
+  - {fileID: 7663036625346907716}

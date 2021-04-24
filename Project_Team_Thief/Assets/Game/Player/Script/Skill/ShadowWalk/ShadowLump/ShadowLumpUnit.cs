@@ -15,10 +15,13 @@ public class ShadowLumpUnit : Unit
 
     [SerializeField] 
     private AnimationCtrl _animationCtrl;
-    
 
-    public void Init()
+    private bool _isSpawnAniEnd = false;
+    private float _controlTime = 0.0f;
+    
+    public void Init(float controlTime)
     {
+        _controlTime = controlTime;
         _animationCtrl.PlayAni(AniState.ShadowLumpSpawn);
         Move();
     }
@@ -29,7 +32,6 @@ public class ShadowLumpUnit : Unit
         float powerX = 0.0f;
         float powerY = 0.0f;
         
-        Debug.Log("leftOrRight" + leftOrRight);
         if (leftOrRight == 0)   // 왼쪽
         {
             powerX = Random.Range(-1.0f, -3.0f);
@@ -42,17 +44,50 @@ public class ShadowLumpUnit : Unit
         powerY = Random.Range(1.0f, 5f);
         Vector2 power = new Vector2(powerX, powerY);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
-        Debug.Log(power);
-
     }
 
     public override void HandleHit(in Damage inputDamage)
     {
+        _animationCtrl.PlayAni(AniState.ShadowLumpHit);
         
+        Vector2 power = new Vector2(_moveSpped, 0);
+        gameObject.layer = LayerMask.NameToLayer("Attack");
+        _rigidbody2D.velocity = Vector2.zero;
+        _rigidbody2D.gravityScale = 0;
+        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+
+    public void OnSpawnAniEndEventCall()
+    {
+        _isSpawnAniEnd = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.gameObject.layer == LayerMask.NameToLayer("Shadow"))
+        {
+            if (other.GetComponent<Shadow>().isControlState == false)
+            {
+                other.GetComponent<Shadow>().ChangeControlState(_controlTime);
+                _animationCtrl.PlayAni(AniState.ShadowLumpDie);
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground") || 
+            other.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            if (_isSpawnAniEnd == true)
+            {
+                _animationCtrl.PlayAni(AniState.ShadowLumpDie);
+            }
+        }
+    }
+
+    public void OnDieAnimationEndEventCall()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -7,7 +7,7 @@ public interface IShadowBase
 {
     event UnityAction OnChangeControlState;
     event UnityAction OnChangeIdleState;
-    
+
     void ChangeControlState(float controlTime);
 
     void ChagneIdleState();

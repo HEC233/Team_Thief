@@ -9,6 +9,7 @@ public class ShadowWalkSkillData : SkillDataBase
     private GameObject _shadowLumpGameObject;
 
     public GameObject ShadowLumpGameObject => _shadowLumpGameObject;
+    
     [SerializeField]
     private float _shadowLumpAmount = 0.0f;
     public float ShadowLumpAmount => _shadowLumpAmount;

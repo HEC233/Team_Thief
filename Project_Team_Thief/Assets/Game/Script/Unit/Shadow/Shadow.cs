@@ -7,6 +7,8 @@ public class Shadow : MonoBehaviour, IShadowBase
 {
     public event UnityAction OnChangeControlState;
     public event UnityAction OnChangeIdleState;
+
+    public bool isControlState = false;
     
     [SerializeField]
     private AnimationCtrl _animationCtrl;
@@ -20,6 +22,7 @@ public class Shadow : MonoBehaviour, IShadowBase
     public void ChangeControlState(float controlTime)
     {
         GameManager.instance.ShadowControlManager.OnControlActive += OnControlActiveEventOn;
+        isControlState = true;
         OnChangeControlState?.Invoke();
         
         _animationCtrl.PlayAni(AniState.ShadowControl);
@@ -29,6 +32,9 @@ public class Shadow : MonoBehaviour, IShadowBase
     public void ChagneIdleState()
     {
         GameManager.instance.ShadowControlManager.OnControlActive -= OnControlActiveEventOn;
+        isControlState = false;
+        OnChangeIdleState?.Invoke();
+        
         _animationCtrl.PlayAni(AniState.Idle);
     }
 
