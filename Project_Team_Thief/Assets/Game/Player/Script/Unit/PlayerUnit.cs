@@ -129,9 +129,9 @@ public class PlayerUnit : Unit
     
     // BasicAttack Variable
     [Header("BasicAttack Variable")] 
-    [SerializeField]
-    private float _basicAttackTime = 0.5f;
-    public float BasicAttackTime => _basicAttackTime;
+    // [SerializeField]
+    // private float _basicAttackTime = 0.5f;
+    // public float BasicAttackTime => _basicAttackTime;r
     [SerializeField]
     private float _basicAttackDelay = 0.0f;
     public float BasicAttackDelay => _basicAttackDelay;
