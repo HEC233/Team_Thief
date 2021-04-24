@@ -28,6 +28,12 @@ public class ShadowLumpUnit : Unit
 
     public override void Move()
     {
+        Vector2 power = SetMovePower();
+        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+
+    private Vector2 SetMovePower()
+    {
         float leftOrRight = Random.Range(0, 2);
         float powerX = 0.0f;
         float powerY = 0.0f;
@@ -42,8 +48,8 @@ public class ShadowLumpUnit : Unit
         }
         
         powerY = Random.Range(1.0f, 5f);
-        Vector2 power = new Vector2(powerX, powerY);
-        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+
+        return new Vector2(powerX, powerY);
     }
 
     public override void HandleHit(in Damage inputDamage)

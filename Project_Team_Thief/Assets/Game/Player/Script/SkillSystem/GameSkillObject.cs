@@ -10,7 +10,7 @@ public class GameSkillObject : MonoBehaviour
     public void InitSkill(SkillControllerBase controller)
     {
         _controller = controller;
-        _controller.OnEndSkill += EndSkillEvent;
+        _controller.OnEndSkillEvent += EndSkillEvent;
         _controller.Invoke();
     }
 

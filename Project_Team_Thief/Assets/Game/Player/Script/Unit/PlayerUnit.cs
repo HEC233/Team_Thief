@@ -175,6 +175,7 @@ public class PlayerUnit : Unit
     private ShadowWalkColCtrl _shadowWalkColCtrl;
     [SerializeField]
     private ShadowWalkSkillData _shadowWalkSkillData;
+    public Shadow shadowWalkShadow;
 
     public ShadowWalkSkillData ShadowWalkSkillData => _shadowWalkSkillData;
 
@@ -555,7 +556,6 @@ public class PlayerUnit : Unit
         _hitDamage = new Damage();
     }
 
-    public Shadow shadowWalkShadow;
     
     public Shadow GetAbleShadowWalk()
     {
