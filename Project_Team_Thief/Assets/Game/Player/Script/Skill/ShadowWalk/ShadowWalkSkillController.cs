@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class ShadowWalkSkillController : SkillControllerBase
@@ -18,9 +19,18 @@ public class ShadowWalkSkillController : SkillControllerBase
         _unit.Rigidbody2D.MovePosition(shadowTransform.position);
         
         _unit.shadowWalkShadow.ChangeControlState(_shadowWalkSkillData.ControlTime);
+        CameraShake();
         CrateShadowLump();
         GameManager.instance.FX.Play("UlimFx", shadowTransform.position);
         OnEndSkill?.Invoke();
+    }
+
+    private void CameraShake()
+    {
+        var cinemachineImpulseSource = SkillObject.gameObject.AddComponent<CinemachineImpulseSource>();
+        cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _shadowWalkSkillData.CinemachineImpulseSource;
+        cinemachineImpulseSource.GenerateImpulse();
+        SkillObject.DestroyComponent(cinemachineImpulseSource);
     }
 
     private void CrateShadowLump()

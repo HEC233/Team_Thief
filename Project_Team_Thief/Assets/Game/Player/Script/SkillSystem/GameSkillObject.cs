@@ -20,6 +20,11 @@ public class GameSkillObject : MonoBehaviour
         Release();
     }
 
+    public void DestroyComponent(UnityEngine.Object component)
+    {
+        Destroy(component);
+    }
+    
     public void Release()
     {
         _controller = null;

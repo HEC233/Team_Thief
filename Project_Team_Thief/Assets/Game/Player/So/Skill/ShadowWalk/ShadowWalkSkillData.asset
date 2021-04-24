@@ -19,4 +19,6 @@ MonoBehaviour:
   _shadowLumpGameObject: {fileID: 4039990490796257598, guid: efea5e99d0c51554295fd92ccc2304ce,
     type: 3}
   _shadowLumpAmount: 3
+  _cinemachineImpulseSource: {fileID: 11400000, guid: ab5e8c5544421b348bf91b448897405f,
+    type: 2}
   _controlTime: 10
