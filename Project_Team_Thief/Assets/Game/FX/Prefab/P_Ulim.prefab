@@ -4840,7 +4840,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7663036624524146404}
   - component: {fileID: 7663036624524146409}
-  - component: {fileID: 7663036624524146410}
   - component: {fileID: 7663036624524146411}
   m_Layer: 9
   m_Name: UlimCamera
@@ -4906,14 +4905,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7663036624524146410
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7663036624524146405}
-  m_Enabled: 1
 --- !u!114 &7663036624524146411
 MonoBehaviour:
   m_ObjectHideFlags: 0
