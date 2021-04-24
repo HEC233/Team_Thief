@@ -15,7 +15,7 @@ public abstract class SkillControllerBase
 
     public Unit Unit => _unit;
 
-    public UnityAction OnEndSkill = null;
+    public UnityAction OnEndSkill = null;   // todo Event vs evnet UnityAction?
 
     public SkillControllerBase(GameSkillObject skillObject, SkillDataBase data, Unit unit)
     {

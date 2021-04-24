@@ -23,5 +23,6 @@ public class GameSkillObject : MonoBehaviour
     public void Release()
     {
         _controller = null;
+        GameManager.instance.GameSkillMgr.EnqueueSkillObject(this);
     }
 }

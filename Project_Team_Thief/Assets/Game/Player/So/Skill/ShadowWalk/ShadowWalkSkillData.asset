@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d9e19495857994cbb458df50d99c92, type: 3}
   m_Name: ShadowWalkSkillData
   m_EditorClassIdentifier: 
-  _numberOfTimesTheSkill: 0
-  _coolTime: 0
-  _skillName: 
-  _encroachmentPer: 0
-  _shadowLumpGameObject: {fileID: 0}
+  _numberOfTimesTheSkill: 2
+  _coolTime: 5
+  _skillName: ShadowWalk
+  _encroachmentPer: 0.3
+  _shadowLumpGameObject: {fileID: 4039990490796257598, guid: efea5e99d0c51554295fd92ccc2304ce,
+    type: 3}
+  _shadowLumpAmount: 3
+  _controlTime: 10

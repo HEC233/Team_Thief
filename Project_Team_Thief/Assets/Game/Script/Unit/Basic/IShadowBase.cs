@@ -6,6 +6,13 @@ using UnityEngine.Events;
 public interface IShadowBase
 {
     event UnityAction OnChangeControlState;
+    event UnityAction OnChangeIdleState;
+    
+    void ChangeControlState(float controlTime);
 
-    void ChangeControlState();
+    void ChagneIdleState();
+
+    void OnControlActiveEventOn(string skillname);
+
+    IEnumerator ControlTimeCoroutine(float controlTime);
 }

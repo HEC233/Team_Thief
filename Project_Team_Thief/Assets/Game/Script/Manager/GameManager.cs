@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     public UIManager uiMng;
     public EffectSystem FX;
     public GameSkillMgr GameSkillMgr;
-
+    public ShadowControlManager ShadowControlManager;
+    
     public CommandManager commandManager;
     
 

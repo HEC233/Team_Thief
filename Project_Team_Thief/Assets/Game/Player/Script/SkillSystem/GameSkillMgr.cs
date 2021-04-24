@@ -43,4 +43,10 @@ public class GameSkillMgr : MonoBehaviour
         skillObject.gameObject.SetActive(true);
         return skillObject;
     }
+
+    public void EnqueueSkillObject(GameSkillObject gameSkillObject)
+    {
+        gameSkillObject.gameObject.SetActive(false);
+        _skillObjectQueue.Enqueue(gameSkillObject);
+    }
 }

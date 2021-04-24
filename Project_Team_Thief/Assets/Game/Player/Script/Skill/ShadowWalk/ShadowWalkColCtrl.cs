@@ -35,7 +35,8 @@ public class ShadowWalkColCtrl : MonoBehaviour
 
     public Shadow CheckAreaInsideShadow()
     {
-        Debug.Log("asdasd");
+        _inAreaShadow = null;
+        
         if(_areaCollider2D.IsTouchingLayers(_shadowLayerMask))
         {
             _areaCollider2D.OverlapCollider(_contactFilter2D, result);

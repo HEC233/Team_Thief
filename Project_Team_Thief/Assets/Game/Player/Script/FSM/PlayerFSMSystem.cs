@@ -1208,27 +1208,28 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     {
         private Shadow _inAreaShadow = null;
         private GameSkillObject _gameSkillObject;
+        private ShadowWalkSkillData _shadowWalkSkillData;
         
-        public SkillShadowWalkState(PlayerFSMSystem system) : base(system)
+        public SkillShadowWalkState(PlayerFSMSystem system, ShadowWalkSkillData shadowWalkSkillData) : base(system)
         {
-            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+            _shadowWalkSkillData = shadowWalkSkillData;
         }
 
         public override void StartState()
         {
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillShadowWalk);
-            _gameSkillObject = SystemMgr.Unit.InvokeShadowWalkSkill();
+            _gameSkillObject = InvokeShadowWalkSkill();
         }
  
 
         public override void Update()
         {
-
+            SystemMgr.Unit.Progress();
         }
 
         public override void EndState()
         {
-            
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
         }
 
@@ -1243,6 +1244,20 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private void OnAnimationEndEvnetCall()
         {
             SystemMgr.Transition(TransitionCondition.Idle);
+        }
+
+        private GameSkillObject InvokeShadowWalkSkill()
+        {
+            var skillObject = GameManager.instance.GameSkillMgr.GetSkillObject();
+
+            if (skillObject == null)
+            {
+                Debug.LogError("Skill Obejct Is Null");
+                return null;
+            }
+
+            skillObject.InitSkill(_shadowWalkSkillData.GetSkillController(skillObject, SystemMgr.Unit));
+            return skillObject;
         }
 
         public bool IsAbleTransition()
@@ -1273,7 +1288,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Attack, new BasicAttackState(this));
         AddState(TransitionCondition.JumpAttack, new BasicJumpAttack(this));
         AddState(TransitionCondition.Hit, new HitState(this));
-        AddState(TransitionCondition.SkillShadowWalk, new SkillShadowWalkState(this));
+        AddState(TransitionCondition.SkillShadowWalk, new SkillShadowWalkState(this, Unit.ShadowWalkSkillData));
     }
     
     public bool Transition(TransitionCondition condition, object param = null)
@@ -1344,9 +1359,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         if (CheckSkillPossibleConditions(condition) == true)
             Transition(condition);
-
-        Debug.Log("CheckSkillPossibleConditions(condition) : " + CheckSkillPossibleConditions(condition));
-
+        
     }
 
     private TransitionCondition ChangeSkillNameToTransitionCondition(string skillName)
@@ -1366,25 +1379,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private bool CheckSkillPossibleConditions(TransitionCondition condition)
     {
+        // 공용 체크
         if (CurrState == TransitionCondition.Hit)
             return false;
 
         // 가져 올 State가 Skill이라는 확정사항이므로 괜찮은걸까?
         var state = GetState(condition) as ISkillStateBase;
 
+        // 특수 체크
         return state.IsAbleTransition();
-
-        switch (condition)
-        {
-            case TransitionCondition.SkillShadowWalk:
-                
-                break;
-
-            default:
-                break;
-        }
-
-        return true;
     }
 
     // Time 관련

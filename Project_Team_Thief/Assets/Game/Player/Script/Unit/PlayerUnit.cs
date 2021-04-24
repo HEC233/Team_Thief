@@ -47,6 +47,8 @@ public class PlayerUnit : Unit
     private float _curHp;
     [SerializeField]
     private float _decreaseHp;
+    [SerializeField] 
+    private float _encroachment;
     
     // 이동 관련 변수
     [Header("Move Variable")]
@@ -173,6 +175,10 @@ public class PlayerUnit : Unit
     private ShadowWalkColCtrl _shadowWalkColCtrl;
     [SerializeField]
     private ShadowWalkSkillData _shadowWalkSkillData;
+
+    public ShadowWalkSkillData ShadowWalkSkillData => _shadowWalkSkillData;
+
+    private bool _isSkillShadowWalkAble = true;
     private float _skillShadowWalkNumberOfTimes;
     private float _skillShadowWalkCoolTime;
     
@@ -214,8 +220,8 @@ public class PlayerUnit : Unit
         _basicAttackDamage = new Damage();
         _hitDamage = new Damage();
         
-        _skillShadowWalkNumberOfTimes = 2;
-        _skillShadowWalkCoolTime = 5.0f;
+        _skillShadowWalkNumberOfTimes = _shadowWalkSkillData.NumberOfTimesTheSkill;
+        _skillShadowWalkCoolTime = _shadowWalkSkillData.CoolTime;
     }
     
 
@@ -549,29 +555,36 @@ public class PlayerUnit : Unit
         _hitDamage = new Damage();
     }
 
-    public Shadow _dumyShadow;
+    public Shadow shadowWalkShadow;
     
     public Shadow GetAbleShadowWalk()
     {
+        shadowWalkShadow = null;
+        
         if (_skillShadowWalkNumberOfTimes > 0)
         {
+            shadowWalkShadow = _shadowWalkColCtrl.CheckAreaInsideShadow();
+
+            if (shadowWalkShadow == null)
+                return null;
+            
             _skillShadowWalkNumberOfTimes--;
-            _dumyShadow = _shadowWalkColCtrl.CheckAreaInsideShadow();
-            return _shadowWalkColCtrl.CheckAreaInsideShadow();
+            _encroachment -= _shadowWalkSkillData.EncroachmentPer;
         }
-
-        if (_skillShadowWalkNumberOfTimes < 0)
+        
+        if (_skillShadowWalkNumberOfTimes <= 0)
         {
-            // 코루틴 작동
+            if (_isSkillShadowWalkAble == true)
+            {
+                StartCoroutine(ShadowWalkCoolTimeCoroutine());
+            }
         }
 
-        return null;
+        return shadowWalkShadow;
     }
 
     public GameSkillObject InvokeShadowWalkSkill()
     {
-        //todo 스킬이 한 번만 작동함.
-        // 디버그 필요.
         var skillObject = GameManager.instance.GameSkillMgr.GetSkillObject();
         if (skillObject == null)
             return null;
@@ -702,6 +715,20 @@ public class PlayerUnit : Unit
         }
 
         _isDashAble = true;
+    }
+
+    IEnumerator ShadowWalkCoolTimeCoroutine()
+    {
+        _isSkillShadowWalkAble = false;
+        float timer = 0.0f;
+        while (timer < _shadowWalkSkillData.CoolTime)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _isSkillShadowWalkAble = true;
+        _skillShadowWalkNumberOfTimes = _shadowWalkSkillData.NumberOfTimesTheSkill;
     }
     
     IEnumerator InvincibilityTimeCoroutine()
