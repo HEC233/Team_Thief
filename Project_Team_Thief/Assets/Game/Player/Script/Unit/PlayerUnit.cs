@@ -129,9 +129,9 @@ public class PlayerUnit : Unit
     
     // BasicAttack Variable
     [Header("BasicAttack Variable")] 
-    [SerializeField]
-    private float _basicAttackTime = 0.5f;
-    public float BasicAttackTime => _basicAttackTime;
+    // [SerializeField]
+    // private float _basicAttackTime = 0.5f;
+    // public float BasicAttackTime => _basicAttackTime;r
     [SerializeField]
     private float _basicAttackDelay = 0.0f;
     public float BasicAttackDelay => _basicAttackDelay;
@@ -175,6 +175,7 @@ public class PlayerUnit : Unit
     private ShadowWalkColCtrl _shadowWalkColCtrl;
     [SerializeField]
     private ShadowWalkSkillData _shadowWalkSkillData;
+    public Shadow shadowWalkShadow;
 
     public ShadowWalkSkillData ShadowWalkSkillData => _shadowWalkSkillData;
 
@@ -555,7 +556,6 @@ public class PlayerUnit : Unit
         _hitDamage = new Damage();
     }
 
-    public Shadow shadowWalkShadow;
     
     public Shadow GetAbleShadowWalk()
     {

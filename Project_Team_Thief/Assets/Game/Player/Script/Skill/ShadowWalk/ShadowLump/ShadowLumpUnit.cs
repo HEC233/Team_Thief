@@ -28,6 +28,12 @@ public class ShadowLumpUnit : Unit
 
     public override void Move()
     {
+        Vector2 power = SetMovePower();
+        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+
+    private Vector2 SetMovePower()
+    {
         float leftOrRight = Random.Range(0, 2);
         float powerX = 0.0f;
         float powerY = 0.0f;
@@ -42,15 +48,23 @@ public class ShadowLumpUnit : Unit
         }
         
         powerY = Random.Range(1.0f, 5f);
-        Vector2 power = new Vector2(powerX, powerY);
-        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+
+        return new Vector2(powerX, powerY);
     }
 
     public override void HandleHit(in Damage inputDamage)
     {
+        Vector2 power = new Vector2();
         _animationCtrl.PlayAni(AniState.ShadowLumpHit);
-        
-        Vector2 power = new Vector2(_moveSpped, 0);
+        if (inputDamage.knockBack.x > 0)
+        {
+            power = new Vector2(_moveSpped, 0);
+        }
+        else
+        {
+            power = new Vector2(_moveSpped * -1, 0);
+        }
+
         gameObject.layer = LayerMask.NameToLayer("Attack");
         _rigidbody2D.velocity = Vector2.zero;
         _rigidbody2D.gravityScale = 0;

@@ -13,16 +13,34 @@ public class ShadowWalkSkillController : SkillControllerBase
 
     public override void Invoke()
     {
-        _shadowWalkSkillData = SkillData as ShadowWalkSkillData;
-        _unit = Unit as PlayerUnit;
-        var shadowTransform = _unit.shadowWalkShadow.transform;
-        _unit.Rigidbody2D.MovePosition(shadowTransform.position);
+        Init();
         
-        _unit.shadowWalkShadow.ChangeControlState(_shadowWalkSkillData.ControlTime);
+        if(_unit == null)
+            Debug.LogError("_unit As Null");
+        
+        Progress();
+        PlayFx();
         CameraShake();
         CrateShadowLump();
-        GameManager.instance.FX.Play("UlimFx", shadowTransform.position);
-        OnEndSkill?.Invoke();
+        OnEndSkillAction?.Invoke();
+    }
+
+    private void Init()
+    {
+        _shadowWalkSkillData = SkillData as ShadowWalkSkillData;
+        _unit = Unit as PlayerUnit;        
+    }
+
+    private void Progress()
+    {
+        var shadowTransform = _unit.shadowWalkShadow.transform;
+        _unit.Rigidbody2D.MovePosition(shadowTransform.position);
+        _unit.shadowWalkShadow.ChangeControlState(_shadowWalkSkillData.ControlTime);
+    }
+
+    private void PlayFx()
+    {
+        GameManager.instance.FX.Play("UlimFx", _unit.shadowWalkShadow.transform.position);
     }
 
     private void CameraShake()

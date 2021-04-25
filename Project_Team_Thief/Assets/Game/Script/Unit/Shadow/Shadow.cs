@@ -3,13 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Shadow : MonoBehaviour, IShadowBase
+public abstract class ShadowBase : MonoBehaviour, IShadowBase
 {
-    public event UnityAction OnChangeControlState;
-    public event UnityAction OnChangeIdleState;
+    protected UnityAction OnChangeControlAction = null;
+    public event UnityAction OnChangeControlEvent
+    {
+        add => OnChangeControlAction += value;
+        remove => OnChangeControlAction -= value;
+    }
 
-    public bool isControlState = false;
+    protected UnityAction OnChangeIdleAction = null;
+    public event UnityAction OnChangeIdleEvent
+    {
+        add => OnChangeIdleAction += value;
+        remove => OnChangeIdleAction -= value;
+    }
     
+    public bool isControlState = false;
+
+    public abstract void ChangeControlState(float controlTime);
+
+    public abstract void ChagneIdleState();
+
+    public abstract void OnControlActiveEventOn(string skillname);
+
+    public abstract IEnumerator ControlTimeCoroutine(float controlTime);
+}
+
+public class Shadow : ShadowBase
+{
     [SerializeField]
     private AnimationCtrl _animationCtrl;
 
@@ -19,30 +41,31 @@ public class Shadow : MonoBehaviour, IShadowBase
         
     }
 
-    public void ChangeControlState(float controlTime)
+    public override void ChangeControlState(float controlTime)
     {
         GameManager.instance.ShadowControlManager.OnControlActive += OnControlActiveEventOn;
         isControlState = true;
-        OnChangeControlState?.Invoke();
+        OnChangeControlAction?.Invoke();
         
         _animationCtrl.PlayAni(AniState.ShadowControl);
         StartCoroutine(ControlTimeCoroutine(controlTime));
     }
 
-    public void ChagneIdleState()
+    public override void ChagneIdleState()
     {
         GameManager.instance.ShadowControlManager.OnControlActive -= OnControlActiveEventOn;
         isControlState = false;
-        OnChangeIdleState?.Invoke();
+        OnChangeIdleAction?.Invoke();
         
         _animationCtrl.PlayAni(AniState.Idle);
     }
 
-    public void OnControlActiveEventOn(string skillname)
+    public override void OnControlActiveEventOn(string skillname)
     {
+        
     }
 
-    public IEnumerator ControlTimeCoroutine(float controlTime)
+    public override IEnumerator ControlTimeCoroutine(float controlTime)
     {
         float _timer = 0.0f;
         

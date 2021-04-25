@@ -15,8 +15,13 @@ public abstract class SkillControllerBase
 
     public Unit Unit => _unit;
 
-    public UnityAction OnEndSkill = null;   // todo Event vs evnet UnityAction?
-
+    protected UnityAction OnEndSkillAction = null;   // todo Event vs evnet UnityAction?
+    public event UnityAction OnEndSkillEvent
+    {
+        add => OnEndSkillAction += value;
+        remove => OnEndSkillAction -= value;
+    }
+    
     public SkillControllerBase(GameSkillObject skillObject, SkillDataBase data, Unit unit)
     {
         _skillObject = skillObject;
@@ -30,6 +35,6 @@ public abstract class SkillControllerBase
     {
         _skillData = null;
         _skillObject = null;
-        OnEndSkill = null;
+        OnEndSkillAction = null;
     }
 }
