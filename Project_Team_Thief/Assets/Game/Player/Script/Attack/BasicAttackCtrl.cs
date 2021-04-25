@@ -111,7 +111,6 @@ public class BasicAttackCtrl : AttackBase
 
                 if (item.gameObject.CompareTag("Enemy"))
                 {
-                    Debug.Log("Enemy");
                     //============== 고재협이 편집함 ======================
                     _damage.hitPosition = item.ClosestPoint(_basicAttackCollider2D.bounds.center);
                     //=====================================================

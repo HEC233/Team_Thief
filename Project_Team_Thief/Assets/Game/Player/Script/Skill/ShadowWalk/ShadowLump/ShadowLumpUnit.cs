@@ -54,9 +54,17 @@ public class ShadowLumpUnit : Unit
 
     public override void HandleHit(in Damage inputDamage)
     {
+        Vector2 power = new Vector2();
         _animationCtrl.PlayAni(AniState.ShadowLumpHit);
-        
-        Vector2 power = new Vector2(_moveSpped, 0);
+        if (inputDamage.knockBack.x > 0)
+        {
+            power = new Vector2(_moveSpped, 0);
+        }
+        else
+        {
+            power = new Vector2(_moveSpped * -1, 0);
+        }
+
         gameObject.layer = LayerMask.NameToLayer("Attack");
         _rigidbody2D.velocity = Vector2.zero;
         _rigidbody2D.gravityScale = 0;

@@ -40,7 +40,7 @@ public class ShadowWalkSkillController : SkillControllerBase
 
     private void PlayFx()
     {
-        GameManager.instance.FX.Play("UlimFx", _unit.transform.position);
+        GameManager.instance.FX.Play("UlimFx", _unit.shadowWalkShadow.transform.position);
     }
 
     private void CameraShake()
