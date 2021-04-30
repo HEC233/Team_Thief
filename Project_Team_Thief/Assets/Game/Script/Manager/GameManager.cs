@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour
     public ShadowControlManager ShadowControlManager;
     
     public CommandManager commandManager;
+    public Spawner spawner;
     
-
     public ShadowParticleSystem shadow;
 
     [SerializeField] 

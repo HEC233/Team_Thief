@@ -26,7 +26,9 @@ namespace PS.Shadow
         private void Start()
         {
             vectorField = new VectorField(Screen.width, Screen.height, fieldCellSize);
-            particles.Creat(particleCount, particleObject, vectorField, transform);
+            GameObject go = new GameObject("particles");
+            go.transform.SetParent(transform);
+            particles.Creat(particleCount, particleObject, vectorField, go.transform);
 
             StartCoroutine(vectorField.FieldRecoveryCoroutine());
             StartCoroutine(VectorFieldScroll());
@@ -113,7 +115,16 @@ namespace PS.Shadow
                 }
             }
         }
+        public void Burst(Vector3 pos, int particleCount, int speed, float lifeTime, float waitTime, bool useDrag = true)
+        {
 
+            StartCoroutine(BurstCoroutine(pos, particleCount, speed, lifeTime, waitTime, useDrag));
+        }
+        IEnumerator BurstCoroutine(Vector3 pos, int particleCount, int speed, float lifeTime, float waitTime, bool useDrag = true)
+        {
+            yield return new WaitForSeconds(waitTime);
+            Burst(pos, particleCount, speed, lifeTime, useDrag);
+        }
         public void Burst(Vector3 pos, int particleCount, int speed, float lifeTime, bool useDrag = true)
         {
             for (int i = 0; i < particleCount; i++)

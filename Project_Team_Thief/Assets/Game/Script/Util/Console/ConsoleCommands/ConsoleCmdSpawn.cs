@@ -1,29 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace PS.Util.DeveloperConsole.Commands
 {
     [CreateAssetMenu(fileName = "Spawn Command", menuName = "Utilities/DeveloperConsole/Commands/Spawn")]
     public class ConsoleCmdSpawn : ConsoleCommand
     {
-        public List<GameObject> unit = new List<GameObject>();
-
         public override bool Process(out string resultMsg, string[] args)
         {
             string returnTxt = string.Empty;
 
             if (args.Length > 0)
             {
-                for (int i = 0; i < unit.Count; i++)
+                Assert.IsNotNull(GameManager.instance.spawner);
+
+                if (!GameManager.instance.spawner.Spawn(args[0], GameManager.instance.GetControlActor().GetUnit().transform.position))
                 {
-                    var unitComponent = unit[i].GetComponentInChildren<Unit>();
-                    if (unitComponent && unitComponent.GetUnitName() == args[0])
-                    {
-                        Instantiate(unit[i], GameManager.instance.GetControlActor().GetUnit().transform.position, Quaternion.identity);
-                        resultMsg = returnTxt;
-                        return true;
-                    }
+                    resultMsg = returnTxt;
+                    return true;
                 }
                 returnTxt = "There is no such unit";
             }
