@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MT_AXE_Hit12
+  m_Name: MT_AXE_Hit13
   m_Shader: {fileID: -6465566751694194690, guid: ea9f6d5165313d44f95979eaa0aff3f0,
     type: 3}
   m_ShaderKeywords: 
@@ -56,7 +56,7 @@ Material:
     - Vector1_149E183D: 0
     - _EnableExternalAlpha: 0
     m_Colors:
-    - Color_2B69FBE2: {r: 0, g: 0.75424725, b: 11.313708, a: 1}
+    - Color_2B69FBE2: {r: 1.3041189, g: 0.102417715, b: 0, a: 1}
     - Color_83AF726A: {r: 1, g: 1, b: 1, a: 1}
     - Color_CFBECB58: {r: 0, g: 0, b: 0, a: 0}
     - Color_EF346309: {r: 0, g: 1.008161, b: 6.498019, a: 0}
