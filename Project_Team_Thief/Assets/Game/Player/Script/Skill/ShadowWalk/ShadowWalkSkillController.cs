@@ -33,14 +33,14 @@ public class ShadowWalkSkillController : SkillControllerBase
 
     private void Progress()
     {
-        var shadowTransform = _unit.shadowWalkShadow.transform;
-        _unit.Rigidbody2D.MovePosition(shadowTransform.position);
-        _unit.shadowWalkShadow.ChangeControlState(_shadowWalkSkillData.ControlTime);
+        // var shadowTransform = _unit.shadowWalkShadow.transform;
+        // _unit.Rigidbody2D.MovePosition(shadowTransform.position);
+        // _unit.shadowWalkShadow.ChangeControlState(_shadowWalkSkillData.ControlTime);
     }
 
     private void PlayFx()
     {
-        GameManager.instance.FX.Play("UlimFx", _unit.shadowWalkShadow.transform.position);
+        //GameManager.instance.FX.Play("UlimFx", _unit.shadowWalkShadow.transform.position);
     }
 
     private void CameraShake()
@@ -58,7 +58,7 @@ public class ShadowWalkSkillController : SkillControllerBase
             var shadowLump = 
                 GameObject.Instantiate(_shadowWalkSkillData.ShadowLumpGameObject);
             
-            shadowLump.transform.position = _unit.shadowWalkShadow.transform.position;
+            //shadowLump.transform.position = _unit.shadowWalkShadow.transform.position;
             shadowLump.GetComponent<ShadowLumpUnit>().Init(_shadowWalkSkillData.ControlTime);
         }
     }

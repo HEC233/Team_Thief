@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using Cinemachine;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Events;
 using Assert = UnityEngine.Assertions.Assert;
 
 public class BasicAttackCtrl : AttackBase
 {
+    public event UnityAction OnChangeDirEvent;
+    
     [SerializeField] 
     private BoxCollider2D _basicAttackCollider2D;
     [SerializeField]
@@ -40,6 +43,9 @@ public class BasicAttackCtrl : AttackBase
 
     public void Progress()
     {
+        if(_isChangeDir == true)
+            OnChangeDirEvent?.Invoke();
+        
         PlaySfx();
         PlayFx();
 

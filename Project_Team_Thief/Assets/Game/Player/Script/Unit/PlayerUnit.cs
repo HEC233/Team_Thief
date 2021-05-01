@@ -170,18 +170,20 @@ public class PlayerUnit : Unit
 
     // Skill Variable
     [Header("Skill Variable")]
-    // Shadow Walk
-    [SerializeField]
-    private ShadowWalkColCtrl _shadowWalkColCtrl;
-    [SerializeField]
-    private ShadowWalkSkillData _shadowWalkSkillData;
-    public Shadow shadowWalkShadow;
-
-    public ShadowWalkSkillData ShadowWalkSkillData => _shadowWalkSkillData;
-
-    private bool _isSkillShadowWalkAble = true;
-    private float _skillShadowWalkNumberOfTimes;
-    private float _skillShadowWalkCoolTime;
+    /// </기획 변동으로 인해 미사용>
+    // // Shadow Walk
+    // [SerializeField]
+    // private ShadowWalkColCtrl _shadowWalkColCtrl;
+    // [SerializeField]
+    // private ShadowWalkSkillData _shadowWalkSkillData;
+    // public Shadow shadowWalkShadow;
+    //
+    // public ShadowWalkSkillData ShadowWalkSkillData => _shadowWalkSkillData;
+    //
+    // private bool _isSkillShadowWalkAble = true;
+    // private float _skillShadowWalkNumberOfTimes;
+    // private float _skillShadowWalkCoolTime;
+    /// </기획 변동으로 인해 미사용>
     
     //////////////////////////// 데이터로 관리 할 변수
 
@@ -196,11 +198,27 @@ public class PlayerUnit : Unit
     void Start()
     {
         Init();
+        Bind();
     }
 
     void Init()
     {
         SetVariable(0.2f, 2, 0.4f);
+    }
+
+    private void Bind()
+    {
+        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
+        {
+            _basicAttackCtrlArr[i].OnChangeDirEvent += OnChangeDirEventCall;
+        }
+
+        _basicJumpAttackCtrl.OnChangeDirEvent += OnChangeDirEventCall;
+    }
+
+    private void UnBind()
+    {
+        
     }
     
     // 향후에는 데이터 센터 클래스라던가 데이터를 가지고 있는 함수에서 직접 호출로 받아 올 수 있도록
@@ -221,8 +239,8 @@ public class PlayerUnit : Unit
         _basicAttackDamage = new Damage();
         _hitDamage = new Damage();
         
-        _skillShadowWalkNumberOfTimes = _shadowWalkSkillData.NumberOfTimesTheSkill;
-        _skillShadowWalkCoolTime = _shadowWalkSkillData.CoolTime;
+        // _skillShadowWalkNumberOfTimes = _shadowWalkSkillData.NumberOfTimesTheSkill;
+        // _skillShadowWalkCoolTime = _shadowWalkSkillData.CoolTime;
     }
     
 
@@ -557,41 +575,41 @@ public class PlayerUnit : Unit
     }
 
     
-    public Shadow GetAbleShadowWalk()
-    {
-        shadowWalkShadow = null;
-        
-        if (_skillShadowWalkNumberOfTimes > 0)
-        {
-            shadowWalkShadow = _shadowWalkColCtrl.CheckAreaInsideShadow();
+    // public Shadow GetAbleShadowWalk()
+    // {
+    //     shadowWalkShadow = null;
+    //     
+    //     if (_skillShadowWalkNumberOfTimes > 0)
+    //     {
+    //         shadowWalkShadow = _shadowWalkColCtrl.CheckAreaInsideShadow();
+    //
+    //         if (shadowWalkShadow == null)
+    //             return null;
+    //         
+    //         _skillShadowWalkNumberOfTimes--;
+    //         _encroachment -= _shadowWalkSkillData.EncroachmentPer;
+    //     }
+    //     
+    //     if (_skillShadowWalkNumberOfTimes <= 0)
+    //     {
+    //         if (_isSkillShadowWalkAble == true)
+    //         {
+    //             StartCoroutine(ShadowWalkCoolTimeCoroutine());
+    //         }
+    //     }
+    //
+    //     return shadowWalkShadow;
+    // }
 
-            if (shadowWalkShadow == null)
-                return null;
-            
-            _skillShadowWalkNumberOfTimes--;
-            _encroachment -= _shadowWalkSkillData.EncroachmentPer;
-        }
-        
-        if (_skillShadowWalkNumberOfTimes <= 0)
-        {
-            if (_isSkillShadowWalkAble == true)
-            {
-                StartCoroutine(ShadowWalkCoolTimeCoroutine());
-            }
-        }
-
-        return shadowWalkShadow;
-    }
-
-    public GameSkillObject InvokeShadowWalkSkill()
-    {
-        var skillObject = GameManager.instance.GameSkillMgr.GetSkillObject();
-        if (skillObject == null)
-            return null;
-        
-        skillObject.InitSkill(_shadowWalkSkillData.GetSkillController(skillObject, this));
-        return skillObject;
-    }
+    // public GameSkillObject InvokeShadowWalkSkill()
+    // {
+    //     var skillObject = GameManager.instance.GameSkillMgr.GetSkillObject();
+    //     if (skillObject == null)
+    //         return null;
+    //     
+    //     skillObject.InitSkill(_shadowWalkSkillData.GetSkillController(skillObject, this));
+    //     return skillObject;
+    // }
 
     public void StartBulletTime(float timeScale)
     {
@@ -634,7 +652,11 @@ public class PlayerUnit : Unit
     {
         return _rigidbody2D.velocity;
     }
-    
+
+    private void OnChangeDirEventCall()
+    {
+        Flip();
+    }
     
     public void CheckMovementDir(float inputDir)
     {
@@ -717,19 +739,19 @@ public class PlayerUnit : Unit
         _isDashAble = true;
     }
 
-    IEnumerator ShadowWalkCoolTimeCoroutine()
-    {
-        _isSkillShadowWalkAble = false;
-        float timer = 0.0f;
-        while (timer < _shadowWalkSkillData.CoolTime)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-
-        _isSkillShadowWalkAble = true;
-        _skillShadowWalkNumberOfTimes = _shadowWalkSkillData.NumberOfTimesTheSkill;
-    }
+    // IEnumerator ShadowWalkCoolTimeCoroutine()
+    // {
+    //     _isSkillShadowWalkAble = false;
+    //     float timer = 0.0f;
+    //     while (timer < _shadowWalkSkillData.CoolTime)
+    //     {
+    //         timer += GameManager.instance.timeMng.FixedDeltaTime;
+    //         yield return new WaitForFixedUpdate();
+    //     }
+    //
+    //     _isSkillShadowWalkAble = true;
+    //     _skillShadowWalkNumberOfTimes = _shadowWalkSkillData.NumberOfTimesTheSkill;
+    // }
     
     IEnumerator InvincibilityTimeCoroutine()
     {

@@ -8,6 +8,9 @@ public abstract class AttackBase : MonoBehaviour
     [SerializeField, Tooltip("크리티컬이 발생하는가?")]
     protected bool _isAbleCritical;
 
+    [SerializeField, Tooltip("방향 전환이 일어나는가?")]
+    protected bool _isChangeDir;
+
     [SerializeField, Tooltip("플래쉬 효과가 발생하는가?")]
     protected bool _isAbleFlash;
 
@@ -39,7 +42,7 @@ public abstract class AttackBase : MonoBehaviour
     protected float _criticalPercentage;
     [SerializeField]
     protected SFXClip _sfxClip;
-    
+
     // [SerializeField]
     // protected float _camerShakeTime;
     // [SerializeField]

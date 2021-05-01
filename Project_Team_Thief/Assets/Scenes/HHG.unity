@@ -202,24 +202,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &43830084 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7832833161933628288, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1933568657}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b5f2ed90b68a484791bab3514a80cb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &43830085 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 3232401960473418774, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1933568657}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &49033498
 GameObject:
   m_ObjectHideFlags: 0
@@ -60004,7 +59986,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _soCommandDatas.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _soCommandDatas.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _soCommandDatas.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 24858457, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
 --- !u!1 &522368181
 GameObject:
@@ -61915,7 +61913,7 @@ PrefabInstance:
     - target: {fileID: 7260877962462582348, guid: 005d8633bdd43d7438effcb1a5f9ee49,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7699995
+      value: 2.7699997
       objectReference: {fileID: 0}
     - target: {fileID: 7260877962462582348, guid: 005d8633bdd43d7438effcb1a5f9ee49,
         type: 3}
@@ -106227,7 +106225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319905620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7699995, y: 1.8700004, z: -10}
+  m_LocalPosition: {x: 2.7699997, y: 1.8700004, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -107518,6 +107516,11 @@ PrefabInstance:
     - target: {fileID: 757774234259567965, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542053513146765892, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
+      propertyPath: _isChangeDir
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1542053513506992554, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
@@ -107589,13 +107592,23 @@ PrefabInstance:
         type: 3}
       propertyPath: _shadowWalkColCtrl
       value: 
-      objectReference: {fileID: 43830084}
+      objectReference: {fileID: 0}
     - target: {fileID: 1542053513848848401, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: _shadowWalkSkillData
       value: 
       objectReference: {fileID: 11400000, guid: 1a1b6048efec4d640a2fdf21ed7f4052,
         type: 2}
+    - target: {fileID: 1542053513848848401, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
+      propertyPath: _basicAttackMoveGoalXArr.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542053513848848401, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+        type: 3}
+      propertyPath: _basicAttackMoveGoalXArr.Array.data[2]
+      value: -0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5624984760330892608, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: m_Intensity
@@ -107605,7 +107618,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _areaCollider2D
       value: 
-      objectReference: {fileID: 43830085}
+      objectReference: {fileID: 0}
     - target: {fileID: 7832833161933628288, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: _shadowLayerMask.m_Bits
