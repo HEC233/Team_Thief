@@ -4841,6 +4841,7 @@ GameObject:
   - component: {fileID: 1631890276753975959}
   - component: {fileID: 8526555704126014392}
   - component: {fileID: 360699377224738057}
+  - component: {fileID: 7477459242402850}
   m_Layer: 0
   m_Name: P_Spwan
   m_TagString: Untagged
@@ -9663,6 +9664,23 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &7477459242402850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226319922413847333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystems:
+  - {fileID: 8526555704126014392}
+  - {fileID: 5095620276960093514}
+  - {fileID: 6949769511194012166}
+  - {fileID: 7501204709140285291}
 --- !u!1 &8844422692600109116
 GameObject:
   m_ObjectHideFlags: 0

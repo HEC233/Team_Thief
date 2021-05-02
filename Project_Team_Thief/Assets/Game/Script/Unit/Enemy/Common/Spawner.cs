@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
             {
                 for (int j = 0; j < count; j++)
                 {
-                    Instantiate(unit[i], position, quaternion);
+                    StartCoroutine(SpawnCoroutine(unit[i], position, quaternion));
                 }
                 return true;
             }    
@@ -30,5 +30,23 @@ public class Spawner : MonoBehaviour
     public bool SpawnMany(string unitName, Vector3 position, int count)
     {
         return Spawn(unitName, position, Quaternion.identity, count);
+    }
+
+    private IEnumerator SpawnCoroutine(GameObject go, Vector3 position, Quaternion quaternion)
+    {
+        var fx = GameManager.instance?.FX;
+        if (fx)
+        {
+            var controller = fx.Play("Spawn", position);
+            //while(controller != null && !controller.isStopped)
+            //{
+            //    yield return null;
+            //}
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        Instantiate(go, position, quaternion);
+
+        yield break;
     }
 }

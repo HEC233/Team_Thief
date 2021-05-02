@@ -179,6 +179,9 @@ MonoBehaviour:
   - name: UlimFx
     prefab: {fileID: 7663036625346907719, guid: d6c41899564e36645abcb10279c77b38,
       type: 3}
+  - name: Spawn
+    prefab: {fileID: 5226319922413847333, guid: f86ae401fc2cbdf45afdd43efe613dd4,
+      type: 3}
 --- !u!114 &-5078904260765545550
 MonoBehaviour:
   m_ObjectHideFlags: 0
