@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 7279758012565860687}
   - component: {fileID: 24858456}
   - component: {fileID: 24858457}
+  - component: {fileID: 5982225679925883762}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -63,6 +64,7 @@ MonoBehaviour:
   GameSkillMgr: {fileID: 24858456}
   ShadowControlManager: {fileID: 24858457}
   commandManager: {fileID: 7279758012565860687}
+  spawner: {fileID: 5982225679925883762}
   shadow: {fileID: -5078904260765545550}
   _keyManger: {fileID: 4990086937456659572}
   grid: {fileID: 0}
@@ -176,6 +178,9 @@ MonoBehaviour:
       type: 3}
   - name: UlimFx
     prefab: {fileID: 7663036625346907719, guid: d6c41899564e36645abcb10279c77b38,
+      type: 3}
+  - name: Spawn
+    prefab: {fileID: 5226319922413847333, guid: f86ae401fc2cbdf45afdd43efe613dd4,
       type: 3}
 --- !u!114 &-5078904260765545550
 MonoBehaviour:
@@ -331,3 +336,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6300ef9325d6812448958d2f0ef6697b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5982225679925883762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4990086937456659575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3330f173e6794c4a801ac5e25ae62ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit:
+  - {fileID: 8718974563859108410, guid: e972f2be0e9e66840a07f6b053f57afe, type: 3}
+  - {fileID: 6964507193525842026, guid: 403847deb9dc8a743884034b63902be2, type: 3}

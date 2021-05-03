@@ -20,6 +20,7 @@ public class LightWarriorAI : MonoBehaviour
 
     public Search search = new Search();
     public Combat combat = new Combat();
+    public NULL nullState = new NULL();
 
     [Header("Sight")]
     [SerializeField] private int frontView;
@@ -44,18 +45,22 @@ public class LightWarriorAI : MonoBehaviour
     {
         isLookRight = true;
         actor = GetComponent<LightWarriorActor>();
-        _curState = search;
-        _curState.Enter(this);
+        _curState = nullState;
 
-        StartCoroutine(TargetSetCoroutine());
+        StartCoroutine(AIStartReady());
     }
-    IEnumerator TargetSetCoroutine()
+
+    IEnumerator AIStartReady()
     {
-        yield return null;
+        yield return new WaitForSeconds(0.1f);
         if (GameManager.instance.GetControlActor() != null)
         {
             SetTarget(GameManager.instance.GetControlActor().GetUnit());
         }
+        var unit = (MonsterUnit)actor.GetUnit();
+        while (!unit.IsOnGround)
+            yield return null;
+        ChangeState(search);
     }
 
     public void ChangeState(AIState newState)
@@ -174,6 +179,16 @@ namespace PS.Enemy.LightWarrior.AI
         public abstract void Process();
         public abstract void Exit();
     }
+
+    public class NULL : AIState
+    {
+        public override void Enter(LightWarriorAI ai) { }
+
+        public override void Exit() { }
+
+        public override void Process() { }
+    }
+
 
     /*
      * 순찰 상태!
