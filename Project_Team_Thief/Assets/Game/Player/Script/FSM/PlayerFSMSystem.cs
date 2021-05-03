@@ -837,10 +837,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private bool _isBasicAttackAble = true;
 
         private AniState[] _basicAttackAniArr =
-            new AniState[] {AniState.Attack, AniState.Attack2, AniState.Attack3};
+            new AniState[] {AniState.Attack, AniState.Attack2, AniState.Attack3, AniState.Attack4};
 
         private FxAniEnum[] _basicAttackFxAniArr = new FxAniEnum[]
-            {FxAniEnum.BasicAttack, FxAniEnum.BasicAttack2, FxAniEnum.BasicAttack3};
+            {FxAniEnum.BasicAttack, FxAniEnum.BasicAttack2, FxAniEnum.BasicAttack3, FxAniEnum.BasicAttack4};
         
         
         public BasicAttackState(PlayerFSMSystem system) : base(system)
@@ -1284,7 +1284,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
-            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillShadowWalk);
+            //SystemMgr.AnimationCtrl.PlayAni(AniState.SkillShadowWalk);
             _gameSkillObject = InvokeShadowWalkSkill();
         }
  

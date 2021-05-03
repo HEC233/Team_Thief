@@ -47,7 +47,7 @@ public class Shadow : ShadowBase
         isControlState = true;
         OnChangeControlAction?.Invoke();
         
-        _animationCtrl.PlayAni(AniState.ShadowControl);
+        //_animationCtrl.PlayAni(AniState.ShadowControl);
         StartCoroutine(ControlTimeCoroutine(controlTime));
     }
 

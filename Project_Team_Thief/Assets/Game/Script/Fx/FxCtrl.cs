@@ -12,6 +12,8 @@ public enum FxAniEnum
     BasicAttack2,
     BasicAttack3,
     BasicJumpAttack,
+    BasicAttack4,
+
 }
 
 public class FxCtrl : MonoBehaviour

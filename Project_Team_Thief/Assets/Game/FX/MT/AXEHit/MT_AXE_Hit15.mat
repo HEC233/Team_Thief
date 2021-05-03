@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MT_AXE_Hit12
+  m_Name: MT_AXE_Hit15
   m_Shader: {fileID: -6465566751694194690, guid: ea9f6d5165313d44f95979eaa0aff3f0,
     type: 3}
   m_ShaderKeywords: 

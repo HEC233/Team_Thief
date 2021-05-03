@@ -25,11 +25,13 @@ public enum AniState
     AttackReady,    // 17
     Hit2,           // 18
     BattleIdle,     // 19
-    SkillShadowWalk,// 20
-    ShadowControl,  // 21
-    ShadowLumpSpawn,// 22
-    ShadowLumpHit,  // 23
-    ShadowLumpDie,  // 24
+    Attack4,        // 20
+    
+    // SkillShadowWalk,// 20
+    // ShadowControl,  // 21
+    // ShadowLumpSpawn,// 22
+    // ShadowLumpHit,  // 23
+    // ShadowLumpDie,  // 24
 }
 
 public class AnimationCtrl : MonoBehaviour

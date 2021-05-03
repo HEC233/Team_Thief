@@ -22,7 +22,7 @@ public class ShadowLumpUnit : Unit
     public void Init(float controlTime)
     {
         _controlTime = controlTime;
-        _animationCtrl.PlayAni(AniState.ShadowLumpSpawn);
+        //_animationCtrl.PlayAni(AniState.ShadowLumpSpawn);
         Move();
     }
 
@@ -55,7 +55,7 @@ public class ShadowLumpUnit : Unit
     public override void HandleHit(in Damage inputDamage)
     {
         Vector2 power = new Vector2();
-        _animationCtrl.PlayAni(AniState.ShadowLumpHit);
+        //_animationCtrl.PlayAni(AniState.ShadowLumpHit);
         if (inputDamage.knockBack.x > 0)
         {
             power = new Vector2(_moveSpped, 0);
@@ -83,7 +83,7 @@ public class ShadowLumpUnit : Unit
             if (other.GetComponent<Shadow>().isControlState == false)
             {
                 other.GetComponent<Shadow>().ChangeControlState(_controlTime);
-                _animationCtrl.PlayAni(AniState.ShadowLumpDie);
+                //_animationCtrl.PlayAni(AniState.ShadowLumpDie);
             }
         }
     }
@@ -95,7 +95,7 @@ public class ShadowLumpUnit : Unit
         {
             if (_isSpawnAniEnd == true)
             {
-                _animationCtrl.PlayAni(AniState.ShadowLumpDie);
+                //_animationCtrl.PlayAni(AniState.ShadowLumpDie);
             }
         }
     }

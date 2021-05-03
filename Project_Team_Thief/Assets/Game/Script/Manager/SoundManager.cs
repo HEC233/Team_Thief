@@ -7,6 +7,7 @@ public enum SFXClip
     BasicAttack = 0,
     BasicAttack2,
     BasicAttack3,
+    BasicAttack4,
 }
 
 public class SoundManager : MonoBehaviour
