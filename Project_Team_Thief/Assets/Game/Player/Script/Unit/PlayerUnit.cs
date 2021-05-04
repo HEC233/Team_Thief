@@ -189,7 +189,9 @@ public class PlayerUnit : Unit
     [SerializeField]
     private SkillAxeData _skillAxeData;
     public SkillAxeData SkillAxeData => _skillAxeData;
-    
+    private float _skillAxeNumberOfTimes;
+    private float _skillAxeCoolTime;
+    private bool _skillAexIsAble = true;
 
     //////////////////////////// 데이터로 관리 할 변수
 
@@ -247,6 +249,9 @@ public class PlayerUnit : Unit
         
         // _skillShadowWalkNumberOfTimes = _shadowWalkSkillData.NumberOfTimesTheSkill;
         // _skillShadowWalkCoolTime = _shadowWalkSkillData.CoolTime;
+
+        _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
+        _skillAxeCoolTime = _skillAxeData.CoolTime;
     }
     
 
@@ -617,6 +622,23 @@ public class PlayerUnit : Unit
     //     return skillObject;
     // }
 
+    public bool IsAbleSkillAxe()
+    {
+        if (_skillAexIsAble == false)
+        {
+            return false;
+        }
+
+        _skillAxeNumberOfTimes--;
+
+        if (_skillAxeNumberOfTimes <= 0)
+        {
+            StartCoroutine(SkillAxeCoolTimeCoroutine());
+        }
+        
+        return true;
+    }
+
     public void StartBulletTime(float timeScale)
     {
         _timeScale = timeScale;
@@ -744,6 +766,22 @@ public class PlayerUnit : Unit
 
         _isDashAble = true;
     }
+
+    IEnumerator SkillAxeCoolTimeCoroutine()
+    {
+        _skillAexIsAble = false;
+        float timer = 0.0f;
+
+        while (timer < _skillAxeCoolTime)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _skillAexIsAble = true;
+        _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
+    }
+    
 
     // IEnumerator ShadowWalkCoolTimeCoroutine()
     // {

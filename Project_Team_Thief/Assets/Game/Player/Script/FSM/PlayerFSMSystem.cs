@@ -1471,7 +1471,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public bool IsAbleTransition()
         {
-            return true;
+            return SystemMgr.Unit.IsAbleSkillAxe();
         }
 
         private void OnAnimationEndEvnetCall()

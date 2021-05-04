@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0643a2e5688b9540a2608cbdf113c6a, type: 3}
   m_Name: SkillAxeData
   m_EditorClassIdentifier: 
-  _numberOfTimesTheSkill: 1
+  _numberOfTimesTheSkill: 2
   _coolTime: 2
   _skillName: SkillAex
   _axeGameObject: {fileID: 3841240397383621464, guid: 3624dd1e695c1004e96f2ca043568a51,
