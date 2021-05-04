@@ -45,8 +45,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     public AnimationCtrl AnimationCtrl => _animationCtrl;
 
-    [SerializeField]
-    private BattleIdleCtrl _battleIdleCtrl;
+    //[SerializeField]
+    //private BattleIdleCtrl _battleIdleCtrl;
 
     // 애니메이션 관련 상태 변수
     public bool isJumpKeyPress = false;
@@ -84,7 +84,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
         GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvnetCall;
         Unit.hitEvent += UnitHitEventCall;
-        _battleIdleCtrl.OnIsBattleIdleEvent += OnIsBattleIdleEventCall;
 
         GameManager.instance.commandManager.OnCommandCastEvent += OnCommandCastEventCall;
     }
@@ -906,6 +905,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
                 if (condition == TransitionCondition.Jump)
                     return true;
+
+                if (condition == TransitionCondition.SkillAxe)
+                    return true;
             }
             
             return false;
@@ -1218,7 +1220,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.Unit.Progress();
 
-            if (SystemMgr.Unit.IsGround)
+            Debug.Log(SystemMgr.Unit.CheckWallslideing() + " Slideing");
+            
+            if (SystemMgr.Unit.IsGround || SystemMgr.Unit.CheckWallslideing() == false)
                 SystemMgr.Transition(TransitionCondition.Idle);
         }
 
@@ -1239,6 +1243,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             if (condition == TransitionCondition.WallJump)
+                return true;
+
+            if (condition == TransitionCondition.Idle)
                 return true;
             
             return false;
@@ -1346,14 +1353,24 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private class SkillAxeState : CustomFSMStateBase, ISkillStateBase
     {
-        public SkillAxeState(PlayerFSMSystem system) : base(system)
+        private bool _isAniEnd = false;
+        private bool _isAxe2Action = false;
+        private SkillAxeData _skillAxeData;
+        private GameSkillObject _gameSkillObject;
+        private GameSkillObject _gameSkillObject2;
+        
+        public SkillAxeState(PlayerFSMSystem system, SkillAxeData skillAxeData) : base(system)
         {
+            _skillAxeData = skillAxeData;
         }
 
         public override void StartState()
         {
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe);
+
+            _gameSkillObject = InvokeSkill();
         }
 
         public override void Update()
@@ -1364,15 +1381,25 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void EndState()
         {
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+            _isAniEnd = false;
+            _isAxe2Action = false;
         }
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (_isAniEnd == false)
+                return false;
+            
             return true;
         }
 
         public override bool InputKey(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Attack)
+            {
+                TwoAxeAction();
+                return false;
+            }
             return true;
         }
 
@@ -1380,10 +1407,37 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             return true;
         }
-        
+
         private void OnAnimationEndEvnetCall()
         {
+            _isAniEnd = true;
             SystemMgr.Transition(TransitionCondition.Idle);
+        }
+
+        private void TwoAxeAction()
+        {
+            if (_isAxe2Action == false)
+            {
+                SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe2);
+                SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe2);
+                _gameSkillObject2 = InvokeSkill();
+            }
+
+            _isAxe2Action = true;
+        }
+
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("AexSkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillAxeData.GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
         }
     }
     /// </기획 변경으로 인해 미사용>
@@ -1405,7 +1459,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.JumpAttack, new BasicJumpAttack(this));
         AddState(TransitionCondition.Hit, new HitState(this));
         //AddState(TransitionCondition.SkillShadowWalk, new SkillShadowWalkState(this, Unit.ShadowWalkSkillData));
-        AddState(TransitionCondition.SkillAxe, new SkillAxeState(this));
+        AddState(TransitionCondition.SkillAxe, new SkillAxeState(this, Unit.SkillAxeData));
     }
     
     public bool Transition(TransitionCondition condition, object param = null)

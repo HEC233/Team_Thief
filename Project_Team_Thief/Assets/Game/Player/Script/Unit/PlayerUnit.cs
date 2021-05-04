@@ -184,7 +184,12 @@ public class PlayerUnit : Unit
     // private float _skillShadowWalkNumberOfTimes;
     // private float _skillShadowWalkCoolTime;
     /// </기획 변동으로 인해 미사용>
+
+    [SerializeField]
+    private SkillAxeData _skillAxeData;
+    public SkillAxeData SkillAxeData => _skillAxeData;
     
+
     //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
@@ -192,7 +197,7 @@ public class PlayerUnit : Unit
     private Vector2 _hitstopPrevVelocity = Vector2.zero;
     private Damage _hitDamage;
 
-    [SerializeField]
+    [SerializeField, Header("")]
     private GameObject _SlideingFx;
 
     void Start()

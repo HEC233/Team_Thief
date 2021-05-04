@@ -27,6 +27,7 @@ public enum AniState
     BattleIdle,     // 19
     Attack4,        // 20
     SkillAxe,       // 21
+    SkillAxe2,      // 22
     
     // SkillShadowWalk,// 20
     // ShadowControl,  // 21

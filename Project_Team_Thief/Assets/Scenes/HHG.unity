@@ -60070,7 +60070,7 @@ PrefabInstance:
     - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: _soCommandDatas.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
@@ -60082,7 +60082,8 @@ PrefabInstance:
         type: 3}
       propertyPath: _soCommandDatas.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 516d2075da7e0cd4ab19ec389a287c6d,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 24858457, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
@@ -61995,7 +61996,7 @@ PrefabInstance:
     - target: {fileID: 7260877962462582348, guid: 005d8633bdd43d7438effcb1a5f9ee49,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7699997
+      value: 2.7699995
       objectReference: {fileID: 0}
     - target: {fileID: 7260877962462582348, guid: 005d8633bdd43d7438effcb1a5f9ee49,
         type: 3}
@@ -106388,7 +106389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319905620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7699997, y: 2.3900003, z: -10}
+  m_LocalPosition: {x: 2.7699995, y: 2.3900003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -107739,16 +107740,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 757774234259567965, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 757774234259567965, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1542053513835489097, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
         type: 3}
       propertyPath: m_Name

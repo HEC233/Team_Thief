@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 484f46132f38df34b8c13b876f9708d2, type: 3}
-  m_Name: Skill1Axe
+  m_Name: CommandSkill1AxeReverse
   m_EditorClassIdentifier: 
-  commandString: RRZ
+  commandString: LLZ
   skillName: Skill1Axe

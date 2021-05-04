@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0643a2e5688b9540a2608cbdf113c6a, type: 3}
+  m_Name: SkillAxeData
+  m_EditorClassIdentifier: 
+  _numberOfTimesTheSkill: 1
+  _coolTime: 2
+  _skillName: SkillAex
+  _axeGameObject: {fileID: 3841240397383621464, guid: 3624dd1e695c1004e96f2ca043568a51,
+    type: 3}
+  _cinemachineSignalSource: {fileID: 11400000, guid: ab5e8c5544421b348bf91b448897405f,
+    type: 2}
+  _knockBackPower: {x: 2, y: 0}
+  _movePostionX: 5
+  _moveTime: 0.4
+  _attackDamage: 10
