@@ -64,13 +64,14 @@ public class PlayerUnit : Unit
     
     // 점프 관련 변수
     private int _jumpCount = 0;
-    private float _coyoteTime = 0.2f;
-    private float _maxCoyoteTime = 0.2f; 
     private int _maxJumpCount = 2;
     private float _maxJumpTime = 0.1f;
     public float MaxJumpTime => _maxJumpTime;
 
     [Header("Jump Variable")]
+    [SerializeField]
+    private float _coyoteTime = 0.2f;
+    private float _maxCoyoteTime = 0.2f; 
     [SerializeField]
     private float _jumpPower = 5.0f;
     [SerializeField] 
@@ -313,7 +314,7 @@ public class PlayerUnit : Unit
 
     public override void Jump()
     {
-        _coyoteTime = 0.0f;
+        _coyoteTime = -1.0f;
         _jumpCount--;
         _isGround = false;
 
@@ -341,7 +342,7 @@ public class PlayerUnit : Unit
 
     public bool CheckIsJumpAble()
     {
-        if (_coyoteTime >= 0.0f)
+        if (_coyoteTime > 0.0f)
         {
             _coyoteTime = -1;
             return true;

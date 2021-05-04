@@ -122,6 +122,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return false;
             if (condition == TransitionCondition.None)
                 return false;
+            
+            if (condition == TransitionCondition.Jump)
+            {
+                if (SystemMgr.Unit.CheckIsJumpAble() == false)
+                {
+                    return false;
+                }
+            }
+            
             return true;
         }
 
@@ -176,6 +185,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.Wallslideing)
                 return false;
             
+            if (condition == TransitionCondition.Jump)
+            {
+                if (SystemMgr.Unit.CheckIsJumpAble() == false)
+                {
+                    return false;
+                }
+            }
+            
             return true;
         }
 
@@ -193,6 +210,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 SystemMgr.Unit.Move();
                 return false;
             }
+
             return true;
         }
         
@@ -231,8 +249,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             if (condition == TransitionCondition.None)
                 return false;
+
+            if (condition == TransitionCondition.RunningInertia)
+                return true;
+
+            if (condition == TransitionCondition.Idle)
+                return true;
             
-            return true;
+            return false;
         }
 
         public override bool InputKey(TransitionCondition condition)
@@ -274,6 +298,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.None)
             {
                 return false;
+            }
+            if (condition == TransitionCondition.Jump)
+            {
+                if (SystemMgr.Unit.CheckIsJumpAble() == false)
+                {
+                    return false;
+                }
             }
             
             return true;
@@ -507,6 +538,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                     return false;
                 }
 
+                if (condition == TransitionCondition.Jump)
+                {
+                    Debug.Log(SystemMgr.Unit.CheckIsJumpAble());
+                    if (SystemMgr.Unit.CheckIsJumpAble() == true)
+                    {
+                        return true;
+                    }
+                }
+
                 return false;
             }
             else
@@ -526,11 +566,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 {
                     if (SystemMgr.isJumpKeyPress == false)
                     {
-                        if (SystemMgr.Unit.CheckIsJumpAble() == true)
-                        {
-                            SystemMgr.Transition(TransitionCondition.Jump);
-                            return false;
-                        }
+                        return true;
                     }
                 }
                 
@@ -669,12 +705,22 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            if (SystemMgr.Unit.isDashAble == false)
-                return true;
-            
             if (_isDashEnd == false)
             {
                 return false;
+            }
+            
+            // if (SystemMgr.Unit.isDashAble == false)
+            //     return true;
+            //
+
+         
+            if (condition == TransitionCondition.Jump)
+            {
+                if (SystemMgr.Unit.CheckIsJumpAble() == false)
+                {
+                    return false;
+                }
             }
             
             return true;
@@ -904,7 +950,16 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                     return true;
 
                 if (condition == TransitionCondition.Jump)
-                    return true;
+                {
+                    if (SystemMgr.Unit.CheckIsJumpAble() == false)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
 
                 if (condition == TransitionCondition.SkillAxe)
                     return true;
@@ -1183,6 +1238,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool InputKey(TransitionCondition condition)
         {
+            if (SystemMgr.Unit.CheckIsJumpAble() == false)
+            {
+                return false;
+            }
+            
             return true;
         }
 
@@ -1220,7 +1280,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.Unit.Progress();
 
-            Debug.Log(SystemMgr.Unit.CheckWallslideing() + " Slideing");
             
             if (SystemMgr.Unit.IsGround || SystemMgr.Unit.CheckWallslideing() == false)
                 SystemMgr.Transition(TransitionCondition.Idle);
@@ -1389,6 +1448,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (_isAniEnd == false)
                 return false;
+            
+            if (condition == TransitionCondition.Jump)
+            {
+                if (SystemMgr.Unit.CheckIsJumpAble() == false)
+                {
+                    return false;
+                }
+            }
             
             return true;
         }
