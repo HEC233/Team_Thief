@@ -540,7 +540,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
                 if (condition == TransitionCondition.Jump)
                 {
-                    Debug.Log(SystemMgr.Unit.CheckIsJumpAble());
                     if (SystemMgr.Unit.CheckIsJumpAble() == true)
                     {
                         return true;
@@ -1619,7 +1618,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private TransitionCondition ChangeSkillNameToTransitionCondition(string skillName)
     {
-        Debug.Log("SkillName : " + skillName);
         switch (skillName)
         {
             case "Skill1Axe":

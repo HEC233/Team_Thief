@@ -75,7 +75,6 @@ public class CommandManager : MonoBehaviour
             {
                 if (_commandCtrls[i].CheckCommand() == true)
                 {
-                    Debug.Log("Command");
                     OnCommandCastEvent?.Invoke(_commandCtrls[i].CommandData.skillName);
                     ResetAllCommandList();
                     break;
@@ -134,7 +133,9 @@ public class CommandManager : MonoBehaviour
             for (int i = 0; i < _commandString.Length; i++)
             {
                 if (_commandList[i] == _commandString[i])
+                {
                     _commandCount++;
+                }
             }
 
             if (_commandCount == _commandString.Length)
@@ -143,6 +144,7 @@ public class CommandManager : MonoBehaviour
                 return true;
             }
             
+            ResetKey();
             return false;
         }
     }
