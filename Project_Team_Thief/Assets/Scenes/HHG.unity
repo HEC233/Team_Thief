@@ -59989,13 +59989,14 @@ PrefabInstance:
     - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: _soCommandDatas.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: _soCommandDatas.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 3f4c201fd2d7adb4b994191777107033,
+        type: 2}
     - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: _soCommandDatas.Array.data[1]

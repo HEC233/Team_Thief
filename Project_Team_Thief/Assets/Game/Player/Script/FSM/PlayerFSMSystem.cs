@@ -1343,6 +1343,49 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return true;
         }
     }
+
+    private class SkillAxeState : CustomFSMStateBase, ISkillStateBase
+    {
+        public SkillAxeState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe);
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+        }
+
+        public override void EndState()
+        {
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            return true;
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            return true;
+        }
+
+        public bool IsAbleTransition()
+        {
+            return true;
+        }
+        
+        private void OnAnimationEndEvnetCall()
+        {
+            SystemMgr.Transition(TransitionCondition.Idle);
+        }
+    }
     /// </기획 변경으로 인해 미사용>
     protected override void RegisterState()
     {
@@ -1362,6 +1405,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.JumpAttack, new BasicJumpAttack(this));
         AddState(TransitionCondition.Hit, new HitState(this));
         //AddState(TransitionCondition.SkillShadowWalk, new SkillShadowWalkState(this, Unit.ShadowWalkSkillData));
+        AddState(TransitionCondition.SkillAxe, new SkillAxeState(this));
     }
     
     public bool Transition(TransitionCondition condition, object param = null)
@@ -1454,10 +1498,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private TransitionCondition ChangeSkillNameToTransitionCondition(string skillName)
     {
+        Debug.Log("SkillName : " + skillName);
         switch (skillName)
         {
-            case "ShadowWalk":
-                return TransitionCondition.SkillShadowWalk;
+            case "Skill1Axe":
+                return TransitionCondition.SkillAxe;
                 break;
             
             default:
