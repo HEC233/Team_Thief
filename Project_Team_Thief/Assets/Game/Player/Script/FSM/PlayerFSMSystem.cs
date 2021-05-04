@@ -957,17 +957,19 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 if (_nextBasicAttackIndex > _basicAttackAniArr.Length - 1)
                 {
-                    _basicAttackIndex = 0;
-                    _nextBasicAttackIndex = 0;
+                    // _basicAttackIndex = 0;
+                    // _nextBasicAttackIndex = 0;
+                    _isBasicAttackEnd = true;
+                    SystemMgr.Transition(TransitionCondition.Idle);
+                    
                 }
                 else
                 {
                     _basicAttackIndex = _nextBasicAttackIndex;
+
+                    SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
+                    SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
                 }
-                
-                
-                SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
-                SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
             }
             else
             {
