@@ -68,13 +68,14 @@ public class PlayerUnit : Unit
     
     // 점프 관련 변수
     private int _jumpCount = 0;
-    private float _coyoteTime = 0.2f;
-    private float _maxCoyoteTime = 0.2f; 
     private int _maxJumpCount = 2;
     private float _maxJumpTime = 0.1f;
     public float MaxJumpTime => _maxJumpTime;
 
     [Header("Jump Variable")]
+    [SerializeField]
+    private float _coyoteTime = 0.2f;
+    private float _maxCoyoteTime = 0.2f; 
     [SerializeField]
     private float _jumpPower = 5.0f;
     [SerializeField] 
@@ -188,7 +189,14 @@ public class PlayerUnit : Unit
     // private float _skillShadowWalkNumberOfTimes;
     // private float _skillShadowWalkCoolTime;
     /// </기획 변동으로 인해 미사용>
-    
+
+    [SerializeField]
+    private SkillAxeData _skillAxeData;
+    public SkillAxeData SkillAxeData => _skillAxeData;
+    private float _skillAxeNumberOfTimes;
+    private float _skillAxeCoolTime;
+    private bool _skillAexIsAble = true;
+
     //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
@@ -196,7 +204,7 @@ public class PlayerUnit : Unit
     private Vector2 _hitstopPrevVelocity = Vector2.zero;
     private Damage _hitDamage;
 
-    [SerializeField]
+    [SerializeField, Header("")]
     private GameObject _SlideingFx;
 
     void Start()
@@ -249,6 +257,9 @@ public class PlayerUnit : Unit
         
         // _skillShadowWalkNumberOfTimes = _shadowWalkSkillData.NumberOfTimesTheSkill;
         // _skillShadowWalkCoolTime = _shadowWalkSkillData.CoolTime;
+
+        _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
+        _skillAxeCoolTime = _skillAxeData.CoolTime;
     }
     
 
@@ -316,7 +327,7 @@ public class PlayerUnit : Unit
 
     public override void Jump()
     {
-        _coyoteTime = 0.0f;
+        _coyoteTime = -1.0f;
         _jumpCount--;
         _isGround = false;
 
@@ -344,7 +355,7 @@ public class PlayerUnit : Unit
 
     public bool CheckIsJumpAble()
     {
-        if (_coyoteTime >= 0.0f)
+        if (_coyoteTime > 0.0f)
         {
             _coyoteTime = -1;
             return true;
@@ -623,6 +634,23 @@ public class PlayerUnit : Unit
     //     return skillObject;
     // }
 
+    public bool IsAbleSkillAxe()
+    {
+        if (_skillAexIsAble == false)
+        {
+            return false;
+        }
+
+        _skillAxeNumberOfTimes--;
+
+        if (_skillAxeNumberOfTimes <= 0)
+        {
+            StartCoroutine(SkillAxeCoolTimeCoroutine());
+        }
+        
+        return true;
+    }
+
     public void StartBulletTime(float timeScale)
     {
         _timeScale = timeScale;
@@ -750,6 +778,22 @@ public class PlayerUnit : Unit
 
         _isDashAble = true;
     }
+
+    IEnumerator SkillAxeCoolTimeCoroutine()
+    {
+        _skillAexIsAble = false;
+        float timer = 0.0f;
+
+        while (timer < _skillAxeCoolTime)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _skillAexIsAble = true;
+        _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
+    }
+    
 
     // IEnumerator ShadowWalkCoolTimeCoroutine()
     // {

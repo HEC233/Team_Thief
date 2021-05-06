@@ -1,62 +1,70 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Cinemachine;
 using UnityEngine;
+using Cinemachine;
 using UnityEngine.Events;
-using Assert = UnityEngine.Assertions.Assert;
 
-public class BasicAttackCtrl : AttackBase
+public class SkillAxeAttackCtrl : AttackBase
 {
-    public event UnityAction OnChangeDirEvent;
+    public event UnityAction OnEndSkillEvent;
     
     [SerializeField] 
     private BoxCollider2D _basicAttackCollider2D;
     [SerializeField]
+    private Rigidbody2D _rigidbody2D;
+    [SerializeField]
     private CinemachineImpulseSource _cinemachineImpulseSource;
+    
+    private SignalSourceAsset _cinemachineSignalSource;
+    
     private ContactFilter2D _contactFilter2D;
     private List<Collider2D> result = new List<Collider2D>();
     private bool _isInit = false;
     private bool _isEnter = false;
-    public bool alwaysEnter = false;
-    
-    private void OnEnable()
-    {
-        if(_basicAttackCollider2D == null)
-            Assert.IsNotNull("_basicAttackCollider Null");
-        
-        if(_isInit == false)
-            Init();
-            
-        //Progress();
-    }
 
-    private void Init()
+    private float _movePositionX;
+    private float _moveTime;
+    private float _moveSpeed;
+    private float _dir;
+    
+    public void Init(float movePosX, float moveTime, SignalSourceAsset cinemachineSignalSource, float dir)
     {
         _isInit = true;
+
+        _movePositionX = movePosX;
+        _moveTime = moveTime;
+        _cinemachineSignalSource = cinemachineSignalSource;
+        _dir = dir;
+
+        _cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _cinemachineSignalSource;
+        _moveSpeed = (1 / _moveTime) * _movePositionX;
+        _damage.knockBack = new Vector2(_damage.knockBack.x * _dir, _damage.knockBack.y);
         
         _contactFilter2D.useTriggers = true;
         _contactFilter2D.useLayerMask = true;
         _contactFilter2D.layerMask = _hitLayerMask;
+
+        StartCoroutine(AxeMoveCoroutine());
     }
 
     public void Progress()
     {
-        if(_isChangeDir == true)
-            OnChangeDirEvent?.Invoke();
+        if(_isInit == false)
+            return;
         
         PlaySfx();
         PlayFx();
 
         AttackDamage();
 
-        if (_isEnter == true || alwaysEnter == true)
+        if (_isEnter == true)
         {
             HitStop();
             CameraShake();
         }
     }
-
+    
     public override void Flash()
     {
         if (_isAbleFlash == false)
@@ -129,5 +137,29 @@ public class BasicAttackCtrl : AttackBase
     public override void SetDamage(in Damage damage)
     {
         _damage = damage;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Progress();
+        }
+    }
+
+    IEnumerator AxeMoveCoroutine()
+    {
+        float _timer = 0.0f;
+        while (_timer < _moveTime)
+        {
+            _rigidbody2D.velocity = Vector2.zero;
+            _rigidbody2D.AddForce(new Vector2(_moveSpeed * _dir, 0), ForceMode2D.Impulse);
+            
+            _timer += GameManager.instance.timeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        
+        OnEndSkillEvent?.Invoke();
+        Destroy(this.gameObject);
     }
 }

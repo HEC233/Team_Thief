@@ -13,6 +13,8 @@ public enum FxAniEnum
     BasicAttack3,
     BasicJumpAttack,
     BasicAttack4,
+    SkillAxe,
+    SkillAxe2,
 
 }
 
@@ -42,6 +44,11 @@ public class FxCtrl : MonoBehaviour
     public void SetAnimationTimeSclae(float timeScale)
     {
         _fxAnimator.speed = timeScale;
+    }
+
+    public void OnAnimationEndEvent()
+    {
+        PlayAni(FxAniEnum.Idle);
     }
 
 }

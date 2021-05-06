@@ -18,11 +18,6 @@ public abstract class SkillDataBase : ScriptableObject
 
     public string SkillName => _skillName;
 
-    [SerializeField, Tooltip("잠식력")] 
-    private float _encroachmentPer;
-
-    public float EncroachmentPer => _encroachmentPer;
-
     // Unit까지 넣어주자.
     public abstract SkillControllerBase GetSkillController(GameSkillObject skillObject, Unit unit);
 }

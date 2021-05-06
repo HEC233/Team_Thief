@@ -137,7 +137,9 @@ public class CommandManager : MonoBehaviour
             for (int i = 0; i < _commandString.Length; i++)
             {
                 if (_commandList[i] == _commandString[i])
+                {
                     _commandCount++;
+                }
             }
 
             if (_commandCount == _commandString.Length)
@@ -146,6 +148,7 @@ public class CommandManager : MonoBehaviour
                 return true;
             }
             
+            ResetKey();
             return false;
         }
     }
