@@ -5,16 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class GameLoader : MonoBehaviour
 {
+    public static GameLoader instance;
+
     private bool gameDataLoaded = false;
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
 
     public void StartGame()
     {
         StartCoroutine(SceneLoad());
+        GameManager.instance.ShowLoadingScreen();
     }
 
     IEnumerator LoadGameData()
@@ -30,6 +37,13 @@ public class GameLoader : MonoBehaviour
         if (!gameDataLoaded)
             yield return StartCoroutine(LoadGameData());
 
+        yield return new WaitForSeconds(3.0f);
+
         yield return SceneManager.LoadSceneAsync("HHG");
+        var grid = GameObject.Find("Grid").GetComponent<Grid>();
+        GameManager.instance.grid = grid;
+        //---
+        GameManager.instance.uiMng.uiPlayerInfo.InitInfo();
+        GameManager.instance.GameState = GameManager.GameStateEnum.InGame;
     }
 }

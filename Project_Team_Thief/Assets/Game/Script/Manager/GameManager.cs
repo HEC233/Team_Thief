@@ -7,7 +7,22 @@ using PS.Shadow;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameStateEnum
+    {
+        MainMenu,
+        InGame,
+        Pause,
+    }
+
+
     public static GameManager instance;
+
+    private GameStateEnum _gameState;
+    public GameStateEnum GameState
+    {
+        get { return _gameState; }
+        set { _gameState = value; uiMng.ToggleUI(value); }
+    }
 
     public CameraManager cameraMng;
     public TimeManager timeMng;
@@ -31,6 +46,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -48,5 +64,10 @@ public class GameManager : MonoBehaviour
     public IActor GetControlActor()
     {
         return _keyManger.GetControlActor();
+    }
+
+    public void ShowLoadingScreen()
+    {
+        uiMng.ShowLoading();
     }
 }

@@ -588,6 +588,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  playerInfo: {fileID: 11400000, guid: 5a943053036e0b740b796aea7f9a649e, type: 2}
   _maxHp: 100
   _curHp: 0
   _decreaseHp: 0.2
