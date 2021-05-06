@@ -27,7 +27,7 @@ public class SkillAxeController : SkillControllerBase
         _unit = Unit as PlayerUnit;
 
         _damage = new Damage();
-        _damage.power = _skillAxeData.AttackDamage;
+        _damage.power = _skillAxeData.AxeAttackDamage;
         _damage.knockBack = _skillAxeData.KnockBackPower;
     }
 
@@ -39,7 +39,7 @@ public class SkillAxeController : SkillControllerBase
 
         _skillAxeAttackCtrl.OnEndSkillEvent += EndSkill;
         _skillAxeAttackCtrl.SetDamage(_damage);
-        _skillAxeAttackCtrl.Init(_skillAxeData.MovePostionX, _skillAxeData.MoveTime, _skillAxeData.CinemachineSignalSource, _unit.FacingDir);
+        _skillAxeAttackCtrl.Init(_skillAxeData.AxeMovePostionX, _skillAxeData.AxeMoveTime, _skillAxeData.CinemachineSignalSource, _unit.FacingDir);
     }
 
     private void EndSkill()

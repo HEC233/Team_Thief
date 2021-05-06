@@ -15,7 +15,7 @@ public enum FxAniEnum
     BasicAttack4,
     SkillAxe,
     SkillAxe2,
-
+    SkillSpear,     // 10
 }
 
 public class FxCtrl : MonoBehaviour

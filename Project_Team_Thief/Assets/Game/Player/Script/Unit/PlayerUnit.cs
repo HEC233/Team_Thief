@@ -186,13 +186,18 @@ public class PlayerUnit : Unit
     // private float _skillShadowWalkCoolTime;
     /// </기획 변동으로 인해 미사용>
 
-    [SerializeField]
+    [SerializeField, Header("SkillAxe")]
     private SkillAxeData _skillAxeData;
     public SkillAxeData SkillAxeData => _skillAxeData;
     private float _skillAxeNumberOfTimes;
     private float _skillAxeCoolTime;
     private bool _skillAexIsAble = true;
 
+    [SerializeField, Header("SkillSpear")] 
+    private SkillSpearData _skillSpearData;
+    public SkillSpearData SkillSpearData => _skillSpearData;
+    
+    
     //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;

@@ -19,16 +19,16 @@ public class SkillAxeData : SkillDataBase
     public Vector2 KnockBackPower => _knockBackPower;
     
     [SerializeField]
-    private float _movePostionX;
-    public float MovePostionX => _movePostionX;
+    private float _axeMovePostionX;
+    public float AxeMovePostionX => _axeMovePostionX;
 
     [SerializeField] 
-    private float _moveTime;
-    public float MoveTime => _moveTime;
+    private float _axeMoveTime;
+    public float AxeMoveTime => _axeMoveTime;
 
     [SerializeField]
-    private float _attackDamage;
-    public float AttackDamage => _attackDamage;
+    private float _axeAttackDamage;
+    public float AxeAttackDamage => _axeAttackDamage;
 
 
     public override SkillControllerBase GetSkillController(GameSkillObject skillObject, Unit unit)

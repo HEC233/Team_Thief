@@ -30,6 +30,7 @@ public enum TransitionCondition
     BackStepLeft,
     None,
     SkillAxe,
+    SkillSpear,
     
     // Shadow
     Default,

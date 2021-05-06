@@ -28,6 +28,7 @@ public enum AniState
     Attack4,        // 20
     SkillAxe,       // 21
     SkillAxe2,      // 22
+    SkillSpear,     // 23
     
     // SkillShadowWalk,// 20
     // ShadowControl,  // 21
