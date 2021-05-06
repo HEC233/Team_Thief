@@ -8,17 +8,25 @@ public class Spawner : MonoBehaviour
 
     public bool Spawn(string unitName, Vector3 position, Quaternion quaternion, int count)
     {
-        for(int i = 0; i < unit.Count; i++)
+        //for(int i = 0; i < unit.Count; i++)
+        //{
+        //    var unitComponent = unit[i].GetComponentInChildren<Unit>();
+        //    if(unitComponent?.GetUnitName() == unitName)
+        //    {
+        //        for (int j = 0; j < count; j++)
+        //        {
+        //            StartCoroutine(SpawnCoroutine(unit[i], position, quaternion));
+        //        }
+        //        return true;
+        //    }    
+        //}
+        //return false;
+
+        var unit = Addressable.instance.GetUnit(unitName);
+        if(unit != null)
         {
-            var unitComponent = unit[i].GetComponentInChildren<Unit>();
-            if(unitComponent?.GetUnitName() == unitName)
-            {
-                for (int j = 0; j < count; j++)
-                {
-                    StartCoroutine(SpawnCoroutine(unit[i], position, quaternion));
-                }
-                return true;
-            }    
+            StartCoroutine(SpawnCoroutine(unit, position, quaternion));
+            return true;
         }
         return false;
     }

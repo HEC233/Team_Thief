@@ -1,18 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class SOPlayer : MonoBehaviour
+[CreateAssetMenu(fileName = "Player", menuName = "ScriptableObject/Player")]
+public class SOPlayer : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    ///////////////////////////// 데이터로 관리 할 변수
+    // 기본 스탯
+    [SerializeField]
+    private float _maxHp;
+
+    public float MaxHP
     {
-        
+        get { return _maxHp; }
+        set { _maxHp = value; }
     }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private float _curHp;
+
+    public float CurHP
     {
-        
+        get { return _curHp; }
+        set { _curHp = value; hpChangeEvent.Invoke(); }
     }
+    public UnityAction hpChangeEvent;
+
+    [SerializeField]
+    private float _decreaseHp;
+    [SerializeField]
+    private float _encroachment;
 }

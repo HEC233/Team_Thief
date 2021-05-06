@@ -38,6 +38,10 @@ public class PlayerUnit : Unit
 
     // 시간 관련 변수
     private float _timeScale = 1;
+
+    //---
+    public SOPlayer playerInfo;
+    //---
     
     ///////////////////////////// 데이터로 관리 할 변수
     // 기본 스탯
@@ -243,7 +247,11 @@ public class PlayerUnit : Unit
         _originalGravityScale = _rigidbody2D.gravityScale;
 
         _curHp = _maxHp;
-        
+
+        //---
+        playerInfo.CurHP = _curHp;
+        //---
+
         _basicAttackDamage = new Damage();
         _hitDamage = new Damage();
         
@@ -569,6 +577,10 @@ public class PlayerUnit : Unit
     {
         _curHp -= _hitDamage.power * _decreaseHp;
         StartCoroutine(InvincibilityTimeCoroutine());
+
+        //---
+        playerInfo.CurHP = _curHp;
+        //---
         
         if(_curHp < 0)
             Debug.LogError("플레이어 사망");
