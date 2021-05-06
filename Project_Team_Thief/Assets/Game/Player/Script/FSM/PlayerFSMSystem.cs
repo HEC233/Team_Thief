@@ -60,6 +60,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     // 기본 공격 관련
     public event UnityAction OnBasicAttackEndAniEvent = null;
     public event UnityAction OnBasicAttackCallEvent = null;
+    
+
 
     // Start is called before the first frame update
     private void Start()
@@ -1515,6 +1517,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     class SkillSpearState : CustomFSMStateBase, ISkillStateBase
     {
         private SkillSpearData _skillSpearData;
+        private bool _isAniEnd = false;
+        private GameSkillObject _gameSkillObject;
+        
         public SkillSpearState(PlayerFSMSystem system, SkillSpearData skillSpearData) : base(system)
         {
             _skillSpearData = skillSpearData;
@@ -1522,8 +1527,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSpear);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSpear);
+            
+            _gameSkillObject = InvokeSkill();
         }
 
         public override void Update()
@@ -1532,10 +1540,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+            _isAniEnd = false;
         }
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (_isAniEnd == true)
+                return true;
+            
             return false;
         }
 
@@ -1547,6 +1560,26 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public bool IsAbleTransition()
         {
             return true;
+        }
+        
+        private void OnAnimationEndEvnetCall()
+        {
+            _isAniEnd = true;
+            SystemMgr.Transition(TransitionCondition.Idle);
+        }
+        
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("AexSkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillSpearData.GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
         }
     }
     
@@ -1647,6 +1680,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     {
         _isBattleIdle = isBattle;
     }
+    
 
     private void OnCommandCastEventCall(string skillName)
     {

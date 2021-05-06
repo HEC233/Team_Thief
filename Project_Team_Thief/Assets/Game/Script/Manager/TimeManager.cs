@@ -21,6 +21,8 @@ public class TimeManager : MonoBehaviour
     public bool IsHitStop => _isHitStop;
 
     private float _timeScale = 1;
+    public float TimeScale => _timeScale;
+
     private float _prevTimeScale = 0;
 
     public float DeltaTime { get { return Time.deltaTime * _timeScale; } }

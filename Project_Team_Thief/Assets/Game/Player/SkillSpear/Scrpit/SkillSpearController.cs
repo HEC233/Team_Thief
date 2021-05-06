@@ -6,8 +6,66 @@ public class SkillSpearController : SkillControllerBase
 {
     public SkillSpearController(GameSkillObject skillObject, SkillDataBase data, Unit unit) : base(skillObject, data, unit) { }
 
+    private SkillSpearData _skillSpearData;
+
+    private PlayerUnit _unit;
+
+    private Damage _damage;
+
+    private float _rushSpped = 0; 
+    
     public override void Invoke()
     {
+        Init();
+    }
+
+    private void Init()
+    {
+        _skillSpearData = SkillData as SkillSpearData;
+        _unit = Unit as PlayerUnit;
+
+        _damage = new Damage();
+        _damage.power = _skillSpearData.AttackDamage;
+        _damage.knockBack = _skillSpearData.KnockBackPower;
+
+        _rushSpped = (1 / _skillSpearData.PlayerMoveTime) * _skillSpearData.PlayerMovePostionX;
+
+        _unit.OnSkillSpearRushEvent += StartSpearRush;
+        _unit.OnSkillSpearAttackEvent += AttackSkillSpear;
+    }
+
+    public override void Release()
+    {
+        base.Release();
         
+        _unit.OnSkillSpearRushEvent -= StartSpearRush;
+        _unit.OnSkillSpearAttackEvent -= AttackSkillSpear;
+    }
+
+    private void StartSpearRush()
+    {
+        SkillObject.StartCoroutine(SkillSpearRushCoroutine());
+    }
+
+    private void AttackSkillSpear()
+    {
+        _unit.SkillAttackSpear();
+    }
+
+    IEnumerator SkillSpearRushCoroutine()
+    {
+        float timer = 0.02f;
+        
+        while (timer <= _skillSpearData.PlayerMoveTime)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            _unit.Rigidbody2D.velocity = Vector2.zero;
+            var power = new Vector2(_rushSpped * _unit.FacingDir * GameManager.instance.timeMng.TimeScale, 0);
+            _unit.Rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+            yield return new WaitForFixedUpdate();
+        }
+        
+        _unit.Rigidbody2D.velocity = Vector2.zero;
+        OnEndSkillAction?.Invoke();
     }
 }

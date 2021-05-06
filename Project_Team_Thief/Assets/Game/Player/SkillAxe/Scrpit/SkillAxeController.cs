@@ -33,6 +33,7 @@ public class SkillAxeController : SkillControllerBase
 
     private void Progress()
     {
+       
         _skillAxeAttackCtrl =
             GameObject.Instantiate(_skillAxeData.AxeGameObject, Unit.transform.position, quaternion.identity)
                 .GetComponent<SkillAxeAttackCtrl>();
@@ -44,6 +45,7 @@ public class SkillAxeController : SkillControllerBase
 
     private void EndSkill()
     {
+        _skillAxeAttackCtrl.OnEndSkillEvent -= EndSkill;
         _skillAxeAttackCtrl = null;
         OnEndSkillAction?.Invoke();
     }

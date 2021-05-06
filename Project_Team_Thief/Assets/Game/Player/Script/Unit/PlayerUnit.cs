@@ -197,6 +197,8 @@ public class PlayerUnit : Unit
     private SkillSpearData _skillSpearData;
     public SkillSpearData SkillSpearData => _skillSpearData;
     
+    public event UnityAction OnSkillSpearRushEvent = null;
+    public event UnityAction OnSkillSpearAttackEvent = null;
     
     //////////////////////////// 데이터로 관리 할 변수
 
@@ -431,7 +433,7 @@ public class PlayerUnit : Unit
     {
         _rigidbody2D.velocity = Vector2.zero;
 
-        var power = new Vector2((_dashSpeed) * _facingDir * _timeScale, 0);
+        var power = new Vector2((_dashSpeed) * _facingDir * GameManager.instance.timeMng.TimeScale, 0);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -642,6 +644,21 @@ public class PlayerUnit : Unit
         }
         
         return true;
+    }
+
+    public void SkillAttackSpear()
+    {
+        Debug.Log("Attack SKill");
+    }
+    
+    public void OnSkillSpearRushEventCall()
+    {
+        OnSkillSpearRushEvent?.Invoke();
+    }
+
+    public void OnSkillSpearAttackEventCall()
+    {
+        OnSkillSpearAttackEvent?.Invoke();
     }
 
     public void StartBulletTime(float timeScale)
