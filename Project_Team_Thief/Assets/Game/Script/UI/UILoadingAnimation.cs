@@ -1,20 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class UILoadingAnimation : MonoBehaviour
 {
-    public TextMeshProUGUI text;
+    public Image blackScreen;
+
+    public float fadeoutTime;
+    public float fadeinTime;
 
     public void Toggle(bool value)
     {
-        this.gameObject.SetActive(value);
-    }
-
-    private void OnEnable()
-    {
-        StartCoroutine(Animation());
+        this.gameObject.SetActive(true);
+        StopAllCoroutines();
+        StartCoroutine(Animation(value));
     }
 
     private void OnDisable()
@@ -22,18 +22,33 @@ public class UILoadingAnimation : MonoBehaviour
         StopAllCoroutines();
     }
 
-    IEnumerator Animation()
+    IEnumerator Animation(bool isStart)
     {
-        var wait = new WaitForSeconds(0.3f);
-        while(true)
+        float timeCheck = 0;
+        if (isStart)
         {
-            text.text = "Loading.";
-            yield return wait;
-            text.text = "Loading..";
-            yield return wait;
-            text.text = "Loading...";
-            yield return wait;
+            while (timeCheck <= fadeoutTime)
+            {
+                blackScreen.color = new Color(0, 0, 0, timeCheck / fadeoutTime);
 
+                timeCheck += Time.deltaTime;
+
+                yield return null;
+            }
+            blackScreen.color = new Color(0, 0, 0, 1);
+        }
+        else
+        {
+            while (timeCheck <= fadeinTime)
+            {
+                blackScreen.color = new Color(0, 0, 0, 1 - timeCheck / fadeinTime);
+
+                timeCheck += Time.deltaTime;
+
+                yield return null;
+            }
+
+            this.gameObject.SetActive(false);
         }
     }
 }
