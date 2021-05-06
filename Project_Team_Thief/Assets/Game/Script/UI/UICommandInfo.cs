@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class UICommandInfo : MonoBehaviour
 {
     private RectTransform _rect;
-    private List<SOCommandData> _commandDatas;
+    private List<CommandManager.CommandCtrl> _commandDatas;
+    public Transform verticalPanel;
+    public GameObject commandAssist;
+
+    private List<UIElementCommand> panelList = new List<UIElementCommand>();
+
     private void Awake()
     {
         _rect = GetComponent<RectTransform>();
@@ -13,13 +19,22 @@ public class UICommandInfo : MonoBehaviour
 
     private void Start()
     {
-        _commandDatas = GameManager.instance.commandManager.GetCommandData();
+        _commandDatas = GameManager.instance.commandManager.GetCommandCtrl();
+        foreach (var c in _commandDatas)
+        {
+            var go = GameObject.Instantiate(commandAssist, verticalPanel);
+            go.transform.localScale = Vector3.one;
+            var element = go.GetComponent<UIElementCommand>();
+            Assert.IsTrue(element.InitCommandInfo(c));
+            panelList.Add(element);
+        }
     }
 
     private void Update()
     {
-        foreach(var c in _commandDatas)
+        foreach(var e in panelList)
         {
+            //e.gameObject.SetActive(e.GetValidCommandLength() != 0);
         }
     }
 }

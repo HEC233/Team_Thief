@@ -19,6 +19,7 @@ public class UIPlayerInfo : MonoBehaviour
     private float _displayHP;
 
     public SOPlayer playerInfo;
+    public UICommandInfo commandInfo;
 
     private void Awake()
     {
@@ -40,6 +41,7 @@ public class UIPlayerInfo : MonoBehaviour
     public void Toggle(bool value)
     {
         this.gameObject.SetActive(value);
+        commandInfo.gameObject.SetActive(value);
     }
 
     public void InitInfo()

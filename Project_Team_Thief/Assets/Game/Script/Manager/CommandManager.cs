@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class CommandManager : MonoBehaviour
 {
     [SerializeField] 
-    private float _commandInputTime = 0.03f;
+    //private float _commandInputTime = 0.03f;
+    private float _commandInputTime = 0.1f;
 
     private float _inputTime;
     private float _beInputTime;
@@ -17,7 +18,7 @@ public class CommandManager : MonoBehaviour
     //private Dictionary<string, SOCommandData> _commandDatas;
 
     //---
-    public List<SOCommandData> GetCommandData() { return _soCommandDatas; }
+    public List<CommandCtrl> GetCommandCtrl() { return _commandCtrls; }
     //---
 
     public event UnityAction<string> OnCommandCastEvent;
@@ -60,7 +61,7 @@ public class CommandManager : MonoBehaviour
 
         if (_inputTime - _beInputTime >= _commandInputTime)
             ResetAllCommandList();
-        
+
         for (int i = 0; i < _commandCtrls.Count; i++)
             _commandCtrls[i].InsertKey(key);
         
@@ -96,8 +97,8 @@ public class CommandManager : MonoBehaviour
             _commandCtrls[i].ResetKey();
         }
     }
-    
-    private class CommandCtrl
+
+    public class CommandCtrl
     {
         private SOCommandData _commandData;
 
@@ -107,6 +108,11 @@ public class CommandManager : MonoBehaviour
 
         private readonly string _commandString;
         private int _commandCount;
+
+        //---
+        public List<char> CommandList { get { return _commandList; } }
+        public string CommandString { get { return _commandString; } }
+        //---
         
         public CommandCtrl(SOCommandData soCommandData)
         {

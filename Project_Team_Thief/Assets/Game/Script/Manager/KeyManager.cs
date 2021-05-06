@@ -21,7 +21,7 @@ public class KeyManager : MonoBehaviour
             return;
 
         List<KeyCode> pressedInput = new List<KeyCode>();
-        
+
         if (Input.anyKey || Input.anyKeyDown)
         {
             foreach (KeyCode code in System.Enum.GetValues(typeof(KeyCode)))
@@ -33,7 +33,7 @@ public class KeyManager : MonoBehaviour
                     pressedInput.Add(code);
                 }
             }
-            
+
             if (Input.GetKey(KeyCode.C))
             {
                 controlUnit.Transition(TransitionCondition.Jump);
@@ -46,50 +46,54 @@ public class KeyManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
                 controlUnit.Transition(TransitionCondition.Dash);
-            
+
             if (Input.GetKey(KeyCode.UpArrow))
                 controlUnit.Transition(TransitionCondition.Wallslideing);
-            
+
             if (Input.GetKeyDown(KeyCode.X))
                 controlUnit.Transition(TransitionCondition.Attack);
 
-             List<KeyCode> releasedInput = new List<KeyCode>();
-            
-             foreach (KeyCode code in m_activeInputs)
-             {
-                 releasedInput.Add(code);
-            
-                 if (!pressedInput.Contains(code))
-                 {
-                     releasedInput.Remove(code);
+            List<KeyCode> releasedInput = new List<KeyCode>();
 
-                     if (code == KeyCode.LeftArrow || code == KeyCode.RightArrow)
-                         controlUnit.Transition(TransitionCondition.StopMove);
-                     //controlUnit.Transition(TransitionCondition.Idle);
-                 }
-             }
+            foreach (KeyCode code in m_activeInputs)
+            {
+                releasedInput.Add(code);
 
-              m_activeInputs = releasedInput;
-              
-              /// 스킬 입력 처리
-              if (Input.GetKeyDown(KeyCode.LeftArrow))
-                  GameManager.instance.commandManager.Inputkey('L');
-              else if (Input.GetKeyDown(KeyCode.RightArrow))
-                  GameManager.instance.commandManager.Inputkey('R');
-              else if (Input.GetKeyDown(KeyCode.Z))
-                  GameManager.instance.commandManager.Inputkey('Z');
-              else if (Input.GetKeyDown(KeyCode.X))
-                  GameManager.instance.commandManager.Inputkey('X');
-              else if (Input.GetKeyDown(KeyCode.C))
-                  GameManager.instance.commandManager.Inputkey('C');
-              else if (Input.GetKeyDown(KeyCode.Space))
-                  GameManager.instance.commandManager.Inputkey('S');
-              /// 스킬 입력 처리
+                if (!pressedInput.Contains(code))
+                {
+                    releasedInput.Remove(code);
+
+                    if (code == KeyCode.LeftArrow || code == KeyCode.RightArrow)
+                        controlUnit.Transition(TransitionCondition.StopMove);
+                    //controlUnit.Transition(TransitionCondition.Idle);
+                }
+            }
+
+            m_activeInputs = releasedInput;
+
+            /// 스킬 입력 처리
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                GameManager.instance.commandManager.Inputkey('L');
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+                GameManager.instance.commandManager.Inputkey('R');
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+                GameManager.instance.commandManager.Inputkey('U');
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+                GameManager.instance.commandManager.Inputkey('D');
+            else if (Input.GetKeyDown(KeyCode.Z))
+                GameManager.instance.commandManager.Inputkey('Z');
+            else if (Input.GetKeyDown(KeyCode.X))
+                GameManager.instance.commandManager.Inputkey('X');
+            else if (Input.GetKeyDown(KeyCode.C))
+                GameManager.instance.commandManager.Inputkey('C');
+            else if (Input.GetKeyDown(KeyCode.Space))
+                GameManager.instance.commandManager.Inputkey('S');
+            /// 스킬 입력 처리
         }
-         else
-         {
-             controlUnit.Transition(TransitionCondition.None);
-         }
+        else
+        {
+            controlUnit.Transition(TransitionCondition.None);
+        }
         
     }
 
