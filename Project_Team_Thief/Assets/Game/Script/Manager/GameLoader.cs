@@ -37,7 +37,7 @@ public class GameLoader : MonoBehaviour
         if (!gameDataLoaded)
             yield return StartCoroutine(LoadGameData());
 
-        yield return new WaitForSeconds(3.0f);
+        //yield return new WaitForSeconds(3.0f);
 
         yield return SceneManager.LoadSceneAsync("HHG");
         var grid = GameObject.Find("Grid").GetComponent<Grid>();

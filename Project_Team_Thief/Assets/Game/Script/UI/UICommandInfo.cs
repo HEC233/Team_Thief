@@ -8,7 +8,11 @@ public class UICommandInfo : MonoBehaviour
     private RectTransform _rect;
     private List<CommandManager.CommandCtrl> _commandDatas;
     public Transform verticalPanel;
+    public RectTransform verticalPanelRect;
     public GameObject commandAssist;
+
+    private Transform playerTr;
+    private Camera mainCam;
 
     private List<UIElementCommand> panelList = new List<UIElementCommand>();
 
@@ -28,13 +32,19 @@ public class UICommandInfo : MonoBehaviour
             Assert.IsTrue(element.InitCommandInfo(c));
             panelList.Add(element);
         }
+
+        playerTr = GameManager.instance.GetControlActor().GetUnit().transform;
+        mainCam = Camera.main;
     }
 
     private void Update()
     {
         foreach(var e in panelList)
         {
-            //e.gameObject.SetActive(e.GetValidCommandLength() != 0);
+            e.gameObject.SetActive(e.GetValidCommandLength() != 0);
         }
+
+        var screenPos = mainCam.WorldToScreenPoint(playerTr.position + Vector3.down);
+        verticalPanelRect.anchoredPosition = new Vector2(screenPos.x / Screen.width * 480, screenPos.y / Screen.height * 270);
     }
 }
