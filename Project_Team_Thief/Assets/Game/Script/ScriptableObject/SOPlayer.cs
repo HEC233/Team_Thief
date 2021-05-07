@@ -25,6 +25,7 @@ public class SOPlayer : ScriptableObject
         get { return _curHp; }
         set { _curHp = value; hpChangeEvent.Invoke(); }
     }
+
     public UnityAction hpChangeEvent;
 
     [SerializeField]
