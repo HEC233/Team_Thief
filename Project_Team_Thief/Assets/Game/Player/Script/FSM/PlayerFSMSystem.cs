@@ -372,6 +372,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
                 if (condition == TransitionCondition.Falling)
                     return true;
+                
+                
 
                 if (condition == TransitionCondition.WallClimbing)
                     return true;
@@ -595,6 +597,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                         SystemMgr.Transition(TransitionCondition.Idle);
                         return false;
                     }
+                }
+
+                if (condition == TransitionCondition.Wallslideing)
+                {
+                    SystemMgr.Transition(TransitionCondition.Idle);
+                    return false;
                 }
                 
                 if (condition == TransitionCondition.None)
@@ -1559,7 +1567,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public bool IsAbleTransition()
         {
-            return true;
+            return SystemMgr.Unit.IsAbleSkillSpear();
         }
         
         private void OnAnimationEndEvnetCall()

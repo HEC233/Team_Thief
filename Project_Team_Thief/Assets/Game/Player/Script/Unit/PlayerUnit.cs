@@ -196,6 +196,11 @@ public class PlayerUnit : Unit
     [SerializeField, Header("SkillSpear")] 
     private SkillSpearData _skillSpearData;
     public SkillSpearData SkillSpearData => _skillSpearData;
+    public SkillSpearAttackCtrl _skillSpearAttackCtrl;
+    private float _skillSpearNumberOfTimes;
+    private float _skillSpearCoolTime;
+    private bool _skillSpearIsAble = true;
+    
     
     public event UnityAction OnSkillSpearRushEvent = null;
     public event UnityAction OnSkillSpearAttackEvent = null;
@@ -259,6 +264,9 @@ public class PlayerUnit : Unit
 
         _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
         _skillAxeCoolTime = _skillAxeData.CoolTime;
+
+        _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
+        _skillSpearCoolTime = _skillSpearData.CoolTime;
     }
     
 
@@ -646,9 +654,21 @@ public class PlayerUnit : Unit
         return true;
     }
 
-    public void SkillAttackSpear()
+    public bool IsAbleSkillSpear()
     {
-        Debug.Log("Attack SKill");
+        if (_skillSpearIsAble == false)
+        {
+            return false;
+        }
+
+        _skillSpearNumberOfTimes--;
+
+        if (_skillSpearNumberOfTimes <= 0)
+        {
+            StartCoroutine(SkillSpearCoolTimeCoroutine());
+        }
+
+        return true;
     }
     
     public void OnSkillSpearRushEventCall()
@@ -659,6 +679,12 @@ public class PlayerUnit : Unit
     public void OnSkillSpearAttackEventCall()
     {
         OnSkillSpearAttackEvent?.Invoke();
+    }
+
+    public void SKillSpearAttack(Damage damage)
+    {
+        _skillSpearAttackCtrl.SetDamage(damage);
+        _skillSpearAttackCtrl.Progress();
     }
 
     public void StartBulletTime(float timeScale)
@@ -804,6 +830,21 @@ public class PlayerUnit : Unit
         _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
     }
     
+    IEnumerator SkillSpearCoolTimeCoroutine()
+    {
+        _skillSpearIsAble = false;
+        float timer = 0.0f;
+
+        while (timer < _skillSpearCoolTime)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _skillSpearIsAble = true;
+        _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
+    }
+
 
     // IEnumerator ShadowWalkCoolTimeCoroutine()
     // {

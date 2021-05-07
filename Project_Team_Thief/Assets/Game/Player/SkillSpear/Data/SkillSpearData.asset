@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62d4ba29d24338478b3fd334126ab16, type: 3}
   m_Name: SkillSpearData
   m_EditorClassIdentifier: 
-  _numberOfTimesTheSkill: 2
+  _numberOfTimesTheSkill: 1
   _coolTime: 3
   _skillName: Skill2Spear
-  _knockBackPower: {x: 0, y: 0}
+  _knockBackPower: {x: 10, y: 0}
   _playerMovePostionX: 6
   _playerMoveTime: 0.2
-  _attackDamage: 0
+  _attackDamage: 20

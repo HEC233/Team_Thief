@@ -26,10 +26,13 @@ public class SkillSpearController : SkillControllerBase
 
         _damage = new Damage();
         _damage.power = _skillSpearData.AttackDamage;
-        _damage.knockBack = _skillSpearData.KnockBackPower;
+        _damage.knockBack = new Vector2(_skillSpearData.KnockBackPower.x * _unit.FacingDir,
+            _skillSpearData.KnockBackPower.y);
+        _damage.additionalInfo = 0;
 
         _rushSpped = (1 / _skillSpearData.PlayerMoveTime) * _skillSpearData.PlayerMovePostionX;
 
+        _unit._skillSpearAttackCtrl.signalSourceAsset = _skillSpearData.CinemachineSignalSource;
         _unit.OnSkillSpearRushEvent += StartSpearRush;
         _unit.OnSkillSpearAttackEvent += AttackSkillSpear;
     }
@@ -49,7 +52,7 @@ public class SkillSpearController : SkillControllerBase
 
     private void AttackSkillSpear()
     {
-        _unit.SkillAttackSpear();
+        _unit.SKillSpearAttack(_damage);
     }
 
     IEnumerator SkillSpearRushCoroutine()
