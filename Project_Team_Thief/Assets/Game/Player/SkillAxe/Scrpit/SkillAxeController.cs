@@ -27,23 +27,25 @@ public class SkillAxeController : SkillControllerBase
         _unit = Unit as PlayerUnit;
 
         _damage = new Damage();
-        _damage.power = _skillAxeData.AttackDamage;
+        _damage.power = _skillAxeData.AxeAttackDamage;
         _damage.knockBack = _skillAxeData.KnockBackPower;
     }
 
     private void Progress()
     {
+       
         _skillAxeAttackCtrl =
             GameObject.Instantiate(_skillAxeData.AxeGameObject, Unit.transform.position, quaternion.identity)
                 .GetComponent<SkillAxeAttackCtrl>();
 
         _skillAxeAttackCtrl.OnEndSkillEvent += EndSkill;
         _skillAxeAttackCtrl.SetDamage(_damage);
-        _skillAxeAttackCtrl.Init(_skillAxeData.MovePostionX, _skillAxeData.MoveTime, _skillAxeData.CinemachineSignalSource, _unit.FacingDir);
+        _skillAxeAttackCtrl.Init(_skillAxeData.AxeMovePostionX, _skillAxeData.AxeMoveTime, _skillAxeData.CinemachineSignalSource, _unit.FacingDir);
     }
 
     private void EndSkill()
     {
+        _skillAxeAttackCtrl.OnEndSkillEvent -= EndSkill;
         _skillAxeAttackCtrl = null;
         OnEndSkillAction?.Invoke();
     }

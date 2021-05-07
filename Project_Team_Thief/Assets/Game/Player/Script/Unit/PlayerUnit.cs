@@ -190,13 +190,25 @@ public class PlayerUnit : Unit
     // private float _skillShadowWalkCoolTime;
     /// </기획 변동으로 인해 미사용>
 
-    [SerializeField]
+    [SerializeField, Header("SkillAxe")]
     private SkillAxeData _skillAxeData;
     public SkillAxeData SkillAxeData => _skillAxeData;
     private float _skillAxeNumberOfTimes;
     private float _skillAxeCoolTime;
     private bool _skillAexIsAble = true;
 
+    [SerializeField, Header("SkillSpear")] 
+    private SkillSpearData _skillSpearData;
+    public SkillSpearData SkillSpearData => _skillSpearData;
+    public SkillSpearAttackCtrl _skillSpearAttackCtrl;
+    private float _skillSpearNumberOfTimes;
+    private float _skillSpearCoolTime;
+    private bool _skillSpearIsAble = true;
+    
+    
+    public event UnityAction OnSkillSpearRushEvent = null;
+    public event UnityAction OnSkillSpearAttackEvent = null;
+    
     //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
@@ -260,6 +272,9 @@ public class PlayerUnit : Unit
 
         _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
         _skillAxeCoolTime = _skillAxeData.CoolTime;
+
+        _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
+        _skillSpearCoolTime = _skillSpearData.CoolTime;
     }
     
 
@@ -434,7 +449,7 @@ public class PlayerUnit : Unit
     {
         _rigidbody2D.velocity = Vector2.zero;
 
-        var power = new Vector2((_dashSpeed) * _facingDir * _timeScale, 0);
+        var power = new Vector2((_dashSpeed) * _facingDir * GameManager.instance.timeMng.TimeScale, 0);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -651,6 +666,39 @@ public class PlayerUnit : Unit
         return true;
     }
 
+    public bool IsAbleSkillSpear()
+    {
+        if (_skillSpearIsAble == false)
+        {
+            return false;
+        }
+
+        _skillSpearNumberOfTimes--;
+
+        if (_skillSpearNumberOfTimes <= 0)
+        {
+            StartCoroutine(SkillSpearCoolTimeCoroutine());
+        }
+
+        return true;
+    }
+    
+    public void OnSkillSpearRushEventCall()
+    {
+        OnSkillSpearRushEvent?.Invoke();
+    }
+
+    public void OnSkillSpearAttackEventCall()
+    {
+        OnSkillSpearAttackEvent?.Invoke();
+    }
+
+    public void SKillSpearAttack(Damage damage)
+    {
+        _skillSpearAttackCtrl.SetDamage(damage);
+        _skillSpearAttackCtrl.Progress();
+    }
+
     public void StartBulletTime(float timeScale)
     {
         _timeScale = timeScale;
@@ -794,6 +842,21 @@ public class PlayerUnit : Unit
         _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
     }
     
+    IEnumerator SkillSpearCoolTimeCoroutine()
+    {
+        _skillSpearIsAble = false;
+        float timer = 0.0f;
+
+        while (timer < _skillSpearCoolTime)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _skillSpearIsAble = true;
+        _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
+    }
+
 
     // IEnumerator ShadowWalkCoolTimeCoroutine()
     // {

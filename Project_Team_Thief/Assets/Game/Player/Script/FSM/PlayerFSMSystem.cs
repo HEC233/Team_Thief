@@ -60,6 +60,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     // 기본 공격 관련
     public event UnityAction OnBasicAttackEndAniEvent = null;
     public event UnityAction OnBasicAttackCallEvent = null;
+    
+
 
     // Start is called before the first frame update
     private void Start()
@@ -370,6 +372,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
                 if (condition == TransitionCondition.Falling)
                     return true;
+                
+                
 
                 if (condition == TransitionCondition.WallClimbing)
                     return true;
@@ -593,6 +597,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                         SystemMgr.Transition(TransitionCondition.Idle);
                         return false;
                     }
+                }
+
+                if (condition == TransitionCondition.Wallslideing)
+                {
+                    SystemMgr.Transition(TransitionCondition.Idle);
+                    return false;
                 }
                 
                 if (condition == TransitionCondition.None)
@@ -1492,6 +1502,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isAxe2Action = true;
         }
 
+        private void CheckPlayerDir(string skillName)
+        {
+            
+        }
+
         private GameSkillObject InvokeSkill()
         {
             var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
@@ -1506,7 +1521,76 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return skillObejct;
         }
     }
-    /// </기획 변경으로 인해 미사용>
+
+    class SkillSpearState : CustomFSMStateBase, ISkillStateBase
+    {
+        private SkillSpearData _skillSpearData;
+        private bool _isAniEnd = false;
+        private GameSkillObject _gameSkillObject;
+        
+        public SkillSpearState(PlayerFSMSystem system, SkillSpearData skillSpearData) : base(system)
+        {
+            _skillSpearData = skillSpearData;
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSpear);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSpear);
+            
+            _gameSkillObject = InvokeSkill();
+        }
+
+        public override void Update()
+        {
+        }
+
+        public override void EndState()
+        {
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+            _isAniEnd = false;
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (_isAniEnd == true)
+                return true;
+            
+            return false;
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            return true;
+        }
+
+        public bool IsAbleTransition()
+        {
+            return SystemMgr.Unit.IsAbleSkillSpear();
+        }
+        
+        private void OnAnimationEndEvnetCall()
+        {
+            _isAniEnd = true;
+            SystemMgr.Transition(TransitionCondition.Idle);
+        }
+        
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("AexSkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillSpearData.GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
+        }
+    }
+    
     protected override void RegisterState()
     {
         AddState(TransitionCondition.Idle, new IdleState(this));
@@ -1526,6 +1610,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Hit, new HitState(this));
         //AddState(TransitionCondition.SkillShadowWalk, new SkillShadowWalkState(this, Unit.ShadowWalkSkillData));
         AddState(TransitionCondition.SkillAxe, new SkillAxeState(this, Unit.SkillAxeData));
+        AddState(TransitionCondition.SkillSpear, new SkillSpearState(this, Unit.SkillSpearData));
     }
     
     public bool Transition(TransitionCondition condition, object param = null)
@@ -1603,6 +1688,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     {
         _isBattleIdle = isBattle;
     }
+    
 
     private void OnCommandCastEventCall(string skillName)
     {
@@ -1612,8 +1698,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return;
 
         if (CheckSkillPossibleConditions(condition) == true)
+        {
+            CheckSkillActionPlayerDir(skillName);
             Transition(condition);
-        
+        }
+
     }
 
     private TransitionCondition ChangeSkillNameToTransitionCondition(string skillName)
@@ -1622,6 +1711,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             case "Skill1Axe":
                 return TransitionCondition.SkillAxe;
+                break;
+            case "Skill1AxeReverse":
+                return TransitionCondition.SkillAxe;
+                break;
+            case "Skill2Spear":
+                return TransitionCondition.SkillSpear;
+                break;
+            case "Skill2SpearReverse":
+                return TransitionCondition.SkillSpear;
                 break;
             
             default:
@@ -1642,6 +1740,18 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         // 특수 체크
         return state.IsAbleTransition();
+    }
+
+    private void CheckSkillActionPlayerDir(string skillName)
+    {
+        if (skillName.Contains("Reverse"))
+        {
+            Unit.CheckMovementDir(-1);
+        }
+        else
+        {
+            Unit.CheckMovementDir(1);
+        }
     }
 
     // Time 관련
