@@ -23,6 +23,18 @@ public class UICommandInfo : MonoBehaviour
 
     private void Start()
     {
+        playerTr = GameManager.instance.GetControlActor().GetUnit().transform;
+        mainCam = Camera.main;
+    }
+
+    public void Init()
+    {
+        foreach(var p in panelList)
+        {
+            DestroyImmediate(p.gameObject);
+        }
+        panelList.Clear();
+
         _commandDatas = GameManager.instance.commandManager.GetCommandCtrl();
         foreach (var c in _commandDatas)
         {
@@ -32,14 +44,11 @@ public class UICommandInfo : MonoBehaviour
             Assert.IsTrue(element.InitCommandInfo(c));
             panelList.Add(element);
         }
-
-        playerTr = GameManager.instance.GetControlActor().GetUnit().transform;
-        mainCam = Camera.main;
     }
 
     private void Update()
     {
-        foreach(var e in panelList)
+        foreach (var e in panelList)
         {
             e.gameObject.SetActive(e.GetValidCommandLength() != 0);
         }

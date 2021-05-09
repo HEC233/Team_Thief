@@ -51,6 +51,11 @@ public class UIPlayerInfo : MonoBehaviour
         _displayHP = _curHP;
     }
 
+    public void CommandUpdate()
+    {
+        commandInfo.Init();
+    }
+
     public void SetHP()
     {
         var targetHP = playerInfo.CurHP;

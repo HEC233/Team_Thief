@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PS.Util.DeveloperConsole;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class UIManager : MonoBehaviour
     public UISettingMenu uiSettingMenu;
     public UIPauseMenu uiPauseMenu;
     public UILoadingAnimation uiLoading;
+    public ConsoleComponent developerConsole;
 
     private void Awake()
     {
@@ -24,21 +26,18 @@ public class UIManager : MonoBehaviour
                 uiMainMenu.Toggle(true);
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(false);
-                uiLoading.Toggle(false);
                 break;
             case GameManager.GameStateEnum.InGame:
                 uiPlayerInfo.Toggle(true);
                 uiMainMenu.Toggle(false);
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(false);
-                uiLoading.Toggle(false);
                 break;
             case GameManager.GameStateEnum.Pause:
                 uiPlayerInfo.Toggle(true);
                 uiMainMenu.Toggle(false);
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(true);
-                uiLoading.Toggle(false);
                 break;
         }
     }
@@ -50,5 +49,15 @@ public class UIManager : MonoBehaviour
         uiSettingMenu.Toggle(false);
         uiPauseMenu.Toggle(false);
         uiLoading.Toggle(true);
+    }
+
+    public void StopLoading()
+    {
+        uiLoading.Toggle(false);
+    }
+
+    public void ToggleDeveloperConsole()
+    {
+        developerConsole.ToggleUi();
     }
 }

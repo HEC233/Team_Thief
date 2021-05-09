@@ -82,6 +82,7 @@ public class UIElementCommand : MonoBehaviour
         }
 
         frame.sizeDelta = new Vector2(19 + 16 * command.Length, 22.5f);
+        _rect.sizeDelta = new Vector2(19 + 16 * command.Length, 21.0f);
 
         ready = true;
         return true;

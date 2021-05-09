@@ -159,5 +159,13 @@ namespace PS.Shadow
             prevCapsulePos.RemoveAt(capsuleObjectOnVectorField.IndexOf(collider));
             capsuleObjectOnVectorField.Remove(collider);
         }
+
+        public void UnRegistAllCollider()
+        {
+            prevBoxPos.Clear();
+            prevCapsulePos.Clear();
+            boxObjectOnVectorField.Clear();
+            capsuleObjectOnVectorField.Clear();
+        }
     }
 }

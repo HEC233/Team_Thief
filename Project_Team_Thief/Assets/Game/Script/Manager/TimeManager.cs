@@ -49,6 +49,25 @@ public class TimeManager : MonoBehaviour
 
     }
 
+    private bool _isStoped = false;
+    public void StopTime()
+    {
+        if (_isStoped)
+            return;
+        _prevTimeScale = _timeScale;
+        _timeScale = 0;
+        startHitstopEvent?.Invoke(_timeScale);
+        _isStoped = true;
+    }
+    public void ResumeTime()
+    {
+        if (!_isStoped)
+            return;
+        _timeScale = _prevTimeScale;
+        endHitstopEvent?.Invoke(_timeScale);
+        _isStoped = false;
+    }
+
     // 만약 공중에 있을 때 Hitstop이 걸린다면?? 우째??
     // 공격 간 시간을 허용해주는 타임은 이걸 적용 해야하나?
     // 리지드 바디의 프리즈를 이용해서 잠깐 폭력 멈춰두는건?

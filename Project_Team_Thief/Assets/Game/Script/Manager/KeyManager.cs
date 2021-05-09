@@ -34,6 +34,15 @@ public class KeyManager : MonoBehaviour
                 }
             }
 
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                GameManager.instance.PauseGame();
+            }
+            if(Input.GetKeyDown(KeyCode.BackQuote))
+            {
+                GameManager.instance.uiMng.ToggleDeveloperConsole();
+            }
+
             if (Input.GetKey(KeyCode.C))
             {
                 controlUnit.Transition(TransitionCondition.Jump);
@@ -67,6 +76,7 @@ public class KeyManager : MonoBehaviour
                         controlUnit.Transition(TransitionCondition.StopMove);
                     //controlUnit.Transition(TransitionCondition.Idle);
                 }
+
             }
 
             m_activeInputs = releasedInput;
