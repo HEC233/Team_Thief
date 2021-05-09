@@ -19,7 +19,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void GameStart()
     {
-        GameLoader.instance.StartGame();
+        GameManager.instance.StartGame();
     }
 
     public void GameSetting()
