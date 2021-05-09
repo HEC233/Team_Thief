@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-    private GameStateEnum _gameState;
+    private GameStateEnum _gameState = GameStateEnum.MainMenu;
     private GameStateEnum GameState
     {
         get { return _gameState; }
@@ -90,17 +90,21 @@ public class GameManager : MonoBehaviour
         this.grid = grid;
     }
 
-    public void PauseGame()
+    public void EscapeButton()
     {
         if (GameState == GameStateEnum.Pause)
         {
             GameState = GameStateEnum.InGame;
             timeMng.ResumeTime();
         }
-        else
+        else if (GameState == GameStateEnum.InGame)
         {
             GameState = GameStateEnum.Pause;
             timeMng.StopTime();
+        }
+        else if (GameState == GameStateEnum.MainMenu)
+        {
+            ExitGame();
         }
     }
 

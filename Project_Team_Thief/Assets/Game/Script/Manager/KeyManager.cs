@@ -36,7 +36,7 @@ public class KeyManager : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Escape))
             {
-                GameManager.instance.PauseGame();
+                GameManager.instance.EscapeButton();
             }
             if(Input.GetKeyDown(KeyCode.BackQuote))
             {

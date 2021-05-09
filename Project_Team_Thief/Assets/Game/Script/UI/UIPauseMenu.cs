@@ -18,7 +18,7 @@ public class UIPauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        GameManager.instance.PauseGame();
+        GameManager.instance.EscapeButton();
     }
 
     public void Setting()
