@@ -12,9 +12,14 @@ public class UIManager : MonoBehaviour
     public UILoadingAnimation uiLoading;
     public ConsoleComponent developerConsole;
 
+    private static bool exist = false;
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        if (exist)
+            DestroyImmediate(this.gameObject);
+        exist = true;
     }
 
     public void ToggleUI(GameManager.GameStateEnum gameState)
