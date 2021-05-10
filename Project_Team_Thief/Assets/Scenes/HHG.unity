@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -60079,37 +60079,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _soCommandDatas.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _soCommandDatas.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 3f4c201fd2d7adb4b994191777107033,
-        type: 2}
-    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _soCommandDatas.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 516d2075da7e0cd4ab19ec389a287c6d,
-        type: 2}
-    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _soCommandDatas.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 557c8a8fa08379043b4769311e8cd633,
-        type: 2}
-    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _soCommandDatas.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 0ef26124cdbb13a4399b6e99c276ca36,
-        type: 2}
-    m_RemovedComponents:
-    - {fileID: 24858457, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
 --- !u!1 &522368181
 GameObject:
