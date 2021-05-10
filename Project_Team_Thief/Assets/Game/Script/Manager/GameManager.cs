@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-    private GameStateEnum _gameState;
-    public GameStateEnum GameState
+    private GameStateEnum _gameState = GameStateEnum.MainMenu;
+    private GameStateEnum GameState
     {
         get { return _gameState; }
         set { _gameState = value; uiMng.ToggleUI(value); }
@@ -31,13 +31,13 @@ public class GameManager : MonoBehaviour
     public EffectSystem FX;
     public GameSkillMgr GameSkillMgr;
     public ShadowControlManager ShadowControlManager;
-    
+
     public CommandManager commandManager;
     public Spawner spawner;
-    
+
     public ShadowParticleSystem shadow;
 
-    [SerializeField] 
+    [SerializeField]
     private KeyManager _keyManger;
     public Grid grid;
     // Start is called before the first frame update
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         TileCoordClass.SetGrid(grid);
     }
-    
+
     public void SetControlUnit(IActor unit)
     {
         _keyManger.SetControlUnit(unit);
@@ -66,8 +66,67 @@ public class GameManager : MonoBehaviour
         return _keyManger.GetControlActor();
     }
 
-    public void ShowLoadingScreen()
+    public void LoadingScreen(bool isStart)
     {
-        uiMng.ShowLoading();
+        if (isStart)
+            uiMng.ShowLoading();
+        else
+            uiMng.StopLoading();
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(StartGameCoroutine());
+    }
+
+    IEnumerator StartGameCoroutine()
+    {
+        yield return GameLoader.instance.SceneLoad("HHG");
+        GameState = GameStateEnum.InGame;
+
+        uiMng.uiPlayerInfo.CommandUpdate();
+
+        var grid = GameObject.Find("Grid").GetComponent<Grid>();
+        this.grid = grid;
+    }
+
+    public void EscapeButton()
+    {
+        if (GameState == GameStateEnum.Pause)
+        {
+            GameState = GameStateEnum.InGame;
+            timeMng.ResumeTime();
+        }
+        else if (GameState == GameStateEnum.InGame)
+        {
+            GameState = GameStateEnum.Pause;
+            timeMng.StopTime();
+        }
+        else if (GameState == GameStateEnum.MainMenu)
+        {
+            ExitGame();
+        }
+    }
+
+    public void ExitToMainMenu()
+    {
+        StartCoroutine(ExitGameCoroutine());
+    }
+
+    IEnumerator ExitGameCoroutine()
+    {
+        shadow.UnRegistAllCollider();
+
+        yield return GameLoader.instance.SceneLoad("MainScene");
+        GameState = GameStateEnum.MainMenu;
+    }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit()
+#endif
     }
 }

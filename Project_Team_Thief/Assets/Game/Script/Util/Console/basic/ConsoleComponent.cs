@@ -39,12 +39,12 @@ namespace PS.Util.DeveloperConsole
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.BackQuote))
-                ToggleUi();
+            //if (Input.GetKeyDown(KeyCode.BackQuote))
+            //    ToggleUi();
 
         }
 
-        private void ToggleUi()
+        public void ToggleUi()
         {
             if (uiCanvas.activeSelf)
             {

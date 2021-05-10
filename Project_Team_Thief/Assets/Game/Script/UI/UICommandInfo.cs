@@ -21,8 +21,14 @@ public class UICommandInfo : MonoBehaviour
         _rect = GetComponent<RectTransform>();
     }
 
-    private void Start()
+    public void Init()
     {
+        foreach(var p in panelList)
+        {
+            DestroyImmediate(p.gameObject);
+        }
+        panelList.Clear();
+
         _commandDatas = GameManager.instance.commandManager.GetCommandCtrl();
         foreach (var c in _commandDatas)
         {
@@ -33,18 +39,25 @@ public class UICommandInfo : MonoBehaviour
             panelList.Add(element);
         }
 
-        playerTr = GameManager.instance.GetControlActor().GetUnit().transform;
+        playerTr = null;
         mainCam = Camera.main;
     }
 
     private void Update()
     {
-        foreach(var e in panelList)
+        if (playerTr == null)
         {
-            e.gameObject.SetActive(e.GetValidCommandLength() != 0);
+            playerTr = GameManager.instance.GetControlActor()?.GetUnit()?.transform;
         }
+        else
+        {
+            var screenPos = mainCam.WorldToScreenPoint(playerTr.position + Vector3.down);
+            verticalPanelRect.anchoredPosition = new Vector2(screenPos.x / Screen.width * 480, screenPos.y / Screen.height * 270);
 
-        var screenPos = mainCam.WorldToScreenPoint(playerTr.position + Vector3.down);
-        verticalPanelRect.anchoredPosition = new Vector2(screenPos.x / Screen.width * 480, screenPos.y / Screen.height * 270);
+            foreach (var e in panelList)
+            {
+                e.gameObject.SetActive(e.GetValidCommandLength() != 0);
+            }
+        }
     }
 }

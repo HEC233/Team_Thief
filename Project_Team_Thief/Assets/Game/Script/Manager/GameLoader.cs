@@ -18,12 +18,6 @@ public class GameLoader : MonoBehaviour
         }
     }
 
-    public void StartGame()
-    {
-        StartCoroutine(SceneLoad());
-        GameManager.instance.ShowLoadingScreen();
-    }
-
     IEnumerator LoadGameData()
     {
         gameDataLoaded = false;
@@ -32,18 +26,16 @@ public class GameLoader : MonoBehaviour
         gameDataLoaded = true;
     }
 
-    IEnumerator SceneLoad()
+    public IEnumerator SceneLoad(string SceneName)
     {
+        GameManager.instance.LoadingScreen(true);
         if (!gameDataLoaded)
             yield return StartCoroutine(LoadGameData());
 
-        yield return new WaitForSeconds(2.0f);
+        //yield return new WaitForSeconds(2.0f);
 
-        yield return SceneManager.LoadSceneAsync("HHG");
-        var grid = GameObject.Find("Grid").GetComponent<Grid>();
-        GameManager.instance.grid = grid;
-        //---
-        GameManager.instance.uiMng.uiPlayerInfo.InitInfo();
-        GameManager.instance.GameState = GameManager.GameStateEnum.InGame;
+        yield return SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
+
+        GameManager.instance.LoadingScreen(false);
     }
 }

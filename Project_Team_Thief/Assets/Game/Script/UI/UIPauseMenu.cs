@@ -15,4 +15,19 @@ public class UIPauseMenu : MonoBehaviour
     {
         this.gameObject.SetActive(value);
     }
+
+    public void Resume()
+    {
+        GameManager.instance.EscapeButton();
+    }
+
+    public void Setting()
+    {
+
+    }
+
+    public void ExitGame()
+    {
+        GameManager.instance.ExitToMainMenu();
+    }
 }
