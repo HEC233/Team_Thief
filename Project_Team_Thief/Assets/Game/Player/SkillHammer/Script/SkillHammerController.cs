@@ -11,7 +11,7 @@ public class SkillHammerController : SkillControllerBase
     private PlayerUnit _unit;
 
     private Damage _damage;
-    
+
     public override void Invoke()
     {
         Init();
@@ -19,6 +19,32 @@ public class SkillHammerController : SkillControllerBase
 
     private void Init()
     {
+        _skillHammerData = SkillData as SkillHammerData;
+        _unit = Unit as PlayerUnit;
+
+        _damage = new Damage();
+        _damage.power = _skillHammerData.AttackDamage;
+        _damage.knockBack = new Vector2(_skillHammerData.KnockBackPower.x * _unit.FacingDir,
+            _skillHammerData.KnockBackPower.y);
+        _damage.additionalInfo = 0;
+
+        _unit._skillHammerAttackCtrl.signalSourceAsset = _skillHammerData.CinemachineSignalSource;
+
+        _unit.OnSkillHammerAttackEvent += AttackSkillHammer;
+    }
+
+    public override void Release()
+    {
+        base.Release();
         
+        _unit.OnSkillHammerAttackEvent -= AttackSkillHammer;
+    }
+
+    public void AttackSkillHammer()
+    {
+        Debug.Log(_damage.knockBack);
+        _unit.SkillHammerAttack(_damage);
+        
+        OnEndSkillAction?.Invoke();
     }
 }

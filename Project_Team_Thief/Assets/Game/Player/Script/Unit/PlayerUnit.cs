@@ -204,10 +204,19 @@ public class PlayerUnit : Unit
     private float _skillSpearNumberOfTimes;
     private float _skillSpearCoolTime;
     private bool _skillSpearIsAble = true;
-    
-    
+
     public event UnityAction OnSkillSpearRushEvent = null;
     public event UnityAction OnSkillSpearAttackEvent = null;
+    
+    [SerializeField, Header("SkillHammer")]
+    private SkillHammerData _skillHammerData;
+    public SkillHammerData SkillHammerData => _skillHammerData;
+    public SkillSpearAttackCtrl _skillHammerAttackCtrl;     // 나중에 다른 스크립트로 교체 or 같은 스크립트로 캡슐화? 그런게 필요
+    private float _skillHammerNumberOfTimes;
+    private float _skillHammerCoolTime;
+    private bool _skillHammerIsAble = true;
+
+    public event UnityAction OnSkillHammerAttackEvent = null;
     
     //////////////////////////// 데이터로 관리 할 변수
 
@@ -275,6 +284,8 @@ public class PlayerUnit : Unit
 
         _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
         _skillSpearCoolTime = _skillSpearData.CoolTime;
+        _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
+        _skillHammerCoolTime = _skillHammerData.CoolTime;
     }
     
 
@@ -683,6 +694,23 @@ public class PlayerUnit : Unit
         return true;
     }
     
+    public bool IsAbleSkillHammer()
+    {
+        if (_skillHammerIsAble == false)
+        {
+            return false;
+        }
+        
+        _skillHammerNumberOfTimes--;
+        
+        if (_skillHammerNumberOfTimes <= 0)
+        {
+            StartCoroutine(SkillHammerCoolTimeCoroutine());
+        }
+
+        return true;
+    }
+    
     public void OnSkillSpearRushEventCall()
     {
         OnSkillSpearRushEvent?.Invoke();
@@ -697,6 +725,17 @@ public class PlayerUnit : Unit
     {
         _skillSpearAttackCtrl.SetDamage(damage);
         _skillSpearAttackCtrl.Progress();
+    }
+
+    public void OnSkillHammerAttackEventCall()
+    {
+        OnSkillHammerAttackEvent?.Invoke();
+    }
+
+    public void SkillHammerAttack(Damage damage)
+    {
+        _skillHammerAttackCtrl.SetDamage(damage);
+        _skillHammerAttackCtrl.Progress();
     }
 
     public void StartBulletTime(float timeScale)
@@ -855,6 +894,20 @@ public class PlayerUnit : Unit
 
         _skillSpearIsAble = true;
         _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
+    }
+    
+    IEnumerator SkillHammerCoolTimeCoroutine()
+    {
+        _skillHammerIsAble = false;
+        float timer = 0.0f;
+        while (timer < _skillHammerCoolTime)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _skillHammerIsAble = true;
+        _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
     }
 
 

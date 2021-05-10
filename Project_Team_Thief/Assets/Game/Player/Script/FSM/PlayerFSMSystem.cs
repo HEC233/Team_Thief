@@ -945,6 +945,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.SkillHammer)
+                return true;
+            
             if (_isBasicAttackEnd == true || _isBasicAttackAble == false)
             {
                 if (condition == TransitionCondition.None)
@@ -1590,6 +1593,74 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return skillObejct;
         }
     }
+
+    private class SkillHammerState : CustomFSMStateBase, ISkillStateBase
+    {
+        private SkillHammerData _skillHammerData;
+        private bool _isAniEnd = false;
+        private GameSkillObject _gameSkillObject;
+        
+        public SkillHammerState(PlayerFSMSystem system, SkillHammerData skillHammerData) : base(system)
+        {
+            _skillHammerData = skillHammerData;
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillHammer);
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+            
+            _gameSkillObject = InvokeSkill();
+        }
+
+        public override void Update()
+        {
+        }
+
+        public override void EndState()
+        {
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+            _isAniEnd = false;
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (_isAniEnd == false)
+                return false;
+            
+            return true;
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            return true;
+        }
+
+        public bool IsAbleTransition()
+        {
+            return SystemMgr.Unit.IsAbleSkillHammer();
+        }
+        
+        private void OnAnimationEndEvnetCall()
+        {
+            _isAniEnd = true;
+            SystemMgr.Transition(TransitionCondition.Idle);
+        }
+        
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("HammerSkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillHammerData.GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
+        }
+    }
     
     protected override void RegisterState()
     {
@@ -1611,6 +1682,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         //AddState(TransitionCondition.SkillShadowWalk, new SkillShadowWalkState(this, Unit.ShadowWalkSkillData));
         AddState(TransitionCondition.SkillAxe, new SkillAxeState(this, Unit.SkillAxeData));
         AddState(TransitionCondition.SkillSpear, new SkillSpearState(this, Unit.SkillSpearData));
+        AddState(TransitionCondition.SkillHammer, new SkillHammerState(this, Unit.SkillHammerData));
     }
     
     public bool Transition(TransitionCondition condition, object param = null)
@@ -1721,7 +1793,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             case "Skill2SpearReverse":
                 return TransitionCondition.SkillSpear;
                 break;
-            
+            case "Skill3Hammer":
+                return TransitionCondition.SkillHammer;
+                break;
+            case "Skill3HammerReverse":
+                return TransitionCondition.SkillHammer;
+                break;
             default:
                 break;
         }

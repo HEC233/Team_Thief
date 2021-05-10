@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 67477168}
   - component: {fileID: 67477167}
   - component: {fileID: 67477166}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: SkillSpearAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,6 +547,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1542053513848848401}
+        m_MethodName: OnSkillHammerAttackEventCall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1542053513734912280
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +812,9 @@ MonoBehaviour:
   _hitTime: 0.5
   _skillAxeData: {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
   _skillSpearData: {fileID: 11400000, guid: e8948507ae42110479fddb18fa2f4d59, type: 2}
-  _skillSpearAttackCtrl: {fileID: 0}
+  _skillSpearAttackCtrl: {fileID: 67477167}
+  _skillHammerData: {fileID: 11400000, guid: fdc7ee77843c224408445fd12e4766e5, type: 2}
+  _skillHammerAttackCtrl: {fileID: 1528243973970821963}
   _SlideingFx: {fileID: 1220389250567162997}
 --- !u!1 &1542053514262991534
 GameObject:
@@ -1488,6 +1503,142 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad045e8d0cd06a4aa96f71311af2885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2855187468384228050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1181020047299682254}
+  - component: {fileID: 2117816050191141318}
+  - component: {fileID: 1528243973970821963}
+  - component: {fileID: 2070317493623298338}
+  m_Layer: 13
+  m_Name: SkillHammerAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1181020047299682254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855187468384228050}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8114190704867105074}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2117816050191141318
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855187468384228050}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 2.3, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.13, y: 1.84}
+  m_EdgeRadius: 0
+--- !u!114 &1528243973970821963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855187468384228050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f688b1710b3af7448992ba2d2d9edd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAbleCritical: 0
+  _isChangeDir: 0
+  _isAbleFlash: 0
+  _isAbleHitStop: 0
+  _isAbleBulltTime: 0
+  _isAbleCameraShake: 1
+  _isDisplyFx: 0
+  _isPlaySFX: 0
+  _hitStopTime: 0
+  _bulltTime: 0
+  _bulletTimeScale: 0
+  _flashTime: 0
+  _criticalPercentage: 0
+  _sfxClip: 0
+  _hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _fxGO: {fileID: 0}
+  _flashGO: {fileID: 0}
+  _basicAttackCollider2D: {fileID: 2117816050191141318}
+  _cinemachineImpulseSource: {fileID: 2070317493623298338}
+  alwaysEnter: 0
+  signalSourceAsset: {fileID: 0}
+--- !u!114 &2070317493623298338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855187468384228050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &5336181760457021665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,6 +1948,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 67477165}
+  - {fileID: 1181020047299682254}
   m_Father: {fileID: 1542053513835489099}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

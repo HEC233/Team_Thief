@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkillSpearData", menuName = "ScriptableObject/SkillSpearData")]
 public class SkillSpearData : SkillDataBase
 {
+    [SerializeField]
     private SignalSourceAsset _cinemachineSignalSource;
     public SignalSourceAsset CinemachineSignalSource => _cinemachineSignalSource;
 

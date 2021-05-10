@@ -61,8 +61,7 @@ MonoBehaviour:
   uiMng: {fileID: 7715960334125049636}
   FX: {fileID: 2141984162371750092}
   GameSkillMgr: {fileID: 24858456}
-  ShadowControlManager: {fileID: 24858457, guid: 1180cfdb66658d9489baa39e9c3402fa,
-    type: 3}
+  ShadowControlManager: {fileID: 0}
   commandManager: {fileID: 7279758012565860687}
   spawner: {fileID: 5982225679925883762}
   shadow: {fileID: -5078904260765545550}
@@ -151,6 +150,7 @@ MonoBehaviour:
   uiSettingMenu: {fileID: 0}
   uiPauseMenu: {fileID: 0}
   uiLoading: {fileID: 0}
+  developerConsole: {fileID: 0}
 --- !u!114 &2141984162371750092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,6 +319,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 516d2075da7e0cd4ab19ec389a287c6d, type: 2}
   - {fileID: 11400000, guid: 557c8a8fa08379043b4769311e8cd633, type: 2}
   - {fileID: 11400000, guid: 0ef26124cdbb13a4399b6e99c276ca36, type: 2}
+  - {fileID: 11400000, guid: dbde029310c5c2d40956256c759ab53d, type: 2}
+  - {fileID: 11400000, guid: 2f241b995b1510040893456d50bd8061, type: 2}
 --- !u!114 &24858456
 MonoBehaviour:
   m_ObjectHideFlags: 0
