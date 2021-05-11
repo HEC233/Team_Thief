@@ -17,6 +17,8 @@ public class SkillSpearController : SkillControllerBase
     public override void Invoke()
     {
         Init();
+
+        GameManager.instance.FX.Play("SpearRushFx", _unit.transform.position);
     }
 
     private void Init()

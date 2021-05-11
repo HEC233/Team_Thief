@@ -147,6 +147,9 @@ public class PlayerUnit : Unit
     [SerializeField] 
     private float[] _basicAttackMoveGoalXArr;
     private float _basicAttackMoveSpeed = 0.0f;
+    [SerializeField]
+    private float _basicAttackCansleTime = 0.6f;
+    public float BasicAttackCansleTime => _basicAttackCansleTime;
 
     [SerializeField] 
     private float _basicAttackMinDamage;

@@ -2996,11 +2996,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4990086937456659571, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4990086937456659573, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: uiMng
@@ -3011,48 +3006,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _soCommandDatas.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _soCommandDatas.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 09e448ab701474b43bd1eee66550c343,
-        type: 2}
-    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _soCommandDatas.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 557c8a8fa08379043b4769311e8cd633,
-        type: 2}
-    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _soCommandDatas.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: 0ef26124cdbb13a4399b6e99c276ca36,
-        type: 2}
-    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _soCommandDatas.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: dbde029310c5c2d40956256c759ab53d,
-        type: 2}
-    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _soCommandDatas.Array.data[6]
-      value: 
-      objectReference: {fileID: 11400000, guid: 2f241b995b1510040893456d50bd8061,
-        type: 2}
-    - target: {fileID: 7715960334125049636, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: uiPlayerInfo
-      value: 
-      objectReference: {fileID: 1665635824}
-    m_RemovedComponents:
-    - {fileID: 7715960334125049636, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
 --- !u!1 &1129222029
 GameObject:

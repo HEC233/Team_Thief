@@ -956,7 +956,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return true;
             }
             
-            if (SystemMgr.AnimationCtrl.GetCurAniTime() >= 0.6f)
+            if (SystemMgr.AnimationCtrl.GetCurAniTime() >= SystemMgr.Unit.BasicAttackCansleTime)
             {
                 if (condition == TransitionCondition.Dash)
                     return true;
