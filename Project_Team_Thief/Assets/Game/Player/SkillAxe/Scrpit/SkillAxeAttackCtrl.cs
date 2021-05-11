@@ -15,6 +15,8 @@ public class SkillAxeAttackCtrl : AttackBase
     private Rigidbody2D _rigidbody2D;
     [SerializeField]
     private CinemachineImpulseSource _cinemachineImpulseSource;
+    [SerializeField]
+    private SpriteRenderer _spriteRenderer;
     
     private SignalSourceAsset _cinemachineSignalSource;
     
@@ -27,8 +29,14 @@ public class SkillAxeAttackCtrl : AttackBase
     private float _moveTime;
     private float _moveSpeed;
     private float _dir;
-    
-    public void Init(float movePosX, float moveTime, SignalSourceAsset cinemachineSignalSource, float dir)
+    private float _axeMultiStageHit;
+    private float _axeMultiStageHitInterval;
+    private int _axeMultiStageHitCoroutuineCounter;
+    private int _curAxeMultiStageHitCoroutuineCounter;
+
+    private List<int> _enterEnemyHashList = new List<int>();    // Hash를 key로 사용하려 한다. 이에 관해서 상의 필요할 듯.
+
+    public void Init(float movePosX, float moveTime, SignalSourceAsset cinemachineSignalSource, float dir, float axeMultiStageHit, float axeMultiStageHitInterval)
     {
         _isInit = true;
 
@@ -36,6 +44,9 @@ public class SkillAxeAttackCtrl : AttackBase
         _moveTime = moveTime;
         _cinemachineSignalSource = cinemachineSignalSource;
         _dir = dir;
+        _axeMultiStageHit = axeMultiStageHit;
+        _axeMultiStageHitInterval = axeMultiStageHitInterval;
+        _axeMultiStageHitCoroutuineCounter = 0;
 
         _cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _cinemachineSignalSource;
         _moveSpeed = (1 / _moveTime) * _movePositionX;
@@ -55,8 +66,6 @@ public class SkillAxeAttackCtrl : AttackBase
         
         PlaySfx();
         PlayFx();
-
-        AttackDamage();
 
         if (_isEnter == true)
         {
@@ -111,27 +120,43 @@ public class SkillAxeAttackCtrl : AttackBase
 
     public override void AttackDamage()
     {
+    }
+
+    public void AttackDamage(Collider2D item)
+    {
+        //============== 고재협이 편집함 ======================
+        _damage.hitPosition = item.ClosestPoint(_basicAttackCollider2D.bounds.center);
+        //=====================================================
+        item.GetComponentInParent<Unit>().HandleHit(_damage);
+
+    }
+
+    private Collider2D FindEnemyObj()
+    {
         _isEnter = false;
-        
+
         // 다음 프레임에 활성화가 되기 때문에 바로 끄면 체크 X
         if (_basicAttackCollider2D.IsTouchingLayers(_hitLayerMask))
         {
             _basicAttackCollider2D.OverlapCollider(_contactFilter2D, result);
             foreach (var item in result)
             {
+                if (_enterEnemyHashList.Contains(item.GetHashCode()) == true)
+                    continue;
+
                 if (item.gameObject.CompareTag("Player"))
                     continue;
 
                 if (item.gameObject.CompareTag("Enemy"))
                 {
-                    //============== 고재협이 편집함 ======================
-                    _damage.hitPosition = item.ClosestPoint(_basicAttackCollider2D.bounds.center);
-                    //=====================================================
+                    _enterEnemyHashList.Add(item.GetHashCode());
                     _isEnter = true;
-                    item.GetComponentInParent<Unit>().HandleHit(_damage);
+                    return item;
                 }
             }
         }
+
+        return null;
     }
 
     public override void SetDamage(in Damage damage)
@@ -143,8 +168,63 @@ public class SkillAxeAttackCtrl : AttackBase
     {
         if (other.CompareTag("Enemy"))
         {
-            Progress();
+            Debug.Log(other.name);
+            StartCoroutine(AxeMultiStageHitCoroutuine(FindEnemyObj()));
         }
+    }
+
+    IEnumerator AxeMultiStageHitCoroutuine(Collider2D collider2D)
+    {
+
+        if (collider2D == null)
+        {
+            Debug.Log("Break");
+            yield break;
+        }
+
+        _axeMultiStageHitCoroutuineCounter++;
+
+        float _timer = _axeMultiStageHitInterval;
+        float _counter = 0;
+        Debug.Log("_axeMultiStageHit : " + _axeMultiStageHit);
+
+        while (_counter < _axeMultiStageHit)
+        {
+            _timer += GameManager.instance.timeMng.FixedDeltaTime;
+
+            if(_timer >= _axeMultiStageHitInterval)
+            {
+                if (collider2D == null)
+                {
+                    yield break;
+                }
+
+                Progress();
+                AttackDamage(collider2D);
+
+                Debug.Log(_counter);
+
+                _counter++;
+                _timer = 0.0f;
+            }
+
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        _curAxeMultiStageHitCoroutuineCounter++;
+    }
+
+    IEnumerator WaitAxeMultiStageHitCoroutuine()
+    {
+        while (_curAxeMultiStageHitCoroutuineCounter < _axeMultiStageHitCoroutuineCounter)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+
+        OnEndSkillEvent?.Invoke();
+        Destroy(this.gameObject);
     }
 
     IEnumerator AxeMoveCoroutine()
@@ -158,8 +238,9 @@ public class SkillAxeAttackCtrl : AttackBase
             _timer += GameManager.instance.timeMng.FixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
-        
-        OnEndSkillEvent?.Invoke();
-        Destroy(this.gameObject);
+
+        _spriteRenderer.enabled = false;
+        _rigidbody2D.velocity = Vector2.zero;
+        StartCoroutine(WaitAxeMultiStageHitCoroutuine());
     }
 }

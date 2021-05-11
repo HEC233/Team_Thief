@@ -69,6 +69,7 @@ MonoBehaviour:
   _basicAttackCollider2D: {fileID: 1740245399378880360}
   _rigidbody2D: {fileID: 1474166119}
   _cinemachineImpulseSource: {fileID: 2789796689902511559}
+  _spriteRenderer: {fileID: 3841240398449190205}
 --- !u!114 &2789796689902511559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +283,7 @@ Animator:
   m_GameObject: {fileID: 3841240398449190206}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7506ddcab57bf7d449b186d998b95a80, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

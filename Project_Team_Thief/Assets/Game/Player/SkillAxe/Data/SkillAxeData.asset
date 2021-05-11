@@ -23,3 +23,5 @@ MonoBehaviour:
   _axeMovePostionX: 8
   _axeMoveTime: 0.3
   _axeAttackDamage: 10
+  _axeMultiStageHit: 3
+  _axeMultiStageHitInterval: 0.2

@@ -30,6 +30,14 @@ public class SkillAxeData : SkillDataBase
     private float _axeAttackDamage;
     public float AxeAttackDamage => _axeAttackDamage;
 
+    [SerializeField]
+    private float _axeMultiStageHit;
+    public float AxeMultiStageHit => _axeMultiStageHit;
+
+    [SerializeField]
+    private float _axeMultiStageHitInterval;
+    public float AxeMultiStageHitInterval => _axeMultiStageHitInterval;
+
 
     public override SkillControllerBase GetSkillController(GameSkillObject skillObject, Unit unit)
     {
