@@ -18,6 +18,11 @@ public class GameLoader : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        GameManager.instance.GameState = GameManager.GameStateEnum.MainMenu;
+    }
+
     IEnumerator LoadGameData()
     {
         gameDataLoaded = false;

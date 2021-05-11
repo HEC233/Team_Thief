@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-    private GameStateEnum _gameState = GameStateEnum.MainMenu;
-    private GameStateEnum GameState
+    private GameStateEnum _gameState = GameStateEnum.InGame;
+    public GameStateEnum GameState
     {
         get { return _gameState; }
         set { _gameState = value; uiMng.ToggleUI(value); }
@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
         this.grid = grid;
     }
 
+    private IActor prevUnit = null;
     public void EscapeButton()
     {
         if (GameState == GameStateEnum.Pause)
@@ -100,10 +101,14 @@ public class GameManager : MonoBehaviour
         else if (GameState == GameStateEnum.InGame)
         {
             GameState = GameStateEnum.Pause;
+            prevUnit = _keyManger.GetControlActor();
+            _keyManger.SetControlUnit(null);
             timeMng.StopTime();
+
         }
         else if (GameState == GameStateEnum.MainMenu)
         {
+            _keyManger.SetControlUnit(prevUnit);
             ExitGame();
         }
     }
