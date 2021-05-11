@@ -73,7 +73,7 @@ public class UIElementCommand : MonoBehaviour
             var rect = go.GetComponent<RectTransform>();
             rect.anchorMax = Vector2.zero;
             rect.anchorMin = Vector2.zero;
-            rect.anchoredPosition = new Vector2(16 * (i) + 18, 3.6f);
+            rect.anchoredPosition = new Vector2(16 * (i) + 16, 0f);
 
             var cell = go.GetComponent<UIElementCommandCell>();
             cell.SetCommand(key);
@@ -81,8 +81,8 @@ public class UIElementCommand : MonoBehaviour
             cells.Add(cell);
         }
 
-        frame.sizeDelta = new Vector2(19 + 16 * command.Length, 22.5f);
-        _rect.sizeDelta = new Vector2(19 + 16 * command.Length, 21.0f);
+        frame.sizeDelta = new Vector2(16 + 16 * command.Length, 15f);
+        _rect.sizeDelta = new Vector2(16 + 16 * command.Length, 16.0f);
 
         ready = true;
         return true;
