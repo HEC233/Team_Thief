@@ -18,7 +18,7 @@ public class SkillSpearController : SkillControllerBase
     {
         Init();
 
-        GameManager.instance.FX.Play("SpearRushFx", _unit.transform.position);
+        GameManager.instance.FX.Play("SpearRushFx", _unit.transform.position, _unit.transform.rotation);
     }
 
     private void Init()

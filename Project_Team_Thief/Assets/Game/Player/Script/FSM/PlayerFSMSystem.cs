@@ -1066,6 +1066,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             
             SystemMgr.Unit.EndBasicAttack();
+            if (_basicAttackIndex == 2)
+            {
+                SystemMgr.Unit.BasicAttackMoveStop();
+            }
             _isNotEndCoroutine = false;
         }
 
