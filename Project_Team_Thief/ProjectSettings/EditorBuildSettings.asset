@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HHG.unity
     guid: 00a54ee5708851d4091e2b41d70eb7e6
+  - enabled: 1
+    path: Assets/Scenes/particleTest.unity
+    guid: d2d0fe7abb12f2d46b7a97028ea19228
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: b674431793c56ba4bb4f1ebde6a6acfa,
       type: 2}

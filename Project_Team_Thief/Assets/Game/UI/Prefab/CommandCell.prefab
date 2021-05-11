@@ -60,13 +60,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 6603ac6220bb7514586bb91923dcf9cb, type: 3}
-  - {fileID: 21300000, guid: 8edcc3f2041831b479647105ce186618, type: 3}
-  - {fileID: 21300000, guid: 95631fc933a748c448894afa681fece2, type: 3}
-  - {fileID: 21300000, guid: 50ab5f711f0e86c4188a7957f9b5fc43, type: 3}
-  - {fileID: 21300000, guid: ae818a20c363ab24e862dc01cf4d9ac4, type: 3}
-  - {fileID: 21300000, guid: bc9861987d170de468d7cf66bf4d37b7, type: 3}
-  - {fileID: 21300000, guid: dad8f7067e2f8434483a98e681106488, type: 3}
+  - {fileID: 21300000, guid: bfb047c90e29c374b8bccccc15275caa, type: 3}
+  - {fileID: 21300000, guid: 82fce664f1fdfd04fa1a5a09a2fbc7ee, type: 3}
+  - {fileID: 21300000, guid: 6c7c7cd555d15bf4792acd534f494828, type: 3}
+  - {fileID: 21300000, guid: 8e5e8ad779dda6e4abd246f56868b9ae, type: 3}
+  - {fileID: 21300000, guid: 9ffc5101442f17f4eb20214dd7961ea3, type: 3}
+  - {fileID: 21300000, guid: e31d99453c1d10a4793408ebc52c0041, type: 3}
+  - {fileID: 21300000, guid: 14b54415285cf8b409b02aaae4f28a22, type: 3}
   text: {fileID: 4144969593906681336}
   image: {fileID: 3326828531947967592}
 --- !u!114 &3326828531947967592
