@@ -15,7 +15,8 @@ MonoBehaviour:
   _numberOfTimesTheSkill: 1
   _coolTime: 3
   _skillName: Skill2Spear
+  _cinemachineSignalSource: {fileID: 0}
   _knockBackPower: {x: 10, y: 0}
-  _playerMovePostionX: 6
-  _playerMoveTime: 0.2
+  _playerMovePostionX: 9
+  _playerMoveTime: 0.1
   _attackDamage: 20

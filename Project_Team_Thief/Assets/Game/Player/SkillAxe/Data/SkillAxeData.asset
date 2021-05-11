@@ -19,7 +19,7 @@ MonoBehaviour:
     type: 3}
   _cinemachineSignalSource: {fileID: 11400000, guid: ab5e8c5544421b348bf91b448897405f,
     type: 2}
-  _knockBackPower: {x: 2, y: 0}
+  _knockBackPower: {x: 0.5, y: 0}
   _axeMovePostionX: 8
   _axeMoveTime: 0.3
   _axeAttackDamage: 10

@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isAbleCritical: 0
-  _isChangeDir: 1
+  _isChangeDir: 0
   _isAbleFlash: 0
   _isAbleHitStop: 1
   _isAbleBulltTime: 0
@@ -787,13 +787,14 @@ MonoBehaviour:
   _basicAttackMoveTimeArr:
   - 0
   - 0.045
-  - 0.045
+  - 0.06
   - 0.045
   _basicAttackMoveGoalXArr:
   - 0
-  - 1
-  - -0.8
   - 0.3
+  - 7
+  - 0.2
+  _basicAttackCansleTime: 0.3
   _basicAttackMinDamage: 10
   _basicAtaackMaxDamage: 20
   _basicAttackCtrlArr:
@@ -803,9 +804,9 @@ MonoBehaviour:
   - {fileID: 5892634633465391629}
   _basicAttackKnockBackArr:
   - {x: 7, y: 0}
-  - {x: 0, y: 5}
-  - {x: 0, y: -15}
-  - {x: 5, y: 0}
+  - {x: 7, y: 0}
+  - {x: 0, y: 0}
+  - {x: 3, y: 5.5}
   _basicJumpAttackCtrl: {fileID: 1542053514262991507}
   _hitInvincibilityTime: 1
   _hitInvincibilityTwinkleTime: 0.5

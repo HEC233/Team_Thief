@@ -1462,6 +1462,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.SkillSpear)
+                return true;
+
             if (_isAniEnd == false)
                 return false;
             
