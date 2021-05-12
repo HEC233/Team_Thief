@@ -235,6 +235,7 @@ Transform:
   - {fileID: 8757534760849190720}
   - {fileID: 7479474467922645}
   - {fileID: 6553241318566578942}
+  - {fileID: 651318543373011534}
   m_Father: {fileID: 1241137346695387563}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -258,6 +259,7 @@ MonoBehaviour:
   isOnGround: 0
   accelation: 100
   footPosition: {fileID: 6553241318566578942}
+  hpPosition: {fileID: 651318543373011534}
   hitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -603,6 +605,36 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.9300246}
   m_Size: {x: 1, y: 1.8600492}
   m_Direction: 0
+--- !u!1 &7432313217665085234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 651318543373011534}
+  m_Layer: 11
+  m_Name: HpPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &651318543373011534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432313217665085234}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7346515229853565342}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7837042506057903427
 GameObject:
   m_ObjectHideFlags: 0

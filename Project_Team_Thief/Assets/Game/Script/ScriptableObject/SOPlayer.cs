@@ -23,7 +23,7 @@ public class SOPlayer : ScriptableObject
     public float CurHP
     {
         get { return _curHp; }
-        set { _curHp = value; hpChangeEvent.Invoke(); }
+        set { _curHp = value; hpChangeEvent?.Invoke(); }
     }
 
     public UnityAction hpChangeEvent;

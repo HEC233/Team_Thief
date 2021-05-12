@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public UISettingMenu uiSettingMenu;
     public UIPauseMenu uiPauseMenu;
     public UILoadingAnimation uiLoading;
+    public UIDynamic uiDynamic;
     public ConsoleComponent developerConsole;
 
     private static bool exist = false;
@@ -28,18 +29,21 @@ public class UIManager : MonoBehaviour
         {
             case GameManager.GameStateEnum.MainMenu:
                 uiPlayerInfo.Toggle(false);
+                uiDynamic.Toggle(false);
                 uiMainMenu.Toggle(true);
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(false);
                 break;
             case GameManager.GameStateEnum.InGame:
                 uiPlayerInfo.Toggle(true);
+                uiDynamic.Toggle(true);
                 uiMainMenu.Toggle(false);
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(false);
                 break;
             case GameManager.GameStateEnum.Pause:
                 uiPlayerInfo.Toggle(true);
+                uiDynamic.Toggle(false);
                 uiMainMenu.Toggle(false);
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(true);
@@ -64,5 +68,15 @@ public class UIManager : MonoBehaviour
     public void ToggleDeveloperConsole()
     {
         developerConsole.ToggleUi();
+    }
+
+    public void ShowDamageText(Vector3 position, int damageCount,bool isFromRight, bool critical)
+    {
+        uiDynamic.ShowDamageText(position, damageCount, isFromRight, critical);
+    }
+
+    public UIHpMonster GetMonsterHP()
+    {
+        return uiDynamic.GetMonsterHP();
     }
 }

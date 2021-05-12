@@ -1840,6 +1840,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447442477}
   m_CullTransparentMesh: 0
+--- !u!114 &505203694 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1301505002, guid: b973b6f1f1f1070498fdac92af666ee1,
+    type: 3}
+  m_PrefabInstance: {fileID: 170614854}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d58514173356874a9a9eb14d415338f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &514209202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2195,7 +2207,8 @@ MonoBehaviour:
   uiSettingMenu: {fileID: 731094878}
   uiPauseMenu: {fileID: 1500436926}
   uiLoading: {fileID: 146068507}
-  developerConsole: {fileID: 0}
+  uiDynamic: {fileID: 2111232891}
+  developerConsole: {fileID: 505203694}
 --- !u!1 &580815820
 GameObject:
   m_ObjectHideFlags: 0
@@ -3609,7 +3622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.5, y: -2.4999847}
+  m_AnchoredPosition: {x: 2.5, y: -2.5}
   m_SizeDelta: {x: -5, y: -5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1416829769
@@ -3701,8 +3714,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4287137928
+  m_fontColor: {r: 0.53333336, g: 0.53333336, b: 0.53333336, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4120,7 +4133,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000045776367}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1719819934
@@ -4661,6 +4674,7 @@ GameObject:
   - component: {fileID: 2111232890}
   - component: {fileID: 2111232889}
   - component: {fileID: 2111232888}
+  - component: {fileID: 2111232891}
   m_Layer: 5
   m_Name: DynamicCanvas
   m_TagString: Untagged
@@ -4743,10 +4757,26 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2111232891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111232886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ba112dc348bc04eb0e2491ca81d45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterHP: {fileID: 1561542200927732380, guid: e63c1634d70476845be28a11f2b9a65f,
+    type: 3}
+  damageText: {fileID: 8387587842381334328, guid: ea89b2435dfda8c4f9232cb38c9dbc3b,
+    type: 3}
 --- !u!1 &2112733981
 GameObject:
   m_ObjectHideFlags: 0
