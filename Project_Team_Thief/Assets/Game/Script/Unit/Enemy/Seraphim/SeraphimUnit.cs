@@ -22,6 +22,10 @@ public class SeraphimUnit : MonsterUnit
         }
         else
         {
+            if (GameManager.instance.shadow)
+            {
+                GameManager.instance.shadow.Burst(inputDamage.hitPosition, 10, 10, 5, true);
+            }
             hitEvent.Invoke();
         }
     }
