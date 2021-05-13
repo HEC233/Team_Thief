@@ -1615,6 +1615,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillHammer);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillHammer);
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             
             _gameSkillObject = InvokeSkill();
