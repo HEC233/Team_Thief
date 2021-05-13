@@ -18,12 +18,13 @@ public enum AbnormalState
     Spare8      = 0x00000080,
 }
 
-
+[System.Serializable]
 public struct Damage
 {
     public float power;
     public Vector2 knockBack;
     public AbnormalState abnormal;
+    [HideInInspector]
     public Vector3 hitPosition;
     public int additionalInfo;
 }
