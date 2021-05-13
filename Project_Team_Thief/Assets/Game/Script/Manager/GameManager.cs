@@ -90,25 +90,24 @@ public class GameManager : MonoBehaviour
         this.grid = grid;
     }
 
+    private IActor nullActor = new NullActor();
     private IActor prevUnit = null;
     public void EscapeButton()
     {
         if (GameState == GameStateEnum.Pause)
         {
             GameState = GameStateEnum.InGame;
-            timeMng.ResumeTime();
+            _keyManger.SetControlUnit(prevUnit);
         }
         else if (GameState == GameStateEnum.InGame)
         {
             GameState = GameStateEnum.Pause;
             prevUnit = _keyManger.GetControlActor();
-            _keyManger.SetControlUnit(null);
-            timeMng.StopTime();
+            _keyManger.SetControlUnit(nullActor);
 
         }
         else if (GameState == GameStateEnum.MainMenu)
         {
-            _keyManger.SetControlUnit(prevUnit);
             ExitGame();
         }
     }
