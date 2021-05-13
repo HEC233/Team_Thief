@@ -26,7 +26,7 @@ public class SkillHammerController : SkillControllerBase
         _damage.power = _skillHammerData.AttackDamage;
         _damage.knockBack = new Vector2(_skillHammerData.KnockBackPower.x * _unit.FacingDir,
             _skillHammerData.KnockBackPower.y);
-        _damage.additionalInfo = 0;
+        _damage.additionalInfo = 4;
 
         _unit._skillHammerAttackCtrl.signalSourceAsset = _skillHammerData.CinemachineSignalSource;
 

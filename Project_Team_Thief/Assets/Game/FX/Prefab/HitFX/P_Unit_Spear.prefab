@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7238699526137544292}
   - component: {fileID: 5776223811040274876}
   - component: {fileID: 2070211659865409316}
+  - component: {fileID: 4892027520160285328}
   m_Layer: 0
-  m_Name: P_Unit_SpearHit
+  m_Name: P_Unit_Spear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4834,6 +4835,24 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &4892027520160285328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105372223401047025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystems:
+  - {fileID: 5776223811040274876}
+  - {fileID: 6037345926336246179}
+  - {fileID: 2416388036382329575}
+  - {fileID: 4297396521166020197}
+  - {fileID: 2363334872768763863}
 --- !u!1 &3147477945428997283
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ public class SkillSpearController : SkillControllerBase
         _damage.power = _skillSpearData.AttackDamage;
         _damage.knockBack = new Vector2(_skillSpearData.KnockBackPower.x * _unit.FacingDir,
             _skillSpearData.KnockBackPower.y);
-        _damage.additionalInfo = 0;
+        _damage.additionalInfo = 5;
 
         _rushSpped = (1 / _skillSpearData.PlayerMoveTime) * _skillSpearData.PlayerMovePostionX;
 

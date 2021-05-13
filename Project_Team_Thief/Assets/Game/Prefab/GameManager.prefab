@@ -171,6 +171,14 @@ MonoBehaviour:
   - name: SpearRushFx
     prefab: {fileID: 3408679220038565842, guid: 23b2e008715d8e2428aea801e57f7d80,
       type: 3}
+  - name: HitAxe
+    prefab: {fileID: 4830132156531222037, guid: e2211e9d12dfdb14989276d20954fff4,
+      type: 3}
+  - name: HitHammer
+    prefab: {fileID: 7548892483042573376, guid: 8657c24bcf64f264f898e2c386ac071f,
+      type: 3}
+  - name: HitSpear
+    prefab: {fileID: 105372223401047025, guid: d40217281c7c02045b15c8358a5b687f, type: 3}
 --- !u!114 &-5078904260765545550
 MonoBehaviour:
   m_ObjectHideFlags: 0

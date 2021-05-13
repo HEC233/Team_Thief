@@ -4841,6 +4841,7 @@ GameObject:
   - component: {fileID: 4159646312000869147}
   - component: {fileID: 3567979004354463403}
   - component: {fileID: 5298540729095367449}
+  - component: {fileID: 7510552935420398778}
   m_Layer: 0
   m_Name: P_Unit_Axe
   m_TagString: Untagged
@@ -4859,9 +4860,9 @@ Transform:
   m_LocalPosition: {x: 4.3281355, y: 2.5062852, z: -3.1478417}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1511856633854043132}
-  - {fileID: 106553463584102315}
   - {fileID: 3850820520484322622}
+  - {fileID: 106553463584102315}
+  - {fileID: 1511856633854043132}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -9663,6 +9664,23 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &7510552935420398778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4830132156531222037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystems:
+  - {fileID: 3567979004354463403}
+  - {fileID: 4262112093889972697}
+  - {fileID: 5897220064803055161}
+  - {fileID: 2995527714128821444}
 --- !u!1 &8004784765323756320
 GameObject:
   m_ObjectHideFlags: 0
@@ -9693,7 +9711,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4159646312000869147}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &4262112093889972697
 ParticleSystem:
@@ -14523,7 +14541,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4159646312000869147}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &2995527714128821444
 ParticleSystem:

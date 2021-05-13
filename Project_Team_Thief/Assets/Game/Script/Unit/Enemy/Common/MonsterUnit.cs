@@ -288,6 +288,15 @@ public class MonsterUnit : Unit
                     case 2:
                         fxName = "Hit3";
                         break;
+                    case 3:
+                        fxName = "HitAxe";
+                        break;
+                    case 4:
+                        fxName = "HitHammer";
+                        break;
+                    case 5:
+                        fxName = "HitSpear";
+                        break;
                 }
                 var effect = GameManager.instance?.FX.Play(fxName, inputDamage.hitPosition);
                 //GameManager.instance?.timeMng.hitStopReadyCheckList.Add(effect.IsPlaying);
