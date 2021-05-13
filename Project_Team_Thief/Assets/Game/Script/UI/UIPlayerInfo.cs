@@ -18,6 +18,9 @@ public class UIPlayerInfo : MonoBehaviour
     private float _curHP;
     private float _displayHP;
 
+    private float _maxMP;
+    private float _curMP;
+
     public SOPlayer playerInfo;
     public UICommandInfo commandInfo;
 
@@ -49,6 +52,8 @@ public class UIPlayerInfo : MonoBehaviour
         _maxHP = playerInfo.MaxHP;
         _curHP = playerInfo.CurHP;
         _displayHP = _curHP;
+
+        // Init MP here
     }
 
     public void CommandUpdate()
@@ -90,6 +95,17 @@ public class UIPlayerInfo : MonoBehaviour
         yield break;
     }
 
+    public void SetMP()
+    {
+        // _curMP = 
+        // _maxMP = 
+
+        float ratio = _curMP / _maxMP;
+        float width = Mathf.Clamp((int)(ratio * 73.0f), 2, 73);
+
+        currentMP.sizeDelta = new Vector2(width, currentMP.sizeDelta.y);
+    }
+
     private void UpdateUIHP()
     {
         float ratio = _displayHP / _maxHP;
@@ -100,10 +116,5 @@ public class UIPlayerInfo : MonoBehaviour
 
         maxHPText.text = ((int)_maxHP).ToString();
         curHPText.text = ((int)_curHP).ToString();
-    }
-
-    private void UpdateUIMP()
-    {
-
     }
 }
