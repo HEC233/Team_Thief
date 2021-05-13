@@ -79,4 +79,10 @@ public class UIManager : MonoBehaviour
     {
         return uiDynamic.GetMonsterHP();
     }
+
+    public void InitUI()
+    {
+        uiPlayerInfo.CommandUpdate();
+        uiDynamic.Init(); 
+    }
 }

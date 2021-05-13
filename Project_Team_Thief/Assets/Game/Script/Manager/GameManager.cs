@@ -83,8 +83,7 @@ public class GameManager : MonoBehaviour
     {
         yield return GameLoader.instance.SceneLoad("HHG");
         GameState = GameStateEnum.InGame;
-
-        uiMng.uiPlayerInfo.CommandUpdate();
+        uiMng.InitUI();
 
         var grid = GameObject.Find("Grid").GetComponent<Grid>();
         this.grid = grid;

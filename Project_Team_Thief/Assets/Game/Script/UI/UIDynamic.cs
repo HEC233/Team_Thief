@@ -15,18 +15,24 @@ public class UIDynamic : MonoBehaviour
     public void Init()
     {
         _camera = Camera.main;
+        foreach (var d in damageTexts)
+        {
+            d.gameObject.SetActive(false);
+        }
+        foreach(var m in monsterHps)
+        {
+            m.gameObject.SetActive(false);
+        }
     }
 
     private void Awake()
     {
         _rect = GetComponent<RectTransform>();
-        Init();
     }
 
     public void Toggle(bool value)
     {
         this.gameObject.SetActive(value);
-        if (value) Init();
     }
 
     private UIHpReduceInfo GetDamageText()
@@ -67,6 +73,7 @@ public class UIDynamic : MonoBehaviour
             monsterHps.Add(returnValue);
         }
         returnValue.camera = Camera.main;
+        returnValue.gameObject.SetActive(true);
 
         return returnValue;
     }

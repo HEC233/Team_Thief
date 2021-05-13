@@ -91,7 +91,7 @@ public class MonsterUnit : Unit
 
         GameManager.instance.shadow.RegistCollider(_rigid.GetComponent<CapsuleCollider2D>());
 
-        GameManager.instance.uiMng.GetMonsterHP().Init(this);
+        GameManager.instance.uiMng?.GetMonsterHP().Init(this);
 
         //---------- for test ----------------
         SetDamagePower(_unitData.skillDamage)/*.SetDamageKnockBack(new Vector2(200, 200))*/;
@@ -269,7 +269,7 @@ public class MonsterUnit : Unit
         isOnGround = false;
         skipGroundCheck = true;
         skipGroundCheckTime = 0.1f;
-        GameManager.instance?.uiMng.ShowDamageText(inputDamage.hitPosition,
+        GameManager.instance.uiMng?.ShowDamageText(inputDamage.hitPosition,
             (int)finalDamage, 0 < (inputDamage.hitPosition - transform.position).x, false);
 
         if(_hp > 0)

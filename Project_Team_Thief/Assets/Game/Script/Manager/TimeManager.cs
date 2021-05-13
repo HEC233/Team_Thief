@@ -49,6 +49,14 @@ public class TimeManager : MonoBehaviour
 
     }
 
+    public void UnbindAll()
+    {
+        startHitstopEvent = null;
+        endHitstopEvent = null;
+        startBulletTimeEvent = null;
+        endBulletTimeEvent = null;
+    }
+
     private bool _isStoped = false;
     public void StopTime()
     {
