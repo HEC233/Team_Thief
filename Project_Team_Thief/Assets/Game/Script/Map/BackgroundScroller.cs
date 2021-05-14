@@ -4,54 +4,19 @@ using UnityEngine;
 
 public class BackgroundScroller : MonoBehaviour
 {
-    private Transform _closeBG;
-    private Transform _middleBG;
-    private Transform _farBG;
-
-    public float closeDist;
-    public float middleDist;
-    public float farDist;
-    private float closeRCP;
-    private float middleRCP;
-    private float farRCP;
-
     private Transform _cameraTr;
 
     private Vector2 prevCameraPos;
 
+    public ScrollLayer[] layers;
+
     // 이건 시간이 오래 걸릴것 같다. 로딩쪽에서 수행하도록 뺄까?
     private void Start()
     {
-
-        GameObject closeGo = new GameObject("Close Backgrounds");
-        GameObject middleGo = new GameObject("Middle Backgounds");
-        GameObject farGo = new GameObject("Far Backgournds");
-
-        _closeBG = closeGo.transform;
-        _middleBG = middleGo.transform;
-        _farBG = farGo.transform;
-        _closeBG.parent = _middleBG.parent = _farBG.parent = transform;
-
-        var close = GameObject.FindGameObjectsWithTag("CloseRange");
-        var middle = GameObject.FindGameObjectsWithTag("MiddleRange");
-        var far = GameObject.FindGameObjectsWithTag("FarRange");
-
-        foreach (var go in close)
+        foreach(var layer in layers)
         {
-            go.transform.SetParent(_closeBG);
+            layer.Create(transform);
         }
-        foreach (var go in middle)
-        {
-            go.transform.SetParent(_middleBG);
-        }
-        foreach (var go in far)
-        {
-            go.transform.SetParent(_farBG);
-        }
-
-        closeRCP = 1 - (10 / closeDist);
-        middleRCP = 1 - (10 / middleDist);
-        farRCP = 1 - (10 / farDist);
 
         _cameraTr = Camera.main.transform;
         prevCameraPos = (Vector2)_cameraTr.position;
@@ -60,12 +25,47 @@ public class BackgroundScroller : MonoBehaviour
     private void Update()
     {
         Vector3 delta = (Vector2)_cameraTr.position - prevCameraPos;
-        delta = new Vector3(delta.x, 0, 0);
 
-        _closeBG.position += delta * closeRCP;
-        _middleBG.position += delta * middleRCP;
-        _farBG.position += delta * farRCP;
+        foreach (var layer in layers)
+        {
+            layer.Move(delta);
+        }
 
         prevCameraPos = (Vector2)_cameraTr.position;
     }
+
+    [System.Serializable]
+    public class ScrollLayer
+    {
+        public string layerTag;
+        public bool horizonalScrolling;
+        public float distance;
+
+        private Transform _tr;
+        private float _rcp;
+
+        public void Create(Transform parent)
+        {
+            GameObject go = new GameObject(layerTag);
+
+            _tr = go.transform;
+            _tr.SetParent(parent);
+
+            var gos = GameObject.FindGameObjectsWithTag(layerTag);
+
+            foreach (var o in gos)
+            {
+                o.transform.SetParent(_tr);
+            }
+            _rcp = 1 - (10 / distance);
+        }
+
+        public void Move(Vector3 delta)
+        {
+            var vrtDelta = new Vector3(delta.x, 0, 0);
+
+            _tr.position += horizonalScrolling ? delta : vrtDelta * _rcp;
+        }
+    }
+        
 }
