@@ -15,13 +15,13 @@ public class ScrollLayerDrawer : PropertyDrawer
             var rect = new Rect(position);
 
             var layerTag = property.FindPropertyRelative("layerTag");
-            var horizon = property.FindPropertyRelative("horizonalScrolling");
+            var vertical = property.FindPropertyRelative("verticalScrolling");
             var dist = property.FindPropertyRelative("distance");
 
             layerTag.stringValue = EditorGUI.TextField(rect, "태그 이름", layerTag.stringValue);
             rect.y += height;
             rect.width /= 2;
-            horizon.boolValue = EditorGUI.Toggle(rect, "수평 스크롤 여부", horizon.boolValue);
+            vertical.boolValue = EditorGUI.Toggle(rect, "수직 스크롤 여부", vertical.boolValue);
             rect.x += rect.width;
             EditorGUIUtility.labelWidth = 30;
             dist.floatValue = EditorGUI.FloatField(rect, "거리", dist.floatValue);

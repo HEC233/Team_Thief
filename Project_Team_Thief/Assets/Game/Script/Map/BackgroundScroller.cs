@@ -38,7 +38,7 @@ public class BackgroundScroller : MonoBehaviour
     public class ScrollLayer
     {
         public string layerTag;
-        public bool horizonalScrolling;
+        public bool verticalScrolling;
         public float distance;
 
         private Transform _tr;
@@ -64,7 +64,7 @@ public class BackgroundScroller : MonoBehaviour
         {
             var vrtDelta = new Vector3(delta.x, 0, 0);
 
-            _tr.position += horizonalScrolling ? delta : vrtDelta * _rcp;
+            _tr.position += (verticalScrolling ? delta : vrtDelta) * _rcp;
         }
     }
         
