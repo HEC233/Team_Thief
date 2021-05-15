@@ -24,8 +24,8 @@ MonoBehaviour:
   criticalValue: 0
   attackCount: 0
   attackInterval: 0
-  enterDelay: 2
-  endDelay: 3
+  enterDelay: 0.9
+  endDelay: 0.5
   coolTime: 0
   knockbackDist: 0
   knockbackTime: 0
