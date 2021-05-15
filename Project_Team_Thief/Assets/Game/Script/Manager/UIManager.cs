@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public UILoadingAnimation uiLoading;
     public UIDynamic uiDynamic;
     public ConsoleComponent developerConsole;
+    public UIComboInfo uiComboInfo;
 
     private static bool exist = false;
 
@@ -84,5 +85,10 @@ public class UIManager : MonoBehaviour
     {
         uiPlayerInfo.CommandUpdate();
         uiDynamic.Init(); 
+    }
+
+    public void SetCombo(int comboCount)
+    {
+        uiComboInfo.SetCombo(comboCount);
     }
 }
