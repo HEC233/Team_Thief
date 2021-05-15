@@ -9,6 +9,10 @@ TagManager:
   - CloseRange
   - MiddleRange
   - FarRange
+  - WonGyoung1
+  - WonGyoung2
+  - JungGyoung1
+  - JungGyoung2
   layers:
   - Default
   - TransparentFX
