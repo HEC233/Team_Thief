@@ -564,8 +564,8 @@ public class PlayerUnit : Unit
     
     public void BasicAttackMoveStop()
     {
-        if (IsGround)
-            _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
+        //if (IsGround)
+        _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
     }
 
     public override void Attack()

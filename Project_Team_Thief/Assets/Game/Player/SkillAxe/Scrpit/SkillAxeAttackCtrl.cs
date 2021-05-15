@@ -168,7 +168,6 @@ public class SkillAxeAttackCtrl : AttackBase
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log(other.name);
             StartCoroutine(AxeMultiStageHitCoroutuine(FindEnemyObj()));
         }
     }
@@ -186,7 +185,6 @@ public class SkillAxeAttackCtrl : AttackBase
 
         float _timer = _axeMultiStageHitInterval;
         float _counter = 0;
-        Debug.Log("_axeMultiStageHit : " + _axeMultiStageHit);
 
         while (_counter < _axeMultiStageHit)
         {
@@ -201,8 +199,6 @@ public class SkillAxeAttackCtrl : AttackBase
 
                 Progress();
                 AttackDamage(collider2D);
-
-                Debug.Log(_counter);
 
                 _counter++;
                 _timer = 0.0f;

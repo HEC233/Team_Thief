@@ -42,7 +42,6 @@ public class SkillHammerController : SkillControllerBase
 
     public void AttackSkillHammer()
     {
-        Debug.Log(_damage.knockBack);
         _unit.SkillHammerAttack(_damage);
         
         OnEndSkillAction?.Invoke();
