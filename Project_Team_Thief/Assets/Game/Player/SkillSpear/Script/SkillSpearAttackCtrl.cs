@@ -65,7 +65,6 @@ public class SkillSpearAttackCtrl : AttackBase
             return;
         }
     
-        Debug.Log("Play FX");
         GameManager.instance.FX.Play("HitHammerFx", _damage.hitPosition);
     }
 
