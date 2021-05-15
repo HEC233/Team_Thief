@@ -1581,7 +1581,7 @@ MonoBehaviour:
   _isAbleHitStop: 0
   _isAbleBulltTime: 0
   _isAbleCameraShake: 1
-  _isDisplyFx: 0
+  _isDisplyFx: 1
   _isPlaySFX: 0
   _hitStopTime: 0
   _bulltTime: 0
