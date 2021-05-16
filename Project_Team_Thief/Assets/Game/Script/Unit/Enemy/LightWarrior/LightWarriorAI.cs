@@ -167,7 +167,10 @@ public class LightWarriorAI : MonoBehaviour
 
     private void Update()
     {
-        _curState.Process();
+        if (GameManager.instance.isPlayerDead)
+            actor.Transition(TransitionCondition.Idle);
+        else
+            _curState.Process();
     }
 }
 
