@@ -308,6 +308,13 @@ public class PlayerUnit : Unit
         _skillSpearCoolTime = _skillSpearData.CoolTime;
         _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
         _skillHammerCoolTime = _skillHammerData.CoolTime;
+
+        GameManager.instance.commandManager.GetCommandData(_skillAxeData.SkillName).maxCoolTIme =
+            _skillAxeData.CoolTime;
+        GameManager.instance.commandManager.GetCommandData(_skillSpearData.SkillName).maxCoolTIme =
+            _skillSpearData.CoolTime;
+        GameManager.instance.commandManager.GetCommandData(_skillHammerData.SkillName).maxCoolTIme =
+            _skillHammerData.CoolTime;
     }
     
 
@@ -923,12 +930,15 @@ public class PlayerUnit : Unit
 
     IEnumerator SkillAxeCoolTimeCoroutine()
     {
+        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillAxeData.SkillName);
         _skillAexIsAble = false;
         float timer = 0.0f;
-
+        _commandData.coolTime = 0;
+        
         while (timer < _skillAxeCoolTime)
         {
             timer += GameManager.instance.timeMng.FixedDeltaTime;
+            _commandData.coolTime = timer;
             yield return new WaitForFixedUpdate();
         }
 
@@ -938,12 +948,15 @@ public class PlayerUnit : Unit
     
     IEnumerator SkillSpearCoolTimeCoroutine()
     {
+        var _commandData = GameManager.instance.commandManager.GetCommandData(SkillSpearData.SkillName);
         _skillSpearIsAble = false;
         float timer = 0.0f;
 
+        _commandData.coolTime = 0;
         while (timer < _skillSpearCoolTime)
         {
             timer += GameManager.instance.timeMng.FixedDeltaTime;
+            _commandData.coolTime = timer;
             yield return new WaitForFixedUpdate();
         }
 
@@ -953,11 +966,14 @@ public class PlayerUnit : Unit
     
     IEnumerator SkillHammerCoolTimeCoroutine()
     {
+        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillHammerData.SkillName);
         _skillHammerIsAble = false;
         float timer = 0.0f;
+        _commandData.coolTime = 0;
         while (timer < _skillHammerCoolTime)
         {
             timer += GameManager.instance.timeMng.FixedDeltaTime;
+            _commandData.coolTime = timer;
             yield return new WaitForFixedUpdate();
         }
 
