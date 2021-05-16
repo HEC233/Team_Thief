@@ -50,15 +50,19 @@ namespace PS.Util.DeveloperConsole
             {
                 inputField.text = string.Empty;
                 uiCanvas.SetActive(false);
-                Time.timeScale = previousTimeScale;
+                GameManager.instance.timeMng.ResumeTime();
             }
             else
             {
                 uiCanvas.SetActive(true);
-                previousTimeScale = Time.timeScale;
-                Time.timeScale = 0;
+                GameManager.instance.timeMng.StopTime();
                 inputField.ActivateInputField();
             }
+        }
+
+        public void AddLine(string line)
+        {
+            textField.text = textField.text + '\n' + line;
         }
 
         public void ProcessCommand(string input)

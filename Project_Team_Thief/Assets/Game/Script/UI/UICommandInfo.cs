@@ -35,7 +35,9 @@ public class UICommandInfo : MonoBehaviour
             var go = GameObject.Instantiate(commandAssist, verticalPanel);
             go.transform.localScale = Vector3.one;
             var element = go.GetComponent<UIElementCommand>();
-            Assert.IsTrue(element.InitCommandInfo(c));
+            var result = element.InitCommandInfo(c);
+            Assert.IsTrue(result);
+            GameManager.instance.uiMng.developerConsole.AddLine(c.CommandData.skillName + " initializing " + (result ? "successed" : "failed"));
             panelList.Add(element);
         }
 
