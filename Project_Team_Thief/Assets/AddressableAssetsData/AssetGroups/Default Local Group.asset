@@ -31,6 +31,13 @@ MonoBehaviour:
     - Unit
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 0fba1bff809e7b64eb38a28e7aefc0ca
+    m_Address: Assets/Game/Prefab/Unit/Dandelion.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Unit
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cf711df1b7a7a54c9861afe5fde6759, type: 2}
   m_SchemaSet:

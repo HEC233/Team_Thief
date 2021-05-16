@@ -66,6 +66,7 @@ MonoBehaviour:
   shadow: {fileID: -5078904260765545550}
   _keyManger: {fileID: 4990086937456659572}
   grid: {fileID: 0}
+  isPlayerDead: 0
 --- !u!114 &4990086937456659572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +180,9 @@ MonoBehaviour:
       type: 3}
   - name: HitSpear
     prefab: {fileID: 105372223401047025, guid: d40217281c7c02045b15c8358a5b687f, type: 3}
+  - name: HitHammerFx
+    prefab: {fileID: 3527909791397652469, guid: 5a1def0a47333144599ee61974ba5069,
+      type: 3}
   - name: DandelionAttack
     prefab: {fileID: 2808335577227163727, guid: d8afba2fae09f3147a39dde6e496cbf4,
       type: 3}

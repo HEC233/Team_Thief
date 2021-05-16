@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3823,22 +3823,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2141984162371750092, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: effects.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2141984162371750092, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: effects.Array.data[12].name
-      value: HitHammerFx
-      objectReference: {fileID: 0}
-    - target: {fileID: 2141984162371750092, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: effects.Array.data[12].prefab
-      value: 
-      objectReference: {fileID: 3527909791397652469, guid: 5a1def0a47333144599ee61974ba5069,
-        type: 3}
     - target: {fileID: 4990086937456659570, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: m_RootOrder
