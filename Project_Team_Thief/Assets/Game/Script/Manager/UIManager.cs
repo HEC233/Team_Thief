@@ -91,4 +91,9 @@ public class UIManager : MonoBehaviour
     {
         uiComboInfo.SetCombo(comboCount);
     }
+
+    public void PlayerDead()
+    {
+            
+    }
 }

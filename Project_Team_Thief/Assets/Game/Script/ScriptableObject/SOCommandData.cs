@@ -6,6 +6,8 @@ using UnityEngine;
 public class SOCommandData : ScriptableObject
 {
     public string commandString;
+    public float coolTime;
+    public float maxCoolTIme;
     
     // String을 Key로 전달할 까 아니면 스킬 데이터를 전달할까
     public string skillName;
