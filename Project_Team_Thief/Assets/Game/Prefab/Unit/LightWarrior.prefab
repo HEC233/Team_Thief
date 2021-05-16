@@ -480,7 +480,7 @@ MonoBehaviour:
   _unitData: {fileID: 11400000, guid: 6f9ddd582b707654b9a09d26e53743f9, type: 2}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4352
   _customTimeScale: 1
   isOnGround: 0
   accelation: 20
