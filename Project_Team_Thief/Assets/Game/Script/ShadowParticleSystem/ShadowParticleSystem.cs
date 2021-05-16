@@ -151,11 +151,15 @@ namespace PS.Shadow
         }
         public void UnregistCollider(BoxCollider2D collider)
         {
+            if (!boxObjectOnVectorField.Contains(collider))
+                return;
             prevBoxPos.RemoveAt(boxObjectOnVectorField.IndexOf(collider));
             boxObjectOnVectorField.Remove(collider);
         }
         public void UnregistCollider(CapsuleCollider2D collider)
         {
+            if (!capsuleObjectOnVectorField.Contains(collider))
+                return;
             prevCapsulePos.RemoveAt(capsuleObjectOnVectorField.IndexOf(collider));
             capsuleObjectOnVectorField.Remove(collider);
         }
