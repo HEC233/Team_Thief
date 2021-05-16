@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" SchemaVersion="103">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="SFX" ID="{AE6FE092-FADE-41A3-BD83-C48E22786E60}" ShortID="804285064">
+					<ChildrenList>
+						<Folder Name="PC" ID="{5A0A6AEA-05A8-447D-8E36-51300B3AA078}" ShortID="231427216">
+							<ChildrenList>
+								<Folder Name="woosh" ID="{8010BE55-22B4-4BFA-9400-D154A11D4DF2}" ShortID="608088198">
+									<ChildrenList>
+										<Event Name="PC_BA1" ID="{DE9E1BA2-E5BD-4497-BD1B-C3361F18F645}">
+											<ChildrenList>
+												<Action Name="" ID="{8A9A709F-14E6-4816-BCCB-739C5FF62167}" ShortID="171615347">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="PC_BA1" ID="{9F38F8F1-C45D-493C-8BC2-EBAB864F4ECA}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PC_BA2" ID="{F7206707-89DA-40FC-BD8B-27ADB45B1458}">
+											<ChildrenList>
+												<Action Name="" ID="{4CA34130-F118-40F0-B863-ECF9821CC78A}" ShortID="325414162">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="PC_BA2" ID="{3CEFC416-E74B-4F22-A63A-AF2F18BA7ABC}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PC_BA3" ID="{DD8D3C23-92D5-4FA3-98C5-3638EC09F6A2}">
+											<ChildrenList>
+												<Action Name="" ID="{478A00A4-BE5A-4FC0-A572-115D5072D717}" ShortID="765582800">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="PC_BA3" ID="{D8DFD758-CB01-4DF0-8812-A1C787F7B1D8}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PC_BA4" ID="{898E93DD-1739-4F00-A741-F809568C6994}">
+											<ChildrenList>
+												<Action Name="" ID="{FC48CBA6-76F8-4B0E-BF5C-418328D21ACF}" ShortID="1070988929">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="PC_BA4" ID="{5EDC03EF-A5B5-4458-9B36-1C51E5AFC041}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PC_HS" ID="{865FBC81-7380-4EE2-A2AA-A97CE34EA79A}"/>
+										<Event Name="PC_axe" ID="{912874D4-E89C-4B61-8A40-4ECE3C8AA4B6}"/>
+										<Event Name="PC_spear" ID="{96550337-5AAD-4ED6-9C05-84326C3A099B}"/>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="hit" ID="{B938823E-68A5-4206-82A3-7601D3CC298F}" ShortID="408655258">
+									<ChildrenList>
+										<Event Name="PC_HIT_hammer" ID="{A9F6E7E6-3ED1-466B-9FEF-9E35C042657D}"/>
+										<Event Name="PC_HIT_blade" ID="{03DA4E6F-03ED-4E08-80FE-8E63DD183177}"/>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="hurt" ID="{D4261E12-28F5-4440-9767-8A5B93FC8787}" ShortID="323685938">
+									<ChildrenList>
+										<Event Name="PC_hurt" ID="{BC543562-84C8-4BFF-9AF0-89EF59EDD651}"/>
+										<Event Name="PC_dead" ID="{9171910A-D012-40DC-B2E6-39B550FD4CB2}"/>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="movement" ID="{67433BA5-EB3E-433B-AAA6-7685FB868DF7}" ShortID="747715431">
+									<ChildrenList>
+										<Event Name="PC_Jump" ID="{0E398615-CD55-42F5-A0DC-CF542B88A73C}"/>
+										<Event Name="PC_FS" ID="{FCC80F9B-26B0-4255-A3A1-7F3E6A515A89}">
+											<ChildrenList>
+												<Action Name="" ID="{64787299-9F2F-46C9-8D06-7531BF897704}" ShortID="37883619">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="PC_FS" ID="{52BA604C-FAC1-4AB3-9B15-85DDAA9A9F69}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PC_stop" ID="{D392478A-F43E-4FA3-8C6E-0A44DC3C6C96}"/>
+										<Event Name="PC_land" ID="{A4FCA5CE-E7EC-48CF-85AE-55E2F9187F34}"/>
+										<Event Name="PC_wall" ID="{6BAE9CE9-7A40-4AFE-B486-F959AE36A69F}"/>
+										<Event Name="PC_slide" ID="{82C819C0-ED0C-41FB-B724-FADFDDE1B801}"/>
+										<Event Name="PC_dash" ID="{8B5A31B1-226B-47F6-A437-9C44A796B89F}"/>
+									</ChildrenList>
+								</Folder>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="LightWarrior" ID="{3E1FC036-8B4E-4B47-BFA3-0EA35CA5D282}" ShortID="909840046">
+							<ChildrenList>
+								<Folder Name="woosh" ID="{A4E0E587-7F04-4F07-9870-00571A38FE6A}" ShortID="1020099989"/>
+								<Folder Name="hurt" ID="{3C3B6C1B-CBAB-41C5-89D9-F9F87278684B}" ShortID="978206144"/>
+								<Folder Name="movement" ID="{01B2DAFA-D992-4E93-9643-ED806C5C9218}" ShortID="240471302"/>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Seraphim" ID="{A7F2B8CB-2198-4521-A2B1-C6959B8BE4FF}" ShortID="907527002">
+							<ChildrenList>
+								<Folder Name="woosh" ID="{4F4AE58C-227D-4D75-86C4-3DB378BB1F05}" ShortID="495139136"/>
+								<Folder Name="hurt" ID="{4391E26A-149B-4C30-8160-BCC1ABA454A7}" ShortID="347658452"/>
+								<Folder Name="movement" ID="{4F5B1625-DEA6-4081-B53D-B4AEECE069B3}" ShortID="266153410"/>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

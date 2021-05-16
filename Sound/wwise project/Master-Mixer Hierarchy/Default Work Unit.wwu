@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}" SchemaVersion="103">
+	<Busses>
+		<WorkUnit Name="Default Work Unit" ID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}" PersistMode="Standalone">
+			<ChildrenList>
+				<Bus Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}">
+					<ReferenceList>
+						<Reference Name="AudioDevice">
+							<ObjectRef Name="System" ID="{806930B0-C8B5-491C-8CD9-7473FD3517FC}" WorkUnitID="{56A83F07-D7C5-4C0E-9C94-BF7AA5597E6A}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AuxBus Name="Auxiliary_Bus" ID="{6CD209D4-9213-4699-B4CA-344B47A649DE}">
+							<ObjectLists/>
+						</AuxBus>
+						<Bus Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}">
+							<ReferenceList>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="Auxiliary_Bus" ID="{6CD209D4-9213-4699-B4CA-344B47A649DE}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</Bus>
+						<Bus Name="AMB" ID="{ECA708DB-F50F-4B50-94C9-49B46B6F5E7B}">
+							<ReferenceList/>
+							<ObjectLists/>
+						</Bus>
+						<Bus Name="BGM" ID="{06D39BC1-1717-499F-AABD-C324E60E9991}">
+							<ObjectLists/>
+						</Bus>
+						<Bus Name="Voice" ID="{FCE1CE36-899F-4EB5-A915-9AF7B87C2228}">
+							<ReferenceList>
+								<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<ObjectRef Name="Hall_Large" ID="{6D154498-FF6D-4823-96FC-56841B70E079}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="Auxiliary_Bus" ID="{6CD209D4-9213-4699-B4CA-344B47A649DE}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</Bus>
+						<Bus Name="UI" ID="{8B1B8B00-3C1E-43F7-9282-68801276A2F9}">
+							<ObjectLists/>
+						</Bus>
+					</ChildrenList>
+					<ObjectLists/>
+				</Bus>
+				<Bus Name="Motion Factory Bus" ID="{2AF9B9C6-6EF1-46E9-B5F2-E30C9E602C74}">
+					<ReferenceList>
+						<Reference Name="AudioDevice">
+							<ObjectRef Name="Default_Motion_Device" ID="{02D1A2F8-4C69-4CCD-8538-76BE2EA6B1C2}" WorkUnitID="{56A83F07-D7C5-4C0E-9C94-BF7AA5597E6A}"/>
+						</Reference>
+					</ReferenceList>
+					<ObjectLists/>
+				</Bus>
+			</ChildrenList>
+		</WorkUnit>
+	</Busses>
+</WwiseDocument>
