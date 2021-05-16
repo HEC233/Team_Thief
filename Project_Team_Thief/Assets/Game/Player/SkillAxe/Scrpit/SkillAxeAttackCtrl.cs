@@ -128,7 +128,8 @@ public class SkillAxeAttackCtrl : AttackBase
         _damage.hitPosition = item.ClosestPoint(_basicAttackCollider2D.bounds.center);
         //=====================================================
         item.GetComponentInParent<Unit>().HandleHit(_damage);
-
+        
+        OnEnemyHitEvent?.Invoke();
     }
 
     private Collider2D FindEnemyObj()

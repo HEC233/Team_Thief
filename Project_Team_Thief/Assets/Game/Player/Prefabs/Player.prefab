@@ -808,6 +808,7 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 3, y: 5.5}
   _basicJumpAttackCtrl: {fileID: 1542053514262991507}
+  _comboTime: 1
   _hitInvincibilityTime: 1
   _hitInvincibilityTwinkleTime: 0.5
   _hitTime: 0.5
