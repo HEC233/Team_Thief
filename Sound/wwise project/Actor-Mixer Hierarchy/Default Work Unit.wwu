@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{7C8F6756-2067-4B7D-9957-884A18C94235}" SchemaVersion="103">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{7C8F6756-2067-4B7D-9957-884A18C94235}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="SFX" ID="{1CAAF03D-AF93-412D-8CE2-E3005691E80E}" ShortID="704464856">
+					<ChildrenList>
+						<Folder Name="PC" ID="{EDCCF6EF-74D9-4E9E-9BD6-E36C09E05727}" ShortID="687720340">
+							<ChildrenList>
+								<Folder Name="hurt" ID="{E38DD9F1-C6C2-4D2C-875D-135924D650A1}" ShortID="229617707"/>
+								<Folder Name="movement" ID="{971DC206-B979-4BF3-9738-FBC8661F1E30}" ShortID="401739641">
+									<ChildrenList>
+										<RandomSequenceContainer Name="PC_FS" ID="{52BA604C-FAC1-4AB3-9B15-85DDAA9A9F69}" ShortID="304897073">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="SFX_PC_FS" ID="{A52139F4-7483-4487-A175-CF36804CD71F}" ShortID="580941032">
+													<PropertyList>
+														<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+														<Property Name="Pitch" Type="int32">
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{350FE4B5-2FDF-4243-B83D-6508B8932571}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																			<Property Name="Max" Type="Real64" Value="200"/>
+																			<Property Name="Min" Type="Real64" Value="-200"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>-5</Value>
+															</ValueList>
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{2B9FABBC-2B2F-4960-B788-2F0005115525}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																			<Property Name="Max" Type="Real64" Value="3"/>
+																			<Property Name="Min" Type="Real64" Value="-3"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="SFX_PC_FS" ID="{F1AD9B97-7C79-4219-BD3F-2A406E3F1FBE}">
+															<Language>SFX</Language>
+															<AudioFile>SFX_PC_FS.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="427331776"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="SFX_PC_FS" ID="{F1AD9B97-7C79-4219-BD3F-2A406E3F1FBE}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="woosh" ID="{AC80192F-9755-4394-9AC3-648026654285}" ShortID="961314173">
+									<ChildrenList>
+										<RandomSequenceContainer Name="PC_BA1" ID="{9F38F8F1-C45D-493C-8BC2-EBAB864F4ECA}" ShortID="510765136">
+											<PropertyList>
+												<Property Name="Highpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{94278DB5-5468-4FBC-AAFF-A6971548C80B}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="300"/>
+																	<Property Name="Min" Type="Real64" Value="-300"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-3</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{0FF33E94-D060-48C5-B1A4-4BDC0BEF7EB2}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="3"/>
+																	<Property Name="Min" Type="Real64" Value="-3"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="SFX_PC_woosh" ID="{D132F592-42C0-46E4-9B32-C94B0DB59BC3}" ShortID="164741813">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="SFX_PC_woosh" ID="{548636AF-3BF3-40FF-858D-A5ACAB541FC0}">
+															<Language>SFX</Language>
+															<AudioFile>SFX_PC_woosh.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1008207653"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="SFX_PC_woosh" ID="{548636AF-3BF3-40FF-858D-A5ACAB541FC0}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="PC_BA2" ID="{3CEFC416-E74B-4F22-A63A-AF2F18BA7ABC}" ShortID="1066089346">
+											<PropertyList>
+												<Property Name="Highpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{C3D8E552-3A4A-4E1C-A7BC-64AF28A190ED}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="300"/>
+																	<Property Name="Min" Type="Real64" Value="-300"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-3</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{7C99AE9A-058B-41D1-B6F8-3329C0ABFA00}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="3"/>
+																	<Property Name="Min" Type="Real64" Value="-3"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="SFX_PC_woosh" ID="{CE8CE2D6-1DC0-4D68-88FC-158F08D9DE1D}" ShortID="654756522">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="SFX_PC_woosh" ID="{2D167CB7-B22E-4A4B-BBD5-A494E0092E74}">
+															<Language>SFX</Language>
+															<AudioFile>SFX_PC_woosh.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1008207653"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="SFX_PC_woosh" ID="{2D167CB7-B22E-4A4B-BBD5-A494E0092E74}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="PC_BA3" ID="{D8DFD758-CB01-4DF0-8812-A1C787F7B1D8}" ShortID="114449446">
+											<PropertyList>
+												<Property Name="Highpass" Type="int16">
+													<ValueList>
+														<Value>25</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>580</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{7FC8A253-4D08-4C25-9EF2-E9C9B27C805A}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="100"/>
+																	<Property Name="Min" Type="Real64" Value="-100"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{0BA2A9F7-B309-4C9D-9A3C-2170563651E7}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="3"/>
+																	<Property Name="Min" Type="Real64" Value="-3"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="SFX_PC_woosh" ID="{EB995D56-7594-49ED-9C44-5335AE26684E}" ShortID="251724125">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="SFX_PC_woosh" ID="{732F2B10-2499-4415-8FAD-680E869E0361}">
+															<Language>SFX</Language>
+															<AudioFile>SFX_PC_woosh.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1008207653"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="SFX_PC_woosh" ID="{732F2B10-2499-4415-8FAD-680E869E0361}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="PC_BA4" ID="{5EDC03EF-A5B5-4458-9B36-1C51E5AFC041}" ShortID="214822808">
+											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>6</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>-510</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{C25DDA22-7FD7-4F09-A7A2-C237FA89FC2A}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="50"/>
+																	<Property Name="Min" Type="Real64" Value="-50"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{522734D4-A2F2-4B53-8606-D40566B2856D}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="2"/>
+																	<Property Name="Min" Type="Real64" Value="-2"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="SFX_PC_woosh" ID="{91CAF9B6-9D20-428B-A863-82F1E380F0DA}" ShortID="641100760">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="SFX_PC_woosh" ID="{2FD478AB-AF41-49A0-8DE2-B8587C940B40}">
+															<Language>SFX</Language>
+															<AudioFile>SFX_PC_woosh.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1008207653"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="SFX_PC_woosh" ID="{2FD478AB-AF41-49A0-8DE2-B8587C940B40}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="hit" ID="{052564C2-8031-4CD9-B8B3-BE9DAB1C1095}" ShortID="497583889"/>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="ENEMY" ID="{56980627-F7FA-4DF8-B151-EE1965B42ACB}" ShortID="47304428">
+							<ChildrenList>
+								<Folder Name="LightWorrior" ID="{27647EFC-0617-41FD-9C35-78D573498BB3}" ShortID="724509615">
+									<ChildrenList>
+										<Folder Name="woosh" ID="{B8A8B79E-2718-4ACC-B50E-FC8E3D74CDE1}" ShortID="934033253"/>
+										<Folder Name="hurt" ID="{68097CC1-CC0F-4B7A-BF50-047AA30EEBCE}" ShortID="40948025"/>
+										<Folder Name="movement" ID="{6C0FE668-5B49-4F49-89F9-746AF85D0715}" ShortID="27071890"/>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Seraphim" ID="{398FB2A1-7EB3-4258-ABDB-838B372CE096}" ShortID="892025048">
+									<ChildrenList>
+										<Folder Name="hurt" ID="{F8051AB3-057E-4FD3-B55E-16B966CFE813}" ShortID="472991270"/>
+										<Folder Name="movement" ID="{7C45B8AC-7ECC-4767-BCF7-5E12E98D3513}" ShortID="436957878"/>
+										<Folder Name="woosh" ID="{7C55EE51-A4C5-4B0B-BFAD-916D11B484A6}" ShortID="163552799"/>
+									</ChildrenList>
+								</Folder>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

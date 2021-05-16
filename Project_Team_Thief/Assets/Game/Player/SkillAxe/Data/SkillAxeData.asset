@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberOfTimesTheSkill: 2
   _coolTime: 2
-  _skillName: SkillAex
+  _skillName: Skill1Axe
   _axeGameObject: {fileID: 3841240397383621464, guid: 3624dd1e695c1004e96f2ca043568a51,
     type: 3}
   _cinemachineSignalSource: {fileID: 11400000, guid: ab5e8c5544421b348bf91b448897405f,

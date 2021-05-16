@@ -10,7 +10,7 @@
   <ShowSpatialAudioWarningMsg>true</ShowSpatialAudioWarningMsg>
   <WwiseInstallationPathMac />
   <WwiseInstallationPathWindows>D:\Programs\WWISE</WwiseInstallationPathWindows>
-  <WwiseProjectPath>D:/Main/Works/Sound/wwise/Team Theif/Team Theif.wproj</WwiseProjectPath>
+  <WwiseProjectPath>../../Sound/wwise project/Team Theif.wproj</WwiseProjectPath>
   <UseWaapi>true</UseWaapi>
   <WaapiPort>8080</WaapiPort>
   <WaapiIP>127.0.0.1</WaapiIP>
