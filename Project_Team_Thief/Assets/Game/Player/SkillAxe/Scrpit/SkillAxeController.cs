@@ -40,6 +40,7 @@ public class SkillAxeController : SkillControllerBase
                 .GetComponent<SkillAxeAttackCtrl>();
 
         _skillAxeAttackCtrl.OnEndSkillEvent += EndSkill;
+        _skillAxeAttackCtrl.OnEnemyHitEvent += _unit.OnAddComboEventCall;
         _skillAxeAttackCtrl.SetDamage(_damage);
         _skillAxeAttackCtrl.Init(_skillAxeData.AxeMovePostionX, _skillAxeData.AxeMoveTime, _skillAxeData.CinemachineSignalSource, _unit.FacingDir, _skillAxeData.AxeMultiStageHit, _skillAxeData.AxeMultiStageHitInterval);
     }
@@ -47,6 +48,7 @@ public class SkillAxeController : SkillControllerBase
     private void EndSkill()
     {
         _skillAxeAttackCtrl.OnEndSkillEvent -= EndSkill;
+        _skillAxeAttackCtrl.OnEnemyHitEvent -= _unit.OnAddComboEventCall;
         _skillAxeAttackCtrl = null;
         OnEndSkillAction?.Invoke();
     }

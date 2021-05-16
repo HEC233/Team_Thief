@@ -131,6 +131,7 @@ public class SkillSpearAttackCtrl : AttackBase
                     //=====================================================
                     _isEnter = true;
                     item.GetComponentInParent<Unit>().HandleHit(_damage);
+                    OnEnemyHitEvent?.Invoke();
                 }
             }
         }

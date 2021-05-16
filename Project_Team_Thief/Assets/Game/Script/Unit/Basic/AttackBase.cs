@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class AttackBase : MonoBehaviour
 {
@@ -62,6 +63,8 @@ public abstract class AttackBase : MonoBehaviour
     protected GameObject _fxGO;
     [SerializeField]
     protected FlashCtrl _flashGO;
+
+    public UnityAction OnEnemyHitEvent;
     
 
     public abstract void Flash();

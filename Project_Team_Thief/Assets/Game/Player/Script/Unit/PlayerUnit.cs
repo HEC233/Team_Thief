@@ -164,6 +164,15 @@ public class PlayerUnit : Unit
     private Vector2[] _basicAttackKnockBackArr;
     [SerializeField]
     private BasicAttackCtrl _basicJumpAttackCtrl;
+
+    [Header("Combo Variable")] 
+    [SerializeField]
+    private float _comboTime;
+
+    private float _comboTimer;
+    private int _curCombo = 0;
+    private bool _isContinuingCombo = false;
+    private Coroutine _comboCoroutine;
     
     // hit Variable
     [Header("Hit Variable")]
@@ -250,6 +259,16 @@ public class PlayerUnit : Unit
         }
 
         _basicJumpAttackCtrl.OnChangeDirEvent += OnChangeDirEventCall;
+
+        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
+        {
+            _basicAttackCtrlArr[i].OnEnemyHitEvent += OnAddComboEventCall;
+        }
+
+        _basicJumpAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
+
+        _skillSpearAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
+        _skillHammerAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
     }
 
     private void UnBind()
@@ -741,6 +760,24 @@ public class PlayerUnit : Unit
         _skillHammerAttackCtrl.Progress();
     }
 
+    public void OnAddComboEventCall()
+    {
+        _curCombo++;
+        Debug.Log(_curCombo);
+        
+        if (_isContinuingCombo == true)
+        {
+            _comboTimer = _comboTime;
+        }
+        else
+        {
+            _comboCoroutine = StartCoroutine(ComboCoroutine());    
+        }
+        
+        GameManager.instance.uiMng.SetCombo(_curCombo);
+        
+    }
+
     public void StartBulletTime(float timeScale)
     {
         _timeScale = timeScale;
@@ -832,6 +869,22 @@ public class PlayerUnit : Unit
     {
         _isWallTouch = Physics2D.Raycast(_handTr.position, Vector2.right * _facingDir, 0.1f, wallLayerMask);
         return _isWallTouch;
+    }
+
+    IEnumerator ComboCoroutine()
+    {
+        _isContinuingCombo = true;
+        _comboTimer = _comboTime;
+
+
+        while (_comboTimer >= 0)
+        {
+            _comboTimer -= GameManager.instance.timeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        
+        _isContinuingCombo = false;
+        _curCombo = 0;
     }
 
     IEnumerator HitstopMoveCoroutine()
