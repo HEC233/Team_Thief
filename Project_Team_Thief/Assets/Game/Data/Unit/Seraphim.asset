@@ -20,6 +20,7 @@ MonoBehaviour:
   jumpCount: 0
   hp: 100
   reduceHit: 1
+  knockbackMultiply: 1
   skillDamage: 100
   criticalValue: 0
   attackCount: 0
@@ -27,8 +28,7 @@ MonoBehaviour:
   enterDelay: 0.9
   endDelay: 0.5
   coolTime: 0
-  knockbackDist: 0
-  knockbackTime: 0
+  knockback: {x: 0, y: 0}
   attackMoveX: 0
   attackMoveXTime: 0
   attackMoveY: 0
