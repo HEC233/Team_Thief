@@ -66,11 +66,4 @@ public class UIComboInfo : MonoBehaviour
 
         gameObject.SetActive(false);
     }
-
-    private int c = 0;
-    public void AddCombo()
-    {
-        c++;
-        SetCombo(c);
-    }
 }
