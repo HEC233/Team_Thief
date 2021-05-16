@@ -24,6 +24,12 @@ public class KeyManager : MonoBehaviour
 
         if (Input.anyKey || Input.anyKeyDown)
         {
+            if (GameManager.instance.isPlayerDead)
+            {
+                GameManager.instance.ExitToMainMenu();
+                return;
+            }
+
             foreach (KeyCode code in System.Enum.GetValues(typeof(KeyCode)))
             {
                 if (Input.GetKey(code))

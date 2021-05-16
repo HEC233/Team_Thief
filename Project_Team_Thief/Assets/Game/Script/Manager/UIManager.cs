@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public UIDynamic uiDynamic;
     public ConsoleComponent developerConsole;
     public UIComboInfo uiComboInfo;
+    public CanvasGroup uiGameOver;
 
     private static bool exist = false;
 
@@ -94,6 +95,24 @@ public class UIManager : MonoBehaviour
 
     public void PlayerDead()
     {
-            
+        uiGameOver.gameObject.SetActive(true);
+        StartCoroutine(GameOver());
+    }
+
+    public void TurnOffGameOverScreen()
+    {
+        uiGameOver.gameObject.SetActive(false);
+    }
+
+    IEnumerator GameOver()
+    {
+        float t = 0.0f;
+        while(t <= 0.1f)
+        {
+            uiGameOver.alpha = Mathf.Lerp(0, 1, t / 0.1f);
+            yield return null;
+            t += Time.deltaTime;
+        }
+        uiGameOver.alpha = 1;
     }
 }

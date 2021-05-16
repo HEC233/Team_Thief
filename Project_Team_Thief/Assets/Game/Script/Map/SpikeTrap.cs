@@ -22,13 +22,16 @@ public class SpikeTrap : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & _playerLayer.value) == 0)
-            return;
-
         var unit = collision.gameObject.GetComponentInChildren<Unit>();
         if (unit == null)
             return;
-        unit.HandleHit(damage);
+        if (((1 << collision.gameObject.layer) & _playerLayer.value) != 0)
+            unit.HandleHit(damage);
+        else
+        {
+            var mUnit = collision.gameObject.GetComponentInChildren<MonsterUnit>();
+            mUnit?.dieEvent.Invoke();
+        }
     }
 
     //private void Update()
