@@ -72,7 +72,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private void Init()
     {
         Bind();
-        
+        GameManager.instance.SetControlUnit(this);
+
         //==================== 고재협이 편집함 ==================
         GameManager.instance.shadow.RegistCollider(GetComponent<BoxCollider2D>());
         //=======================================================
@@ -80,14 +81,26 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private void Bind()
     {
-        GameManager.instance.SetControlUnit(this);
         GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvnetCall;
         GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
         GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
         GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvnetCall;
         Unit.hitEvent += UnitHitEventCall;
-
+        Unit.OnPlayerDeadEvent += UnitDeadEventCall;
+        
         GameManager.instance.commandManager.OnCommandCastEvent += OnCommandCastEventCall;
+    }
+
+    private void UnBind()
+    {
+        GameManager.instance.timeMng.startBulletTimeEvent -= StartBulletTimeEvnetCall;
+        GameManager.instance.timeMng.endBulletTimeEvent -= EndBulletTimeEventCall;
+        GameManager.instance.timeMng.startHitstopEvent -= StartHitStopEventCall;
+        GameManager.instance.timeMng.endHitstopEvent -= EndHitStopEvnetCall;
+        Unit.hitEvent -= UnitHitEventCall;
+        Unit.OnPlayerDeadEvent -= UnitDeadEventCall;
+        
+        GameManager.instance.commandManager.OnCommandCastEvent -= OnCommandCastEventCall;
     }
 
     private class IdleState : CustomFSMStateBase
@@ -1356,6 +1369,39 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return true;
         }
     }
+    
+    private class DieState : CustomFSMStateBase
+    {
+        public DieState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            GameManager.instance.isPlayerDead = true;
+            GameManager.instance.uiMng.PlayerDead();
+        }
+
+        public override void Update()
+        {
+            
+        }
+
+        public override void EndState()
+        {
+            
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            return false;
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            return false;
+        }
+    }
 
     /// </기획 변경으로 인해 미사용>
     private class SkillShadowWalkState : CustomFSMStateBase, ISkillStateBase
@@ -1695,6 +1741,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.SkillAxe, new SkillAxeState(this, Unit.SkillAxeData));
         AddState(TransitionCondition.SkillSpear, new SkillSpearState(this, Unit.SkillSpearData));
         AddState(TransitionCondition.SkillHammer, new SkillHammerState(this, Unit.SkillHammerData));
+        AddState(TransitionCondition.Die, new DieState(this));
     }
     
     public bool Transition(TransitionCondition condition, object param = null)
@@ -1761,6 +1808,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     public void UnitHitEventCall()
     {
         Transition(TransitionCondition.Hit);
+    }
+
+    public void UnitDeadEventCall()
+    {
+        Transition(TransitionCondition.Die);
     }
 
     public void StartJumpKeyPressDetectCoroutine()

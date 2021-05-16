@@ -237,6 +237,10 @@ public class PlayerUnit : Unit
     private Vector2 _hitstopPrevVelocity = Vector2.zero;
     private Damage _hitDamage;
 
+    private bool _isPlayerDead = false;
+    public bool IsPlayerDead => _isPlayerDead;
+    public event UnityAction OnPlayerDeadEvent;
+
     [SerializeField, Header("")]
     private GameObject _SlideingFx;
 
@@ -273,7 +277,22 @@ public class PlayerUnit : Unit
 
     private void UnBind()
     {
-        
+        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
+        {
+            _basicAttackCtrlArr[i].OnChangeDirEvent -= OnChangeDirEventCall;
+        }
+
+        _basicJumpAttackCtrl.OnChangeDirEvent -= OnChangeDirEventCall;
+
+        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
+        {
+            _basicAttackCtrlArr[i].OnEnemyHitEvent -= OnAddComboEventCall;
+        }
+
+        _basicJumpAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
+
+        _skillSpearAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
+        _skillHammerAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
     }
     
     // 향후에는 데이터 센터 클래스라던가 데이터를 가지고 있는 함수에서 직접 호출로 받아 올 수 있도록
@@ -636,9 +655,13 @@ public class PlayerUnit : Unit
         //---
         playerInfo.CurHP = _curHp;
         //---
-        
-        if(_curHp < 0)
+
+        if (_curHp < 0)
+        {
+            _isPlayerDead = true;
+            OnPlayerDeadEvent?.Invoke();
             Debug.LogError("플레이어 사망");
+        }
     }
 
     public void HitKnockBack()
