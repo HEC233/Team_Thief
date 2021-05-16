@@ -115,6 +115,8 @@ public class GameManager : MonoBehaviour
 
     public void ExitToMainMenu()
     {
+        isPlayerDead = false;
+        uiMng.TurnOffGameOverScreen();
         StartCoroutine(ExitGameCoroutine());
     }
 

@@ -94,9 +94,12 @@ public class SeraphimActor : MonoBehaviour, IActor
     // Update is called once per frame
     void Update()
     {
-        if (unit.transform.position.y < -1000)
-            DieTransition();
-        _curState.Process(this);
+        //if (unit.transform.position.y < -1000)
+        //    DieTransition();
+        if (GameManager.instance.isPlayerDead)
+            idle.Process(this);
+        else
+            _curState.Process(this);
     }
     private void TimeScaleChangeEnterCallback(float customTimeScale)
     {

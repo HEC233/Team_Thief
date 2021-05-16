@@ -105,7 +105,7 @@ public class UIElementCommand : MonoBehaviour
             cells[i].SetHighlight(false);
         }
 
-        //coolTime.fillAmount = 쿨타임 얻어와야 함;
+        coolTime.fillAmount = _data.CommandData.coolTime / _data.CommandData.maxCoolTIme;
     }
 
     public int GetValidCommandLength()
