@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private KeyManager _keyManger;
     public Grid grid;
+
+    public bool isPlayerDead = false;
     // Start is called before the first frame update
     void Awake()
     {

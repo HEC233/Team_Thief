@@ -98,6 +98,12 @@ public class CommandManager : MonoBehaviour
         }
     }
 
+    public SOCommandData GetCommandData(string skillName)
+    {
+        int indexForSkillName = _soCommandDatas.FindIndex(e => e.skillName == skillName);
+        return _soCommandDatas[indexForSkillName];
+    }
+
     public class CommandCtrl
     {
         private SOCommandData _commandData;

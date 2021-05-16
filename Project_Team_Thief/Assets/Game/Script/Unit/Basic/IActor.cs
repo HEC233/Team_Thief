@@ -32,7 +32,7 @@ public enum TransitionCondition
     SkillAxe,
     SkillSpear,
     SkillHammer,
-    
+
     // Shadow
     Default,
     Off,
