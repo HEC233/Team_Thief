@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class DandelionAI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public IActor actor;
+    [SerializeField]
+    private float waitTime;
+
+    private float timeCheck = 0;
+
     void Start()
     {
-        
+        actor = GetComponent<DandelionActor>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(timeCheck >= waitTime)
+        {
+            actor.Transition(TransitionCondition.Attack);
+            timeCheck = 0;
+        }
+
+        timeCheck += GameManager.instance.timeMng.DeltaTime;
     }
 }
