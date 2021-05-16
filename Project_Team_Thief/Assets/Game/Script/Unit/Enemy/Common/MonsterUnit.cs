@@ -88,6 +88,7 @@ public class MonsterUnit : Unit
         _minSpeed = _unitData.minSpeed;
         _jumpPower = _unitData.minJumpPower;
 
+        _damage.knockBack = _unitData.knockback;
 
         GameManager.instance.shadow.RegistCollider(_rigid.GetComponent<CapsuleCollider2D>());
 
@@ -209,6 +210,8 @@ public class MonsterUnit : Unit
                 box.offset = new Vector2(-box.offset.x, box.offset.y);
             }
             isLookRight = isDirectionRight;
+
+            _damage.knockBack = new Vector2(-_damage.knockBack.x, _damage.knockBack.y);
             // 보는 방향이 달라졌을때의 처리를 위한 공간
         }
     }
@@ -219,14 +222,47 @@ public class MonsterUnit : Unit
 
         DestroyImmediate(transform.parent.gameObject);
     }
+
+    IEnumerator attackMoveCoroutine = null;
     IEnumerator AttackMove()
     {
-        //_rigid.MovePosition(new )
-        // 여기 어떻게 구현해야 되지?
-        // 단순 더하기는 안되고
-        // 리지드바디에 addposition은 고정주기로 안해도 문제가 없는걸까?
+        var moveX = _unitData.attackMoveX;
+        var moveY = _unitData.attackMoveX;
+        var moveXtime = _unitData.attackMoveXTime;
+        var moveYtime = _unitData.attackMoveYTime;
 
-        yield return null;
+        float timeCheck = 0;
+        float deltaTime;
+
+        bool loop = true;
+
+        while (loop)
+        {
+            loop = false;
+            if (GameManager.instance.timeMng)
+                deltaTime = GameManager.instance.timeMng.DeltaTime;
+            else
+                deltaTime = Time.deltaTime;
+
+            float deltaX = 0;
+            if (moveXtime > 0 && moveXtime >= timeCheck)
+            {
+                deltaX = moveX * deltaTime / moveXtime * (isLookRight ? 1 : -1);
+                loop = true;
+            }
+
+            float deltaY = 0;
+            if (moveYtime > 0 && moveYtime >= timeCheck)
+            {
+                deltaY = moveY * deltaTime / moveYtime * (isLookRight ? 1 : -1);
+                loop = true;
+            }
+
+            _rigid.MovePosition(_rigid.position + new Vector2(deltaX, deltaY));
+
+            timeCheck += deltaTime;
+            yield return null;
+        }
     }
 
     public override void Attack()
@@ -255,24 +291,28 @@ public class MonsterUnit : Unit
             GameManager.instance.timeMng.HitStop(data.hitstopLength);
              */
         }
-
-        StopAllCoroutines();
-        StartCoroutine(AttackMove());
+        if (attackMoveCoroutine != null)
+            StopCoroutine(attackMoveCoroutine);
+        attackMoveCoroutine = AttackMove();
+        StartCoroutine(attackMoveCoroutine);
     }
 
     public override void HandleHit(in Damage inputDamage)
     {
+        if (attackMoveCoroutine != null)
+            StopCoroutine(attackMoveCoroutine);
         // 대미지 상정방식 기획서에 맞게 변경 필요
         var finalDamage = inputDamage.power * _unitData.reduceHit;
         _hp -= finalDamage;
-        _rigid.AddForce(inputDamage.knockBack, ForceMode2D.Impulse);
+        _rigid.AddForce(inputDamage.knockBack * _unitData.knockbackMultiply, ForceMode2D.Impulse);
         isOnGround = false;
         skipGroundCheck = true;
         skipGroundCheckTime = 0.1f;
+
         GameManager.instance.uiMng?.ShowDamageText(inputDamage.hitPosition,
             (int)finalDamage, 0 < (inputDamage.hitPosition - transform.position).x, false);
 
-        if(_hp > 0)
+        if (_hp > 0)
         {
             if (GameManager.instance.FX)
             {

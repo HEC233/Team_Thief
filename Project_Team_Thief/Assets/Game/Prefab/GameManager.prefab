@@ -179,6 +179,9 @@ MonoBehaviour:
       type: 3}
   - name: HitSpear
     prefab: {fileID: 105372223401047025, guid: d40217281c7c02045b15c8358a5b687f, type: 3}
+  - name: DandelionAttack
+    prefab: {fileID: 2808335577227163727, guid: d8afba2fae09f3147a39dde6e496cbf4,
+      type: 3}
 --- !u!114 &-5078904260765545550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,3 +344,4 @@ MonoBehaviour:
   unit:
   - {fileID: 8718974563859108410, guid: e972f2be0e9e66840a07f6b053f57afe, type: 3}
   - {fileID: 6964507193525842026, guid: 403847deb9dc8a743884034b63902be2, type: 3}
+  - {fileID: 5006861423388562809, guid: 0fba1bff809e7b64eb38a28e7aefc0ca, type: 3}

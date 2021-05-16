@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 1303747078185533134}
   - component: {fileID: 3449445872681018374}
   - component: {fileID: 4997999636874007959}
+  - component: {fileID: 5405345450815808135}
+  - component: {fileID: 8645380922615741182}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: FX_Dandelion_Spore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4857,3 +4859,36 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5405345450815808135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808335577227163727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystems:
+  - {fileID: 3449445872681018374}
+--- !u!114 &8645380922615741182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808335577227163727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2be7c98f2bd0624fa1a525d4c050981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 3449445872681018374}
+  damage:
+    power: 0
+    knockBack: {x: 0, y: 0}
+    abnormal: 0
+    hitPosition: {x: 0, y: 0, z: 0}
+    additionalInfo: 0
