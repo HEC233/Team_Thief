@@ -763,7 +763,6 @@ public class PlayerUnit : Unit
     public void OnAddComboEventCall()
     {
         _curCombo++;
-        Debug.Log(_curCombo);
         
         if (_isContinuingCombo == true)
         {

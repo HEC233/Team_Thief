@@ -1249,6 +1249,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             if (condition == TransitionCondition.None)
                 return false;
+
+            if (condition == TransitionCondition.WallClimbing)
+                return false;
+            
             return true;
         }
 
