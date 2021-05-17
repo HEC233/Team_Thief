@@ -6,6 +6,7 @@ using UnityEngine;
 public class SOCommandData : ScriptableObject
 {
     public string commandString;
+    public string reverseCommandString;
     public float coolTime;
     public float maxCoolTIme;
     

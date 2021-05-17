@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: CommandSkill1Axe
   m_EditorClassIdentifier: 
   commandString: RRZ
+  reverseCommandString: LLZ
+  coolTime: 0
+  maxCoolTIme: 0
   skillName: Skill1Axe

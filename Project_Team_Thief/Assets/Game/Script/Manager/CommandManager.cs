@@ -5,23 +5,26 @@ using UnityEngine.Events;
 
 public class CommandManager : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     //private float _commandInputTime = 0.03f;
     private float _commandInputTime = 0.1f;
 
     private float _inputTime;
     private float _beInputTime;
-    
-    [SerializeField]
-    private List<SOCommandData> _soCommandDatas;
+
+    [SerializeField] private List<SOCommandData> _soCommandDatas;
+
     private List<CommandCtrl> _commandCtrls;
     //private Dictionary<string, SOCommandData> _commandDatas;
 
     //---
-    public List<CommandCtrl> GetCommandCtrl() { return _commandCtrls; }
+    public List<CommandCtrl> GetCommandCtrl()
+    {
+        return _commandCtrls;
+    }
     //---
 
-    public event UnityAction<string> OnCommandCastEvent;
+    public event UnityAction<string, bool> OnCommandCastEvent;
     // 커맨드가 입력됐을 때 데이터를 어떻게 전달 해야 할 까?
     // SkillDataLibrary Class를 하나 만들어서 거기서 받아오는건 어떨까?
 
@@ -64,7 +67,7 @@ public class CommandManager : MonoBehaviour
 
         for (int i = 0; i < _commandCtrls.Count; i++)
             _commandCtrls[i].InsertKey(key);
-        
+
         // 1. 커맨드 결정키는 마지막 단 하나
         // LR Z
         // 2. 반드시 모든 스킬 커맨드에는 결정키가 하나 포함된다
@@ -73,20 +76,27 @@ public class CommandManager : MonoBehaviour
         // LRZ   LRZLX XX
         // 던파에서 커맨드를 저장 위위 아래아래 Z 스킬 위위 아래 z
         // 중간에 다른 키가 입력됐을 때 스킬이 발동되는 경우?
-        
+
         if (key == 'Z' || key == 'X' || key == 'C' || key == 'S') // 커맨드 결정 키
         {
             for (int i = 0; i < _commandCtrls.Count; i++)
             {
                 if (_commandCtrls[i].CheckCommand() == true)
                 {
-                    OnCommandCastEvent?.Invoke(_commandCtrls[i].CommandData.skillName);
-                    ResetAllCommandList();
+                    OnCommandCastEvent?.Invoke(_commandCtrls[i].CommandData.skillName, false);
+                    break;
+                }
+
+                if (_commandCtrls[i].CheckReverseCommand() == true)
+                {
+                    OnCommandCastEvent?.Invoke(_commandCtrls[i].CommandData.skillName, true);
                     break;
                 }
             }
+            
+            ResetAllCommandList();
         }
-
+        
         _beInputTime = Time.time;
     }
 
@@ -113,19 +123,34 @@ public class CommandManager : MonoBehaviour
         private List<char> _commandList;
 
         private readonly string _commandString;
+        private readonly string _reverseCommandString;
         private int _commandCount;
+        private int _reversCommandCount;
 
         //---
-        public List<char> CommandList { get { return _commandList; } }
-        public string CommandString { get { return _commandString; } }
+        public List<char> CommandList
+        {
+            get { return _commandList; }
+        }
+
+        public string CommandString
+        {
+            get { return _commandString; }
+        }
         //---
-        
+
         public CommandCtrl(SOCommandData soCommandData)
         {
             _commandData = soCommandData;
 
             _commandString = CommandData.commandString;
+            _reverseCommandString = CommandData.reverseCommandString;
             _commandList = new List<char>();
+
+            _commandCount = 0;
+            _reversCommandCount = 0;
+            
+            Debug.Log("SKill : " + _commandData.skillName + " Reverse : " + _reverseCommandString);
         }
 
         public void InsertKey(char key)
@@ -137,6 +162,7 @@ public class CommandManager : MonoBehaviour
         {
             _commandList.Clear();
             _commandCount = 0;
+            _reversCommandCount = 0;
         }
 
         public bool CheckCommand()
@@ -156,12 +182,36 @@ public class CommandManager : MonoBehaviour
 
             if (_commandCount == _commandString.Length)
             {
-                ResetKey();
                 return true;
             }
             
-            ResetKey();
             return false;
         }
+
+        public bool CheckReverseCommand()
+        {
+            if (_commandList.Count < _reverseCommandString.Length)
+                return false;
+
+            _commandList = _commandList.GetRange(_commandList.Count - _reverseCommandString.Length, _reverseCommandString.Length);
+
+            for (int i = 0; i < _reverseCommandString.Length; i++)
+            {
+                if (_commandList[i] == _reverseCommandString[i])
+                {
+                    Debug.Log("_commandList[i] : " + _commandList[i] + " _reverseCommandString[i]");
+                    _reversCommandCount++;
+                }
+            }
+
+            if (_reversCommandCount == _reverseCommandString.Length)
+            {
+                Debug.Log("_commandCount : " + _reversCommandCount + " _reverseCommandString.Length : " + _reverseCommandString.Length);
+                return true;
+            }
+            
+            return false;
+        }
+
     }
 }

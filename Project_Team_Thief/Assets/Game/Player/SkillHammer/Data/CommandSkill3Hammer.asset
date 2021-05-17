@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: CommandSkill3Hammer
   m_EditorClassIdentifier: 
   commandString: UDRX
+  reverseCommandString: UDLX
+  coolTime: 0
+  maxCoolTIme: 0
   skillName: Skill3Hammer

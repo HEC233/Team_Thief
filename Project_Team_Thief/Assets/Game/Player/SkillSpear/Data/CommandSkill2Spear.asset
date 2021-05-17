@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: CommandSkill2Spear
   m_EditorClassIdentifier: 
   commandString: LRZ
+  reverseCommandString: RLZ
+  coolTime: 0
+  maxCoolTIme: 0
   skillName: Skill2Spear

@@ -1812,6 +1812,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     public void UnitDeadEventCall()
     {
+        UnBind();
         Transition(TransitionCondition.Die);
     }
 
@@ -1826,7 +1827,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     }
     
 
-    private void OnCommandCastEventCall(string skillName)
+    private void OnCommandCastEventCall(string skillName, bool isReverse)
     {
         var condition = ChangeSkillNameToTransitionCondition(skillName);
 
@@ -1835,7 +1836,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         if (CheckSkillPossibleConditions(condition) == true)
         {
-            CheckSkillActionPlayerDir(skillName);
+            CheckSkillActionPlayerDir(isReverse);
             Transition(condition);
         }
 
@@ -1848,19 +1849,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             case "Skill1Axe":
                 return TransitionCondition.SkillAxe;
                 break;
-            case "Skill1AxeReverse":
-                return TransitionCondition.SkillAxe;
-                break;
             case "Skill2Spear":
                 return TransitionCondition.SkillSpear;
                 break;
-            case "Skill2SpearReverse":
-                return TransitionCondition.SkillSpear;
-                break;
             case "Skill3Hammer":
-                return TransitionCondition.SkillHammer;
-                break;
-            case "Skill3HammerReverse":
                 return TransitionCondition.SkillHammer;
                 break;
             default:
@@ -1883,9 +1875,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         return state.IsAbleTransition();
     }
 
-    private void CheckSkillActionPlayerDir(string skillName)
+    private void CheckSkillActionPlayerDir(bool isReverse)
     {
-        if (skillName.Contains("Reverse"))
+        if (isReverse == true)
         {
             Unit.CheckMovementDir(-1);
         }
