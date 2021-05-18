@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{95784010-C432-4DD8-AD9A-29EE90483466}" SchemaVersion="103">
 	<Effects>
-		<WorkUnit Name="Default Work Unit" ID="{95784010-C432-4DD8-AD9A-29EE90483466}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{95784010-C432-4DD8-AD9A-29EE90483466}" PersistMode="Standalone">
+			<ChildrenList>
+				<Effect Name="axe_delay" ID="{9AB1E113-588D-4141-A3D5-684E79BE5BE9}" PluginName="Wwise Delay" CompanyID="0" PluginID="106" PluginType="3">
+					<PropertyList>
+						<Property Name="DelayTime" Type="Real32" Value="0.2"/>
+						<Property Name="Feedback" Type="Real32" Value="10"/>
+						<Property Name="WetDryMix" Type="Real32" Value="19"/>
+					</PropertyList>
+				</Effect>
+			</ChildrenList>
+		</WorkUnit>
 	</Effects>
 </WwiseDocument>
