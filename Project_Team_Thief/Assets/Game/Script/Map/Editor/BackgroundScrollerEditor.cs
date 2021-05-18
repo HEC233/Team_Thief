@@ -40,11 +40,13 @@ public class BackgroundScrollerEditor : Editor
 {
     SerializedProperty layersProperty;
     SerializedProperty dampProperty;
+    SerializedProperty cameraProperty;
 
     private void OnEnable()
     {
         layersProperty = serializedObject.FindProperty("layers");
         dampProperty = serializedObject.FindProperty("damping");
+        cameraProperty = serializedObject.FindProperty("cameraTr");
     }
 
     public override void OnInspectorGUI()
@@ -54,6 +56,8 @@ public class BackgroundScrollerEditor : Editor
         EditorGUILayout.HelpBox("각 레이어는 따로 스크롤 되는 배경의 집합입니다.\n" +
         "초점은 10이며 거리를 10 보다 크게 줄시 멀리 있는 것처럼 행동하고 10 보다 작게 줄시 가까이에 있는 것처럼 행동합니다.\n" +
         "태그 이름에는 배경 오브젝트들이 속한 태그 이름을 넣어주면 됩니다. 그럼 컴포넌트가 알아서 배경들을 수집합니다.", MessageType.Info);
+
+        cameraProperty.objectReferenceValue = EditorGUILayout.ObjectField("카메라 트랜스폼", cameraProperty.objectReferenceValue, typeof(Transform), true);
 
         dampProperty.floatValue = EditorGUILayout.Slider("댐프 값",dampProperty.floatValue, 0.0f, 1.0f);
 

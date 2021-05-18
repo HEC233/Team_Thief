@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackgroundScroller : MonoBehaviour
 {
-    private Transform _cameraTr;
+    public Transform cameraTr;
 
     private Vector2 prevCameraPos;
 
@@ -19,23 +19,23 @@ public class BackgroundScroller : MonoBehaviour
         foreach(var layer in layers)
         {
             layer.Create(transform);
-            StartCoroutine(layer.ScrollLerp(this));
+            //StartCoroutine(layer.ScrollLerp(this));
         }
 
-        _cameraTr = Camera.main.transform;
-        prevCameraPos = (Vector2)_cameraTr.position;
+        //_cameraTr = Camera.main.transform;
+        prevCameraPos = (Vector2)cameraTr.position;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        Vector3 delta = (Vector2)_cameraTr.position - prevCameraPos;
+        Vector3 delta = (Vector2)cameraTr.position - prevCameraPos;
 
         foreach (var layer in layers)
         {
-            layer.Move(delta);
+            layer.Move(delta, this);
         }
 
-        prevCameraPos = (Vector2)_cameraTr.position;
+        prevCameraPos = (Vector2)cameraTr.position;
     }
 
     [System.Serializable]
@@ -63,28 +63,29 @@ public class BackgroundScroller : MonoBehaviour
             {
                 o.transform.SetParent(_tr);
             }
-            _rcp = 1 - (10 / distance);
+            _rcp = (10 / distance);
 
             targetPos = _tr.position;
         }
 
-        public void Move(Vector3 delta)
+        public void Move(Vector3 delta, BackgroundScroller bs)
         {
             var vrtDelta = new Vector3(delta.x, 0, 0);
 
             //_tr.position += (verticalScrolling ? delta : vrtDelta) * _rcp;
-            targetPos += (verticalScrolling ? delta : vrtDelta) * _rcp;
+            targetPos -= (verticalScrolling ? delta : vrtDelta) * _rcp;
+            _tr.localPosition = Vector3.Lerp(_tr.localPosition, targetPos, bs.damping);
         }
 
-        public IEnumerator ScrollLerp(BackgroundScroller bs)
-        {
-            while (true)
-            {
-                _tr.position = Vector3.Lerp(_tr.position, targetPos, bs.damping);
+        //public IEnumerator ScrollLerp(BackgroundScroller bs)
+        //{
+        //    while (true)
+        //    {
+        //        _tr.position = Vector3.Lerp(_tr.position, targetPos, bs.damping);
 
-                yield return null;
-            }
-        }
+        //        yield return null;
+        //    }
+        //}
     }
         
 }
