@@ -1,11 +1,45 @@
 Event	ID	Name			Wwise Object Path	Notes
+	3795174	PC_land			\Default Work Unit\SFX\PC\movement\PC_land	
+	118156989	PC_stop			\Default Work Unit\SFX\PC\movement\PC_stop	
 	438455616	PC_BA2			\Default Work Unit\SFX\PC\woosh\PC_BA2	
 	438455617	PC_BA3			\Default Work Unit\SFX\PC\woosh\PC_BA3	
 	438455619	PC_BA1			\Default Work Unit\SFX\PC\woosh\PC_BA1	
 	438455622	PC_BA4			\Default Work Unit\SFX\PC\woosh\PC_BA4	
+	690267075	PC_axe			\Default Work Unit\SFX\PC\woosh\PC_axe	
+	1271964801	PC_dash			\Default Work Unit\SFX\PC\movement\PC_dash	
+	1281925152	PC_slide			\Default Work Unit\SFX\PC\movement\PC_slide	
+	1438052377	PC_wall			\Default Work Unit\SFX\PC\movement\PC_wall	
+	1439571663	PC_hammaer_Smash			\Default Work Unit\SFX\PC\woosh\PC_hammaer_Smash	
+	2523322754	PC_hurt			\Default Work Unit\SFX\PC\hurt\PC_hurt	
+	2685062319	PC_spear_Charge			\Default Work Unit\SFX\PC\woosh\PC_spear_Charge	
+	2779137053	PC_spear_Rush			\Default Work Unit\SFX\PC\woosh\PC_spear_Rush	
 	3067029096	PC_FS			\Default Work Unit\SFX\PC\movement\PC_FS	
+	3162924009	PC_Jump			\Default Work Unit\SFX\PC\movement\PC_Jump	
+	3385077829	PC_HIT_hammer			\Default Work Unit\SFX\PC\hit\PC_HIT_hammer	
+	4017075331	PC_HIT_blade			\Default Work Unit\SFX\PC\hit\PC_HIT_blade	
+	4253460925	PC_hammaer_Swing			\Default Work Unit\SFX\PC\woosh\PC_hammaer_Swing	
+
+Effect plug-ins	ID	Name	Type				Notes
+	120206919	Wwise Compressor (Custom)	Wwise Compressor			
+	1049017127	axe_delay	Wwise Delay			
+	1590660382	Nearly_Forever	Wwise Delay			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	427331776	SFX_PC_FS	D:\Main\Works\Sound\wwise\Team Theif\.cache\Windows\SFX\SFX_PC_FS_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\PC_FS\SFX_PC_FS		72916
-	1008207653	SFX_PC_woosh	D:\Main\Works\Sound\wwise\Team Theif\.cache\Windows\SFX\SFX_PC_woosh_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\woosh\PC_BA3\SFX_PC_woosh		71364
+	71523468	SFX_PC_stop	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_stop_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_stop		69432
+	152241030	SFX_PC_wall	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_wall_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_wall		37108
+	242449067	SFX_PC_hammer_Swing	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_hammer_Swing_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\woosh\SFX_PC_hammer_Swing		39736
+	294639420	SFX_PC_HIT_hammer	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_HIT_hammer_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\hit\SFX_PC_HIT_hammer		3253200
+	367170398	SFX_PC_spear_Rush	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_spear_Rush_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\woosh\SFX_PC_spear_Rush		42124
+	427331776	SFX_PC_FS	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_FS_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_FS		72916
+	447645998	SFX_PC_land	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_land_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_land		72916
+	501540947	SFX_PC_dash	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_dash_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_dash		50164
+	539243910	SFX_PC_Hurt2	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_Hurt2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\hurt\PC_Hurt\SFX_PC_Hurt2		24674
+	590939762	SFX_PC_hammer_Smash	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_hammer_Smash_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\woosh\SFX_PC_hammer_Smash		183448
+	835747766	SFX_PC_slide	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_slide_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_slide		373996
+	839774164	SFX_PC_HIT_blade	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_HIT_blade_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\hit\SFX_PC_HIT_blade		125444
+	856789864	SFX_PC_Hurt1	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_Hurt1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\hurt\PC_Hurt\SFX_PC_Hurt1		46630
+	884030604	SFX_PC_spear_Charge	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_spear_Charge_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\woosh\SFX_PC_spear_Charge		66676
+	897023030	SFX_PC_jump	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_jump_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_jump		42656
+	987553898	SFX_PC_axe	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_axe_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\woosh\SFX_PC_axe		47356
+	1008207653	SFX_PC_woosh	C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_woosh_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\woosh\PC_BA1\SFX_PC_woosh		71364
 

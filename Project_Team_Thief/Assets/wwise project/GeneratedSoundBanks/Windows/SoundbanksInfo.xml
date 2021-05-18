@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>D:\Main\Works\Sound\wwise\Team Theif\</ProjectRoot>
-		<SourceFilesRoot>D:\Main\Works\Sound\wwise\Team Theif\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>D:\Main\Works\Sound\wwise\Team Theif\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>D:\Main\Works\Sound\wwise\Team Theif\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="1142501858">
+		<SoundBank Id="393239870" Language="SFX" Hash="110249294">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
 			<IncludedEvents>
+				<Event Id="690267075" Name="PC_axe" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_axe" DurationType="OneShot" DurationMin="0.253048" DurationMax="0.284037">
+					<IncludedMemoryFiles>
+						<File Id="987553898" Language="SFX">
+							<ShortName>SFX_PC_axe.wav</ShortName>
+							<Path>SFX\SFX_PC_axe_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="438455619" Name="PC_BA1" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_BA1" DurationType="OneShot" DurationMin="0.312270" DurationMax="0.441617">
 					<IncludedMemoryFiles>
 						<File Id="1008207653" Language="SFX">
@@ -48,6 +56,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1271964801" Name="PC_dash" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_dash" DurationType="OneShot" DurationMin="0.238826" DurationMax="0.337751">
+					<IncludedMemoryFiles>
+						<File Id="501540947" Language="SFX">
+							<ShortName>SFX_PC_dash.wav</ShortName>
+							<Path>SFX\SFX_PC_dash_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3067029096" Name="PC_FS" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_FS" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="427331776" Language="SFX">
@@ -56,9 +72,109 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1439571663" Name="PC_hammaer_Smash" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_hammaer_Smash" DurationType="OneShot" DurationMin="0.981244" DurationMax="1.101409">
+					<IncludedMemoryFiles>
+						<File Id="590939762" Language="SFX">
+							<ShortName>SFX_PC_hammer_Smash.wav</ShortName>
+							<Path>SFX\SFX_PC_hammer_Smash_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4253460925" Name="PC_hammaer_Swing" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_hammaer_Swing" DurationType="OneShot" DurationMin="0.180576" DurationMax="0.202689">
+					<IncludedMemoryFiles>
+						<File Id="242449067" Language="SFX">
+							<ShortName>SFX_PC_hammer_Swing.wav</ShortName>
+							<Path>SFX\SFX_PC_hammer_Swing_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4017075331" Name="PC_HIT_blade" ObjectPath="\Events\Default Work Unit\SFX\PC\hit\PC_HIT_blade" DurationType="OneShot" DurationMin="0.698560" DurationMax="0.723195">
+					<IncludedMemoryFiles>
+						<File Id="839774164" Language="SFX">
+							<ShortName>SFX_PC_HIT_blade.wav</ShortName>
+							<Path>SFX\SFX_PC_HIT_blade_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3385077829" Name="PC_HIT_hammer" ObjectPath="\Events\Default Work Unit\SFX\PC\hit\PC_HIT_hammer" DurationType="OneShot" DurationMin="17.406754" DurationMax="19.538424">
+					<IncludedMemoryFiles>
+						<File Id="294639420" Language="SFX">
+							<ShortName>SFX_PC_HIT_hammer.wav</ShortName>
+							<Path>SFX\SFX_PC_HIT_hammer_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2523322754" Name="PC_hurt" ObjectPath="\Events\Default Work Unit\SFX\PC\hurt\PC_hurt" DurationType="OneShot" DurationMin="0.237357" DurationMax="0.504117">
+					<IncludedMemoryFiles>
+						<File Id="539243910" Language="SFX">
+							<ShortName>SFX_PC_Hurt2.wav</ShortName>
+							<Path>SFX\SFX_PC_Hurt2_10C4C929.wem</Path>
+						</File>
+						<File Id="856789864" Language="SFX">
+							<ShortName>SFX_PC_Hurt1.wav</ShortName>
+							<Path>SFX\SFX_PC_Hurt1_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3162924009" Name="PC_Jump" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_Jump" DurationType="OneShot" DurationMin="0.215109" DurationMax="0.271020">
+					<IncludedMemoryFiles>
+						<File Id="897023030" Language="SFX">
+							<ShortName>SFX_PC_jump.wav</ShortName>
+							<Path>SFX\SFX_PC_jump_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3795174" Name="PC_land" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_land" DurationType="OneShot" DurationMin="0.295424" DurationMax="0.372210">
+					<IncludedMemoryFiles>
+						<File Id="447645998" Language="SFX">
+							<ShortName>SFX_PC_land.wav</ShortName>
+							<Path>SFX\SFX_PC_land_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1281925152" Name="PC_slide" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_slide" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="835747766" Language="SFX">
+							<ShortName>SFX_PC_slide.wav</ShortName>
+							<Path>SFX\SFX_PC_slide_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2685062319" Name="PC_spear_Charge" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_spear_Charge" DurationType="OneShot" DurationMin="0.340329" DurationMax="0.360566">
+					<IncludedMemoryFiles>
+						<File Id="884030604" Language="SFX">
+							<ShortName>SFX_PC_spear_Charge.wav</ShortName>
+							<Path>SFX\SFX_PC_spear_Charge_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2779137053" Name="PC_spear_Rush" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_spear_Rush" DurationType="OneShot" DurationMin="0.231514" DurationMax="0.245564">
+					<IncludedMemoryFiles>
+						<File Id="367170398" Language="SFX">
+							<ShortName>SFX_PC_spear_Rush.wav</ShortName>
+							<Path>SFX\SFX_PC_spear_Rush_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="118156989" Name="PC_stop" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_stop" DurationType="OneShot" DurationMin="0.371172" DurationMax="0.416626">
+					<IncludedMemoryFiles>
+						<File Id="71523468" Language="SFX">
+							<ShortName>SFX_PC_stop.wav</ShortName>
+							<Path>SFX\SFX_PC_stop_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1438052377" Name="PC_wall" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_wall" DurationType="OneShot" DurationMin="0.210000" DurationMax="0.210000">
+					<IncludedMemoryFiles>
+						<File Id="152241030" Language="SFX">
+							<ShortName>SFX_PC_wall.wav</ShortName>
+							<Path>SFX\SFX_PC_wall_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="1783971625">
+		<SoundBank Id="1355168291" Language="SFX" Hash="992544517">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
