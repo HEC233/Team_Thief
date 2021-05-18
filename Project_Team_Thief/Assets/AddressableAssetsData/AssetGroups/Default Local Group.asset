@@ -38,6 +38,13 @@ MonoBehaviour:
     - Unit
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 253322d612c9afe4cb5c9e7522084a57
+    m_Address: Assets/Game/Data/TextAsset/TestText.txt
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Text
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cf711df1b7a7a54c9861afe5fde6759, type: 2}
   m_SchemaSet:
