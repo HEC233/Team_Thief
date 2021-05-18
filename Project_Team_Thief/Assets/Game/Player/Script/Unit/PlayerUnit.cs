@@ -185,6 +185,12 @@ public class PlayerUnit : Unit
     public float HitTime => _hitTime;
     private bool _isInvincibility = false;
 
+    [Header("Encroachment Variable")] 
+    [SerializeField]
+    private int _encroachmentDecreaseCombo;
+    [SerializeField]
+    private int _baiscAttackEncroachmentDecrease;
+    
     // Skill Variable
     [Header("Skill Variable")]
     /// </기획 변동으로 인해 미사용>
@@ -223,7 +229,7 @@ public class PlayerUnit : Unit
     [SerializeField, Header("SkillHammer")]
     private SkillHammerData _skillHammerData;
     public SkillHammerData SkillHammerData => _skillHammerData;
-    public SkillSpearAttackCtrl _skillHammerAttackCtrl;     // 나중에 다른 스크립트로 교체 or 같은 스크립트로 캡슐화? 그런게 필요
+    public SkillHammerAttackCtrl _skillHammerAttackCtrl;     // 나중에 다른 스크립트로 교체 or 같은 스크립트로 캡슐화? 그런게 필요
     private float _skillHammerNumberOfTimes;
     private float _skillHammerCoolTime;
     private bool _skillHammerIsAble = true;
@@ -658,11 +664,17 @@ public class PlayerUnit : Unit
 
         if (_curHp < 0)
         {
-            _isPlayerDead = true;
-            OnPlayerDeadEvent?.Invoke();
-            Debug.LogError("플레이어 사망");
+            Dead();
         }
     }
+
+    private void Dead()
+    {
+        _isPlayerDead = true;
+        OnPlayerDeadEvent?.Invoke();
+        Debug.LogError("플레이어 사망");
+    }
+    
 
     public void HitKnockBack()
     {
@@ -712,6 +724,48 @@ public class PlayerUnit : Unit
     //     return skillObject;
     // }
 
+    private void ChangeEncroachment(float encroachmentIncrease)
+    {
+        _encroachment += encroachmentIncrease;
+        if (_encroachment < 0)
+        {
+            _encroachment = 0;
+        }
+        
+        Debug.Log("_encroachment : " + _encroachment);
+        playerInfo.CurEncroachment = _encroachment;
+        
+        if (_encroachment >= 100)
+        {
+            Dead();
+        }
+    }
+
+    private void FindEncroachmentDecreaseFromSkillData(string skillName)
+    {
+        float encroachmentIncrease = 0.0f;
+        
+        if (_skillAxeData.SkillName == skillName)
+        {
+            encroachmentIncrease = _skillAxeData.DecreaseEncroachment;
+        }
+        else if (_skillSpearData.SkillName == skillName)
+        {
+            encroachmentIncrease = _skillSpearData.DecreaseEncroachment;
+        }
+        else if (_skillHammerData.SkillName == skillName)
+        {
+            encroachmentIncrease = _skillHammerData.DecreaseEncroachment;
+
+        }
+        else if ("Basic" == skillName)
+        {
+            encroachmentIncrease = _baiscAttackEncroachmentDecrease;
+        }
+        
+        ChangeEncroachment(encroachmentIncrease);
+    }
+    
     public bool IsAbleSkillAxe()
     {
         Debug.Log("Call");
@@ -721,6 +775,7 @@ public class PlayerUnit : Unit
         }
 
         _skillAxeNumberOfTimes--;
+        ChangeEncroachment(_skillAxeData.IncreaseEncroachment);
 
         if (_skillAxeNumberOfTimes <= 0)
         {
@@ -738,7 +793,8 @@ public class PlayerUnit : Unit
         }
 
         _skillSpearNumberOfTimes--;
-
+        ChangeEncroachment(_skillSpearData.IncreaseEncroachment);
+        
         if (_skillSpearNumberOfTimes <= 0)
         {
             StartCoroutine(SkillSpearCoolTimeCoroutine());
@@ -755,6 +811,8 @@ public class PlayerUnit : Unit
         }
         
         _skillHammerNumberOfTimes--;
+        ChangeEncroachment(SkillHammerData.IncreaseEncroachment);
+
         
         if (_skillHammerNumberOfTimes <= 0)
         {
@@ -791,7 +849,9 @@ public class PlayerUnit : Unit
         _skillHammerAttackCtrl.Progress();
     }
 
-    public void OnAddComboEventCall()
+    //  리팩토링 할 때  skillData를 다 따로 가지고 있지 말고
+    // skillDataBase 리스트를 하나 만들어서 거기 담아놓자.
+    public void OnAddComboEventCall(string skillname)
     {
         _curCombo++;
         
@@ -803,11 +863,15 @@ public class PlayerUnit : Unit
         {
             _comboCoroutine = StartCoroutine(ComboCoroutine());    
         }
-        
-        GameManager.instance.uiMng.SetCombo(_curCombo);
-        
-    }
 
+        if (_curCombo >= _encroachmentDecreaseCombo)
+        {
+            FindEncroachmentDecreaseFromSkillData(skillname);
+        }
+
+        GameManager.instance.uiMng.SetCombo(_curCombo);
+    }
+    
     public void StartBulletTime(float timeScale)
     {
         _timeScale = timeScale;

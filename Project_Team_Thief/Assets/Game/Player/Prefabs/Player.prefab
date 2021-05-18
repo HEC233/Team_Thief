@@ -808,15 +808,17 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 3, y: 5.5}
   _basicJumpAttackCtrl: {fileID: 1542053514262991507}
-  _comboTime: 1
+  _comboTime: 3
   _hitInvincibilityTime: 1
   _hitInvincibilityTwinkleTime: 0.5
   _hitTime: 0.5
+  _encroachmentDecreaseCombo: 20
+  _baiscAttackEncroachmentDecrease: -5
   _skillAxeData: {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
   _skillSpearData: {fileID: 11400000, guid: e8948507ae42110479fddb18fa2f4d59, type: 2}
   _skillSpearAttackCtrl: {fileID: 67477167}
   _skillHammerData: {fileID: 11400000, guid: fdc7ee77843c224408445fd12e4766e5, type: 2}
-  _skillHammerAttackCtrl: {fileID: 1528243973970821963}
+  _skillHammerAttackCtrl: {fileID: 2493278660732688885}
   _SlideingFx: {fileID: 1220389250567162997}
 --- !u!1 &1542053514262991534
 GameObject:
@@ -1515,7 +1517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1181020047299682254}
   - component: {fileID: 2117816050191141318}
-  - component: {fileID: 1528243973970821963}
+  - component: {fileID: 2493278660732688885}
   - component: {fileID: 2070317493623298338}
   m_Layer: 13
   m_Name: SkillHammerAttack
@@ -1564,7 +1566,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.13, y: 1.84}
   m_EdgeRadius: 0
---- !u!114 &1528243973970821963
+--- !u!114 &2493278660732688885
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1573,7 +1575,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2855187468384228050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f688b1710b3af7448992ba2d2d9edd7, type: 3}
+  m_Script: {fileID: 11500000, guid: aeb2783c6cbc2f24ea85702b87eadceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _isAbleCritical: 0
@@ -1581,7 +1583,7 @@ MonoBehaviour:
   _isAbleFlash: 0
   _isAbleHitStop: 0
   _isAbleBulltTime: 0
-  _isAbleCameraShake: 1
+  _isAbleCameraShake: 0
   _isDisplyFx: 1
   _isPlaySFX: 0
   _hitStopTime: 0

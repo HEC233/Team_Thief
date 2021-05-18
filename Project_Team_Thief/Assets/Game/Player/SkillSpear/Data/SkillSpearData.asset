@@ -15,6 +15,8 @@ MonoBehaviour:
   _numberOfTimesTheSkill: 1
   _coolTime: 3
   _skillName: Skill2Spear
+  _increaseEncroachment: 10
+  _encroachmentDecrease: -5
   _cinemachineSignalSource: {fileID: 0}
   _knockBackPower: {x: 10, y: 0}
   _playerMovePostionX: 9
