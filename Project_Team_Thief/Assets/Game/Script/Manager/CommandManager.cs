@@ -203,14 +203,12 @@ public class CommandManager : MonoBehaviour
             {
                 if (_commandList[i] == _reverseCommandString[i])
                 {
-                    Debug.Log("_commandList[i] : " + _commandList[i] + " _reverseCommandString[i]");
                     _reversCommandCount++;
                 }
             }
 
             if (_reversCommandCount == _reverseCommandString.Length)
             {
-                Debug.Log("_commandCount : " + _reversCommandCount + " _reverseCommandString.Length : " + _reverseCommandString.Length);
                 return true;
             }
             

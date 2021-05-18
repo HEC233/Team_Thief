@@ -26,7 +26,25 @@ public class SOPlayer : ScriptableObject
         set { _curHp = value; hpChangeEvent?.Invoke(); }
     }
 
+    [SerializeField]
+    private float _maxEncroachment;
+    public float MaxEncroachment
+    {
+        get { return _maxEncroachment; }
+        set { _maxEncroachment = value; }
+    }
+
+    [SerializeField] 
+    private float _curEncroachment;
+
+    public float CurEncroachment
+    {
+        get => _curEncroachment;
+        set { _curEncroachment = value; encroachmentChangeEvent?.Invoke(); }
+    }
+
     public UnityAction hpChangeEvent;
+    public UnityAction encroachmentChangeEvent;
 
     [SerializeField]
     private float _decreaseHp;

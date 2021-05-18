@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{B4133B76-FEFE-4CA1-804A-C0E94554340E}" SchemaVersion="103">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{B4133B76-FEFE-4CA1-804A-C0E94554340E}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="SFX" ID="{4BD36AB1-1EEF-4AEF-B47F-19504B46BE7D}">
+					<ObjectInclusionList>
+						<ObjectRef Name="PC_BA2" ID="{F7206707-89DA-40FC-BD8B-27ADB45B1458}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_slide" ID="{82C819C0-ED0C-41FB-B724-FADFDDE1B801}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_hammaer_Smash" ID="{4C8D6168-5AA1-423A-A0E1-D7534BCD522A}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_FS" ID="{FCC80F9B-26B0-4255-A3A1-7F3E6A515A89}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_Jump" ID="{0E398615-CD55-42F5-A0DC-CF542B88A73C}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_spear_Rush" ID="{5632C9FD-D831-430D-B2B0-18C52FCAE1D0}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_BA1" ID="{DE9E1BA2-E5BD-4497-BD1B-C3361F18F645}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_HIT_hammer" ID="{A9F6E7E6-3ED1-466B-9FEF-9E35C042657D}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_dash" ID="{8B5A31B1-226B-47F6-A437-9C44A796B89F}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_land" ID="{A4FCA5CE-E7EC-48CF-85AE-55E2F9187F34}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_wall" ID="{6BAE9CE9-7A40-4AFE-B486-F959AE36A69F}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_axe" ID="{912874D4-E89C-4B61-8A40-4ECE3C8AA4B6}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_hurt" ID="{BC543562-84C8-4BFF-9AF0-89EF59EDD651}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_HIT_blade" ID="{03DA4E6F-03ED-4E08-80FE-8E63DD183177}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_spear_Charge" ID="{96550337-5AAD-4ED6-9C05-84326C3A099B}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_hammaer_Swing" ID="{865FBC81-7380-4EE2-A2AA-A97CE34EA79A}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_BA4" ID="{898E93DD-1739-4F00-A741-F809568C6994}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_BA3" ID="{DD8D3C23-92D5-4FA3-98C5-3638EC09F6A2}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PC_stop" ID="{D392478A-F43E-4FA3-8C6E-0A44DC3C6C96}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

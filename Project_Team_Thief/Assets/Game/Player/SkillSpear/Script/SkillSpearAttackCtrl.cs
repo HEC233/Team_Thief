@@ -48,24 +48,9 @@ public class SkillSpearAttackCtrl : AttackBase
 
         if (_isEnter == true || alwaysEnter == true)
         {
-            EnemyHitFx();
             HitStop();
             CameraShake();
         }
-    }
-
-    private void EnemyHitFx()
-    {
-        if(_isDisplyFx == false)
-            return;
-        
-        if (result == null)
-        {
-            Debug.LogError("Result Is Null");
-            return;
-        }
-    
-        GameManager.instance.FX.Play("HitHammerFx", _damage.hitPosition);
     }
 
     public override void Flash()
@@ -131,7 +116,7 @@ public class SkillSpearAttackCtrl : AttackBase
                     //=====================================================
                     _isEnter = true;
                     item.GetComponentInParent<Unit>().HandleHit(_damage);
-                    OnEnemyHitEvent?.Invoke();
+                    OnEnemyHitEvent?.Invoke("Skill2Spear");
                 }
             }
         }

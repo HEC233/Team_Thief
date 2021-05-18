@@ -129,7 +129,7 @@ public class SkillAxeAttackCtrl : AttackBase
         //=====================================================
         item.GetComponentInParent<Unit>().HandleHit(_damage);
         
-        OnEnemyHitEvent?.Invoke();
+        OnEnemyHitEvent?.Invoke("Skill1Axe");
     }
 
     private Collider2D FindEnemyObj()
