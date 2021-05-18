@@ -35,12 +35,15 @@ public class UIPlayerInfo : MonoBehaviour
     {
         InitInfo();
         UpdateUIHP();
+        SetMP();
         playerInfo.hpChangeEvent += SetHP;
+        playerInfo.encroachmentChangeEvent += SetMP;
     }
 
     private void OnDisable()
     {
         playerInfo.hpChangeEvent -= SetHP;
+        playerInfo.encroachmentChangeEvent -= SetMP;
     }
 
     public void Toggle(bool value)
@@ -56,6 +59,8 @@ public class UIPlayerInfo : MonoBehaviour
         _displayHP = _curHP;
 
         // Init MP here
+        _maxMP = playerInfo.MaxEncroachment;
+        _curMP = playerInfo.CurEncroachment;
     }
 
     public void CommandUpdate()
@@ -99,10 +104,10 @@ public class UIPlayerInfo : MonoBehaviour
 
     public void SetMP()
     {
-        // _curMP = 
-        // _maxMP = 
+        _maxMP = playerInfo.MaxEncroachment;
+        _curMP = playerInfo.CurEncroachment;
 
-        float ratio = _curMP / _maxMP;
+        float ratio = 1 - Mathf.Clamp01(_curMP / _maxMP);
         float width = Mathf.Clamp((int)(ratio * 73.0f), 2, 73);
 
         currentMP.sizeDelta = new Vector2(width, currentMP.sizeDelta.y);

@@ -40,7 +40,7 @@ public class SOPlayer : ScriptableObject
     public float CurEncroachment
     {
         get => _curEncroachment;
-        set { _maxEncroachment = value;  }
+        set { _curEncroachment = value; encroachmentChangeEvent?.Invoke(); }
     }
 
     public UnityAction hpChangeEvent;

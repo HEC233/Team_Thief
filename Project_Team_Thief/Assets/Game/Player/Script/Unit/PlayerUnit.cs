@@ -318,6 +318,9 @@ public class PlayerUnit : Unit
 
         //---
         playerInfo.CurHP = _curHp;
+        playerInfo.MaxHP = _maxHp;
+        playerInfo.CurEncroachment = _encroachment;
+        playerInfo.MaxEncroachment = 100;
         //---
 
         _basicAttackDamage = new Damage();
