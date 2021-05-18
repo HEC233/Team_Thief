@@ -26,7 +26,7 @@ public class KeyManager : MonoBehaviour
         {
             if (GameManager.instance.isPlayerDead)
             {
-                GameManager.instance.ExitToMainMenu();
+                //GameManager.instance.ExitToMainMenu();
                 return;
             }
 

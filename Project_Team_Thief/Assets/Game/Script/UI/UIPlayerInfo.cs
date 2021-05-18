@@ -10,6 +10,8 @@ public class UIPlayerInfo : MonoBehaviour
 
     public RectTransform currentHP;
     public RectTransform currentMP;
+    public Image currentHPImage;
+    public Image currentMPImage;
 
     public TextMeshProUGUI curHPText;
     public TextMeshProUGUI maxHPText;
@@ -104,6 +106,7 @@ public class UIPlayerInfo : MonoBehaviour
         float width = Mathf.Clamp((int)(ratio * 73.0f), 2, 73);
 
         currentMP.sizeDelta = new Vector2(width, currentMP.sizeDelta.y);
+        //currentMP.fillAmount = ratio;
     }
 
     private void UpdateUIHP()
@@ -113,6 +116,7 @@ public class UIPlayerInfo : MonoBehaviour
 
         var size = currentHP.sizeDelta;
         currentHP.sizeDelta = new Vector2(width, size.y);
+        //currentHP.fillAmount = ratio;
 
         maxHPText.text = ((int)_maxHP).ToString();
         curHPText.text = ((int)_curHP).ToString();
