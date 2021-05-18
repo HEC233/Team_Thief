@@ -81,6 +81,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private void Bind()
     {
+        Debug.Log("Bind");
+        
         GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvnetCall;
         GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
         GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
@@ -713,6 +715,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 SystemMgr.Unit.SetDash();
                 SystemMgr.StartCoroutine(DashCoroutine());
             }
+            else
+            {
+                // 대쉬가 불가능한 경우 대쉬 상태에서 멈추는 문제 있음.
+                // 리팩토링 할 때 넘기는 것 보단 대쉬가 현재 가능한 상태인지 묻는게 먼저일듯.
+                SystemMgr.Transition(TransitionCondition.Idle);
+            }
         }
 
         public override void Update()
@@ -731,6 +739,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 return false;
             }
+
+            if (condition == TransitionCondition.WallClimbing)
+                return false;
             
             // if (SystemMgr.Unit.isDashAble == false)
             //     return true;
@@ -745,6 +756,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 }
             }
             
+            Debug.Log(condition);
             return true;
         }
 
@@ -1731,7 +1743,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Falling, new FallingState(this));
         //AddState(TransitionCondition.Roll, new RollState(this));
         AddState(TransitionCondition.WallClimbing, new WallClimbingState(this));
-        AddState(TransitionCondition.Wallslideing, new WallslideingState(this));
+        //AddState(TransitionCondition.Wallslideing, new WallslideingState(this));
         AddState(TransitionCondition.WallJump, new WallJumpState(this));
         AddState(TransitionCondition.Dash, new DashState(this));
         AddState(TransitionCondition.Attack, new BasicAttackState(this));
@@ -1751,7 +1763,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return false;
         }
         
-        if (CurrState == condition)
+        if (CurrState == condition) 
         {
             return false;
         }
@@ -1813,7 +1825,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     public void UnitDeadEventCall()
     {
         UnBind();
-        Transition(TransitionCondition.Die);
+        // 캐릭터 죽음은 강제성이 필요해보임.
+        // 그러므로  Transition이 아닌 강제 변경.
+        ChangeState(TransitionCondition.Die);
     }
 
     public void StartJumpKeyPressDetectCoroutine()

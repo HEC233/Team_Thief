@@ -64,7 +64,7 @@ public abstract class AttackBase : MonoBehaviour
     [SerializeField]
     protected FlashCtrl _flashGO;
 
-    public UnityAction OnEnemyHitEvent;
+    public UnityAction<string> OnEnemyHitEvent;
     
 
     public abstract void Flash();

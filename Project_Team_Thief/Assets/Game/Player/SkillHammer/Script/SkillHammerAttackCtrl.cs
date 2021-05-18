@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using Assert = UnityEngine.Assertions.Assert;
-public class SkillSpearAttackCtrl : AttackBase 
+
+public class SkillHammerAttackCtrl : AttackBase
 {
-   
-    [SerializeField] 
+  [SerializeField] 
     private BoxCollider2D _basicAttackCollider2D;
     [SerializeField]
     private CinemachineImpulseSource _cinemachineImpulseSource;
@@ -42,15 +42,20 @@ public class SkillSpearAttackCtrl : AttackBase
     public void Progress()
     {
         PlaySfx();
-        PlayFx();
 
         AttackDamage();
 
         if (_isEnter == true || alwaysEnter == true)
         {
+            PlayFx();
             HitStop();
             CameraShake();
         }
+    }
+
+    private void EnemyHitFx()
+    {
+        GameManager.instance.FX.Play("HitHammerFx", _damage.hitPosition);
     }
 
     public override void Flash()
@@ -79,6 +84,8 @@ public class SkillSpearAttackCtrl : AttackBase
     {
         if (_isDisplyFx == false)
             return;
+
+        EnemyHitFx();
     }
 
     public override void PlaySfx()
@@ -116,7 +123,7 @@ public class SkillSpearAttackCtrl : AttackBase
                     //=====================================================
                     _isEnter = true;
                     item.GetComponentInParent<Unit>().HandleHit(_damage);
-                    OnEnemyHitEvent?.Invoke("Skill2Spear");
+                    OnEnemyHitEvent?.Invoke("Skill3Hammer");
                 }
             }
         }

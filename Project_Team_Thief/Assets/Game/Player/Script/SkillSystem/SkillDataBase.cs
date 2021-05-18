@@ -18,6 +18,16 @@ public abstract class SkillDataBase : ScriptableObject
 
     public string SkillName => _skillName;
 
+    [SerializeField] 
+    private float _increaseEncroachment;
+
+    public float IncreaseEncroachment => _increaseEncroachment;
+
+    [SerializeField] 
+    private float _encroachmentDecrease;
+
+    public float DecreaseEncroachment => _encroachmentDecrease;
+
     // Unit까지 넣어주자.
     public abstract SkillControllerBase GetSkillController(GameSkillObject skillObject, Unit unit);
 }
