@@ -45,6 +45,13 @@ MonoBehaviour:
     - Text
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: bb6b81eebe0751c4aa62670652fe6a0b
+    m_Address: Assets/Game/Sprite/Tile/Dummy/TL_dummy.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cf711df1b7a7a54c9861afe5fde6759, type: 2}
   m_SchemaSet:

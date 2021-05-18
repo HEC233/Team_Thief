@@ -1,77 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System.Text.RegularExpressions;
 
 public class DialogueSystem : MonoBehaviour
 {
     DialogueData _data;
-    public string[] dialogues;
+    string[] dialogues;
     Dictionary<string, int> indexKeys;
+    byte[] code;
 
-    public TextAsset asset;
+    private bool autoPass = false;
+    private int PC;
 
     private bool initialized = false;
-    public void Initialize()
+    private bool endFlag = false;
+    public bool Initialize(out string ErrorMessage)
     {
+        initialized = false;
+        ErrorMessage = string.Empty;
+
         var dataObject = GameObject.Find("DialogueData");
         if (dataObject == null)
-            return;
+        {
+            ErrorMessage = "DialogueData Object Does not exist.";
+            return false;
+        }
 
         var data = dataObject.GetComponent<DialogueData>();
         if (data == null)
-            return;
+        {
+            ErrorMessage = "DialogueData Component Does not exist.";
+            return false;
+        }
 
         _data = data;
+        indexKeys = new Dictionary<string, int>();
 
-        if (!MakeDialogue())
-            return;
-
-        
-
-        initialized = true;
-    }
-
-    private bool MakeDialogue()
-    {
-        //TextAsset text = Addressable.instance.GetText(_data.dialogueName);
-        TextAsset text = asset;
-
-        if (text == null) return false;
-
-        string buffer = text.text;
-
-        var strings = Regex.Split(buffer, "(\\r\\n){2,}|\\n{2,}|\\r{2,}");
-        // 여기 안되고 있음
-        /*
-         * 정규 표현식
-         * () 표현식 감싸기
-         * {2,} 최소한 두개이상
-         * | or
-         * (\r\n){2,}|\n{2,}|\r{2,}
-         * 개행문자(\r\n,\n,\r) 이후 두글자 이상 있는 문자들
-         */
-
-        int length = strings.Length;
-        dialogues = new string[length];
-
-        int index = 0;
-        for(int i =0;i< length;i++)
+        TextAsset text = Addressable.instance.GetText(_data.dialogueName);
+        TextAsset bytecode = Addressable.instance.GetText(_data.bytecodeName);
+        if(text == null || bytecode == null)
         {
-            if(Regex.IsMatch(strings[i], "^<\\w+>$"))
-            {
-                Regex.Replace(strings[i], "[<>]", "");
-                indexKeys.Add(strings[i], index);
-            }
-            else
-            {
-                dialogues[index] = strings[i];
-                index++;
-            }
+            ErrorMessage = "DialogueData is invalid.";
+            return false;
         }
-        System.Array.Resize<string>(ref dialogues, index + 1);
+        if (!new DialogueMaker().MakeDialogueScript(text.text, out dialogues, out indexKeys))
+        {
+            ErrorMessage = "Failed making dailogue script.";
+            return false;
+        }
+        code = bytecode.bytes;
+        PC = 0;
 
+        endFlag = false;
+        initialized = true;
         return true;
     }
 
@@ -82,7 +63,8 @@ public class DialogueSystem : MonoBehaviour
 
     private void Start()
     {
-        Initialize();
+        GameLoader.instance.AddSceneLoadCallback(Initialize);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public bool Process()
@@ -90,7 +72,45 @@ public class DialogueSystem : MonoBehaviour
         if (!initialized)
             return false;
 
-        return false;
+        if(PC >= code.Length)
+        {
+            endFlag = true;
+            return false;
+        }
+
+        switch (code[PC])
+        {
+            case 0x01:
+                break;
+            case 0x02:
+                break;
+            case 0x03:
+                break;
+            case 0x04:
+                break;
+            case 0x05:
+                break;
+            case 0x10:
+                break;
+            case 0x11:
+                break;
+            case 0x20:
+                break;
+            case 0x21:
+                break;
+            case 0x22:
+                break;
+            case 0x23:
+                break;
+            case 0x24:
+                break;
+            case 0x25:
+                break;
+        }
+
+        PC++;
+
+        return true;
     }
 }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DialogueData : MonoBehaviour
 {
     public string dialogueName;
+    public string bytecodeName;
 }
 
 /*
