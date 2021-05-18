@@ -16,19 +16,19 @@ public class UIElementCommand : MonoBehaviour
     private List<UIElementCommandCell> cells = new List<UIElementCommandCell>();
 
     private bool ready = false;
+    private string commandString;
 
     private void Awake()
     {
         _rect = GetComponent<RectTransform>();
     }
 
-    public bool InitCommandInfo(CommandManager.CommandCtrl data)
+    public bool InitCommandInfo(CommandManager.CommandCtrl data, string command)
     {
         _data = data;
+        commandString = command;
 
-        string command = _data.CommandString;
-
-        for(int i=0;i<command.Length; i++)
+        for (int i=0;i<command.Length; i++)
         {
             UIElementCommandCell.CommandKey key;
             switch (command[i])
@@ -113,7 +113,7 @@ public class UIElementCommand : MonoBehaviour
         int length;
         for (length = 0; length < _data.CommandList.Count; length++)
         {
-            if (_data.CommandList[length] != _data.CommandString[length])
+            if (_data.CommandList[length] != commandString[length])
             {
                 length = 0;
                 break;

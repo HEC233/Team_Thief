@@ -137,6 +137,10 @@ public class CommandManager : MonoBehaviour
         {
             get { return _commandString; }
         }
+        public string ReverseCommandString
+        {
+            get { return _reverseCommandString; }
+        }
         //---
 
         public CommandCtrl(SOCommandData soCommandData)
