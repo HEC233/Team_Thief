@@ -22,16 +22,16 @@ AnimationClip:
     - time: 0
       value: {fileID: 3364565250333324559, guid: bd678c676dd69f44d839c92c4859f1e0,
         type: 3}
-    - time: 0.06666667
+    - time: 0.033333335
       value: {fileID: 8896011156337500985, guid: bd678c676dd69f44d839c92c4859f1e0,
         type: 3}
-    - time: 0.13333334
+    - time: 0.06666667
       value: {fileID: 2952283951068511792, guid: bd678c676dd69f44d839c92c4859f1e0,
         type: 3}
-    - time: 0.2
+    - time: 0.1
       value: {fileID: 6332502409457594972, guid: bd678c676dd69f44d839c92c4859f1e0,
         type: 3}
-    - time: 0.26666668
+    - time: 0.13333334
       value: {fileID: 1637717883934857406, guid: bd678c676dd69f44d839c92c4859f1e0,
         type: 3}
     - time: 0.33333334

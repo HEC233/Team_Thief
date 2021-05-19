@@ -4894,7 +4894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 3449445872681018374}
   damage:
-    power: 0
+    power: 50
     knockBack: {x: 0, y: 0}
     abnormal: 0
     hitPosition: {x: 0, y: 0, z: 0}
