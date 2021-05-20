@@ -27,7 +27,7 @@ public class ParserWindow : EditorWindow
 
     private void Parse()
     {
-        if (!new DialogueCodeParser().Parse(code.text))
+        if (!new DialogueCodeParser().Parse(code.text, code.name))
             Debug.LogError("Parsing failed!");
     }
 }
