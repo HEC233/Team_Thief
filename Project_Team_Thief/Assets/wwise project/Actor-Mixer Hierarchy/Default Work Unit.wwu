@@ -12,6 +12,11 @@
 										<RandomSequenceContainer Name="PC_Hurt" ID="{10C69203-C9D1-4C72-BF2C-0109D6020C68}" ShortID="964986689">
 											<PropertyList>
 												<Property Name="RandomAvoidRepeating" Type="bool" Value="False"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-9</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -167,7 +172,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-2</Value>
+														<Value>-8</Value>
 													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
@@ -223,6 +228,9 @@
 													</ModifierList>
 												</Property>
 												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
 															<Modifier Name="" ID="{3F46A5AC-DDE6-4842-B7E0-2B2F7A6CD6B5}">
@@ -287,6 +295,9 @@
 													</ModifierList>
 												</Property>
 												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-4</Value>
+													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
 															<Modifier Name="" ID="{43161848-2D7A-4908-A757-08F5590B80BE}">
@@ -327,7 +338,7 @@
 												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-3</Value>
+														<Value>-6</Value>
 													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
@@ -377,9 +388,6 @@
 													</ModifierList>
 												</Property>
 												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>3</Value>
-													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
 															<Modifier Name="" ID="{074D92DF-6D25-472E-A565-CB8F46E91912}">
@@ -504,7 +512,7 @@
 														</Property>
 														<Property Name="Volume" Type="Real64">
 															<ValueList>
-																<Value>-2</Value>
+																<Value>-4</Value>
 															</ValueList>
 															<ModifierList>
 																<ModifierInfo>
@@ -863,6 +871,9 @@
 													</ModifierList>
 												</Property>
 												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-2</Value>
+													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
 															<Modifier Name="" ID="{4207F82B-6666-4EEB-BB20-F9458C84A5D0}">
@@ -971,6 +982,9 @@
 													</ModifierList>
 												</Property>
 												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-4</Value>
+													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
 															<Modifier Name="" ID="{02BA2CBD-9EC8-4B41-8A19-96B8892D5AF0}">
@@ -1172,6 +1186,78 @@
 												<ActiveSource Name="SFX_PC_whoosh" ID="{C910A08E-8E0C-4059-BFDD-E8B606BA4096}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<RandomSequenceContainer Name="PC_JA" ID="{13DFA455-E5B8-4797-A7A6-13598EAC3D90}" ShortID="560500429">
+											<PropertyList>
+												<Property Name="Highpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{8C782BEA-B9D4-4539-A76D-A1F125F19BFE}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="300"/>
+																	<Property Name="Min" Type="Real64" Value="-300"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-3</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{7D855319-C7BB-4851-BD12-54A243144429}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="3"/>
+																	<Property Name="Min" Type="Real64" Value="-3"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="SFX_PC_woosh" ID="{A5220F33-7B12-45F9-A10A-E3E036A7EB37}" ShortID="792843406">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="SFX_PC_woosh" ID="{5B13EA78-33F0-44AD-901C-3A516D9CFF98}">
+															<Language>SFX</Language>
+															<AudioFile>SFX_PC_woosh.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1008207653"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="SFX_PC_woosh" ID="{5B13EA78-33F0-44AD-901C-3A516D9CFF98}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="hit" ID="{052564C2-8031-4CD9-B8B3-BE9DAB1C1095}" ShortID="497583889">
@@ -1192,6 +1278,9 @@
 													</ModifierList>
 												</Property>
 												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-7</Value>
+													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
 															<Modifier Name="" ID="{2FDD0913-9990-4BB2-892D-8D44A72270D1}">
@@ -1243,6 +1332,9 @@
 													</ModifierList>
 												</Property>
 												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-8</Value>
+													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
 															<Modifier Name="" ID="{CEE05D89-FAC3-4A23-8F2F-D23681B1821C}">
@@ -1284,20 +1376,6 @@
 						</Folder>
 						<Folder Name="ENEMY" ID="{56980627-F7FA-4DF8-B151-EE1965B42ACB}" ShortID="47304428">
 							<ChildrenList>
-								<Folder Name="LightWorrior" ID="{27647EFC-0617-41FD-9C35-78D573498BB3}" ShortID="724509615">
-									<ChildrenList>
-										<Folder Name="woosh" ID="{B8A8B79E-2718-4ACC-B50E-FC8E3D74CDE1}" ShortID="934033253"/>
-										<Folder Name="hurt" ID="{68097CC1-CC0F-4B7A-BF50-047AA30EEBCE}" ShortID="40948025"/>
-										<Folder Name="movement" ID="{6C0FE668-5B49-4F49-89F9-746AF85D0715}" ShortID="27071890"/>
-									</ChildrenList>
-								</Folder>
-								<Folder Name="Seraphim" ID="{398FB2A1-7EB3-4258-ABDB-838B372CE096}" ShortID="892025048">
-									<ChildrenList>
-										<Folder Name="hurt" ID="{F8051AB3-057E-4FD3-B55E-16B966CFE813}" ShortID="472991270"/>
-										<Folder Name="movement" ID="{7C45B8AC-7ECC-4767-BCF7-5E12E98D3513}" ShortID="436957878"/>
-										<Folder Name="woosh" ID="{7C55EE51-A4C5-4B0B-BFAD-916D11B484A6}" ShortID="163552799"/>
-									</ChildrenList>
-								</Folder>
 								<ActorMixer Name="LightWarrior" ID="{70D46A48-5A68-4F3D-B488-ABB52A14CF01}" ShortID="863568393">
 									<PropertyList>
 										<Property Name="3DSpatialization" Type="int16" Value="1"/>
@@ -1318,7 +1396,6 @@
 										<Sound Name="SFX_LightWarrior_FS" ID="{B60C251A-F881-41A6-97FA-083DC4262FA0}" ShortID="198128616">
 											<PropertyList>
 												<Property Name="3DSpatialization" Type="int16" Value="1"/>
-												<Property Name="OverrideOutput" Type="bool" Value="True"/>
 												<Property Name="Pitch" Type="int32">
 													<ModifierList>
 														<ModifierInfo>
@@ -1334,7 +1411,7 @@
 												<Property Name="SpeakerPanning" Type="int16" Value="1"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-1</Value>
+														<Value>-16</Value>
 													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
@@ -1374,10 +1451,311 @@
 												<ActiveSource Name="SFX_LightWarrior_FS2" ID="{F1B582E8-AAF3-49A6-ABCB-EB9EF35899D9}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<Sound Name="SFX_LightWarrior_Swing" ID="{36AE44F9-0BB4-48CB-85B6-226B7A2E1119}" ShortID="490246430">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{CF3C7D54-56A4-47C3-8126-9ED376ECE9FD}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="100"/>
+																	<Property Name="Min" Type="Real64" Value="-100"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-4</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{8F53A969-26C2-4826-9E0A-782A71EE5FE0}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="1"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="SFX_PC_hammer_Swing" ID="{3D8304B0-B047-402C-9996-21235F422940}">
+													<Language>SFX</Language>
+													<AudioFile>SFX_PC_hammer_Swing.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="242449067"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="SFX_PC_hammer_Swing" ID="{3D8304B0-B047-402C-9996-21235F422940}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="SFX_LightWarrior_AR" ID="{B68988D0-5F27-45D3-9782-2FD4331C4CEE}" ShortID="1014359969">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{8D7C1F59-DA92-4552-8B7A-0E4497E907D1}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="100"/>
+																	<Property Name="Min" Type="Real64" Value="-200"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-20</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{D842586C-3233-486F-B0FB-0BE36C3BA783}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="2"/>
+																	<Property Name="Min" Type="Real64" Value="-2"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="SFX_LightWarrior_AR" ID="{717063CB-5AA7-4C49-9554-A4BF30EDB587}">
+													<Language>SFX</Language>
+													<AudioFile>SFX_LightWarrior_AR.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="986728204"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="SFX_LightWarrior_AR" ID="{717063CB-5AA7-4C49-9554-A4BF30EDB587}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
 									<PositioningInfo>
 										<Panner Name="" ID="{2526DEBB-85E6-44B6-B425-BB3C7EF04768}"/>
 									</PositioningInfo>
+									<ObjectLists/>
+								</ActorMixer>
+								<ActorMixer Name="Seraphim" ID="{BE20BFD3-C753-4038-9BD3-F8369A93E8BD}" ShortID="339153174">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="SFX_Seraphim_AR" ID="{86552837-208D-4F77-8288-4C9AAF1B76B3}" ShortID="553781816">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{EC0C2CBB-B18E-44C0-85B0-52F7EAF0CBF8}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="100"/>
+																	<Property Name="Min" Type="Real64" Value="-100"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-17</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{12257A25-9BA5-4593-8CB3-A66FFCB2D044}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="1"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="SFX_Seraphim_AR" ID="{117EE61C-57ED-4D4E-A40B-293290D14262}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.310276967930029"/>
+														<Property Name="FadeOutShape" Type="int16" Value="2"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.351"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>SFX_Seraphim_AR.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="861657718"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="SFX_Seraphim_AR" ID="{117EE61C-57ED-4D4E-A40B-293290D14262}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="SFX_Seraphim_Shot" ID="{79D65F0B-9EAD-42F2-85EB-59D04BF98B46}" ShortID="78062718">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{15E7EFCB-47C4-491D-B566-A9F9465C9598}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="100"/>
+																	<Property Name="Min" Type="Real64" Value="-100"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-17</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{6F70E412-21EA-4FFA-9D8E-E2837EF932C3}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="1"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="SFX_Seraphim_Shot" ID="{CCB79BB6-3181-4F69-A1C5-CEDFB38C7CC0}">
+													<Language>SFX</Language>
+													<AudioFile>SFX_Seraphim_Shot.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="487472076"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="SFX_Seraphim_Shot" ID="{CCB79BB6-3181-4F69-A1C5-CEDFB38C7CC0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="SFX_Seraphim_FS" ID="{29FBB74E-0B76-4259-89E7-EFAA32157DE7}" ShortID="37042085">
+											<PropertyList>
+												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>-710</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{AF886756-2996-48E3-93EE-2E487E5CD86A}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="300"/>
+																	<Property Name="Min" Type="Real64" Value="-300"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-4</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{79F5F875-1A07-4E1A-8212-3D4A43D86E5C}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="1"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="SFX_PC_FS" ID="{BECC5DE5-CD8B-4949-90E0-1D8917566260}">
+													<PropertyList>
+														<Property Name="TrimEnd" Type="Real64" Value="0.4"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>SFX_PC_FS.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="427331776"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="SFX_PC_FS" ID="{BECC5DE5-CD8B-4949-90E0-1D8917566260}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
 									<ObjectLists/>
 								</ActorMixer>
 							</ChildrenList>

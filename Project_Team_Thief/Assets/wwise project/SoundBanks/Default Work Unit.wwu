@@ -3,7 +3,7 @@
 	<SoundBanks>
 		<WorkUnit Name="Default Work Unit" ID="{B4133B76-FEFE-4CA1-804A-C0E94554340E}" PersistMode="Standalone">
 			<ChildrenList>
-				<SoundBank Name="SFX" ID="{4BD36AB1-1EEF-4AEF-B47F-19504B46BE7D}">
+				<SoundBank Name="PC" ID="{4BD36AB1-1EEF-4AEF-B47F-19504B46BE7D}">
 					<PropertyList>
 						<Property Name="Maximum" Type="int32">
 							<ValueList>
@@ -31,6 +31,18 @@
 						<ObjectRef Name="PC_BA4" ID="{898E93DD-1739-4F00-A741-F809568C6994}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PC_BA3" ID="{DD8D3C23-92D5-4FA3-98C5-3638EC09F6A2}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PC_stop" ID="{D392478A-F43E-4FA3-8C6E-0A44DC3C6C96}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="Enemy" ID="{0EB28041-72AB-4287-BB28-E1477A6E3154}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Seraphim_Shot" ID="{1EA6C2FB-3C41-4009-9048-8C505CE1968E}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Seraphim_FS" ID="{9B619887-CDFD-461D-B31F-F797570F259F}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="LightWarrior_AR" ID="{E9EE72AB-5FE4-4742-AC84-3EA1EAAC1219}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Seraphim_AR" ID="{B857CFB6-F7C0-4A69-AD50-A9676290A4D2}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="LightWarrior_Swing" ID="{33C351AE-D213-4B36-9FF9-D0FFE1DDAC56}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="LightWarrior_FS" ID="{4A5BB839-1538-4C4D-A57E-DD2D34F5BC89}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

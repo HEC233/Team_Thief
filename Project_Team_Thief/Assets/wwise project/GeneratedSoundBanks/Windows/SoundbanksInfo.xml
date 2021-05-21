@@ -11,10 +11,18 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="1477280459">
-			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
-			<ShortName>SFX</ShortName>
-			<Path>SFX.bnk</Path>
+		<SoundBank Id="1355168291" Language="SFX" Hash="2602011176">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<IncludedAuxBusses>
+				<AuxBus Id="1622449088" Name="Auxiliary_Bus" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Auxiliary_Bus"/>
+			</IncludedAuxBusses>
+		</SoundBank>
+		<SoundBank Id="1635194334" Language="SFX" Hash="3264265581">
+			<ObjectPath>\SoundBanks\Default Work Unit\PC</ObjectPath>
+			<ShortName>PC</ShortName>
+			<Path>PC.bnk</Path>
 			<IncludedEvents>
 				<Event Id="690267075" Name="PC_axe" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_axe" DurationType="OneShot" DurationMin="0.253048" DurationMax="0.284037">
 					<IncludedMemoryFiles>
@@ -174,13 +182,60 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2602011176">
-			<ObjectPath>Init</ObjectPath>
-			<ShortName>Init</ShortName>
-			<Path>Init.bnk</Path>
-			<IncludedAuxBusses>
-				<AuxBus Id="1622449088" Name="Auxiliary_Bus" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Auxiliary_Bus"/>
-			</IncludedAuxBusses>
+		<SoundBank Id="2299321487" Language="SFX" Hash="3169973154">
+			<ObjectPath>\SoundBanks\Default Work Unit\Enemy</ObjectPath>
+			<ShortName>Enemy</ShortName>
+			<Path>Enemy.bnk</Path>
+			<IncludedEvents>
+				<Event Id="4014153887" Name="LightWarrior_AR" ObjectPath="\Events\Default Work Unit\SFX\Enemy\LightWarrior\LightWarrior_AR" MaxAttenuation="30.000000" DurationType="OneShot" DurationMin="1.238188" DurationMax="1.472461">
+					<IncludedMemoryFiles>
+						<File Id="986728204" Language="SFX">
+							<ShortName>SFX_LightWarrior_AR.wav</ShortName>
+							<Path>SFX\SFX_LightWarrior_AR_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3896710555" Name="LightWarrior_FS" ObjectPath="\Events\Default Work Unit\SFX\Enemy\LightWarrior\LightWarrior_FS" MaxAttenuation="30.000000" DurationType="OneShot" DurationMin="0.478458" DurationMax="0.568986">
+					<IncludedMemoryFiles>
+						<File Id="492561759" Language="SFX">
+							<ShortName>SFX_LightWarrior_FS2.wav</ShortName>
+							<Path>SFX\SFX_LightWarrior_FS2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="11536312" Name="LightWarrior_Swing" ObjectPath="\Events\Default Work Unit\SFX\Enemy\LightWarrior\LightWarrior_Swing" MaxAttenuation="30.000000" DurationType="OneShot" DurationMin="0.212275" DurationMax="0.238271">
+					<IncludedMemoryFiles>
+						<File Id="242449067" Language="SFX">
+							<ShortName>SFX_PC_hammer_Swing.wav</ShortName>
+							<Path>SFX\SFX_PC_hammer_Swing_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3566318014" Name="Seraphim_AR" ObjectPath="\Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_AR" DurationType="OneShot" DurationMin="0.488715" DurationMax="0.548564">
+					<IncludedMemoryFiles>
+						<File Id="861657718" Language="SFX">
+							<ShortName>SFX_Seraphim_AR.wav</ShortName>
+							<Path>SFX\SFX_Seraphim_AR_3F7EC70C.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3549540426" Name="Seraphim_FS" ObjectPath="\Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_FS" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="427331776" Language="SFX">
+							<ShortName>SFX_PC_FS.wav</ShortName>
+							<Path>SFX\SFX_PC_FS_6E0CF522.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="967849143" Name="Seraphim_Shot" ObjectPath="\Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_Shot" DurationType="OneShot" DurationMin="1.107929" DurationMax="1.243608">
+					<IncludedMemoryFiles>
+						<File Id="487472076" Language="SFX">
+							<ShortName>SFX_Seraphim_Shot.wav</ShortName>
+							<Path>SFX\SFX_Seraphim_Shot_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

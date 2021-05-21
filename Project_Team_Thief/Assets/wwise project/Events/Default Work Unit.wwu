@@ -235,18 +235,83 @@
 								</Folder>
 							</ChildrenList>
 						</Folder>
-						<Folder Name="LightWarrior" ID="{3E1FC036-8B4E-4B47-BFA3-0EA35CA5D282}" ShortID="909840046">
+						<Folder Name="Enemy" ID="{3AE69368-9285-4F9B-8C8E-7B8FC78EE449}" ShortID="722298025">
 							<ChildrenList>
-								<Folder Name="woosh" ID="{A4E0E587-7F04-4F07-9870-00571A38FE6A}" ShortID="1020099989"/>
-								<Folder Name="hurt" ID="{3C3B6C1B-CBAB-41C5-89D9-F9F87278684B}" ShortID="978206144"/>
-								<Folder Name="movement" ID="{01B2DAFA-D992-4E93-9643-ED806C5C9218}" ShortID="240471302"/>
-							</ChildrenList>
-						</Folder>
-						<Folder Name="Seraphim" ID="{A7F2B8CB-2198-4521-A2B1-C6959B8BE4FF}" ShortID="907527002">
-							<ChildrenList>
-								<Folder Name="woosh" ID="{4F4AE58C-227D-4D75-86C4-3DB378BB1F05}" ShortID="495139136"/>
-								<Folder Name="hurt" ID="{4391E26A-149B-4C30-8160-BCC1ABA454A7}" ShortID="347658452"/>
-								<Folder Name="movement" ID="{4F5B1625-DEA6-4081-B53D-B4AEECE069B3}" ShortID="266153410"/>
+								<Folder Name="LightWarrior" ID="{3E1FC036-8B4E-4B47-BFA3-0EA35CA5D282}" ShortID="909840046">
+									<ChildrenList>
+										<Event Name="LightWarrior_FS" ID="{4A5BB839-1538-4C4D-A57E-DD2D34F5BC89}">
+											<ChildrenList>
+												<Action Name="" ID="{59ADACF0-082E-491B-BD32-2ABB9831197C}" ShortID="991203287">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_LightWarrior_FS" ID="{B60C251A-F881-41A6-97FA-083DC4262FA0}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="LightWarrior_AR" ID="{E9EE72AB-5FE4-4742-AC84-3EA1EAAC1219}">
+											<ChildrenList>
+												<Action Name="" ID="{B61736F3-548B-487C-88CD-C9994937D50E}" ShortID="681427243">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_LightWarrior_AR" ID="{B68988D0-5F27-45D3-9782-2FD4331C4CEE}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="LightWarrior_Swing" ID="{33C351AE-D213-4B36-9FF9-D0FFE1DDAC56}">
+											<ChildrenList>
+												<Action Name="" ID="{8E4B7539-B041-4BE0-9529-5A9650B5955E}" ShortID="534566620">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_LightWarrior_Swing" ID="{36AE44F9-0BB4-48CB-85B6-226B7A2E1119}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Seraphim" ID="{A7F2B8CB-2198-4521-A2B1-C6959B8BE4FF}" ShortID="907527002">
+									<ChildrenList>
+										<Event Name="Seraphim_AR" ID="{B857CFB6-F7C0-4A69-AD50-A9676290A4D2}">
+											<ChildrenList>
+												<Action Name="" ID="{70D77F96-5D3B-4F4B-96AA-744FC632FC9E}" ShortID="785289503">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_Seraphim_AR" ID="{86552837-208D-4F77-8288-4C9AAF1B76B3}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Seraphim_FS" ID="{9B619887-CDFD-461D-B31F-F797570F259F}">
+											<ChildrenList>
+												<Action Name="" ID="{5824D528-22D6-45CD-8E6B-2851F218673F}" ShortID="769845553">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_Seraphim_FS" ID="{29FBB74E-0B76-4259-89E7-EFAA32157DE7}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Seraphim_Shot" ID="{1EA6C2FB-3C41-4009-9048-8C505CE1968E}">
+											<ChildrenList>
+												<Action Name="" ID="{EC97F7F0-2254-4723-B0B6-B2D4DDC92518}" ShortID="277784625">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_Seraphim_Shot" ID="{79D65F0B-9EAD-42F2-85EB-59D04BF98B46}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Dandelion" ID="{DD4FDCBB-7E92-48CF-A588-1615E6AB92CA}" ShortID="13807875"/>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>

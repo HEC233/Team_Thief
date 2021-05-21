@@ -13,6 +13,9 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID LIGHTWARRIOR_AR = 4014153887U;
+        static const AkUniqueID LIGHTWARRIOR_FS = 3896710555U;
+        static const AkUniqueID LIGHTWARRIOR_SWING = 11536312U;
         static const AkUniqueID PC_AXE = 690267075U;
         static const AkUniqueID PC_BA1 = 438455619U;
         static const AkUniqueID PC_BA2 = 438455616U;
@@ -32,6 +35,9 @@ namespace AK
         static const AkUniqueID PC_SPEAR_RUSH = 2779137053U;
         static const AkUniqueID PC_STOP = 118156989U;
         static const AkUniqueID PC_WALL = 1438052377U;
+        static const AkUniqueID SERAPHIM_AR = 3566318014U;
+        static const AkUniqueID SERAPHIM_FS = 3549540426U;
+        static const AkUniqueID SERAPHIM_SHOT = 967849143U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS
@@ -53,7 +59,8 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
-        static const AkUniqueID SFX = 393239870U;
+        static const AkUniqueID ENEMY = 2299321487U;
+        static const AkUniqueID PC = 1635194334U;
     } // namespace BANKS
 
     namespace BUSSES
