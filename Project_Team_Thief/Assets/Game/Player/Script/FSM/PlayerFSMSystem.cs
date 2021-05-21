@@ -1527,6 +1527,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe);
+            WwiseSoundManager.instance.PlayEventSound("PC_axe");
 
             _gameSkillObject = InvokeSkill();
         }
@@ -1631,7 +1632,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSpear);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSpear);
-            
+            WwiseSoundManager.instance.PlayEventSound("PC_spear_Charge");
+
             _gameSkillObject = InvokeSkill();
         }
 
@@ -1700,7 +1702,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillHammer);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillHammer);
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
-            
+            WwiseSoundManager.instance.PlayEventSound("PC_hammaer_Swing");
+
             _gameSkillObject = InvokeSkill();
         }
 
