@@ -1600,6 +1600,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe2);
                 SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe2);
+                WwiseSoundManager.instance.PlayEventSound("PC_axe");
+
                 _gameSkillObject2 = InvokeSkill();
             }
 

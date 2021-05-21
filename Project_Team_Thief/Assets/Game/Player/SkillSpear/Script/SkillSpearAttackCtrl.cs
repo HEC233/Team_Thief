@@ -41,13 +41,13 @@ public class SkillSpearAttackCtrl : AttackBase
 
     public void Progress()
     {
-        PlaySfx();
         PlayFx();
 
         AttackDamage();
 
         if (_isEnter == true || alwaysEnter == true)
         {
+            PlaySfx();
             HitStop();
             CameraShake();
         }
@@ -86,7 +86,7 @@ public class SkillSpearAttackCtrl : AttackBase
         if (_isPlaySFX == false)
             return;
         
-        GameManager.instance.soundMng.PlaySFX(_sfxClip);
+        WwiseSoundManager.instance.PlayEventSound("PC_HIT_blade");
     }
     
     public override void CameraShake()

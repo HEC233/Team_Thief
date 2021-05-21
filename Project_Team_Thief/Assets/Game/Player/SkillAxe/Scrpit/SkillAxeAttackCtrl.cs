@@ -106,7 +106,8 @@ public class SkillAxeAttackCtrl : AttackBase
     {
         if (_isPlaySFX == false)
             return;
-        
+
+        WwiseSoundManager.instance.PlayEventSound("PC_HIT_blade");
     }
     
     public override void CameraShake()

@@ -41,7 +41,6 @@ public class SkillHammerAttackCtrl : AttackBase
 
     public void Progress()
     {
-        PlaySfx();
 
         AttackDamage();
 
@@ -50,6 +49,7 @@ public class SkillHammerAttackCtrl : AttackBase
             PlayFx();
             HitStop();
             CameraShake();
+            PlaySfx();
         }
     }
 
@@ -94,6 +94,7 @@ public class SkillHammerAttackCtrl : AttackBase
         if (_isPlaySFX == false)
             return;
 
+        WwiseSoundManager.instance.PlayEventSound("PC_HIT_hammer");
     }
     
     public override void CameraShake()

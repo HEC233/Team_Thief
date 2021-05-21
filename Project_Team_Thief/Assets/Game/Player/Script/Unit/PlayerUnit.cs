@@ -735,7 +735,6 @@ public class PlayerUnit : Unit
             _encroachment = 0;
         }
         
-        Debug.Log("_encroachment : " + _encroachment);
         playerInfo.CurEncroachment = _encroachment;
         
         if (_encroachment >= 100)
