@@ -97,13 +97,24 @@ public class DialogueSystem : MonoBehaviour
 
     public void StartDialogue(int CodeIndex)
     {
-        if (CodeIndex < 0 || CodeIndex >= code.Length || code[CodeIndex] == null)
+        if (code == null)
+        {
             return;
+        }
+        if (CodeIndex < 0 || CodeIndex >= code.Length)
+        {
+            return;
+        }
+        if (code[CodeIndex] == null)
+        {
+            return;
+        }
         curRuningCodeIndex = CodeIndex;
         curDialogueIndex = 0;
         bCodeRuning = true;
         PC = 0;
         bAutoPass = true;
+        ui.SetShowDialogue(true);
     }
 
     public bool Process()
@@ -117,6 +128,7 @@ public class DialogueSystem : MonoBehaviour
         {
             if (PC >= code[curRuningCodeIndex].Length)
             {
+                ui.SetShowDialogue(false);
                 return false;
             }
 
@@ -133,9 +145,9 @@ public class DialogueSystem : MonoBehaviour
              * 오른쪽 초상화 하이라이트 0x23 HighlightRight
              * 초상화 활성화 0x24 EnablePortrait
              * 초상화 비활성화 0x25 DisablePortrait
-             * 대화 강조 0x03 
-             * 대화문 위치 위로 변경 0x04
-             * 대화문 위치 아래로 변경 0x05
+             * 대화 강조 0x03 Bold
+             * 대화문 위치 위로 변경 0x04 SetUpper
+             * 대화문 위치 아래로 변경 0x05 SetDown
              */
             switch (code[curRuningCodeIndex][PC])
             {
@@ -161,10 +173,13 @@ public class DialogueSystem : MonoBehaviour
                     }
                     break;
                 case 0x03:
+                    ui.SetBold();
                     break;
                 case 0x04:
+                    ui.SetTextPosition(true);
                     break;
                 case 0x05:
+                    ui.SetTextPosition(false);
                     break;
                 case 0x10:
                     GameManager.instance?.timeMng.StopTime();
@@ -178,17 +193,22 @@ public class DialogueSystem : MonoBehaviour
                     bAutoPass = true;
                     break;
                 case 0x20:
-
+                    ui.SetLeftPortrait(GetStringValue());
                     break;
                 case 0x21:
+                    ui.SetRightPortrait(GetStringValue());
                     break;
                 case 0x22:
+                    ui.SetPortraitHighlight(true);
                     break;
                 case 0x23:
+                    ui.SetPortraitHighlight(false);
                     break;
                 case 0x24:
+                    ui.EnablePortrait(true);
                     break;
                 case 0x25:
+                    ui.EnablePortrait(false);
                     break;
             }
 
@@ -241,6 +261,17 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
+
+    int index = 0;
+    public void TestButtonFunc()
+    {
+        StartDialogue(index);
+        index++;
+        if (_data != null)
+        {
+            index = index % _data.bytecodeName.Length;
+        }
+    }
 }
 
 /*

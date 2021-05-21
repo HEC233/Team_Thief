@@ -1,0 +1,13 @@
+Move Test1
+StopTime
+{
+Next
+Next
+Next
+EnablePortrait
+Next
+HighlightRight
+Next
+DisablePortrait
+Next
+}

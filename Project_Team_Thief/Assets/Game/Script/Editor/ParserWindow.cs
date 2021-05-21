@@ -7,7 +7,7 @@ public class ParserWindow : EditorWindow
 {
     private TextAsset code;
 
-    [MenuItem("Window/My Window")]
+    [MenuItem("Window/DialogueCode Parser")]
     public static void Init()
     {
         ParserWindow window = (ParserWindow)EditorWindow.GetWindow(typeof(ParserWindow));

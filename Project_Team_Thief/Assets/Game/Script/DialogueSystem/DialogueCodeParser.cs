@@ -21,7 +21,7 @@ public class DialogueCodeParser
 
         int timeStopCount = 0;
 
-        for(int i = 0; i < code.Length; i++)
+        for (int i = 0; i < code.Length; i++)
         {
             if (string.Compare(code[i], "next", true) == 0)
             {
@@ -29,11 +29,7 @@ public class DialogueCodeParser
             }
             else if (Regex.IsMatch(code[i], "move \\S+", RegexOptions.IgnoreCase))
             {
-                code[i] = Regex.Replace(code[i], "(^.*move )|(\\W*$)", string.Empty, RegexOptions.IgnoreCase);
-                byte[] binary = Encoding.UTF8.GetBytes(code[i]);
-                bw.Write((byte)0x02);
-                bw.Write((byte)binary.Length);
-                bw.Write(binary);
+                WriteWithElement(code[i], "(^.*move )|(\\W*$)", 0x02, bw);
             }
             else if (string.Compare(code[i], "stoptime", true) == 0)
             {
@@ -49,8 +45,53 @@ public class DialogueCodeParser
                     timeStopCount--;
                 }
             }
+            else if (string.Compare(code[i], "EnablePortrait", true) == 0)
+            {
+                bw.Write((byte)0x24);
+            }
+            else if (string.Compare(code[i], "DisablePortrait", true) == 0)
+            {
+                bw.Write((byte)0x25);
+            }
+            else if (Regex.IsMatch(code[i], "ChangeLeft \\S+", RegexOptions.IgnoreCase))
+            {
+                WriteWithElement(code[i], "(^.*ChangeLeft )|(\\W*$)", 0x20, bw);
+            }
+            else if (Regex.IsMatch(code[i], "ChangeRight \\S+", RegexOptions.IgnoreCase))
+            {
+                WriteWithElement(code[i], "(^.*ChangeRight )|(\\W*$)", 0x21, bw);
+            }
+            else if (string.Compare(code[i], "HighlightLeft", true) == 0)
+            {
+                bw.Write((byte)0x22);
+            }
+            else if (string.Compare(code[i], "HighlightRight", true) == 0)
+            {
+                bw.Write((byte)0x23);
+            }
+            else if (string.Compare(code[i], "Bold", true) == 0)
+            {
+                bw.Write((byte)0x03);
+            }
+            else if (string.Compare(code[i], "SetUpper", true) == 0)
+            {
+                bw.Write((byte)0x04);
+            }
+            else if (string.Compare(code[i], "SetDown", true) == 0)
+            {
+                bw.Write((byte)0x05);
+            }
         }
 
         return true;
+    }
+
+    private void WriteWithElement(string code, string pattern, byte byteCode, BinaryWriter bw)
+    {
+        string element = Regex.Replace(code, pattern, string.Empty, RegexOptions.IgnoreCase);
+        byte[] binary = Encoding.UTF8.GetBytes(element);
+        bw.Write(byteCode);
+        bw.Write((byte)binary.Length);
+        bw.Write(binary);
     }
 }

@@ -1,5 +1,28 @@
 <T1>
 this is test text
-let's look how it will be
 <T3>
-fuck yeah
+let's look how it will be
+cute cat
+<ASDF>
+한글 출력 테스트
+I met a traveler from an antique land
+Who said: Two vast and trunkless legs of stone
+Stand in the desert. Near them, on the sand,
+Half sunk, a shattered visage lies, whose frown,
+And wrinkled lip, and sneer of cold command,
+Tell that its sculptor well those passions read
+Which yet survive, stamped on these lifeless things,
+The hand that mocked them and the heart that fed:
+And on the pedestal these words appear:
+"My name is Ozymandias, king of kings:
+Look on my works, ye Mighty, and despair!"
+Nothing beside remains. Round the decay
+Of that colossal wreck, boundless and bare
+The lone and level sands stretch far away.
+<Test1>
+이건 테스트입니다
+하하하
+세개의 텍스트가 나왔습니다.
+이제 초상화가 나옵니다.
+이제 오른쪽 초상화를 강조합니다.
+초상화를 없앱니다.
