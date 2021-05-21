@@ -9,6 +9,9 @@ public class GameLoader : MonoBehaviour
 
     private bool gameDataLoaded = false;
 
+    public delegate bool SceneLoadCallback(out string Error);
+    private List<SceneLoadCallback> sceneLoadCallbacks = new List<SceneLoadCallback>();
+
     private void Awake()
     {
         if (instance == null)
@@ -21,6 +24,12 @@ public class GameLoader : MonoBehaviour
     private void Start()
     {
         GameManager.instance.GameState = GameManager.GameStateEnum.MainMenu;
+    }
+
+    // 씬 로드시 필요한 초기화함수들을 델리게이트로 추가해주면 죠스입니다.
+    public void AddSceneLoadCallback(SceneLoadCallback callback)
+    {
+        sceneLoadCallbacks.Add(callback);
     }
 
     IEnumerator LoadGameData()
@@ -42,6 +51,15 @@ public class GameLoader : MonoBehaviour
         GameManager.instance.timeMng.UnbindAll();
 
         yield return SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
+
+        foreach (var callback in sceneLoadCallbacks)
+        {
+            string error = string.Empty;
+            if(!callback(out error))
+            {
+                Debug.LogError(error);
+            }
+        }
 
         GameManager.instance.LoadingScreen(false);
     }
