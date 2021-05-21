@@ -43,6 +43,7 @@ public class SkillAxeController : SkillControllerBase
         _skillAxeAttackCtrl.OnEnemyHitEvent += _unit.OnAddComboEventCall;
         _skillAxeAttackCtrl.SetDamage(_damage);
         _skillAxeAttackCtrl.Init(_skillAxeData.AxeMovePostionX, _skillAxeData.AxeMoveTime, _skillAxeData.CinemachineSignalSource, _unit.FacingDir, _skillAxeData.AxeMultiStageHit, _skillAxeData.AxeMultiStageHitInterval);
+        
     }
 
     private void EndSkill()

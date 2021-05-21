@@ -12,8 +12,8 @@ public class SkillSpearController : SkillControllerBase
 
     private Damage _damage;
 
-    private float _rushSpped = 0; 
-    
+    private float _rushSpped = 0;
+
     public override void Invoke()
     {
         Init();
@@ -37,6 +37,8 @@ public class SkillSpearController : SkillControllerBase
         _unit._skillSpearAttackCtrl.signalSourceAsset = _skillSpearData.CinemachineSignalSource;
         _unit.OnSkillSpearRushEvent += StartSpearRush;
         _unit.OnSkillSpearAttackEvent += AttackSkillSpear;
+        
+
     }
 
     public override void Release()
@@ -50,6 +52,8 @@ public class SkillSpearController : SkillControllerBase
     private void StartSpearRush()
     {
         SkillObject.StartCoroutine(SkillSpearRushCoroutine());
+        WwiseSoundManager.instance.PlayEventSound("PC_spear_Rush");
+
     }
 
     private void AttackSkillSpear()
