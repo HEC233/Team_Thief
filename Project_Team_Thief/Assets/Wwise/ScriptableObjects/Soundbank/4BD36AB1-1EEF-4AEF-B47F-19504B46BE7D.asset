@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484f46132f38df34b8c13b876f9708d2, type: 3}
-  m_Name: CommandSkill3Hammer
+  m_Script: {fileID: 11500000, guid: fcd54c3f13a9cc34bbf37343f483b4c5, type: 3}
+  m_Name: 4BD36AB1-1EEF-4AEF-B47F-19504B46BE7D
   m_EditorClassIdentifier: 
-  commandString: UDRZ
-  reverseCommandString: UDLZ
-  coolTime: 2.0199988
-  maxCoolTIme: 2
-  skillName: Skill3Hammer
+  objectName: SFX
+  id: 393239870
+  guid: 4BD36AB1-1EEF-4AEF-B47F-19504B46BE7D

@@ -161,6 +161,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private  class MoveState : CustomFSMStateBase
     {
         float _inputDir = 1;
+        private uint _soundId = 0;
 
         public MoveState(PlayerFSMSystem system) : base(system)
         {
@@ -169,6 +170,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.Move);
+            _soundId = WwiseSoundManager.instance.PlayEventSound("PC_FS");
             
             if (SystemMgr._beforeFalling == true)
             {
@@ -188,6 +190,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
+            WwiseSoundManager.instance.StopEventSoundFromId(_soundId);
             //SystemMgr.Unit.MoveEnd();
         }
 
@@ -285,6 +288,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private class RunningInertiaState : CustomFSMStateBase
     {
         private bool _isAniEnd = false;
+        private uint _movestopSoundId = 0;
+        
         public RunningInertiaState(PlayerFSMSystem system) : base(system)
         {
             
@@ -294,6 +299,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.RunningInertia);
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEventFunc;
+            _movestopSoundId = WwiseSoundManager.instance.PlayEventSound("PC_stop");
             _isAniEnd = false;
         }
 
@@ -306,6 +312,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventFunc;
             _isAniEnd = false;
+            
+            WwiseSoundManager.instance.StopEventSoundFromId(_movestopSoundId);
         }
 
         public override bool Transition(TransitionCondition condition)
@@ -351,7 +359,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.Jump);
             SystemMgr._fxCtrl.PlayParticle(FxAniEnum.JumpFx);
-
+            WwiseSoundManager.instance.PlayEventSound("PC_jump");
+            
             SystemMgr.Unit.Jump();
             SystemMgr.StartJumpKeyPressDetectCoroutine();
         }
@@ -711,6 +720,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 SystemMgr.AnimationCtrl.PlayAni(AniState.Dash);
                 SystemMgr._fxCtrl.PlayParticle(FxAniEnum.DashFx, SystemMgr.Unit.FacingDir);
+                WwiseSoundManager.instance.PlayEventSound("PC_dash");
                 
                 SystemMgr.Unit.SetDash();
                 SystemMgr.StartCoroutine(DashCoroutine());
@@ -920,7 +930,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         private FxAniEnum[] _basicAttackFxAniArr = new FxAniEnum[]
             {FxAniEnum.BasicAttack, FxAniEnum.BasicAttack2, FxAniEnum.BasicAttack3, FxAniEnum.BasicAttack4};
-        
+
+        private string[] _basicAttackSoundArr = new string[] {"PC_BA1", "PC_BA2", "PC_BA3", "PC_BA4"};
         
         public BasicAttackState(PlayerFSMSystem system) : base(system)
         {
@@ -933,7 +944,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
             SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
-
+            WwiseSoundManager.instance.PlayEventSound(_basicAttackSoundArr[0]);
+            
             _attackBeInputTime = Time.time;
             SystemMgr.Unit.SetBasicAttack();
         }
@@ -1063,6 +1075,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
                     SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
                     SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
+                    WwiseSoundManager.instance.PlayEventSound(_basicAttackSoundArr[_basicAttackIndex]);
                 }
             }
             else
@@ -1251,6 +1264,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.Hit);
+            WwiseSoundManager.instance.PlayEventSound("PC_hurt");
             
             SystemMgr.Unit.Hit();
             SystemMgr.Unit.HitKnockBack();
@@ -1310,6 +1324,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private class WallClimbingState : CustomFSMStateBase
     {
+        private uint _slidingSoundId = 0;
+        
         public WallClimbingState(PlayerFSMSystem system) : base(system)
         {
         }
@@ -1317,6 +1333,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.Wallslideing);
+            WwiseSoundManager.instance.PlayEventSound("PC_Wall");
             
             SystemMgr.Unit.WallSlideStateStart();
         }
@@ -1334,6 +1351,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.Unit.WallReset();
             SystemMgr.Unit.WallEnd();
+            WwiseSoundManager.instance.StopEventSoundFromId(_slidingSoundId);
         }
 
         public override bool Transition(TransitionCondition condition)
@@ -1362,11 +1380,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 if (condition == TransitionCondition.None)
                 {
                     SystemMgr.Unit.WallReset();
+                    WwiseSoundManager.instance.StopEventSoundFromId(_slidingSoundId);
                 }
                 
                 if (condition == TransitionCondition.Wallslideing)
                 {
                     SystemMgr.Unit.WallSlideing();
+                    _slidingSoundId = WwiseSoundManager.instance.PlayEventSound("PC_slide");
                 }
 
                 if (SystemMgr.isJumpKeyPress == false)
@@ -1392,6 +1412,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             GameManager.instance.isPlayerDead = true;
             GameManager.instance.uiMng.PlayerDead();
+            WwiseSoundManager.instance.PlayEventSound("PC_dead");
         }
 
         public override void Update()
@@ -1506,6 +1527,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe);
+            WwiseSoundManager.instance.PlayEventSound("PC_axe");
 
             _gameSkillObject = InvokeSkill();
         }
@@ -1610,7 +1632,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSpear);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSpear);
-            
+            WwiseSoundManager.instance.PlayEventSound("PC_spear_Charge");
+
             _gameSkillObject = InvokeSkill();
         }
 
@@ -1679,7 +1702,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillHammer);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillHammer);
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
-            
+            WwiseSoundManager.instance.PlayEventSound("PC_hammaer_Swing");
+
             _gameSkillObject = InvokeSkill();
         }
 

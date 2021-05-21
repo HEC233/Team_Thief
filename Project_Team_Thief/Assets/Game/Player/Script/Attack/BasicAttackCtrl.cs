@@ -89,8 +89,6 @@ public class BasicAttackCtrl : AttackBase
     {
         if (_isPlaySFX == false)
             return;
-        
-        GameManager.instance.soundMng.PlaySFX(_sfxClip);
     }
     
     public override void CameraShake()

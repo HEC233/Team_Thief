@@ -154,7 +154,6 @@ public class CommandManager : MonoBehaviour
             _commandCount = 0;
             _reversCommandCount = 0;
             
-            Debug.Log("SKill : " + _commandData.skillName + " Reverse : " + _reverseCommandString);
         }
 
         public void InsertKey(char key)

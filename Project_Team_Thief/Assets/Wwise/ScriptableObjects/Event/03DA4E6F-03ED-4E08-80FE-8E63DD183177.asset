@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484f46132f38df34b8c13b876f9708d2, type: 3}
-  m_Name: CommandSkill3Hammer
+  m_Script: {fileID: 11500000, guid: 8d0cccbbf34fb9b4f8dcc64b813e8e57, type: 3}
+  m_Name: 03DA4E6F-03ED-4E08-80FE-8E63DD183177
   m_EditorClassIdentifier: 
-  commandString: UDRZ
-  reverseCommandString: UDLZ
-  coolTime: 2.0199988
-  maxCoolTIme: 2
-  skillName: Skill3Hammer
+  objectName: PC_HIT_blade
+  id: 4017075331
+  guid: 03DA4E6F-03ED-4E08-80FE-8E63DD183177

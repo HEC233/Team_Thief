@@ -55,6 +55,7 @@ public class SkillHammerAttackCtrl : AttackBase
 
     private void EnemyHitFx()
     {
+        WwiseSoundManager.instance.PlayEventSound("PC_hammaer_Smash");
         GameManager.instance.FX.Play("HitHammerFx", _damage.hitPosition);
     }
 
@@ -92,8 +93,7 @@ public class SkillHammerAttackCtrl : AttackBase
     {
         if (_isPlaySFX == false)
             return;
-        
-        GameManager.instance.soundMng.PlaySFX(_sfxClip);
+
     }
     
     public override void CameraShake()
