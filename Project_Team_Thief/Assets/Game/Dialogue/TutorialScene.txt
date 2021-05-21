@@ -1,0 +1,29 @@
+StopTime
+{Move <T0>
+ Next
+ Next
+}
+
+StopTime
+{Move <T1>
+ Next
+ Next
+}
+
+StopTime
+{Move <T2>
+ Next
+ }
+
+StopTime
+{Move <T3>
+ Next
+ }
+
+StopTime
+{Move <T4>
+ Next
+ Next
+ Next
+ Next
+}
