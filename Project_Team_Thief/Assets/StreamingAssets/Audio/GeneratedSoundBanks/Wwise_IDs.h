@@ -13,11 +13,25 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID PC_AXE = 690267075U;
         static const AkUniqueID PC_BA1 = 438455619U;
         static const AkUniqueID PC_BA2 = 438455616U;
         static const AkUniqueID PC_BA3 = 438455617U;
         static const AkUniqueID PC_BA4 = 438455622U;
+        static const AkUniqueID PC_DASH = 1271964801U;
         static const AkUniqueID PC_FS = 3067029096U;
+        static const AkUniqueID PC_HAMMAER_SMASH = 1439571663U;
+        static const AkUniqueID PC_HAMMAER_SWING = 4253460925U;
+        static const AkUniqueID PC_HIT_BLADE = 4017075331U;
+        static const AkUniqueID PC_HIT_HAMMER = 3385077829U;
+        static const AkUniqueID PC_HURT = 2523322754U;
+        static const AkUniqueID PC_JUMP = 3162924009U;
+        static const AkUniqueID PC_LAND = 3795174U;
+        static const AkUniqueID PC_SLIDE = 1281925152U;
+        static const AkUniqueID PC_SPEAR_CHARGE = 2685062319U;
+        static const AkUniqueID PC_SPEAR_RUSH = 2779137053U;
+        static const AkUniqueID PC_STOP = 118156989U;
+        static const AkUniqueID PC_WALL = 1438052377U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS

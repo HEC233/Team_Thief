@@ -11,6 +11,7 @@
 					</ReferenceList>
 					<ChildrenList>
 						<AuxBus Name="Auxiliary_Bus" ID="{6CD209D4-9213-4699-B4CA-344B47A649DE}">
+							<ReferenceList/>
 							<ObjectLists/>
 						</AuxBus>
 						<Bus Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}">
@@ -22,7 +23,6 @@
 							<ObjectLists/>
 						</Bus>
 						<Bus Name="AMB" ID="{ECA708DB-F50F-4B50-94C9-49B46B6F5E7B}">
-							<ReferenceList/>
 							<ObjectLists/>
 						</Bus>
 						<Bus Name="BGM" ID="{06D39BC1-1717-499F-AABD-C324E60E9991}">

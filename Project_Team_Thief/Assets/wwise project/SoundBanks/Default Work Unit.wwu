@@ -4,6 +4,13 @@
 		<WorkUnit Name="Default Work Unit" ID="{B4133B76-FEFE-4CA1-804A-C0E94554340E}" PersistMode="Standalone">
 			<ChildrenList>
 				<SoundBank Name="SFX" ID="{4BD36AB1-1EEF-4AEF-B47F-19504B46BE7D}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>7000000</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ObjectInclusionList>
 						<ObjectRef Name="PC_BA2" ID="{F7206707-89DA-40FC-BD8B-27ADB45B1458}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PC_slide" ID="{82C819C0-ED0C-41FB-B724-FADFDDE1B801}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>

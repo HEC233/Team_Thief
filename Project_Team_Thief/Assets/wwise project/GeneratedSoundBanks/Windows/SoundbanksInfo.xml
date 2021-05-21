@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="110249294">
+		<SoundBank Id="393239870" Language="SFX" Hash="1477280459">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -56,7 +56,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1271964801" Name="PC_dash" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_dash" DurationType="OneShot" DurationMin="0.238826" DurationMax="0.337751">
+				<Event Id="1271964801" Name="PC_dash" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_dash" DurationType="OneShot" DurationMin="0.180996" DurationMax="0.203161">
 					<IncludedMemoryFiles>
 						<File Id="501540947" Language="SFX">
 							<ShortName>SFX_PC_dash.wav</ShortName>
@@ -68,7 +68,7 @@
 					<IncludedMemoryFiles>
 						<File Id="427331776" Language="SFX">
 							<ShortName>SFX_PC_FS.wav</ShortName>
-							<Path>SFX\SFX_PC_FS_D79FB2B7.wem</Path>
+							<Path>SFX\SFX_PC_FS_6E0CF522.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -116,15 +116,15 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3162924009" Name="PC_Jump" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_Jump" DurationType="OneShot" DurationMin="0.215109" DurationMax="0.271020">
+				<Event Id="3162924009" Name="PC_Jump" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_Jump" DurationType="OneShot" DurationMin="0.090453" DurationMax="0.113964">
 					<IncludedMemoryFiles>
 						<File Id="897023030" Language="SFX">
 							<ShortName>SFX_PC_jump.wav</ShortName>
-							<Path>SFX\SFX_PC_jump_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_jump_16739359.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3795174" Name="PC_land" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_land" DurationType="OneShot" DurationMin="0.295424" DurationMax="0.372210">
+				<Event Id="3795174" Name="PC_land" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_land" DurationType="OneShot" DurationMin="0.396627" DurationMax="0.499719">
 					<IncludedMemoryFiles>
 						<File Id="447645998" Language="SFX">
 							<ShortName>SFX_PC_land.wav</ShortName>
@@ -164,17 +164,17 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1438052377" Name="PC_wall" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_wall" DurationType="OneShot" DurationMin="0.210000" DurationMax="0.210000">
+				<Event Id="1438052377" Name="PC_wall" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_wall" DurationType="OneShot" DurationMin="0.110498" DurationMax="0.117069">
 					<IncludedMemoryFiles>
 						<File Id="152241030" Language="SFX">
 							<ShortName>SFX_PC_wall.wav</ShortName>
-							<Path>SFX\SFX_PC_wall_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_wall_EDCD9879.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="992544517">
+		<SoundBank Id="1355168291" Language="SFX" Hash="2602011176">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
