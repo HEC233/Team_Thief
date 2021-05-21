@@ -30,7 +30,7 @@ public enum AniState
     SkillAxe2,      // 22
     SkillSpear,     // 23
     SkillHammer,    // 24
-    
+
     // SkillShadowWalk,// 20
     // ShadowControl,  // 21
     // ShadowLumpSpawn,// 22

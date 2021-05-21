@@ -1404,14 +1404,16 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     
     private class DieState : CustomFSMStateBase
     {
+        private bool _isAniEnd = false;
         public DieState(PlayerFSMSystem system) : base(system)
         {
         }
 
         public override void StartState()
         {
-            GameManager.instance.isPlayerDead = true;
-            GameManager.instance.uiMng.PlayerDead();
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Die);
+
             WwiseSoundManager.instance.PlayEventSound("PC_dead");
         }
 
@@ -1433,6 +1435,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override bool InputKey(TransitionCondition condition)
         {
             return false;
+        }
+        
+        private void OnAnimationEndEvnetCall()
+        {
+            _isAniEnd = true;
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+            GameManager.instance.isPlayerDead = true;
+            GameManager.instance.uiMng.PlayerDead();
         }
     }
 
