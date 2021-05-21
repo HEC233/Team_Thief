@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6209559929434722353}
   - component: {fileID: 879513343057636028}
   - component: {fileID: 8428699956332093957}
-  - component: {fileID: 6223530674657186577}
   m_Layer: 0
   m_Name: P_PC_Hammer (1)
   m_TagString: Untagged
@@ -4813,22 +4812,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &6223530674657186577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2810470717697320278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleSystems:
-  - {fileID: 879513343057636028}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &3527909791397652469
 GameObject:
   m_ObjectHideFlags: 0
@@ -9658,8 +9641,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 3527909791397652471}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8940982716523596150}
+  - {fileID: 879513343057636028}
 --- !u!1 &8061520298782583920
 GameObject:
   m_ObjectHideFlags: 0
@@ -9671,7 +9654,6 @@ GameObject:
   - component: {fileID: 5599887824497582092}
   - component: {fileID: 8940982716523596150}
   - component: {fileID: 3631230253113165869}
-  - component: {fileID: 5529256008371453331}
   m_Layer: 0
   m_Name: P_PC_Hammer
   m_TagString: Untagged
@@ -14491,19 +14473,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &5529256008371453331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8061520298782583920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleSystems:
-  - {fileID: 8940982716523596150}
-  - {fileID: 0}
-  - {fileID: 0}
