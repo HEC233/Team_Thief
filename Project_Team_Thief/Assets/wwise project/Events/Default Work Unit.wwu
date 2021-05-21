@@ -117,7 +117,7 @@
 												<Action Name="" ID="{C1BD6762-2DB8-4875-824D-59CBE794BD3C}" ShortID="819548172">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="SFX_PC_HIT_hammer" ID="{8F15079E-9310-4412-B151-9F44406814A9}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+															<ObjectRef Name="SFX_PC_HIT_hammer" ID="{57EA269B-A974-455B-AB9E-0103F7EFD9D5}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -125,10 +125,10 @@
 										</Event>
 										<Event Name="PC_HIT_blade" ID="{03DA4E6F-03ED-4E08-80FE-8E63DD183177}">
 											<ChildrenList>
-												<Action Name="" ID="{80EA3F95-2011-42B3-AB29-149285204610}" ShortID="63118449">
+												<Action Name="" ID="{514014A7-F7E0-4FD5-81EA-C627AD4E7D22}" ShortID="289030411">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="SFX_PC_HIT_blade" ID="{401EA669-D9CC-4A3F-B48E-7A5CB764B957}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+															<ObjectRef Name="SFX_PC_HIT_blade" ID="{FBA302E3-1D8A-4E3E-B20E-D27E9B910A5F}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -311,7 +311,32 @@
 										</Event>
 									</ChildrenList>
 								</Folder>
-								<Folder Name="Dandelion" ID="{DD4FDCBB-7E92-48CF-A588-1615E6AB92CA}" ShortID="13807875"/>
+								<Folder Name="Dandelion" ID="{DD4FDCBB-7E92-48CF-A588-1615E6AB92CA}" ShortID="13807875">
+									<ChildrenList>
+										<Event Name="Dandelion_FA" ID="{264C2F49-23C4-4CDD-BFD8-9315760525E6}">
+											<ChildrenList>
+												<Action Name="" ID="{43B58C39-85B0-40D0-8E5D-4EF57315250E}" ShortID="158098476">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_Dandelion_FA" ID="{59694C18-EB7A-4034-88C6-6A1E410920E7}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Dandelion_Boom" ID="{3D63B58C-8358-4B70-8FE3-47CDF33D2DA6}">
+											<ChildrenList>
+												<Action Name="" ID="{2F5562A2-6C6C-4A3F-A847-1FC325DC5CDF}" ShortID="123995285">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_Dandelion_Boom" ID="{22CB97D9-482A-45CB-8237-BC2B2B0A9D32}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>

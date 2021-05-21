@@ -23,7 +23,7 @@
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
 												</Reference>
 												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+													<ObjectRef Name="Voice" ID="{FCE1CE36-899F-4EB5-A915-9AF7B87C2228}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
@@ -557,7 +557,7 @@
 										</RandomSequenceContainer>
 									</ChildrenList>
 								</Folder>
-								<Folder Name="woosh" ID="{AC80192F-9755-4394-9AC3-648026654285}" ShortID="961314173">
+								<Folder Name="whoosh" ID="{AC80192F-9755-4394-9AC3-648026654285}" ShortID="961314173">
 									<ChildrenList>
 										<RandomSequenceContainer Name="PC_BA1" ID="{9F38F8F1-C45D-493C-8BC2-EBAB864F4ECA}" ShortID="510765136">
 											<PropertyList>
@@ -1260,68 +1260,29 @@
 										</RandomSequenceContainer>
 									</ChildrenList>
 								</Folder>
-								<Folder Name="hit" ID="{052564C2-8031-4CD9-B8B3-BE9DAB1C1095}" ShortID="497583889">
+								<ActorMixer Name="hit" ID="{4702CCE3-C5BD-473C-93E3-DDD54F7DB141}" ShortID="457580283">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="Enemys" ID="{F19697E6-DEA7-4439-AB26-904687620905}" WorkUnitID="{A2788169-699F-4F56-88AF-1B77B9428A9A}"/>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="SFX_PC_HIT_blade" ID="{401EA669-D9CC-4A3F-B48E-7A5CB764B957}" ShortID="126271562">
+										<Sound Name="SFX_PC_HIT_hammer" ID="{57EA269B-A974-455B-AB9E-0103F7EFD9D5}" ShortID="980285510">
 											<PropertyList>
 												<Property Name="Pitch" Type="int32">
 													<ModifierList>
 														<ModifierInfo>
-															<Modifier Name="" ID="{878BF1D7-4ABF-4D6A-B3B8-99C7A0B87D01}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Max" Type="Real64" Value="30"/>
-																	<Property Name="Min" Type="Real64" Value="-30"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-7</Value>
-													</ValueList>
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{2FDD0913-9990-4BB2-892D-8D44A72270D1}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Max" Type="Real64" Value="1"/>
-																	<Property Name="Min" Type="Real64" Value="-1"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="SFX_PC_HIT_blade" ID="{1D441269-738B-4775-8A2A-810F2C6226F8}">
-													<Language>SFX</Language>
-													<AudioFile>SFX_PC_HIT_blade.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="839774164"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists/>
-											<ActiveSourceList>
-												<ActiveSource Name="SFX_PC_HIT_blade" ID="{1D441269-738B-4775-8A2A-810F2C6226F8}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="SFX_PC_HIT_hammer" ID="{8F15079E-9310-4412-B151-9F44406814A9}" ShortID="540327308">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32">
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{57EB0A70-CA65-45B6-AEB2-D990CC0F5179}">
+															<Modifier Name="" ID="{115974FD-A098-4596-91CF-B472325CE2E9}">
 																<PropertyList>
 																	<Property Name="Enabled" Type="bool" Value="True"/>
 																	<Property Name="Max" Type="Real64" Value="100"/>
@@ -1337,7 +1298,7 @@
 													</ValueList>
 													<ModifierList>
 														<ModifierInfo>
-															<Modifier Name="" ID="{CEE05D89-FAC3-4A23-8F2F-D23681B1821C}">
+															<Modifier Name="" ID="{EB0B9685-5052-4E8A-AF9E-E749EB730FD5}">
 																<PropertyList>
 																	<Property Name="Enabled" Type="bool" Value="True"/>
 																	<Property Name="Max" Type="Real64" Value="1"/>
@@ -1357,7 +1318,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="SFX_PC_HIT_hammer" ID="{53362A50-41D0-4350-9C97-5EE20658E5ED}">
+												<AudioFileSource Name="SFX_PC_HIT_hammer" ID="{CB5F44F0-2D7A-4547-B7CF-1E7D578E9312}">
 													<Language>SFX</Language>
 													<AudioFile>SFX_PC_HIT_hammer.wav</AudioFile>
 													<MediaIDList>
@@ -1367,11 +1328,69 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="SFX_PC_HIT_hammer" ID="{53362A50-41D0-4350-9C97-5EE20658E5ED}" Platform="Linked"/>
+												<ActiveSource Name="SFX_PC_HIT_hammer" ID="{CB5F44F0-2D7A-4547-B7CF-1E7D578E9312}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="SFX_PC_HIT_blade" ID="{FBA302E3-1D8A-4E3E-B20E-D27E9B910A5F}" ShortID="273216368">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{F0FB6947-AB36-4340-B774-42145188DBA7}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="30"/>
+																	<Property Name="Min" Type="Real64" Value="-30"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-9</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{29207E8D-9FA0-42F0-BB9B-143B7D845E9E}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="1"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="SFX_PC_HIT_blade" ID="{4D2CEED9-3956-45BB-B07A-9B967FB437AD}">
+													<Language>SFX</Language>
+													<AudioFile>SFX_PC_HIT_blade.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="839774164"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="SFX_PC_HIT_blade" ID="{4D2CEED9-3956-45BB-B07A-9B967FB437AD}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
-								</Folder>
+									<PositioningInfo>
+										<Panner Name="" ID="{E3CA025E-45CA-4FC8-82FC-2048F70BFDF0}"/>
+									</PositioningInfo>
+									<ObjectLists/>
+								</ActorMixer>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="ENEMY" ID="{56980627-F7FA-4DF8-B151-EE1965B42ACB}" ShortID="47304428">
@@ -1566,7 +1585,14 @@
 									<ObjectLists/>
 								</ActorMixer>
 								<ActorMixer Name="Seraphim" ID="{BE20BFD3-C753-4038-9BD3-F8369A93E8BD}" ShortID="339153174">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="Enemys" ID="{F19697E6-DEA7-4439-AB26-904687620905}" WorkUnitID="{A2788169-699F-4F56-88AF-1B77B9428A9A}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
 										</Reference>
@@ -1756,6 +1782,144 @@
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
+									<PositioningInfo>
+										<Panner Name="" ID="{49AEA371-D79A-4AD2-AF70-78F372F4F121}"/>
+									</PositioningInfo>
+									<ObjectLists/>
+								</ActorMixer>
+								<ActorMixer Name="Dadelion" ID="{87F54B09-5EE9-407C-9684-5564F7D4C723}" ShortID="1041075774">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{42706F5E-0074-4363-9FCC-4E5D1BFF3028}"/>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="Enemys" ID="{F19697E6-DEA7-4439-AB26-904687620905}" WorkUnitID="{A2788169-699F-4F56-88AF-1B77B9428A9A}"/>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="SFX_Dandelion_Boom" ID="{22CB97D9-482A-45CB-8237-BC2B2B0A9D32}" ShortID="180777437">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{52F041E1-CD83-4968-907E-18661BF3635B}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="100"/>
+																	<Property Name="Min" Type="Real64" Value="-100"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-9</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{F0FCDE1A-B608-4712-A8A7-1C00E5068012}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="1"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="SFX_Dandelion_Boom" ID="{E579FA5B-18A9-4377-BAF5-EE382C75C2C7}">
+													<Language>SFX</Language>
+													<AudioFile>SFX_Dandelion_Boom.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="514265212"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="SFX_Dandelion_Boom" ID="{E579FA5B-18A9-4377-BAF5-EE382C75C2C7}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="SFX_Dandelion_FA" ID="{59694C18-EB7A-4034-88C6-6A1E410920E7}" ShortID="253704288">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{97810DBA-E4A4-4CDA-8A94-24447FD01A6A}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="100"/>
+																	<Property Name="Min" Type="Real64" Value="-100"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{F8797494-2D28-45ED-BF7C-034DDE23FA32}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="1"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="SFX_Dandelion_FA" ID="{5ECA3B2D-0611-422B-9250-74FD4596B42E}">
+													<Language>SFX</Language>
+													<AudioFile>SFX_Dandelion_FA.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1052154211"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="SFX_Dandelion_FA" ID="{5ECA3B2D-0611-422B-9250-74FD4596B42E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<PositioningInfo>
+										<Panner Name="" ID="{4CE25FD6-B8B0-4EB1-A20D-14ECABF6B495}"/>
+									</PositioningInfo>
 									<ObjectLists/>
 								</ActorMixer>
 							</ChildrenList>

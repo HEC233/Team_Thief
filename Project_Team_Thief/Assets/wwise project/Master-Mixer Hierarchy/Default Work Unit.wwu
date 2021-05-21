@@ -11,7 +11,17 @@
 					</ReferenceList>
 					<ChildrenList>
 						<AuxBus Name="Auxiliary_Bus" ID="{6CD209D4-9213-4699-B4CA-344B47A649DE}">
-							<ReferenceList/>
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<ObjectRef Name="Hall_Large_Dark" ID="{0F6A7D6D-131C-4650-9561-FC05F5C7A37B}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+								</Reference>
+							</ReferenceList>
+							<PositioningInfo>
+								<Panner Name="" ID="{954F4A96-F6D1-42BB-902D-524E7E6FACB3}"/>
+							</PositioningInfo>
 							<ObjectLists/>
 						</AuxBus>
 						<Bus Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}">
@@ -30,9 +40,6 @@
 						</Bus>
 						<Bus Name="Voice" ID="{FCE1CE36-899F-4EB5-A915-9AF7B87C2228}">
 							<ReferenceList>
-								<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
-									<ObjectRef Name="Hall_Large" ID="{6D154498-FF6D-4823-96FC-56841B70E079}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
-								</Reference>
 								<Reference Name="UserAuxSend0">
 									<ObjectRef Name="Auxiliary_Bus" ID="{6CD209D4-9213-4699-B4CA-344B47A649DE}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
 								</Reference>

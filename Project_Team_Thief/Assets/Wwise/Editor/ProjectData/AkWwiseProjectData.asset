@@ -303,7 +303,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: e8a961f1977ddc44a7bcd68ac0d891e1
     GuidInternal: 
-    m_lastTime: -8585800062594192644
+    m_lastTime: -8585799898304711588
     List:
     - name: AMB
       guid: db08a7ec0ff5504b94c949b46b6f5e7b
@@ -447,7 +447,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-    m_lastTime: -8585799961597599546
+    m_lastTime: -8585799895118060079
     List:
     - name: Enemy
       guid: 4180b20eab728742bb28e1477a6e3154
@@ -477,123 +477,6 @@ MonoBehaviour:
         ObjectType: 7
         guid: b16ad34bef1eef4ab47f19504b46be7d
       Path: SoundBanks\Default Work Unit\PC
-  - PhysicalPath: SoundBanks\Queries\Default Work Unit.wwu
-    PathAndIcons:
-    - ElementName: SoundBanks
-      ObjectType: 5
-      guid: 00000000000000000000000000000000
-    - ElementName: Queries
-      ObjectType: 5
-      guid: 00000000000000000000000000000000
-    - ElementName: Default Work Unit
-      ObjectType: 12
-      guid: 1c7e3631390f494c89fb10a61eb73295
-    ParentPath: SoundBanks\Queries\Default Work Unit
-    guid: 1c7e3631390f494c89fb10a61eb73295
-    GuidInternal: 
-    m_lastTime: -8585800154683281799
-    List: []
-  - PhysicalPath: SoundBanks\Queries\Factory Queries.wwu
-    PathAndIcons:
-    - ElementName: SoundBanks
-      ObjectType: 5
-      guid: 00000000000000000000000000000000
-    - ElementName: Queries
-      ObjectType: 5
-      guid: 00000000000000000000000000000000
-    - ElementName: Factory Queries
-      ObjectType: 12
-      guid: 9063ba7ff14cfa449da5fc65f66e8fc0
-    ParentPath: SoundBanks\Queries\Factory Queries
-    guid: 9063ba7ff14cfa449da5fc65f66e8fc0
-    GuidInternal: 
-    m_lastTime: -8585800154683271798
-    List:
-    - name: Actor-Mixer Hierarchy
-      guid: 1561e2753dfc254e99f9448bc918921e
-      id: 4121822449
-      PathAndIcons:
-      - ElementName: SoundBanks
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Queries
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Factory Queries
-        ObjectType: 12
-        guid: 9063ba7ff14cfa449da5fc65f66e8fc0
-      - ElementName: Actor-Mixer Hierarchy
-        ObjectType: 4
-        guid: 1561e2753dfc254e99f9448bc918921e
-      Path: SoundBanks\Queries\Factory Queries\Actor-Mixer Hierarchy
-    - name: Audio Source
-      guid: a7d3fbe1fe5964408b8a98f1bc63e8af
-      id: 2614151924
-      PathAndIcons:
-      - ElementName: SoundBanks
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Queries
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Factory Queries
-        ObjectType: 12
-        guid: 9063ba7ff14cfa449da5fc65f66e8fc0
-      - ElementName: Audio Source
-        ObjectType: 4
-        guid: a7d3fbe1fe5964408b8a98f1bc63e8af
-      Path: SoundBanks\Queries\Factory Queries\Audio Source
-    - name: Interactive Music
-      guid: 788aa60ecceb1147aaa77d6c890983be
-      id: 3167255554
-      PathAndIcons:
-      - ElementName: SoundBanks
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Queries
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Factory Queries
-        ObjectType: 12
-        guid: 9063ba7ff14cfa449da5fc65f66e8fc0
-      - ElementName: Interactive Music
-        ObjectType: 4
-        guid: 788aa60ecceb1147aaa77d6c890983be
-      Path: SoundBanks\Queries\Factory Queries\Interactive Music
-    - name: Master-Mixer Hierarchy
-      guid: f10834f23efa0640a7b42288e6885fc7
-      id: 4102365434
-      PathAndIcons:
-      - ElementName: SoundBanks
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Queries
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Factory Queries
-        ObjectType: 12
-        guid: 9063ba7ff14cfa449da5fc65f66e8fc0
-      - ElementName: Master-Mixer Hierarchy
-        ObjectType: 4
-        guid: f10834f23efa0640a7b42288e6885fc7
-      Path: SoundBanks\Queries\Factory Queries\Master-Mixer Hierarchy
-    - name: Sound
-      guid: 9ae0f1c14d137f47b23da77a9c88a6c7
-      id: 623086306
-      PathAndIcons:
-      - ElementName: SoundBanks
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Queries
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Factory Queries
-        ObjectType: 12
-        guid: 9063ba7ff14cfa449da5fc65f66e8fc0
-      - ElementName: Sound
-        ObjectType: 4
-        guid: 9ae0f1c14d137f47b23da77a9c88a6c7
-      Path: SoundBanks\Queries\Factory Queries\Sound
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -606,7 +489,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585799961597476514
+    m_lastTime: -8585799897377320430
     List:
     - name: Dandelion
       guid: bbdc4fdd927ecf48a5881615e6ab92ca
@@ -631,6 +514,58 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Dandelion_Boom
+      guid: 8cb5633d5883704b8fe347cdf33d2da6
+      id: 3148959641
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: SFX
+        ObjectType: 4
+        guid: 92e06faedefaa341bd83c48e22786e60
+      - ElementName: Enemy
+        ObjectType: 4
+        guid: 6893e63a85929b4f8c8e7b8fc78ee449
+      - ElementName: Dandelion
+        ObjectType: 4
+        guid: bbdc4fdd927ecf48a5881615e6ab92ca
+      - ElementName: Dandelion_Boom
+        ObjectType: 3
+        guid: 8cb5633d5883704b8fe347cdf33d2da6
+      Path: Events\Default Work Unit\SFX\Enemy\Dandelion\Dandelion_Boom
+      maxAttenuation: 30
+      maxDuration: 1.644066
+      minDuration: 1.464696
+    - name: Dandelion_FA
+      guid: 492f4c26c423dd4cbfd89315760525e6
+      id: 208042395
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: SFX
+        ObjectType: 4
+        guid: 92e06faedefaa341bd83c48e22786e60
+      - ElementName: Enemy
+        ObjectType: 4
+        guid: 6893e63a85929b4f8c8e7b8fc78ee449
+      - ElementName: Dandelion
+        ObjectType: 4
+        guid: bbdc4fdd927ecf48a5881615e6ab92ca
+      - ElementName: Dandelion_FA
+        ObjectType: 3
+        guid: 492f4c26c423dd4cbfd89315760525e6
+      Path: Events\Default Work Unit\SFX\Enemy\Dandelion\Dandelion_FA
+      maxAttenuation: 30
+      maxDuration: 0.109598
+      minDuration: 0.097641
     - name: Enemy
       guid: 6893e63a85929b4f8c8e7b8fc78ee449
       id: 2299321487
@@ -1124,7 +1059,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 6f4eda03ed03084e80fe8e63dd183177
       Path: Events\Default Work Unit\SFX\PC\hit\PC_HIT_blade
-      maxAttenuation: 0
+      maxAttenuation: 30
       maxDuration: 0.723195
       minDuration: 0.69856
     - name: PC_HIT_hammer
@@ -1150,7 +1085,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: e6e7f6a9d13e6b469fef9e35c042657d
       Path: Events\Default Work Unit\SFX\PC\hit\PC_HIT_hammer
-      maxAttenuation: 0
+      maxAttenuation: 30
       maxDuration: 19.538424
       minDuration: 17.406754
     - name: PC_hurt
@@ -1407,7 +1342,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: b6cf57b8c0f7694aad50a9676290a4d2
       Path: Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_AR
-      maxAttenuation: 0
+      maxAttenuation: 30
       maxDuration: 0.548564
       minDuration: 0.488715
     - name: Seraphim_FS
@@ -1433,7 +1368,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 8798619bfdcd1d46b31ff797570f259f
       Path: Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_FS
-      maxAttenuation: 0
+      maxAttenuation: 30
       maxDuration: -1
       minDuration: -1
     - name: Seraphim_Shot
@@ -1459,7 +1394,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: fbc2a61e413c094090488c505ce1968e
       Path: Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_Shot
-      maxAttenuation: 0
+      maxAttenuation: 30
       maxDuration: 1.243608
       minDuration: 1.107929
     - name: SFX
