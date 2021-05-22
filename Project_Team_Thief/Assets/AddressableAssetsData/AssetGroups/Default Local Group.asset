@@ -66,14 +66,14 @@ MonoBehaviour:
     - Text
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 9ff0478997b2a3d4a9eba2a31fc8247f
-    m_Address: Assets/Game/Dialogue/TutorialScene.bytes
+  - m_GUID: c7bde17c362045c4dafe34d032e685de
+    m_Address: Assets/Game/Dialogue/TutorialScript.txt
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: e3d34d9e9218e73408d8a5fefb209a85
-    m_Address: Assets/Game/Dialogue/TutorialScene.txt
+  - m_GUID: 379acaaba098e894eb5bd94e7f77e090
+    m_Address: Assets/Game/Data/TextAsset/TutorialScene.bytes
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
