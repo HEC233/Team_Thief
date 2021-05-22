@@ -1,6 +1,0 @@
-Move T1
-StopTime
-{ 
-Next
-Next
-}
