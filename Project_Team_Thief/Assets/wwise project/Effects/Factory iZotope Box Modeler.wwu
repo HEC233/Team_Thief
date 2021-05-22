@@ -13,6 +13,18 @@
 						<Property Name="Trim" Type="Real32" Value="7.5"/>
 					</PropertyList>
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{2878494D-3C68-477B-A0F6-248561470532}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775700"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{BE2583D2-FE02-4F9C-BAEA-57686460A20F}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775700"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{37A7CF81-2BAA-4387-BBB2-788DA2BB083A}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>
@@ -148,6 +160,18 @@
 						<Property Name="OutputGain" Type="Real32" Value="-5"/>
 					</PropertyList>
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{8339721C-B6F0-415C-855E-35D6EA90B817}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="475887785"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{D5BB3381-DCAB-4CC7-B93F-F6AE34A25CC4}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="475887785"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{87BB91BA-C4EA-4DAD-8FEA-D67183220EF2}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>
@@ -284,6 +308,18 @@
 						<Property Name="OutputGain" Type="Real32" Value="-6"/>
 					</PropertyList>
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{1C1C65E2-4768-4D38-8118-08FCE7091C9A}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="475887788"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{0AA29710-9B1A-4E84-BE2A-3E1DAACB277D}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="475887788"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{797D02AA-68AF-4908-A642-14A629CA442D}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>
@@ -418,6 +454,18 @@
 						<Property Name="OutputGain" Type="Real32" Value="-6"/>
 					</PropertyList>
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{8121EB57-0506-4B9F-A19B-74DACF36CD2F}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775701"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{1C7976CB-049F-4763-8367-70BCD8B436CD}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775701"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{7592B19C-029E-4104-A560-18946FE72B20}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>
@@ -552,6 +600,18 @@
 						<Property Name="MicType" Type="int32" Value="2"/>
 					</PropertyList>
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{69C7EEB3-1317-41FA-AC22-0AA0AC14F2BD}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775698"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{A6848F77-737C-4737-95CB-36F5575C1435}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775698"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{80D16168-9F35-45A6-9467-1D132C2155DD}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>
@@ -686,6 +746,18 @@
 						<Property Name="MicType" Type="int32" Value="2"/>
 					</PropertyList>
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{F1376FA3-60FC-4E0D-9CC8-0EC96E319C8B}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775697"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{B2E3EA66-C592-4F40-8531-118FA52A4AF0}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775697"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{0659FBA5-CE07-4E6C-A2F8-9D5711682D07}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>
@@ -820,6 +892,18 @@
 						<Property Name="OutputGain" Type="Real32" Value="3"/>
 					</PropertyList>
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{16F7EA8D-4B3B-43AC-A45E-6FEE9EB54BFC}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775699"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{D0287EA5-CD17-46CC-8A18-EFBC9622E67A}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775699"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{D4A6C9B3-6727-4D46-89C7-4E2DC171C102}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>
@@ -954,6 +1038,18 @@
 						<Property Name="OutputGain" Type="Real32" Value="-11"/>
 					</PropertyList>
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{62963B4B-C429-48AE-B3D1-4D1170CA52CD}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775696"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{F4FDF301-6ABB-4162-B7C4-2FA9ED019572}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775696"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{B1CDAB74-B27E-4B47-83DC-410037585D6D}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>
@@ -1089,6 +1185,18 @@
 						<Property Name="OutputGain" Type="Real32" Value="5"/>
 					</PropertyList>
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{F5C38BE8-3F6E-4632-9A9C-9E8D932189F0}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="475887786"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{A2A267DD-2BE2-499B-B247-CD29E161AD91}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="475887786"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{466FF3B5-CE01-42EA-AF97-733A364D2E82}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>
@@ -1223,6 +1331,18 @@
 						<Property Name="OutputGain" Type="Real32" Value="-3"/>
 					</PropertyList>
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{7FA81D9D-A1DF-47B5-B9A7-A382C8A0137A}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="475887787"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{1A9F14D0-4811-43A3-B47A-F7B44CAC4477}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="475887787"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{B672774E-EB1B-4CFB-BA3D-6CB30B150846}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>
@@ -1357,6 +1477,18 @@
 						<Property Name="OutputGain" Type="Real32" Value="-13"/>
 					</PropertyList>
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{4C72CE55-633F-4D9D-B9C7-932BDF8248F1}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775702"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{B159C572-832C-483F-A7D3-6CCA6156463F}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775702"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{715E5990-AAAE-40A5-A029-00E5F5AA225B}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>
@@ -1487,6 +1619,18 @@
 				</Effect>
 				<Effect Name="Wood_Floor_01" ID="{C87E2109-E7D3-4E1B-8179-14F09F7300A9}" PluginName="iZotope Trash Box Modeler" CompanyID="259" PluginID="7" PluginType="3">
 					<ChildrenList>
+						<PluginMediaSource Name="" ID="{706DFD8F-4EF7-4D6B-8BD6-A4E5AD92F09F}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775703"/>
+							</MediaIDList>
+						</PluginMediaSource>
+						<PluginMediaSource Name="" ID="{6812AC59-ACE9-4562-834F-B6D60FAC1999}">
+							<ParentPluginID>462899</ParentPluginID>
+							<MediaIDList>
+								<MediaID ID="459775703"/>
+							</MediaIDList>
+						</PluginMediaSource>
 						<PluginMediaSource Name="" ID="{3D538D70-BCCA-457E-96D8-D75BAA46B2C4}">
 							<ParentPluginID>462899</ParentPluginID>
 							<MediaIDList>

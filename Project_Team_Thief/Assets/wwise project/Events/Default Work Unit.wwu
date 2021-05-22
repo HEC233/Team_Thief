@@ -170,7 +170,7 @@
 												<Action Name="" ID="{D687EF1C-5CB1-4C36-9F51-764CBC1385EB}" ShortID="849800328">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="SFX_PC_FS" ID="{18511453-4823-4B45-8554-AD4BB0651454}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+															<ObjectRef Name="PC_FS" ID="{8E27C07C-2104-4974-8902-52460AA3053E}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -244,7 +244,7 @@
 												<Action Name="" ID="{59ADACF0-082E-491B-BD32-2ABB9831197C}" ShortID="991203287">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="SFX_LightWarrior_FS" ID="{B60C251A-F881-41A6-97FA-083DC4262FA0}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+															<ObjectRef Name="LightWarrior_FS" ID="{3A9BF15C-4238-4215-8641-4912B2A359B8}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -292,7 +292,7 @@
 												<Action Name="" ID="{5824D528-22D6-45CD-8E6B-2851F218673F}" ShortID="769845553">
 													<ReferenceList>
 														<Reference Name="Target">
-															<ObjectRef Name="SFX_Seraphim_FS" ID="{29FBB74E-0B76-4259-89E7-EFAA32157DE7}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+															<ObjectRef Name="Seraphim_FS" ID="{9E7BC364-2E39-47E9-9596-50E4E036442B}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
