@@ -163,9 +163,24 @@ public class PlayerUnit : Unit
     [SerializeField]
     private Vector2[] _basicAttackKnockBackArr;
     [SerializeField]
-    private BasicAttackCtrl _basicJumpAttackCtrl;
+    private BasicAttackCtrl[] _basicJumpAttackCtrlArr;
 
-    [Header("Combo Variable")] 
+    [SerializeField]
+    private float[] _basicJumpAttackMoveTimeArr;
+    public float[] BasicJumpAttackMoveTimeArr => _basicJumpAttackMoveTimeArr;
+
+    [SerializeField]
+    private Vector2[] _basicJumpAttackMoveGoalArr;
+    public Vector2[] BasicJumpAttackMoveGoalXArr => _basicJumpAttackMoveGoalArr;
+
+    private float _basicJumpAttackMoveSpeed = 0.0f;
+    public bool isBasicJumpAttackAble = true;
+    [SerializeField]
+    private float _basicJumpAttackTime = 0.1f;
+
+    public float BasicJumpAttackTime => _basicJumpAttackTime;
+    
+    [Header("Combo Variable")]
     [SerializeField]
     private float _comboTime;
 
@@ -268,14 +283,20 @@ public class PlayerUnit : Unit
             _basicAttackCtrlArr[i].OnChangeDirEvent += OnChangeDirEventCall;
         }
 
-        _basicJumpAttackCtrl.OnChangeDirEvent += OnChangeDirEventCall;
+        for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
+        {
+            _basicJumpAttackCtrlArr[i].OnChangeDirEvent += OnChangeDirEventCall;
+        }
 
         for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
         {
             _basicAttackCtrlArr[i].OnEnemyHitEvent += OnAddComboEventCall;
         }
 
-        _basicJumpAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
+        for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
+        {
+            _basicJumpAttackCtrlArr[i].OnEnemyHitEvent += OnAddComboEventCall;
+        }
 
         _skillSpearAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
         _skillHammerAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
@@ -288,14 +309,20 @@ public class PlayerUnit : Unit
             _basicAttackCtrlArr[i].OnChangeDirEvent -= OnChangeDirEventCall;
         }
 
-        _basicJumpAttackCtrl.OnChangeDirEvent -= OnChangeDirEventCall;
+        for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
+        {
+            _basicJumpAttackCtrlArr[i].OnChangeDirEvent -= OnChangeDirEventCall;
+        }
 
         for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
         {
             _basicAttackCtrlArr[i].OnEnemyHitEvent -= OnAddComboEventCall;
         }
 
-        _basicJumpAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
+        for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
+        {
+            _basicJumpAttackCtrlArr[i].OnEnemyHitEvent -= OnAddComboEventCall;
+        }
 
         _skillSpearAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
         _skillHammerAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
@@ -450,6 +477,7 @@ public class PlayerUnit : Unit
     public void ResetJumpVal()
     {
         _jumpCount = _maxJumpCount;
+        isBasicJumpAttackAble = true;
         _coyoteTime = _maxCoyoteTime;
     }
 
@@ -627,16 +655,43 @@ public class PlayerUnit : Unit
         base.Attack();
     }
 
-    public void BasicJumpAttack()
+    public void BasicJumpAttack(int jumpAttackIndex)
     {
         SetBasicDamage(3);
-        _basicJumpAttackCtrl.SetDamage(_basicAttackDamage);
-        _basicJumpAttackCtrl.Progress();
+        _basicJumpAttackCtrlArr[jumpAttackIndex].SetDamage(_basicAttackDamage);
+        _basicJumpAttackCtrlArr[jumpAttackIndex].Progress();
     }
+
+    public void SetJumpAttackMove()
+    {
+        _rigidbody2D.gravityScale = 0;
+    }
+
+    public void EndJumpAttackMove()
+    {
+        _rigidbody2D.gravityScale = _originalGravityScale;
+    }
+    
+    public void BasicJumpAttackMove(int basicJumpAttackIndex)
+    {
+        _basicJumpAttackMoveSpeed = 
+            (1 / _basicJumpAttackMoveTimeArr[basicJumpAttackIndex]) *
+            _basicJumpAttackMoveGoalArr[basicJumpAttackIndex].x;
+        
+        float _basicJumpAttackMoveYSpeed = (1 / _basicJumpAttackMoveTimeArr[basicJumpAttackIndex]) *
+                                           _basicJumpAttackMoveGoalArr[basicJumpAttackIndex].y;
+        
+        _rigidbody2D.velocity = new Vector2(0, 0);
+
+        var power = new Vector2((_basicJumpAttackMoveSpeed) * _facingDir * GameManager.instance.timeMng.TimeScale,
+            _basicJumpAttackMoveYSpeed * GameManager.instance.timeMng.TimeScale);
+        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+    
 
     public void BasicJumpMove(int inputDir)
     {
-        _rigidbody2D.AddForce(new Vector2(_minSpeed * inputDir * _timeScale, 0), ForceMode2D.Impulse);
+        _rigidbody2D.AddForce(new Vector2(_minSpeed * inputDir * GameManager.instance.timeMng.TimeScale, 0), ForceMode2D.Impulse);
         
         if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
             _rigidbody2D.velocity = new Vector2(_maxSpeed * inputDir, _rigidbody2D.velocity.y);
