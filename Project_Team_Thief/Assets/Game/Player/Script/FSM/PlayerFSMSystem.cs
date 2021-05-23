@@ -81,8 +81,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private void Bind()
     {
-        Debug.Log("Bind");
-        
         GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvnetCall;
         GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
         GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
@@ -113,7 +111,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
-            WwiseSoundManager.instance.PlayEventSound("PC_dead");
             if (SystemMgr._isBattleIdle == true)
                 SystemMgr.AnimationCtrl.PlayAni(AniState.BattleIdle);
             else
