@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484f46132f38df34b8c13b876f9708d2, type: 3}
   m_Name: CommandSkill3HammerReverse
   m_EditorClassIdentifier: 
-  commandString: UDLX
+  commandString: UDZ
+  reverseCommandString: 
+  coolTime: 0
+  maxCoolTIme: 0
   skillName: Skill3HammerReverse
