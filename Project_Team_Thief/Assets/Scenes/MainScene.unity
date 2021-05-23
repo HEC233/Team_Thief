@@ -4020,15 +4020,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 512310134, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
-      propertyPath: data.WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: 488d8c3cf9aeb0248afcf174d5f2cb24,
-        type: 2}
-    - target: {fileID: 512310134, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
-      propertyPath: triggerList.Array.data[0]
-      value: 1281810935
-      objectReference: {fileID: 0}
     - target: {fileID: 4990086937456659570, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: m_RootOrder
