@@ -1268,7 +1268,7 @@
 								<ActorMixer Name="hit" ID="{4702CCE3-C5BD-473C-93E3-DDD54F7DB141}" ShortID="457580283">
 									<PropertyList>
 										<Property Name="3DSpatialization" Type="int16" Value="1"/>
-										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+										<Property Name="ListenerRelativeRouting" Type="bool" Value="False"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Attenuation">
@@ -1404,6 +1404,11 @@
 									<PropertyList>
 										<Property Name="3DSpatialization" Type="int16" Value="1"/>
 										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-96</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Attenuation">
@@ -1624,6 +1629,11 @@
 									<PropertyList>
 										<Property Name="3DSpatialization" Type="int16" Value="1"/>
 										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-96</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Attenuation">
@@ -1875,6 +1885,11 @@
 											</ModifierList>
 										</Property>
 										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-96</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Attenuation">

@@ -489,7 +489,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585799252973583045
+    m_lastTime: -8585798374941513479
     List:
     - name: Dandelion
       guid: bbdc4fdd927ecf48a5881615e6ab92ca
@@ -1059,7 +1059,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 6f4eda03ed03084e80fe8e63dd183177
       Path: Events\Default Work Unit\SFX\PC\hit\PC_HIT_blade
-      maxAttenuation: 30
+      maxAttenuation: 0
       maxDuration: 0.723195
       minDuration: 0.69856
     - name: PC_HIT_hammer
@@ -1085,7 +1085,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: e6e7f6a9d13e6b469fef9e35c042657d
       Path: Events\Default Work Unit\SFX\PC\hit\PC_HIT_hammer
-      maxAttenuation: 30
+      maxAttenuation: 0
       maxDuration: 19.538424
       minDuration: 17.406754
     - name: PC_hurt
@@ -1190,8 +1190,8 @@ MonoBehaviour:
         guid: c019c8820cedfb41b724fadfdde1b801
       Path: Events\Default Work Unit\SFX\PC\movement\PC_slide
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 2.119796
+      minDuration: 2.119796
     - name: PC_spear_Charge
       guid: 37035596ad5ad64e9c0584326c3a099b
       id: 2685062319

@@ -19,7 +19,7 @@
 				<AuxBus Id="1622449088" Name="Auxiliary_Bus" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Auxiliary_Bus"/>
 			</IncludedAuxBusses>
 		</SoundBank>
-		<SoundBank Id="1635194334" Language="SFX" Hash="129859975">
+		<SoundBank Id="1635194334" Language="SFX" Hash="2717819976">
 			<ObjectPath>\SoundBanks\Default Work Unit\PC</ObjectPath>
 			<ShortName>PC</ShortName>
 			<Path>PC.bnk</Path>
@@ -96,7 +96,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4017075331" Name="PC_HIT_blade" ObjectPath="\Events\Default Work Unit\SFX\PC\hit\PC_HIT_blade" MaxAttenuation="30.000000" DurationType="OneShot" DurationMin="0.698560" DurationMax="0.723195">
+				<Event Id="4017075331" Name="PC_HIT_blade" ObjectPath="\Events\Default Work Unit\SFX\PC\hit\PC_HIT_blade" DurationType="OneShot" DurationMin="0.698560" DurationMax="0.723195">
 					<IncludedMemoryFiles>
 						<File Id="839774164" Language="SFX">
 							<ShortName>SFX_PC_HIT_blade.wav</ShortName>
@@ -104,7 +104,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3385077829" Name="PC_HIT_hammer" ObjectPath="\Events\Default Work Unit\SFX\PC\hit\PC_HIT_hammer" MaxAttenuation="30.000000" DurationType="OneShot" DurationMin="17.406754" DurationMax="19.538424">
+				<Event Id="3385077829" Name="PC_HIT_hammer" ObjectPath="\Events\Default Work Unit\SFX\PC\hit\PC_HIT_hammer" DurationType="OneShot" DurationMin="17.406754" DurationMax="19.538424">
 					<IncludedMemoryFiles>
 						<File Id="294639420" Language="SFX">
 							<ShortName>SFX_PC_HIT_hammer.wav</ShortName>
@@ -140,11 +140,11 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1281925152" Name="PC_slide" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_slide" DurationType="Infinite">
+				<Event Id="1281925152" Name="PC_slide" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_slide" DurationType="OneShot" DurationMin="2.119796" DurationMax="2.119796">
 					<IncludedMemoryFiles>
 						<File Id="835747766" Language="SFX">
 							<ShortName>SFX_PC_slide.wav</ShortName>
-							<Path>SFX\SFX_PC_slide_F01E125A.wem</Path>
+							<Path>SFX\SFX_PC_slide_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -182,7 +182,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="2299321487" Language="SFX" Hash="624486905">
+		<SoundBank Id="2299321487" Language="SFX" Hash="2511319812">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enemy</ObjectPath>
 			<ShortName>Enemy</ShortName>
 			<Path>Enemy.bnk</Path>
