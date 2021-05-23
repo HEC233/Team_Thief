@@ -182,6 +182,8 @@ namespace LightWarrior
     //=====================================================================
     public class Move : LWState
     {
+        uint soundID;
+        bool bSoundPlaying = false;
         private enum InnerState
         {
             right,left,stop
@@ -196,17 +198,37 @@ namespace LightWarrior
 
         public override void Exit(LightWarriorActor actor)
         {
+            if (bSoundPlaying)
+            {
+                WwiseSoundManager.instance.StopEventSoundFromId(soundID);
+            }
         }
 
         public override void Process(LightWarriorActor actor)
         {
             _horizontalSpeed = actor.unit.GetSpeed().x;
             if (Mathf.Approximately(_horizontalSpeed, 0))
+            {
                 innerState = InnerState.stop;
-            else if (_horizontalSpeed > 0)
-                innerState = InnerState.right;
-            else if (_horizontalSpeed < 0)
-                innerState = InnerState.left;
+                if (bSoundPlaying)
+                {
+                    WwiseSoundManager.instance.StopEventSoundFromId(soundID);
+                    bSoundPlaying = false;
+                }
+            }
+            else
+            {
+                if (!bSoundPlaying)
+                {
+                    Assert.IsNotNull(WwiseSoundManager.instance);
+                    soundID = WwiseSoundManager.instance.PlayEventSound("SFX_LightWarrior_FS");
+                    bSoundPlaying = true;
+                }
+                if (_horizontalSpeed > 0)
+                    innerState = InnerState.right;
+                else if (_horizontalSpeed < 0)
+                    innerState = InnerState.left;
+            }
         }
 
         public override bool Transition(LightWarriorActor actor, TransitionCondition condition)
@@ -340,6 +362,8 @@ namespace LightWarrior
         {
             actor.animCtrl.PlayAni(AniState.AttackReady);
             actor.unit.Idle();
+            Assert.IsNotNull(WwiseSoundManager.instance);
+            WwiseSoundManager.instance.PlayEventSound("SFX_LightWarrior_AR");
             timeCheck = actor.unit.AttackEnterDelay;
             isAttacked = false;
         }
@@ -359,6 +383,8 @@ namespace LightWarrior
                 {
                     actor.animCtrl.PlayAni(AniState.Attack);
                     actor.unit.Attack();
+                    Assert.IsNotNull(WwiseSoundManager.instance);
+                    WwiseSoundManager.instance.PlayEventSound("SFX_LightWarrior_Swing");
                     isAttacked = true;
                     timeCheck = actor.unit.AttackEndDelay;
                 }

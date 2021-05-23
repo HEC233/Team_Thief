@@ -195,6 +195,9 @@ namespace PS.Enemy.Seraphim
     //=====================================================================
     public class Move : SPState
     {
+        uint soundID;
+        bool bSoundPlaying = false;
+
         private enum InnerState
         {
             right, left, stop
@@ -209,19 +212,38 @@ namespace PS.Enemy.Seraphim
 
         public override void Exit(SeraphimActor actor)
         {
+            if(bSoundPlaying)
+            {
+                WwiseSoundManager.instance.StopEventSoundFromId(soundID);
+            }
         }
 
         public override void Process(SeraphimActor actor)
         {
             _horizontalSpeed = actor.unit.GetSpeed().x;
             if (Mathf.Approximately(_horizontalSpeed, 0))
+            {
                 innerState = InnerState.stop;
-            else if (_horizontalSpeed > 0)
-                innerState = InnerState.right;
-            else if (_horizontalSpeed < 0)
-                innerState = InnerState.left;
+                if(bSoundPlaying)
+                {
+                    WwiseSoundManager.instance.StopEventSoundFromId(soundID);
+                    bSoundPlaying = false;
+                }
+            }
+            else
+            {
+                if (!bSoundPlaying)
+                {
+                    Assert.IsNotNull(WwiseSoundManager.instance);
+                    soundID = WwiseSoundManager.instance.PlayEventSound("SFX_Seraphim_FS");
+                    bSoundPlaying = true;
+                }
+                if (_horizontalSpeed > 0)
+                    innerState = InnerState.right;
+                else if (_horizontalSpeed < 0)
+                    innerState = InnerState.left;
+            }
         }
-
         public override bool Transition(SeraphimActor actor, TransitionCondition condition)
         {
             switch (condition)
@@ -403,6 +425,8 @@ namespace PS.Enemy.Seraphim
         {
             actor.animCtrl.PlayAni(AniState.AttackReady);
             actor.unit.Idle();
+            Assert.IsNotNull(WwiseSoundManager.instance);
+            WwiseSoundManager.instance.PlayEventSound("SFX_Seraphim_AR");
             timeCheck = actor.unit.AttackEnterDelay;
             isAttacked = false;
             actor.attackAnimEnd = false;
@@ -432,6 +456,8 @@ namespace PS.Enemy.Seraphim
                     actor.unit.Attack();
                     actor.fireFX.gameObject.SetActive(true);
                     actor.fireFX.SetFlip(actor.flipValue);
+                    Assert.IsNotNull(WwiseSoundManager.instance);
+                    WwiseSoundManager.instance.PlayEventSound("SFX_Seraphim_Shot");
                     isAttacked = true;
                     timeCheck = actor.unit.AttackEndDelay;
                 }

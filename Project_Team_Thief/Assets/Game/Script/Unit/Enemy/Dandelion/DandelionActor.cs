@@ -258,6 +258,8 @@ namespace Dandelion
                 {
                     actor.animCtrl.PlayAni(AniState.Attack);
                     actor.unit.Attack();
+                    Assert.IsNotNull(WwiseSoundManager.instance);
+                    WwiseSoundManager.instance.PlayEventSound("SFX_Dandelion_FA");
                     isAttacked = true;
                     timeCheck = actor.unit.AttackEndDelay;
                 }

@@ -11,6 +11,8 @@ public class DandelionAttackFx : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+        WwiseSoundManager.instance?.PlayEventSound("SFX_Dandelion_Boom");
+
         int length = particle.GetCollisionEvents(other, collisionEvents);
 
         Unit unit = other.GetComponentInChildren<Unit>();
