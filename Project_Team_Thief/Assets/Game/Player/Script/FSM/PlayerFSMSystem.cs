@@ -81,8 +81,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private void Bind()
     {
-        Debug.Log("Bind");
-        
         GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvnetCall;
         GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
         GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
@@ -1377,7 +1375,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.Wallslideing);
             WwiseSoundManager.instance.PlayEventSound("PC_Wall");
-            
+            _slidingSoundId = WwiseSoundManager.instance.PlayEventSound("PC_slide");
+
             SystemMgr.Unit.WallSlideStateStart();
         }
 
@@ -1423,13 +1422,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 if (condition == TransitionCondition.None)
                 {
                     SystemMgr.Unit.WallReset();
-                    WwiseSoundManager.instance.StopEventSoundFromId(_slidingSoundId);
                 }
                 
                 if (condition == TransitionCondition.Wallslideing)
                 {
                     SystemMgr.Unit.WallSlideing();
-                    _slidingSoundId = WwiseSoundManager.instance.PlayEventSound("PC_slide");
                 }
 
                 if (SystemMgr.isJumpKeyPress == false)

@@ -6,12 +6,13 @@ public class DandelionAttackFx : MonoBehaviour
 {
     public ParticleSystem particle;
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
+    public WwiseSoundCtrl wwiseSoundCtrl;
 
     public Damage damage;
 
     private void OnParticleCollision(GameObject other)
     {
-        WwiseSoundManager.instance?.PlayEventSound("Dandelion_Boom");
+        wwiseSoundCtrl.PlayEventSound("Dandelion_Boom");
 
         int length = particle.GetCollisionEvents(other, collisionEvents);
 

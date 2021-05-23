@@ -40,7 +40,10 @@ public class MonsterUnit : Unit
     public float AttackEnterDelay { get { return _unitData.enterDelay; } }
     public float AttackEndDelay { get { return _unitData.endDelay; } }
 
-
+    // 김태성
+    [SerializeField] 
+    private WwiseSoundCtrl _wwiseSoundCtrl;
+    
     private bool IsHorizontalMoving
     {
         get { return !Mathf.Approximately(GetSpeed().x, 0.0f); }
@@ -338,7 +341,19 @@ public class MonsterUnit : Unit
                         fxName = "HitSpear";
                         break;
                 }
+
+                string sFxName = string.Empty;
+                switch (inputDamage.additionalInfo)
+                {
+                    default:
+                        sFxName = "PC_HIT_blade";
+                        break;
+                    case 4:
+                        sFxName = "PC_HIT_hammer";
+                        break;
+                }
                 var effect = GameManager.instance?.FX.Play(fxName, inputDamage.hitPosition);
+                _wwiseSoundCtrl.PlayEventSound(sFxName);
                 //GameManager.instance?.timeMng.hitStopReadyCheckList.Add(effect.IsPlaying);
             }
         }

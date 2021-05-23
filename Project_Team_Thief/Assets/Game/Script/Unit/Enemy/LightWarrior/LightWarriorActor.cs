@@ -8,6 +8,7 @@ public class LightWarriorActor : MonoBehaviour, IActor
 {
     public LightWarriorUnit unit;
     public AnimationCtrl animCtrl;
+    public WwiseSoundCtrl wwiseSoundCtrl;
     LWState _curState;
 
     public Idle idle = new Idle();
@@ -200,7 +201,7 @@ namespace LightWarrior
         {
             if (bSoundPlaying)
             {
-                WwiseSoundManager.instance.StopEventSoundFromId(soundID);
+                actor.wwiseSoundCtrl.StopEventSoundFromId(soundID);
             }
         }
 
@@ -212,7 +213,7 @@ namespace LightWarrior
                 innerState = InnerState.stop;
                 if (bSoundPlaying)
                 {
-                    WwiseSoundManager.instance.StopEventSoundFromId(soundID);
+                    actor.wwiseSoundCtrl.StopEventSoundFromId(soundID);
                     bSoundPlaying = false;
                 }
             }
@@ -220,8 +221,8 @@ namespace LightWarrior
             {
                 if (!bSoundPlaying)
                 {
-                    Assert.IsNotNull(WwiseSoundManager.instance);
-                    soundID = WwiseSoundManager.instance.PlayEventSound("LightWarrior_FS");
+                    //Assert.IsNotNull(WwiseSoundManager.instance);
+                    soundID = actor.wwiseSoundCtrl.PlayEventSound("LightWarrior_FS");
                     bSoundPlaying = true;
                 }
                 if (_horizontalSpeed > 0)
@@ -362,8 +363,8 @@ namespace LightWarrior
         {
             actor.animCtrl.PlayAni(AniState.AttackReady);
             actor.unit.Idle();
-            Assert.IsNotNull(WwiseSoundManager.instance);
-            WwiseSoundManager.instance.PlayEventSound("LightWarrior_AR");
+            //Assert.IsNotNull(WwiseSoundManager.instance);
+            actor.wwiseSoundCtrl.PlayEventSound("LightWarrior_AR");
             timeCheck = actor.unit.AttackEnterDelay;
             isAttacked = false;
         }
@@ -383,8 +384,8 @@ namespace LightWarrior
                 {
                     actor.animCtrl.PlayAni(AniState.Attack);
                     actor.unit.Attack();
-                    Assert.IsNotNull(WwiseSoundManager.instance);
-                    WwiseSoundManager.instance.PlayEventSound("LightWarrior_Swing");
+                    //Assert.IsNotNull(WwiseSoundManager.instance);
+                    actor.wwiseSoundCtrl.PlayEventSound("LightWarrior_Swing");
                     isAttacked = true;
                     timeCheck = actor.unit.AttackEndDelay;
                 }

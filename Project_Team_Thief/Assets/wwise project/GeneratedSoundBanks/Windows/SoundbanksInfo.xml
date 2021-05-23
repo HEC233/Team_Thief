@@ -182,7 +182,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="2299321487" Language="SFX" Hash="2511319812">
+		<SoundBank Id="2299321487" Language="SFX" Hash="1264829624">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enemy</ObjectPath>
 			<ShortName>Enemy</ShortName>
 			<Path>Enemy.bnk</Path>
