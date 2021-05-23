@@ -33,9 +33,9 @@ MonoBehaviour:
     skipable: 0
     autopass: 0
     actions:
-    - type: 10
+    - type: 0
       actionLength: 0
-      dialogName: 
+      dialogName: TutorialScene
       image: {fileID: 0}
       leftDown: {x: 0, y: 0}
       rightUp: {x: 0, y: 0}

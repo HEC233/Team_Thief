@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DialogueSystem : MonoBehaviour
 {
-    public DialogueUIController ui;
+    private DialogueUIController ui;
 
     DialogueData _data;
     string[] dialogues;
@@ -19,6 +19,8 @@ public class DialogueSystem : MonoBehaviour
 
     private bool bInitialized = false;
     private bool bCodeRuning = false;
+
+    public bool CheckRunning() { return bCodeRuning; }
 
 
     InputProcessActor inputProcess;
@@ -72,6 +74,8 @@ public class DialogueSystem : MonoBehaviour
         bInitialized = true;
         bCodeRuning = false;
 
+        ui = GameManager.instance?.uiMng.uiDialogue;
+
         inputProcess = new InputProcessActor(this);
         return true;
     }
@@ -92,7 +96,21 @@ public class DialogueSystem : MonoBehaviour
     private void Start()
     {
         GameLoader.instance.AddSceneLoadCallback(InitializeData);
-        DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void StartDialogueWithName(string name)
+    {
+        if(!bInitialized)
+        {
+            return;
+        }
+        for(int i = 0; i < _data.bytecodeName.Length; i++)
+        {
+            if(_data.bytecodeName[i] == name)
+            {
+                StartDialogue(i);
+            }
+        }
     }
 
     public void StartDialogue(int CodeIndex)
@@ -115,6 +133,19 @@ public class DialogueSystem : MonoBehaviour
         PC = 0;
         bAutoPass = true;
         ui.SetShowDialogue(true);
+    }
+
+    public void EndDialogue()
+    {
+        if(!bAutoPass)
+        {
+            GameManager.instance?.timeMng.ResumeTime();
+            GameManager.instance?.SetControlUnit(player);
+            bAutoPass = true;
+        }
+        PC = 0;
+        bCodeRuning = false;
+        ui.SetShowDialogue(false);
     }
 
     public bool Process()
@@ -161,7 +192,7 @@ public class DialogueSystem : MonoBehaviour
                     {
                         text = dialogues[curDialogueIndex];
                     }
-                    ui.ShowText(text);
+                    ui.ShowText(text, bAutoPass ? 1 : 0);
                     curDialogueIndex++;
                     bCycleEnd = true;
                     break;
@@ -258,18 +289,6 @@ public class DialogueSystem : MonoBehaviour
             }
 
             return false;
-        }
-    }
-
-
-    int index = 0;
-    public void TestButtonFunc()
-    {
-        StartDialogue(index);
-        index++;
-        if (_data != null)
-        {
-            index = index % _data.bytecodeName.Length;
         }
     }
 }
