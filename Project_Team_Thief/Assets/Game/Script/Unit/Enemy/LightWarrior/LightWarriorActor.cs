@@ -221,7 +221,7 @@ namespace LightWarrior
                 if (!bSoundPlaying)
                 {
                     Assert.IsNotNull(WwiseSoundManager.instance);
-                    soundID = WwiseSoundManager.instance.PlayEventSound("SFX_LightWarrior_FS");
+                    soundID = WwiseSoundManager.instance.PlayEventSound("LightWarrior_FS");
                     bSoundPlaying = true;
                 }
                 if (_horizontalSpeed > 0)
@@ -363,7 +363,7 @@ namespace LightWarrior
             actor.animCtrl.PlayAni(AniState.AttackReady);
             actor.unit.Idle();
             Assert.IsNotNull(WwiseSoundManager.instance);
-            WwiseSoundManager.instance.PlayEventSound("SFX_LightWarrior_AR");
+            WwiseSoundManager.instance.PlayEventSound("LightWarrior_AR");
             timeCheck = actor.unit.AttackEnterDelay;
             isAttacked = false;
         }
@@ -384,7 +384,7 @@ namespace LightWarrior
                     actor.animCtrl.PlayAni(AniState.Attack);
                     actor.unit.Attack();
                     Assert.IsNotNull(WwiseSoundManager.instance);
-                    WwiseSoundManager.instance.PlayEventSound("SFX_LightWarrior_Swing");
+                    WwiseSoundManager.instance.PlayEventSound("LightWarrior_Swing");
                     isAttacked = true;
                     timeCheck = actor.unit.AttackEndDelay;
                 }

@@ -235,7 +235,7 @@ namespace PS.Enemy.Seraphim
                 if (!bSoundPlaying)
                 {
                     Assert.IsNotNull(WwiseSoundManager.instance);
-                    soundID = WwiseSoundManager.instance.PlayEventSound("SFX_Seraphim_FS");
+                    soundID = WwiseSoundManager.instance.PlayEventSound("Seraphim_FS");
                     bSoundPlaying = true;
                 }
                 if (_horizontalSpeed > 0)
@@ -426,7 +426,7 @@ namespace PS.Enemy.Seraphim
             actor.animCtrl.PlayAni(AniState.AttackReady);
             actor.unit.Idle();
             Assert.IsNotNull(WwiseSoundManager.instance);
-            WwiseSoundManager.instance.PlayEventSound("SFX_Seraphim_AR");
+            WwiseSoundManager.instance.PlayEventSound("Seraphim_AR");
             timeCheck = actor.unit.AttackEnterDelay;
             isAttacked = false;
             actor.attackAnimEnd = false;
@@ -457,7 +457,7 @@ namespace PS.Enemy.Seraphim
                     actor.fireFX.gameObject.SetActive(true);
                     actor.fireFX.SetFlip(actor.flipValue);
                     Assert.IsNotNull(WwiseSoundManager.instance);
-                    WwiseSoundManager.instance.PlayEventSound("SFX_Seraphim_Shot");
+                    WwiseSoundManager.instance.PlayEventSound("Seraphim_Shot");
                     isAttacked = true;
                     timeCheck = actor.unit.AttackEndDelay;
                 }
