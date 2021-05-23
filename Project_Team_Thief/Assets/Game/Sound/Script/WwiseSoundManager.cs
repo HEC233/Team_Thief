@@ -17,6 +17,7 @@ public class WwiseSoundManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
     }
 
     public uint PlayEventSound(string eventName)

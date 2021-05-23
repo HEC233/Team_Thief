@@ -184,7 +184,12 @@ public class EventSystem : MonoBehaviour
     }
     private IEnumerator Dialog(string dialogName)
     {
-        yield return null;
+        GameManager.instance.dialogueSystem.StartDialogueWithName(dialogName);
+
+        while (GameManager.instance.dialogueSystem.CheckRunning())
+        {
+            yield return null;
+        }
     }
 
     private IEnumerator CutScene(Sprite image)

@@ -8,6 +8,7 @@ public class DandelionActor : MonoBehaviour, IActor
 {
     public DandelionUnit unit;
     public AnimationCtrl animCtrl;
+    public WwiseSoundCtrl wwiseSoundCtrl;
     private DDState _curState;
 
     public Idle idle = new Idle();
@@ -258,8 +259,8 @@ namespace Dandelion
                 {
                     actor.animCtrl.PlayAni(AniState.Attack);
                     actor.unit.Attack();
-                    Assert.IsNotNull(WwiseSoundManager.instance);
-                    WwiseSoundManager.instance.PlayEventSound("Dandelion_FA");
+                    //Assert.IsNotNull(WwiseSoundManager.instance);
+                    actor.wwiseSoundCtrl.PlayEventSound("Dandelion_FA");
                     isAttacked = true;
                     timeCheck = actor.unit.AttackEndDelay;
                 }

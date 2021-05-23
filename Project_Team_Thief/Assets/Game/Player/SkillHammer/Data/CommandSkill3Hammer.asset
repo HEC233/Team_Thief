@@ -17,3 +17,4 @@ MonoBehaviour:
   coolTime: 2.0199988
   maxCoolTIme: 2
   skillName: Skill3Hammer
+  skillIcon: {fileID: 21300000, guid: dc8516d714f173644b3b82b1dead03e3, type: 3}

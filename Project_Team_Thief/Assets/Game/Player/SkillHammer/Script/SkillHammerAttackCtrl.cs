@@ -94,7 +94,7 @@ public class SkillHammerAttackCtrl : AttackBase
         if (_isPlaySFX == false)
             return;
 
-        WwiseSoundManager.instance.PlayEventSound("PC_HIT_hammer");
+        //WwiseSoundManager.instance.PlayEventSound("PC_HIT_hammer");
     }
     
     public override void CameraShake()

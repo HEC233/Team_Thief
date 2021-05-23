@@ -31,7 +31,7 @@ public class DialogueUIController : MonoBehaviour
 
     private void Awake()
     {
-        SetShowDialogue(false);
+        //SetShowDialogue(false);
     }
 
     public void SetShowDialogue(bool value)
@@ -57,12 +57,12 @@ public class DialogueUIController : MonoBehaviour
         bAnimationEnd = true;
     }
 
-    public void ShowText(in string text)
+    public void ShowText(in string text, float waitTime)
     {
         curText = text;
         textBox.text = string.Empty;
         bAnimationEnd = false;
-        StartCoroutine(TextAnimationCoroutine());
+        StartCoroutine(TextAnimationCoroutine(waitTime));
     }
 
     public void SetBold()
@@ -85,14 +85,15 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
-    private IEnumerator TextAnimationCoroutine()
+    private IEnumerator TextAnimationCoroutine(float waitTime)
     {
+        var internalTime = new WaitForSeconds(0.1f);
         for (int i = 0; i < curText.Length; i++)
         {
             textBox.text += curText.Substring(i, 1);
-            yield return new WaitForSeconds(0.1f);
+            yield return internalTime;
         }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(waitTime);
         bAnimationEnd = true;
         yield break;
     }

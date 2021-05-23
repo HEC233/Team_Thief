@@ -113,6 +113,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
+            WwiseSoundManager.instance.PlayEventSound("PC_dead");
             if (SystemMgr._isBattleIdle == true)
                 SystemMgr.AnimationCtrl.PlayAni(AniState.BattleIdle);
             else
@@ -1132,6 +1133,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private class BasicJumpAttack : CustomFSMStateBase
     {
         private bool _isBasicjumpAttackAniEnd = false;
+        private int _jumpAttackIndex = 0;
+        private bool _isBasicJumpAttackStart = false;
+        private bool _isNotEndCoroutine = false;
+        private float _attackInputTime = 0.0f;
+        private float _attackBeInputTime = 0.0f;
         
         public BasicJumpAttack(PlayerFSMSystem system) : base(system)
         {
@@ -1139,11 +1145,29 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
-            SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack);
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.BasicJumpAttack);
+            if (SystemMgr.Unit.isBasicJumpAttackAble == true)
+            {
+                SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack);
+                SystemMgr._fxCtrl.PlayAni(FxAniEnum.BasicJumpAttack);
+                SystemMgr.Unit.StartCoroutine(BasicJumpAttackMoveCoroutine());
 
-            SystemMgr.OnBasicAttackEndAniEvent += BasicJumpAttackAniEnd;
-            SystemMgr.OnBasicAttackCallEvent += BasicJumpAttackCall;
+                SystemMgr.OnBasicAttackEndAniEvent += BasicJumpAttackAniEnd;
+                SystemMgr.OnBasicAttackCallEvent += BasicJumpAttackCall;
+                SystemMgr.Unit.isBasicJumpAttackAble = false;
+                _attackBeInputTime = Time.time;
+                _isBasicJumpAttackStart = true;
+            }
+            else
+            {
+                _isBasicJumpAttackStart = false;
+ 
+                if (SystemMgr.Unit.IsGround == true)
+                {
+                    SystemMgr.Transition(TransitionCondition.Idle);
+                }
+                else
+                    SystemMgr.Transition(TransitionCondition.Falling);
+            }
         }
 
         public override void Update()
@@ -1156,16 +1180,19 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 {
                     SystemMgr.Transition(TransitionCondition.Idle);
                 }
-                else if (SystemMgr.Unit.GetVelocity().y <= 0)
+                else
                     SystemMgr.Transition(TransitionCondition.Falling);
             }
         }
 
         public override void EndState()
         {
+            Debug.Log("EndState");
+
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
-            
             _isBasicjumpAttackAniEnd = false;
+            _isBasicJumpAttackStart = false;
+            _jumpAttackIndex = 0;
             
             SystemMgr.OnBasicAttackEndAniEvent -= BasicJumpAttackAniEnd;
             SystemMgr.OnBasicAttackCallEvent -= BasicJumpAttackCall;
@@ -1173,39 +1200,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Idle)
+                return true;
+            if (condition == TransitionCondition.Falling)
+                return true;
             
-            // if (condition == TransitionCondition.Jump)
-            // {
-            //     if (SystemMgr.isJumpKeyPress == false)
-            //     {
-            //         if (SystemMgr.Unit.CheckIsJumpAble() == true)
-            //         {
-            //             if (SystemMgr.AnimationCtrl.GetCurAniTime() >= 0.6)
-            //             {
-            //                 SystemMgr.Transition(TransitionCondition.DoubleJump);
-            //                 return false;
-            //             }
-            //         }
-            //     }
-            // }
-
-            // if (_isBasicjumpAttackAniEnd == true)
-            // {
-            //     if (SystemMgr.Unit.IsGround == false)
-            //     {
-            //         if (condition == TransitionCondition.Falling)
-            //             return true;
-            //     }
-            //     else
-            //     {
-            //         if (condition == TransitionCondition.Idle)
-            //             return true;
-            //     }
-            //
-            //     if (condition == TransitionCondition.Attack)
-            //         SystemMgr.Transition(TransitionCondition.Idle);
-            // }
-
             if (_isBasicjumpAttackAniEnd == false)
                 return false;
             else
@@ -1217,8 +1216,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 }
                 else
                 {
-                    if (condition == TransitionCondition.Idle)
-                        return true;
+
                 }
                 
             }
@@ -1230,27 +1228,73 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (condition == TransitionCondition.LeftMove)
             {
-                SystemMgr.Unit.BasicJumpMove(-1);
+                if (_isNotEndCoroutine == false)
+                    SystemMgr.Unit.BasicJumpMove(-1);
             }
             if (condition == TransitionCondition.RightMove)
             {
-                SystemMgr.Unit.BasicJumpMove(1);
+                if (_isNotEndCoroutine == false)
+                    SystemMgr.Unit.BasicJumpMove(1);
+            }
+
+            if (condition == TransitionCondition.Attack)
+            {
+                _attackInputTime = Time.time;
+
+                Debug.Log(_attackInputTime - _attackBeInputTime);
+                if (_attackInputTime - _attackBeInputTime <= SystemMgr.Unit.BasicJumpAttackTime)
+                {
+                    BasicJumpAttack2();
+                }
+
             }
 
             return true;
         }
+        
+        IEnumerator BasicJumpAttackMoveCoroutine()
+        {
+            SystemMgr.Unit.SetJumpAttackMove();
+            
+            _isNotEndCoroutine = true;
+            float _basicJumpAttackMoveTime = SystemMgr.Unit.BasicJumpAttackMoveTimeArr[_jumpAttackIndex];
+            float _timer = 0.02f;
+            while (_timer < _basicJumpAttackMoveTime)
+            {
+                _timer += GameManager.instance.timeMng.FixedDeltaTime;
+                SystemMgr.Unit.BasicJumpAttackMove(_jumpAttackIndex);
+                yield return new WaitForFixedUpdate();
+            }
+            
+            _isNotEndCoroutine = false;
+            SystemMgr.Unit.EndJumpAttackMove();
+        }
+
+        private void BasicJumpAttack2()
+        {
+            if(_jumpAttackIndex >= 1)
+                return;
+
+
+            Debug.Log("isCallJumAttack2");
+            _jumpAttackIndex++;
+            SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack2);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.JumpAttackFx2);
+            SystemMgr.Unit.StartCoroutine(BasicJumpAttackMoveCoroutine());
+        }
+        
 
         private void BasicJumpAttackAniEnd()
         {
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
             _isBasicjumpAttackAniEnd = true;
             
-            SystemMgr.Transition(TransitionCondition.Idle);
+            SystemMgr.Unit.Rigidbody2D.velocity = Vector2.zero;
         }
 
         private void BasicJumpAttackCall()
         {
-            SystemMgr.Unit.BasicJumpAttack();
+            SystemMgr.Unit.BasicJumpAttack(_jumpAttackIndex);
         }
     }
     
@@ -1334,7 +1378,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.Wallslideing);
             WwiseSoundManager.instance.PlayEventSound("PC_Wall");
-            
+            _slidingSoundId = WwiseSoundManager.instance.PlayEventSound("PC_slide");
+
             SystemMgr.Unit.WallSlideStateStart();
         }
 
@@ -1380,13 +1425,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 if (condition == TransitionCondition.None)
                 {
                     SystemMgr.Unit.WallReset();
-                    WwiseSoundManager.instance.StopEventSoundFromId(_slidingSoundId);
                 }
                 
                 if (condition == TransitionCondition.Wallslideing)
                 {
                     SystemMgr.Unit.WallSlideing();
-                    _slidingSoundId = WwiseSoundManager.instance.PlayEventSound("PC_slide");
                 }
 
                 if (SystemMgr.isJumpKeyPress == false)

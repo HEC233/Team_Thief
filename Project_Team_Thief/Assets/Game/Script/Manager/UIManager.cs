@@ -5,15 +5,24 @@ using PS.Util.DeveloperConsole;
 
 public class UIManager : MonoBehaviour
 {
-    public UIPlayerInfo uiPlayerInfo;
-    public UIMainMenu uiMainMenu;
-    public UISettingMenu uiSettingMenu;
-    public UIPauseMenu uiPauseMenu;
-    public UILoadingAnimation uiLoading;
-    public UIDynamic uiDynamic;
+    [SerializeField]
+    private UIPlayerInfo uiPlayerInfo;
+    [SerializeField]
+    private UIMainMenu uiMainMenu;
+    [SerializeField]
+    private UISettingMenu uiSettingMenu;
+    [SerializeField]
+    private UIPauseMenu uiPauseMenu;
+    [SerializeField]
+    private UILoadingAnimation uiLoading;
+    [SerializeField]
+    private UIDynamic uiDynamic;
+    [SerializeField]
+    private UIComboInfo uiComboInfo;
+    [SerializeField]
+    private CanvasGroup uiGameOver;
     public ConsoleComponent developerConsole;
-    public UIComboInfo uiComboInfo;
-    public CanvasGroup uiGameOver;
+    public DialogueUIController uiDialogue;
 
     private static bool exist = false;
 
