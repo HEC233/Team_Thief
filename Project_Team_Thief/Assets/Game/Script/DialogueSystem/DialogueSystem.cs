@@ -51,7 +51,7 @@ public class DialogueSystem : MonoBehaviour
         TextAsset text = Addressable.instance.GetText(_data.dialogueName);
         if (text == null)
         {
-            ErrorMessage = "DialogueData is invalid.";
+            ErrorMessage = "DialogueData is invalid. there is no " + _data.dialogueName + " in addresable.";
             return false;
         }
         if (!new DialogueMaker().MakeDialogueScript(text.text, out dialogues, out indexKeys))
@@ -65,7 +65,7 @@ public class DialogueSystem : MonoBehaviour
             TextAsset bytecode = Addressable.instance.GetText(_data.bytecodeName[i]);
             if (bytecode == null)
             {
-                ErrorMessage = "DialogueData is invalid.";
+                ErrorMessage = "DialogueData is invalid. there is no " + _data.bytecodeName[i] + "in addresable.";
                 return false;
             }
             code[i] = bytecode.bytes;

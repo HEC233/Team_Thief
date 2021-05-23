@@ -38,13 +38,13 @@ MonoBehaviour:
     - Unit
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 253322d612c9afe4cb5c9e7522084a57
-    m_Address: Assets/Game/Data/TextAsset/TestText.txt
+  - m_GUID: 1955edb23b1467d42a180a86e5537447
+    m_Address: Assets/Game/Data/TextAsset/Bytecode/TestScenario.bytes
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 1955edb23b1467d42a180a86e5537447, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 1955edb23b1467d42a180a86e5537447, type: 3}
   - m_GUID: bb6b81eebe0751c4aa62670652fe6a0b
     m_Address: Assets/Game/Sprite/Tile/Dummy/TL_dummy.png
     m_ReadOnly: 0
@@ -52,20 +52,13 @@ MonoBehaviour:
     - Sprite
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: e89c69f4b8672d54f8627ee1ccb69c3b
-    m_Address: Assets/testCode.bytes
+  - m_GUID: 1a37496e743859048a55b459b5b055da
+    m_Address: Assets/Game/Data/TextAsset/Script/TextScript.txt
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: d02951f22ea614c4cbcacf8b05514db9
-    m_Address: Assets/testCode2.bytes
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Text
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 1a37496e743859048a55b459b5b055da, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 1a37496e743859048a55b459b5b055da, type: 3}
   - m_GUID: e0daefc8b8fcb8d4281877f323bc38c9
     m_Address: Assets/Game/Data/TextAsset/TutorialScene.bytes
     m_ReadOnly: 0

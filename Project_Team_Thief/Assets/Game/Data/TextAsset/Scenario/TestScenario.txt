@@ -1,0 +1,14 @@
+Move START
+SetUpper
+Next
+Next
+StopTime
+{
+SetDown
+EnablePortrait
+Next
+HighlightRight
+Next
+DisablePortrait
+Next
+}

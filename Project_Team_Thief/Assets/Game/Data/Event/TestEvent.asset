@@ -35,7 +35,7 @@ MonoBehaviour:
     actions:
     - type: 0
       actionLength: 0
-      dialogName: TutorialScene
+      dialogName: TestScenario
       image: {fileID: 0}
       leftDown: {x: 0, y: 0}
       rightUp: {x: 0, y: 0}
