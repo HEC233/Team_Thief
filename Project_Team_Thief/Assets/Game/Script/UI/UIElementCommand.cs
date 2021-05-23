@@ -7,7 +7,7 @@ public class UIElementCommand : MonoBehaviour
 {
     private RectTransform _rect;
 
-    public Image coolTime;
+    public Image skillIcon;
     public GameObject commandCell;
 
     public RectTransform frame;
@@ -27,6 +27,8 @@ public class UIElementCommand : MonoBehaviour
     {
         _data = data;
         commandString = command;
+        skillIcon.sprite = data.CommandData.skillIcon;
+        _data.CommandData.coolTime = _data.CommandData.maxCoolTIme;
 
         for (int i=0;i<command.Length; i++)
         {
@@ -88,6 +90,12 @@ public class UIElementCommand : MonoBehaviour
         return true;
     }
 
+    public void SetCoolTimeComponent(UICommandCoolTime coolTimeComponent)
+    {
+        coolTimeComponent.SetSkillIcon(_data.CommandData.skillIcon);
+        coolTimeComponent.SetData(_data);
+    }
+
     private void Update()
     {
         if (!ready)
@@ -104,8 +112,6 @@ public class UIElementCommand : MonoBehaviour
         {
             cells[i].SetHighlight(false);
         }
-
-        coolTime.fillAmount = _data.CommandData.coolTime / _data.CommandData.maxCoolTIme;
     }
 
     public int GetValidCommandLength()
