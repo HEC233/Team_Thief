@@ -1,8 +1,0 @@
-SetUpper
-Move ASDF
-Next
-Next
-Next
-Next
-Next
-Next

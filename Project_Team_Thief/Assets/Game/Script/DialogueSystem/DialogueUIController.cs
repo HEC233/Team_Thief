@@ -31,7 +31,7 @@ public class DialogueUIController : MonoBehaviour
 
     private void Awake()
     {
-        SetShowDialogue(false);
+        //SetShowDialogue(false);
     }
 
     public void SetShowDialogue(bool value)
