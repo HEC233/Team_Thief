@@ -9,12 +9,15 @@ public class UICommandInfo : MonoBehaviour
     private List<CommandManager.CommandCtrl> _commandDatas;
     public Transform verticalPanel;
     public RectTransform verticalPanelRect;
+    public Transform horizonalPanel;
     public GameObject commandAssist;
+    public GameObject commandCoolTime;
 
     private Transform playerTr;
     private Camera mainCam;
 
     private List<UIElementCommand> panelList = new List<UIElementCommand>();
+    private List<UICommandCoolTime> coolTimeList = new List<UICommandCoolTime>();
 
     private void Awake()
     {
@@ -28,22 +31,37 @@ public class UICommandInfo : MonoBehaviour
             DestroyImmediate(p.gameObject);
         }
         panelList.Clear();
+        foreach (var p in coolTimeList)
+        {
+            DestroyImmediate(p.gameObject);
+        }
+        coolTimeList.Clear();
 
         _commandDatas = GameManager.instance.commandManager.GetCommandCtrl();
         foreach (var c in _commandDatas)
         {
             string commandString = c.CommandString;
             bool result = false;
+            UIElementCommand element = null;
+            GameObject go = null;
+
             for (int i = 0; i < 2; i++)
             {
-                var go = GameObject.Instantiate(commandAssist, verticalPanel);
+                go = GameObject.Instantiate(commandAssist, verticalPanel);
                 go.transform.localScale = Vector3.one;
-                var element = go.GetComponent<UIElementCommand>();
+                element = go.GetComponent<UIElementCommand>();
                 result = element.InitCommandInfo(c, commandString);
                 Assert.IsTrue(result);
                 panelList.Add(element);
                 commandString = c.ReverseCommandString;
+
             }
+            go = GameObject.Instantiate(commandCoolTime, horizonalPanel);
+            go.transform.localScale = Vector3.one;
+            var cool = go.GetComponent<UICommandCoolTime>();
+            coolTimeList.Add(cool);
+            element.SetCoolTimeComponent(cool);
+
             GameManager.instance.uiMng.developerConsole.AddLine(c.CommandData.skillName + " initializing " + (result ? "successed" : "failed"));
         }
 

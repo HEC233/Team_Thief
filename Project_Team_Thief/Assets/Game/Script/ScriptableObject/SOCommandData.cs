@@ -12,4 +12,5 @@ public class SOCommandData : ScriptableObject
     
     // String을 Key로 전달할 까 아니면 스킬 데이터를 전달할까
     public string skillName;
+    public Sprite skillIcon;
 }

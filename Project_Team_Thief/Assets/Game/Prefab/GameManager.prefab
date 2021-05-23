@@ -158,6 +158,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 367252612}
+  - {fileID: 7229521347546188625}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,6 +183,7 @@ MonoBehaviour:
   ShadowControlManager: {fileID: 0}
   commandManager: {fileID: 7279758012565860687}
   spawner: {fileID: 5982225679925883762}
+  dialogueSystem: {fileID: 2558102683189895491}
   shadow: {fileID: -5078904260765545550}
   _keyManger: {fileID: 4990086937456659572}
   grid: {fileID: 0}
@@ -464,3 +466,46 @@ MonoBehaviour:
   - {fileID: 8718974563859108410, guid: e972f2be0e9e66840a07f6b053f57afe, type: 3}
   - {fileID: 6964507193525842026, guid: 403847deb9dc8a743884034b63902be2, type: 3}
   - {fileID: 5006861423388562809, guid: 0fba1bff809e7b64eb38a28e7aefc0ca, type: 3}
+--- !u!1 &6708904586962932052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7229521347546188625}
+  - component: {fileID: 2558102683189895491}
+  m_Layer: 0
+  m_Name: DialogueSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7229521347546188625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708904586962932052}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4990086937456659570}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2558102683189895491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708904586962932052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aad86a7388ce2c4799bc7b62fe9b422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

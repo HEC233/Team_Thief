@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public CommandManager commandManager;
     public Spawner spawner;
+    public DialogueSystem dialogueSystem;
 
     public ShadowParticleSystem shadow;
 

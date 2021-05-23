@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandString: RRZ
   reverseCommandString: LLZ
-  coolTime: 0
-  maxCoolTIme: 0
+  coolTime: 2
+  maxCoolTIme: 2
   skillName: Skill1Axe
+  skillIcon: {fileID: 21300000, guid: 61078496021d9c448bb7e771dd3aa84e, type: 3}
