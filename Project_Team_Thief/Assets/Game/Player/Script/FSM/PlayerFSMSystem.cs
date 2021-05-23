@@ -113,6 +113,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
+            WwiseSoundManager.instance.PlayEventSound("PC_dead");
             if (SystemMgr._isBattleIdle == true)
                 SystemMgr.AnimationCtrl.PlayAni(AniState.BattleIdle);
             else
@@ -1377,7 +1378,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.Wallslideing);
             WwiseSoundManager.instance.PlayEventSound("PC_Wall");
-            
+            _slidingSoundId = WwiseSoundManager.instance.PlayEventSound("PC_slide");
+
             SystemMgr.Unit.WallSlideStateStart();
         }
 
@@ -1423,13 +1425,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 if (condition == TransitionCondition.None)
                 {
                     SystemMgr.Unit.WallReset();
-                    WwiseSoundManager.instance.StopEventSoundFromId(_slidingSoundId);
                 }
                 
                 if (condition == TransitionCondition.Wallslideing)
                 {
                     SystemMgr.Unit.WallSlideing();
-                    _slidingSoundId = WwiseSoundManager.instance.PlayEventSound("PC_slide");
                 }
 
                 if (SystemMgr.isJumpKeyPress == false)
