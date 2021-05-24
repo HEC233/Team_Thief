@@ -816,8 +816,16 @@ MonoBehaviour:
   - 0.05
   - 0.05
   _basicJumpAttackMoveGoalArr:
+<<<<<<< HEAD
   - {x: 1, y: 0}
   - {x: 0, y: -4}
+=======
+  - {x: 2, y: 0}
+  - {x: 0, y: -2}
+  _basicJumpAttackKnockBackArr:
+  - {x: 1, y: 0}
+  - {x: 0, y: -2}
+>>>>>>> 0acc9efc82e63279ffd8cfbacdbeb843b9a8a820
   isBasicJumpAttackAble: 1
   _basicJumpAttackTime: 0.4
   _comboTime: 3

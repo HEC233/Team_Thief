@@ -25,6 +25,7 @@ public class UIPauseMenu : MonoBehaviour
         StartCoroutine(PauseAnimation(value));
     }
 
+    private bool prevTimeStopState = false;
     private IEnumerator PauseAnimation(bool value)
     {
         canvasGroup.interactable = false;
@@ -40,6 +41,7 @@ public class UIPauseMenu : MonoBehaviour
             canvasGroup.alpha = 0f;
             background.color = new Color(0, 0, 0, 0);
 
+            prevTimeStopState = GameManager.instance.timeMng.IsTimeStopped;
             GameManager.instance.timeMng.StopTime();
             yield return new WaitForSeconds(0.1f);
             this.gameObject.SetActive(value);
@@ -76,7 +78,10 @@ public class UIPauseMenu : MonoBehaviour
                 yield return null;
             }
 
-            GameManager.instance.timeMng.ResumeTime();
+            if(!prevTimeStopState)
+            {
+                GameManager.instance.timeMng.ResumeTime();
+            }
             this.gameObject.SetActive(value);
         }
     }

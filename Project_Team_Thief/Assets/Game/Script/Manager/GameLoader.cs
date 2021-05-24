@@ -19,6 +19,7 @@ public class GameLoader : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        gameDataLoaded = false;
     }
 
     private void Start()

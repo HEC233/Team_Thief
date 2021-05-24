@@ -58,6 +58,7 @@ public class TimeManager : MonoBehaviour
     }
 
     private bool _isStoped = false;
+    public bool IsTimeStopped => _isStoped;
     public void StopTime()
     {
         if (_isStoped)
