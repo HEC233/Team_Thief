@@ -29,6 +29,8 @@ public class DialogueUIController : MonoBehaviour
     private bool bPortraitEnable = false;
     private bool bLeftHighlighted = true;
 
+    private float _waitTime;
+
     private void Awake()
     {
         //SetShowDialogue(false);
@@ -41,6 +43,20 @@ public class DialogueUIController : MonoBehaviour
         SetTextPosition(false);
         bLeftHighlighted = true;
         Highlight();
+        bAnimationEnd = true;
+    }
+
+    public void Puase()
+    {
+        StopAllCoroutines();
+
+        Highlight();
+    }
+
+    public void Resume()
+    {
+        StartCoroutine(TextAnimationCoroutine(_waitTime, textBox.text.Length));
+
     }
 
     public bool CheckAnimationEnd()
@@ -59,10 +75,11 @@ public class DialogueUIController : MonoBehaviour
 
     public void ShowText(in string text, float waitTime)
     {
+        _waitTime = waitTime;
         curText = text;
         textBox.text = string.Empty;
         bAnimationEnd = false;
-        StartCoroutine(TextAnimationCoroutine(waitTime));
+        StartCoroutine(TextAnimationCoroutine(waitTime, 0));
     }
 
     public void SetBold()
@@ -85,10 +102,10 @@ public class DialogueUIController : MonoBehaviour
         }
     }
 
-    private IEnumerator TextAnimationCoroutine(float waitTime)
+    private IEnumerator TextAnimationCoroutine(float waitTime, int startIndex)
     {
         var internalTime = new WaitForSeconds(0.1f);
-        for (int i = 0; i < curText.Length; i++)
+        for (int i = startIndex; i < curText.Length; i++)
         {
             textBox.text += curText.Substring(i, 1);
             yield return internalTime;

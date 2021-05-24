@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
     {
         yield return GameLoader.instance.SceneLoad("HHG");
         GameState = GameStateEnum.InGame;
-        uiMng.InitUI(); // SceneLoadCallbackÀ¸·Î ¿Å°Ü¾ß ÇÒ ÇÊ¿ä¼ºÀÌ ÀÖÀ»¼ö ÀÖÀ½
+        uiMng.InitUI(); // SceneLoadCallbackï¿½ï¿½ï¿½ï¿½ ï¿½Å°Ü¾ï¿½ ï¿½ï¿½ ï¿½Ê¿ä¼ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         var grid = GameObject.Find("Grid").GetComponent<Grid>();
         this.grid = grid;
@@ -100,12 +100,14 @@ public class GameManager : MonoBehaviour
         {
             GameState = GameStateEnum.InGame;
             _keyManger.SetControlUnit(prevUnit);
+            dialogueSystem.ResumeDialogue();
         }
         else if (GameState == GameStateEnum.InGame)
         {
             GameState = GameStateEnum.Pause;
             prevUnit = _keyManger.GetControlActor();
             _keyManger.SetControlUnit(nullActor);
+            dialogueSystem.PauseDialogue();
 
         }
         else if (GameState == GameStateEnum.MainMenu)
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
     {
         isPlayerDead = false;
         uiMng.TurnOffGameOverScreen();
+        dialogueSystem.EndDialogue();
         StartCoroutine(ExitGameCoroutine());
     }
 

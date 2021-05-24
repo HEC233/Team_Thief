@@ -75,6 +75,7 @@ public class DialogueSystem : MonoBehaviour
         bCodeRuning = false;
 
         ui = GameManager.instance?.uiMng.uiDialogue;
+        ui.SetShowDialogue(false);
 
         inputProcess = new InputProcessActor(this);
         return true;
@@ -90,6 +91,28 @@ public class DialogueSystem : MonoBehaviour
         if (ui.CheckAnimationEnd())
         {
             bCodeRuning = Process();
+        }
+    }
+
+    private bool bPaused = false;
+    public void PauseDialogue()
+    {
+        ui.Puase();
+        if (bCodeRuning)
+        {
+            bCodeRuning = false;
+            bPaused = true;
+        }
+    }
+
+    public void ResumeDialogue()
+    {
+        ui.Resume();
+        if (bPaused)
+        {
+            GameManager.instance.timeMng.StopTime();
+            bCodeRuning = true;
+            bPaused = false;
         }
     }
 
