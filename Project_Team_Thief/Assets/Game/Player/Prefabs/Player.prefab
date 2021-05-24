@@ -74,12 +74,12 @@ MonoBehaviour:
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 0
+  _isAbleHitStop: 1
   _isAbleBulltTime: 0
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 1
-  _hitStopTime: 0
+  _hitStopTime: 0.5
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   _basicAttackCollider2D: {fileID: 67477168}
   _cinemachineImpulseSource: {fileID: 67477166}
   alwaysEnter: 0
-  signalSourceAsset: {fileID: 0}
+  signalSourceAsset: {fileID: 11400000, guid: b9fda150f7888e846a99f5f14b20cb9a, type: 2}
 --- !u!114 &67477166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 1
-  _hitStopTime: 0.095
+  _hitStopTime: 0.12
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -362,9 +362,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.324, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1542053514894491112}
   m_Father: {fileID: 1542053513835489099}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542053513506992554
 GameObject:
@@ -594,7 +595,7 @@ Transform:
   - {fileID: 1542053514262991505}
   - {fileID: 9036358588398247694}
   m_Father: {fileID: 1542053513835489099}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542053513835489097
 GameObject:
@@ -629,7 +630,6 @@ Transform:
   - {fileID: 1542053513848848400}
   - {fileID: 1542053514919931649}
   - {fileID: 817378417}
-  - {fileID: 1542053514894491112}
   - {fileID: 1542053513159863988}
   - {fileID: 1542053513734912283}
   - {fileID: 8114190704867105074}
@@ -764,7 +764,7 @@ MonoBehaviour:
     m_Bits: 4352
   playerInfo: {fileID: 11400000, guid: 5a943053036e0b740b796aea7f9a649e, type: 2}
   _maxHp: 100
-  _curHp: 0
+  _curHp: 100
   _decreaseHp: 0.2
   _encroachment: 0
   _minSpeed: 1
@@ -794,7 +794,7 @@ MonoBehaviour:
   _basicAttackMoveGoalXArr:
   - 0
   - 0.3
-  - 7
+  - 5
   - 0.2
   _basicAttackCansleTime: 0.3
   _basicAttackMinDamage: 10
@@ -806,18 +806,18 @@ MonoBehaviour:
   - {fileID: 5892634633465391629}
   _basicAttackKnockBackArr:
   - {x: 7, y: 0}
-  - {x: 7, y: 0}
+  - {x: 4, y: 0}
   - {x: 0, y: 0}
   - {x: 3, y: 5.5}
   _basicJumpAttackCtrlArr:
   - {fileID: 1542053514262991507}
   - {fileID: 1789575075951729271}
   _basicJumpAttackMoveTimeArr:
-  - 0.1
-  - 0.1
+  - 0.05
+  - 0.05
   _basicJumpAttackMoveGoalArr:
-  - {x: 2, y: 0}
-  - {x: 0, y: -2}
+  - {x: 1, y: 0}
+  - {x: 0, y: -4}
   _basicJumpAttackKnockBackArr:
   - {x: 1, y: 0}
   - {x: 0, y: -2}
@@ -912,7 +912,7 @@ MonoBehaviour:
   _isAbleFlash: 0
   _isAbleHitStop: 1
   _isAbleBulltTime: 0
-  _isAbleCameraShake: 1
+  _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
   _hitStopTime: 0.094
@@ -1247,11 +1247,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542053514894491113}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.975, z: 0}
+  m_LocalPosition: {x: -0.324, y: -0.975, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1542053513835489099}
-  m_RootOrder: 3
+  m_Father: {fileID: 1542053513159863988}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542053514905396918
 GameObject:
@@ -1482,7 +1482,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1542053513835489099}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2546962095411709466
 MonoBehaviour:
@@ -1550,7 +1550,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1542053513835489099}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &7169467539732094655
 BoxCollider2D:
@@ -1663,16 +1663,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAbleCritical: 0
   _isChangeDir: 0
-  _isAbleFlash: 0
+  _isAbleFlash: 1
   _isAbleHitStop: 0
   _isAbleBulltTime: 0
-  _isAbleCameraShake: 0
+  _isAbleCameraShake: 1
   _isDisplyFx: 1
   _isPlaySFX: 1
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
-  _flashTime: 0
+  _flashTime: 0.1
   _criticalPercentage: 0
   _sfxClip: 0
   _hitLayerMask:
@@ -1683,7 +1683,7 @@ MonoBehaviour:
   _basicAttackCollider2D: {fileID: 2117816050191141318}
   _cinemachineImpulseSource: {fileID: 2070317493623298338}
   alwaysEnter: 0
-  signalSourceAsset: {fileID: 0}
+  signalSourceAsset: {fileID: 11400000, guid: 2f357948ba6cd7748b068ef03b02bdab, type: 2}
 --- !u!114 &2070317493623298338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2215,7 +2215,7 @@ Transform:
   - {fileID: 67477165}
   - {fileID: 1181020047299682254}
   m_Father: {fileID: 1542053513835489099}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8485270878824298519
 GameObject:
@@ -2246,7 +2246,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1542053513835489099}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5624984760330892608
 MonoBehaviour:
