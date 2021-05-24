@@ -29,6 +29,6 @@ public class UIMainMenu : MonoBehaviour
 
     public void GameEnd()
     {
-        
+        GameManager.instance.ExitGame();
     }
 }
