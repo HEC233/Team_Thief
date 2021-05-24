@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   _maxHp: 100
-  _curHp: -8
+  _curHp: 100
+  _maxEncroachment: 100
+  _curEncroachment: 0
   _decreaseHp: 0
   _encroachment: 0
