@@ -172,6 +172,10 @@ public class PlayerUnit : Unit
     [SerializeField]
     private Vector2[] _basicJumpAttackMoveGoalArr;
     public Vector2[] BasicJumpAttackMoveGoalXArr => _basicJumpAttackMoveGoalArr;
+    [SerializeField]
+    private Vector2[] _basicJumpAttackKnockBackArr;
+
+    private Damage _basicJumpAttackDamage;
 
     private float _basicJumpAttackMoveSpeed = 0.0f;
     public bool isBasicJumpAttackAble = true;
@@ -655,9 +659,17 @@ public class PlayerUnit : Unit
         base.Attack();
     }
 
+    public void SetBasicJumpDamage(int index)
+    {
+        _basicJumpAttackDamage.power = UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage);
+        _basicJumpAttackDamage.knockBack = new Vector2(_basicJumpAttackKnockBackArr[index].x * _facingDir,
+            _basicJumpAttackKnockBackArr[index].y);
+        _basicJumpAttackDamage.additionalInfo = 3;
+    }
+
     public void BasicJumpAttack(int jumpAttackIndex)
     {
-        SetBasicDamage(3);
+        SetBasicDamage(jumpAttackIndex);
         _basicJumpAttackCtrlArr[jumpAttackIndex].SetDamage(_basicAttackDamage);
         _basicJumpAttackCtrlArr[jumpAttackIndex].Progress();
     }
