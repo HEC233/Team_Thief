@@ -21,7 +21,7 @@ MonoBehaviour:
   hp: 10000
   reduceHit: 1
   knockbackMultiply: 1
-  skillDamage: 200
+  skillDamage: 100
   criticalValue: 0
   attackCount: 0
   attackInterval: 0
