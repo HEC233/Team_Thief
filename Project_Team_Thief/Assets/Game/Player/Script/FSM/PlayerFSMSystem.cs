@@ -380,6 +380,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Hit)
+                return true;
+            
             if (SystemMgr.Unit.IsGround == true)
             {
                 if (condition == TransitionCondition.Wallslideing)
@@ -546,6 +549,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Hit)
+                return true;
+            
             if (_isFaill)
             {
                 if (condition == TransitionCondition.WallClimbing)
@@ -980,6 +986,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Hit)
+                return true;
+            
             if (condition == TransitionCondition.SkillHammer)
                 return true;
             
@@ -1184,8 +1193,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
-            Debug.Log("EndState");
-
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
             _isBasicjumpAttackAniEnd = false;
             _isBasicJumpAttackStart = false;
@@ -1193,6 +1200,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             SystemMgr.OnBasicAttackEndAniEvent -= BasicJumpAttackAniEnd;
             SystemMgr.OnBasicAttackCallEvent -= BasicJumpAttackCall;
+            
+            SystemMgr.Unit.EndJumpAttackMove();
         }
 
         public override bool Transition(TransitionCondition condition)
@@ -1201,6 +1210,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return true;
             if (condition == TransitionCondition.Falling)
                 return true;
+            if (condition == TransitionCondition.Hit)
+                return true;
+            
             
             if (_isBasicjumpAttackAniEnd == false)
                 return false;
