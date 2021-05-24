@@ -15,8 +15,8 @@ MonoBehaviour:
   _numberOfTimesTheSkill: 2
   _coolTime: 3
   _skillName: Skill1Axe
-  _increaseEncroachment: 20
-  _encroachmentDecrease: -3
+  _increaseEncroachment: 0
+  _encroachmentDecrease: 0
   _axeGameObject: {fileID: 3841240397383621464, guid: 3624dd1e695c1004e96f2ca043568a51,
     type: 3}
   _cinemachineSignalSource: {fileID: 11400000, guid: eb351fd8ca44c3c4db67561a895cdc01,
