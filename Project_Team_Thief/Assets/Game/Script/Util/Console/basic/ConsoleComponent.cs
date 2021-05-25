@@ -35,6 +35,8 @@ namespace PS.Util.DeveloperConsole
         {
             if (developerConsole == null)
                 developerConsole = new DeveloperConsole(commands);
+            else
+                DestroyImmediate(this.gameObject);
         }
 
         private void Update()

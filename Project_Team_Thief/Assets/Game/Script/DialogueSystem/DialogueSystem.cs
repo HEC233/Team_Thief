@@ -156,6 +156,7 @@ public class DialogueSystem : MonoBehaviour
         PC = 0;
         bAutoPass = true;
         ui.SetShowDialogue(true);
+        Process();
     }
 
     public void EndDialogue()
@@ -169,7 +170,6 @@ public class DialogueSystem : MonoBehaviour
         PC = 0;
         bCodeRuning = false;
         ui.SetShowDialogue(false);
-        Process();
     }
 
     public bool Process()

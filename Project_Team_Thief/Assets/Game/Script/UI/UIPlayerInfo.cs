@@ -107,8 +107,10 @@ public class UIPlayerInfo : MonoBehaviour
         _maxMP = playerInfo.MaxEncroachment;
         _curMP = playerInfo.CurEncroachment;
 
-        float ratio = 1 - Mathf.Clamp01(_curMP / _maxMP);
-        float width = Mathf.Clamp((int)(ratio * 73.0f), 2, 73);
+        float ratio = Mathf.Clamp01(_curMP / _maxMP);
+        float width = 0;
+        if ((int)(ratio * 73.0f) > 2)
+            width = Mathf.Clamp((int)(ratio * 73.0f), 2, 73);
 
         currentMP.sizeDelta = new Vector2(width, currentMP.sizeDelta.y);
         //currentMP.fillAmount = ratio;
