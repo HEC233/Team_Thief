@@ -169,6 +169,7 @@ public class DialogueSystem : MonoBehaviour
         PC = 0;
         bCodeRuning = false;
         ui.SetShowDialogue(false);
+        Process();
     }
 
     public bool Process()
@@ -206,6 +207,7 @@ public class DialogueSystem : MonoBehaviour
             switch (code[curRuningCodeIndex][PC])
             {
                 case 0x01:
+                    ui.ShowDialoge();
                     string text;
                     if (curDialogueIndex < 0 || curDialogueIndex >= dialogues.Length)
                     {

@@ -25,7 +25,7 @@ public class UIHpMonster : MonoBehaviour
         attachedUnit.hitEvent.AddListener(HpUpdate);
         attachedUnit.dieEvent.AddListener(Detach);
 
-        _rect.sizeDelta = new Vector2(attachedUnit.GetMaxHp() / 4, 6f);
+        _rect.sizeDelta = new Vector2(attachedUnit.GetMaxHp() / 200, 6f);
         maxHp.sizeDelta = _rect.sizeDelta;
         delayHp.sizeDelta = _rect.sizeDelta;
         curHp.sizeDelta = _rect.sizeDelta;
@@ -57,7 +57,7 @@ public class UIHpMonster : MonoBehaviour
         delayHp.gameObject.SetActive(show);
         curHp.gameObject.SetActive(show);
 
-        curHp.sizeDelta = new Vector2(attachedUnit.GetCurHp()/4, curHp.sizeDelta.y);
+        curHp.sizeDelta = new Vector2(attachedUnit.GetCurHp() / 200, curHp.sizeDelta.y);
 
         float diff = delayHp.sizeDelta.x - curHp.sizeDelta.x;
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 824521593790033727}
   m_Layer: 0
-  m_Name: Foot
+  m_Name: FootL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5526478712000158899}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalPosition: {x: -0.465, y: -0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8718974564337716243}
@@ -132,6 +132,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39806a019f433d240ae6e3c29bf0ca5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6941538715202451677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 112007217434067623}
+  m_Layer: 0
+  m_Name: FootR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &112007217434067623
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6941538715202451677}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.446, y: -0.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8718974564337716243}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7829606561916269129
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +190,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8718974564337716243}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8709189946703866030
 GameObject:
@@ -525,6 +555,7 @@ Transform:
   - {fileID: 8718974564173690099}
   - {fileID: 4412578914230935761}
   - {fileID: 824521593790033727}
+  - {fileID: 112007217434067623}
   - {fileID: 1825027272573563281}
   m_Father: {fileID: 8718974563859108414}
   m_RootOrder: 1
@@ -588,7 +619,8 @@ MonoBehaviour:
   _customTimeScale: 1
   isOnGround: 0
   accelation: 20
-  footPosition: {fileID: 824521593790033727}
+  footPositionL: {fileID: 824521593790033727}
+  footPositionR: {fileID: 112007217434067623}
   hpPosition: {fileID: 1825027272573563281}
   hitEvent:
     m_PersistentCalls:

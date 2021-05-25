@@ -145,6 +145,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &713645947748642807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3876064459544955981}
+  m_Layer: 0
+  m_Name: FootR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3876064459544955981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713645947748642807}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.375, y: -0.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7346515229853565342}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1466825304815352343
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +265,7 @@ Transform:
   - {fileID: 8757534760849190720}
   - {fileID: 7479474467922645}
   - {fileID: 6553241318566578942}
+  - {fileID: 3876064459544955981}
   - {fileID: 651318543373011534}
   m_Father: {fileID: 1241137346695387563}
   m_RootOrder: 1
@@ -258,7 +289,8 @@ MonoBehaviour:
   _customTimeScale: 1
   isOnGround: 0
   accelation: 100
-  footPosition: {fileID: 6553241318566578942}
+  footPositionL: {fileID: 6553241318566578942}
+  footPositionR: {fileID: 3876064459544955981}
   hpPosition: {fileID: 651318543373011534}
   hitEvent:
     m_PersistentCalls:
@@ -593,7 +625,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7346515229853565342}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7837042506057903427
 GameObject:
@@ -605,7 +637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6553241318566578942}
   m_Layer: 0
-  m_Name: Foot
+  m_Name: FootL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -619,7 +651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7837042506057903427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalPosition: {x: -0.355, y: -0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7346515229853565342}

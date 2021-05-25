@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -19,7 +19,7 @@
 				<AuxBus Id="1622449088" Name="Auxiliary_Bus" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Auxiliary_Bus"/>
 			</IncludedAuxBusses>
 		</SoundBank>
-		<SoundBank Id="1635194334" Language="SFX" Hash="2717819976">
+		<SoundBank Id="1635194334" Language="SFX" Hash="3091120841">
 			<ObjectPath>\SoundBanks\Default Work Unit\PC</ObjectPath>
 			<ShortName>PC</ShortName>
 			<Path>PC.bnk</Path>
@@ -140,11 +140,11 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1281925152" Name="PC_slide" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_slide" DurationType="OneShot" DurationMin="2.119796" DurationMax="2.119796">
+				<Event Id="1281925152" Name="PC_slide" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_slide" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="835747766" Language="SFX">
 							<ShortName>SFX_PC_slide.wav</ShortName>
-							<Path>SFX\SFX_PC_slide_46401910.wem</Path>
+							<Path>SFX\SFX_PC_slide_F01E125A.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -172,7 +172,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1438052377" Name="PC_wall" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_wall" DurationType="OneShot" DurationMin="0.110498" DurationMax="0.117069">
+				<Event Id="1438052377" Name="PC_wall" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_wall" DurationType="OneShot" DurationMin="0.092918" DurationMax="0.098443">
 					<IncludedMemoryFiles>
 						<File Id="152241030" Language="SFX">
 							<ShortName>SFX_PC_wall.wav</ShortName>
@@ -182,7 +182,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="2299321487" Language="SFX" Hash="1264829624">
+		<SoundBank Id="2299321487" Language="SFX" Hash="2596059133">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enemy</ObjectPath>
 			<ShortName>Enemy</ShortName>
 			<Path>Enemy.bnk</Path>
@@ -215,7 +215,7 @@
 					<IncludedMemoryFiles>
 						<File Id="492561759" Language="SFX">
 							<ShortName>SFX_LightWarrior_FS2.wav</ShortName>
-							<Path>SFX\SFX_LightWarrior_FS2_46401910.wem</Path>
+							<Path>SFX\SFX_LightWarrior_FS2_13095AEB.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -239,7 +239,7 @@
 					<IncludedMemoryFiles>
 						<File Id="427331776" Language="SFX">
 							<ShortName>SFX_PC_FS.wav</ShortName>
-							<Path>SFX\SFX_PC_FS_0466D0EF.wem</Path>
+							<Path>SFX\SFX_PC_FS_B2793148.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

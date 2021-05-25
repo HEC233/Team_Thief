@@ -334,7 +334,8 @@ MonoBehaviour:
   _customTimeScale: 1
   isOnGround: 0
   accelation: 100
-  footPosition: {fileID: 6042229355768343258}
+  footPositionL: {fileID: 6042229355768343258}
+  footPositionR: {fileID: 6042229355768343258}
   hpPosition: {fileID: 4706275405233257153}
   hitEvent:
     m_PersistentCalls:

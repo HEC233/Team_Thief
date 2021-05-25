@@ -35,10 +35,15 @@ public class DialogueUIController : MonoBehaviour
     {
         //SetShowDialogue(false);
     }
+    public void ShowDialoge()
+    {
+        DialogueCanvas.gameObject.SetActive(true);
+    }
+
 
     public void SetShowDialogue(bool value)
     {
-        DialogueCanvas.gameObject.SetActive(value);
+        DialogueCanvas.gameObject.SetActive(false);
         EnablePortrait(false);
         SetTextPosition(false);
         bLeftHighlighted = true;
