@@ -893,11 +893,13 @@ public class PlayerUnit : Unit
     
     public void OnSkillSpearRushEventCall()
     {
+        _skillSpearAttackCtrl.GetEnemyList();
         OnSkillSpearRushEvent?.Invoke();
     }
 
     public void OnSkillSpearAttackEventCall()
     {
+        Debug.Log("Spear");
         OnSkillSpearAttackEvent?.Invoke();
     }
 
