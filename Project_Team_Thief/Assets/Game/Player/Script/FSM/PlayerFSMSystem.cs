@@ -1404,6 +1404,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             _isHitEnd = false;
             SystemMgr.Transition(TransitionCondition.Idle);
+            Debug.Log("히트 코루틴 : "  +_isHitEnd);
+
         }
     }
 
