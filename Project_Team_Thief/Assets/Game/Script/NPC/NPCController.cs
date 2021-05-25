@@ -17,6 +17,12 @@ public class NPCController : MonoBehaviour
 
     private void Update()
     {
+        if (gm.GetControlActor() == null)
+            return;
+        if (gm.GetControlActor().GetUnit() == null)
+            return;
+        if (gm.GetControlActor().GetUnit().tag != "Player")
+            return;
         float dis = Vector3.Distance(gm.GetControlActor().GetUnit().transform.position, transform.position);
         if (dis <= 5 && dis <= gm.lengthOfNPC)
         {

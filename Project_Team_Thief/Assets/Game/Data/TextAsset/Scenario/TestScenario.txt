@@ -1,14 +1,17 @@
 Move START
-SetUpper
-Next
-Next
 StopTime
 {
 SetDown
 EnablePortrait
-Next
+ChangeLeft None
 HighlightRight
+ChangeName SCARECROW
+Next
+Next
+Next
 Next
 DisablePortrait
 Next
 }
+SetUpper
+Next

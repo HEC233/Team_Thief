@@ -22,6 +22,10 @@ public class DialogueUIController : MonoBehaviour
     private RectTransform RightPortraitRect;
     [SerializeField]
     private Image RightPortraitImage;
+    [SerializeField]
+    private GameObject NameBoxObject;
+    [SerializeField]
+    private TextMeshProUGUI NameBoxText;
 
     private bool bAnimationEnd = true;
     private string curText;
@@ -44,6 +48,7 @@ public class DialogueUIController : MonoBehaviour
     public void SetShowDialogue(bool value)
     {
         DialogueCanvas.gameObject.SetActive(false);
+        SetShowName(false);
         EnablePortrait(false);
         SetTextPosition(false);
         bLeftHighlighted = true;
@@ -98,6 +103,7 @@ public class DialogueUIController : MonoBehaviour
         {
             bPortraitEnable = PortraitObject.activeSelf;
             EnablePortrait(false);
+            SetShowName(false);
             DialogueBox.anchoredPosition = new Vector2(0, 90);
         }
         else
@@ -138,7 +144,8 @@ public class DialogueUIController : MonoBehaviour
     public void SetPortraitHighlight(bool bLeft)
     {
         bLeftHighlighted = bLeft;
-        StartCoroutine(HighlightAnimation());
+        Highlight();
+        //StartCoroutine(HighlightAnimation());
     }
 
     // rect를 이용한 애니메이션도 추가?
@@ -178,5 +185,15 @@ public class DialogueUIController : MonoBehaviour
     {
         LeftPortraitImage.color = bLeftHighlighted ? Color.white : Color.gray;
         RightPortraitImage.color = bLeftHighlighted ? Color.gray : Color.white;
+    }
+
+    public void SetShowName(bool bValue)
+    {
+        NameBoxObject.SetActive(bValue);
+    }
+
+    public void ChangeName(string value)
+    {
+        NameBoxText.text = value;
     }
 }

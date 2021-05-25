@@ -203,12 +203,14 @@ public class DialogueSystem : MonoBehaviour
              * 대화 강조 0x03 Bold
              * 대화문 위치 위로 변경 0x04 SetUpper
              * 대화문 위치 아래로 변경 0x05 SetDown
+             * 대화 화자 이름 변경 0x06 ChangeName key
              */
+            string key;
+            string text;
             switch (code[curRuningCodeIndex][PC])
             {
                 case 0x01:
                     ui.ShowDialoge();
-                    string text;
                     if (curDialogueIndex < 0 || curDialogueIndex >= dialogues.Length)
                     {
                         text = "Error";
@@ -222,7 +224,7 @@ public class DialogueSystem : MonoBehaviour
                     bCycleEnd = true;
                     break;
                 case 0x02:
-                    string key = GetStringValue();
+                    key = GetStringValue();
                     if (indexKeys.ContainsKey(key))
                     {
                         curDialogueIndex = indexKeys[key];
@@ -236,6 +238,19 @@ public class DialogueSystem : MonoBehaviour
                     break;
                 case 0x05:
                     ui.SetTextPosition(false);
+                    break;
+                case 0x06:
+                    key = GetStringValue();
+                    if(string.Compare(key, "none",true) == 0)
+                    {
+                        ui.SetShowName(false);
+                    }
+                    if (indexKeys.ContainsKey(key))
+                    {
+                        ui.SetShowName(true);
+                        int nameIndex = indexKeys[key];
+                        ui.ChangeName(dialogues[nameIndex]);
+                    }
                     break;
                 case 0x10:
                     GameManager.instance?.timeMng.StopTime();

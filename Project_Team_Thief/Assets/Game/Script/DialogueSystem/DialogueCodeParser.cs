@@ -81,6 +81,10 @@ public class DialogueCodeParser
             {
                 bw.Write((byte)0x05);
             }
+            else if (Regex.IsMatch(code[i], "ChangeName \\S+", RegexOptions.IgnoreCase))
+            {
+                WriteWithElement(code[i], "(^.*ChangeName )|(\\W*$)", 0x06, bw);
+            }
         }
 
         return true;
