@@ -1387,10 +1387,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool InputKey(TransitionCondition condition)
         {
-            if (SystemMgr.Unit.CheckIsJumpAble() == false)
-            {
-                return false;
-            }
+            // if (SystemMgr.Unit.CheckIsJumpAble() == false)
+            // {
+            //     return false;
+            // }
             
             return true;
         }
