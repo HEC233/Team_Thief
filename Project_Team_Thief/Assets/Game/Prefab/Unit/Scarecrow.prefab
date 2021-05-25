@@ -164,7 +164,8 @@ MonoBehaviour:
   _customTimeScale: 1
   isOnGround: 0
   accelation: 100
-  footPosition: {fileID: 8210024836150499942}
+  footPositionL: {fileID: 8210024836150499942}
+  footPositionR: {fileID: 8210024836150499942}
   hpPosition: {fileID: 6866961890875684265}
   hitEvent:
     m_PersistentCalls:
@@ -177,6 +178,7 @@ MonoBehaviour:
   hitBoxLayer:
     serializedVersion: 2
     m_Bits: 1024
+  _wwiseSoundCtrl: {fileID: 0}
 --- !u!1 &6866961889585536423
 GameObject:
   m_ObjectHideFlags: 0

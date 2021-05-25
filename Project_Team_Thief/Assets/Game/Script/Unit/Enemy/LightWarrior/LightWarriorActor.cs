@@ -363,7 +363,7 @@ namespace LightWarrior
         {
             actor.animCtrl.PlayAni(AniState.AttackReady);
             actor.unit.Idle();
-            //Assert.IsNotNull(WwiseSoundManager.instance);
+            Assert.IsNotNull(WwiseSoundManager.instance);
             actor.wwiseSoundCtrl.PlayEventSound("LightWarrior_AR");
             timeCheck = actor.unit.AttackEnterDelay;
             isAttacked = false;
@@ -384,7 +384,7 @@ namespace LightWarrior
                 {
                     actor.animCtrl.PlayAni(AniState.Attack);
                     actor.unit.Attack();
-                    //Assert.IsNotNull(WwiseSoundManager.instance);
+                    Assert.IsNotNull(WwiseSoundManager.instance);
                     actor.wwiseSoundCtrl.PlayEventSound("LightWarrior_Swing");
                     isAttacked = true;
                     timeCheck = actor.unit.AttackEndDelay;
