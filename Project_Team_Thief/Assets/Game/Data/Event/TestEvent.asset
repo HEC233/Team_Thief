@@ -16,8 +16,9 @@ MonoBehaviour:
   name: test
   stopCondition: 
   eventType: 0
-  triggerType: 1
+  triggerType: 0
   trigger:
+    NPCname: NOPA
     xCmp: 0
     xValue: 0
     yCmp: 0

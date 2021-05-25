@@ -25,18 +25,18 @@ namespace PS.Event
         Finite, Infinite
     }
 
-    [StructLayout(LayoutKind.Explicit), System.Serializable]
+    [System.Serializable]
     public struct TriggerCondition
     {
         // for Talk
-        //[FieldOffset(0)]
+        public string NPCname;
         // for Arrive
         //[FieldOffset(0)]
         // for Come
-        [FieldOffset(0)] public CmpType xCmp;
-        [FieldOffset(4)] public int xValue;
-        [FieldOffset(8)] public CmpType yCmp;
-        [FieldOffset(12)] public int yValue;
+        public CmpType xCmp;
+        public int xValue;
+        public CmpType yCmp;
+        public int yValue;
     }
 
     [CreateAssetMenu(fileName = "Event", menuName = "ScriptableObject/Event")]
@@ -48,7 +48,7 @@ namespace PS.Event
         public EventType eventType;
         public TriggerType triggerType;
         
-        public TriggerCondition trigger = new TriggerCondition();
+        public TriggerCondition trigger;
 
         //EndCondition
         public PlayAmount playAmount;

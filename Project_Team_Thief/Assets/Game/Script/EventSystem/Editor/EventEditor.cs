@@ -100,6 +100,10 @@ namespace PS.Event
                     EditorGUILayout.EndHorizontal();
                     break;
                 case TriggerType.Talk:
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("NPC이름");
+                    newTrigger.NPCname = EditorGUILayout.TextField(_event.trigger.NPCname);
+                    EditorGUILayout.EndHorizontal();
                     break;
                 case TriggerType.Next:
                     break;

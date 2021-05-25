@@ -140,4 +140,24 @@ public class GameManager : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음
+
+    public float lengthOfNPC = float.MaxValue;
+    public string nearestNpcName = string.Empty;
+
+    public void PushTalkCondition()
+    {
+        if (nearestNpcName == string.Empty)
+            return;
+        GameObject go = GameObject.Find("GameEventSystem");
+        if (go == null)
+            return;
+        var es = go.GetComponent<EventSystem>();
+        if (es == null)
+            return;
+        es.AddTalkQueue(nearestNpcName);
+    }
+
+    //======================
 }
