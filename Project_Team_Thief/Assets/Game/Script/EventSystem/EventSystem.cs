@@ -156,6 +156,7 @@ public class EventSystem : MonoBehaviour
 
             // 이벤트가 끝나면 다음 따라올 이벤트를 넣어줌
             nextEventQueue.Add(data.followingEvent);
+            talkedNPCqueue.RemoveAll(str => str == data.trigger.NPCname);
         }
 
     }
