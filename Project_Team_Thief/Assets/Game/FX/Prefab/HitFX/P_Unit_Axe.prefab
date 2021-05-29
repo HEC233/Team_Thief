@@ -14472,9 +14472,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 3567979004354463403}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8484497667261667957}
+  - {fileID: 8244194220403884406}
+  - {fileID: 6334641482445955489}
 --- !u!1 &7578440501238828599
 GameObject:
   m_ObjectHideFlags: 0
