@@ -31,7 +31,7 @@ public class UIMainMenu : MonoBehaviour, IUIFocus
 
     public void GameSetting()
     {
-
+        GameManager.instance.GameState = GameManager.GameStateEnum.Setting;
     }
 
     public void GameEnd()

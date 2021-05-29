@@ -104,7 +104,7 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
 
     public void Setting()
     {
-
+        GameManager.instance.GameState = GameManager.GameStateEnum.Setting;
     }
 
     public void ExitToMainMenu()

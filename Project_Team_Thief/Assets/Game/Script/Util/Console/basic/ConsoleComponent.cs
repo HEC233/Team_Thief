@@ -15,6 +15,8 @@ namespace PS.Util.DeveloperConsole
         [SerializeField] private TMP_InputField inputField = null;
         [SerializeField] private TMP_Text textField = null;
 
+        private bool bConsoleUsage = false;
+
         private static DeveloperConsole developerConsole;
         private DeveloperConsole DevConsole
         {
@@ -46,8 +48,17 @@ namespace PS.Util.DeveloperConsole
 
         }
 
+        public void SetConsoleUsage(bool value)
+        {
+            bConsoleUsage = value;
+        }
+
         public void ToggleUi()
         {
+            if (!bConsoleUsage)
+            {
+                return;
+            }
             if (uiCanvas.activeSelf)
             {
                 inputField.text = string.Empty;
