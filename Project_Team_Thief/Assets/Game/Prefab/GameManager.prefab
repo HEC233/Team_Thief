@@ -185,7 +185,7 @@ MonoBehaviour:
   spawner: {fileID: 5982225679925883762}
   dialogueSystem: {fileID: 2558102683189895491}
   shadow: {fileID: -5078904260765545550}
-  _keyManger: {fileID: 4990086937456659572}
+  _keyManager: {fileID: 4990086937456659572}
   grid: {fileID: 0}
   isPlayerDead: 0
 --- !u!114 &4990086937456659572

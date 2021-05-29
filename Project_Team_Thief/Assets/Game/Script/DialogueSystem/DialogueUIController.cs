@@ -65,8 +65,10 @@ public class DialogueUIController : MonoBehaviour
 
     public void Resume()
     {
-        StartCoroutine(TextAnimationCoroutine(_waitTime, textBox.text.Length));
-
+        if (!bAnimationEnd)
+        {
+            StartCoroutine(TextAnimationCoroutine(_waitTime, textBox.text.Length));
+        }
     }
 
     public bool CheckAnimationEnd()

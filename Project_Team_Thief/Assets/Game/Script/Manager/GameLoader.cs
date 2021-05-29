@@ -59,6 +59,7 @@ public class GameLoader : MonoBehaviour
             if(!callback(out error))
             {
                 Debug.LogError(error);
+                GameManager.instance?.uiMng.developerConsole?.AddLine(error);
             }
         }
 

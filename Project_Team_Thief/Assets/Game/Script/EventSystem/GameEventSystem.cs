@@ -4,7 +4,7 @@ using UnityEngine;
 using PS.Event;
 using PS.Util.Tile;
 
-public class EventSystem : MonoBehaviour
+public class GameEventSystem : MonoBehaviour
 {
     public List<PS.Event.Event> events;
 

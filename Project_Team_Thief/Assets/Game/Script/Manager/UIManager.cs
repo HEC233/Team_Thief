@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using PS.Util.DeveloperConsole;
 
 public class UIManager : MonoBehaviour
@@ -21,8 +22,13 @@ public class UIManager : MonoBehaviour
     private UIComboInfo uiComboInfo;
     [SerializeField]
     private CanvasGroup uiGameOver;
+    [SerializeField]
+    private GameObject playerDeadResumeButton;
     public ConsoleComponent developerConsole;
     public DialogueUIController uiDialogue;
+    public EventSystem eventSystem;
+    private IUIFocus m_focusedUI = null;
+    private UIActor m_uiActor;
 
     private static bool exist = false;
 
@@ -32,6 +38,7 @@ public class UIManager : MonoBehaviour
         if (exist)
             DestroyImmediate(this.gameObject);
         exist = true;
+        m_uiActor = new UIActor(this);
     }
 
     public void ToggleUI(GameManager.GameStateEnum gameState)
@@ -44,6 +51,8 @@ public class UIManager : MonoBehaviour
                 uiMainMenu.Toggle(true);
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(false);
+                m_focusedUI = uiMainMenu;
+                GameManager.instance?.SetControlActor(m_uiActor);
                 break;
             case GameManager.GameStateEnum.InGame:
                 uiPlayerInfo.Toggle(true);
@@ -51,6 +60,8 @@ public class UIManager : MonoBehaviour
                 uiMainMenu.Toggle(false);
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(false);
+                m_focusedUI = null;
+                GameManager.instance?.ChangeActorToPlayer();
                 break;
             case GameManager.GameStateEnum.Pause:
                 uiPlayerInfo.Toggle(true);
@@ -58,6 +69,8 @@ public class UIManager : MonoBehaviour
                 uiMainMenu.Toggle(false);
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(true);
+                m_focusedUI = uiPauseMenu;
+                GameManager.instance?.SetControlActor(m_uiActor);
                 break;
         }
     }
@@ -123,5 +136,43 @@ public class UIManager : MonoBehaviour
             t += Time.deltaTime;
         }
         uiGameOver.alpha = 1;
+        eventSystem.SetSelectedGameObject(playerDeadResumeButton);
+    }
+
+    public class UIActor : IActor
+    {
+        private UIManager m_uiManager;
+        private bool m_bCurrentInputKeyboard = false;
+        public UIActor(UIManager manager)
+        {
+            m_uiManager = manager;
+        }
+
+        public Unit GetUnit()
+        {
+            return null;
+        }
+
+        public bool Transition(TransitionCondition condition, object param = null)
+        {
+            if (condition == TransitionCondition.MouseMove)
+            {
+                if (m_bCurrentInputKeyboard)
+                {
+                    m_uiManager.m_focusedUI?.FocusWithMouse();
+                    m_bCurrentInputKeyboard = false;
+                }
+            }
+            else if(condition == TransitionCondition.ArrowInput)
+            {
+                if (!m_bCurrentInputKeyboard)
+                {
+                    m_uiManager.m_focusedUI?.FocusWithKeyboard();
+                    m_bCurrentInputKeyboard = true;
+                }
+            }
+
+            return true;
+        }
     }
 }
