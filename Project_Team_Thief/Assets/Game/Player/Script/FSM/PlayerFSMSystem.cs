@@ -72,9 +72,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private void Init()
     {
         Bind();
-        GameManager.instance.SetControlActor(this);
+        //GameManager.instance.SetControlActor(this);
 
         //==================== 고재협이 편집함 ==================
+        GameManager.instance.SetPlayerActor(this);
+        GameManager.instance.ChangeActorToPlayer();
+
         GameManager.instance.shadow.RegistCollider(GetComponent<BoxCollider2D>());
         //=======================================================
     }

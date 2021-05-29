@@ -7,6 +7,7 @@ public class KeyManager : MonoBehaviour
 {
     private IActor controlUnit = null;
     private List<KeyCode> m_activeInputs = new List<KeyCode>();
+    private Vector3 m_lastMousePos = Vector3.zero;
     
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,19 @@ public class KeyManager : MonoBehaviour
             return;
 
         List<KeyCode> pressedInput = new List<KeyCode>();
+
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+        {
+            controlUnit.Transition(TransitionCondition.MouseMove);
+        }
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            controlUnit.Transition(TransitionCondition.ArrowInput);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            controlUnit.Transition(TransitionCondition.DialogueNext);
+        }
 
         if (Input.anyKey || Input.anyKeyDown)
         {
@@ -39,14 +53,18 @@ public class KeyManager : MonoBehaviour
                     pressedInput.Add(code);
                 }
             }
-
-            if(Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 GameManager.instance.EscapeButton();
             }
             if(Input.GetKeyDown(KeyCode.BackQuote))
             {
                 GameManager.instance.uiMng.ToggleDeveloperConsole();
+            }
+
+            if(GameManager.instance.GameState != GameManager.GameStateEnum.InGame)
+            {
+                return;
             }
 
             if (Input.GetKey(KeyCode.C))

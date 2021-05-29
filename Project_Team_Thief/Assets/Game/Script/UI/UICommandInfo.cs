@@ -62,7 +62,7 @@ public class UICommandInfo : MonoBehaviour
             coolTimeList.Add(cool);
             element.SetCoolTimeComponent(cool);
 
-            GameManager.instance.uiMng.developerConsole.AddLine(c.CommandData.skillName + " initializing " + (result ? "successed" : "failed"));
+            GameManager.instance.AddTextToDeveloperConsole(c.CommandData.skillName + " initializing " + (result ? "successed" : "failed"));
         }
 
         playerTr = null;

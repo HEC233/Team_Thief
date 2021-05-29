@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public ShadowParticleSystem shadow;
 
     [SerializeField]
-    private KeyManager _keyManger;
+    private KeyManager _keyManager;
     public Grid grid;
 
     public bool isPlayerDead = false;
@@ -59,17 +59,31 @@ public class GameManager : MonoBehaviour
         TileCoordClass.SetGrid(grid);
     }
 
+    private IActor m_playerActor;
+    public void SetPlayerActor(IActor actor)
+    {
+        m_playerActor = actor;
+    }
+
+    public void ChangeActorToPlayer()
+    {
+        if(m_playerActor != null)
+        {
+            _keyManager.SetControlActor(m_playerActor);
+        }
+    }
+
     public void SetControlActor(IActor actor)
     {
-        _keyManger.SetControlActor(actor);
+        _keyManager.SetControlActor(actor);
     }
 
     public IActor GetControlActor()
     {
-        return _keyManger.GetControlActor();
+        return _keyManager.GetControlActor();
     }
 
-    public void LoadingScreen(bool isStart)
+    public void SetLoadingScreenShow(bool isStart)
     {
         if (isStart)
             uiMng.ShowLoading();
@@ -99,14 +113,12 @@ public class GameManager : MonoBehaviour
         if (GameState == GameStateEnum.Pause)
         {
             GameState = GameStateEnum.InGame;
-            _keyManger.SetControlActor(prevUnit);
+            //ChangeActorToPlayer();
             dialogueSystem.ResumeDialogue();
         }
         else if (GameState == GameStateEnum.InGame)
         {
             GameState = GameStateEnum.Pause;
-            prevUnit = _keyManger.GetControlActor();
-            _keyManger.SetControlActor(nullActor);
             dialogueSystem.PauseDialogue();
 
         }
@@ -141,6 +153,11 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
+    public void AddTextToDeveloperConsole(string text)
+    {
+        uiMng.developerConsole?.AddLine(text);
+    }
+
     //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음
     public void PushTalkCondition()
     {
@@ -151,7 +168,7 @@ public class GameManager : MonoBehaviour
 
         go = GameObject.Find("GameEventSystem");
         if (go == null) return;
-        var es = go.GetComponent<EventSystem>();
+        var es = go.GetComponent<GameEventSystem>();
         if (es == null) return;
 
         string nearest = nm.GetNearestNPC();

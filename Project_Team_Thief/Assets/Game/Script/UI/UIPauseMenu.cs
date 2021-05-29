@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPauseMenu : MonoBehaviour
+public class UIPauseMenu : MonoBehaviour, IUIFocus
 {
     private RectTransform _rect;
 
     public RectTransform buttons;
     public CanvasGroup canvasGroup;
     public Image background;
+
+    [SerializeField]
+    private GameObject m_firstSelectButton;
+    private GameObject m_lastSelectButton;
 
     private void Awake()
     {
@@ -21,6 +25,8 @@ public class UIPauseMenu : MonoBehaviour
         if (!this.gameObject.activeSelf && !value)
             return;
         this.gameObject.SetActive(true);
+        m_lastSelectButton = null;
+        GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_firstSelectButton);
         StopAllCoroutines();
         StartCoroutine(PauseAnimation(value));
     }
@@ -109,5 +115,16 @@ public class UIPauseMenu : MonoBehaviour
     public void ExitGame()
     {
         GameManager.instance.ExitGame();
+    }
+
+    public void FocusWithMouse()
+    {
+        m_lastSelectButton = GameManager.instance.uiMng.eventSystem.currentSelectedGameObject;
+        GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(null);
+    }
+
+    public void FocusWithKeyboard()
+    {
+        GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_lastSelectButton == null ? m_firstSelectButton : m_lastSelectButton);
     }
 }

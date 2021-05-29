@@ -24,7 +24,6 @@ public class DialogueSystem : MonoBehaviour
 
 
     InputProcessActor inputProcess;
-    IActor player = null;
 
     public bool InitializeData(out string ErrorMessage)
     {
@@ -118,7 +117,7 @@ public class DialogueSystem : MonoBehaviour
 
     private void Start()
     {
-        GameLoader.instance.AddSceneLoadCallback(InitializeData);
+        GameLoader.instance?.AddSceneLoadCallback(InitializeData);
     }
 
     public void StartDialogueWithName(string name)
@@ -163,8 +162,8 @@ public class DialogueSystem : MonoBehaviour
     {
         if(!bAutoPass)
         {
-            GameManager.instance?.timeMng.ResumeTime();
-            GameManager.instance?.SetControlActor(player);
+            GameManager.instance?.timeMng.ResumeTime(); 
+            GameManager.instance?.ChangeActorToPlayer();
             bAutoPass = true;
         }
         PC = 0;
@@ -254,13 +253,12 @@ public class DialogueSystem : MonoBehaviour
                     break;
                 case 0x10:
                     GameManager.instance?.timeMng.StopTime();
-                    player = GameManager.instance?.GetControlActor();
                     GameManager.instance?.SetControlActor(inputProcess);
                     bAutoPass = false;
                     break;
                 case 0x11:
                     GameManager.instance?.timeMng.ResumeTime();
-                    GameManager.instance?.SetControlActor(player);
+                    GameManager.instance?.ChangeActorToPlayer();
                     bAutoPass = true;
                     break;
                 case 0x20:
@@ -316,7 +314,7 @@ public class DialogueSystem : MonoBehaviour
         {
             switch (condition)
             {
-                case TransitionCondition.Attack:
+                case TransitionCondition.DialogueNext:
                     if (!_dialogueSystem.ui.CheckAnimationEnd())
                     {
                         _dialogueSystem.ui.FinishAnimation();
