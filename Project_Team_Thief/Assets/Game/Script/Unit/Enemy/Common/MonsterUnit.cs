@@ -307,7 +307,7 @@ public class MonsterUnit : Unit
             StopCoroutine(attackMoveCoroutine);
         // 대미지 상정방식 기획서에 맞게 변경 필요
         var finalDamage = inputDamage.power * _unitData.reduceHit;
-        _hp -= finalDamage;
+
         _rigid.AddForce(inputDamage.knockBack * _unitData.knockbackMultiply, ForceMode2D.Impulse);
         isOnGround = false;
         skipGroundCheck = true;
@@ -358,5 +358,7 @@ public class MonsterUnit : Unit
                 //GameManager.instance?.timeMng.hitStopReadyCheckList.Add(effect.IsPlaying);
             }
         }
+
+        _hp -= finalDamage;
     }
 }
