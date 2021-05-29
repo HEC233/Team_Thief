@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         return _keyManager.GetControlActor();
     }
 
-    public void LoadingScreen(bool isStart)
+    public void SetLoadingScreenShow(bool isStart)
     {
         if (isStart)
             uiMng.ShowLoading();
@@ -151,6 +151,11 @@ public class GameManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void AddTextToDeveloperConsole(string text)
+    {
+        uiMng.developerConsole?.AddLine(text);
     }
 
     //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음

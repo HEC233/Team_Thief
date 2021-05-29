@@ -117,7 +117,7 @@ public class DialogueSystem : MonoBehaviour
 
     private void Start()
     {
-        GameLoader.instance.AddSceneLoadCallback(InitializeData);
+        GameLoader.instance?.AddSceneLoadCallback(InitializeData);
     }
 
     public void StartDialogueWithName(string name)

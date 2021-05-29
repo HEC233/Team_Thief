@@ -22,6 +22,8 @@ public class GameEventSystem : MonoBehaviour
     public void AddTalkQueue(string value)
     {
         talkedNPCqueue.Add(value);
+        
+        GameManager.instance?.AddTextToDeveloperConsole(value + " GameEventSystem queue added");
     }
 
     IEnumerator Process(PS.Event.Event data)

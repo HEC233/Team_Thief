@@ -59,8 +59,10 @@ public class TimeManager : MonoBehaviour
 
     private bool _isStoped = false;
     public bool IsTimeStopped => _isStoped;
+    private int _timeStopRequiredCount = 0;
     public void StopTime()
     {
+        _timeStopRequiredCount++;
         if (_isStoped)
             return;
         _prevTimeScale = _timeScale;
@@ -70,7 +72,8 @@ public class TimeManager : MonoBehaviour
     }
     public void ResumeTime()
     {
-        if (!_isStoped)
+        _timeStopRequiredCount--;
+        if (_timeStopRequiredCount > 0)
             return;
         _timeScale = _prevTimeScale;
         endHitstopEvent?.Invoke(_timeScale);
