@@ -59,9 +59,9 @@ public class GameManager : MonoBehaviour
         TileCoordClass.SetGrid(grid);
     }
 
-    public void SetControlUnit(IActor unit)
+    public void SetControlActor(IActor actor)
     {
-        _keyManger.SetControlUnit(unit);
+        _keyManger.SetControlActor(actor);
     }
 
     public IActor GetControlActor()
@@ -99,14 +99,14 @@ public class GameManager : MonoBehaviour
         if (GameState == GameStateEnum.Pause)
         {
             GameState = GameStateEnum.InGame;
-            _keyManger.SetControlUnit(prevUnit);
+            _keyManger.SetControlActor(prevUnit);
             dialogueSystem.ResumeDialogue();
         }
         else if (GameState == GameStateEnum.InGame)
         {
             GameState = GameStateEnum.Pause;
             prevUnit = _keyManger.GetControlActor();
-            _keyManger.SetControlUnit(nullActor);
+            _keyManger.SetControlActor(nullActor);
             dialogueSystem.PauseDialogue();
 
         }
@@ -142,21 +142,21 @@ public class GameManager : MonoBehaviour
     }
 
     //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음
-
-    public float lengthOfNPC = float.MaxValue;
-    public string nearestNpcName = string.Empty;
-
     public void PushTalkCondition()
     {
-        if (nearestNpcName == string.Empty)
-            return;
-        GameObject go = GameObject.Find("GameEventSystem");
-        if (go == null)
-            return;
+        GameObject go = GameObject.Find("NPCManager");
+        if (go == null) return;
+        var nm = go.GetComponent<NPCManager>();
+        if (nm == null) return;
+
+        go = GameObject.Find("GameEventSystem");
+        if (go == null) return;
         var es = go.GetComponent<EventSystem>();
-        if (es == null)
-            return;
-        es.AddTalkQueue(nearestNpcName);
+        if (es == null) return;
+
+        string nearest = nm.GetNearestNPC();
+        if (nearest != string.Empty)
+            es.AddTalkQueue(nearest);
     }
 
     //======================

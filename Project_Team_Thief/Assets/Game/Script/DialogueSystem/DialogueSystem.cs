@@ -164,7 +164,7 @@ public class DialogueSystem : MonoBehaviour
         if(!bAutoPass)
         {
             GameManager.instance?.timeMng.ResumeTime();
-            GameManager.instance?.SetControlUnit(player);
+            GameManager.instance?.SetControlActor(player);
             bAutoPass = true;
         }
         PC = 0;
@@ -255,12 +255,12 @@ public class DialogueSystem : MonoBehaviour
                 case 0x10:
                     GameManager.instance?.timeMng.StopTime();
                     player = GameManager.instance?.GetControlActor();
-                    GameManager.instance?.SetControlUnit(inputProcess);
+                    GameManager.instance?.SetControlActor(inputProcess);
                     bAutoPass = false;
                     break;
                 case 0x11:
                     GameManager.instance?.timeMng.ResumeTime();
-                    GameManager.instance?.SetControlUnit(player);
+                    GameManager.instance?.SetControlActor(player);
                     bAutoPass = true;
                     break;
                 case 0x20:

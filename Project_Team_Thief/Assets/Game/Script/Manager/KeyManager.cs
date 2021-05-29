@@ -113,7 +113,7 @@ public class KeyManager : MonoBehaviour
         
     }
 
-    public void SetControlUnit(IActor unit)
+    public void SetControlActor(IActor unit)
     {
         controlUnit = unit;
         //Debug.Log("Is On");
