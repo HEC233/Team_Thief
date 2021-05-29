@@ -51,8 +51,19 @@ public class PlayerUnit : Unit
     private float _curHp;
     [SerializeField]
     private float _decreaseHp;
-    [SerializeField] 
     private float _encroachment;
+    [SerializeField, Tooltip("잠식력에 비례해서 플레이어가 더 맞는 데미지(1.0 이상)")]
+    private float _encroachmentPerPlayerHitDamage;
+
+    [SerializeField, Tooltip("잠식력에 비례해서 플레이어가 더 때리는 데미지(1.0 이상)")]
+    private float _encroachmentPerPlayerAttackDamage;
+    public float EncroachmentPerPlayerAttackDamage => _encroachmentPerPlayerAttackDamage;
+
+    [SerializeField, Tooltip("몇 초마다 잠식력이 회복 될 지")]
+    private float _encroachmentRecoveryPerTime;
+
+    [SerializeField, Tooltip("잠식력이 얼마나 회복 될 지")]
+    private float _encroachmentRecoveryAmount;
     
     // 이동 관련 변수
     [Header("Move Variable")]
@@ -278,6 +289,8 @@ public class PlayerUnit : Unit
     void Init()
     {
         SetVariable(0.2f, 2, 0.4f);
+
+        StartCoroutine(EncroachmentRecoveryCoroutine());
     }
 
     private void Bind()
@@ -612,7 +625,7 @@ public class PlayerUnit : Unit
 
     private void SetBasicDamage(int attackIndex)
     {
-        _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage);
+        _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * _encroachmentPerPlayerAttackDamage;
         _basicAttackDamage.knockBack = new Vector2(_basicAttackKnockBackArr[attackIndex].x * _facingDir, _basicAttackKnockBackArr[attackIndex].y);
         //============== 고재협이 편집함 ======================
         _basicAttackDamage.additionalInfo = attackIndex;
@@ -661,7 +674,7 @@ public class PlayerUnit : Unit
 
     public void SetBasicJumpDamage(int index)
     {
-        _basicJumpAttackDamage.power = UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage);
+        _basicJumpAttackDamage.power = UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * _encroachmentPerPlayerAttackDamage;
         _basicJumpAttackDamage.knockBack = new Vector2(_basicJumpAttackKnockBackArr[index].x * _facingDir,
             _basicJumpAttackKnockBackArr[index].y);
         _basicJumpAttackDamage.additionalInfo = 3;
@@ -718,8 +731,9 @@ public class PlayerUnit : Unit
         // FSM의 기능이 사라지기 때문에.
         if(_isInvincibility == true)
             return;
-
+        
         _hitDamage = inputDamage;
+        _hitDamage.power *= _encroachmentPerPlayerHitDamage;
         hitEvent?.Invoke();
     }
 
@@ -934,11 +948,12 @@ public class PlayerUnit : Unit
         {
             _comboCoroutine = StartCoroutine(ComboCoroutine());    
         }
-
-        if (_curCombo >= _encroachmentDecreaseCombo)
-        {
-            FindEncroachmentDecreaseFromSkillData(skillname);
-        }
+        
+        // 기능 삭제
+        // if (_curCombo >= _encroachmentDecreaseCombo)
+        // {
+        //     FindEncroachmentDecreaseFromSkillData(skillname);
+        // }
 
         GameManager.instance.uiMng.SetCombo(_curCombo);
     }
@@ -1085,6 +1100,25 @@ public class PlayerUnit : Unit
         }
 
         _isDashAble = true;
+    }
+
+    IEnumerator EncroachmentRecoveryCoroutine()
+    {
+        float timer = 0.0f;
+        while (true)
+        {
+            if (_encroachment > 0)
+            {
+                timer += Time.fixedDeltaTime;
+                
+                if (timer >= _encroachmentRecoveryPerTime)
+                {
+                    timer = 0.0f;
+                    ChangeEncroachment(_encroachmentRecoveryAmount);
+                }
+            }
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     IEnumerator SkillAxeCoolTimeCoroutine()

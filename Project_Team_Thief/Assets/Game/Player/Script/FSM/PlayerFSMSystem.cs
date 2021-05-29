@@ -1508,7 +1508,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.Die);
 
-            WwiseSoundManager.instance.PlayEventSound("PC_dead");
+            //WwiseSoundManager.instance.PlayEventSound("PC_dead");
         }
 
         public override void Update()
