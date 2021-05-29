@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
         yield return GameLoader.instance.SceneLoad("HHG");
         GameState = GameStateEnum.InGame;
         uiMng.InitUI(); // SceneLoadCallback���� �Űܾ� �� �ʿ伺�� ������ ����
+        timeMng.ResetTimeStop();
 
         var grid = GameObject.Find("Grid").GetComponent<Grid>();
         this.grid = grid;
