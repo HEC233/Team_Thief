@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UISettingMenu : MonoBehaviour, IUIFocus
+public class UISettingMenu : MonoBehaviour
 {
     private RectTransform _rect;
+    [SerializeField]
+    private Toggle FPS;
+    [SerializeField]
+    private Toggle DeveloperConsole;
+    private GameSettingData data;
 
     private void Awake()
     {
@@ -14,15 +20,27 @@ public class UISettingMenu : MonoBehaviour, IUIFocus
     public void Toggle(bool value)
     {
         this.gameObject.SetActive(value);
+        if(value)
+        {
+            data = GameManager.instance.SettingData;
+            FPS.isOn = data.bShowFPS;
+            DeveloperConsole.isOn = data.bUseDeveloperConsole;
+        }
+    }
+    
+    public void CloseSettingMenu()
+    {
+        GameManager.instance.ApplySetting(data);
+        GameManager.instance.EscapeButton();
     }
 
-    public void FocusWithMouse()
+    public void ToggleButtonFPS(bool value)
     {
-        throw new System.NotImplementedException();
+        data.bShowFPS = value;
     }
 
-    public void FocusWithKeyboard()
+    public void ToggleButtonDeveloperConsole(bool value)
     {
-        throw new System.NotImplementedException();
+        data.bUseDeveloperConsole = value;
     }
 }

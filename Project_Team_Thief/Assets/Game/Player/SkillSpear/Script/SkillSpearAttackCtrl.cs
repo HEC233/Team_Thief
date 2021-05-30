@@ -126,7 +126,6 @@ public class SkillSpearAttackCtrl : AttackBase
         Debug.Log("AttackDamage");
         foreach (var item in result)
         {
-            Debug.Log(item.gameObject.tag);
             if (item.gameObject.CompareTag("Player"))
                 continue;
 

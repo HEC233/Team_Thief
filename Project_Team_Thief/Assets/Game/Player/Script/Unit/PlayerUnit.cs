@@ -756,7 +756,7 @@ public class PlayerUnit : Unit
     {
         _isPlayerDead = true;
         OnPlayerDeadEvent?.Invoke();
-        Debug.LogError("플레이어 사망");
+        StopAllCoroutines();
     }
     
 
@@ -815,9 +815,7 @@ public class PlayerUnit : Unit
         {
             _encroachment = 0;
         }
-        
         playerInfo.CurEncroachment = _encroachment;
-        
         if (_encroachment >= 100)
         {
             Dead();

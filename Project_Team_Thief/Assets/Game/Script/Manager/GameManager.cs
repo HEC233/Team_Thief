@@ -12,17 +12,21 @@ public class GameManager : MonoBehaviour
         MainMenu,
         InGame,
         Pause,
+        Setting,
     }
 
 
     public static GameManager instance;
 
     private GameStateEnum _gameState = GameStateEnum.InGame;
+    private GameStateEnum _prevState;
     public GameStateEnum GameState
     {
         get { return _gameState; }
-        set { _gameState = value; uiMng.ToggleUI(value); }
+        set { _prevState = _gameState; _gameState = value; uiMng.ToggleUI(value); }
     }
+
+    public FreameChecker frameChecker;
 
     public CameraManager cameraMng;
     public TimeManager timeMng;
@@ -42,6 +46,12 @@ public class GameManager : MonoBehaviour
     private KeyManager _keyManager;
     public Grid grid;
 
+    private GameSettingData _settingData;
+    public GameSettingData SettingData
+    {
+        get { return _settingData; }
+    }
+
     public bool isPlayerDead = false;
     // Start is called before the first frame update
     void Awake()
@@ -57,6 +67,11 @@ public class GameManager : MonoBehaviour
         }
         Application.targetFrameRate = 60;
         TileCoordClass.SetGrid(grid);
+    }
+
+    private void Start()
+    {
+        ApplySetting(_settingData);
     }
 
     private IActor m_playerActor;
@@ -101,13 +116,14 @@ public class GameManager : MonoBehaviour
         yield return GameLoader.instance.SceneLoad("HHG");
         GameState = GameStateEnum.InGame;
         uiMng.InitUI(); // SceneLoadCallback���� �Űܾ� �� �ʿ伺�� ������ ����
+        timeMng.ResetTimeStop();
 
         var grid = GameObject.Find("Grid").GetComponent<Grid>();
         this.grid = grid;
     }
 
-    private IActor nullActor = new NullActor();
-    private IActor prevUnit = null;
+    //private IActor nullActor = new NullActor();
+    //private IActor prevUnit = null;
     public void EscapeButton()
     {
         if (GameState == GameStateEnum.Pause)
@@ -125,6 +141,10 @@ public class GameManager : MonoBehaviour
         else if (GameState == GameStateEnum.MainMenu)
         {
             ExitGame();
+        }
+        else if (GameState == GameStateEnum.Setting)
+        {
+            GameState = _prevState;
         }
     }
 
@@ -156,6 +176,14 @@ public class GameManager : MonoBehaviour
     public void AddTextToDeveloperConsole(string text)
     {
         uiMng.developerConsole?.AddLine(text);
+    }
+
+    public void ApplySetting(GameSettingData newData)
+    {
+        _settingData = newData;
+
+        frameChecker.enabled = _settingData.bShowFPS;
+        uiMng.developerConsole?.SetConsoleUsage(_settingData.bUseDeveloperConsole);
     }
 
     //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음

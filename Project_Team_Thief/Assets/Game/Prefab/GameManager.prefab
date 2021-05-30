@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83aba1311f028e4b99edc9dd5c44206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frameChecker: {fileID: 4990086937456659571}
   cameraMng: {fileID: 1594952880785257368}
   timeMng: {fileID: 4990086937456659568}
   soundMng: {fileID: 1997881170352566880}

@@ -72,6 +72,15 @@ public class UIManager : MonoBehaviour
                 m_focusedUI = uiPauseMenu;
                 GameManager.instance?.SetControlActor(m_uiActor);
                 break;
+            case GameManager.GameStateEnum.Setting:
+                uiPlayerInfo.Toggle(false);
+                uiDynamic.Toggle(false);
+                uiMainMenu.Toggle(false);
+                uiSettingMenu.Toggle(true);
+                uiPauseMenu.Toggle(false);
+                m_focusedUI = null;
+                GameManager.instance?.SetControlActor(new NullActor());
+                break;
         }
     }
 
@@ -142,7 +151,7 @@ public class UIManager : MonoBehaviour
     public class UIActor : IActor
     {
         private UIManager m_uiManager;
-        private bool m_bCurrentInputKeyboard = false;
+        private bool m_bCurrentInputKeyboard = true;
         public UIActor(UIManager manager)
         {
             m_uiManager = manager;
