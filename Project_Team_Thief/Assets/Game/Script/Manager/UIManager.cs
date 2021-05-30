@@ -145,6 +145,11 @@ public class UIManager : MonoBehaviour
         eventSystem.SetSelectedGameObject(playerDeadResumeButton);
     }
 
+    public void SetShowCommandInfo(bool value)
+    {
+        uiPlayerInfo.SetShowCommandInfo(value);
+    }
+
     public class UIActor : IActor
     {
         private UIManager m_uiManager;

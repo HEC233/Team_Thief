@@ -190,6 +190,7 @@ public class GameManager : MonoBehaviour
 
         frameChecker.enabled = _settingData.bShowFPS;
         uiMng.developerConsole?.SetConsoleUsage(_settingData.bUseDeveloperConsole);
+        uiMng.SetShowCommandInfo(!_settingData.bDontUseCommandAssist);
     }
 
     //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음

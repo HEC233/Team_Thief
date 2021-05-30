@@ -35,8 +35,6 @@ public class TimeManager : MonoBehaviour
             BulletTime(0.2f, 0.3f);
         else if (Input.GetKeyDown(KeyCode.Alpha2))
             HitStop(1.0f);
-
-        Debug.Log(_timeStopRequiredCount);
     }
 
     public void BulletTime(float timeScale, float time)
