@@ -18,19 +18,19 @@ MonoBehaviour:
   minJumpPower: 0
   maxJumpPower: 0
   jumpCount: 0
-  hp: 100
+  hp: 8000
   reduceHit: 1
   knockbackMultiply: 1
-  skillDamage: 100
+  skillDamage: 90
   criticalValue: 0
   attackCount: 0
   attackInterval: 0
-  enterDelay: 0.9
-  endDelay: 0.5
+  enterDelay: 0.55
+  endDelay: 0.3
   coolTime: 0
-  knockback: {x: 0, y: 0}
-  attackMoveX: 0
-  attackMoveXTime: 0
+  knockback: {x: -15, y: 0}
+  attackMoveX: -1
+  attackMoveXTime: 0.2
   attackMoveY: 0
   attackMoveYTime: 0
   cameraShakeIntensity: 0

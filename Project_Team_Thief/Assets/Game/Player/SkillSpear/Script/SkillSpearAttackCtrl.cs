@@ -96,7 +96,7 @@ public class SkillSpearAttackCtrl : AttackBase
         _cinemachineImpulseSource.GenerateImpulse();
     }
 
-    public override void AttackDamage()
+    public void GetEnemyList()
     {
         _isEnter = false;
         
@@ -104,6 +104,7 @@ public class SkillSpearAttackCtrl : AttackBase
         if (_basicAttackCollider2D.IsTouchingLayers(_hitLayerMask))
         {
             _basicAttackCollider2D.OverlapCollider(_contactFilter2D, result);
+
             foreach (var item in result)
             {
                 if (item.gameObject.CompareTag("Player"))
@@ -111,13 +112,31 @@ public class SkillSpearAttackCtrl : AttackBase
 
                 if (item.gameObject.CompareTag("Enemy"))
                 {
-                    //============== 고재협이 편집함 ======================
-                    _damage.hitPosition = item.ClosestPoint(_basicAttackCollider2D.bounds.center);
-                    //=====================================================
+                    Debug.Log("Enemy List");
+
                     _isEnter = true;
-                    item.GetComponentInParent<Unit>().HandleHit(_damage);
-                    OnEnemyHitEvent?.Invoke("Skill2Spear");
+                    break;
                 }
+            }
+        }
+    }
+
+    public override void AttackDamage()
+    {
+        Debug.Log("AttackDamage");
+        foreach (var item in result)
+        {
+            if (item.gameObject.CompareTag("Player"))
+                continue;
+
+            if (item.gameObject.CompareTag("Enemy"))
+            {
+                Debug.Log("Enemy");
+                //============== 고재협이 편집함 ======================
+                _damage.hitPosition = item.ClosestPoint(_basicAttackCollider2D.bounds.center);
+                //=====================================================
+                item.GetComponentInParent<Unit>().HandleHit(_damage);
+                OnEnemyHitEvent?.Invoke("Skill2Spear");
             }
         }
     }

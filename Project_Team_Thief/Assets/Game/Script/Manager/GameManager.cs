@@ -12,17 +12,21 @@ public class GameManager : MonoBehaviour
         MainMenu,
         InGame,
         Pause,
+        Setting,
     }
 
 
     public static GameManager instance;
 
     private GameStateEnum _gameState = GameStateEnum.InGame;
+    private GameStateEnum _prevState;
     public GameStateEnum GameState
     {
         get { return _gameState; }
-        set { _gameState = value; uiMng.ToggleUI(value); }
+        set { _prevState = _gameState; _gameState = value; uiMng.ToggleUI(value); }
     }
+
+    public FreameChecker frameChecker;
 
     public CameraManager cameraMng;
     public TimeManager timeMng;
@@ -39,8 +43,14 @@ public class GameManager : MonoBehaviour
     public ShadowParticleSystem shadow;
 
     [SerializeField]
-    private KeyManager _keyManger;
+    private KeyManager _keyManager;
     public Grid grid;
+
+    private GameSettingData _settingData;
+    public GameSettingData SettingData
+    {
+        get { return _settingData; }
+    }
 
     public bool isPlayerDead = false;
     // Start is called before the first frame update
@@ -59,17 +69,36 @@ public class GameManager : MonoBehaviour
         TileCoordClass.SetGrid(grid);
     }
 
-    public void SetControlUnit(IActor unit)
+    private void Start()
     {
-        _keyManger.SetControlUnit(unit);
+        ApplySetting(_settingData);
+    }
+
+    private IActor m_playerActor;
+    public void SetPlayerActor(IActor actor)
+    {
+        m_playerActor = actor;
+    }
+
+    public void ChangeActorToPlayer()
+    {
+        if(m_playerActor != null)
+        {
+            _keyManager.SetControlActor(m_playerActor);
+        }
+    }
+
+    public void SetControlActor(IActor actor)
+    {
+        _keyManager.SetControlActor(actor);
     }
 
     public IActor GetControlActor()
     {
-        return _keyManger.GetControlActor();
+        return _keyManager.GetControlActor();
     }
 
-    public void LoadingScreen(bool isStart)
+    public void SetLoadingScreenShow(bool isStart)
     {
         if (isStart)
             uiMng.ShowLoading();
@@ -86,31 +115,36 @@ public class GameManager : MonoBehaviour
     {
         yield return GameLoader.instance.SceneLoad("HHG");
         GameState = GameStateEnum.InGame;
-        uiMng.InitUI(); // SceneLoadCallback¿∏∑Œ ø≈∞‹æﬂ «“ « ø‰º∫¿Ã ¿÷¿ªºˆ ¿÷¿Ω
+        uiMng.InitUI(); // SceneLoadCallbackÔøΩÔøΩÔøΩÔøΩ ÔøΩ≈∞‹æÔøΩ ÔøΩÔøΩ ÔøΩ ø‰º∫ÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ
+        timeMng.ResetTimeStop();
 
         var grid = GameObject.Find("Grid").GetComponent<Grid>();
         this.grid = grid;
     }
 
-    private IActor nullActor = new NullActor();
-    private IActor prevUnit = null;
+    //private IActor nullActor = new NullActor();
+    //private IActor prevUnit = null;
     public void EscapeButton()
     {
         if (GameState == GameStateEnum.Pause)
         {
             GameState = GameStateEnum.InGame;
-            _keyManger.SetControlUnit(prevUnit);
+            //ChangeActorToPlayer();
+            dialogueSystem.ResumeDialogue();
         }
         else if (GameState == GameStateEnum.InGame)
         {
             GameState = GameStateEnum.Pause;
-            prevUnit = _keyManger.GetControlActor();
-            _keyManger.SetControlUnit(nullActor);
+            dialogueSystem.PauseDialogue();
 
         }
         else if (GameState == GameStateEnum.MainMenu)
         {
             ExitGame();
+        }
+        else if (GameState == GameStateEnum.Setting)
+        {
+            GameState = _prevState;
         }
     }
 
@@ -118,6 +152,7 @@ public class GameManager : MonoBehaviour
     {
         isPlayerDead = false;
         uiMng.TurnOffGameOverScreen();
+        dialogueSystem.EndDialogue();
         StartCoroutine(ExitGameCoroutine());
     }
 
@@ -137,4 +172,37 @@ public class GameManager : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    public void AddTextToDeveloperConsole(string text)
+    {
+        uiMng.developerConsole?.AddLine(text);
+    }
+
+    public void ApplySetting(GameSettingData newData)
+    {
+        _settingData = newData;
+
+        frameChecker.enabled = _settingData.bShowFPS;
+        uiMng.developerConsole?.SetConsoleUsage(_settingData.bUseDeveloperConsole);
+    }
+
+    //====================== Îπ†Î•∏ Íµ¨ÌòÑÏùÑ ÏúÑÌï¥ ÏûÑÏùòÎ°ú Ïó¨Í∏∞Ïóê ÎÑ£Ïñ¥ÎÜ®Ïùå
+    public void PushTalkCondition()
+    {
+        GameObject go = GameObject.Find("NPCManager");
+        if (go == null) return;
+        var nm = go.GetComponent<NPCManager>();
+        if (nm == null) return;
+
+        go = GameObject.Find("GameEventSystem");
+        if (go == null) return;
+        var es = go.GetComponent<GameEventSystem>();
+        if (es == null) return;
+
+        string nearest = nm.GetNearestNPC();
+        if (nearest != string.Empty)
+            es.AddTalkQueue(nearest);
+    }
+
+    //======================
 }

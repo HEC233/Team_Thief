@@ -426,8 +426,8 @@ namespace PS.Enemy.Seraphim
         {
             actor.animCtrl.PlayAni(AniState.AttackReady);
             actor.unit.Idle();
-            //Assert.IsNotNull(WwiseSoundManager.instance);
-            //WwiseSoundManager.instance.PlayEventSound("Seraphim_AR");
+            Assert.IsNotNull(WwiseSoundManager.instance);
+            WwiseSoundManager.instance.PlayEventSound("Seraphim_AR");
             timeCheck = actor.unit.AttackEnterDelay;
             isAttacked = false;
             actor.attackAnimEnd = false;
@@ -457,7 +457,7 @@ namespace PS.Enemy.Seraphim
                     actor.unit.Attack();
                     actor.fireFX.gameObject.SetActive(true);
                     actor.fireFX.SetFlip(actor.flipValue);
-                    //Assert.IsNotNull(WwiseSoundManager.instance);
+                    Assert.IsNotNull(WwiseSoundManager.instance);
                     actor.wwiseSoundCtrl.PlayEventSound("Seraphim_Shot");
                     isAttacked = true;
                     timeCheck = actor.unit.AttackEndDelay;

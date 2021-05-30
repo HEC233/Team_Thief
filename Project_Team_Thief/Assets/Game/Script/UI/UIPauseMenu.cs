@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPauseMenu : MonoBehaviour
+public class UIPauseMenu : MonoBehaviour, IUIFocus
 {
     private RectTransform _rect;
 
     public RectTransform buttons;
     public CanvasGroup canvasGroup;
     public Image background;
+
+    [SerializeField]
+    private GameObject m_firstSelectButton;
+    private GameObject m_lastSelectButton;
 
     private void Awake()
     {
@@ -21,10 +25,13 @@ public class UIPauseMenu : MonoBehaviour
         if (!this.gameObject.activeSelf && !value)
             return;
         this.gameObject.SetActive(true);
+        m_lastSelectButton = null;
+        GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_firstSelectButton);
         StopAllCoroutines();
         StartCoroutine(PauseAnimation(value));
     }
 
+    private bool prevTimeStopState = false;
     private IEnumerator PauseAnimation(bool value)
     {
         canvasGroup.interactable = false;
@@ -40,6 +47,7 @@ public class UIPauseMenu : MonoBehaviour
             canvasGroup.alpha = 0f;
             background.color = new Color(0, 0, 0, 0);
 
+            prevTimeStopState = GameManager.instance.timeMng.IsTimeStopped;
             GameManager.instance.timeMng.StopTime();
             yield return new WaitForSeconds(0.1f);
             this.gameObject.SetActive(value);
@@ -76,7 +84,10 @@ public class UIPauseMenu : MonoBehaviour
                 yield return null;
             }
 
-            GameManager.instance.timeMng.ResumeTime();
+            if(!prevTimeStopState)
+            {
+                GameManager.instance.timeMng.ResumeTime();
+            }
             this.gameObject.SetActive(value);
         }
     }
@@ -93,7 +104,7 @@ public class UIPauseMenu : MonoBehaviour
 
     public void Setting()
     {
-
+        GameManager.instance.GameState = GameManager.GameStateEnum.Setting;
     }
 
     public void ExitToMainMenu()
@@ -104,5 +115,16 @@ public class UIPauseMenu : MonoBehaviour
     public void ExitGame()
     {
         GameManager.instance.ExitGame();
+    }
+
+    public void FocusWithMouse()
+    {
+        m_lastSelectButton = GameManager.instance.uiMng.eventSystem.currentSelectedGameObject;
+        GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(null);
+    }
+
+    public void FocusWithKeyboard()
+    {
+        GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_lastSelectButton == null ? m_firstSelectButton : m_lastSelectButton);
     }
 }

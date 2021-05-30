@@ -27,7 +27,7 @@ public class SkillSpearController : SkillControllerBase
         _unit = Unit as PlayerUnit;
 
         _damage = new Damage();
-        _damage.power = _skillSpearData.AttackDamage;
+        _damage.power = _skillSpearData.AttackDamage * _unit.EncroachmentPerPlayerAttackDamage;
         _damage.knockBack = new Vector2(_skillSpearData.KnockBackPower.x * _unit.FacingDir,
             _skillSpearData.KnockBackPower.y);
         _damage.additionalInfo = 5;
@@ -38,7 +38,6 @@ public class SkillSpearController : SkillControllerBase
         _unit.OnSkillSpearRushEvent += StartSpearRush;
         _unit.OnSkillSpearAttackEvent += AttackSkillSpear;
         
-
     }
 
     public override void Release()
@@ -58,7 +57,10 @@ public class SkillSpearController : SkillControllerBase
 
     private void AttackSkillSpear()
     {
+        Debug.Log("SkillSpearAttack");
         _unit.SKillSpearAttack(_damage);
+        OnEndSkillAction?.Invoke();
+
     }
 
     IEnumerator SkillSpearRushCoroutine()
@@ -75,6 +77,5 @@ public class SkillSpearController : SkillControllerBase
         }
         
         _unit.Rigidbody2D.velocity = Vector2.zero;
-        OnEndSkillAction?.Invoke();
     }
 }

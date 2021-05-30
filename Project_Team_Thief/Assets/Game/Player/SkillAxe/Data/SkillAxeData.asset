@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: SkillAxeData
   m_EditorClassIdentifier: 
   _numberOfTimesTheSkill: 2
-  _coolTime: 2
+  _coolTime: 3
   _skillName: Skill1Axe
-  _increaseEncroachment: 20
-  _encroachmentDecrease: -3
+  _increaseEncroachment: 15
+  _encroachmentDecrease: 0
   _axeGameObject: {fileID: 3841240397383621464, guid: 3624dd1e695c1004e96f2ca043568a51,
     type: 3}
-  _cinemachineSignalSource: {fileID: 11400000, guid: ab5e8c5544421b348bf91b448897405f,
+  _cinemachineSignalSource: {fileID: 11400000, guid: eb351fd8ca44c3c4db67561a895cdc01,
     type: 2}
-  _knockBackPower: {x: 0.5, y: 0}
+  _knockBackPower: {x: 0.5, y: 1.5}
   _axeMovePostionX: 8
   _axeMoveTime: 0.3
-  _axeAttackDamage: 10
+  _axeAttackDamage: 833
   _axeMultiStageHit: 3
   _axeMultiStageHitInterval: 0.2

@@ -19,6 +19,7 @@ public class GameLoader : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        gameDataLoaded = false;
     }
 
     private void Start()
@@ -42,7 +43,8 @@ public class GameLoader : MonoBehaviour
 
     public IEnumerator SceneLoad(string SceneName)
     {
-        GameManager.instance.LoadingScreen(true);
+        GameManager.instance?.AddTextToDeveloperConsole(SceneName + " Scene Load Start");
+        GameManager.instance.SetLoadingScreenShow(true);
         if (!gameDataLoaded)
             yield return StartCoroutine(LoadGameData());
 
@@ -58,9 +60,11 @@ public class GameLoader : MonoBehaviour
             if(!callback(out error))
             {
                 Debug.LogError(error);
+                GameManager.instance?.AddTextToDeveloperConsole(error);
             }
         }
 
-        GameManager.instance.LoadingScreen(false);
+        GameManager.instance.SetLoadingScreenShow(false);
+        GameManager.instance?.AddTextToDeveloperConsole(SceneName + " Scene Load Finished");
     }
 }

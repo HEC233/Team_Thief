@@ -5,9 +5,15 @@ using UnityEngine.UI;
 
 public class UICommandCoolTime : MonoBehaviour
 {
-    public Image coolTimeImage;
-    public Image skillIcon;
+    [SerializeField]
+    private Image coolTimeImage;
+    [SerializeField]
+    private Image skillIcon;
+    [SerializeField]
+    private RectTransform skillIconRect;
     private CommandManager.CommandCtrl _data;
+
+    private bool bCoolTimeReady;
 
     public void SetSkillIcon(Sprite sprite)
     {
@@ -22,5 +28,31 @@ public class UICommandCoolTime : MonoBehaviour
     private void Update()
     {
         coolTimeImage.fillAmount = 1 - Mathf.Clamp01(_data.CommandData.coolTime / _data.CommandData.maxCoolTIme);
+
+        if (coolTimeImage.fillAmount != 0)
+        {
+            bCoolTimeReady = false;
+        }
+        else if (!bCoolTimeReady)
+        {
+            StartCoroutine(CoolTimeReadyAnimation());
+
+            bCoolTimeReady = true;
+        }
+    }
+
+    private IEnumerator CoolTimeReadyAnimation()
+    {
+        float t = 0;
+        const float length = 0.5f;
+        while (t <= length)
+        {
+            skillIconRect.localScale = Vector3.Lerp(Vector3.one * 1.5f, Vector3.one, t / length);
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+        skillIconRect.localScale = Vector3.one;
+        yield break;
     }
 }

@@ -24,7 +24,6 @@ public class DialogueSystem : MonoBehaviour
 
 
     InputProcessActor inputProcess;
-    IActor player = null;
 
     public bool InitializeData(out string ErrorMessage)
     {
@@ -75,6 +74,7 @@ public class DialogueSystem : MonoBehaviour
         bCodeRuning = false;
 
         ui = GameManager.instance?.uiMng.uiDialogue;
+        ui.SetShowDialogue(false);
 
         inputProcess = new InputProcessActor(this);
         return true;
@@ -93,9 +93,31 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
+    private bool bPaused = false;
+    public void PauseDialogue()
+    {
+        ui.Puase();
+        if (bCodeRuning)
+        {
+            bCodeRuning = false;
+            bPaused = true;
+        }
+    }
+
+    public void ResumeDialogue()
+    {
+        ui.Resume();
+        if (bPaused)
+        {
+            GameManager.instance.timeMng.StopTime();
+            bCodeRuning = true;
+            bPaused = false;
+        }
+    }
+
     private void Start()
     {
-        GameLoader.instance.AddSceneLoadCallback(InitializeData);
+        GameLoader.instance?.AddSceneLoadCallback(InitializeData);
     }
 
     public void StartDialogueWithName(string name)
@@ -133,14 +155,15 @@ public class DialogueSystem : MonoBehaviour
         PC = 0;
         bAutoPass = true;
         ui.SetShowDialogue(true);
+        Process();
     }
 
     public void EndDialogue()
     {
         if(!bAutoPass)
         {
-            GameManager.instance?.timeMng.ResumeTime();
-            GameManager.instance?.SetControlUnit(player);
+            GameManager.instance?.timeMng.ResumeTime(); 
+            GameManager.instance?.ChangeActorToPlayer();
             bAutoPass = true;
         }
         PC = 0;
@@ -179,11 +202,14 @@ public class DialogueSystem : MonoBehaviour
              * 대화 강조 0x03 Bold
              * 대화문 위치 위로 변경 0x04 SetUpper
              * 대화문 위치 아래로 변경 0x05 SetDown
+             * 대화 화자 이름 변경 0x06 ChangeName key
              */
+            string key;
+            string text;
             switch (code[curRuningCodeIndex][PC])
             {
                 case 0x01:
-                    string text;
+                    ui.ShowDialoge();
                     if (curDialogueIndex < 0 || curDialogueIndex >= dialogues.Length)
                     {
                         text = "Error";
@@ -197,7 +223,7 @@ public class DialogueSystem : MonoBehaviour
                     bCycleEnd = true;
                     break;
                 case 0x02:
-                    string key = GetStringValue();
+                    key = GetStringValue();
                     if (indexKeys.ContainsKey(key))
                     {
                         curDialogueIndex = indexKeys[key];
@@ -212,15 +238,27 @@ public class DialogueSystem : MonoBehaviour
                 case 0x05:
                     ui.SetTextPosition(false);
                     break;
+                case 0x06:
+                    key = GetStringValue();
+                    if(string.Compare(key, "none",true) == 0)
+                    {
+                        ui.SetShowName(false);
+                    }
+                    if (indexKeys.ContainsKey(key))
+                    {
+                        ui.SetShowName(true);
+                        int nameIndex = indexKeys[key];
+                        ui.ChangeName(dialogues[nameIndex]);
+                    }
+                    break;
                 case 0x10:
                     GameManager.instance?.timeMng.StopTime();
-                    player = GameManager.instance?.GetControlActor();
-                    GameManager.instance?.SetControlUnit(inputProcess);
+                    GameManager.instance?.SetControlActor(inputProcess);
                     bAutoPass = false;
                     break;
                 case 0x11:
                     GameManager.instance?.timeMng.ResumeTime();
-                    GameManager.instance?.SetControlUnit(player);
+                    GameManager.instance?.ChangeActorToPlayer();
                     bAutoPass = true;
                     break;
                 case 0x20:
@@ -276,7 +314,7 @@ public class DialogueSystem : MonoBehaviour
         {
             switch (condition)
             {
-                case TransitionCondition.Attack:
+                case TransitionCondition.DialogueNext:
                     if (!_dialogueSystem.ui.CheckAnimationEnd())
                     {
                         _dialogueSystem.ui.FinishAnimation();

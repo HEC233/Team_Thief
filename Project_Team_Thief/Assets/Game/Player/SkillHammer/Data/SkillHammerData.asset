@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: SkillHammerData
   m_EditorClassIdentifier: 
   _numberOfTimesTheSkill: 1
-  _coolTime: 2
+  _coolTime: 5
   _skillName: Skill3Hammer
-  _increaseEncroachment: 20
-  _encroachmentDecrease: -15
-  _cinemachineSignalSource: {fileID: 0}
-  _knockBackPower: {x: 0, y: 5}
-  _attackDamage: 50
+  _increaseEncroachment: 10
+  _encroachmentDecrease: 0
+  _cinemachineSignalSource: {fileID: 11400000, guid: 2f357948ba6cd7748b068ef03b02bdab,
+    type: 2}
+  _knockBackPower: {x: 0, y: 7.5}
+  _attackDamage: 2000

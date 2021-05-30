@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: SkillSpearData
   m_EditorClassIdentifier: 
   _numberOfTimesTheSkill: 1
-  _coolTime: 3
+  _coolTime: 15
   _skillName: Skill2Spear
-  _increaseEncroachment: 10
-  _encroachmentDecrease: -5
-  _cinemachineSignalSource: {fileID: 0}
-  _knockBackPower: {x: 10, y: 0}
+  _increaseEncroachment: 20
+  _encroachmentDecrease: 0
+  _cinemachineSignalSource: {fileID: 11400000, guid: b9fda150f7888e846a99f5f14b20cb9a,
+    type: 2}
+  _knockBackPower: {x: 15, y: 5}
   _playerMovePostionX: 9
   _playerMoveTime: 0.1
-  _attackDamage: 20
+  _attackDamage: 4000

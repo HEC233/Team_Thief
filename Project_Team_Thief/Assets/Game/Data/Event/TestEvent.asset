@@ -16,13 +16,14 @@ MonoBehaviour:
   name: test
   stopCondition: 
   eventType: 0
-  triggerType: 1
+  triggerType: 0
   trigger:
+    NPCname: NOPA
     xCmp: 0
     xValue: 0
     yCmp: 0
     yValue: 0
-  playAmount: 0
+  playAmount: 1
   playCount: 1
   stoptime: 0
   skipable: 0
@@ -31,7 +32,7 @@ MonoBehaviour:
   - cutSceneIndex: 123_0
     actionTime: 0
     skipable: 0
-    autopass: 0
+    autopass: 1
     actions:
     - type: 0
       actionLength: 0

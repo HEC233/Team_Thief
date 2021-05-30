@@ -60,7 +60,14 @@ public class Addressable : MonoBehaviour
                 yield return null;
             foreach(var r in asyncOperationHandle.Result)
             {
-                factory.Add(r.name, r);
+                if (factory.ContainsKey(r.name))
+                {
+                    Debug.LogError("there is already exist key " + r.name + " in " + typeof(T).Name);
+                }
+                else
+                {
+                    factory.Add(r.name, r);
+                }
             }
             isLoaded = true;
         }

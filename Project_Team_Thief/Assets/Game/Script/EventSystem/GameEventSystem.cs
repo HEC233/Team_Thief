@@ -4,11 +4,12 @@ using UnityEngine;
 using PS.Event;
 using PS.Util.Tile;
 
-public class EventSystem : MonoBehaviour
+public class GameEventSystem : MonoBehaviour
 {
     public List<PS.Event.Event> events;
 
     private List<string> nextEventQueue = new List<string>();
+    private List<string> talkedNPCqueue = new List<string>();
 
     private void Start()
     {
@@ -16,6 +17,13 @@ public class EventSystem : MonoBehaviour
         {
             StartCoroutine(Process(e));
         }
+    }
+
+    public void AddTalkQueue(string value)
+    {
+        talkedNPCqueue.Add(value);
+        
+        GameManager.instance?.AddTextToDeveloperConsole(value + " GameEventSystem queue added");
     }
 
     IEnumerator Process(PS.Event.Event data)
@@ -32,7 +40,7 @@ public class EventSystem : MonoBehaviour
                 switch (data.triggerType)
                 {
                     case TriggerType.Talk:
-                        returnValue = TalkCheck();
+                        returnValue = TalkCheck(data.trigger);
                         break;
                     case TriggerType.Arrive:
                         returnValue = ArriveCheck();
@@ -150,13 +158,17 @@ public class EventSystem : MonoBehaviour
 
             // 이벤트가 끝나면 다음 따라올 이벤트를 넣어줌
             nextEventQueue.Add(data.followingEvent);
+            talkedNPCqueue.RemoveAll(str => str == data.trigger.NPCname);
         }
 
     }
 
-    private bool TalkCheck()
+    private bool TalkCheck(PS.Event.TriggerCondition trigger)
     {
-        return false;
+        bool returnValue = talkedNPCqueue.Contains(trigger.NPCname);
+        if (returnValue)
+            talkedNPCqueue.Remove(trigger.NPCname);
+        return returnValue;
     }
     private bool ArriveCheck()
     {
@@ -179,7 +191,8 @@ public class EventSystem : MonoBehaviour
     private bool NextCheck(string name)
     {
         bool returnValue = nextEventQueue.Contains(name);
-        nextEventQueue.Remove(name);
+        if (returnValue)
+            nextEventQueue.Remove(name);
         return returnValue;
     }
     private IEnumerator Dialog(string dialogName)

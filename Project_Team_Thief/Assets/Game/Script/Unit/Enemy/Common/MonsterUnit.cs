@@ -15,7 +15,8 @@ public class MonsterUnit : Unit
     private bool _isVerticalMoving = false;
     private Vector2 _nextAddingForce = Vector2.zero;
 
-    public Transform footPosition;
+    public Transform footPositionL;
+    public Transform footPositionR;
 
     [SerializeField]
     private Transform hpPosition;
@@ -116,7 +117,7 @@ public class MonsterUnit : Unit
         //    skipGroundCheck = false;
         if (skipGroundCheckTime <= 0.0f)
         {
-            isOnGround = Physics2D.Raycast(footPosition.position, Vector2.down, Mathf.Epsilon, _groundLayer);
+            isOnGround = Physics2D.Raycast(footPositionL.position, Vector2.down, Mathf.Epsilon, _groundLayer) || Physics2D.Raycast(footPositionR.position, Vector2.down, Mathf.Epsilon, _groundLayer);
         }
         else
         {
@@ -306,7 +307,7 @@ public class MonsterUnit : Unit
             StopCoroutine(attackMoveCoroutine);
         // 대미지 상정방식 기획서에 맞게 변경 필요
         var finalDamage = inputDamage.power * _unitData.reduceHit;
-        _hp -= finalDamage;
+
         _rigid.AddForce(inputDamage.knockBack * _unitData.knockbackMultiply, ForceMode2D.Impulse);
         isOnGround = false;
         skipGroundCheck = true;
@@ -345,11 +346,11 @@ public class MonsterUnit : Unit
                 string sFxName = string.Empty;
                 switch (inputDamage.additionalInfo)
                 {
-                    default:
-                        sFxName = "PC_HIT_blade";
-                        break;
                     case 4:
                         sFxName = "PC_HIT_hammer";
+                        break;
+                    default:
+                        sFxName = "PC_HIT_blade";
                         break;
                 }
                 var effect = GameManager.instance?.FX.Play(fxName, inputDamage.hitPosition);
@@ -357,5 +358,7 @@ public class MonsterUnit : Unit
                 //GameManager.instance?.timeMng.hitStopReadyCheckList.Add(effect.IsPlaying);
             }
         }
+
+        _hp -= finalDamage;
     }
 }
