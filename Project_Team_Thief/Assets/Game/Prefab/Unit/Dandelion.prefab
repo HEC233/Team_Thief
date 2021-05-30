@@ -348,7 +348,7 @@ MonoBehaviour:
   hitBoxLayer:
     serializedVersion: 2
     m_Bits: 1024
-  _wwiseSoundCtrl: {fileID: 0}
+  _wwiseSoundCtrl: {fileID: 2477125597733004773}
   attackPosition: {fileID: 2823702396268823360}
 --- !u!114 &6340753597775859514
 MonoBehaviour:
