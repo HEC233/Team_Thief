@@ -35,7 +35,10 @@ public class GameLoader : MonoBehaviour
     // 씬 로드시 필요한 초기화함수들을 델리게이트로 추가해주면 죠스입니다.
     public void AddSceneLoadCallback(SceneLoadCallback callback)
     {
-        sceneLoadCallbacks.Add(callback);
+        if (!sceneLoadCallbacks.Contains(callback))
+        {
+            sceneLoadCallbacks.Add(callback);
+        }
     }
 
     IEnumerator LoadGameData()

@@ -42,6 +42,11 @@ public class UIManager : MonoBehaviour
         m_uiActor = new UIActor(this);
     }
 
+    private void Start()
+    {
+        GameLoader.instance?.AddSceneLoadCallback(InitUI);
+    }
+
     public void ToggleUI(GameManager.GameStateEnum gameState)
     {
         switch (gameState)
@@ -110,10 +115,17 @@ public class UIManager : MonoBehaviour
         return uiDynamic.GetMonsterHP();
     }
 
-    public void InitUI()
+    //public void InitUI()
+    //{
+    //    uiPlayerInfo.CommandUpdate();
+    //    uiDynamic.Init(); 
+    //}
+    public bool InitUI(out string errorMessage)
     {
+        errorMessage = string.Empty;
         uiPlayerInfo.CommandUpdate();
-        uiDynamic.Init(); 
+        uiDynamic.Init();
+        return true;
     }
 
     public void SetCombo(int comboCount)
