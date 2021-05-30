@@ -80,6 +80,11 @@ public class GameManager : MonoBehaviour
         m_playerActor = actor;
     }
 
+    public IActor GetPlayerActor()
+    {
+        return m_playerActor;
+    }
+
     public void ChangeActorToPlayer()
     {
         if(m_playerActor != null)
