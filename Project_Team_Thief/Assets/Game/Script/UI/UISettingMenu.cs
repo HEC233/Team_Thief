@@ -10,6 +10,8 @@ public class UISettingMenu : MonoBehaviour
     private Toggle FPS;
     [SerializeField]
     private Toggle DeveloperConsole;
+    [SerializeField]
+    private Toggle CommandAssist;
     private GameSettingData data;
 
     private void Awake()
@@ -19,12 +21,20 @@ public class UISettingMenu : MonoBehaviour
 
     public void Toggle(bool value)
     {
+        if (!this.gameObject.activeSelf && !value)
+            return;
         this.gameObject.SetActive(value);
         if(value)
         {
             data = GameManager.instance.SettingData;
             FPS.isOn = data.bShowFPS;
             DeveloperConsole.isOn = data.bUseDeveloperConsole;
+            CommandAssist.isOn = data.bDontUseCommandAssist;
+            GameManager.instance?.timeMng.StopTime();
+        }
+        else
+        {
+            GameManager.instance?.timeMng.ResumeTime();
         }
     }
     
@@ -42,5 +52,10 @@ public class UISettingMenu : MonoBehaviour
     public void ToggleButtonDeveloperConsole(bool value)
     {
         data.bUseDeveloperConsole = value;
+    }
+
+    public void ToggleButtonCommandAssist(bool value)
+    {
+        data.bDontUseCommandAssist = value;
     }
 }

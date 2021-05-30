@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     public EventSystem eventSystem;
     private IUIFocus m_focusedUI = null;
     private UIActor m_uiActor;
+    public IActor UiActor => m_uiActor;
 
     private static bool exist = false;
 
@@ -52,7 +53,6 @@ public class UIManager : MonoBehaviour
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(false);
                 m_focusedUI = uiMainMenu;
-                GameManager.instance?.SetControlActor(m_uiActor);
                 break;
             case GameManager.GameStateEnum.InGame:
                 uiPlayerInfo.Toggle(true);
@@ -61,7 +61,6 @@ public class UIManager : MonoBehaviour
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(false);
                 m_focusedUI = null;
-                GameManager.instance?.ChangeActorToPlayer();
                 break;
             case GameManager.GameStateEnum.Pause:
                 uiPlayerInfo.Toggle(true);
@@ -70,7 +69,6 @@ public class UIManager : MonoBehaviour
                 uiSettingMenu.Toggle(false);
                 uiPauseMenu.Toggle(true);
                 m_focusedUI = uiPauseMenu;
-                GameManager.instance?.SetControlActor(m_uiActor);
                 break;
             case GameManager.GameStateEnum.Setting:
                 uiPlayerInfo.Toggle(false);
@@ -79,7 +77,6 @@ public class UIManager : MonoBehaviour
                 uiSettingMenu.Toggle(true);
                 uiPauseMenu.Toggle(false);
                 m_focusedUI = null;
-                GameManager.instance?.SetControlActor(new NullActor());
                 break;
         }
     }
@@ -146,6 +143,11 @@ public class UIManager : MonoBehaviour
         }
         uiGameOver.alpha = 1;
         eventSystem.SetSelectedGameObject(playerDeadResumeButton);
+    }
+
+    public void SetShowCommandInfo(bool value)
+    {
+        uiPlayerInfo.SetShowCommandInfo(value);
     }
 
     public class UIActor : IActor

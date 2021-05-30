@@ -26,6 +26,8 @@ public class UIPlayerInfo : MonoBehaviour
     public SOPlayer playerInfo;
     public UICommandInfo commandInfo;
 
+    private bool _bUseCommandInfo;
+
     private void Awake()
     {
         _rect = GetComponent<RectTransform>();
@@ -49,6 +51,12 @@ public class UIPlayerInfo : MonoBehaviour
     public void Toggle(bool value)
     {
         this.gameObject.SetActive(value);
+        commandInfo.gameObject.SetActive(_bUseCommandInfo && value);
+    }
+
+    public void SetShowCommandInfo(bool value)
+    {
+        _bUseCommandInfo = value;
         commandInfo.gameObject.SetActive(value);
     }
 

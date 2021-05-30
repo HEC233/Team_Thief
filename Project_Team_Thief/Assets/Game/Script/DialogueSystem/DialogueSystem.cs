@@ -109,7 +109,10 @@ public class DialogueSystem : MonoBehaviour
         ui.Resume();
         if (bPaused)
         {
-            GameManager.instance.timeMng.StopTime();
+            if (!bAutoPass)
+            {
+                GameManager.instance.SetControlActor(inputProcess);
+            }
             bCodeRuning = true;
             bPaused = false;
         }
@@ -158,6 +161,10 @@ public class DialogueSystem : MonoBehaviour
         Process();
     }
 
+    /// <summary>
+    /// 대화시스템을 중간에 정지해야 할때 사용합니다.
+    /// 정상적인 종료시에는 호출되지 않습니다.
+    /// </summary>
     public void EndDialogue()
     {
         if(!bAutoPass)
@@ -252,11 +259,13 @@ public class DialogueSystem : MonoBehaviour
                     }
                     break;
                 case 0x10:
+                    ui.ShowInteractiveButton(true);
                     GameManager.instance?.timeMng.StopTime();
                     GameManager.instance?.SetControlActor(inputProcess);
                     bAutoPass = false;
                     break;
                 case 0x11:
+                    ui.ShowInteractiveButton(false);
                     GameManager.instance?.timeMng.ResumeTime();
                     GameManager.instance?.ChangeActorToPlayer();
                     bAutoPass = true;

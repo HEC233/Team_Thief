@@ -23,9 +23,11 @@ public class DialogueUIController : MonoBehaviour
     [SerializeField]
     private Image RightPortraitImage;
     [SerializeField]
-    private GameObject NameBoxObject;
+    private RectTransform NameBoxRect;
     [SerializeField]
     private TextMeshProUGUI NameBoxText;
+    [SerializeField]
+    private GameObject NextButton;
 
     private bool bAnimationEnd = true;
     private string curText;
@@ -51,9 +53,15 @@ public class DialogueUIController : MonoBehaviour
         SetShowName(false);
         EnablePortrait(false);
         SetTextPosition(false);
+        ShowInteractiveButton(false);
         bLeftHighlighted = true;
         Highlight();
         bAnimationEnd = true;
+    }
+
+    public void ShowInteractiveButton(bool value)
+    {
+        NextButton.SetActive(value);
     }
 
     public void Puase()
@@ -106,12 +114,12 @@ public class DialogueUIController : MonoBehaviour
             bPortraitEnable = PortraitObject.activeSelf;
             EnablePortrait(false);
             SetShowName(false);
-            DialogueBox.anchoredPosition = new Vector2(0, 90);
+            DialogueBox.anchoredPosition = new Vector2(0, 85);
         }
         else
         {
             EnablePortrait(bPortraitEnable);
-            DialogueBox.anchoredPosition = new Vector2(0, -90);
+            DialogueBox.anchoredPosition = new Vector2(0, -85);
         }
     }
 
@@ -185,13 +193,16 @@ public class DialogueUIController : MonoBehaviour
     }
     private void Highlight()
     {
-        LeftPortraitImage.color = bLeftHighlighted ? Color.white : Color.gray;
-        RightPortraitImage.color = bLeftHighlighted ? Color.gray : Color.white;
+        //LeftPortraitImage.color = bLeftHighlighted ? Color.white : Color.gray;
+        //RightPortraitImage.color = bLeftHighlighted ? Color.gray : Color.white;
+        LeftPortraitImage.gameObject.SetActive(bLeftHighlighted);
+        RightPortraitRect.gameObject.SetActive(!bLeftHighlighted);
+        NameBoxRect.anchoredPosition = bLeftHighlighted ? new Vector3(-200f, 1.3f, 0f) : new Vector3(200f, 1.3f, 0f);
     }
 
     public void SetShowName(bool bValue)
     {
-        NameBoxObject.SetActive(bValue);
+        NameBoxRect.gameObject.SetActive(bValue);
     }
 
     public void ChangeName(string value)

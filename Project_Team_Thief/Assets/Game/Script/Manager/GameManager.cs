@@ -80,6 +80,11 @@ public class GameManager : MonoBehaviour
         m_playerActor = actor;
     }
 
+    public IActor GetPlayerActor()
+    {
+        return m_playerActor;
+    }
+
     public void ChangeActorToPlayer()
     {
         if(m_playerActor != null)
@@ -115,6 +120,7 @@ public class GameManager : MonoBehaviour
     {
         yield return GameLoader.instance.SceneLoad("HHG");
         GameState = GameStateEnum.InGame;
+        ChangeActorToPlayer();
         uiMng.InitUI(); // SceneLoadCallback���� �Űܾ� �� �ʿ伺�� ������ ����
         timeMng.ResetTimeStop();
 
@@ -122,29 +128,33 @@ public class GameManager : MonoBehaviour
         this.grid = grid;
     }
 
-    //private IActor nullActor = new NullActor();
-    //private IActor prevUnit = null;
     public void EscapeButton()
     {
+        // pause -> inGame
         if (GameState == GameStateEnum.Pause)
         {
             GameState = GameStateEnum.InGame;
-            //ChangeActorToPlayer();
+            ChangeActorToPlayer();
             dialogueSystem.ResumeDialogue();
         }
+        // inGame -> pause
         else if (GameState == GameStateEnum.InGame)
         {
             GameState = GameStateEnum.Pause;
+            SetControlActor(uiMng.UiActor);
             dialogueSystem.PauseDialogue();
 
         }
+        // mainMenu -> ExitGame
         else if (GameState == GameStateEnum.MainMenu)
         {
             ExitGame();
         }
+        // setting -> prevMenu(pause or mainMenu)
         else if (GameState == GameStateEnum.Setting)
         {
             GameState = _prevState;
+            SetControlActor(uiMng.UiActor);
         }
     }
 
@@ -162,6 +172,7 @@ public class GameManager : MonoBehaviour
 
         yield return GameLoader.instance.SceneLoad("MainScene");
         GameState = GameStateEnum.MainMenu;
+        SetControlActor(uiMng.UiActor);
     }
 
     public void ExitGame()
@@ -184,6 +195,7 @@ public class GameManager : MonoBehaviour
 
         frameChecker.enabled = _settingData.bShowFPS;
         uiMng.developerConsole?.SetConsoleUsage(_settingData.bUseDeveloperConsole);
+        uiMng.SetShowCommandInfo(!_settingData.bDontUseCommandAssist);
     }
 
     //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음

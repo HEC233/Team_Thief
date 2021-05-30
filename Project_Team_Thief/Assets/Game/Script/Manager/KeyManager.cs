@@ -7,7 +7,6 @@ public class KeyManager : MonoBehaviour
 {
     private IActor controlUnit = null;
     private List<KeyCode> m_activeInputs = new List<KeyCode>();
-    private Vector3 m_lastMousePos = Vector3.zero;
     
     // Start is called before the first frame update
     void Start()
@@ -18,22 +17,26 @@ public class KeyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("current Actor = " + controlUnit?.ToString());
         if (controlUnit == null)
             return;
 
         List<KeyCode> pressedInput = new List<KeyCode>();
 
-        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+        if (GameManager.instance.GetPlayerActor() != controlUnit)
         {
-            controlUnit.Transition(TransitionCondition.MouseMove);
-        }
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-        {
-            controlUnit.Transition(TransitionCondition.ArrowInput);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            controlUnit.Transition(TransitionCondition.DialogueNext);
+            if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+            {
+                controlUnit.Transition(TransitionCondition.MouseMove);
+            }
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            {
+                controlUnit.Transition(TransitionCondition.ArrowInput);
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                controlUnit.Transition(TransitionCondition.DialogueNext);
+            }
         }
 
         if (Input.anyKey || Input.anyKeyDown)
