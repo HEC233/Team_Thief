@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_SH_UI_Gaussian
+  m_Name: MT_UI_Dialogue
   m_Shader: {fileID: -6465566751694194690, guid: e36d1a2dca9f4384ba4e6bd0914b2819,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -20,15 +20,23 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
+    - _11:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 39df6ebba94057e49aef83ff63651b55, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RenTex:
         m_Texture: {fileID: 8400000, guid: 6cd0371635c5bc340866040af1386046, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _tex4565:
+        m_Texture: {fileID: 2800000, guid: d49839a5d45ff474ea5f503071daa590, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_FED05001: 0.00562
+    - Vector1_FED05001: 0.00494
     m_Colors:
-    - Color_F91C83F8: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
+    - Color_F91C83F8: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
