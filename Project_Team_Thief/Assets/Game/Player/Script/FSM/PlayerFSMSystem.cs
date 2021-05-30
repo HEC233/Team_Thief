@@ -1080,13 +1080,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
                 return false;
             }
-
             if (_isBasicAttackAniEnd)
             {
+                Debug.Log("_isBasicAttackAniEnd : " + _isBasicAttackAniEnd);
+                Debug.Log("condition : " + condition);
                 if (condition == TransitionCondition.LeftMove)
                 {
                     SystemMgr.Unit.CheckMovementDir(-1);
-                    
+                    Debug.Log("LeftMove");
                     if (_isNotEndCoroutine == false)
                         SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
                 }
@@ -1094,7 +1095,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 if (condition == TransitionCondition.RightMove)
                 {
                     SystemMgr.Unit.CheckMovementDir(1);
-                    
+                    Debug.Log("RightMove");
                     if (_isNotEndCoroutine == false)
                         SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
                 }
@@ -1141,8 +1142,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         IEnumerator BasicAttackMoveCoroutine()
         {
+            Debug.Log("어택 코루틴");
             _isNotEndCoroutine = true;
             _BasicAttackMoveTime = SystemMgr.Unit.BasicAttackMoveTimeArr[_basicAttackIndex];
+            Debug.Log("어택 코루틴 : " + _BasicAttackMoveTime);
+
             _timer = 0.02f;
             while (_timer < _BasicAttackMoveTime)
             {

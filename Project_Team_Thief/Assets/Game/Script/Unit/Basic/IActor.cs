@@ -51,6 +51,7 @@ public interface IActor
     bool Transition(TransitionCondition condition, object param = null);
 
     Unit GetUnit();
+    
 }
 
 
