@@ -26,6 +26,8 @@ public class DialogueUIController : MonoBehaviour
     private RectTransform NameBoxRect;
     [SerializeField]
     private TextMeshProUGUI NameBoxText;
+    [SerializeField]
+    private GameObject NextButton;
 
     private bool bAnimationEnd = true;
     private string curText;
@@ -51,9 +53,15 @@ public class DialogueUIController : MonoBehaviour
         SetShowName(false);
         EnablePortrait(false);
         SetTextPosition(false);
+        ShowInteractiveButton(false);
         bLeftHighlighted = true;
         Highlight();
         bAnimationEnd = true;
+    }
+
+    public void ShowInteractiveButton(bool value)
+    {
+        NextButton.SetActive(value);
     }
 
     public void Puase()

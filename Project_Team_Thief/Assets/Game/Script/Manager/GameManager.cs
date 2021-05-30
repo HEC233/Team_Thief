@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
     {
         yield return GameLoader.instance.SceneLoad("HHG");
         GameState = GameStateEnum.InGame;
+        ChangeActorToPlayer();
         uiMng.InitUI(); // SceneLoadCallback���� �Űܾ� �� �ʿ伺�� ������ ����
         timeMng.ResetTimeStop();
 
@@ -122,29 +123,33 @@ public class GameManager : MonoBehaviour
         this.grid = grid;
     }
 
-    //private IActor nullActor = new NullActor();
-    //private IActor prevUnit = null;
     public void EscapeButton()
     {
+        // pause -> inGame
         if (GameState == GameStateEnum.Pause)
         {
             GameState = GameStateEnum.InGame;
-            //ChangeActorToPlayer();
+            ChangeActorToPlayer();
             dialogueSystem.ResumeDialogue();
         }
+        // inGame -> pause
         else if (GameState == GameStateEnum.InGame)
         {
             GameState = GameStateEnum.Pause;
+            SetControlActor(uiMng.UiActor);
             dialogueSystem.PauseDialogue();
 
         }
+        // mainMenu -> ExitGame
         else if (GameState == GameStateEnum.MainMenu)
         {
             ExitGame();
         }
+        // setting -> prevMenu(pause or mainMenu)
         else if (GameState == GameStateEnum.Setting)
         {
             GameState = _prevState;
+            SetControlActor(uiMng.UiActor);
         }
     }
 
@@ -162,6 +167,7 @@ public class GameManager : MonoBehaviour
 
         yield return GameLoader.instance.SceneLoad("MainScene");
         GameState = GameStateEnum.MainMenu;
+        SetControlActor(uiMng.UiActor);
     }
 
     public void ExitGame()

@@ -19,12 +19,19 @@ public class UISettingMenu : MonoBehaviour
 
     public void Toggle(bool value)
     {
+        if (!this.gameObject.activeSelf && !value)
+            return;
         this.gameObject.SetActive(value);
         if(value)
         {
             data = GameManager.instance.SettingData;
             FPS.isOn = data.bShowFPS;
             DeveloperConsole.isOn = data.bUseDeveloperConsole;
+            GameManager.instance?.timeMng.StopTime();
+        }
+        else
+        {
+            GameManager.instance?.timeMng.ResumeTime();
         }
     }
     
