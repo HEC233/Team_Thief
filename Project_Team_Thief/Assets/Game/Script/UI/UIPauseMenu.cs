@@ -25,8 +25,11 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
         if (!this.gameObject.activeSelf && !value)
             return;
         this.gameObject.SetActive(true);
-        m_lastSelectButton = null;
-        GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_firstSelectButton);
+        if (value)
+        {
+            m_lastSelectButton = null;
+            GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_firstSelectButton);
+        }
         StopAllCoroutines();
         StartCoroutine(PauseAnimation(value));
     }

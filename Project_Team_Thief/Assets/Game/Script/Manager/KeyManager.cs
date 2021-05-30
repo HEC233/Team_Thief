@@ -7,7 +7,6 @@ public class KeyManager : MonoBehaviour
 {
     private IActor controlUnit = null;
     private List<KeyCode> m_activeInputs = new List<KeyCode>();
-    private Vector3 m_lastMousePos = Vector3.zero;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +17,7 @@ public class KeyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("current Actor = " + controlUnit?.ToString());
         if (controlUnit == null)
             return;
 
