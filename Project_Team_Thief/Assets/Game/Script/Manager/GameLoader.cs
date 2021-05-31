@@ -19,18 +19,26 @@ public class GameLoader : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        else
+        {
+            DestroyImmediate(this.gameObject);
+        }
         gameDataLoaded = false;
     }
 
     private void Start()
     {
         GameManager.instance.GameState = GameManager.GameStateEnum.MainMenu;
+        GameManager.instance.SetControlActor(GameManager.instance.uiMng.UiActor);
     }
 
     // 씬 로드시 필요한 초기화함수들을 델리게이트로 추가해주면 죠스입니다.
     public void AddSceneLoadCallback(SceneLoadCallback callback)
     {
-        sceneLoadCallbacks.Add(callback);
+        if (!sceneLoadCallbacks.Contains(callback))
+        {
+            sceneLoadCallbacks.Add(callback);
+        }
     }
 
     IEnumerator LoadGameData()

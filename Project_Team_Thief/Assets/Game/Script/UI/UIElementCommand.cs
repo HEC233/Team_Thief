@@ -23,13 +23,15 @@ public class UIElementCommand : MonoBehaviour
         _rect = GetComponent<RectTransform>();
     }
 
-    public bool InitCommandInfo(CommandManager.CommandCtrl data, string command)
+    public void InitCommandInfo(CommandManager.CommandCtrl data, string command)
     {
         _data = data;
         commandString = command;
         skillIcon.sprite = data.CommandData.skillIcon;
         _data.CommandData.coolTime = _data.CommandData.maxCoolTIme;
 
+        int length = command.Length;
+        int correction = 0;
         for (int i=0;i<command.Length; i++)
         {
             UIElementCommandCell.CommandKey key;
@@ -68,14 +70,16 @@ public class UIElementCommand : MonoBehaviour
                     key = UIElementCommandCell.CommandKey.space;
                     break;
                 default:
-                    return false;
+                    length--;
+                    correction++;
+                    continue;
             }
             var go = GameObject.Instantiate(commandCell, transform);
             go.transform.localScale = Vector3.one;
             var rect = go.GetComponent<RectTransform>();
             rect.anchorMax = Vector2.zero;
             rect.anchorMin = Vector2.zero;
-            rect.anchoredPosition = new Vector2(16 * (i) + 16, 0f);
+            rect.anchoredPosition = new Vector2(16 * (i - correction) + 16, 0f);
 
             var cell = go.GetComponent<UIElementCommandCell>();
             cell.SetCommand(key);
@@ -83,11 +87,10 @@ public class UIElementCommand : MonoBehaviour
             cells.Add(cell);
         }
 
-        frame.sizeDelta = new Vector2(16 + 16 * command.Length, 15f);
-        _rect.sizeDelta = new Vector2(16 + 16 * command.Length, 16.0f);
+        frame.sizeDelta = new Vector2(16 + 16 * length, 15f);
+        _rect.sizeDelta = new Vector2(16 + 16 * length, 16.0f);
 
         ready = true;
-        return true;
     }
 
     public void SetCoolTimeComponent(UICommandCoolTime coolTimeComponent)

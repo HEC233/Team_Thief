@@ -19,6 +19,10 @@ public class Addressable : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        else
+        {
+            DestroyImmediate(this.gameObject);
+        }
 
         unit = new CAsset<GameObject>("Unit");
         text = new CAsset<TextAsset>("Text");

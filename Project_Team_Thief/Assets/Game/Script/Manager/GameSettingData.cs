@@ -7,4 +7,5 @@ public struct GameSettingData
 {
     public bool bShowFPS;
     public bool bUseDeveloperConsole;
+    public bool bDontUseCommandAssist;
 }

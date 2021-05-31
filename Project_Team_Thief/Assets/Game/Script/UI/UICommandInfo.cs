@@ -41,7 +41,6 @@ public class UICommandInfo : MonoBehaviour
         foreach (var c in _commandDatas)
         {
             string commandString = c.CommandString;
-            bool result = false;
             UIElementCommand element = null;
             GameObject go = null;
 
@@ -50,19 +49,15 @@ public class UICommandInfo : MonoBehaviour
                 go = GameObject.Instantiate(commandAssist, verticalPanel);
                 go.transform.localScale = Vector3.one;
                 element = go.GetComponent<UIElementCommand>();
-                result = element.InitCommandInfo(c, commandString);
-                Assert.IsTrue(result);
+                element.InitCommandInfo(c, commandString);
                 panelList.Add(element);
                 commandString = c.ReverseCommandString;
-
             }
             go = GameObject.Instantiate(commandCoolTime, horizonalPanel);
             go.transform.localScale = Vector3.one;
             var cool = go.GetComponent<UICommandCoolTime>();
             coolTimeList.Add(cool);
             element.SetCoolTimeComponent(cool);
-
-            GameManager.instance.AddTextToDeveloperConsole(c.CommandData.skillName + " initializing " + (result ? "successed" : "failed"));
         }
 
         playerTr = null;

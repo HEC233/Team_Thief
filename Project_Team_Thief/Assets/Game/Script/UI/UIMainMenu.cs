@@ -20,8 +20,11 @@ public class UIMainMenu : MonoBehaviour, IUIFocus
     public void Toggle(bool value)
     {
         this.gameObject.SetActive(value);
-        m_lastSelectButton = null;
-        GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_firstSelectButton);
+        if (value)
+        {
+            m_lastSelectButton = null;
+            GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_firstSelectButton);
+        }
     }
 
     public void GameStart()
