@@ -17,7 +17,6 @@ public class KeyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("current Actor = " + controlUnit?.ToString());
         if (controlUnit == null)
             return;
 

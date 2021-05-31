@@ -849,7 +849,6 @@ public class PlayerUnit : Unit
     
     public bool IsAbleSkillAxe()
     {
-        Debug.Log("Call");
         if (_skillAexIsAble == false)
         {
             return false;

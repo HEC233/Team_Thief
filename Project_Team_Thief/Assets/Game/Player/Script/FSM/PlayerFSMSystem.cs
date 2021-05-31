@@ -1992,6 +1992,16 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         if (condition == TransitionCondition.None)
             return;
+        
+        // 스킬 사용이 불가능한 조건
+        if (CurrState == TransitionCondition.Jump)
+            return;
+        if (CurrState == TransitionCondition.Falling)
+            return;
+        if (CurrState == TransitionCondition.WallClimbing)
+            return;
+        if (CurrState == TransitionCondition.Hit)
+            return;
 
         if (CheckSkillPossibleConditions(condition) == true)
         {
