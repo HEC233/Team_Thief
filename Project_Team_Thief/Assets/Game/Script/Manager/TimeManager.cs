@@ -60,9 +60,10 @@ public class TimeManager : MonoBehaviour
     private bool _isStoped = false;
     public bool IsTimeStopped => _isStoped;
     private int _timeStopRequiredCount = 0;
-    public void ResetTimeStop()
+    public void ResetTime()
     {
         _timeStopRequiredCount = 0;
+        _timeScale = 1;
     }
     public void StopTime()
     {
