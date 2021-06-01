@@ -776,7 +776,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4352
   playerInfo: {fileID: 11400000, guid: 5a943053036e0b740b796aea7f9a649e, type: 2}
-  _maxHp: 100
+  _maxHp: 1
   _curHp: 100
   _decreaseHp: 0.2
   _encroachmentPerPlayerHitDamage: 0

@@ -446,7 +446,7 @@ public class PlayerUnit : Unit
 
     public override void Move()
     {
-        _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0) * _timeScale, ForceMode2D.Impulse);
+        _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0) * GameManager.instance.timeMng.TimeScale, ForceMode2D.Impulse);
 
         if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
         {
