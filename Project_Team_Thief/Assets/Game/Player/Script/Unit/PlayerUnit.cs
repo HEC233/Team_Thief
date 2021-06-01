@@ -64,6 +64,10 @@ public class PlayerUnit : Unit
 
     [SerializeField, Tooltip("잠식력이 얼마나 회복 될 지")]
     private float _encroachmentRecoveryAmount;
+
+    [SerializeField, Header("Ani Variable")]
+    private float _aniFastAmount;
+    public float AniFastAmount => _aniFastAmount;
     
     // 이동 관련 변수
     [Header("Move Variable")]
@@ -263,8 +267,24 @@ public class PlayerUnit : Unit
     private float _skillHammerNumberOfTimes;
     private float _skillHammerCoolTime;
     private bool _skillHammerIsAble = true;
-
+    
     public event UnityAction OnSkillHammerAttackEvent = null;
+
+    [SerializeField, Header("SkillKopsh")]
+    private SkillKopshData _skillKopshData;
+    public SkillKopshData SkillKopshData => _skillKopshData;
+    public SkillKopshAttackCtrl[] _SkillKopshAttackCtrl;
+    public int skillKopshIndex = 0;
+    private float _skillKopshNumberOfTimes;
+    private float _skillKopshCoolTime;
+    private bool _skillKopshIsAble = true;
+    [SerializeField]
+    private float _skillKopshAttackTime;
+    public float SkillKopshAttackTime => _skillKopshAttackTime;
+
+
+    public event UnityAction OnSkillKopshAttackEvent = null;
+    
     
     //////////////////////////// 데이터로 관리 할 변수
 
@@ -317,6 +337,12 @@ public class PlayerUnit : Unit
 
         _skillSpearAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
         _skillHammerAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
+
+        for (int i = 0; i < _SkillKopshAttackCtrl.Length; i++)
+        {
+            _SkillKopshAttackCtrl[i].OnEnemyHitEvent += OnAddComboEventCall;
+        }
+
     }
 
     private void UnBind()
@@ -343,6 +369,12 @@ public class PlayerUnit : Unit
 
         _skillSpearAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
         _skillHammerAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
+        
+        for (int i = 0; i < _SkillKopshAttackCtrl.Length; i++)
+        {
+            _SkillKopshAttackCtrl[i].OnEnemyHitEvent -= OnAddComboEventCall;
+        }
+
     }
     
     // 향후에는 데이터 센터 클래스라던가 데이터를 가지고 있는 함수에서 직접 호출로 받아 올 수 있도록
@@ -378,8 +410,12 @@ public class PlayerUnit : Unit
 
         _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
         _skillSpearCoolTime = _skillSpearData.CoolTime;
+        
         _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
         _skillHammerCoolTime = _skillHammerData.CoolTime;
+
+        _skillKopshNumberOfTimes = _skillKopshData.NumberOfTimesTheSkill;
+        _skillKopshCoolTime = _skillKopshData.CoolTime;
 
         GameManager.instance.commandManager.GetCommandData(_skillAxeData.SkillName).maxCoolTIme =
             _skillAxeData.CoolTime;
@@ -387,6 +423,8 @@ public class PlayerUnit : Unit
             _skillSpearData.CoolTime;
         GameManager.instance.commandManager.GetCommandData(_skillHammerData.SkillName).maxCoolTIme =
             _skillHammerData.CoolTime;
+        GameManager.instance.commandManager.GetCommandData(_skillKopshData.SkillName).maxCoolTIme =
+            _skillKopshData.CoolTime;
     }
     
 
@@ -837,7 +875,10 @@ public class PlayerUnit : Unit
         else if (_skillHammerData.SkillName == skillName)
         {
             encroachmentIncrease = _skillHammerData.DecreaseEncroachment;
-
+        }
+        else if (_skillKopshData.SkillName == skillName)
+        {
+            encroachmentIncrease = _skillKopshData.DecreaseEncroachment;
         }
         else if ("Basic" == skillName)
         {
@@ -901,6 +942,24 @@ public class PlayerUnit : Unit
 
         return true;
     }
+
+    public bool IsAbleSkillKopsh()
+    {
+        if (_skillKopshIsAble == false)
+        {
+            return false;
+        }
+
+        _skillKopshNumberOfTimes--;
+        ChangeEncroachment(SkillKopshData.IncreaseEncroachment);
+
+        if (_skillKopshNumberOfTimes <= 0)
+        {
+            StartCoroutine(SkillKopshCoolTimeCoroutine());
+        }
+
+        return true;
+    }
     
     public void OnSkillSpearRushEventCall()
     {
@@ -929,6 +988,17 @@ public class PlayerUnit : Unit
     {
         _skillHammerAttackCtrl.SetDamage(damage);
         _skillHammerAttackCtrl.Progress();
+    }
+
+    public void OnSkillKopshAttackEvnetCall()
+    {
+        OnSkillKopshAttackEvent?.Invoke();
+    }
+
+    public void SkillKopshAttack(Damage damage)
+    {
+           _SkillKopshAttackCtrl[skillKopshIndex].SetDamage(damage);
+           _SkillKopshAttackCtrl[skillKopshIndex].Progress();
     }
 
     //  리팩토링 할 때  skillData를 다 따로 가지고 있지 말고
@@ -1171,6 +1241,22 @@ public class PlayerUnit : Unit
         _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
     }
 
+    IEnumerator SkillKopshCoolTimeCoroutine()
+    {
+        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillKopshData.SkillName);
+        _skillKopshIsAble = false;
+        float timer = 0.0f;
+        _commandData.coolTime = 0;
+        while (timer < _skillKopshCoolTime)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            _commandData.coolTime = timer;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _skillKopshIsAble = true;
+        _skillKopshNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
+    }
 
     // IEnumerator ShadowWalkCoolTimeCoroutine()
     // {
