@@ -447,7 +447,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-    m_lastTime: -8585797040557378968
+    m_lastTime: -8585790459767982104
     List:
     - name: Enemy
       guid: 4180b20eab728742bb28e1477a6e3154
@@ -489,7 +489,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585797040558279756
+    m_lastTime: -8585790459768458814
     List:
     - name: Dandelion
       guid: bbdc4fdd927ecf48a5881615e6ab92ca
@@ -1190,34 +1190,8 @@ MonoBehaviour:
         guid: c019c8820cedfb41b724fadfdde1b801
       Path: Events\Default Work Unit\SFX\PC\movement\PC_slide
       maxAttenuation: 0
-      maxDuration: 2.119796
-      minDuration: 2.119796
-    - name: PC_spear_Charge
-      guid: 37035596ad5ad64e9c0584326c3a099b
-      id: 2685062319
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: a6bd1bd1916e0e48a19ae06256f8e399
-      - ElementName: SFX
-        ObjectType: 4
-        guid: 92e06faedefaa341bd83c48e22786e60
-      - ElementName: PC
-        ObjectType: 4
-        guid: ea6a0a5aa8057d448e3651300b3aa078
-      - ElementName: woosh
-        ObjectType: 4
-        guid: 55be1080b422fa4b9400d154a11d4df2
-      - ElementName: PC_spear_Charge
-        ObjectType: 3
-        guid: 37035596ad5ad64e9c0584326c3a099b
-      Path: Events\Default Work Unit\SFX\PC\woosh\PC_spear_Charge
-      maxAttenuation: 0
-      maxDuration: 0.360566
-      minDuration: 0.340329
+      maxDuration: -1
+      minDuration: -1
     - name: PC_spear_Rush
       guid: fdc9325631d80d43b2b018c52fcae1d0
       id: 2779137053

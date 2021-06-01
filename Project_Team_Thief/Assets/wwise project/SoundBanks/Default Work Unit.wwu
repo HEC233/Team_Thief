@@ -26,7 +26,6 @@
 						<ObjectRef Name="PC_axe" ID="{912874D4-E89C-4B61-8A40-4ECE3C8AA4B6}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PC_hurt" ID="{BC543562-84C8-4BFF-9AF0-89EF59EDD651}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PC_HIT_blade" ID="{03DA4E6F-03ED-4E08-80FE-8E63DD183177}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="PC_spear_Charge" ID="{96550337-5AAD-4ED6-9C05-84326C3A099B}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PC_hammaer_Swing" ID="{865FBC81-7380-4EE2-A2AA-A97CE34EA79A}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PC_BA4" ID="{898E93DD-1739-4F00-A741-F809568C6994}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PC_BA3" ID="{DD8D3C23-92D5-4FA3-98C5-3638EC09F6A2}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
