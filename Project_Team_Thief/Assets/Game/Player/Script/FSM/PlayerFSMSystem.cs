@@ -997,6 +997,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
 
             SystemMgr.Unit.EndBasicAttack();
@@ -1074,6 +1077,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 if (_attackInputTime - _attackBeInputTime <= _attackTime)
                 {
                     _nextBasicAttackIndex = _basicAttackIndex + 1;
+                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
                 }
 
                 _attackBeInputTime = Time.time;
@@ -1082,12 +1087,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             if (_isBasicAttackAniEnd)
             {
-                Debug.Log("_isBasicAttackAniEnd : " + _isBasicAttackAniEnd);
-                Debug.Log("condition : " + condition);
                 if (condition == TransitionCondition.LeftMove)
                 {
                     SystemMgr.Unit.CheckMovementDir(-1);
-                    Debug.Log("LeftMove");
                     if (_isNotEndCoroutine == false)
                         SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
                 }
@@ -1095,7 +1097,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 if (condition == TransitionCondition.RightMove)
                 {
                     SystemMgr.Unit.CheckMovementDir(1);
-                    Debug.Log("RightMove");
                     if (_isNotEndCoroutine == false)
                         SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
                 }
@@ -1121,6 +1122,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 else
                 {
                     _basicAttackIndex = _nextBasicAttackIndex;
+                    
+                    SystemMgr.AnimationCtrl.SetSpeed(1);
+                    SystemMgr.AnimationCtrl.SetSpeed(1);
 
                     SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
                     SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
@@ -1142,10 +1146,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         IEnumerator BasicAttackMoveCoroutine()
         {
-            Debug.Log("어택 코루틴");
             _isNotEndCoroutine = true;
             _BasicAttackMoveTime = SystemMgr.Unit.BasicAttackMoveTimeArr[_basicAttackIndex];
-            Debug.Log("어택 코루틴 : " + _BasicAttackMoveTime);
 
             _timer = 0.02f;
             while (_timer < _BasicAttackMoveTime)
@@ -1416,8 +1418,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             _isHitEnd = false;
             SystemMgr.Transition(TransitionCondition.Idle);
-            Debug.Log("히트 코루틴 : "  +_isHitEnd);
-
         }
     }
 
@@ -1876,6 +1876,151 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return skillObejct;
         }
     }
+
+    private class SkillKopshState : CustomFSMStateBase, ISkillStateBase
+    {
+        private SkillKopshData _skillKopshData;
+        private bool _isAniEnd = false;
+        private GameSkillObject _gameSkillObject;
+        
+        private float _attackInputTime = 0.0f;
+        private float _attackBeInputTime = 0.0f;
+        private float _attackTime = 0.5f;
+        private int _skillKopshNextIndex = 0;
+        
+        private AniState[] _skillKopshAniArr =
+            new AniState[] {AniState.SkillKopsh, AniState.SkillKopsh2, AniState.SkillKopsh3};
+
+        private FxAniEnum[] _skillKopshFxAniArr = new FxAniEnum[]
+            {FxAniEnum.SkillKopsh, FxAniEnum.SkillKopsh2, FxAniEnum.SkillKopsh3};
+
+        private string[] _skillKopshSoundArr = new string[] {"PC_BA1", "PC_BA2", "PC_BA3"};
+        
+        public SkillKopshState(PlayerFSMSystem system, SkillKopshData skillKopshData) : base(system)
+        {
+            _skillKopshData = skillKopshData;
+        }
+
+        public override void StartState()
+        {
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+            SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
+            SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
+            _gameSkillObject = InvokeSkill();
+            
+            _attackTime = SystemMgr.Unit.SkillKopshAttackTime;
+            _attackBeInputTime = Time.time;
+        }
+
+        public override void Update()
+        {
+        }
+
+        public override void EndState()
+        {
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+            
+            _skillKopshNextIndex = 0;
+            SystemMgr.Unit.skillKopshIndex = 0;
+            _attackBeInputTime = 0;
+            _attackInputTime = 0;
+            _isAniEnd = false;
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (_isAniEnd == true)
+                return true;
+            
+            return false;
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            if (condition == TransitionCondition.Attack)
+            {
+                _attackInputTime = Time.time;
+
+                if (_attackInputTime - _attackBeInputTime <= _attackTime)
+                {
+                    _skillKopshNextIndex = SystemMgr.Unit.skillKopshIndex + 1;
+                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                }
+
+                _attackBeInputTime = Time.time;
+
+                return false;
+            }
+            return true;
+        }
+
+        public bool IsAbleTransition()
+        {
+            return SystemMgr.Unit.IsAbleSkillKopsh();
+        }
+        
+        private void OnAnimationEndEvnetCall()
+        {
+            if(IsEndOrNextCheck() == true)
+            {
+                NextKopshAction();
+            }
+            else
+            {
+                _isAniEnd = true;
+                SystemMgr.Transition(TransitionCondition.Idle);
+            }
+        }
+
+        private void NextKopshAction()
+        {
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            
+            SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
+            SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
+            WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
+
+            _gameSkillObject = InvokeSkill();
+        }
+        
+        private bool IsEndOrNextCheck()
+        {
+            if (SystemMgr.Unit.skillKopshIndex != _skillKopshNextIndex)
+            {
+                if (_skillKopshNextIndex > _skillKopshAniArr.Length - 1)
+                {
+                    return false;
+                }
+                else
+                {
+                    SystemMgr.Unit.skillKopshIndex = _skillKopshNextIndex;
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("AexSkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillKopshData.GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
+        }
+    }
+    
     
     protected override void RegisterState()
     {
@@ -1898,6 +2043,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.SkillAxe, new SkillAxeState(this, Unit.SkillAxeData));
         AddState(TransitionCondition.SkillSpear, new SkillSpearState(this, Unit.SkillSpearData));
         AddState(TransitionCondition.SkillHammer, new SkillHammerState(this, Unit.SkillHammerData));
+        AddState(TransitionCondition.SkillKopsh, new SkillKopshState(this, Unit.SkillKopshData));
         AddState(TransitionCondition.Die, new DieState(this));
     }
     
@@ -2023,6 +2169,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 break;
             case "Skill3Hammer":
                 return TransitionCondition.SkillHammer;
+                break;
+            case "Skill4Kopsh":
+                return TransitionCondition.SkillKopsh;
                 break;
             default:
                 break;

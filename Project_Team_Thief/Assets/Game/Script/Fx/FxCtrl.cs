@@ -16,8 +16,11 @@ public enum FxAniEnum
     SkillAxe,
     SkillAxe2,
     SkillSpear,     // 10
-    SkillHammer,
-    JumpAttackFx2,
+    SkillHammer,    // 11
+    JumpAttackFx2,  // 12
+    SkillKopsh,     // 13
+    SkillKopsh2,    // 14
+    SkillKopsh3,    // 15
 }
 
 public class FxCtrl : MonoBehaviour
@@ -51,6 +54,11 @@ public class FxCtrl : MonoBehaviour
     public void OnAnimationEndEvent()
     {
         PlayAni(FxAniEnum.Idle);
+    }
+    
+    public void SetSpeed(float speed)
+    {
+        _fxAnimator.speed = speed;
     }
 
 }

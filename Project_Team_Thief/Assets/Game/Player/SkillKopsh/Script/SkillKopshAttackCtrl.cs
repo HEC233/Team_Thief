@@ -1,20 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 using Assert = UnityEngine.Assertions.Assert;
-public class SkillSpearAttackCtrl : AttackBase 
+
+public class SkillKopshAttackCtrl : AttackBase
 {
-    [SerializeField] 
+  [SerializeField] 
     private BoxCollider2D _basicAttackCollider2D;
     [SerializeField]
-    private CinemachineImpulseSource _cinemachineImpulseSource;
     private ContactFilter2D _contactFilter2D;
     private List<Collider2D> result = new List<Collider2D>();
     private bool _isInit = false;
     private bool _isEnter = false;
     public bool alwaysEnter = false;
-    public SignalSourceAsset signalSourceAsset;
     
     private void OnEnable()
     {
@@ -34,8 +32,6 @@ public class SkillSpearAttackCtrl : AttackBase
         _contactFilter2D.useTriggers = true;
         _contactFilter2D.useLayerMask = true;
         _contactFilter2D.layerMask = _hitLayerMask;
-
-        _cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = signalSourceAsset;
     }
 
     public void Progress()
@@ -92,10 +88,9 @@ public class SkillSpearAttackCtrl : AttackBase
     {
         if (_isAbleCameraShake == false)
             return;
-        _cinemachineImpulseSource.GenerateImpulse();
     }
-
-    public void GetEnemyList()
+    
+    public override void AttackDamage()
     {
         _isEnter = false;
         
@@ -103,7 +98,6 @@ public class SkillSpearAttackCtrl : AttackBase
         if (_basicAttackCollider2D.IsTouchingLayers(_hitLayerMask))
         {
             _basicAttackCollider2D.OverlapCollider(_contactFilter2D, result);
-
             foreach (var item in result)
             {
                 if (item.gameObject.CompareTag("Player"))
@@ -111,31 +105,13 @@ public class SkillSpearAttackCtrl : AttackBase
 
                 if (item.gameObject.CompareTag("Enemy"))
                 {
-                    Debug.Log("Enemy List");
-
+                    //============== 고재협이 편집함 ======================
+                    _damage.hitPosition = item.ClosestPoint(_basicAttackCollider2D.bounds.center);
+                    //=====================================================
                     _isEnter = true;
-                    break;
+                    item.GetComponentInParent<Unit>().HandleHit(_damage);
+                    OnEnemyHitEvent?.Invoke("Skill4Kopsh");
                 }
-            }
-        }
-    }
-
-    public override void AttackDamage()
-    {
-        Debug.Log("AttackDamage");
-        foreach (var item in result)
-        {
-            if (item.gameObject.CompareTag("Player"))
-                continue;
-
-            if (item.gameObject.CompareTag("Enemy"))
-            {
-                Debug.Log("Enemy");
-                //============== 고재협이 편집함 ======================
-                _damage.hitPosition = item.ClosestPoint(_basicAttackCollider2D.bounds.center);
-                //=====================================================
-                item.GetComponentInParent<Unit>().HandleHit(_damage);
-                OnEnemyHitEvent?.Invoke("Skill2Spear");
             }
         }
     }
