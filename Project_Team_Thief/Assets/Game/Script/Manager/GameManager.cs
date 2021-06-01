@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
         GameState = GameStateEnum.InGame;
         ChangeActorToPlayer();
         //uiMng.InitUI(); // SceneLoadCallback���� �Űܾ� �� �ʿ伺�� ������ ����
-        timeMng.ResetTimeStop();
+        timeMng.ResetTime();
 
         var grid = GameObject.Find("Grid").GetComponent<Grid>();
         this.grid = grid;
