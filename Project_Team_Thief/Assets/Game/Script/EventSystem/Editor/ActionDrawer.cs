@@ -118,6 +118,7 @@ namespace PS.Event
                 case (int)ActionType.Dialog:
                 case (int)ActionType.SFX:
                 case (int)ActionType.BGMChange:
+                case (int)ActionType.BossActive:
                     returnValue += EditorGUIUtility.singleLineHeight;
                     break;
                 case (int)ActionType.CutScene:

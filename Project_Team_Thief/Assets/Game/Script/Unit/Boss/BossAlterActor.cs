@@ -107,6 +107,7 @@ public class BossAlterActor : MonoBehaviour, IActor
         }
 
         SetBossAttackable();
+        EnemyDeadCheck = null;
     }
 
     private void SetBossAttackable()
@@ -121,6 +122,7 @@ public class BossAlterActor : MonoBehaviour, IActor
         }
 
         GameManager.instance.uiMng.InitBossHP(unit);
+        GameManager.instance.uiMng.BossHPUpdate();
         unit.SetInvincibility(false);
     }
 
@@ -166,7 +168,7 @@ public class BossAlterActor : MonoBehaviour, IActor
         else
         {
             unit.ResetHP();
-            GameManager.instance.uiMng.BossHPUpdate();
+            GameManager.instance.uiMng.BossDie();
             unit.SetInvincibility(true);
             Spawn();
         }

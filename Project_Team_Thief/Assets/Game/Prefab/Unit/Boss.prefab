@@ -174,7 +174,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1651ff5885ddbd64587caf30d799feba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3049a41df98c5434089c300a7d4e22f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -258,7 +258,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4202391645945280220}
   - component: {fileID: 4202391645945280218}
-  - component: {fileID: 4202391645945280219}
   m_Layer: 11
   m_Name: Boss
   m_TagString: Enemy
@@ -304,22 +303,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!70 &4202391645945280219
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4202391645945280217}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
 --- !u!1 &4202391646220113154
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +437,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0649147, y: -1.7786589}
+  m_Offset: {x: -0.04572487, y: 4.578011}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -465,5 +448,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8435745, y: 4.5573177}
+  m_Size: {x: 7.4501467, y: 2.7066412}
   m_EdgeRadius: 0

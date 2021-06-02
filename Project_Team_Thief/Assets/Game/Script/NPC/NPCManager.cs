@@ -33,7 +33,7 @@ public class NPCManager : MonoBehaviour
             }
         }
 
-        if(nearestNpcDist <= 25)
+        if(nearestNpcDist <= 9)
         {
             npcs[nearestNpcIndex].ActiveIcon(true);
             bNearestNpcExist = true;

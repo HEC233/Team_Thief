@@ -153,7 +153,7 @@ public class GameEventSystem : MonoBehaviour
                         yield return StartCoroutine(Spawn(actionData.unitName, actionData.spawnPos, actionData.count));
                         break;
                     case ActionType.CameraChange:
-                        yield return StartCoroutine(CameraChange(actionData.cameraName));
+                        yield return StartCoroutine(CameraChange(actionData.cameraName, actionData.actionLength));
                         break;
                     case ActionType.CameraShake:
                         break;
@@ -279,7 +279,7 @@ public class GameEventSystem : MonoBehaviour
         yield break;
     }
 
-    private IEnumerator CameraChange(string cameraName)
+    private IEnumerator CameraChange(string cameraName, float actionLength)
     {
         var camera = GameObject.Find("CM vcam1")?.GetComponent<CinemachineVirtualCamera>();
         if (camera == null) yield break;
@@ -289,7 +289,7 @@ public class GameEventSystem : MonoBehaviour
 
         camera.Follow = go.transform;
 
-        yield return null;
+        yield return new WaitForSeconds(actionLength);
     }
 
     private IEnumerator CameraShake(CameraShakeIntensity intensity)
@@ -349,7 +349,7 @@ public class GameEventSystem : MonoBehaviour
 
     private IEnumerator BossActive(string bossName)
     {
-        var go = GameObject.Find("bossName");
+        var go = GameObject.Find(bossName);
 
         if (go == null) yield break;
         var boss = go.GetComponentInChildren<IActor>();
