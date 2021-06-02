@@ -64,6 +64,10 @@ public class PlayerUnit : Unit
 
     [SerializeField, Tooltip("잠식력이 얼마나 회복 될 지")]
     private float _encroachmentRecoveryAmount;
+
+    [SerializeField, Header("Ani Variable")]
+    private float _aniFastAmount;
+    public float AniFastAmount => _aniFastAmount;
     
     // 이동 관련 변수
     [Header("Move Variable")]
@@ -263,9 +267,41 @@ public class PlayerUnit : Unit
     private float _skillHammerNumberOfTimes;
     private float _skillHammerCoolTime;
     private bool _skillHammerIsAble = true;
-
-    public event UnityAction OnSkillHammerAttackEvent = null;
     
+    public event UnityAction OnSkillHammerAttackEvent = null;
+
+    [SerializeField, Header("SkillKopsh")]
+    private SkillKopshData _skillKopshData;
+    public SkillKopshData SkillKopshData => _skillKopshData;
+    public SkillKopshAttackCtrl[] _skillKopshAttackCtrls;
+    public int skillKopshIndex = 0;
+    private float _skillKopshNumberOfTimes;
+    private float _skillKopshCoolTime;
+    private bool _skillKopshIsAble = true;
+    [SerializeField]
+    private float _skillKopshAttackTime;
+    public float SkillKopshAttackTime => _skillKopshAttackTime;
+    
+    public event UnityAction OnSkillKopshAttackEvent = null;
+
+    
+    [SerializeField, Header("SkillPlainSword")]
+    private SkillPlainSwordData _skillPlainSwordData;
+    public SkillPlainSwordData SkillPlainSwordData => _skillPlainSwordData;
+    public SkillPlainSwordAttackCtrl[] _SkillPlainSwordAttackCtrls;
+    public int skillPlainSwordIndex;
+    private float _skillPlainSwordNumberOfTimes;
+    private float _skillPlainSwordCoolTime;
+    private bool _skillPlainSwordIsAble = true;
+    private bool _skillPlainSwordEnd = false;
+    private float _skillPlainSwordAttackInterval;
+    private Coroutine _skillPlainSwordMultiAttackCoroutine = null;
+    [SerializeField]
+    private float _skillPlainSwordAttackTime;
+    public float SkillPlainSwordAttackTime => _skillPlainSwordAttackTime;
+
+    public event UnityAction OnSkillPlainSwordAttackEvent = null;
+
     //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
@@ -317,6 +353,17 @@ public class PlayerUnit : Unit
 
         _skillSpearAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
         _skillHammerAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
+
+        for (int i = 0; i < _skillKopshAttackCtrls.Length; i++)
+        {
+            _skillKopshAttackCtrls[i].OnEnemyHitEvent += OnAddComboEventCall;
+        }
+        
+        for (int i = 0; i < _SkillPlainSwordAttackCtrls.Length; i++)
+        {
+            _SkillPlainSwordAttackCtrls[i].OnEnemyHitEvent += OnAddComboEventCall;
+        }
+
     }
 
     private void UnBind()
@@ -343,6 +390,17 @@ public class PlayerUnit : Unit
 
         _skillSpearAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
         _skillHammerAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
+        
+        for (int i = 0; i < _skillKopshAttackCtrls.Length; i++)
+        {
+            _skillKopshAttackCtrls[i].OnEnemyHitEvent -= OnAddComboEventCall;
+        }
+        
+        for (int i = 0; i < _SkillPlainSwordAttackCtrls.Length; i++)
+        {
+            _SkillPlainSwordAttackCtrls[i].OnEnemyHitEvent -= OnAddComboEventCall;
+        }
+
     }
     
     // 향후에는 데이터 센터 클래스라던가 데이터를 가지고 있는 함수에서 직접 호출로 받아 올 수 있도록
@@ -378,8 +436,16 @@ public class PlayerUnit : Unit
 
         _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
         _skillSpearCoolTime = _skillSpearData.CoolTime;
+        
         _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
         _skillHammerCoolTime = _skillHammerData.CoolTime;
+
+        _skillKopshNumberOfTimes = _skillKopshData.NumberOfTimesTheSkill;
+        _skillKopshCoolTime = _skillKopshData.CoolTime;
+
+        _skillPlainSwordNumberOfTimes = _skillPlainSwordData.NumberOfTimesTheSkill;
+        _skillPlainSwordCoolTime = _skillPlainSwordData.CoolTime;
+        _skillPlainSwordAttackInterval = _skillPlainSwordData.MultiStateHitInterval;
 
         GameManager.instance.commandManager.GetCommandData(_skillAxeData.SkillName).maxCoolTIme =
             _skillAxeData.CoolTime;
@@ -387,6 +453,10 @@ public class PlayerUnit : Unit
             _skillSpearData.CoolTime;
         GameManager.instance.commandManager.GetCommandData(_skillHammerData.SkillName).maxCoolTIme =
             _skillHammerData.CoolTime;
+        GameManager.instance.commandManager.GetCommandData(_skillKopshData.SkillName).maxCoolTIme =
+            _skillKopshData.CoolTime;
+        GameManager.instance.commandManager.GetCommandData(_skillPlainSwordData.SkillName).maxCoolTIme =
+            _skillPlainSwordData.CoolTime;
     }
     
 
@@ -408,7 +478,7 @@ public class PlayerUnit : Unit
 
     public override void Move()
     {
-        _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0) * _timeScale, ForceMode2D.Impulse);
+        _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0) * GameManager.instance.timeMng.TimeScale, ForceMode2D.Impulse);
 
         if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
         {
@@ -837,7 +907,14 @@ public class PlayerUnit : Unit
         else if (_skillHammerData.SkillName == skillName)
         {
             encroachmentIncrease = _skillHammerData.DecreaseEncroachment;
-
+        }
+        else if (_skillKopshData.SkillName == skillName)
+        {
+            encroachmentIncrease = _skillKopshData.DecreaseEncroachment;
+        }
+        else if (_skillPlainSwordData.SkillName == skillName)
+        {
+            encroachmentIncrease =  _skillPlainSwordData.DecreaseEncroachment;
         }
         else if ("Basic" == skillName)
         {
@@ -901,6 +978,42 @@ public class PlayerUnit : Unit
 
         return true;
     }
+
+    public bool IsAbleSkillKopsh()
+    {
+        if (_skillKopshIsAble == false)
+        {
+            return false;
+        }
+
+        _skillKopshNumberOfTimes--;
+        ChangeEncroachment(SkillKopshData.IncreaseEncroachment);
+
+        if (_skillKopshNumberOfTimes <= 0)
+        {
+            StartCoroutine(SkillKopshCoolTimeCoroutine());
+        }
+
+        return true;
+    }
+
+    public bool IsAbleSkillPlainSword()
+    {
+        if (_skillPlainSwordIsAble == false)
+        {
+            return false;
+        }
+
+        _skillPlainSwordNumberOfTimes--;
+        ChangeEncroachment(SkillPlainSwordData.IncreaseEncroachment);
+
+        if (_skillPlainSwordNumberOfTimes <= 0)
+        {
+            StartCoroutine(SkillPlainSwordCoolTimeCoroutine());
+        }
+        
+        return true;
+    }
     
     public void OnSkillSpearRushEventCall()
     {
@@ -929,6 +1042,51 @@ public class PlayerUnit : Unit
     {
         _skillHammerAttackCtrl.SetDamage(damage);
         _skillHammerAttackCtrl.Progress();
+    }
+
+    public void OnSkillKopshAttackEvnetCall()
+    {
+        OnSkillKopshAttackEvent?.Invoke();
+    }
+
+    public void SkillKopshAttack(Damage damage)
+    {
+        _skillKopshAttackCtrls[skillKopshIndex].SetDamage(damage);
+        _skillKopshAttackCtrls[skillKopshIndex].Progress();
+    }
+    
+
+    public void OnSkillPlainSwordAttackEventCall()
+    {
+        OnSkillPlainSwordAttackEvent?.Invoke();
+    }
+
+    public void SkillPlainSwordAttack(Damage damage)
+    {
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(damage);
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
+    }
+
+    public void SkillPlainSwordMultiAttack(Damage damage)
+    {
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(damage);
+        _skillPlainSwordMultiAttackCoroutine = StartCoroutine(SkillPlainSwordMultiAttackCoroutine());
+    }
+
+    public void SkillPlainSwordEnd()
+    {
+        if(_skillPlainSwordMultiAttackCoroutine == null)
+            return;
+
+        StopCoroutine(_skillPlainSwordMultiAttackCoroutine);
+    }
+
+    public void SkillPlainSwordFastInterval()
+    {
+        Debug.Log("FAST CALL");
+        _skillPlainSwordAttackInterval = _skillPlainSwordData.MultiStateHitIntervalFastAmount *
+                                         _skillPlainSwordData.MultiStateHitInterval;
+        Debug.Log(_skillPlainSwordAttackInterval);
     }
 
     //  리팩토링 할 때  skillData를 다 따로 가지고 있지 말고
@@ -1169,6 +1327,58 @@ public class PlayerUnit : Unit
 
         _skillHammerIsAble = true;
         _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
+    }
+
+    IEnumerator SkillKopshCoolTimeCoroutine()
+    {
+        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillKopshData.SkillName);
+        _skillKopshIsAble = false;
+        float timer = 0.0f;
+        _commandData.coolTime = 0;
+        while (timer < _skillKopshCoolTime)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            _commandData.coolTime = timer;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _skillKopshIsAble = true;
+        _skillKopshNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
+    }
+    
+    IEnumerator SkillPlainSwordCoolTimeCoroutine()
+    {
+        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillPlainSwordData.SkillName);
+        _skillPlainSwordIsAble = false;
+        float timer = 0.0f;
+        _commandData.coolTime = 0;
+        while (timer < _skillPlainSwordCoolTime)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            _commandData.coolTime = timer;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _skillPlainSwordIsAble = true;
+        _skillPlainSwordNumberOfTimes = _skillPlainSwordData.NumberOfTimesTheSkill;
+    }
+    
+    IEnumerator SkillPlainSwordMultiAttackCoroutine()
+    {
+        float timer = 0.2f;
+        while (true)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+
+            if (timer >= _skillPlainSwordAttackInterval)
+            {
+                _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
+                timer = 0.0f;
+                Debug.Log("Hit");
+            }
+            
+            yield return new WaitForFixedUpdate();
+        }
     }
 
 

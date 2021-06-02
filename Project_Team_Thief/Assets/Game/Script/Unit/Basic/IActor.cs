@@ -32,6 +32,8 @@ public enum TransitionCondition
     SkillAxe,
     SkillSpear,
     SkillHammer,
+    SkillKopsh,
+    SkillPlainSword,
 
     // Shadow
     Default,

@@ -5,7 +5,6 @@ using Cinemachine;
 using Assert = UnityEngine.Assertions.Assert;
 public class SkillSpearAttackCtrl : AttackBase 
 {
-   
     [SerializeField] 
     private BoxCollider2D _basicAttackCollider2D;
     [SerializeField]

@@ -33,7 +33,6 @@ namespace AK
         static const AkUniqueID PC_JUMP = 3162924009U;
         static const AkUniqueID PC_LAND = 3795174U;
         static const AkUniqueID PC_SLIDE = 1281925152U;
-        static const AkUniqueID PC_SPEAR_CHARGE = 2685062319U;
         static const AkUniqueID PC_SPEAR_RUSH = 2779137053U;
         static const AkUniqueID PC_STOP = 118156989U;
         static const AkUniqueID PC_WALL = 1438052377U;

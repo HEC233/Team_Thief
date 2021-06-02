@@ -31,6 +31,12 @@ public enum AniState
     SkillSpear,     // 23
     SkillHammer,    // 24
     JumpAttack2,    // 25
+    SkillKopsh,     // 26
+    SkillKopsh2,    // 27
+    SkillKopsh3,    // 28
+    SkillPlainSword,    // 29
+    SkillPlainSword2,   // 30
+    SkillPlainSword3,   // 31
 
     // SkillShadowWalk,// 20
     // ShadowControl,  // 21
@@ -51,6 +57,7 @@ public class AnimationCtrl : MonoBehaviour
     {
         if (_animator.GetInteger("State") == (int)aniState)
             return;
+        
         _animator.Rebind();
         _animator.SetInteger("State", (int) aniState);
     }
