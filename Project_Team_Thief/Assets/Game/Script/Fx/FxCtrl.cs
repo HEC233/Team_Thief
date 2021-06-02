@@ -21,6 +21,9 @@ public enum FxAniEnum
     SkillKopsh,     // 13
     SkillKopsh2,    // 14
     SkillKopsh3,    // 15
+    SkillPlainSword,    // 16
+    SkillPlainSword2,   // 17
+    SkillPlainSword3,   // 18
 }
 
 public class FxCtrl : MonoBehaviour

@@ -1753,7 +1753,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSpear);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSpear);
-            WwiseSoundManager.instance.PlayEventSound("PC_spear_Charge");
 
             _gameSkillObject = InvokeSkill();
         }
@@ -1906,6 +1905,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
+            WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
+
             _gameSkillObject = InvokeSkill();
             
             _attackTime = SystemMgr.Unit.SkillKopshAttackTime;
@@ -2020,6 +2021,159 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return skillObejct;
         }
     }
+
+    private class SkillPlainSwordState : CustomFSMStateBase, ISkillStateBase
+    {
+        private SkillPlainSwordData _skillPlainSwordData;
+        private GameSkillObject _gameSkillObject;
+
+        private bool _isAniEnd = false;
+        private float _attackInputTime = 0.0f;
+        private float _attackBeInputTime = 0.0f;
+        private float _attackTime = 0.5f;
+        private int _skillPlainSwordNextIndex = 0;
+        
+        private AniState[] _skillPlainSwordAniArr =
+            new AniState[] {AniState.SkillPlainSword, AniState.SkillPlainSword2, AniState.SkillPlainSword3};
+
+        private FxAniEnum[] _skillPlainSwordFxAniArr = new FxAniEnum[]
+            {FxAniEnum.SkillPlainSword, FxAniEnum.SkillPlainSword2, FxAniEnum.SkillPlainSword3};
+
+        private string[] _skillPlainSwordSoundArr = new string[] {"PC_BA1", "PC_BA2", "PC_BA3"};
+
+        public SkillPlainSwordState(PlayerFSMSystem system, SkillPlainSwordData skillPlainSwordData) : base(system)
+        {
+            _skillPlainSwordData = skillPlainSwordData;
+        }
+
+        public override void StartState()
+        {
+            Debug.Log("PlainSword");
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+            SystemMgr.AnimationCtrl.PlayAni(_skillPlainSwordAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            WwiseSoundManager.instance.PlayEventSound(_skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+
+            _attackBeInputTime = Time.time;
+            _attackTime = SystemMgr.Unit.SkillPlainSwordAttackTime;
+
+            _gameSkillObject = InvokeSkill();
+        }
+
+        public override void Update()
+        {
+        }
+
+        public override void EndState()
+        {
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+            
+            _skillPlainSwordNextIndex = 0;
+            SystemMgr.Unit.skillPlainSwordIndex = 0;
+            _attackBeInputTime = 0;
+            _attackInputTime = 0;
+            _isAniEnd = false;
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (_isAniEnd == true)
+                return true;
+            
+            return false;
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            if (condition == TransitionCondition.Attack)
+            {
+                _attackInputTime = Time.time;
+
+                if (_attackInputTime - _attackBeInputTime <= _attackTime)
+                {
+                    _skillPlainSwordNextIndex = SystemMgr.Unit.skillPlainSwordIndex + 1;
+                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+
+                    if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
+                    {
+                        SystemMgr.Unit.SkillPlainSwordFastInterval();
+                    }
+                }
+
+                _attackBeInputTime = Time.time;
+
+                return false;
+            }
+            return true;
+        }
+
+        public bool IsAbleTransition()
+        {
+            return SystemMgr.Unit.IsAbleSkillPlainSword();
+        }
+        
+        private void OnAnimationEndEvnetCall()
+        {
+            if(IsEndOrNextCheck() == true)
+            {
+                NextAction();
+            }
+            else
+            {
+                _isAniEnd = true;
+                SystemMgr.Transition(TransitionCondition.Idle);
+            }
+        }
+
+        private void NextAction()
+        {
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            
+            SystemMgr.AnimationCtrl.PlayAni(_skillPlainSwordAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            WwiseSoundManager.instance.PlayEventSound(_skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+
+            _gameSkillObject = InvokeSkill();
+        }
+
+        private bool IsEndOrNextCheck()
+        {
+            if (SystemMgr.Unit.skillPlainSwordIndex != _skillPlainSwordNextIndex)
+            {
+                if (_skillPlainSwordNextIndex > _skillPlainSwordAniArr.Length - 1)
+                {
+                    SystemMgr.Unit.SkillPlainSwordEnd();       
+                    return false;
+                }
+                else
+                {
+                    SystemMgr.Unit.skillPlainSwordIndex = _skillPlainSwordNextIndex;
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("SkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillPlainSwordData.GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
+        }
+    }
     
     
     protected override void RegisterState()
@@ -2044,6 +2198,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.SkillSpear, new SkillSpearState(this, Unit.SkillSpearData));
         AddState(TransitionCondition.SkillHammer, new SkillHammerState(this, Unit.SkillHammerData));
         AddState(TransitionCondition.SkillKopsh, new SkillKopshState(this, Unit.SkillKopshData));
+        AddState(TransitionCondition.SkillPlainSword, new SkillPlainSwordState(this, Unit.SkillPlainSwordData));
         AddState(TransitionCondition.Die, new DieState(this));
     }
     
@@ -2135,7 +2290,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private void OnCommandCastEventCall(string skillName, bool isReverse)
     {
         var condition = ChangeSkillNameToTransitionCondition(skillName);
-
+        Debug.Log("SkillName : " + skillName);
         if (condition == TransitionCondition.None)
             return;
         
@@ -2172,6 +2327,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 break;
             case "Skill4Kopsh":
                 return TransitionCondition.SkillKopsh;
+                break;
+            case "Skill5PlainSword":
+                return TransitionCondition.SkillPlainSword;
                 break;
             default:
                 break;

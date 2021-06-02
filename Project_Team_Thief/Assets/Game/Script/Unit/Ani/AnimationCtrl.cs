@@ -34,6 +34,9 @@ public enum AniState
     SkillKopsh,     // 26
     SkillKopsh2,    // 27
     SkillKopsh3,    // 28
+    SkillPlainSword,    // 29
+    SkillPlainSword2,   // 30
+    SkillPlainSword3,   // 31
 
     // SkillShadowWalk,// 20
     // ShadowControl,  // 21

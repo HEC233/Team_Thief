@@ -51,7 +51,6 @@ public class SkillKopshController : SkillControllerBase
     private void AttackSkillKopsh()
     {
         _unit.SkillKopshAttack(_damage);
-        Debug.Log("Call");
         if (_isMove == false)
         {
             OnEndSkillAction?.Invoke();
