@@ -293,14 +293,15 @@ public class PlayerUnit : Unit
     private float _skillPlainSwordNumberOfTimes;
     private float _skillPlainSwordCoolTime;
     private bool _skillPlainSwordIsAble = true;
+    private bool _skillPlainSwordEnd = false;
+    private float _skillPlainSwordAttackInterval;
+    private Coroutine _skillPlainSwordMultiAttackCoroutine = null;
     [SerializeField]
     private float _skillPlainSwordAttackTime;
     public float SkillPlainSwordAttackTime => _skillPlainSwordAttackTime;
 
     public event UnityAction OnSkillPlainSwordAttackEvent = null;
-    public event UnityAction OnSkillPlainSwordEndEvent = null;
-    public event UnityAction OnSkillPlainSwordFastEvent = null;
-    
+
     //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
@@ -444,6 +445,7 @@ public class PlayerUnit : Unit
 
         _skillPlainSwordNumberOfTimes = _skillPlainSwordData.NumberOfTimesTheSkill;
         _skillPlainSwordCoolTime = _skillPlainSwordData.CoolTime;
+        _skillPlainSwordAttackInterval = _skillPlainSwordData.MultiStateHitInterval;
 
         GameManager.instance.commandManager.GetCommandData(_skillAxeData.SkillName).maxCoolTIme =
             _skillAxeData.CoolTime;
@@ -1052,6 +1054,7 @@ public class PlayerUnit : Unit
         _skillKopshAttackCtrls[skillKopshIndex].SetDamage(damage);
         _skillKopshAttackCtrls[skillKopshIndex].Progress();
     }
+    
 
     public void OnSkillPlainSwordAttackEventCall()
     {
@@ -1064,14 +1067,26 @@ public class PlayerUnit : Unit
         _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
     }
 
+    public void SkillPlainSwordMultiAttack(Damage damage)
+    {
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(damage);
+        _skillPlainSwordMultiAttackCoroutine = StartCoroutine(SkillPlainSwordMultiAttackCoroutine());
+    }
+
     public void SkillPlainSwordEnd()
     {
-        OnSkillPlainSwordEndEvent?.Invoke();
+        if(_skillPlainSwordMultiAttackCoroutine == null)
+            return;
+
+        StopCoroutine(_skillPlainSwordMultiAttackCoroutine);
     }
 
     public void SkillPlainSwordFastInterval()
     {
-        OnSkillPlainSwordFastEvent?.Invoke();
+        Debug.Log("FAST CALL");
+        _skillPlainSwordAttackInterval = _skillPlainSwordData.MultiStateHitIntervalFastAmount *
+                                         _skillPlainSwordData.MultiStateHitInterval;
+        Debug.Log(_skillPlainSwordAttackInterval);
     }
 
     //  리팩토링 할 때  skillData를 다 따로 가지고 있지 말고
@@ -1346,6 +1361,24 @@ public class PlayerUnit : Unit
 
         _skillPlainSwordIsAble = true;
         _skillPlainSwordNumberOfTimes = _skillPlainSwordData.NumberOfTimesTheSkill;
+    }
+    
+    IEnumerator SkillPlainSwordMultiAttackCoroutine()
+    {
+        float timer = 0.2f;
+        while (true)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+
+            if (timer >= _skillPlainSwordAttackInterval)
+            {
+                _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
+                timer = 0.0f;
+                Debug.Log("Hit");
+            }
+            
+            yield return new WaitForFixedUpdate();
+        }
     }
 
 

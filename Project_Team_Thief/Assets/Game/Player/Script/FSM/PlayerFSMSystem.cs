@@ -802,7 +802,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 }
             }
             
-            Debug.Log(condition);
             return true;
         }
 
@@ -2048,8 +2047,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
-            Debug.Log("PlainSword");
-            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
             SystemMgr.AnimationCtrl.PlayAni(_skillPlainSwordAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
             WwiseSoundManager.instance.PlayEventSound(_skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
@@ -2066,10 +2064,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
+            if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
+            {
+                SystemMgr.Unit.SkillPlainSwordEnd();
+            }
+            
             SystemMgr.AnimationCtrl.SetSpeed(1);
             SystemMgr.AnimationCtrl.SetSpeed(1);
             
-            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
             
             _skillPlainSwordNextIndex = 0;
             SystemMgr.Unit.skillPlainSwordIndex = 0;
@@ -2108,6 +2111,22 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
                 return false;
             }
+
+            if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
+            {
+                if (condition == TransitionCondition.LeftMove)
+                {
+                    SystemMgr.Unit.CheckMovementDir(-1);
+                    SystemMgr.Unit.Move();
+                }
+
+                if (condition == TransitionCondition.RightMove)
+                {
+                    SystemMgr.Unit.CheckMovementDir(1);
+                    SystemMgr.Unit.Move();
+                }
+            }
+
             return true;
         }
 
@@ -2116,7 +2135,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return SystemMgr.Unit.IsAbleSkillPlainSword();
         }
         
-        private void OnAnimationEndEvnetCall()
+        private void OnAnimationEndEventCall()
         {
             if(IsEndOrNextCheck() == true)
             {
@@ -2147,7 +2166,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 if (_skillPlainSwordNextIndex > _skillPlainSwordAniArr.Length - 1)
                 {
-                    SystemMgr.Unit.SkillPlainSwordEnd();       
                     return false;
                 }
                 else
@@ -2290,7 +2308,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private void OnCommandCastEventCall(string skillName, bool isReverse)
     {
         var condition = ChangeSkillNameToTransitionCondition(skillName);
-        Debug.Log("SkillName : " + skillName);
         if (condition == TransitionCondition.None)
             return;
         

@@ -31,13 +31,14 @@ public class SkillPlainSwordController : SkillControllerBase
         if (_unit.skillPlainSwordIndex == 1)
         {
             _damage.knockBack = new Vector2(
-                _skillPlainSwordData.KnockBackPowerArr[_unit.skillKopshIndex].x * (_unit.FacingDir * -1),
+                _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].x * (_unit.FacingDir * -1),
                 _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].y);
+            
         }
         else
         {
             _damage.knockBack = new Vector2(
-                _skillPlainSwordData.KnockBackPowerArr[_unit.skillKopshIndex].x * _unit.FacingDir,
+                _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].x * _unit.FacingDir,
                 _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].y);
         }
 
@@ -46,58 +47,30 @@ public class SkillPlainSwordController : SkillControllerBase
         _attackInterval = _skillPlainSwordData.MultiStateHitInterval;
         
         _unit.OnSkillPlainSwordAttackEvent += AttackSkillPlainSword;
-        _unit.OnSkillPlainSwordFastEvent += OnSkillPlainSwordFastEventCall;
-        _unit.OnSkillPlainSwordEndEvent += OnSkillPlainSwordEndEventCall;
     }
     
     public override void Release()
     {
         base.Release();
 
-        _unit.OnSkillKopshAttackEvent -= AttackSkillPlainSword;
+        _unit.OnSkillPlainSwordAttackEvent -= AttackSkillPlainSword;
     }
 
     private void AttackSkillPlainSword()
     {
         if (_unit.skillPlainSwordIndex == _unit._SkillPlainSwordAttackCtrls.Length - 1)
         {
-            _multiHitCoroutine = _unit.StartCoroutine(MultiHitAttackCoroutine());
+            _unit.SkillPlainSwordMultiAttack(_damage);
         }
         else
         {
             _unit.SkillPlainSwordAttack(_damage);
         }
-    }
-
-    private void OnSkillPlainSwordFastEventCall()
-    {
-        _attackInterval *= _skillPlainSwordData.MultiStateHitIntervalFastAmount;
-    }
-
-    private void OnSkillPlainSwordEndEventCall()
-    {
-        _isEnd = true;
-        _unit.StopCoroutine(MultiHitAttackCoroutine());
-    }
-    
-
-    IEnumerator MultiHitAttackCoroutine()
-    {
-        float timer = 0.2f;
-        while (!_isEnd)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-
-            if (timer >= _attackInterval)
-            {
-                _unit.SkillPlainSwordAttack(_damage);
-                timer = 0.0f;
-            }
-            
-            yield return new WaitForFixedUpdate();
-        }
         
         OnEndSkillAction?.Invoke();
     }
+
+
+
     
 }
