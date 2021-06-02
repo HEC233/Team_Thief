@@ -66,7 +66,6 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         Application.targetFrameRate = 60;
-        TileCoordClass.SetGrid(grid);
     }
 
     private void Start()
@@ -113,12 +112,17 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(StartGameCoroutine());
+        StartCoroutine(StartGameCoroutine("HHG"));
     }
 
-    IEnumerator StartGameCoroutine()
+    public void LoadGame(string SceneName)
     {
-        yield return GameLoader.instance.SceneLoad("HHG");
+        StartCoroutine(StartGameCoroutine(SceneName));
+    }
+
+    IEnumerator StartGameCoroutine(string SceneName)
+    {
+        yield return GameLoader.instance.SceneLoad(SceneName);
         GameState = GameStateEnum.InGame;
         ChangeActorToPlayer();
         //uiMng.InitUI(); // SceneLoadCallback���� �Űܾ� �� �ʿ伺�� ������ ����
@@ -126,6 +130,7 @@ public class GameManager : MonoBehaviour
 
         var grid = GameObject.Find("Grid").GetComponent<Grid>();
         this.grid = grid;
+        TileCoordClass.SetGrid(grid);
     }
 
     public void EscapeButton()

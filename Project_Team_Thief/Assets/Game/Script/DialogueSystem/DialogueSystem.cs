@@ -121,6 +121,7 @@ public class DialogueSystem : MonoBehaviour
     private void Start()
     {
         GameLoader.instance?.AddSceneLoadCallback(InitializeData);
+        ui = GameManager.instance?.uiMng.uiDialogue;
     }
 
     public void StartDialogueWithName(string name)

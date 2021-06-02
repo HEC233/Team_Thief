@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using PS.Util.DeveloperConsole;
 
 public class UIManager : MonoBehaviour
@@ -33,6 +34,20 @@ public class UIManager : MonoBehaviour
 
     private static bool exist = false;
 
+    // for boss hp
+    [SerializeField]
+    private GameObject bossHp;
+    [SerializeField]
+    private Image delayHp;
+    [SerializeField]
+    private Image curHp;
+    [SerializeField]
+    private Image maxHp;
+    private MonsterUnit _bossUnit;
+    private float _lastDelayFill = 1;
+    private float t = 0;
+    //
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -45,6 +60,12 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         GameLoader.instance?.AddSceneLoadCallback(InitUI);
+    }
+
+    private void Update()
+    {
+        delayHp.fillAmount = Mathf.Lerp(_lastDelayFill, curHp.fillAmount, t);
+        t += GameManager.instance.timeMng.DeltaTime;
     }
 
     public void ToggleUI(GameManager.GameStateEnum gameState)
@@ -115,6 +136,32 @@ public class UIManager : MonoBehaviour
         return uiDynamic.GetMonsterHP();
     }
 
+    /// <summary>
+    /// 보스 HP바는 하나만 존재하므로 ui매니저에서 관리하도록 하였음
+    /// </summary>
+    /// <param name="unit"></param>
+    public void InitBossHP(MonsterUnit unit)
+    {
+        _bossUnit = unit;
+
+        bossHp.SetActive(true);
+    }
+    public void SetBossHPColor(Color hpColor, Color backgroundColor)
+    {
+        curHp.color = hpColor;
+        maxHp.color = backgroundColor;
+    }
+    public void BossHPUpdate()
+    {
+        curHp.fillAmount = _bossUnit.GetCurHp() / _bossUnit.GetMaxHp();
+        _lastDelayFill = delayHp.fillAmount;
+        t = 0;
+    }
+    public void BossDie()
+    {
+        bossHp.SetActive(false);
+    }
+
     //public void InitUI()
     //{
     //    uiPlayerInfo.CommandUpdate();
@@ -125,6 +172,7 @@ public class UIManager : MonoBehaviour
         errorMessage = string.Empty;
         uiPlayerInfo.CommandUpdate();
         uiDynamic.Init();
+        bossHp.SetActive(false);
         return true;
     }
 
