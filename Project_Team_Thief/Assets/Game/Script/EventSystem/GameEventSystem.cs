@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PS.Event;
 using PS.Util.Tile;
+using Cinemachine;
 
 public class GameEventSystem : MonoBehaviour
 {
@@ -10,12 +11,30 @@ public class GameEventSystem : MonoBehaviour
 
     private List<string> nextEventQueue = new List<string>();
     private List<string> talkedNPCqueue = new List<string>();
+    private List<string> DeadBossQueue = new List<string>();
 
+    GameObject _player;
     private void Start()
     {
         foreach (var e in events)
         {
             StartCoroutine(Process(e));
+        }
+        _player = GameObject.Find("Player");
+    }
+
+    private bool bRestrict;
+    private Vector3 restrictLeftBottom;
+    private Vector3 restrictRightTop;
+    private void Update()
+    {
+        if (bRestrict)
+        {
+            if(_player)
+            {
+                _player.transform.position = new Vector3(Mathf.Clamp(_player.transform.position.x, restrictLeftBottom.x, restrictRightTop.x),
+                    Mathf.Clamp(_player.transform.position.y, restrictLeftBottom.y, restrictRightTop.y), _player.transform.position.z);
+            }
         }
     }
 
@@ -23,7 +42,14 @@ public class GameEventSystem : MonoBehaviour
     {
         talkedNPCqueue.Add(value);
         
-        GameManager.instance?.AddTextToDeveloperConsole(value + " GameEventSystem queue added");
+        GameManager.instance?.AddTextToDeveloperConsole(value + " GameEventSystem talked queue added");
+    }
+
+    public void AddDeadBossQueue(string value)
+    {
+        DeadBossQueue.Add(value);
+
+        GameManager.instance?.AddTextToDeveloperConsole(value + " GameEventSystem deadBoss queue added");
     }
 
     IEnumerator Process(PS.Event.Event data)
@@ -50,6 +76,9 @@ public class GameEventSystem : MonoBehaviour
                         break;
                     case TriggerType.Next:
                         returnValue = NextCheck(data.eventIndex);
+                        break;
+                    case TriggerType.BossDie:
+                        returnValue = BossDieCheck(data.trigger);
                         break;
                 }
                 yield return null;
@@ -115,13 +144,16 @@ public class GameEventSystem : MonoBehaviour
                     case ActionType.CutScene:
                         break;
                     case ActionType.RestrictStart:
+                        yield return StartCoroutine(RestrictStart(actionData.leftDown, actionData.rightUp));
                         break;
                     case ActionType.RestrictEnd:
+                        yield return StartCoroutine(RestrictEnd());
                         break;
                     case ActionType.Spawn:
                         yield return StartCoroutine(Spawn(actionData.unitName, actionData.spawnPos, actionData.count));
                         break;
                     case ActionType.CameraChange:
+                        yield return StartCoroutine(CameraChange(actionData.cameraName));
                         break;
                     case ActionType.CameraShake:
                         break;
@@ -141,6 +173,9 @@ public class GameEventSystem : MonoBehaviour
                     case ActionType.BGMEnd:
                         break;
                     case ActionType.BGMStart:
+                        break;
+                    case ActionType.BossActive:
+                        yield return StartCoroutine(BossActive(actionData.unitName));
                         break;
                 }
                 currentAction++;
@@ -195,6 +230,17 @@ public class GameEventSystem : MonoBehaviour
             nextEventQueue.Remove(name);
         return returnValue;
     }
+
+    private bool BossDieCheck(PS.Event.TriggerCondition trigger)
+    {
+        bool returnValue = DeadBossQueue.Contains(trigger.BossName);
+        if (returnValue)
+        {
+            DeadBossQueue.Remove(trigger.BossName);
+        }
+        return returnValue;
+    }
+
     private IEnumerator Dialog(string dialogName)
     {
         GameManager.instance.dialogueSystem.StartDialogueWithName(dialogName);
@@ -212,11 +258,17 @@ public class GameEventSystem : MonoBehaviour
 
     private IEnumerator RestrictStart(Vector2Int leftDown, Vector2Int rightUp)
     {
+        restrictLeftBottom = new Vector3(leftDown.x, leftDown.y, 0);
+        restrictRightTop = new Vector3(rightUp.x + 1, rightUp.y + 1, 0);
+        bRestrict = true;
+
         yield return null;
     }
 
     private IEnumerator RestrictEnd()
     {
+        bRestrict = true;
+
         yield return null;
     }
 
@@ -229,6 +281,14 @@ public class GameEventSystem : MonoBehaviour
 
     private IEnumerator CameraChange(string cameraName)
     {
+        var camera = GameObject.Find("CM vcam1")?.GetComponent<CinemachineVirtualCamera>();
+        if (camera == null) yield break;
+
+        var go = GameObject.Find(cameraName);
+        if (go == null) yield break;
+
+        camera.Follow = go.transform;
+
         yield return null;
     }
 
@@ -284,6 +344,18 @@ public class GameEventSystem : MonoBehaviour
 
     private IEnumerator BGMStart()
     {
+        yield return null;
+    }
+
+    private IEnumerator BossActive(string bossName)
+    {
+        var go = GameObject.Find("bossName");
+
+        if (go == null) yield break;
+        var boss = go.GetComponentInChildren<IActor>();
+        if (boss == null) yield break;
+        boss.Transition(TransitionCondition.BossAwake);
+
         yield return null;
     }
 }

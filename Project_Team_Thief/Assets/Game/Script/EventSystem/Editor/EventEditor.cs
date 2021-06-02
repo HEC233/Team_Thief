@@ -107,6 +107,13 @@ namespace PS.Event
                     break;
                 case TriggerType.Next:
                     break;
+                case TriggerType.BossDie:
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("보스 이름");
+                    newTrigger.BossName = EditorGUILayout.TextField(_event.trigger.BossName);
+                    EditorGUILayout.EndHorizontal();
+                    break;
+
             }
             _event.trigger = newTrigger;
 

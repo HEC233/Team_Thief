@@ -141,6 +141,7 @@ public class BossAlterActor : MonoBehaviour, IActor
                 GameManager.instance.uiMng.BossHPUpdate();
                 break;
             case TransitionCondition.Die:
+                GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddDeadBossQueue(unit.GetUnitName());
                 GameManager.instance.uiMng.BossDie();
                 break;
         }

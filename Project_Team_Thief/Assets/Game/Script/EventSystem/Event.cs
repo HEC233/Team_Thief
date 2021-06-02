@@ -12,7 +12,7 @@ namespace PS.Event
 
     public enum TriggerType
     {
-        Talk,Arrive,Come,Next
+        Talk,Arrive,Come,Next,BossDie
     }
 
     public enum CmpType
@@ -37,6 +37,7 @@ namespace PS.Event
         public int xValue;
         public CmpType yCmp;
         public int yValue;
+        public string BossName;
     }
 
     [CreateAssetMenu(fileName = "Event", menuName = "ScriptableObject/Event")]
