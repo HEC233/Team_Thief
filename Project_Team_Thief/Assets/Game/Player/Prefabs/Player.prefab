@@ -80,7 +80,7 @@ MonoBehaviour:
   _isDisplyFx: 0
   _isPlaySFX: 1
   _isZoomIn: 1
-  _hitStopTime: 0.5
+  _hitStopTime: 0.4
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -92,8 +92,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -101,8 +101,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -110,8 +110,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomInTime: 0.02
-  _zoomInSize: 2
+  _zoomInTime: 0.04
+  _zoomInSize: 5.625
   _zoomOutCurve:
     serializedVersion: 2
     m_Curve:
@@ -136,7 +136,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomOutTime: 0.2
+  _zoomOutTime: 0.06
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -309,13 +309,13 @@ MonoBehaviour:
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 1
+  _isAbleHitStop: 0
   _isAbleBulltTime: 0
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 1
   _isZoomIn: 0
-  _hitStopTime: 0.12
+  _hitStopTime: 0.2
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -1312,7 +1312,7 @@ MonoBehaviour:
   _isDisplyFx: 0
   _isPlaySFX: 1
   _isZoomIn: 0
-  _hitStopTime: 0.095
+  _hitStopTime: 0.2
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -1930,13 +1930,13 @@ MonoBehaviour:
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 1
-  _isAbleHitStop: 0
+  _isAbleHitStop: 1
   _isAbleBulltTime: 0
   _isAbleCameraShake: 1
   _isDisplyFx: 1
   _isPlaySFX: 1
   _isZoomIn: 0
-  _hitStopTime: 0
+  _hitStopTime: 0.2
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0.1
@@ -2054,7 +2054,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.3, y: 0}
+  m_Offset: {x: 0.06410599, y: 1.6562197}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2065,7 +2065,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.13, y: 1.84}
+  m_Size: {x: 9.601788, y: 5.1524396}
   m_EdgeRadius: 0
 --- !u!114 &5626593371155512191
 MonoBehaviour:
@@ -2084,10 +2084,10 @@ MonoBehaviour:
   _isAbleFlash: 0
   _isAbleHitStop: 0
   _isAbleBulltTime: 0
-  _isAbleCameraShake: 0
+  _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 0
-  _isZoomIn: 0
+  _isZoomIn: 1
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
@@ -2096,26 +2096,63 @@ MonoBehaviour:
   _sfxClip: 0
   _zoomInCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
+  _zoomInTime: 0.04
+  _zoomInSize: 4
   _zoomOutCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomOutTime: 0
+  _zoomOutTime: 0.09
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
   _fxGO: {fileID: 0}
   _flashGO: {fileID: 0}
   _cinemachineImpulseSource: {fileID: 2382924342001564520}
-  _cinemachineSignalSource: {fileID: 0}
+  _cinemachineSignalSource: {fileID: 11400000, guid: f275e751afa5724428a30ed270623ff1,
+    type: 2}
   _basicAttackCollider2D: {fileID: 6908932929064554725}
   _contactFilter2D:
     useTriggers: 0
@@ -2255,7 +2292,7 @@ MonoBehaviour:
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 0
-  _hitStopTime: 0.3
+  _hitStopTime: 0.2
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -2580,7 +2617,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.3, y: 0}
+  m_Offset: {x: 5.4882193, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2591,7 +2628,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.13, y: 1.84}
+  m_Size: {x: 12, y: 1.84}
   m_EdgeRadius: 0
 --- !u!114 &541418563351318468
 MonoBehaviour:
@@ -2608,13 +2645,13 @@ MonoBehaviour:
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 0
+  _isAbleHitStop: 1
   _isAbleBulltTime: 0
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 0
-  _hitStopTime: 0
+  _hitStopTime: 0.2
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -2746,7 +2783,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.3, y: 0}
+  m_Offset: {x: 1.6055624, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2757,7 +2794,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.13, y: 1.84}
+  m_Size: {x: 3.7411246, y: 1.84}
   m_EdgeRadius: 0
 --- !u!114 &3520344460148480530
 MonoBehaviour:
@@ -2774,13 +2811,13 @@ MonoBehaviour:
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 0
+  _isAbleHitStop: 1
   _isAbleBulltTime: 0
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 0
-  _hitStopTime: 0
+  _hitStopTime: 0.1
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -2788,19 +2825,55 @@ MonoBehaviour:
   _sfxClip: 0
   _zoomInCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
+  _zoomInTime: 0.04
+  _zoomInSize: 7
   _zoomOutCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomOutTime: 0
+  _zoomOutTime: 0.04
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -3074,7 +3147,7 @@ MonoBehaviour:
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 0
-  _hitStopTime: 0.095
+  _hitStopTime: 0.2
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -3477,13 +3550,13 @@ MonoBehaviour:
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 0
+  _isAbleHitStop: 1
   _isAbleBulltTime: 0
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 0
-  _hitStopTime: 0
+  _hitStopTime: 0.1
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
