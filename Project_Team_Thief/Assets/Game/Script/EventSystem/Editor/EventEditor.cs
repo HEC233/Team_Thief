@@ -79,7 +79,7 @@ namespace PS.Event
             PS.Event.TriggerCondition newTrigger = new TriggerCondition();
             switch (_event.triggerType)
             {
-                case TriggerType.Arrive:
+                case TriggerType.TRUE:
                     break;
                 case TriggerType.Come:
                     EditorGUILayout.BeginHorizontal();
@@ -99,21 +99,14 @@ namespace PS.Event
                     EditorGUILayout.EndVertical();
                     EditorGUILayout.EndHorizontal();
                     break;
-                case TriggerType.Talk:
+                case TriggerType.Queue:
                     EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField("NPC이름");
+                    EditorGUILayout.LabelField("이름");
                     newTrigger.NPCname = EditorGUILayout.TextField(_event.trigger.NPCname);
                     EditorGUILayout.EndHorizontal();
                     break;
                 case TriggerType.Next:
                     break;
-                case TriggerType.BossDie:
-                    EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField("보스 이름");
-                    newTrigger.BossName = EditorGUILayout.TextField(_event.trigger.BossName);
-                    EditorGUILayout.EndHorizontal();
-                    break;
-
             }
             _event.trigger = newTrigger;
 

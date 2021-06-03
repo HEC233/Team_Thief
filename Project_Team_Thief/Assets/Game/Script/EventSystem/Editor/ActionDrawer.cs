@@ -105,6 +105,10 @@ namespace PS.Event
                         var bossName = property.FindPropertyRelative("unitName");
                         bossName.stringValue = EditorGUI.TextField(rect, "보스이름", bossName.stringValue);
                         break;
+                    case (int)ActionType.LoadScene:
+                        var sceneName = property.FindPropertyRelative("sceneName");
+                        sceneName.stringValue = EditorGUI.TextField(rect, "씬 이름", sceneName.stringValue);
+                        break;
                 }
             }
         }
@@ -119,6 +123,7 @@ namespace PS.Event
                 case (int)ActionType.SFX:
                 case (int)ActionType.BGMChange:
                 case (int)ActionType.BossActive:
+                case (int)ActionType.LoadScene:
                     returnValue += EditorGUIUtility.singleLineHeight;
                     break;
                 case (int)ActionType.CutScene:

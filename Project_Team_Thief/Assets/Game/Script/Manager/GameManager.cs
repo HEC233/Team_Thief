@@ -204,7 +204,7 @@ public class GameManager : MonoBehaviour
     }
 
     //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음
-    public void PushTalkCondition()
+    public void PushEventQueue()
     {
         GameObject go = GameObject.Find("NPCManager");
         if (go == null) return;
@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviour
 
         string nearest = nm.GetNearestNPC();
         if (nearest != string.Empty)
-            es.AddTalkQueue(nearest);
+            es.AddQueue(nearest);
     }
 
     //======================

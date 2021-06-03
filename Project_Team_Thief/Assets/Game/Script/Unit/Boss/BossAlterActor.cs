@@ -145,7 +145,7 @@ public class BossAlterActor : MonoBehaviour, IActor
                 StartCoroutine(IdleAnimation());
                 break;
             case TransitionCondition.Die:
-                GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddDeadBossQueue(unit.GetUnitName());
+                GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddQueue(unit.GetUnitName());
                 GameManager.instance.uiMng.BossDie();
                 unit.SetInvincibility(true);
                 animCtrl.PlayAni(AniState.Die);
