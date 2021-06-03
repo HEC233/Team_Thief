@@ -79,12 +79,64 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 1
+  _isZoomIn: 1
   _hitStopTime: 0.5
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0.02
+  _zoomInSize: 2
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0.2
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -262,12 +314,64 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 1
+  _isZoomIn: 1
   _hitStopTime: 0.12
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 2
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0.02
+  _zoomInSize: 3
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0.1
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -792,10 +896,10 @@ MonoBehaviour:
   _maxHp: 100
   _curHp: 100
   _decreaseHp: 0.2
-  _encroachmentPerPlayerHitDamage: 0
-  _encroachmentPerPlayerAttackDamage: 0
-  _encroachmentRecoveryPerTime: 0
-  _encroachmentRecoveryAmount: 0
+  _encroachmentPerPlayerHitDamage: 1.2
+  _encroachmentPerPlayerAttackDamage: 1.2
+  _encroachmentRecoveryPerTime: 1
+  _encroachmentRecoveryAmount: -1
   _aniFastAmount: 1.4
   _minSpeed: 1
   _maxSpeed: 8
@@ -810,7 +914,7 @@ MonoBehaviour:
   _handTr: {fileID: 1542053513159863988}
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 256
   _wallJumpPowerX: 8
   _wallJumpPowerY: 15
   _wallSlideingUpPower: 0.5
@@ -827,8 +931,8 @@ MonoBehaviour:
   - 5
   - 0.2
   _basicAttackCansleTime: 0.3
-  _basicAttackMinDamage: 10
-  _basicAtaackMaxDamage: 20
+  _basicAttackMinDamage: 355
+  _basicAtaackMaxDamage: 375
   _basicAttackCtrlArr:
   - {fileID: 1542053514905396923}
   - {fileID: 1542053514773876517}
@@ -957,12 +1061,28 @@ MonoBehaviour:
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
+  _isZoomIn: 0
   _hitStopTime: 0.094
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -1191,12 +1311,64 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 1
+  _isZoomIn: 1
   _hitStopTime: 0.095
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 1
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0.02
+  _zoomInSize: 3
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0.1
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -1374,12 +1546,64 @@ MonoBehaviour:
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 1
+  _isZoomIn: 1
   _hitStopTime: 0.095
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0.02
+  _zoomInSize: 2
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0.1
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -1711,12 +1935,28 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 1
   _isPlaySFX: 1
+  _isZoomIn: 0
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0.1
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -1847,12 +2087,28 @@ MonoBehaviour:
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
+  _isZoomIn: 0
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -1998,12 +2254,28 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 0
+  _isZoomIn: 0
   _hitStopTime: 0.094
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -2175,12 +2447,28 @@ MonoBehaviour:
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
+  _isZoomIn: 0
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -2325,12 +2613,28 @@ MonoBehaviour:
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
+  _isZoomIn: 0
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -2475,12 +2779,28 @@ MonoBehaviour:
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
+  _isZoomIn: 0
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -2616,7 +2936,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 30f6fdc64d7f9dc45a854922cce1c272, type: 2}
+  - {fileID: 2100000, guid: 33a122f0e395cc74297f5b03e55b96b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2642,7 +2962,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 12, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -2753,12 +3073,64 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 0
+  _isZoomIn: 1
   _hitStopTime: 0.095
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 3
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0.02
+  _zoomInSize: 3
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0.1
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -2906,12 +3278,28 @@ MonoBehaviour:
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
+  _isZoomIn: 0
   _hitStopTime: 0.2
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -3094,12 +3482,28 @@ MonoBehaviour:
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
+  _isZoomIn: 0
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024

@@ -1013,7 +1013,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isBasicAttackEnd = false;
             _isNotEndCoroutine = false;
             _isBasicAttackAniEnd = false;
-            
+
             SystemMgr.OnBasicAttackEndAniEvent -= EndOrNextCheck;
             SystemMgr.OnBasicAttackCallEvent -= BasicAttackCall;
         }

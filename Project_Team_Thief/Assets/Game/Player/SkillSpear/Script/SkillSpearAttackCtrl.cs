@@ -40,6 +40,7 @@ public class SkillSpearAttackCtrl : AttackBase
 
     public void Progress()
     {
+        Bind();
         PlayFx();
 
         AttackDamage();
@@ -49,6 +50,7 @@ public class SkillSpearAttackCtrl : AttackBase
             PlaySfx();
             HitStop();
             CameraShake();
+            ZoomIn();
         }
     }
 
@@ -93,6 +95,45 @@ public class SkillSpearAttackCtrl : AttackBase
         if (_isAbleCameraShake == false)
             return;
         _cinemachineImpulseSource.GenerateImpulse();
+    }
+    
+    public override void ZoomIn()
+    {
+        if (_isZoomIn == false)
+        {
+            return;
+        }
+        
+        _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
+        _cinemachineBlendDefinition.m_CustomCurve = _zoomInCurve;
+        _cinemachineBlendDefinition.m_Time = _zoomInTime;
+
+        GameManager.instance.cameraMng.ZoomIn(_cinemachineBlendDefinition, _zoomInSize);
+    }
+
+    private void ZoomOut()
+    {
+        GameManager.instance.cameraMng.ZoomOut(ZoomOutBlendDefinition());
+        UnBind();
+    }
+
+    public override CinemachineBlendDefinition ZoomOutBlendDefinition()
+    {
+        _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
+        _cinemachineBlendDefinition.m_CustomCurve = _zoomOutCurve;
+        _cinemachineBlendDefinition.m_Time = _zoomOutTime;
+
+        return _cinemachineBlendDefinition;
+    }
+
+    public override void UnBind()
+    {
+        GameManager.instance.cameraMng.OnZoomInEndEvent -= ZoomOut;
+    }
+
+    private void Bind()
+    {
+        GameManager.instance.cameraMng.OnZoomInEndEvent += ZoomOut;
     }
 
     public void GetEnemyList()

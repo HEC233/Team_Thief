@@ -19,6 +19,7 @@ public class KeyManager : MonoBehaviour
     {
         if (controlUnit == null)
             return;
+        
 
         List<KeyCode> pressedInput = new List<KeyCode>();
 
