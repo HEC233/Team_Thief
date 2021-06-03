@@ -43,7 +43,9 @@ public class SkillPlainSwordController : SkillControllerBase
         }
 
         _damage.additionalInfo = _unit.skillPlainSwordIndex;
-
+        _unit._SkillPlainSwordAttackCtrls[_unit.skillPlainSwordIndex]._cinemachineSignalSource =
+            _skillPlainSwordData.CinemachineSignalSourceArr[_unit.skillPlainSwordIndex];
+        
         _attackInterval = _skillPlainSwordData.MultiStateHitInterval;
         
         _unit.OnSkillPlainSwordAttackEvent += AttackSkillPlainSword;

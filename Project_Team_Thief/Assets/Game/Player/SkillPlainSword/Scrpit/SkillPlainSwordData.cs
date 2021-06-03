@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 [CreateAssetMenu(fileName = "SkillPlainSwordData", menuName = "ScriptableObject/SkillPlainSwordData")]
 
 public class SkillPlainSwordData : SkillDataBase
 {
+    [SerializeField]
+    private SignalSourceAsset[] _cinemachineSignalSourceArr;
+    public SignalSourceAsset[] CinemachineSignalSourceArr => _cinemachineSignalSourceArr;
+    
     [SerializeField] 
     private Vector2[] _knockBackPowerArr;
     public Vector2[] KnockBackPowerArr => _knockBackPowerArr;

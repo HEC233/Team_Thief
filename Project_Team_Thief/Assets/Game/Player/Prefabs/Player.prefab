@@ -1779,6 +1779,7 @@ GameObject:
   - component: {fileID: 7624106574930786513}
   - component: {fileID: 6908932929064554725}
   - component: {fileID: 5626593371155512191}
+  - component: {fileID: 2382924342001564520}
   m_Layer: 13
   m_Name: SkillPlainSword3
   m_TagString: Untagged
@@ -1857,6 +1858,8 @@ MonoBehaviour:
     m_Bits: 1024
   _fxGO: {fileID: 0}
   _flashGO: {fileID: 0}
+  _cinemachineImpulseSource: {fileID: 2382924342001564520}
+  _cinemachineSignalSource: {fileID: 0}
   _basicAttackCollider2D: {fileID: 6908932929064554725}
   _contactFilter2D:
     useTriggers: 0
@@ -1873,6 +1876,48 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   alwaysEnter: 0
+--- !u!114 &2382924342001564520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448076803930145116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &4819987077810466812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,6 +2107,7 @@ GameObject:
   - component: {fileID: 3893999046170498061}
   - component: {fileID: 661386891241343481}
   - component: {fileID: 2325134920169563913}
+  - component: {fileID: 7058935064744719661}
   m_Layer: 13
   m_Name: SkillKopshAttack
   m_TagString: Untagged
@@ -2141,6 +2187,7 @@ MonoBehaviour:
   _fxGO: {fileID: 0}
   _flashGO: {fileID: 0}
   _basicAttackCollider2D: {fileID: 661386891241343481}
+  _cinemachineImpulseSource: {fileID: 7058935064744719661}
   _contactFilter2D:
     useTriggers: 0
     useLayerMask: 0
@@ -2156,6 +2203,49 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   alwaysEnter: 0
+  signalSourceAsset: {fileID: 0}
+--- !u!114 &7058935064744719661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828011869976133205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &5174980653922321140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,6 +2257,7 @@ GameObject:
   - component: {fileID: 8652530670963873314}
   - component: {fileID: 1453992906875581963}
   - component: {fileID: 541418563351318468}
+  - component: {fileID: 8558833204660961089}
   m_Layer: 13
   m_Name: SkillPlainSword2
   m_TagString: Untagged
@@ -2245,6 +2336,8 @@ MonoBehaviour:
     m_Bits: 1024
   _fxGO: {fileID: 0}
   _flashGO: {fileID: 0}
+  _cinemachineImpulseSource: {fileID: 8558833204660961089}
+  _cinemachineSignalSource: {fileID: 0}
   _basicAttackCollider2D: {fileID: 1453992906875581963}
   _contactFilter2D:
     useTriggers: 0
@@ -2261,6 +2354,48 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   alwaysEnter: 0
+--- !u!114 &8558833204660961089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5174980653922321140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &5271614198123371912
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,6 +2407,7 @@ GameObject:
   - component: {fileID: 170868997189839136}
   - component: {fileID: 1570668729095687439}
   - component: {fileID: 3520344460148480530}
+  - component: {fileID: 147103626701873069}
   m_Layer: 13
   m_Name: SkillPlainSword
   m_TagString: Untagged
@@ -2350,6 +2486,8 @@ MonoBehaviour:
     m_Bits: 1024
   _fxGO: {fileID: 0}
   _flashGO: {fileID: 0}
+  _cinemachineImpulseSource: {fileID: 147103626701873069}
+  _cinemachineSignalSource: {fileID: 0}
   _basicAttackCollider2D: {fileID: 1570668729095687439}
   _contactFilter2D:
     useTriggers: 0
@@ -2366,6 +2504,48 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   alwaysEnter: 0
+--- !u!114 &147103626701873069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271614198123371912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &5336181760457021665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2658,6 +2838,7 @@ GameObject:
   - component: {fileID: 5793986615935893417}
   - component: {fileID: 6062627330182927401}
   - component: {fileID: 1610817263505351697}
+  - component: {fileID: 9116344587691213050}
   m_Layer: 13
   m_Name: SkillKopshAttack3
   m_TagString: Untagged
@@ -2737,6 +2918,7 @@ MonoBehaviour:
   _fxGO: {fileID: 0}
   _flashGO: {fileID: 0}
   _basicAttackCollider2D: {fileID: 6062627330182927401}
+  _cinemachineImpulseSource: {fileID: 9116344587691213050}
   _contactFilter2D:
     useTriggers: 0
     useLayerMask: 0
@@ -2752,6 +2934,49 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   alwaysEnter: 0
+  signalSourceAsset: {fileID: 0}
+--- !u!114 &9116344587691213050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436242181379557896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &6497595643358267776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2801,6 +3026,7 @@ GameObject:
   - component: {fileID: 6214339698863578750}
   - component: {fileID: 3130949160902296738}
   - component: {fileID: 6435186970399484365}
+  - component: {fileID: 946330709380235444}
   m_Layer: 13
   m_Name: SkillKopshAttack2
   m_TagString: Untagged
@@ -2880,6 +3106,7 @@ MonoBehaviour:
   _fxGO: {fileID: 0}
   _flashGO: {fileID: 0}
   _basicAttackCollider2D: {fileID: 3130949160902296738}
+  _cinemachineImpulseSource: {fileID: 946330709380235444}
   _contactFilter2D:
     useTriggers: 0
     useLayerMask: 0
@@ -2895,6 +3122,49 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   alwaysEnter: 0
+  signalSourceAsset: {fileID: 0}
+--- !u!114 &946330709380235444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8098724998412089062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &8485270878824298519
 GameObject:
   m_ObjectHideFlags: 0

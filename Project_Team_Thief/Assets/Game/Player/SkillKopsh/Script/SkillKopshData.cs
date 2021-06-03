@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 [CreateAssetMenu(fileName = "SkillKopshData", menuName = "ScriptableObject/SkillKopshData")]
 public class SkillKopshData : SkillDataBase
 {
+    [SerializeField]
+    private SignalSourceAsset[] _cinemachineSignalSourceArr;
+    public SignalSourceAsset[] CinemachineSignalSourceArr => _cinemachineSignalSourceArr;
+    
     [SerializeField] 
     private Vector2[] _knockBackPowerArr;
 

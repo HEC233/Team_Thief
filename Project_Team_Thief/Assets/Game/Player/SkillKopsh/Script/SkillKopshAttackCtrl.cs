@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assert = UnityEngine.Assertions.Assert;
+using Cinemachine;
 
 public class SkillKopshAttackCtrl : AttackBase
 {
   [SerializeField] 
     private BoxCollider2D _basicAttackCollider2D;
     [SerializeField]
+    private CinemachineImpulseSource _cinemachineImpulseSource;
+    [SerializeField]
     private ContactFilter2D _contactFilter2D;
     private List<Collider2D> result = new List<Collider2D>();
     private bool _isInit = false;
     private bool _isEnter = false;
     public bool alwaysEnter = false;
+    public SignalSourceAsset signalSourceAsset;
     
     private void OnEnable()
     {
@@ -88,6 +92,8 @@ public class SkillKopshAttackCtrl : AttackBase
     {
         if (_isAbleCameraShake == false)
             return;
+        
+        _cinemachineImpulseSource.GenerateImpulse();
     }
     
     public override void AttackDamage()

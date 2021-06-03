@@ -17,6 +17,10 @@ MonoBehaviour:
   _skillName: Skill4Kopsh
   _increaseEncroachment: 10
   _encroachmentDecrease: 0
+  _cinemachineSignalSourceArr:
+  - {fileID: 11400000, guid: b48422a21c79a9a4d868d26c3efe0296, type: 2}
+  - {fileID: 11400000, guid: 349bd4152b1b4e648a305c010167e5f6, type: 2}
+  - {fileID: 11400000, guid: 019e2bcfb6a32a94897923b52550bb3a, type: 2}
   _knockBackPowerArr:
   - {x: 0.3, y: 0}
   - {x: 0, y: 1}
