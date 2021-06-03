@@ -6,55 +6,31 @@ public class Spawner : MonoBehaviour
 {
     public List<GameObject> unit = new List<GameObject>();
 
-    public bool Spawn(string unitName, Vector3 position, Quaternion quaternion, int count)
+    public GameObject[] Spawn(string unitName, Vector3 position, Quaternion quaternion, int count)
     {
-        //for(int i = 0; i < unit.Count; i++)
-        //{
-        //    var unitComponent = unit[i].GetComponentInChildren<Unit>();
-        //    if(unitComponent?.GetUnitName() == unitName)
-        //    {
-        //        for (int j = 0; j < count; j++)
-        //        {
-        //            StartCoroutine(SpawnCoroutine(unit[i], position, quaternion));
-        //        }
-        //        return true;
-        //    }    
-        //}
-        //return false;
+        GameObject[] ret = new GameObject[count];
 
         var unit = Addressable.instance.GetUnit(unitName);
         if(unit != null)
         {
-            StartCoroutine(SpawnCoroutine(unit, position, quaternion));
-            return true;
+            GameManager.instance?.FX.Play("Spawn", position);
+
+            for (int i = 0; i < count; i++)
+            {
+                ret[i] = Instantiate(unit, position, quaternion);
+            }
+
+            return ret;
         }
-        return false;
+        return null;
     }
 
-    public bool Spawn(string unitName, Vector3 position)
+    public GameObject Spawn(string unitName, Vector3 position)
     {
-        return Spawn(unitName, position, Quaternion.identity, 1);
+        return Spawn(unitName, position, Quaternion.identity, 1)[0];
     }
-    public bool SpawnMany(string unitName, Vector3 position, int count)
+    public GameObject[] SpawnMany(string unitName, Vector3 position, int count)
     {
         return Spawn(unitName, position, Quaternion.identity, count);
-    }
-
-    private IEnumerator SpawnCoroutine(GameObject go, Vector3 position, Quaternion quaternion)
-    {
-        var fx = GameManager.instance?.FX;
-        if (fx)
-        {
-            var controller = fx.Play("Spawn", position);
-            //while(controller != null && !controller.isStopped)
-            //{
-            //    yield return null;
-            //}
-            yield return new WaitForSeconds(0.2f);
-        }
-
-        Instantiate(go, position, quaternion);
-
-        yield break;
     }
 }

@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assert = UnityEngine.Assertions.Assert;
+using Cinemachine;
 
 public class SkillPlainSwordAttackCtrl : AttackBase
 {
+    [SerializeField]
+    private CinemachineImpulseSource _cinemachineImpulseSource;
+    public SignalSourceAsset _cinemachineSignalSource;
+
   [SerializeField] 
     private BoxCollider2D _basicAttackCollider2D;
     [SerializeField]
@@ -32,10 +37,12 @@ public class SkillPlainSwordAttackCtrl : AttackBase
         _contactFilter2D.useTriggers = true;
         _contactFilter2D.useLayerMask = true;
         _contactFilter2D.layerMask = _hitLayerMask;
+
     }
 
     public void Progress()
     {
+        Bind();
         PlayFx();
 
         AttackDamage();
@@ -45,6 +52,7 @@ public class SkillPlainSwordAttackCtrl : AttackBase
             PlaySfx();
             HitStop();
             CameraShake();
+            ZoomIn();
         }
     }
 
@@ -88,7 +96,49 @@ public class SkillPlainSwordAttackCtrl : AttackBase
     {
         if (_isAbleCameraShake == false)
             return;
+        
+        _cinemachineImpulseSource.GenerateImpulse();
     }
+    
+    public override void ZoomIn()
+    {
+        if (_isZoomIn == false)
+        {
+            return;
+        }
+        
+        _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
+        _cinemachineBlendDefinition.m_CustomCurve = _zoomInCurve;
+        _cinemachineBlendDefinition.m_Time = _zoomInTime;
+
+        GameManager.instance.cameraMng.ZoomIn(_cinemachineBlendDefinition, _zoomInSize);
+    }
+
+    private void ZoomOut()
+    {
+        GameManager.instance.cameraMng.ZoomOut(ZoomOutBlendDefinition());
+        UnBind();
+    }
+
+    public override CinemachineBlendDefinition ZoomOutBlendDefinition()
+    {
+        _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
+        _cinemachineBlendDefinition.m_CustomCurve = _zoomOutCurve;
+        _cinemachineBlendDefinition.m_Time = _zoomOutTime;
+
+        return _cinemachineBlendDefinition;
+    }
+
+    public override void UnBind()
+    {
+        GameManager.instance.cameraMng.OnZoomInEndEvent -= ZoomOut;
+    }
+
+    private void Bind()
+    {
+        GameManager.instance.cameraMng.OnZoomInEndEvent += ZoomOut;
+    }
+
     
     public override void AttackDamage()
     {

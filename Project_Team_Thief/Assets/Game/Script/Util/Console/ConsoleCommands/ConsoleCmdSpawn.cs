@@ -16,7 +16,7 @@ namespace PS.Util.DeveloperConsole.Commands
             {
                 Assert.IsNotNull(GameManager.instance.spawner);
 
-                if (GameManager.instance.spawner.Spawn(args[0], GameManager.instance.GetControlActor().GetUnit().transform.position))
+                if (GameManager.instance.spawner.Spawn(args[0], GameManager.instance.GetControlActor().GetUnit().transform.position) != null)
                 {
                     resultMsg = returnTxt;
                     return true;

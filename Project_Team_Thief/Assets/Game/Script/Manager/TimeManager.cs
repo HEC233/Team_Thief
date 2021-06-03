@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -150,8 +151,9 @@ public class TimeManager : MonoBehaviour
         //hitStopReadyCheckList.Clear();
 
         yield return null;  // 피격 FX 1프레임 출력을 위한 대기
-        startHitstopEvent?.Invoke(_timeScale);
+        yield return null;  // 피격 FX 1프레임 출력을 위한 대기
 
+        startHitstopEvent?.Invoke(_timeScale);
         float tick = 0.0f;
         float prevTimeScale = _timeScale;
         while (tick <= time)
@@ -159,6 +161,8 @@ public class TimeManager : MonoBehaviour
             tick += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+        
+        _isHitStop = false;
 
         if (_isBulletTime == true)
         {
@@ -171,6 +175,5 @@ public class TimeManager : MonoBehaviour
             endHitstopEvent?.Invoke(_timeScale);
         }
 
-        _isHitStop = false;
     }
 }

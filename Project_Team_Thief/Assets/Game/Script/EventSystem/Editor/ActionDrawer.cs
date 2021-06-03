@@ -101,6 +101,10 @@ namespace PS.Event
                         var bgmName = property.FindPropertyRelative("bgmName");
                         bgmName.stringValue = EditorGUI.TextField(rect, "사운드", bgmName.stringValue);
                         break;
+                    case (int)ActionType.BossActive:
+                        var bossName = property.FindPropertyRelative("unitName");
+                        bossName.stringValue = EditorGUI.TextField(rect, "보스이름", bossName.stringValue);
+                        break;
                 }
             }
         }
@@ -114,6 +118,7 @@ namespace PS.Event
                 case (int)ActionType.Dialog:
                 case (int)ActionType.SFX:
                 case (int)ActionType.BGMChange:
+                case (int)ActionType.BossActive:
                     returnValue += EditorGUIUtility.singleLineHeight;
                     break;
                 case (int)ActionType.CutScene:

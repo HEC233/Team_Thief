@@ -19,6 +19,7 @@ public class KeyManager : MonoBehaviour
     {
         if (controlUnit == null)
             return;
+        
 
         List<KeyCode> pressedInput = new List<KeyCode>();
 
@@ -35,6 +36,14 @@ public class KeyManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X))
             {
                 controlUnit.Transition(TransitionCondition.DialogueNext);
+            }
+            if(Input.GetKeyDown(KeyCode.C))
+            {
+                controlUnit.Transition(TransitionCondition.DialogueSkip);
+            }
+            if(Input.GetKeyUp(KeyCode.C))
+            {
+                controlUnit.Transition(TransitionCondition.DialogueSkipCancel);
             }
         }
 

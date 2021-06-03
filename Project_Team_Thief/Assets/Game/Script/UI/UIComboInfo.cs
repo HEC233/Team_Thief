@@ -26,20 +26,20 @@ public class UIComboInfo : MonoBehaviour
         comboImages[0].sprite = digits[first];
         comboImages[1].sprite = digits[second];
         comboImages[2].sprite = digits[third];
-        comboImages[1].gameObject.SetActive(second != 0);
+        comboImages[1].gameObject.SetActive(third != 0 || second != 0);
         comboImages[2].gameObject.SetActive(third != 0);
 
-        if (second == 0)
-        {
-            digitRect.localScale = Vector3.one * 1.5f;
-        }
-        else if (third != 0)
+        if (third != 0)
         {
             digitRect.localScale = Vector3.one * 0.75f;
         }
-        else
+        else if (second != 0)
         {
             digitRect.localScale = Vector3.one;
+        }
+        else
+        {
+            digitRect.localScale = Vector3.one * 1.5f;
         }
 
         gameObject.SetActive(true);

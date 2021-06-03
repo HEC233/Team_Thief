@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using PS.Util.Tile;
 using PS.FX;
@@ -27,7 +28,6 @@ public class GameManager : MonoBehaviour
     }
 
     public FreameChecker frameChecker;
-
     public CameraManager cameraMng;
     public TimeManager timeMng;
     public SoundManager soundMng;
@@ -66,7 +66,6 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         Application.targetFrameRate = 60;
-        TileCoordClass.SetGrid(grid);
     }
 
     private void Start()
@@ -113,23 +112,31 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(StartGameCoroutine());
+        StartCoroutine(StartGameCoroutine("HHG"));
     }
 
-    IEnumerator StartGameCoroutine()
+    public void LoadGame(string SceneName)
     {
-        yield return GameLoader.instance.SceneLoad("HHG");
+        StartCoroutine(StartGameCoroutine(SceneName));
+    }
+
+    IEnumerator StartGameCoroutine(string SceneName)
+    {
+        yield return GameLoader.instance.SceneLoad(SceneName);
         GameState = GameStateEnum.InGame;
         ChangeActorToPlayer();
         //uiMng.InitUI(); // SceneLoadCallback���� �Űܾ� �� �ʿ伺�� ������ ����
         timeMng.ResetTime();
-
+        cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
+        cameraMng.Bind();
         var grid = GameObject.Find("Grid").GetComponent<Grid>();
         this.grid = grid;
+        TileCoordClass.SetGrid(grid);
     }
 
     public void EscapeButton()
     {
+
         // pause -> inGame
         if (GameState == GameStateEnum.Pause)
         {
@@ -169,7 +176,6 @@ public class GameManager : MonoBehaviour
     IEnumerator ExitGameCoroutine()
     {
         shadow.UnRegistAllCollider();
-
         yield return GameLoader.instance.SceneLoad("MainScene");
         GameState = GameStateEnum.MainMenu;
         SetControlActor(uiMng.UiActor);

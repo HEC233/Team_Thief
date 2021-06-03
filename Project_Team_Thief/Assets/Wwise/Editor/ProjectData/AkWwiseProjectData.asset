@@ -489,7 +489,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585789609304181459
+    m_lastTime: -8585788901211844034
     List:
     - name: Dandelion
       guid: bbdc4fdd927ecf48a5881615e6ab92ca
@@ -1114,6 +1114,58 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.504117
       minDuration: 0.237357
+    - name: PC_JA1
+      guid: 2b73ac60a762894c82844c22d3a4758b
+      id: 705617627
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: SFX
+        ObjectType: 4
+        guid: 92e06faedefaa341bd83c48e22786e60
+      - ElementName: PC
+        ObjectType: 4
+        guid: ea6a0a5aa8057d448e3651300b3aa078
+      - ElementName: woosh
+        ObjectType: 4
+        guid: 55be1080b422fa4b9400d154a11d4df2
+      - ElementName: PC_JA1
+        ObjectType: 3
+        guid: 2b73ac60a762894c82844c22d3a4758b
+      Path: Events\Default Work Unit\SFX\PC\woosh\PC_JA1
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PC_JA2
+      guid: dec7cc8ca95b73468a74b24aaef6cb78
+      id: 705617624
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: SFX
+        ObjectType: 4
+        guid: 92e06faedefaa341bd83c48e22786e60
+      - ElementName: PC
+        ObjectType: 4
+        guid: ea6a0a5aa8057d448e3651300b3aa078
+      - ElementName: woosh
+        ObjectType: 4
+        guid: 55be1080b422fa4b9400d154a11d4df2
+      - ElementName: PC_JA2
+        ObjectType: 3
+        guid: dec7cc8ca95b73468a74b24aaef6cb78
+      Path: Events\Default Work Unit\SFX\PC\woosh\PC_JA2
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: PC_Jump
       guid: 1586390e55cdf542a0dccf542b88a73c
       id: 3162924009
@@ -1140,6 +1192,84 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.113964
       minDuration: 0.090453
+    - name: PC_Kopsh1
+      guid: d2d1412154434b4bbd256b48fc5c7261
+      id: 1065092545
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: SFX
+        ObjectType: 4
+        guid: 92e06faedefaa341bd83c48e22786e60
+      - ElementName: PC
+        ObjectType: 4
+        guid: ea6a0a5aa8057d448e3651300b3aa078
+      - ElementName: woosh
+        ObjectType: 4
+        guid: 55be1080b422fa4b9400d154a11d4df2
+      - ElementName: PC_Kopsh1
+        ObjectType: 3
+        guid: d2d1412154434b4bbd256b48fc5c7261
+      Path: Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh1
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PC_Kopsh2
+      guid: bc13255b422f77428659c80f6973c7ea
+      id: 1065092546
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: SFX
+        ObjectType: 4
+        guid: 92e06faedefaa341bd83c48e22786e60
+      - ElementName: PC
+        ObjectType: 4
+        guid: ea6a0a5aa8057d448e3651300b3aa078
+      - ElementName: woosh
+        ObjectType: 4
+        guid: 55be1080b422fa4b9400d154a11d4df2
+      - ElementName: PC_Kopsh2
+        ObjectType: 3
+        guid: bc13255b422f77428659c80f6973c7ea
+      Path: Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh2
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PC_Kopsh3
+      guid: ef8ee41411e9d04ebf49af1395305424
+      id: 1065092547
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: SFX
+        ObjectType: 4
+        guid: 92e06faedefaa341bd83c48e22786e60
+      - ElementName: PC
+        ObjectType: 4
+        guid: ea6a0a5aa8057d448e3651300b3aa078
+      - ElementName: woosh
+        ObjectType: 4
+        guid: 55be1080b422fa4b9400d154a11d4df2
+      - ElementName: PC_Kopsh3
+        ObjectType: 3
+        guid: ef8ee41411e9d04ebf49af1395305424
+      Path: Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh3
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: PC_land
       guid: cea5fca4ece7cf4885ae55e2f9187f34
       id: 3795174
@@ -1189,6 +1319,84 @@ MonoBehaviour:
         ObjectType: 3
         guid: c019c8820cedfb41b724fadfdde1b801
       Path: Events\Default Work Unit\SFX\PC\movement\PC_slide
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PC_Snake_Sword1
+      guid: 0669529f08b2144697d4072f9e236bcd
+      id: 3746366218
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: SFX
+        ObjectType: 4
+        guid: 92e06faedefaa341bd83c48e22786e60
+      - ElementName: PC
+        ObjectType: 4
+        guid: ea6a0a5aa8057d448e3651300b3aa078
+      - ElementName: woosh
+        ObjectType: 4
+        guid: 55be1080b422fa4b9400d154a11d4df2
+      - ElementName: PC_Snake_Sword1
+        ObjectType: 3
+        guid: 0669529f08b2144697d4072f9e236bcd
+      Path: Events\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword1
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PC_Snake_Sword2
+      guid: 84bfd7df715e544f946446ab18ac9a09
+      id: 3746366217
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: SFX
+        ObjectType: 4
+        guid: 92e06faedefaa341bd83c48e22786e60
+      - ElementName: PC
+        ObjectType: 4
+        guid: ea6a0a5aa8057d448e3651300b3aa078
+      - ElementName: woosh
+        ObjectType: 4
+        guid: 55be1080b422fa4b9400d154a11d4df2
+      - ElementName: PC_Snake_Sword2
+        ObjectType: 3
+        guid: 84bfd7df715e544f946446ab18ac9a09
+      Path: Events\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword2
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PC_Snake_Sword3
+      guid: 7271e8f41e25f04faf14bbc7ec3620f0
+      id: 3746366216
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: SFX
+        ObjectType: 4
+        guid: 92e06faedefaa341bd83c48e22786e60
+      - ElementName: PC
+        ObjectType: 4
+        guid: ea6a0a5aa8057d448e3651300b3aa078
+      - ElementName: woosh
+        ObjectType: 4
+        guid: 55be1080b422fa4b9400d154a11d4df2
+      - ElementName: PC_Snake_Sword3
+        ObjectType: 3
+        guid: 7271e8f41e25f04faf14bbc7ec3620f0
+      Path: Events\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword3
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
