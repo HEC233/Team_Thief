@@ -145,6 +145,7 @@ public class DialogueUIController : MonoBehaviour
     public void EnablePortrait(bool value)
     {
         portraitObject.SetActive(value);
+        bPortraitEnable = value;
     }
 
     public void SetLeftPortrait(string spriteName)

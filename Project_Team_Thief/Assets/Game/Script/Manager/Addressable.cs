@@ -66,7 +66,7 @@ public class Addressable : MonoBehaviour
             {
                 if (factory.ContainsKey(r.name))
                 {
-                    Debug.LogError("there is already exist key " + r.name + " in " + typeof(T).Name);
+                    Debug.LogWarning("there is already exist key " + r.name + " in " + typeof(T).Name);
                 }
                 else
                 {

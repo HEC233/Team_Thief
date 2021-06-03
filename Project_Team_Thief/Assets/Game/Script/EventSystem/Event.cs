@@ -28,11 +28,7 @@ namespace PS.Event
     [System.Serializable]
     public struct TriggerCondition
     {
-        // for Talk
         public string NPCname;
-        // for Arrive
-        //[FieldOffset(0)]
-        // for Come
         public CmpType xCmp;
         public int xValue;
         public CmpType yCmp;

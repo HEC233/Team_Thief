@@ -86,14 +86,16 @@ namespace PS.Event
                     EditorGUILayout.BeginVertical();
                     EditorGUILayout.LabelField("X");
                     EditorGUILayout.BeginHorizontal();
-                    if (CmpType.None != (newTrigger.xCmp = (CmpType)EditorGUILayout.EnumPopup(_event.trigger.xCmp)))
+                    var xType = (newTrigger.xCmp = (CmpType)EditorGUILayout.EnumPopup(_event.trigger.xCmp));
+                    if (CmpType.None != xType)
                         newTrigger.xValue = EditorGUILayout.IntField(_event.trigger.xValue);
                     EditorGUILayout.EndHorizontal();
                     EditorGUILayout.EndVertical();
                     EditorGUILayout.BeginVertical();
                     EditorGUILayout.LabelField("Y");
                     EditorGUILayout.BeginHorizontal();
-                    if (CmpType.None != (newTrigger.yCmp = (CmpType)EditorGUILayout.EnumPopup(_event.trigger.yCmp)))
+                    var yType = (newTrigger.yCmp = (CmpType)EditorGUILayout.EnumPopup(_event.trigger.yCmp));
+                    if (CmpType.None != yType)
                         newTrigger.yValue = EditorGUILayout.IntField(_event.trigger.yValue);
                     EditorGUILayout.EndHorizontal();
                     EditorGUILayout.EndVertical();
@@ -117,7 +119,8 @@ namespace PS.Event
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("재생횟수");
-            if (PlayAmount.Finite == (_event.playAmount = (PlayAmount)EditorGUILayout.EnumPopup(_event.playAmount)))
+            var playType = (_event.playAmount = (PlayAmount)EditorGUILayout.EnumPopup(_event.playAmount));
+            if (PlayAmount.Finite == playType)
                 _event.playCount = EditorGUILayout.IntField(_event.playCount);
             EditorGUILayout.EndHorizontal();
 
