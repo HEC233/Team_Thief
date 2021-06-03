@@ -52,7 +52,6 @@ public class TimeManager : MonoBehaviour
 
     public void UnbindAll()
     {
-        Debug.Log("TIMEMANAGER UNBIMD ALL");
         startHitstopEvent = null;
         endHitstopEvent = null;
         startBulletTimeEvent = null;
@@ -162,6 +161,8 @@ public class TimeManager : MonoBehaviour
             tick += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+        
+        _isHitStop = false;
 
         if (_isBulletTime == true)
         {
@@ -174,7 +175,5 @@ public class TimeManager : MonoBehaviour
             endHitstopEvent?.Invoke(_timeScale);
         }
 
-        _isHitStop = false;
-        CinemachineCore.UniformDeltaTimeOverride = -1;
     }
 }

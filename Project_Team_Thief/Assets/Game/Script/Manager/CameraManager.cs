@@ -26,15 +26,12 @@ public class CameraManager : MonoBehaviour
 
     public void Bind()
     {
-        Debug.Log("BIND");
         GameManager.instance.timeMng.startHitstopEvent += OnHitStopEvnetCall;
         GameManager.instance.timeMng.endHitstopEvent += OnHitStopEndEventCall;
     }
 
     private void UnBind()
     {
-        Debug.Log("UNBIND");
-
         GameManager.instance.timeMng.startHitstopEvent -= OnHitStopEvnetCall;
         GameManager.instance.timeMng.endHitstopEvent -= OnHitStopEndEventCall;
     }
@@ -85,7 +82,6 @@ public class CameraManager : MonoBehaviour
         Debug.Log(_cinemachineBrain.IsBlending);
         StartCoroutine(WaitZoomInCoroutine());
         
-        Debug.Log("ZOOMIN");
     }
 
     public void ZoomOut(CinemachineBlendDefinition customBlend)
@@ -98,12 +94,10 @@ public class CameraManager : MonoBehaviour
         _cinemachineBlenderSettings.m_CustomBlends[1].m_Blend = customBlend;
         
         _mainVirtualCamera.m_Priority = 2;
-        Debug.Log("ZoomOut");
     }
 
     private void OnHitStopEvnetCall(float timeScale)
     {
-        Debug.Log("HitStop");
         CinemachineCore.UniformDeltaTimeOverride = 0;
     }
 

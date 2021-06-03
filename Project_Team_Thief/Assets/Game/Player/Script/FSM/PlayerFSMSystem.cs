@@ -45,6 +45,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     public AnimationCtrl AnimationCtrl => _animationCtrl;
 
+    private TransitionCondition _hitstopCondition;
+
     //[SerializeField]
     //private BattleIdleCtrl _battleIdleCtrl;
 
@@ -1770,7 +1772,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (_isAniEnd == true)
             {
-                Debug.Log("condition :" + condition);
                 return true;
             }
 
@@ -1789,7 +1790,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private void OnAnimationEndEvnetCall()
         {
-            Debug.Log("SpearAniEnd");
+            Debug.Log("SPEAR END");
             _isAniEnd = true;
             SystemMgr.Transition(TransitionCondition.Idle);
         }
@@ -2262,7 +2263,19 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         // }
 
         if (GameManager.instance.timeMng.IsHitStop == true)
+        {
+            if (condition != TransitionCondition.None)
+            {
+                Debug.Log("Hitstop con : " + condition);
+                _hitstopCondition = condition;
+            }
+
             return false;
+        }
+        else
+        {
+            _hitstopCondition = TransitionCondition.None;
+        }
 
         ChangeState(condition);
         return true;
@@ -2411,6 +2424,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private void EndHitStopEvnetCall(float _timeScale)
     {
+        if (_hitstopCondition != TransitionCondition.None)
+        {
+            Transition(TransitionCondition.Idle);
+        }
+        
         Unit.EndHitStop(_timeScale);
         AnimationCtrl.SetAnimationTimeSclae(_timeScale);
         _fxCtrl.SetAnimationTimeSclae(_timeScale);

@@ -152,8 +152,6 @@ public class SkillSpearAttackCtrl : AttackBase
 
                 if (item.gameObject.CompareTag("Enemy"))
                 {
-                    Debug.Log("Enemy List");
-
                     _isEnter = true;
                     break;
                 }
@@ -163,15 +161,16 @@ public class SkillSpearAttackCtrl : AttackBase
 
     public override void AttackDamage()
     {
-        Debug.Log("AttackDamage");
         foreach (var item in result)
         {
+            if(item == null)
+                continue;
+            
             if (item.gameObject.CompareTag("Player"))
                 continue;
 
             if (item.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("Enemy");
                 //============== 고재협이 편집함 ======================
                 _damage.hitPosition = item.ClosestPoint(_basicAttackCollider2D.bounds.center);
                 //=====================================================
