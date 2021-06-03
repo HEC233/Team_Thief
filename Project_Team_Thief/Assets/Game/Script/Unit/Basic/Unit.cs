@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour
     [SerializeField]
     protected LayerMask _groundLayer;
     protected Rigidbody2D _rigid;
+    protected bool bInvincibility = false;
 
     [SerializeField] protected float _customTimeScale = 1.0f;
 
@@ -114,5 +115,10 @@ public class Unit : MonoBehaviour
     public string GetUnitName()
     {
         return _unitData.name;
+    }
+
+    public bool GetInvincibility()
+    {
+        return bInvincibility;
     }
 }
