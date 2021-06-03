@@ -42,6 +42,8 @@ public enum TransitionCondition
     MouseMove,
     ArrowInput,
     DialogueNext,
+    DialogueSkip,
+    DialogueSkipCancel,
 
     BossAwake,
 }

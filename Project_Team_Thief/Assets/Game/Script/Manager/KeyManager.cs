@@ -37,6 +37,14 @@ public class KeyManager : MonoBehaviour
             {
                 controlUnit.Transition(TransitionCondition.DialogueNext);
             }
+            if(Input.GetKeyDown(KeyCode.C))
+            {
+                controlUnit.Transition(TransitionCondition.DialogueSkip);
+            }
+            if(Input.GetKeyUp(KeyCode.C))
+            {
+                controlUnit.Transition(TransitionCondition.DialogueSkipCancel);
+            }
         }
 
         if (Input.anyKey || Input.anyKeyDown)
