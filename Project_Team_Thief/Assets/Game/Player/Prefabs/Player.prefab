@@ -314,7 +314,7 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 1
-  _isZoomIn: 1
+  _isZoomIn: 0
   _hitStopTime: 0.12
   _bulltTime: 0
   _bulletTimeScale: 0
@@ -900,7 +900,7 @@ MonoBehaviour:
   _encroachmentPerPlayerAttackDamage: 1.2
   _encroachmentRecoveryPerTime: 1
   _encroachmentRecoveryAmount: -1
-  _aniFastAmount: 1.4
+  _aniFastAmount: 2
   _minSpeed: 1
   _maxSpeed: 8
   _moveStopSpeed: 1
@@ -919,7 +919,7 @@ MonoBehaviour:
   _wallJumpPowerY: 15
   _wallSlideingUpPower: 0.5
   _wallSlideingGravityScale: 1
-  _basicAttackDelay: 0.02
+  _basicAttackDelay: 0
   _basicAttackMoveTimeArr:
   - 0
   - 0.045
@@ -931,8 +931,8 @@ MonoBehaviour:
   - 5
   - 0.2
   _basicAttackCansleTime: 0.3
-  _basicAttackMinDamage: 355
-  _basicAtaackMaxDamage: 375
+  _basicAttackMinDamage: 90
+  _basicAtaackMaxDamage: 110
   _basicAttackCtrlArr:
   - {fileID: 1542053514905396923}
   - {fileID: 1542053514773876517}
@@ -1311,7 +1311,7 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 1
-  _isZoomIn: 1
+  _isZoomIn: 0
   _hitStopTime: 0.095
   _bulltTime: 0
   _bulletTimeScale: 0
@@ -1546,7 +1546,7 @@ MonoBehaviour:
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 1
-  _isZoomIn: 1
+  _isZoomIn: 0
   _hitStopTime: 0.095
   _bulltTime: 0
   _bulletTimeScale: 0
@@ -2255,7 +2255,7 @@ MonoBehaviour:
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 0
-  _hitStopTime: 0.094
+  _hitStopTime: 0.3
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -2414,7 +2414,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.3, y: 0}
+  m_Offset: {x: 0.21075511, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2425,7 +2425,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.13, y: 1.84}
+  m_Size: {x: 9.308489, y: 1.84}
   m_EdgeRadius: 0
 --- !u!114 &2325134920169563913
 MonoBehaviour:
@@ -3073,7 +3073,7 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 0
-  _isZoomIn: 1
+  _isZoomIn: 0
   _hitStopTime: 0.095
   _bulltTime: 0
   _bulletTimeScale: 0
@@ -3245,7 +3245,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.3, y: 0}
+  m_Offset: {x: -0.012368441, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3256,7 +3256,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.13, y: 1.84}
+  m_Size: {x: 9.754736, y: 1.84}
   m_EdgeRadius: 0
 --- !u!114 &1610817263505351697
 MonoBehaviour:
@@ -3449,7 +3449,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.3, y: 0}
+  m_Offset: {x: 0.17018723, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3460,7 +3460,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.13, y: 1.84}
+  m_Size: {x: 9.389626, y: 1.84}
   m_EdgeRadius: 0
 --- !u!114 &6435186970399484365
 MonoBehaviour:

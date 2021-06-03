@@ -20,4 +20,4 @@ MonoBehaviour:
   _cinemachineSignalSource: {fileID: 11400000, guid: 2f357948ba6cd7748b068ef03b02bdab,
     type: 2}
   _knockBackPower: {x: 0, y: 7.5}
-  _attackDamage: 2000
+  _attackDamage: 500

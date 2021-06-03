@@ -27,7 +27,7 @@ MonoBehaviour:
   - {x: 0.3, y: 0}
   _attackDamageArr:
   - 500
-  - 500
+  - 1000
   - 66
   _multiStateHitInterval: 0.04
-  _multiStateHitIntervalFastAmount: 0.5
+  _multiStateHitIntervalFastAmount: 0.3

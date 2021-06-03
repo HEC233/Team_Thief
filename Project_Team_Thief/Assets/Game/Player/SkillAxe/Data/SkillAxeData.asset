@@ -24,6 +24,6 @@ MonoBehaviour:
   _knockBackPower: {x: 0.5, y: 1.5}
   _axeMovePostionX: 8
   _axeMoveTime: 0.3
-  _axeAttackDamage: 833
+  _axeAttackDamage: 166
   _axeMultiStageHit: 3
   _axeMultiStageHitInterval: 0.2
