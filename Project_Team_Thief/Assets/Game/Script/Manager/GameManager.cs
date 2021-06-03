@@ -117,7 +117,14 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame(string SceneName)
     {
-        StartCoroutine(StartGameCoroutine(SceneName));
+        if (SceneName == "MainScene")
+        {
+            ExitToMainMenu();
+        }
+        else
+        {
+            StartCoroutine(StartGameCoroutine(SceneName));
+        }
     }
 
     IEnumerator StartGameCoroutine(string SceneName)
@@ -125,7 +132,6 @@ public class GameManager : MonoBehaviour
         yield return GameLoader.instance.SceneLoad(SceneName);
         GameState = GameStateEnum.InGame;
         ChangeActorToPlayer();
-        //uiMng.InitUI(); // SceneLoadCallback���� �Űܾ� �� �ʿ伺�� ������ ����
         timeMng.ResetTime();
 
         var grid = GameObject.Find("Grid").GetComponent<Grid>();
