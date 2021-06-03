@@ -5,6 +5,7 @@ DisablePortrait
 SetDown
 Next
 Next
-}
-SetUpper
 Next
+Next
+Next
+}

@@ -1,0 +1,3 @@
+Move START
+DisablePortrait
+Next

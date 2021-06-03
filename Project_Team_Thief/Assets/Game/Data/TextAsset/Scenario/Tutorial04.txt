@@ -1,0 +1,4 @@
+Move CLEAR
+DisablePortrait
+SetUpper
+Next

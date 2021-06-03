@@ -1,4 +1,0 @@
-Move SPIKE
-SetUpper
-Next
-Next

@@ -50,15 +50,15 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 4900000, guid: 5cddf5d774db44a4eae6b08e31dc674c, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 5cddf5d774db44a4eae6b08e31dc674c, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 27d598ce8cba3da4b9611dfc77a51e99
     m_Address: Assets/Game/Data/TextAsset/Bytecode/Tutorial01.bytes
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 27d598ce8cba3da4b9611dfc77a51e99, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 27d598ce8cba3da4b9611dfc77a51e99, type: 3}
   - m_GUID: 3049a41df98c5434089c300a7d4e22f7
     m_Address: Assets/Game/Sprite/Unit/Mini Boss/Mini BOSS.png
     m_ReadOnly: 0
@@ -78,6 +78,27 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
+    m_MainAsset: {fileID: 4900000, guid: 70f34a84ded29c14cbeb617203844126, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 70f34a84ded29c14cbeb617203844126, type: 3}
+  - m_GUID: 1ff0426ae940a074989cb2c476f94ac2
+    m_Address: Assets/Game/Data/TextAsset/Bytecode/Tutorial04.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Text
+    m_MainAsset: {fileID: 4900000, guid: 1ff0426ae940a074989cb2c476f94ac2, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 1ff0426ae940a074989cb2c476f94ac2, type: 3}
+  - m_GUID: 351ccf1c56cb63241938f7badc5c4e79
+    m_Address: Assets/Game/Data/TextAsset/Bytecode/Tutorial05.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Text
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8a1f1fdf6db68fe4f874873a916ff167
+    m_Address: Assets/Game/UI/Image/Portrait/Sp_PC_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
