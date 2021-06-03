@@ -20,6 +20,9 @@ public class DialogueSystem : MonoBehaviour
     private bool bInitialized = false;
     private bool bCodeRuning = false;
 
+    private bool bSkipping = false;
+    private float skipTimeCheck = 0;
+
     public bool CheckRunning() { return bCodeRuning; }
 
 
@@ -82,6 +85,16 @@ public class DialogueSystem : MonoBehaviour
 
     private void Update()
     {
+        if(bSkipping)
+        {
+            skipTimeCheck += Time.deltaTime;
+
+            if(skipTimeCheck > 1)
+            {
+                EndDialogue();
+            }
+        }
+
         if (!bCodeRuning || !bAutoPass)
         {
             return;
@@ -91,6 +104,7 @@ public class DialogueSystem : MonoBehaviour
         {
             bCodeRuning = Process();
         }
+
     }
 
     private bool bPaused = false;
@@ -333,6 +347,13 @@ public class DialogueSystem : MonoBehaviour
                     {
                         _dialogueSystem.bCodeRuning = _dialogueSystem.Process();
                     }
+                    break;
+                case TransitionCondition.DialogueSkip:
+                    _dialogueSystem.bSkipping = true;
+                    break;
+                case TransitionCondition.DialogueSkipCancel:
+                    _dialogueSystem.bSkipping = false;
+                    _dialogueSystem.skipTimeCheck = 0;
                     break;
             }
 
