@@ -1769,8 +1769,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override bool Transition(TransitionCondition condition)
         {
             if (_isAniEnd == true)
+            {
+                Debug.Log("condition :" + condition);
                 return true;
-            
+            }
+
             return false;
         }
 
@@ -1786,6 +1789,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private void OnAnimationEndEvnetCall()
         {
+            Debug.Log("SpearAniEnd");
             _isAniEnd = true;
             SystemMgr.Transition(TransitionCondition.Idle);
         }

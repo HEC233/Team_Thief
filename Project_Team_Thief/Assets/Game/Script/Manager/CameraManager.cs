@@ -18,7 +18,27 @@ public class CameraManager : MonoBehaviour
     public CinemachineVirtualCamera _zoomInVirtualCamera = null;
 
     public event UnityAction OnZoomInEndEvent = null;
-    
+
+    private void Start()
+    {
+        Bind();
+    }
+
+    public void Bind()
+    {
+        Debug.Log("BIND");
+        GameManager.instance.timeMng.startHitstopEvent += OnHitStopEvnetCall;
+        GameManager.instance.timeMng.endHitstopEvent += OnHitStopEndEventCall;
+    }
+
+    private void UnBind()
+    {
+        Debug.Log("UNBIND");
+
+        GameManager.instance.timeMng.startHitstopEvent -= OnHitStopEvnetCall;
+        GameManager.instance.timeMng.endHitstopEvent -= OnHitStopEndEventCall;
+    }
+
     public void FindCameras()
     {
         if (_mainVirtualCamera == null)
@@ -81,6 +101,17 @@ public class CameraManager : MonoBehaviour
         Debug.Log("ZoomOut");
     }
 
+    private void OnHitStopEvnetCall(float timeScale)
+    {
+        Debug.Log("HitStop");
+        CinemachineCore.UniformDeltaTimeOverride = 0;
+    }
+
+    private void OnHitStopEndEventCall(float timeScale)
+    {
+        CinemachineCore.UniformDeltaTimeOverride = -1;
+    }
+
     IEnumerator WaitZoomInCoroutine()
     {
         yield return new WaitForSeconds(0.04f);
@@ -88,7 +119,7 @@ public class CameraManager : MonoBehaviour
         while (_cinemachineBrain.IsBlending)
         {
             Debug.Log(_cinemachineBrain.IsBlending);
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForSeconds(GameManager.instance.timeMng.FixedDeltaTime);
         }
         
         OnZoomInEndEvent?.Invoke();

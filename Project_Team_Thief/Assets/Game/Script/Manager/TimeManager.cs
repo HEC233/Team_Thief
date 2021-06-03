@@ -52,6 +52,7 @@ public class TimeManager : MonoBehaviour
 
     public void UnbindAll()
     {
+        Debug.Log("TIMEMANAGER UNBIMD ALL");
         startHitstopEvent = null;
         endHitstopEvent = null;
         startBulletTimeEvent = null;
@@ -154,7 +155,6 @@ public class TimeManager : MonoBehaviour
         yield return null;  // 피격 FX 1프레임 출력을 위한 대기
 
         startHitstopEvent?.Invoke(_timeScale);
-        CinemachineCore.UniformDeltaTimeOverride = _timeScale;
         float tick = 0.0f;
         float prevTimeScale = _timeScale;
         while (tick <= time)

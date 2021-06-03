@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
         //uiMng.InitUI(); // SceneLoadCallback���� �Űܾ� �� �ʿ伺�� ������ ����
         timeMng.ResetTime();
         cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
+        cameraMng.Bind();
         var grid = GameObject.Find("Grid").GetComponent<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
@@ -175,7 +176,6 @@ public class GameManager : MonoBehaviour
     IEnumerator ExitGameCoroutine()
     {
         shadow.UnRegistAllCollider();
-
         yield return GameLoader.instance.SceneLoad("MainScene");
         GameState = GameStateEnum.MainMenu;
         SetControlActor(uiMng.UiActor);
