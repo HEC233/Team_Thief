@@ -180,6 +180,28 @@
 												</Action>
 											</ChildrenList>
 										</Event>
+										<Event Name="PC_JA1" ID="{60AC732B-62A7-4C89-8284-4C22D3A4758B}">
+											<ChildrenList>
+												<Action Name="" ID="{87CD7DCF-2656-4C82-8EDE-CAADEE6FBFF8}" ShortID="557849626">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="PC_BA1" ID="{9F38F8F1-C45D-493C-8BC2-EBAB864F4ECA}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PC_JA2" ID="{8CCCC7DE-5BA9-4673-8A74-B24AAEF6CB78}">
+											<ChildrenList>
+												<Action Name="" ID="{F0F64B53-1B30-4DD9-B905-7DE64E1A0628}" ShortID="83849961">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="PC_BA1" ID="{9F38F8F1-C45D-493C-8BC2-EBAB864F4ECA}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="hit" ID="{B938823E-68A5-4206-82A3-7601D3CC298F}" ShortID="408655258">
