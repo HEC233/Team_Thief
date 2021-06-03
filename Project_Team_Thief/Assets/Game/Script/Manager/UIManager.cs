@@ -104,6 +104,14 @@ public class UIManager : MonoBehaviour
                 uiPauseMenu.Toggle(false);
                 m_focusedUI = null;
                 break;
+            case GameManager.GameStateEnum.None:
+                uiPlayerInfo.Toggle(false);
+                uiDynamic.Toggle(false);
+                uiMainMenu.Toggle(false);
+                uiSettingMenu.Toggle(false);
+                uiPauseMenu.Toggle(false);
+                m_focusedUI = null;
+                break;
         }
     }
 

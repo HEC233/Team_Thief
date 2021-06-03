@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
         InGame,
         Pause,
         Setting,
+        None,
     }
 
 
@@ -130,11 +131,12 @@ public class GameManager : MonoBehaviour
     IEnumerator StartGameCoroutine(string SceneName)
     {
         yield return GameLoader.instance.SceneLoad(SceneName);
+        shadow.UnRegistAllCollider();
         GameState = GameStateEnum.InGame;
         ChangeActorToPlayer();
         timeMng.ResetTime();
 
-        var grid = GameObject.Find("Grid").GetComponent<Grid>();
+        var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
     }

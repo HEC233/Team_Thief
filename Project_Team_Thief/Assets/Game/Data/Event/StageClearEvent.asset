@@ -54,4 +54,4 @@ MonoBehaviour:
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 
-      sceneName: MainScene
+      sceneName: ToBeContinued
