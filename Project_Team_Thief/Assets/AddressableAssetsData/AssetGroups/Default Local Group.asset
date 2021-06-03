@@ -73,6 +73,20 @@ MonoBehaviour:
     - Text
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 5cddf5d774db44a4eae6b08e31dc674c
+    m_Address: Assets/Game/Data/TextAsset/Script/TutorialScript.txt
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Text
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 27d598ce8cba3da4b9611dfc77a51e99
+    m_Address: Assets/Game/Data/TextAsset/Bytecode/TutorialStart01.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Text
+    m_MainAsset: {fileID: 4900000, guid: 27d598ce8cba3da4b9611dfc77a51e99, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 27d598ce8cba3da4b9611dfc77a51e99, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cf711df1b7a7a54c9861afe5fde6759, type: 2}
   m_SchemaSet:
