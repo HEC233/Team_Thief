@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assert = UnityEngine.Assertions.Assert;
+using Cinemachine;
 
 public class SkillPlainSwordAttackCtrl : AttackBase
 {
+    [SerializeField]
+    private CinemachineImpulseSource _cinemachineImpulseSource;
+    public SignalSourceAsset _cinemachineSignalSource;
+
   [SerializeField] 
     private BoxCollider2D _basicAttackCollider2D;
     [SerializeField]
@@ -88,6 +93,8 @@ public class SkillPlainSwordAttackCtrl : AttackBase
     {
         if (_isAbleCameraShake == false)
             return;
+        
+        _cinemachineImpulseSource.GenerateImpulse();
     }
     
     public override void AttackDamage()
