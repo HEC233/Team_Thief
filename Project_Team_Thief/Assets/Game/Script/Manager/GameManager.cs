@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(StartGameCoroutine("HHG"));
+        StartCoroutine(StartGameCoroutine("Tutorial"));
     }
 
     public void LoadGame(string SceneName)
@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
     {
         yield return GameLoader.instance.SceneLoad(SceneName);
         shadow.UnRegistAllCollider();
+        dialogueSystem.EndDialogue();
         GameState = GameStateEnum.InGame;
         ChangeActorToPlayer();
         timeMng.ResetTime();

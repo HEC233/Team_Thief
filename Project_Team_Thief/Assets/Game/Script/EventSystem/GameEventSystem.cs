@@ -41,7 +41,7 @@ public class GameEventSystem : MonoBehaviour
     {
         evnetQueue.Add(value);
         
-        GameManager.instance?.AddTextToDeveloperConsole(value + " GameEventSystem talked queue added");
+        GameManager.instance?.AddTextToDeveloperConsole(value + " GameEventSystem queue added");
     }
 
     IEnumerator Process(PS.Event.Event data)

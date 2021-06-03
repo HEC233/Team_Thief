@@ -1,0 +1,10 @@
+Move SCARECROW
+StopTime
+{
+DisablePortrait
+SetDown
+Next
+Next
+}
+SetUpper
+Next

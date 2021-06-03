@@ -1,4 +1,0 @@
-Move START
-SetUpper
-DisablePortrait
-Next
