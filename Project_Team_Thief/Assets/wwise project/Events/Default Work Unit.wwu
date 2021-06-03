@@ -97,6 +97,89 @@
 												</Action>
 											</ChildrenList>
 										</Event>
+										<Event Name="PC_Snake_Sword2" ID="{DFD7BF84-5E71-4F54-9464-46AB18AC9A09}">
+											<ChildrenList>
+												<Action Name="" ID="{F1321A07-D820-4789-BBE2-55EAE00D58B2}" ShortID="435979393">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_PC_SnakeSword2_1" ID="{DEF3D2DE-DB19-4352-9BCA-774E4252C606}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{EB6AC4ED-33B8-4893-9636-9BD4FCD704CE}" ShortID="863935010">
+													<PropertyList>
+														<Property Name="Delay" Type="Real64" Value="0.3"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_PC_SnakeSword2_2" ID="{4DB91963-C841-422C-8FD2-D05880508C72}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PC_Snake_Sword1" ID="{9F526906-B208-4614-97D4-072F9E236BCD}">
+											<ChildrenList>
+												<Action Name="" ID="{2DF6ECE6-73E3-49FC-850F-48270E0D7AEE}" ShortID="611624638">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_PC_SnakeSword1" ID="{54A64AF5-12B0-4391-AB92-06677B7A6EB4}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PC_Snake_Sword3" ID="{F4E87172-251E-4FF0-AF14-BBC7EC3620F0}">
+											<ChildrenList>
+												<Action Name="" ID="{A04B6588-83A0-4C16-994B-8AFC8473395D}" ShortID="149727112">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_PC_SnakeSword3" ID="{4364C674-ADEE-475E-9A18-9479BF3071BC}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{A6EC0319-D323-4970-B211-9BB8492DE8CF}" ShortID="474476011">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_PC_SnakeSword3_chain3" ID="{F76868DC-0B28-4901-B608-2C5EDD61F657}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PC_Kopsh1" ID="{2141D1D2-4354-4B4B-BD25-6B48FC5C7261}">
+											<ChildrenList>
+												<Action Name="" ID="{72A7E906-AC22-44FF-B6DB-1567876DF2A0}" ShortID="734559148">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="PC_Kopsh1" ID="{3AC8A5D2-D8BF-4058-A580-29731F77027B}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PC_Kopsh2" ID="{5B2513BC-2F42-4277-8659-C80F6973C7EA}">
+											<ChildrenList>
+												<Action Name="" ID="{464E2DB2-1B7B-4C2B-9033-B4CE2E3960ED}" ShortID="650754258">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="PC_Kopsh2" ID="{9591A1C6-A5D6-4EE4-A116-71965633A4B2}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="PC_Kopsh3" ID="{14E48EEF-E911-4ED0-BF49-AF1395305424}">
+											<ChildrenList>
+												<Action Name="" ID="{84FA0BFF-96F5-49EE-B314-574892358A48}" ShortID="422066784">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="PC_Kopsh3" ID="{CDC63D1D-7427-4FC9-B650-B8EB2472721A}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="hit" ID="{B938823E-68A5-4206-82A3-7601D3CC298F}" ShortID="408655258">
