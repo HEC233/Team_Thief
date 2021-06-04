@@ -62,6 +62,12 @@ public class CameraManager : MonoBehaviour
         _liveVirtualCameraMultiChannelPerlin.m_FrequencyGain = frequencyGain;
         //StartCoroutine(ShakeCoroutine(time));
     }
+
+    public void AllCinemachineFollowChange(Transform transform)
+    {
+        _zoomInVirtualCamera.m_Follow = transform;
+        _mainVirtualCamera.m_Follow = transform;
+    }
     
     public void Shake(string unitName)
     {

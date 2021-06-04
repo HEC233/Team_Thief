@@ -324,11 +324,6 @@ public class PlayerUnit : Unit
         Bind();
     }
 
-    private void OnDestroy()
-    {
-        Debug.Log("UNIT DESTROY");
-    }
-
     void Init()
     {
         SetVariable(0.2f, 2, 0.4f);
@@ -766,6 +761,7 @@ public class PlayerUnit : Unit
 
     public void SetJumpAttackMove()
     {
+        _rigidbody2D.velocity = Vector2.zero;
         _rigidbody2D.gravityScale = 0;
     }
 

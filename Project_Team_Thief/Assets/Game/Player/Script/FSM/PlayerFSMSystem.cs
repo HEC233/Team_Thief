@@ -74,7 +74,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private void OnDestroy()
     {
-        Debug.Log("FSM DESTROY");
         UnBind();
     }
 
@@ -1308,7 +1307,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 _attackInputTime = Time.time;
 
-                Debug.Log(_attackInputTime - _attackBeInputTime);
                 if (_attackInputTime - _attackBeInputTime <= SystemMgr.Unit.BasicJumpAttackTime)
                 {
                     BasicJumpAttack2();
