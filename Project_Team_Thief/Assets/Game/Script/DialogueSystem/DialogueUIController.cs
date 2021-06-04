@@ -133,7 +133,6 @@ public class DialogueUIController : MonoBehaviour
         for (int i = startIndex; i < curText.Length; i++)
         {
             var subStr = curText.Substring(i, 1);
-            if (subStr == "#") subStr = "\n";
             textBox.text += subStr;
             yield return internalTime;
         }
