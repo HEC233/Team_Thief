@@ -39,13 +39,11 @@ public class ScrollLayerDrawer : PropertyDrawer
 public class BackgroundScrollerEditor : Editor
 {
     SerializedProperty layersProperty;
-    SerializedProperty dampProperty;
     SerializedProperty cameraProperty;
 
     private void OnEnable()
     {
         layersProperty = serializedObject.FindProperty("layers");
-        dampProperty = serializedObject.FindProperty("damping");
         cameraProperty = serializedObject.FindProperty("cameraTr");
     }
 
@@ -58,8 +56,6 @@ public class BackgroundScrollerEditor : Editor
         "태그 이름에는 배경 오브젝트들이 속한 태그 이름을 넣어주면 됩니다. 그럼 컴포넌트가 알아서 배경들을 수집합니다.", MessageType.Info);
 
         cameraProperty.objectReferenceValue = EditorGUILayout.ObjectField("카메라 트랜스폼", cameraProperty.objectReferenceValue, typeof(Transform), true);
-
-        dampProperty.floatValue = EditorGUILayout.Slider("댐프 값",dampProperty.floatValue, 0.0f, 1.0f);
 
         for (int i = 0; i < layersProperty.arraySize; i++)
         {

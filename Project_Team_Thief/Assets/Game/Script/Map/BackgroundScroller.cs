@@ -10,9 +10,6 @@ public class BackgroundScroller : MonoBehaviour
 
     public ScrollLayer[] layers;
 
-    [SerializeField]
-    private float damping;
-
     // 이건 시간이 오래 걸릴것 같다. 로딩쪽에서 수행하도록 뺄까?
     private void Start()
     {
@@ -32,7 +29,7 @@ public class BackgroundScroller : MonoBehaviour
 
         foreach (var layer in layers)
         {
-            layer.Move(delta, this);
+            layer.Move(delta);
         }
 
         prevCameraPos = (Vector2)cameraTr.position;
@@ -68,24 +65,17 @@ public class BackgroundScroller : MonoBehaviour
             targetPos = _tr.position;
         }
 
-        public void Move(Vector3 delta, BackgroundScroller bs)
+        public void Move(Vector3 delta)
         {
-            var vrtDelta = new Vector3(delta.x, 0, 0);
-
-            //_tr.position += (verticalScrolling ? delta : vrtDelta) * _rcp;
-            targetPos -= (verticalScrolling ? delta : vrtDelta) * _rcp;
-            _tr.localPosition = Vector3.Lerp(_tr.localPosition, targetPos, bs.damping);
+            if (verticalScrolling)
+            {
+                _tr.localPosition -= delta * _rcp;
+            }
+            else
+            {
+                _tr.localPosition -= new Vector3(delta.x * _rcp, delta.y, 0);
+            }
         }
-
-        //public IEnumerator ScrollLerp(BackgroundScroller bs)
-        //{
-        //    while (true)
-        //    {
-        //        _tr.position = Vector3.Lerp(_tr.position, targetPos, bs.damping);
-
-        //        yield return null;
-        //    }
-        //}
     }
         
 }
