@@ -1933,7 +1933,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void EndState()
         {
             SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr._fxCtrl.SetSpeed(1);
             
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
             
@@ -1962,7 +1962,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 {
                     _skillKopshNextIndex = SystemMgr.Unit.skillKopshIndex + 1;
                     SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
-                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                    SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
                 }
 
                 _attackBeInputTime = Time.time;
@@ -1993,7 +1993,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private void NextKopshAction()
         {
             SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr._fxCtrl.SetSpeed(1);
             
             SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
