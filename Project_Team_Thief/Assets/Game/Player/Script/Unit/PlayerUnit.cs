@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 
 // Unit은 외부에 보이는 인터페이스.
@@ -320,6 +322,11 @@ public class PlayerUnit : Unit
     {
         Init();
         Bind();
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("UNIT DESTROY");
     }
 
     void Init()

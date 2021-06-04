@@ -68,7 +68,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     // Start is called before the first frame update
     private void Start()
     {
+        Debug.Log(_unit.gameObject.name);
         Init();
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("FSM DESTROY");
+        UnBind();
     }
 
     private void Init()
@@ -77,6 +84,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         //GameManager.instance.SetControlActor(this);
 
         //==================== 고재협이 편집함 ==================
+        Debug.Log("CALL");
         GameManager.instance.SetPlayerActor(this);
         GameManager.instance.ChangeActorToPlayer();
 
@@ -1204,6 +1212,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack);
                 SystemMgr._fxCtrl.PlayAni(FxAniEnum.BasicJumpAttack);
+                WwiseSoundManager.instance.PlayEventSound("PC_JA1");
                 SystemMgr.Unit.StartCoroutine(BasicJumpAttackMoveCoroutine());
 
                 SystemMgr.OnBasicAttackEndAniEvent += BasicJumpAttackAniEnd;
@@ -1338,6 +1347,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack2);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.JumpAttackFx2);
             SystemMgr.Unit.StartCoroutine(BasicJumpAttackMoveCoroutine());
+            WwiseSoundManager.instance.PlayEventSound("PC_JA2");
+
         }
         
 
