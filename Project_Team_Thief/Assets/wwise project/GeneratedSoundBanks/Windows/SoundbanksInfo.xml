@@ -19,7 +19,7 @@
 				<AuxBus Id="1622449088" Name="Auxiliary_Bus" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Auxiliary_Bus"/>
 			</IncludedAuxBusses>
 		</SoundBank>
-		<SoundBank Id="1635194334" Language="SFX" Hash="684576846">
+		<SoundBank Id="1635194334" Language="SFX" Hash="3005403431">
 			<ObjectPath>\SoundBanks\Default Work Unit\PC</ObjectPath>
 			<ShortName>PC</ShortName>
 			<Path>PC.bnk</Path>
