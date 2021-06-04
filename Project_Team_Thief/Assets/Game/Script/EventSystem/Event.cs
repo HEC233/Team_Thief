@@ -12,7 +12,7 @@ namespace PS.Event
 
     public enum TriggerType
     {
-        Talk,Arrive,Come,Next,BossDie
+        Queue,TRUE,Come,Next
     }
 
     public enum CmpType
@@ -28,16 +28,11 @@ namespace PS.Event
     [System.Serializable]
     public struct TriggerCondition
     {
-        // for Talk
         public string NPCname;
-        // for Arrive
-        //[FieldOffset(0)]
-        // for Come
         public CmpType xCmp;
         public int xValue;
         public CmpType yCmp;
         public int yValue;
-        public string BossName;
     }
 
     [CreateAssetMenu(fileName = "Event", menuName = "ScriptableObject/Event")]

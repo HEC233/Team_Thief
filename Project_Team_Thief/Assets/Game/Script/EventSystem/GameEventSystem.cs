@@ -10,8 +10,7 @@ public class GameEventSystem : MonoBehaviour
     public List<PS.Event.Event> events;
 
     private List<string> nextEventQueue = new List<string>();
-    private List<string> talkedNPCqueue = new List<string>();
-    private List<string> DeadBossQueue = new List<string>();
+    private List<string> evnetQueue = new List<string>();
 
     GameObject _player;
     private void Start()
@@ -38,18 +37,11 @@ public class GameEventSystem : MonoBehaviour
         }
     }
 
-    public void AddTalkQueue(string value)
+    public void AddQueue(string value)
     {
-        talkedNPCqueue.Add(value);
+        evnetQueue.Add(value);
         
-        GameManager.instance?.AddTextToDeveloperConsole(value + " GameEventSystem talked queue added");
-    }
-
-    public void AddDeadBossQueue(string value)
-    {
-        DeadBossQueue.Add(value);
-
-        GameManager.instance?.AddTextToDeveloperConsole(value + " GameEventSystem deadBoss queue added");
+        GameManager.instance?.AddTextToDeveloperConsole(value + " GameEventSystem queue added");
     }
 
     IEnumerator Process(PS.Event.Event data)
@@ -65,10 +57,10 @@ public class GameEventSystem : MonoBehaviour
             {
                 switch (data.triggerType)
                 {
-                    case TriggerType.Talk:
+                    case TriggerType.Queue:
                         returnValue = TalkCheck(data.trigger);
                         break;
-                    case TriggerType.Arrive:
+                    case TriggerType.TRUE:
                         returnValue = ArriveCheck();
                         break;
                     case TriggerType.Come:
@@ -76,9 +68,6 @@ public class GameEventSystem : MonoBehaviour
                         break;
                     case TriggerType.Next:
                         returnValue = NextCheck(data.eventIndex);
-                        break;
-                    case TriggerType.BossDie:
-                        returnValue = BossDieCheck(data.trigger);
                         break;
                 }
                 yield return null;
@@ -177,6 +166,10 @@ public class GameEventSystem : MonoBehaviour
                     case ActionType.BossActive:
                         yield return StartCoroutine(BossActive(actionData.unitName));
                         break;
+                    case ActionType.LoadScene:
+                        GameManager.instance.LoadGame(actionData.sceneName);
+                        break;
+
                 }
                 currentAction++;
                 if (skip)
@@ -193,16 +186,16 @@ public class GameEventSystem : MonoBehaviour
 
             // 이벤트가 끝나면 다음 따라올 이벤트를 넣어줌
             nextEventQueue.Add(data.followingEvent);
-            talkedNPCqueue.RemoveAll(str => str == data.trigger.NPCname);
+            evnetQueue.RemoveAll(str => str == data.trigger.NPCname);
         }
 
     }
 
     private bool TalkCheck(PS.Event.TriggerCondition trigger)
     {
-        bool returnValue = talkedNPCqueue.Contains(trigger.NPCname);
+        bool returnValue = evnetQueue.Contains(trigger.NPCname);
         if (returnValue)
-            talkedNPCqueue.Remove(trigger.NPCname);
+            evnetQueue.Remove(trigger.NPCname);
         return returnValue;
     }
     private bool ArriveCheck()
@@ -228,16 +221,6 @@ public class GameEventSystem : MonoBehaviour
         bool returnValue = nextEventQueue.Contains(name);
         if (returnValue)
             nextEventQueue.Remove(name);
-        return returnValue;
-    }
-
-    private bool BossDieCheck(PS.Event.TriggerCondition trigger)
-    {
-        bool returnValue = DeadBossQueue.Contains(trigger.BossName);
-        if (returnValue)
-        {
-            DeadBossQueue.Remove(trigger.BossName);
-        }
         return returnValue;
     }
 
@@ -267,7 +250,7 @@ public class GameEventSystem : MonoBehaviour
 
     private IEnumerator RestrictEnd()
     {
-        bRestrict = true;
+        bRestrict = false;
 
         yield return null;
     }

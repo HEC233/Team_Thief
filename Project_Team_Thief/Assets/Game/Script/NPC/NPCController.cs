@@ -6,15 +6,15 @@ public class NPCController : MonoBehaviour
 {
     public string name;
     private bool bInterActorable = false;
-    public GameObject interactorableNoticeIcon;
+    public Transform interactorableNoticeIcon;
 
     private void Start()
     {
-        interactorableNoticeIcon.SetActive(false);
+        interactorableNoticeIcon.gameObject.SetActive(false);
     }
 
     public void ActiveIcon(bool bValue)
     {
-        interactorableNoticeIcon.SetActive(bValue);
+        interactorableNoticeIcon.gameObject.SetActive(bValue);
     }
 }

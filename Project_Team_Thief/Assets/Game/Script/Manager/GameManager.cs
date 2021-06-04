@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
         InGame,
         Pause,
         Setting,
+        None,
     }
 
 
@@ -112,24 +113,32 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(StartGameCoroutine("HHG"));
+        StartCoroutine(StartGameCoroutine("Tutorial"));
     }
 
     public void LoadGame(string SceneName)
     {
-        StartCoroutine(StartGameCoroutine(SceneName));
+        if (SceneName == "MainScene")
+        {
+            ExitToMainMenu();
+        }
+        else
+        {
+            StartCoroutine(StartGameCoroutine(SceneName));
+        }
     }
 
     IEnumerator StartGameCoroutine(string SceneName)
     {
         yield return GameLoader.instance.SceneLoad(SceneName);
+        shadow.UnRegistAllCollider();
+        dialogueSystem.EndDialogue();
         GameState = GameStateEnum.InGame;
         ChangeActorToPlayer();
-        //uiMng.InitUI(); // SceneLoadCallback���� �Űܾ� �� �ʿ伺�� ������ ����
         timeMng.ResetTime();
         cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
         cameraMng.Bind();
-        var grid = GameObject.Find("Grid").GetComponent<Grid>();
+        var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
     }
@@ -205,7 +214,7 @@ public class GameManager : MonoBehaviour
     }
 
     //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음
-    public void PushTalkCondition()
+    public void PushEventQueue()
     {
         GameObject go = GameObject.Find("NPCManager");
         if (go == null) return;
@@ -219,7 +228,7 @@ public class GameManager : MonoBehaviour
 
         string nearest = nm.GetNearestNPC();
         if (nearest != string.Empty)
-            es.AddTalkQueue(nearest);
+            es.AddQueue(nearest);
     }
 
     //======================

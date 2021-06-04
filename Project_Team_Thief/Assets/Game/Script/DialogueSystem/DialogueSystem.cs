@@ -277,12 +277,14 @@ public class DialogueSystem : MonoBehaviour
                     ui.ShowInteractiveButton(true);
                     GameManager.instance?.timeMng.StopTime();
                     GameManager.instance?.SetControlActor(inputProcess);
+                    GameManager.instance?.uiMng.SetShowCommandInfo(false);
                     bAutoPass = false;
                     break;
                 case 0x11:
                     ui.ShowInteractiveButton(false);
                     GameManager.instance?.timeMng.ResumeTime();
                     GameManager.instance?.ChangeActorToPlayer();
+                    GameManager.instance?.uiMng.SetShowCommandInfo(!GameManager.instance.SettingData.bDontUseCommandAssist);
                     bAutoPass = true;
                     break;
                 case 0x20:

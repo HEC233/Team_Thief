@@ -1,0 +1,11 @@
+Move BOSS1START
+StopTime
+{
+EnablePortrait
+HighLightLeft
+ChangeLeft Sp_PC_Portrait
+ChangeName NIX
+SetDown
+Next
+Next
+}

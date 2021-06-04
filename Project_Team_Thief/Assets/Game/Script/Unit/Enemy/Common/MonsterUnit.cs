@@ -308,6 +308,11 @@ public class MonsterUnit : Unit
         // 대미지 상정방식 기획서에 맞게 변경 필요
         var finalDamage = inputDamage.power * _unitData.reduceHit;
 
+        var knockback = inputDamage.knockBack * _unitData.knockbackMultiply;
+        if(knockback.magnitude != 0)
+        {
+            _rigid.velocity = Vector2.zero;
+        }
         _rigid.AddForce(inputDamage.knockBack * _unitData.knockbackMultiply, ForceMode2D.Impulse);
         isOnGround = false;
         skipGroundCheck = true;

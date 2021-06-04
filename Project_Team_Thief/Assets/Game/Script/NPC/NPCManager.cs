@@ -6,12 +6,24 @@ public class NPCManager : MonoBehaviour
 {
     [SerializeField]
     private NPCController[] npcs;
+    [SerializeField]
+    private GameObject interActiveIcon;
     private string nearestNpcName;
     private float nearestNpcDist;
     private int nearestNpcIndex = 0;
     private bool bNearestNpcExist = false;
 
     private Unit controlUnit;
+
+    private void Start()
+    {
+        foreach(var npc in npcs)
+        {
+            var go = Instantiate(interActiveIcon, npc.interactorableNoticeIcon);
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localScale = Vector3.one;
+        }
+    }
 
     private void Update()
     {
