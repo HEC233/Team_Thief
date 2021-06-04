@@ -1,4 +1,7 @@
 Move CLEAR
-DisablePortrait
+EnablePortrait
+HighLightLeft
+ChangeLeft Sp_PC_Portrait
+ChangeName NIX
 SetUpper
 Next

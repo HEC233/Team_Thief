@@ -117,7 +117,7 @@ public class DialogueUIController : MonoBehaviour
             EnablePortrait(false);
             SetShowName(false);
             dialogueTextBox.sizeDelta = new Vector2(330, 50);
-            dialogueBox.anchoredPosition = new Vector2(0, 85);
+            dialogueBox.anchoredPosition = new Vector2(0, 88);
         }
         else
         {

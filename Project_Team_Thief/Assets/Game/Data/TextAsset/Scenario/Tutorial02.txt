@@ -1,0 +1,14 @@
+Move SCARECROW
+StopTime
+{
+EnablePortrait
+HighLightLeft
+ChangeLeft Sp_PC_Portrait
+ChangeName NIX
+SetDown
+Next
+Next
+}
+SetUpper
+Next
+Next

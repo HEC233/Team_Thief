@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss1
   m_EditorClassIdentifier: 
   eventIndex: Boss1
-  name: "\uBCF4\uC2A4\uC8041"
+  name: "\uBCF4\uC2A4\uC8041\uB3C4\uCC29"
   stopCondition: 
   eventType: 0
   triggerType: 1
@@ -33,4 +33,67 @@ MonoBehaviour:
     actionTime: 0
     skipable: 1
     autopass: 0
-    actions: []
+    actions:
+    - type: 5
+      actionLength: 0
+      dialogName: Boss1
+      image: {fileID: 0}
+      leftDown: {x: 0, y: 0}
+      rightUp: {x: 0, y: 0}
+      unitName: 
+      spawnPos: {x: 0, y: 0}
+      count: 0
+      cameraName: Boss
+      intensity: 0
+      cameraSize: 0
+      movePos: {x: 0, y: 0}
+      animationName: 
+      effectName: 
+      positionSetMethod: 0
+      originPointObject: 
+      effectPos: {x: 0, y: 0}
+      sfxName: 
+      bgmName: 
+      sceneName: 
+    - type: 0
+      actionLength: 0
+      dialogName: Boss1
+      image: {fileID: 0}
+      leftDown: {x: 0, y: 0}
+      rightUp: {x: 0, y: 0}
+      unitName: 
+      spawnPos: {x: 0, y: 0}
+      count: 0
+      cameraName: 
+      intensity: 0
+      cameraSize: 0
+      movePos: {x: 0, y: 0}
+      animationName: 
+      effectName: 
+      positionSetMethod: 0
+      originPointObject: 
+      effectPos: {x: 0, y: 0}
+      sfxName: 
+      bgmName: 
+      sceneName: 
+    - type: 5
+      actionLength: 0
+      dialogName: Boss1
+      image: {fileID: 0}
+      leftDown: {x: 0, y: 0}
+      rightUp: {x: 0, y: 0}
+      unitName: 
+      spawnPos: {x: 0, y: 0}
+      count: 0
+      cameraName: Player
+      intensity: 0
+      cameraSize: 0
+      movePos: {x: 0, y: 0}
+      animationName: 
+      effectName: 
+      positionSetMethod: 0
+      originPointObject: 
+      effectPos: {x: 0, y: 0}
+      sfxName: 
+      bgmName: 
+      sceneName: 

@@ -1,0 +1,3 @@
+Move LIGHTWARRIOR2
+SetUpper
+Next
