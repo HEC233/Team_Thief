@@ -19,12 +19,12 @@ MonoBehaviour:
   maxJumpPower: 0
   jumpCount: 0
 <<<<<<< HEAD
-  hp: 10000
-  reduceHit: 10
-=======
   hp: 40000
   reduceHit: 1
->>>>>>> Team_Thief/210603balance2th
+=======
+  hp: 10000
+  reduceHit: 10
+>>>>>>> 3a972259160f6cd6886cd23c427cc3b0008c3698
   knockbackMultiply: 0
   skillDamage: 0
   criticalValue: 0
