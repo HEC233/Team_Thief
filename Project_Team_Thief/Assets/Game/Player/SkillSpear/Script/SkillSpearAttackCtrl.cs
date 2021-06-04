@@ -40,6 +40,11 @@ public class SkillSpearAttackCtrl : AttackBase
 
     public void Progress()
     {
+        if (_cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal == null)
+        {
+            _cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = signalSourceAsset;
+        }
+        
         Bind();
         PlayFx();
 

@@ -1791,7 +1791,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private void OnAnimationEndEvnetCall()
         {
-            Debug.Log("SPEAR END");
             _isAniEnd = true;
             SystemMgr.Transition(TransitionCondition.Idle);
         }
@@ -2076,7 +2075,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             
             SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr._fxCtrl.SetSpeed(1);
             
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
             
@@ -2105,7 +2104,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 {
                     _skillPlainSwordNextIndex = SystemMgr.Unit.skillPlainSwordIndex + 1;
                     SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
-                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                    SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
 
                     if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
                     {
@@ -2157,7 +2156,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private void NextAction()
         {
             SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr._fxCtrl.SetSpeed(1);
             
             SystemMgr.AnimationCtrl.PlayAni(_skillPlainSwordAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);

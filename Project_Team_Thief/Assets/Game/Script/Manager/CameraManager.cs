@@ -79,7 +79,6 @@ public class CameraManager : MonoBehaviour
         _zoomInVirtualCamera.m_Lens.OrthographicSize = zoomInSize;
         
         _mainVirtualCamera.m_Priority = 0;
-        Debug.Log(_cinemachineBrain.IsBlending);
         StartCoroutine(WaitZoomInCoroutine());
         
     }

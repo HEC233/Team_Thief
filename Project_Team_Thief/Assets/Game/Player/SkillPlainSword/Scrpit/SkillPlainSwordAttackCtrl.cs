@@ -40,17 +40,32 @@ public class SkillPlainSwordAttackCtrl : AttackBase
 
     }
 
+    public void GetSignalSourceAsset(SignalSourceAsset signalSourceAsset)
+    {
+        _cinemachineSignalSource = signalSourceAsset;
+    }
+
+    public void FristProgress()
+    {
+        if (_cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal == null)
+        {
+            _cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _cinemachineSignalSource;
+        }
+        
+        Bind();
+
+    }
+    
+
     public void Progress()
     {
-        Bind();
-        PlayFx();
-
         AttackDamage();
 
         if (_isEnter == true || alwaysEnter == true)
         {
             PlaySfx();
             HitStop();
+            BulltTime();
             CameraShake();
             ZoomIn();
         }
@@ -91,15 +106,17 @@ public class SkillPlainSwordAttackCtrl : AttackBase
         
         //WwiseSoundManager.instance.PlayEventSound("PC_HIT_blade");
     }
-    
+
     public override void CameraShake()
     {
         if (_isAbleCameraShake == false)
             return;
-        
+
+
         _cinemachineImpulseSource.GenerateImpulse();
+
     }
-    
+
     public override void ZoomIn()
     {
         if (_isZoomIn == false)
@@ -111,13 +128,14 @@ public class SkillPlainSwordAttackCtrl : AttackBase
         _cinemachineBlendDefinition.m_CustomCurve = _zoomInCurve;
         _cinemachineBlendDefinition.m_Time = _zoomInTime;
 
+        Debug.Log("ZoomIn");
         GameManager.instance.cameraMng.ZoomIn(_cinemachineBlendDefinition, _zoomInSize);
     }
 
-    private void ZoomOut()
+    public void ZoomOut()
     {
+        Debug.Log("ZoomOut");
         GameManager.instance.cameraMng.ZoomOut(ZoomOutBlendDefinition());
-        UnBind();
     }
 
     public override CinemachineBlendDefinition ZoomOutBlendDefinition()
@@ -131,6 +149,7 @@ public class SkillPlainSwordAttackCtrl : AttackBase
 
     public override void UnBind()
     {
+        Debug.Log("ZoomOut UnBind");
         GameManager.instance.cameraMng.OnZoomInEndEvent -= ZoomOut;
     }
 

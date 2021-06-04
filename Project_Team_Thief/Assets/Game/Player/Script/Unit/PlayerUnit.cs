@@ -1024,7 +1024,6 @@ public class PlayerUnit : Unit
 
     public void OnSkillSpearAttackEventCall()
     {
-        Debug.Log("Spear");
         OnSkillSpearAttackEvent?.Invoke();
     }
 
@@ -1078,16 +1077,16 @@ public class PlayerUnit : Unit
     {
         if(_skillPlainSwordMultiAttackCoroutine == null)
             return;
-
+        
         StopCoroutine(_skillPlainSwordMultiAttackCoroutine);
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].ZoomOut();
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].UnBind();
     }
 
     public void SkillPlainSwordFastInterval()
     {
-        Debug.Log("FAST CALL");
         _skillPlainSwordAttackInterval = _skillPlainSwordData.MultiStateHitIntervalFastAmount *
                                          _skillPlainSwordData.MultiStateHitInterval;
-        Debug.Log(_skillPlainSwordAttackInterval);
     }
 
     //  리팩토링 할 때  skillData를 다 따로 가지고 있지 말고
@@ -1367,6 +1366,9 @@ public class PlayerUnit : Unit
     IEnumerator SkillPlainSwordMultiAttackCoroutine()
     {
         float timer = 0.2f;
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].FristProgress();
+
         while (true)
         {
             timer += GameManager.instance.timeMng.FixedDeltaTime;
@@ -1375,11 +1377,11 @@ public class PlayerUnit : Unit
             {
                 _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
                 timer = 0.0f;
-                Debug.Log("Hit");
             }
-            
+
             yield return new WaitForFixedUpdate();
         }
+
     }
 
 
