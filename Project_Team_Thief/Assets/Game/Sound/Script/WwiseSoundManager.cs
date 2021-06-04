@@ -29,4 +29,15 @@ public class WwiseSoundManager : MonoBehaviour
     {
         AkSoundEngine.StopPlayingID(soundId);
     }
+
+    public void PauseAllSound()
+    {
+        AkSoundEngine.Suspend();
+    }
+
+    public void ResumeAllSound()
+    {
+        AkSoundEngine.WakeupFromSuspend();
+    }
+    
 }

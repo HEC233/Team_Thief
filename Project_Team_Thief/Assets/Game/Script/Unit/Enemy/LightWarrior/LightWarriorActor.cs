@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -35,12 +36,14 @@ public class LightWarriorActor : MonoBehaviour, IActor
 
         RegistEventForGameManager();
     }
+    
 
     public void RegistEventForGameManager()
     {
         var v = GameManager.instance.timeMng;
         if (v)
         {
+            Debug.Log("ENEMY UNIT REGESTER");
             v.startBulletTimeEvent += TimeScaleChangeEnterCallback;
             v.endBulletTimeEvent += TimeScaleChangeExitCallback;
             v.startHitstopEvent += TimeScaleChangeEnterCallback;

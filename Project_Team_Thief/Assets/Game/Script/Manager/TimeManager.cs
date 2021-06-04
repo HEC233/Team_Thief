@@ -21,6 +21,7 @@ public class TimeManager : MonoBehaviour
 
     public bool IsHitStop => _isHitStop;
 
+    [SerializeField]
     private float _timeScale = 1;
     public float TimeScale => _timeScale;
 
@@ -52,6 +53,7 @@ public class TimeManager : MonoBehaviour
 
     public void UnbindAll()
     {
+        Debug.Log("UNBIND ALL");
         startHitstopEvent = null;
         endHitstopEvent = null;
         startBulletTimeEvent = null;
@@ -72,6 +74,7 @@ public class TimeManager : MonoBehaviour
     {
         _timeStopRequiredCount = 0;
         _timeScale = 1;
+        _prevTimeScale = 1;
     }
     public void StopTime()
     {
@@ -87,7 +90,11 @@ public class TimeManager : MonoBehaviour
     {
         _timeStopRequiredCount--;
         if (_timeStopRequiredCount > 0)
-            return;
+        {
+            Debug.Log("현재 이 부분때문에 정상 진행이 안됨 임시로 리턴 품");
+            //return;
+        }
+
         _timeScale = _prevTimeScale;
         endHitstopEvent?.Invoke(_timeScale);
         _isStoped = false;

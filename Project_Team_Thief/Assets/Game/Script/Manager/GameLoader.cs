@@ -63,6 +63,8 @@ public class GameLoader : MonoBehaviour
 
         yield return SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
 
+
+        
         foreach (var callback in sceneLoadCallbacks)
         {
             string error = string.Empty;

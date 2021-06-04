@@ -68,12 +68,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     // Start is called before the first frame update
     private void Start()
     {
-        Debug.Log(_unit.gameObject.name);
         Init();
     }
 
     private void OnDestroy()
     {
+        ChangeState(TransitionCondition.Idle);
         UnBind();
     }
 
@@ -83,7 +83,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         //GameManager.instance.SetControlActor(this);
 
         //==================== 고재협이 편집함 ==================
-        Debug.Log("CALL");
         GameManager.instance.SetPlayerActor(this);
         GameManager.instance.ChangeActorToPlayer();
 
@@ -93,6 +92,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private void Bind()
     {
+        Debug.Log("PLAYERFSM BIND");
         GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvnetCall;
         GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
         GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;

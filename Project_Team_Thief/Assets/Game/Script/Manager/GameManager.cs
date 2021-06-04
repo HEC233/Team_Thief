@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
         dialogueSystem.EndDialogue();
         GameState = GameStateEnum.InGame;
         ChangeActorToPlayer();
-        timeMng.ResetTime();
+        timeMng.UnbindAll();
         cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
         cameraMng.FindCameras();
         cameraMng.Bind();
@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
             GameState = GameStateEnum.InGame;
             ChangeActorToPlayer();
             dialogueSystem.ResumeDialogue();
+            WwiseSoundManager.instance.ResumeAllSound();
         }
         // inGame -> pause
         else if (GameState == GameStateEnum.InGame)
@@ -160,6 +161,7 @@ public class GameManager : MonoBehaviour
             GameState = GameStateEnum.Pause;
             SetControlActor(uiMng.UiActor);
             dialogueSystem.PauseDialogue();
+            WwiseSoundManager.instance.PauseAllSound();
 
         }
         // mainMenu -> ExitGame
@@ -172,6 +174,7 @@ public class GameManager : MonoBehaviour
         {
             GameState = _prevState;
             SetControlActor(uiMng.UiActor);
+            WwiseSoundManager.instance.ResumeAllSound();
         }
     }
 

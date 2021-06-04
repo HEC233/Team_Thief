@@ -129,8 +129,6 @@ public class KeyManager : MonoBehaviour
                 GameManager.instance.commandManager.Inputkey('Z');
             else if (Input.GetKeyDown(KeyCode.X))
                 GameManager.instance.commandManager.Inputkey('X');
-            else if (Input.GetKeyDown(KeyCode.C))
-                GameManager.instance.commandManager.Inputkey('C');
             else if (Input.GetKeyDown(KeyCode.Space))
                 GameManager.instance.commandManager.Inputkey('S');
             /// 스킬 입력 처리
