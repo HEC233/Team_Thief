@@ -74,7 +74,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private void OnDestroy()
     {
-        Debug.Log("FSM DESTROY");
         UnBind();
     }
 
@@ -1033,6 +1032,17 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.Hit)
                 return true;
             
+            
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillSpear)
+                return true;
+            if (condition == TransitionCondition.SkillHammer)
+                return true;
+            if (condition == TransitionCondition.SkillKopsh)
+                return true;
+            if (condition == TransitionCondition.SkillPlainSword)
+                return true;
 
             
             if (_isBasicAttackEnd == true || _isBasicAttackAble == false)
@@ -1068,11 +1078,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                         return true;
                     }
                 }
-
-                if (condition == TransitionCondition.SkillAxe)
-                    return true;
-                if (condition == TransitionCondition.SkillHammer)
-                    return true;
             }
             
             return false;
@@ -1308,7 +1313,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 _attackInputTime = Time.time;
 
-                Debug.Log(_attackInputTime - _attackBeInputTime);
                 if (_attackInputTime - _attackBeInputTime <= SystemMgr.Unit.BasicJumpAttackTime)
                 {
                     BasicJumpAttack2();
@@ -1935,7 +1939,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void EndState()
         {
             SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr._fxCtrl.SetSpeed(1);
             
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
             
@@ -1964,7 +1968,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 {
                     _skillKopshNextIndex = SystemMgr.Unit.skillKopshIndex + 1;
                     SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
-                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                    SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
                 }
 
                 _attackBeInputTime = Time.time;
@@ -1995,7 +1999,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private void NextKopshAction()
         {
             SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr._fxCtrl.SetSpeed(1);
             
             SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
@@ -2084,6 +2088,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
             {
                 SystemMgr.Unit.SkillPlainSwordEnd();
+                WwiseSoundManager.instance.StopEventSoundFromId(_soundID);
             }
             
             SystemMgr.AnimationCtrl.SetSpeed(1);
@@ -2191,7 +2196,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 if (_skillPlainSwordNextIndex > _skillPlainSwordAniArr.Length - 1)
                 {
-                    WwiseSoundManager.instance.StopEventSoundFromId(_soundID);
                     return false;
                 }
                 else
@@ -2447,7 +2451,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     {
         if (_hitstopCondition != TransitionCondition.None)
         {
-            Transition(TransitionCondition.Idle);
+            Transition(_hitstopCondition);
         }
         
         Unit.EndHitStop(_timeScale);
