@@ -36,7 +36,7 @@ public class DialogueMaker
             }
             else
             {
-                dialogues[index] = strings[i];
+                dialogues[index] = Regex.Replace(strings[i], "#", "\n");
                 index++;
             }
         }
