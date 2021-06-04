@@ -447,11 +447,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-<<<<<<< HEAD
-    m_lastTime: -8585788094344248467
-=======
-    m_lastTime: -8585788084881937534
->>>>>>> BackgroundLight
+    m_lastTime: -8585788052658420988
     List:
     - name: Enemy
       guid: 4180b20eab728742bb28e1477a6e3154
