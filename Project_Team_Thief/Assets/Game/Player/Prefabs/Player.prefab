@@ -896,11 +896,11 @@ MonoBehaviour:
   _maxHp: 100
   _curHp: 100
   _decreaseHp: 0.2
-  _encroachmentPerPlayerHitDamage: 1.2
-  _encroachmentPerPlayerAttackDamage: 1.2
-  _encroachmentRecoveryPerTime: 1
-  _encroachmentRecoveryAmount: -1
-  _aniFastAmount: 2
+  _encroachmentPerPlayerHitDamage: 1.5
+  _encroachmentPerPlayerAttackDamage: 1.5
+  _encroachmentRecoveryPerTime: 0.04
+  _encroachmentRecoveryAmount: -0.25
+  _aniFastAmount: 1.8
   _minSpeed: 1
   _maxSpeed: 8
   _moveStopSpeed: 1
@@ -939,8 +939,8 @@ MonoBehaviour:
   - {fileID: 1542053513146765892}
   - {fileID: 5892634633465391629}
   _basicAttackKnockBackArr:
-  - {x: 7, y: 0}
-  - {x: 4, y: 0}
+  - {x: 3, y: 0}
+  - {x: 3, y: 0}
   - {x: 0, y: 0}
   - {x: 3, y: 5.5}
   _basicJumpAttackCtrlArr:
@@ -961,8 +961,8 @@ MonoBehaviour:
   _hitInvincibilityTime: 1
   _hitInvincibilityTwinkleTime: 0.5
   _hitTime: 0.5
-  _encroachmentDecreaseCombo: 20
-  _baiscAttackEncroachmentDecrease: -5
+  _encroachmentDecreaseCombo: 30
+  _baiscAttackEncroachmentDecrease: -10
   _skillAxeData: {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
   _skillSpearData: {fileID: 11400000, guid: e8948507ae42110479fddb18fa2f4d59, type: 2}
   _skillSpearAttackCtrl: {fileID: 67477167}
@@ -971,7 +971,7 @@ MonoBehaviour:
   _skillKopshData: {fileID: 11400000, guid: 85591972caf4f0d4d893707e49791220, type: 2}
   _skillKopshAttackCtrls: []
   skillKopshIndex: 0
-  _skillKopshAttackTime: 0.3
+  _skillKopshAttackTime: 0
   _skillPlainSwordData: {fileID: 11400000, guid: 5d4868f48c06c1c468032faa0449a618,
     type: 2}
   _SkillPlainSwordAttackCtrls:

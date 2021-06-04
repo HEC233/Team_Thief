@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484f46132f38df34b8c13b876f9708d2, type: 3}
   m_Name: CommandSkill3Hammer
   m_EditorClassIdentifier: 
-  commandString: RUDZ
-  reverseCommandString: LUDZ
-  coolTime: 2
-  maxCoolTIme: 2
+  commandString: RDZ
+  reverseCommandString: LDZ
+  coolTime: 5.019996
+  maxCoolTIme: 5
   skillName: Skill3Hammer
   skillIcon: {fileID: 21300000, guid: dc8516d714f173644b3b82b1dead03e3, type: 3}

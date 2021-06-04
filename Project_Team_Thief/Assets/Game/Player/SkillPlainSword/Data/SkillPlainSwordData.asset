@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: SkillPlainSwordData
   m_EditorClassIdentifier: 
   _numberOfTimesTheSkill: 1
-  _coolTime: 0
+  _coolTime: 9
   _skillName: Skill5PlainSword
-  _increaseEncroachment: 10
+  _increaseEncroachment: 30
   _encroachmentDecrease: 0
   _cinemachineSignalSourceArr:
   - {fileID: 11400000, guid: 6e5e9662fd3f3204cbb0412240b1887b, type: 2}
   - {fileID: 11400000, guid: ecba626b821b05c449d5eec90c473e21, type: 2}
   - {fileID: 11400000, guid: f275e751afa5724428a30ed270623ff1, type: 2}
   _knockBackPowerArr:
-  - {x: 0.3, y: 0}
-  - {x: 2, y: 1}
-  - {x: 0.3, y: 0}
+  - {x: 25, y: 0}
+  - {x: 28, y: 0}
+  - {x: 0.1, y: 0}
   _attackDamageArr:
   - 500
   - 1000

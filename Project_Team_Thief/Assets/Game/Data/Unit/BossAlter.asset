@@ -18,7 +18,7 @@ MonoBehaviour:
   minJumpPower: 0
   maxJumpPower: 0
   jumpCount: 0
-  hp: 10000
+  hp: 40000
   reduceHit: 1
   knockbackMultiply: 0
   skillDamage: 0
