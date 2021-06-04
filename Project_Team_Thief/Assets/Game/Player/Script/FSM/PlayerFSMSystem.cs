@@ -141,7 +141,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.Wallslideing)
             {
                 //=============================
-                GameManager.instance.PushTalkCondition();
+                GameManager.instance.PushEventQueue();
                 return false;
                 //=============================
             }

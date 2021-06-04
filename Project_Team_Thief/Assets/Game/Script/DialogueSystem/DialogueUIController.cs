@@ -7,27 +7,29 @@ using TMPro;
 public class DialogueUIController : MonoBehaviour
 {
     [SerializeField]
-    private RectTransform DialogueCanvas;
+    private RectTransform dialogueCanvas;
     [SerializeField]
     private TextMeshProUGUI textBox;
     [SerializeField]
-    private RectTransform DialogueBox;
+    private RectTransform dialogueTextBox;
     [SerializeField]
-    private GameObject PortraitObject;
+    private RectTransform dialogueBox;
     [SerializeField]
-    private RectTransform LeftPortraitRect;
+    private GameObject portraitObject;
     [SerializeField]
-    private Image LeftPortraitImage;
+    private RectTransform leftPortraitRect;
     [SerializeField]
-    private RectTransform RightPortraitRect;
+    private Image leftPortraitImage;
     [SerializeField]
-    private Image RightPortraitImage;
+    private RectTransform rightPortraitRect;
     [SerializeField]
-    private RectTransform NameBoxRect;
+    private Image rightPortraitImage;
     [SerializeField]
-    private TextMeshProUGUI NameBoxText;
+    private RectTransform nameBoxRect;
     [SerializeField]
-    private GameObject NextButton;
+    private TextMeshProUGUI nameBoxText;
+    [SerializeField]
+    private GameObject nextButton;
 
     private bool bAnimationEnd = true;
     private string curText;
@@ -43,13 +45,13 @@ public class DialogueUIController : MonoBehaviour
     }
     public void ShowDialoge()
     {
-        DialogueCanvas.gameObject.SetActive(true);
+        dialogueCanvas.gameObject.SetActive(true);
     }
 
 
     public void SetShowDialogue(bool value)
     {
-        DialogueCanvas.gameObject.SetActive(false);
+        dialogueCanvas.gameObject.SetActive(false);
         SetShowName(false);
         EnablePortrait(false);
         SetTextPosition(false);
@@ -61,7 +63,7 @@ public class DialogueUIController : MonoBehaviour
 
     public void ShowInteractiveButton(bool value)
     {
-        NextButton.SetActive(value);
+        nextButton.SetActive(value);
     }
 
     public void Puase()
@@ -111,15 +113,17 @@ public class DialogueUIController : MonoBehaviour
     {
         if (bUpper)
         {
-            bPortraitEnable = PortraitObject.activeSelf;
+            bPortraitEnable = portraitObject.activeSelf;
             EnablePortrait(false);
             SetShowName(false);
-            DialogueBox.anchoredPosition = new Vector2(0, 85);
+            dialogueTextBox.sizeDelta = new Vector2(330, 50);
+            dialogueBox.anchoredPosition = new Vector2(0, 88);
         }
         else
         {
             EnablePortrait(bPortraitEnable);
-            DialogueBox.anchoredPosition = new Vector2(0, -85);
+            dialogueTextBox.sizeDelta = new Vector2(200, 50);
+            dialogueBox.anchoredPosition = new Vector2(0, -85);
         }
     }
 
@@ -128,7 +132,8 @@ public class DialogueUIController : MonoBehaviour
         var internalTime = new WaitForSeconds(0.1f);
         for (int i = startIndex; i < curText.Length; i++)
         {
-            textBox.text += curText.Substring(i, 1);
+            var subStr = curText.Substring(i, 1);
+            textBox.text += subStr;
             yield return internalTime;
         }
         yield return new WaitForSeconds(waitTime);
@@ -138,18 +143,19 @@ public class DialogueUIController : MonoBehaviour
 
     public void EnablePortrait(bool value)
     {
-        PortraitObject.SetActive(value);
+        portraitObject.SetActive(value);
+        bPortraitEnable = value;
     }
 
     public void SetLeftPortrait(string spriteName)
     {
-        LeftPortraitRect.gameObject.SetActive(string.Compare(spriteName, "none", true) != 0);
-        LeftPortraitImage.sprite = Addressable.instance.GetSprite(spriteName);
+        leftPortraitRect.gameObject.SetActive(string.Compare(spriteName, "none", true) != 0);
+        leftPortraitImage.sprite = Addressable.instance.GetSprite(spriteName);
     }
     public void SetRightPortrait(string spriteName)
     {
-        RightPortraitRect.gameObject.SetActive(string.Compare(spriteName, "none", true) != 0);
-        RightPortraitImage.sprite = Addressable.instance.GetSprite(spriteName);
+        rightPortraitRect.gameObject.SetActive(string.Compare(spriteName, "none", true) != 0);
+        rightPortraitImage.sprite = Addressable.instance.GetSprite(spriteName);
     }
     public void SetPortraitHighlight(bool bLeft)
     {
@@ -164,8 +170,8 @@ public class DialogueUIController : MonoBehaviour
         float t = 0f;
         const float time = 0.5f;
 
-        Color startLeftColor = LeftPortraitImage.color;
-        Color startRightColor = RightPortraitImage.color;
+        Color startLeftColor = leftPortraitImage.color;
+        Color startRightColor = rightPortraitImage.color;
         Color endLeftColor;
         Color endRightColor;
 
@@ -181,8 +187,8 @@ public class DialogueUIController : MonoBehaviour
         }
         while (t <= time)
         {
-            LeftPortraitImage.color = Color.Lerp(startLeftColor, endLeftColor, t / time);
-            RightPortraitImage.color = Color.Lerp(startRightColor, endRightColor, t / time);
+            leftPortraitImage.color = Color.Lerp(startLeftColor, endLeftColor, t / time);
+            rightPortraitImage.color = Color.Lerp(startRightColor, endRightColor, t / time);
 
             t += Time.deltaTime;
             yield return null;
@@ -195,18 +201,18 @@ public class DialogueUIController : MonoBehaviour
     {
         //LeftPortraitImage.color = bLeftHighlighted ? Color.white : Color.gray;
         //RightPortraitImage.color = bLeftHighlighted ? Color.gray : Color.white;
-        LeftPortraitImage.gameObject.SetActive(bLeftHighlighted);
-        RightPortraitRect.gameObject.SetActive(!bLeftHighlighted);
-        NameBoxRect.anchoredPosition = bLeftHighlighted ? new Vector3(-200f, 1.3f, 0f) : new Vector3(200f, 1.3f, 0f);
+        leftPortraitImage.gameObject.SetActive(bLeftHighlighted);
+        rightPortraitRect.gameObject.SetActive(!bLeftHighlighted);
+        nameBoxRect.anchoredPosition = bLeftHighlighted ? new Vector3(-160f, 1.3f, 0f) : new Vector3(160f, 1.3f, 0f);
     }
 
     public void SetShowName(bool bValue)
     {
-        NameBoxRect.gameObject.SetActive(bValue);
+        nameBoxRect.gameObject.SetActive(bValue);
     }
 
     public void ChangeName(string value)
     {
-        NameBoxText.text = value;
+        nameBoxText.text = value;
     }
 }

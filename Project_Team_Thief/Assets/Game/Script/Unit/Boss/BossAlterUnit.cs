@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BossAlterUnit : MonsterUnit
 {
-    private bool bInvincibility = false;
-
     public void SetInvincibility(bool value)
     {
         bInvincibility = value;

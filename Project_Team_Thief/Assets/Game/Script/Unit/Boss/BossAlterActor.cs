@@ -141,15 +141,25 @@ public class BossAlterActor : MonoBehaviour, IActor
                 break;
             case TransitionCondition.Hit:
                 GameManager.instance.uiMng.BossHPUpdate();
+                animCtrl.PlayAni(AniState.Hit);
+                StartCoroutine(IdleAnimation());
                 break;
             case TransitionCondition.Die:
-                GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddDeadBossQueue(unit.GetUnitName());
+                GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddQueue(unit.GetUnitName());
                 GameManager.instance.uiMng.BossDie();
+                unit.SetInvincibility(true);
+                animCtrl.PlayAni(AniState.Die);
                 break;
         }
 
 
         return false;
+    }
+
+    IEnumerator IdleAnimation()
+    {
+        yield return new WaitForSeconds(0.21f);
+        animCtrl.PlayAni(AniState.Idle);
     }
 
     public void HitTransition()
