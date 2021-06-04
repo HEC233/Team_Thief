@@ -819,8 +819,10 @@ public class PlayerUnit : Unit
         playerInfo.CurHP = _curHp;
         //---
 
-        if (_curHp < 0)
+        if (_curHp <= 0)
         {
+            _curHp = 0;
+            playerInfo.CurHP = _curHp;
             Dead();
         }
     }

@@ -1032,6 +1032,17 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.Hit)
                 return true;
             
+            
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillSpear)
+                return true;
+            if (condition == TransitionCondition.SkillHammer)
+                return true;
+            if (condition == TransitionCondition.SkillKopsh)
+                return true;
+            if (condition == TransitionCondition.SkillPlainSword)
+                return true;
 
             
             if (_isBasicAttackEnd == true || _isBasicAttackAble == false)
@@ -1067,11 +1078,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                         return true;
                     }
                 }
-
-                if (condition == TransitionCondition.SkillAxe)
-                    return true;
-                if (condition == TransitionCondition.SkillHammer)
-                    return true;
             }
             
             return false;
@@ -2082,6 +2088,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
             {
                 SystemMgr.Unit.SkillPlainSwordEnd();
+                WwiseSoundManager.instance.StopEventSoundFromId(_soundID);
             }
             
             SystemMgr.AnimationCtrl.SetSpeed(1);
@@ -2189,7 +2196,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 if (_skillPlainSwordNextIndex > _skillPlainSwordAniArr.Length - 1)
                 {
-                    WwiseSoundManager.instance.StopEventSoundFromId(_soundID);
                     return false;
                 }
                 else
@@ -2445,7 +2451,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     {
         if (_hitstopCondition != TransitionCondition.None)
         {
-            Transition(TransitionCondition.Idle);
+            Transition(_hitstopCondition);
         }
         
         Unit.EndHitStop(_timeScale);
