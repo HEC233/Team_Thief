@@ -897,7 +897,7 @@ MonoBehaviour:
   _curHp: 100
   _decreaseHp: 0.2
   _encroachmentPerPlayerHitDamage: 1.5
-  _encroachmentPerPlayerAttackDamage: 1.5
+  _encroachmentPerPlayerAttackDamage: 2.3
   _encroachmentRecoveryPerTime: 0.04
   _encroachmentRecoveryAmount: -0.25
   _aniFastAmount: 2
@@ -1905,7 +1905,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.3, y: 0}
+  m_Offset: {x: 2.0919998, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1916,7 +1916,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.13, y: 1.84}
+  m_Size: {x: 5.546, y: 1.84}
   m_EdgeRadius: 0
 --- !u!114 &2493278660732688885
 MonoBehaviour:
@@ -2453,7 +2453,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21075511, y: 0}
+  m_Offset: {x: -1.5492446, y: 0.25599957}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2464,7 +2464,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.308489, y: 1.84}
+  m_Size: {x: 5.788489, y: 2.4800012}
   m_EdgeRadius: 0
 --- !u!114 &2325134920169563913
 MonoBehaviour:
@@ -2481,13 +2481,13 @@ MonoBehaviour:
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 0
+  _isAbleHitStop: 1
   _isAbleBulltTime: 0
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 0
-  _hitStopTime: 0.2
+  _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -3320,7 +3320,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012368441, y: 0}
+  m_Offset: {x: 0.115632296, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3331,7 +3331,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.754736, y: 1.84}
+  m_Size: {x: 7.8347354, y: 1.84}
   m_EdgeRadius: 0
 --- !u!114 &1610817263505351697
 MonoBehaviour:
@@ -3348,7 +3348,7 @@ MonoBehaviour:
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 0
+  _isAbleHitStop: 1
   _isAbleBulltTime: 0
   _isAbleCameraShake: 0
   _isDisplyFx: 0
@@ -3524,7 +3524,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.17018723, y: 0}
+  m_Offset: {x: -1.0618126, y: 0.2720003}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3535,7 +3535,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.389626, y: 1.84}
+  m_Size: {x: 6.9256263, y: 2.3840005}
   m_EdgeRadius: 0
 --- !u!114 &6435186970399484365
 MonoBehaviour:
@@ -3552,13 +3552,13 @@ MonoBehaviour:
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 0
+  _isAbleHitStop: 1
   _isAbleBulltTime: 0
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 0
-  _hitStopTime: 0.3
+  _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
