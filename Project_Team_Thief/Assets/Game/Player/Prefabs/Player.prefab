@@ -2487,7 +2487,7 @@ MonoBehaviour:
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 0
-  _hitStopTime: 0
+  _hitStopTime: 0.2
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -3348,7 +3348,7 @@ MonoBehaviour:
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 1
+  _isAbleHitStop: 0
   _isAbleBulltTime: 0
   _isAbleCameraShake: 0
   _isDisplyFx: 0
@@ -3552,13 +3552,13 @@ MonoBehaviour:
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 1
+  _isAbleHitStop: 0
   _isAbleBulltTime: 0
   _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 0
-  _hitStopTime: 0.1
+  _hitStopTime: 0.3
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
