@@ -1676,6 +1676,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (condition == TransitionCondition.SkillSpear)
                 return true;
+            if (condition == TransitionCondition.SkillHammer)
+                return true;
+            if (condition == TransitionCondition.SkillKopsh)
+                return true;
+            if (condition == TransitionCondition.SkillPlainSword)
+                return true;
 
             if (_isAniEnd == false)
                 return false;
@@ -1786,6 +1792,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.SkillSpear)
+                return true;
+            if (condition == TransitionCondition.SkillHammer)
+                return true;
+            if (condition == TransitionCondition.SkillKopsh)
+                return true;
+            if (condition == TransitionCondition.SkillPlainSword)
+                return true;
+            
             if (_isAniEnd == true)
             {
                 return true;
@@ -1858,6 +1873,16 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillSpear)
+                return true;
+            if (condition == TransitionCondition.SkillKopsh)
+                return true;
+            if (condition == TransitionCondition.SkillPlainSword)
+                return true;
+            
             if (_isAniEnd == false)
                 return false;
             
@@ -1952,6 +1977,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillHammer)
+                return true;
+            if (condition == TransitionCondition.SkillSpear)
+                return true;
+            if (condition == TransitionCondition.SkillPlainSword)
+                return true;
+            
             if (_isAniEnd == true)
                 return true;
             
@@ -2105,6 +2139,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillHammer)
+                return true;
+            if (condition == TransitionCondition.SkillSpear)
+                return true;
+            if (condition == TransitionCondition.SkillKopsh)
+                return true;
+            
             if (_isAniEnd == true)
                 return true;
             
