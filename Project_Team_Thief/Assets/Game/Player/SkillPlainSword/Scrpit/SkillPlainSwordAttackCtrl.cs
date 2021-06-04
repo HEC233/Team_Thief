@@ -104,6 +104,7 @@ public class SkillPlainSwordAttackCtrl : AttackBase
         if (_isPlaySFX == false)
             return;
         
+
         //WwiseSoundManager.instance.PlayEventSound("PC_HIT_blade");
     }
 

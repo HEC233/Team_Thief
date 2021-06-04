@@ -1897,7 +1897,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private FxAniEnum[] _skillKopshFxAniArr = new FxAniEnum[]
             {FxAniEnum.SkillKopsh, FxAniEnum.SkillKopsh2, FxAniEnum.SkillKopsh3};
 
-        private string[] _skillKopshSoundArr = new string[] {"PC_BA1", "PC_BA2", "PC_BA3"};
+        private string[] _skillKopshSoundArr = new string[] {"PC_Kopsh1", "PC_Kopsh2", "PC_Kopsh3"};
         
         public SkillKopshState(PlayerFSMSystem system, SkillKopshData skillKopshData) : base(system)
         {
@@ -2036,6 +2036,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private float _attackBeInputTime = 0.0f;
         private float _attackTime = 0.5f;
         private int _skillPlainSwordNextIndex = 0;
+        private uint _soundID;
         
         private AniState[] _skillPlainSwordAniArr =
             new AniState[] {AniState.SkillPlainSword, AniState.SkillPlainSword2, AniState.SkillPlainSword3};
@@ -2043,7 +2044,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private FxAniEnum[] _skillPlainSwordFxAniArr = new FxAniEnum[]
             {FxAniEnum.SkillPlainSword, FxAniEnum.SkillPlainSword2, FxAniEnum.SkillPlainSword3};
 
-        private string[] _skillPlainSwordSoundArr = new string[] {"PC_BA1", "PC_BA2", "PC_BA3"};
+        private string[] _skillPlainSwordSoundArr = new string[] {"PC_Snake_Sword1", "PC_Snake_Sword2", "PC_Snake_Sword3"};
 
         public SkillPlainSwordState(PlayerFSMSystem system, SkillPlainSwordData skillPlainSwordData) : base(system)
         {
@@ -2160,7 +2161,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             SystemMgr.AnimationCtrl.PlayAni(_skillPlainSwordAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
-            WwiseSoundManager.instance.PlayEventSound(_skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+
+            if (SystemMgr.Unit.skillPlainSwordIndex == 2)
+                _soundID = WwiseSoundManager.instance.PlayEventSound(
+                    _skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            else
+            {
+                WwiseSoundManager.instance.PlayEventSound(
+                    _skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            }
 
             _gameSkillObject = InvokeSkill();
         }
@@ -2171,6 +2180,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 if (_skillPlainSwordNextIndex > _skillPlainSwordAniArr.Length - 1)
                 {
+                    WwiseSoundManager.instance.StopEventSoundFromId(_soundID);
                     return false;
                 }
                 else
