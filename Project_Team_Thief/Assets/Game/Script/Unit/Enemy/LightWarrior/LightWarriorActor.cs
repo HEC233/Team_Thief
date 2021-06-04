@@ -202,6 +202,7 @@ namespace LightWarrior
             if (bSoundPlaying)
             {
                 actor.wwiseSoundCtrl.StopEventSoundFromId(soundID);
+                bSoundPlaying = false;
             }
         }
 
