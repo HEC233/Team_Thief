@@ -34,6 +34,27 @@ MonoBehaviour:
     skipable: 0
     autopass: 0
     actions:
+    - type: 3
+      actionLength: 0
+      dialogName: Tutorial04
+      image: {fileID: 0}
+      leftDown: {x: 0, y: 0}
+      rightUp: {x: 0, y: 0}
+      unitName: 
+      spawnPos: {x: 0, y: 0}
+      count: 0
+      cameraName: 
+      intensity: 0
+      cameraSize: 0
+      movePos: {x: 0, y: 0}
+      animationName: 
+      effectName: 
+      positionSetMethod: 0
+      originPointObject: 
+      effectPos: {x: 0, y: 0}
+      sfxName: 
+      bgmName: 
+      sceneName: 
     - type: 0
       actionLength: 0
       dialogName: Tutorial04

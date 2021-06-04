@@ -118,3 +118,24 @@ MonoBehaviour:
       sfxName: 
       bgmName: 
       sceneName: 
+    - type: 2
+      actionLength: 0
+      dialogName: Tutorial03_2
+      image: {fileID: 0}
+      leftDown: {x: 59, y: -3}
+      rightUp: {x: 82, y: 4}
+      unitName: 
+      spawnPos: {x: 0, y: 0}
+      count: 0
+      cameraName: Player
+      intensity: 0
+      cameraSize: 0
+      movePos: {x: 0, y: 0}
+      animationName: 
+      effectName: 
+      positionSetMethod: 0
+      originPointObject: 
+      effectPos: {x: 0, y: 0}
+      sfxName: 
+      bgmName: 
+      sceneName: 

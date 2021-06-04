@@ -250,7 +250,7 @@ public class GameEventSystem : MonoBehaviour
 
     private IEnumerator RestrictEnd()
     {
-        bRestrict = true;
+        bRestrict = false;
 
         yield return null;
     }
