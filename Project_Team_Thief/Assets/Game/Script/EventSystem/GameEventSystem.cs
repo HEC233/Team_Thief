@@ -279,13 +279,10 @@ public class GameEventSystem : MonoBehaviour
 
     private IEnumerator CameraChange(string cameraName, float actionLength)
     {
-        var camera = GameObject.Find("CM vcam1")?.GetComponent<CinemachineVirtualCamera>();
-        if (camera == null) yield break;
-
         var go = GameObject.Find(cameraName);
         if (go == null) yield break;
 
-        camera.Follow = go.transform;
+        GameManager.instance.cameraMng.AllCinemachineFollowChange(go.transform);
 
         yield return new WaitForSeconds(actionLength);
     }
