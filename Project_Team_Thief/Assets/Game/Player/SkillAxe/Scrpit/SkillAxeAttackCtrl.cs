@@ -57,13 +57,15 @@ public class SkillAxeAttackCtrl : AttackBase
         _contactFilter2D.layerMask = _hitLayerMask;
 
         StartCoroutine(AxeMoveCoroutine());
+        
     }
 
     public void Progress()
     {
         if(_isInit == false)
             return;
-        
+        Bind();
+
         PlaySfx();
         PlayFx();
 
@@ -71,6 +73,7 @@ public class SkillAxeAttackCtrl : AttackBase
         {
             HitStop();
             CameraShake();
+            ZoomIn();
         }
     }
     
@@ -159,6 +162,44 @@ public class SkillAxeAttackCtrl : AttackBase
 
         return null;
     }
+    
+    public override void ZoomIn()
+    {
+        if (_isZoomIn == false)
+        {
+            return;
+        }
+        
+        _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
+        _cinemachineBlendDefinition.m_CustomCurve = _zoomInCurve;
+        _cinemachineBlendDefinition.m_Time = _zoomInTime;
+
+        GameManager.instance.cameraMng.ZoomIn(_cinemachineBlendDefinition, _zoomInSize);
+    }
+
+    private void ZoomOut()
+    {
+        GameManager.instance.cameraMng.ZoomOut(ZoomOutBlendDefinition());
+    }
+
+    public override CinemachineBlendDefinition ZoomOutBlendDefinition()
+    {
+        _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
+        _cinemachineBlendDefinition.m_CustomCurve = _zoomOutCurve;
+        _cinemachineBlendDefinition.m_Time = _zoomOutTime;
+
+        return _cinemachineBlendDefinition;
+    }
+
+    public override void UnBind()
+    {
+        GameManager.instance.cameraMng.OnZoomInEndEvent -= ZoomOut;
+    }
+
+    private void Bind()
+    {
+        GameManager.instance.cameraMng.OnZoomInEndEvent += ZoomOut;
+    }
 
     public override void SetDamage(in Damage damage)
     {
@@ -219,7 +260,8 @@ public class SkillAxeAttackCtrl : AttackBase
             yield return new WaitForFixedUpdate();
         }
 
-
+        
+        UnBind();
         OnEndSkillEvent?.Invoke();
         Destroy(this.gameObject);
     }

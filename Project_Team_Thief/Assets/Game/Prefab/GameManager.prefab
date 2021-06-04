@@ -238,6 +238,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cinemachineBrain: {fileID: 0}
+  _mainVirtualCamera: {fileID: 0}
+  _liveVirtualCamera: {fileID: 0}
+  _cinemachineBlenderSettings: {fileID: 11400000, guid: 83361b755313076438eefd5d29aceb1b,
+    type: 2}
+  _zoomInVirtualCamera: {fileID: 0}
 --- !u!114 &1997881170352566880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +444,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f4c201fd2d7adb4b994191777107033, type: 2}
   - {fileID: 11400000, guid: 557c8a8fa08379043b4769311e8cd633, type: 2}
   - {fileID: 11400000, guid: dbde029310c5c2d40956256c759ab53d, type: 2}
+  - {fileID: 11400000, guid: 98c9144e224adec44889f0481148cc88, type: 2}
+  - {fileID: 11400000, guid: 5e1758b61e6fa9e4c804fbdadc741e8b, type: 2}
 --- !u!114 &24858456
 MonoBehaviour:
   m_ObjectHideFlags: 0

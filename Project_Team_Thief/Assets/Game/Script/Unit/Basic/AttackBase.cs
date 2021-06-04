@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -29,6 +30,9 @@ public abstract class AttackBase : MonoBehaviour
 
     [SerializeField, Tooltip("효과음이 재생되는가?")]
     protected bool _isPlaySFX;
+
+    [SerializeField, Tooltip("줌 인이 일어나는가?")]
+    protected bool _isZoomIn;
     
     [Header ("Values")]
     [SerializeField]
@@ -43,7 +47,19 @@ public abstract class AttackBase : MonoBehaviour
     protected float _criticalPercentage;
     [SerializeField]
     protected SFXClip _sfxClip;
-
+    [SerializeField] 
+    protected AnimationCurve _zoomInCurve;
+    [SerializeField] 
+    protected float _zoomInTime;
+    [SerializeField] 
+    protected float _zoomInSize;
+    [SerializeField] 
+    protected AnimationCurve _zoomOutCurve;
+    [SerializeField]
+    protected float _zoomOutTime;
+    
+    protected CinemachineBlendDefinition _cinemachineBlendDefinition;
+    
     // [SerializeField]
     // protected float _camerShakeTime;
     // [SerializeField]
@@ -82,4 +98,10 @@ public abstract class AttackBase : MonoBehaviour
     public abstract void SetDamage(in Damage damage);
 
     public abstract void CameraShake();
+
+    public abstract void ZoomIn();
+
+    public abstract CinemachineBlendDefinition ZoomOutBlendDefinition();
+
+    public abstract void UnBind();
 }
