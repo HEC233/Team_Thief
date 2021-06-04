@@ -447,7 +447,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-    m_lastTime: -8585788216020352068
+    m_lastTime: -8585788094344248467
     List:
     - name: Enemy
       guid: 4180b20eab728742bb28e1477a6e3154
@@ -1138,8 +1138,8 @@ MonoBehaviour:
         guid: 2b73ac60a762894c82844c22d3a4758b
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_JA1
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.441617
+      minDuration: 0.31227
     - name: PC_JA2
       guid: dec7cc8ca95b73468a74b24aaef6cb78
       id: 705617624
@@ -1164,8 +1164,8 @@ MonoBehaviour:
         guid: dec7cc8ca95b73468a74b24aaef6cb78
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_JA2
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.441617
+      minDuration: 0.31227
     - name: PC_Jump
       guid: 1586390e55cdf542a0dccf542b88a73c
       id: 3162924009
@@ -1216,8 +1216,8 @@ MonoBehaviour:
         guid: d2d1412154434b4bbd256b48fc5c7261
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh1
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.281434
+      minDuration: 0.250729
     - name: PC_Kopsh2
       guid: bc13255b422f77428659c80f6973c7ea
       id: 1065092546
@@ -1242,8 +1242,8 @@ MonoBehaviour:
         guid: bc13255b422f77428659c80f6973c7ea
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh2
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.258076
+      minDuration: 0.22992
     - name: PC_Kopsh3
       guid: ef8ee41411e9d04ebf49af1395305424
       id: 1065092547
@@ -1268,8 +1268,8 @@ MonoBehaviour:
         guid: ef8ee41411e9d04ebf49af1395305424
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh3
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.213287
+      minDuration: 0.190017
     - name: PC_land
       guid: cea5fca4ece7cf4885ae55e2f9187f34
       id: 3795174
@@ -1346,8 +1346,8 @@ MonoBehaviour:
         guid: 0669529f08b2144697d4072f9e236bcd
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword1
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.172222
+      minDuration: 0.172222
     - name: PC_Snake_Sword2
       guid: 84bfd7df715e544f946446ab18ac9a09
       id: 3746366217
@@ -1372,8 +1372,8 @@ MonoBehaviour:
         guid: 84bfd7df715e544f946446ab18ac9a09
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword2
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.918813
+      minDuration: 0.8513
     - name: PC_Snake_Sword3
       guid: 7271e8f41e25f04faf14bbc7ec3620f0
       id: 3746366216

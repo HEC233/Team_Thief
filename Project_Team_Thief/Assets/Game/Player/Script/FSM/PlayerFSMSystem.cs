@@ -68,7 +68,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     // Start is called before the first frame update
     private void Start()
     {
+        Debug.Log(_unit.gameObject.name);
         Init();
+    }
+
+    private void OnDestroy()
+    {
+        UnBind();
     }
 
     private void Init()
@@ -77,6 +83,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         //GameManager.instance.SetControlActor(this);
 
         //==================== 고재협이 편집함 ==================
+        Debug.Log("CALL");
         GameManager.instance.SetPlayerActor(this);
         GameManager.instance.ChangeActorToPlayer();
 
@@ -1025,6 +1032,17 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.Hit)
                 return true;
             
+            
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillSpear)
+                return true;
+            if (condition == TransitionCondition.SkillHammer)
+                return true;
+            if (condition == TransitionCondition.SkillKopsh)
+                return true;
+            if (condition == TransitionCondition.SkillPlainSword)
+                return true;
 
             
             if (_isBasicAttackEnd == true || _isBasicAttackAble == false)
@@ -1060,11 +1078,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                         return true;
                     }
                 }
-
-                if (condition == TransitionCondition.SkillAxe)
-                    return true;
-                if (condition == TransitionCondition.SkillHammer)
-                    return true;
             }
             
             return false;
@@ -1204,6 +1217,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack);
                 SystemMgr._fxCtrl.PlayAni(FxAniEnum.BasicJumpAttack);
+                WwiseSoundManager.instance.PlayEventSound("PC_JA1");
                 SystemMgr.Unit.StartCoroutine(BasicJumpAttackMoveCoroutine());
 
                 SystemMgr.OnBasicAttackEndAniEvent += BasicJumpAttackAniEnd;
@@ -1299,7 +1313,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 _attackInputTime = Time.time;
 
-                Debug.Log(_attackInputTime - _attackBeInputTime);
                 if (_attackInputTime - _attackBeInputTime <= SystemMgr.Unit.BasicJumpAttackTime)
                 {
                     BasicJumpAttack2();
@@ -1338,6 +1351,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack2);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.JumpAttackFx2);
             SystemMgr.Unit.StartCoroutine(BasicJumpAttackMoveCoroutine());
+            WwiseSoundManager.instance.PlayEventSound("PC_JA2");
+
         }
         
 
@@ -1924,7 +1939,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void EndState()
         {
             SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr._fxCtrl.SetSpeed(1);
             
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
             
@@ -1953,7 +1968,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 {
                     _skillKopshNextIndex = SystemMgr.Unit.skillKopshIndex + 1;
                     SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
-                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                    SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
                 }
 
                 _attackBeInputTime = Time.time;
@@ -1984,7 +1999,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private void NextKopshAction()
         {
             SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr._fxCtrl.SetSpeed(1);
             
             SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
@@ -2073,6 +2088,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
             {
                 SystemMgr.Unit.SkillPlainSwordEnd();
+                WwiseSoundManager.instance.StopEventSoundFromId(_soundID);
             }
             
             SystemMgr.AnimationCtrl.SetSpeed(1);
@@ -2180,7 +2196,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 if (_skillPlainSwordNextIndex > _skillPlainSwordAniArr.Length - 1)
                 {
-                    WwiseSoundManager.instance.StopEventSoundFromId(_soundID);
                     return false;
                 }
                 else
@@ -2436,7 +2451,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     {
         if (_hitstopCondition != TransitionCondition.None)
         {
-            Transition(TransitionCondition.Idle);
+            Transition(_hitstopCondition);
         }
         
         Unit.EndHitStop(_timeScale);

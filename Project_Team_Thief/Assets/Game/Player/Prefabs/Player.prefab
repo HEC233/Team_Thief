@@ -145,7 +145,7 @@ MonoBehaviour:
   _basicAttackCollider2D: {fileID: 67477168}
   _cinemachineImpulseSource: {fileID: 67477166}
   alwaysEnter: 0
-  signalSourceAsset: {fileID: 11400000, guid: b9fda150f7888e846a99f5f14b20cb9a, type: 2}
+  signalSourceAsset: {fileID: 0}
 --- !u!114 &67477166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,7 +498,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542053513506992554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1542053514919931649}
@@ -2087,7 +2087,7 @@ MonoBehaviour:
   _isAbleFlash: 0
   _isAbleHitStop: 0
   _isAbleBulltTime: 0
-  _isAbleCameraShake: 1
+  _isAbleCameraShake: 0
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 1

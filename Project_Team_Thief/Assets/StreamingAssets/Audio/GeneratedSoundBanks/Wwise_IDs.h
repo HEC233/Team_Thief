@@ -30,9 +30,17 @@ namespace AK
         static const AkUniqueID PC_HIT_BLADE = 4017075331U;
         static const AkUniqueID PC_HIT_HAMMER = 3385077829U;
         static const AkUniqueID PC_HURT = 2523322754U;
+        static const AkUniqueID PC_JA1 = 705617627U;
+        static const AkUniqueID PC_JA2 = 705617624U;
         static const AkUniqueID PC_JUMP = 3162924009U;
+        static const AkUniqueID PC_KOPSH1 = 1065092545U;
+        static const AkUniqueID PC_KOPSH2 = 1065092546U;
+        static const AkUniqueID PC_KOPSH3 = 1065092547U;
         static const AkUniqueID PC_LAND = 3795174U;
         static const AkUniqueID PC_SLIDE = 1281925152U;
+        static const AkUniqueID PC_SNAKE_SWORD1 = 3746366218U;
+        static const AkUniqueID PC_SNAKE_SWORD2 = 3746366217U;
+        static const AkUniqueID PC_SNAKE_SWORD3 = 3746366216U;
         static const AkUniqueID PC_SPEAR_RUSH = 2779137053U;
         static const AkUniqueID PC_STOP = 118156989U;
         static const AkUniqueID PC_WALL = 1438052377U;

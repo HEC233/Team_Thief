@@ -115,7 +115,7 @@ public class KeyManager : MonoBehaviour
             }
 
             m_activeInputs = releasedInput;
-
+            
             /// 스킬 입력 처리
             if (Input.GetKeyDown(KeyCode.LeftArrow))
                 GameManager.instance.commandManager.Inputkey('L');

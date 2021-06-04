@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 
 // Unit은 외부에 보이는 인터페이스.
@@ -759,6 +761,7 @@ public class PlayerUnit : Unit
 
     public void SetJumpAttackMove()
     {
+        _rigidbody2D.velocity = Vector2.zero;
         _rigidbody2D.gravityScale = 0;
     }
 
@@ -816,8 +819,10 @@ public class PlayerUnit : Unit
         playerInfo.CurHP = _curHp;
         //---
 
-        if (_curHp < 0)
+        if (_curHp <= 0)
         {
+            _curHp = 0;
+            playerInfo.CurHP = _curHp;
             Dead();
         }
     }

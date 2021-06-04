@@ -6,6 +6,11 @@ Event	ID	Name			Wwise Object Path	Notes
 	438455619	PC_BA1			\Default Work Unit\SFX\PC\woosh\PC_BA1	
 	438455622	PC_BA4			\Default Work Unit\SFX\PC\woosh\PC_BA4	
 	690267075	PC_axe			\Default Work Unit\SFX\PC\woosh\PC_axe	
+	705617624	PC_JA2			\Default Work Unit\SFX\PC\woosh\PC_JA2	
+	705617627	PC_JA1			\Default Work Unit\SFX\PC\woosh\PC_JA1	
+	1065092545	PC_Kopsh1			\Default Work Unit\SFX\PC\woosh\PC_Kopsh1	
+	1065092546	PC_Kopsh2			\Default Work Unit\SFX\PC\woosh\PC_Kopsh2	
+	1065092547	PC_Kopsh3			\Default Work Unit\SFX\PC\woosh\PC_Kopsh3	
 	1271964801	PC_dash			\Default Work Unit\SFX\PC\movement\PC_dash	
 	1281925152	PC_slide			\Default Work Unit\SFX\PC\movement\PC_slide	
 	1438052377	PC_wall			\Default Work Unit\SFX\PC\movement\PC_wall	
@@ -15,6 +20,9 @@ Event	ID	Name			Wwise Object Path	Notes
 	3067029096	PC_FS			\Default Work Unit\SFX\PC\movement\PC_FS	
 	3162924009	PC_Jump			\Default Work Unit\SFX\PC\movement\PC_Jump	
 	3385077829	PC_HIT_hammer			\Default Work Unit\SFX\PC\hit\PC_HIT_hammer	
+	3746366216	PC_Snake_Sword3			\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword3	
+	3746366217	PC_Snake_Sword2			\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword2	
+	3746366218	PC_Snake_Sword1			\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword1	
 	4017075331	PC_HIT_blade			\Default Work Unit\SFX\PC\hit\PC_HIT_blade	
 	4253460925	PC_hammaer_Swing			\Default Work Unit\SFX\PC\woosh\PC_hammaer_Swing	
 
@@ -22,20 +30,25 @@ Effect plug-ins	ID	Name	Type				Notes
 	1049017127	axe_delay	Wwise Delay			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	13143024	SFX_PC_SnakeSword2_2	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_SnakeSword2_2_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_SnakeSword\Chain2\SFX_PC_SnakeSword2_2		6455
 	71523468	SFX_PC_stop	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_stop_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_stop		3325
 	152241030	SFX_PC_wall	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_wall_CC9362F0.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_wall		1668
 	242449067	SFX_PC_hammer_Swing	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_hammer_Swing_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\SFX_PC_hammer_Swing		2142
 	294639420	SFX_PC_HIT_hammer	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_HIT_hammer_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\hit\SFX_PC_HIT_hammer		4497
 	367170398	SFX_PC_spear_Rush	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_spear_Rush_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\SFX_PC_spear_Rush		2503
+	396690813	SFX_PC_SnakeSword2_1	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_SnakeSword2_1_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_SnakeSword\Chain2\SFX_PC_SnakeSword2_1		5989
 	447645998	SFX_PC_land	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_land_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_land		3422
 	501540947	SFX_PC_dash	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_dash_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_dash		2985
 	539243910	SFX_PC_Hurt2	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_Hurt2_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\hurt\PC_Hurt\SFX_PC_Hurt2		3071
 	590939762	SFX_PC_hammer_Smash	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_hammer_Smash_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\SFX_PC_hammer_Smash		9805
+	636430321	SFX_PC_SnakeSword1	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_SnakeSword1_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_SnakeSword\SFX_PC_SnakeSword1		2039
+	753457588	SFX_PC_SnakeSword3_chain3	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_SnakeSword3_chain3_45F17D09.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_SnakeSword\SFX_PC_SnakeSword3_chain3		25644
 	835747766	SFX_PC_slide	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_slide_F01E125A.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_slide		27101
 	839774164	SFX_PC_HIT_blade	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_HIT_blade_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\hit\SFX_PC_HIT_blade		6137
 	856789864	SFX_PC_Hurt1	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_Hurt1_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\hurt\PC_Hurt\SFX_PC_Hurt1		4631
 	873939562	SFX_PC_FS	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_FS_294B52A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\PC_FS\SFX_PC_FS		3678
 	897023030	SFX_PC_jump	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_jump_C269BB80.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_jump		1586
 	987553898	SFX_PC_axe	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_axe_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\SFX_PC_axe		2479
-	1008207653	SFX_PC_woosh	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_woosh_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_BA3\SFX_PC_woosh		3571
+	1001260328	SFX_PC_SnakeSword3	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\Spin_TwirlingWhoosh_E0A1F73E.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_SnakeSword\SFX_PC_SnakeSword3		7566
+	1008207653	SFX_PC_woosh	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_woosh_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_BA1\SFX_PC_woosh		3571
 
