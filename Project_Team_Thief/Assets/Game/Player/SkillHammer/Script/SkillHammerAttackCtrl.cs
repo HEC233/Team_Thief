@@ -165,7 +165,7 @@ public class SkillHammerAttackCtrl : AttackBase
 
                 if (item.gameObject.CompareTag("Enemy"))
                 {
-                    if (item.GetComponent<Unit>().GetInvincibility() == true)
+                    if (item.GetComponentInParent<Unit>().GetInvincibility() == true)
                     {
                         continue;
                     }
