@@ -22,6 +22,7 @@ public class UIDynamic : MonoBehaviour
         foreach(var m in monsterHps)
         {
             m.gameObject.SetActive(false);
+            m.SetUninit();
         }
         this.gameObject.SetActive(true);
     }
@@ -36,10 +37,6 @@ public class UIDynamic : MonoBehaviour
         foreach (var d in damageTexts)
         {
             d.SetVisible(value);
-        }
-        foreach (var m in monsterHps)
-        {
-            m.gameObject.SetActive(value);
         }
     }
 

@@ -135,6 +135,11 @@ public class MonsterUnit : Unit
         }
     }
 
+    private void OnDestroy()
+    {
+        dieEvent.Invoke();
+    }
+
     public float GetCurHp()
     {
         return _hp;
