@@ -29,5 +29,5 @@ MonoBehaviour:
   - 500
   - 1000
   - 33
-  _multiStateHitInterval: 0.04
-  _multiStateHitIntervalFastAmount: 0.3
+  _multiStateHitInterval: 0.042
+  _multiStateHitIntervalFastAmount: 2
