@@ -91,19 +91,19 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _zoomInTime: 0.04
-  _zoomInSize: 5.625
+  _zoomInSize: 4
   _zoomOutCurve:
     serializedVersion: 2
     m_Curve:
@@ -136,7 +136,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomOutTime: 0.06
+  _zoomOutTime: 0.16
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -900,7 +900,7 @@ MonoBehaviour:
   _encroachmentPerPlayerAttackDamage: 1.5
   _encroachmentRecoveryPerTime: 0.04
   _encroachmentRecoveryAmount: -0.25
-  _aniFastAmount: 1.8
+  _aniFastAmount: 2
   _minSpeed: 1
   _maxSpeed: 8
   _moveStopSpeed: 1
@@ -2100,25 +2100,25 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomInTime: 0.04
+  _zoomInTime: 0.2
   _zoomInSize: 4
   _zoomOutCurve:
     serializedVersion: 2
@@ -2126,25 +2126,25 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomOutTime: 0.09
+  _zoomOutTime: 0.16
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
