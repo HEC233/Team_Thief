@@ -30,6 +30,10 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
             m_lastSelectButton = null;
             GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_firstSelectButton);
         }
+        // 김태성 추가
+        // 코드 추가 이유 : 코루틴이라 멈추기 전까지 가기 전에 코루틴이 stop이 걸려버리면 정상적으로 hitstop이 안됨.
+        GameManager.instance.timeMng.StopTime();
+        //김태성 추가
         StopAllCoroutines();
         StartCoroutine(PauseAnimation(value));
     }

@@ -581,6 +581,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (SystemMgr.Unit.IsGround == true)
             {
                 _isFaill = false;
+                SystemMgr.Transition(TransitionCondition.Idle);
             }
         }
 
@@ -673,11 +674,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                     SystemMgr.Transition(TransitionCondition.Idle);
                     return false;
                 }
-                
-                if (condition == TransitionCondition.None)
-                    SystemMgr.Transition(TransitionCondition.Idle);
-            }
 
+                if (condition == TransitionCondition.None)
+                {
+                    SystemMgr.Transition(TransitionCondition.Idle);
+
+                }
+            }
+            
             return true;
         }
     }

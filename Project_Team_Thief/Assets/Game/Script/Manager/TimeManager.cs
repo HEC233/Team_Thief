@@ -25,6 +25,7 @@ public class TimeManager : MonoBehaviour
     private float _timeScale = 1;
     public float TimeScale => _timeScale;
 
+    [SerializeField]
     private float _prevTimeScale = 0;
 
     public float DeltaTime { get { return Time.deltaTime * _timeScale; } }
@@ -78,24 +79,28 @@ public class TimeManager : MonoBehaviour
     }
     public void StopTime()
     {
+        Debug.Log("_timeStopRequiredCount ++ : " + _timeStopRequiredCount);
+
         _timeStopRequiredCount++;
         if (_isStoped)
             return;
-        _prevTimeScale = _timeScale;
+        //_prevTimeScale = _timeScale;
         _timeScale = 0;
         startHitstopEvent?.Invoke(_timeScale);
         _isStoped = true;
     }
     public void ResumeTime()
     {
+        Debug.Log("_timeStopRequiredCount -- : " + _timeStopRequiredCount);
         _timeStopRequiredCount--;
         if (_timeStopRequiredCount > 0)
         {
             Debug.Log("현재 이 부분때문에 정상 진행이 안됨 임시로 리턴 품");
+            // 증가는 하는데 감소는 하지 않음 esc 연타시.
             //return;
         }
 
-        _timeScale = _prevTimeScale;
+        _timeScale = 1;//_prevTimeScale;
         endHitstopEvent?.Invoke(_timeScale);
         _isStoped = false;
     }
@@ -105,12 +110,16 @@ public class TimeManager : MonoBehaviour
     // 리지드 바디의 프리즈를 이용해서 잠깐 폭력 멈춰두는건?
     public void HitStop(float time)
     {
+        if(_isStoped == true)
+            return;
+
+        _timeStopRequiredCount--;
         // 불릿 타임 중 히트 스탑이 호출 될 경우 히트 스탑이 끝난 뒤 불릿 타임으로 돌아가기 위해.
         if(_isBulletTime == true)
         {
             _prevTimeScale = _timeScale;
         }
-
+        
         _isHitStop = true;
         _timeScale = 0;
         StartCoroutine(HitStopTimerCoroutine(time));
@@ -172,7 +181,11 @@ public class TimeManager : MonoBehaviour
         float prevTimeScale = _timeScale;
         while (tick <= time)
         {
-            tick += Time.fixedDeltaTime;
+            if (GameManager.instance.GameState != GameManager.GameStateEnum.Pause)
+            {
+                tick += Time.fixedDeltaTime;
+            }
+
             yield return new WaitForFixedUpdate();
         }
         
