@@ -1025,8 +1025,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.Hit)
                 return true;
             
-            if (condition == TransitionCondition.SkillHammer)
-                return true;
+
             
             if (_isBasicAttackEnd == true || _isBasicAttackAble == false)
             {
@@ -1063,6 +1062,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 }
 
                 if (condition == TransitionCondition.SkillAxe)
+                    return true;
+                if (condition == TransitionCondition.SkillHammer)
                     return true;
             }
             
