@@ -74,6 +74,7 @@ namespace PS.Event
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("시작조건");
             _event.triggerType = (TriggerType)EditorGUILayout.EnumPopup(_event.triggerType);
+            _event.bFollowed = EditorGUILayout.Toggle("다른 이벤트 이후에 실행되는지", _event.bFollowed);
             EditorGUILayout.EndHorizontal();
 
             PS.Event.TriggerCondition newTrigger = new TriggerCondition();
@@ -106,8 +107,6 @@ namespace PS.Event
                     EditorGUILayout.LabelField("이름");
                     newTrigger.NPCname = EditorGUILayout.TextField(_event.trigger.NPCname);
                     EditorGUILayout.EndHorizontal();
-                    break;
-                case TriggerType.Next:
                     break;
             }
             _event.trigger = newTrigger;

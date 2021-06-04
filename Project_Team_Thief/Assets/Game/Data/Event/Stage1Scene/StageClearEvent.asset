@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5623813672781d648940f5c75d0f6afb, type: 3}
   m_Name: StageClearEvent
   m_EditorClassIdentifier: 
+  bFollowed: 0
   eventIndex: 01_01
   name: "\uBA54\uC778\uC52C \uC2A4\uD14C\uC774\uC9C0 \uD074\uB9AC\uC5B4"
   stopCondition: 

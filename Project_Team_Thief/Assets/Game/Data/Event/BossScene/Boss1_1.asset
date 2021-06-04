@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5623813672781d648940f5c75d0f6afb, type: 3}
   m_Name: Boss1_1
   m_EditorClassIdentifier: 
+  bFollowed: 0
   eventIndex: Boss1_1
   name: "\uBCF4\uC2A4\uC8041 \uB3C4\uCC29"
   stopCondition: 
@@ -32,7 +33,7 @@ MonoBehaviour:
   - cutSceneIndex: Boss1_0
     actionTime: 0
     skipable: 1
-    autopass: 0
+    autopass: 1
     actions:
     - type: 5
       actionLength: 0

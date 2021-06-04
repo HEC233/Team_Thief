@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5623813672781d648940f5c75d0f6afb, type: 3}
   m_Name: TT04.TutorialLightWarriorDeath
   m_EditorClassIdentifier: 
+  bFollowed: 0
   eventIndex: TT_04
   name: "\uD29C\uD1A0\uB9AC\uC5BC \uAD11\uC804\uC0AC \uC0AC\uB9DD"
   stopCondition: 
@@ -27,12 +28,12 @@ MonoBehaviour:
   playCount: 1
   stoptime: 0
   skipable: 0
-  followingEvent: 
+  followingEvent: TT_01
   cutScenes:
   - cutSceneIndex: TT_04
     actionTime: 0
     skipable: 0
-    autopass: 0
+    autopass: 1
     actions:
     - type: 3
       actionLength: 0

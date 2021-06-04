@@ -12,7 +12,7 @@ namespace PS.Event
 
     public enum TriggerType
     {
-        Queue,TRUE,Come,Next
+        Queue,TRUE,Come
     }
 
     public enum CmpType
@@ -38,6 +38,7 @@ namespace PS.Event
     [CreateAssetMenu(fileName = "Event", menuName = "ScriptableObject/Event")]
     public class Event : ScriptableObject
     {
+        public bool bFollowed;
         public string eventIndex;
         public string name;
         public string stopCondition;

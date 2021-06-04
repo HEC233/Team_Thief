@@ -51,6 +51,14 @@ public class GameEventSystem : MonoBehaviour
         // 이벤트가 남은 횟수만큼 반복
         while (data.playAmount == PlayAmount.Infinite || (data.playAmount == PlayAmount.Finite && leftCount-- > 0))
         {
+            if (data.bFollowed)
+            {
+                while (!NextCheck(data.eventIndex))
+                {
+                    yield return null;
+                }
+                evnetQueue.RemoveAll(str => str == data.trigger.NPCname);
+            }
             // 이벤트가 발동조건을 만족 할때까지 반복
             bool returnValue = false;
             while (!returnValue)
@@ -66,9 +74,6 @@ public class GameEventSystem : MonoBehaviour
                     case TriggerType.Come:
                         returnValue = ComeCheck(data.trigger);
                         break;
-                    case TriggerType.Next:
-                        returnValue = NextCheck(data.eventIndex);
-                        break;
                 }
                 yield return null;
             }
@@ -80,6 +85,11 @@ public class GameEventSystem : MonoBehaviour
             float passedTime = startTime;
             bool actionSkipPressed = false;
             bool skip = false;
+
+            //if(data.stoptime)
+            //{
+            //    GameManager.instance.timeMng.StopTime();
+            //}
 
             while (true)
             {
@@ -184,6 +194,11 @@ public class GameEventSystem : MonoBehaviour
 
             }
 
+            //if (data.stoptime)
+            //{
+            //    GameManager.instance.timeMng.ResumeTime();
+            //}
+
             // 이벤트가 끝나면 다음 따라올 이벤트를 넣어줌
             nextEventQueue.Add(data.followingEvent);
             evnetQueue.RemoveAll(str => str == data.trigger.NPCname);
@@ -195,7 +210,7 @@ public class GameEventSystem : MonoBehaviour
     {
         bool returnValue = evnetQueue.Contains(trigger.NPCname);
         if (returnValue)
-            evnetQueue.Remove(trigger.NPCname);
+            evnetQueue.RemoveAll(str => str == trigger.NPCname);
         return returnValue;
     }
     private bool ArriveCheck()
@@ -220,7 +235,7 @@ public class GameEventSystem : MonoBehaviour
     {
         bool returnValue = nextEventQueue.Contains(name);
         if (returnValue)
-            nextEventQueue.Remove(name);
+            nextEventQueue.RemoveAll(str => str == name);
         return returnValue;
     }
 

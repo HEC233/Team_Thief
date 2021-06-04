@@ -325,12 +325,15 @@ namespace PS.Enemy.Seraphim.AI
                     else if (ai.GetDistance(true) > 3)
                     {
                         if (_shotCool <= 0)
-                        {;
+                        {
                             ai.actor.Transition(TransitionCondition.StopMove);
-                            if (ai.actor.Transition(TransitionCondition.Attack))
+                            if (ai.CheckMovable(!ai.isLookRight))
                             {
-                                _state = InnerState.Shot;
-                                _shotCool = ai.shotCoolTime;
+                                if (ai.actor.Transition(TransitionCondition.Attack))
+                                {
+                                    _state = InnerState.Shot;
+                                    _shotCool = ai.shotCoolTime;
+                                }
                             }
                         }
                         else
@@ -346,10 +349,13 @@ namespace PS.Enemy.Seraphim.AI
                             if (_shotCool <= 0)
                             {
                                 ai.actor.Transition(TransitionCondition.StopMove);
-                                if (ai.actor.Transition(TransitionCondition.Attack))
+                                if (ai.CheckMovable(!ai.isLookRight))
                                 {
-                                    _state = InnerState.Shot;
-                                    _shotCool = ai.shotCoolTime;
+                                    if (ai.actor.Transition(TransitionCondition.Attack))
+                                    {
+                                        _state = InnerState.Shot;
+                                        _shotCool = ai.shotCoolTime;
+                                    }
                                 }
                             }
                             else
@@ -359,7 +365,7 @@ namespace PS.Enemy.Seraphim.AI
                         }
                         else
                         {
-                            if (_backStepCool <= 0)
+                            if (_backStepCool <= 0 && ai.CheckMovable(!ai.isLookRight))
                             {
                                 bool result;
                                 ai.actor.Transition(TransitionCondition.StopMove);

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5623813672781d648940f5c75d0f6afb, type: 3}
-  m_Name: Boss1_Clear
+  m_Name: TutorialStageSkip
   m_EditorClassIdentifier: 
   bFollowed: 0
-  eventIndex: Boss1_3
-  name: "\uBCF4\uC2A4 \uC2A4\uD14C\uC774\uC9C0 \uD1F4\uC7A5"
+  eventIndex: TT_01
+  name: "\uD29C\uD1A0\uB9AC\uC5BC \uC2A4\uD0B5"
   stopCondition: 
   eventType: 0
   triggerType: 0
   trigger:
-    NPCname: STAGE_CLEAR
+    NPCname: STAGE_SKIP
     xCmp: 0
     xValue: 0
     yCmp: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   skipable: 0
   followingEvent: 
   cutScenes:
-  - cutSceneIndex: Boss1_3_0
+  - cutSceneIndex: TT_01_0
     actionTime: 0
     skipable: 0
     autopass: 1
@@ -55,4 +55,4 @@ MonoBehaviour:
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 
-      sceneName: ToBeContinued
+      sceneName: HHG
