@@ -58,6 +58,13 @@ public class TimeManager : MonoBehaviour
         endBulletTimeEvent = null;
     }
 
+    public void Reset()
+    {
+        endHitstopEvent?.Invoke(1.0f);
+        endBulletTimeEvent?.Invoke(1.0f);
+        ResetTime();
+    }
+
     private bool _isStoped = false;
     public bool IsTimeStopped => _isStoped;
     private int _timeStopRequiredCount = 0;

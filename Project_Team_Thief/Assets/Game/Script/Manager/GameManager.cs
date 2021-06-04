@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour
         ChangeActorToPlayer();
         timeMng.ResetTime();
         cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
+        cameraMng.FindCameras();
         cameraMng.Bind();
         var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;

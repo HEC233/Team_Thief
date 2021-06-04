@@ -109,11 +109,14 @@ public class CameraManager : MonoBehaviour
 
     private void OnHitStopEvnetCall(float timeScale)
     {
+        Debug.Log("HITSTOP IN CAMERA");
         CinemachineCore.UniformDeltaTimeOverride = 0;
     }
 
     private void OnHitStopEndEventCall(float timeScale)
     {
+        Debug.Log("HITSTOP END IN CAMERA");
+
         CinemachineCore.UniformDeltaTimeOverride = -1;
     }
 

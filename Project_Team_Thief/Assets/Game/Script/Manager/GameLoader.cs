@@ -58,6 +58,7 @@ public class GameLoader : MonoBehaviour
 
         //yield return new WaitForSeconds(2.0f);
 
+        GameManager.instance.timeMng.Reset();
         GameManager.instance.timeMng.UnbindAll();
 
         yield return SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
