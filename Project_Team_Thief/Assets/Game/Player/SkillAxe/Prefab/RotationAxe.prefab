@@ -55,12 +55,28 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 1
+  _isZoomIn: 0
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxClip: 0
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -240,7 +256,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 30f6fdc64d7f9dc45a854922cce1c272, type: 2}
+  - {fileID: 2100000, guid: 33a122f0e395cc74297f5b03e55b96b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

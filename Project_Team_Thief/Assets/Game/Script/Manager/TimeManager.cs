@@ -74,34 +74,34 @@ public class TimeManager : MonoBehaviour
     public void ResetTime()
     {
         _timeStopRequiredCount = 0;
+        Debug.Log("timeStop require reset : " + _timeStopRequiredCount);
         _timeScale = 1;
         _prevTimeScale = 1;
     }
     public void StopTime()
     {
-        Debug.Log("_timeStopRequiredCount ++ : " + _timeStopRequiredCount);
 
         _timeStopRequiredCount++;
+        Debug.Log("timeStop required : " + _timeStopRequiredCount);
         if (_isStoped)
+        {
             return;
-        //_prevTimeScale = _timeScale;
-        _timeScale = 0;
-        startHitstopEvent?.Invoke(_timeScale);
+        }
+        startHitstopEvent?.Invoke(0);
         _isStoped = true;
     }
     public void ResumeTime()
     {
-        Debug.Log("_timeStopRequiredCount -- : " + _timeStopRequiredCount);
         _timeStopRequiredCount--;
+        Debug.Log("timeResume required : " + _timeStopRequiredCount);
         if (_timeStopRequiredCount > 0)
         {
             Debug.Log("현재 이 부분때문에 정상 진행이 안됨 임시로 리턴 품");
             // 증가는 하는데 감소는 하지 않음 esc 연타시.
-            //return;
+            return;
         }
 
-        _timeScale = 1;//_prevTimeScale;
-        endHitstopEvent?.Invoke(_timeScale);
+        endHitstopEvent?.Invoke(1);
         _isStoped = false;
     }
 
@@ -113,7 +113,6 @@ public class TimeManager : MonoBehaviour
         if(_isStoped == true)
             return;
 
-        _timeStopRequiredCount--;
         // 불릿 타임 중 히트 스탑이 호출 될 경우 히트 스탑이 끝난 뒤 불릿 타임으로 돌아가기 위해.
         if(_isBulletTime == true)
         {

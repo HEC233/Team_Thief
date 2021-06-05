@@ -7,14 +7,12 @@ public class UIDynamic : MonoBehaviour
     public GameObject monsterHP;
     public GameObject damageText;
     RectTransform _rect;
-    Camera _camera;
 
     private List<UIHpReduceInfo> damageTexts = new List<UIHpReduceInfo>();
     private List<UIHpMonster> monsterHps = new List<UIHpMonster>();
 
     public void Init()
     {
-        _camera = Camera.main;
         foreach (var d in damageTexts)
         {
             d.gameObject.SetActive(false);
@@ -22,7 +20,9 @@ public class UIDynamic : MonoBehaviour
         foreach(var m in monsterHps)
         {
             m.gameObject.SetActive(false);
+            m.SetUninit();
         }
+        this.gameObject.SetActive(true);
     }
 
     private void Awake()
@@ -32,7 +32,10 @@ public class UIDynamic : MonoBehaviour
 
     public void Toggle(bool value)
     {
-        this.gameObject.SetActive(value);
+        foreach (var d in damageTexts)
+        {
+            d.SetVisible(value);
+        }
     }
 
     private UIHpReduceInfo GetDamageText()
@@ -72,7 +75,6 @@ public class UIDynamic : MonoBehaviour
             returnValue = go.GetComponent<UIHpMonster>();
             monsterHps.Add(returnValue);
         }
-        returnValue.camera = Camera.main;
         returnValue.gameObject.SetActive(true);
 
         return returnValue;
@@ -80,8 +82,7 @@ public class UIDynamic : MonoBehaviour
 
     public void ShowDamageText(Vector3 position, int damageCount, bool isFromRight, bool critical)
     {
-        var screenPos = _camera.WorldToScreenPoint(position);
-        screenPos = new Vector2(screenPos.x / Screen.width * 480, screenPos.y / Screen.height * 270);
+        var screenPos = GameManager.instance.uiMng.GetScreenPos(position);
 
         GetDamageText().Show(screenPos, damageCount, isFromRight, critical);
     }

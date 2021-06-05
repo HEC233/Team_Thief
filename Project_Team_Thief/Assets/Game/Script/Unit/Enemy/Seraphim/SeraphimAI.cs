@@ -179,7 +179,14 @@ public class SeraphimAI : MonoBehaviour
 
     private void Update()
     {
-        _curState.Process();
+        if (GameManager.instance.isPlayerDead)
+        {
+            actor.Transition(TransitionCondition.Idle);
+        }
+        else if (!GameManager.instance.timeMng.IsTimeStopped)
+        {
+            _curState.Process();
+        }
     }
 }
 
