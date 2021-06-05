@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkillPlainSwordData
   m_EditorClassIdentifier: 
   _numberOfTimesTheSkill: 1
-  _coolTime: 9
+  _coolTime: 4
   _skillName: Skill5PlainSword
   _increaseEncroachment: 30
   _encroachmentDecrease: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
   - {x: 0.1, y: 0}
   _attackDamageArr:
   - 500
-  - 1000
-  - 66
+  - 500
+  - 83
   _multiStateHitInterval: 0.042
   _multiStateHitIntervalFastAmount: 2

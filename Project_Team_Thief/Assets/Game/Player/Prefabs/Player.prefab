@@ -897,9 +897,9 @@ MonoBehaviour:
   _curHp: 100
   _decreaseHp: 0.2
   _encroachmentPerPlayerHitDamage: 1.5
-  _encroachmentPerPlayerAttackDamage: 2.3
+  _encroachmentPerPlayerAttackDamage: 2
   _encroachmentRecoveryPerTime: 0.04
-  _encroachmentRecoveryAmount: -0.6
+  _encroachmentRecoveryAmount: -0.55
   _aniFastAmount: 2
   _minSpeed: 1
   _maxSpeed: 8

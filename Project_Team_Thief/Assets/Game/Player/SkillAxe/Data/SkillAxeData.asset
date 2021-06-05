@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkillAxeData
   m_EditorClassIdentifier: 
   _numberOfTimesTheSkill: 2
-  _coolTime: 7
+  _coolTime: 3
   _skillName: Skill1Axe
   _increaseEncroachment: 25
   _encroachmentDecrease: 0
