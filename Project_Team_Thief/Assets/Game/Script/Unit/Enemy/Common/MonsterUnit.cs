@@ -371,6 +371,12 @@ public class MonsterUnit : Unit
             }
         }
 
+        // 흡혈 상태가 넘어왔는지 검사
+        if ((inputDamage.abnormal & (int)AbnormalState.Spare8) != 0)
+        {
+
+        }
+
         _hp -= finalDamage;
     }
 }
