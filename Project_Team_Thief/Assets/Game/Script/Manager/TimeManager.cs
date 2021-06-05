@@ -87,7 +87,8 @@ public class TimeManager : MonoBehaviour
         {
             return;
         }
-        startHitstopEvent?.Invoke(0);
+        _timeScale = 0;
+        startHitstopEvent?.Invoke(_timeScale);
         _isStoped = true;
     }
     public void ResumeTime()
@@ -100,8 +101,8 @@ public class TimeManager : MonoBehaviour
             // 증가는 하는데 감소는 하지 않음 esc 연타시.
             return;
         }
-
-        endHitstopEvent?.Invoke(1);
+        _timeScale = 1;
+        endHitstopEvent?.Invoke(_timeScale);
         _isStoped = false;
     }
 
