@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkillSpearData
   m_EditorClassIdentifier: 
   _numberOfTimesTheSkill: 1
-  _coolTime: 11
+  _coolTime: 7.3333335
   _skillName: Skill2Spear
   _increaseEncroachment: 40
   _encroachmentDecrease: 0

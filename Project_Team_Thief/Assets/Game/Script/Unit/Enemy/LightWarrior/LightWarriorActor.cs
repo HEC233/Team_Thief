@@ -333,6 +333,7 @@ namespace LightWarrior
         {
             actor.animCtrl.PlayAni(AniState.Die);
             timeCheck = 0.5f;
+            actor.unit.TurnOnInvincibility();
         }
 
         public override void Exit(LightWarriorActor actor)
