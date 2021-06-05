@@ -1204,6 +1204,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private int _jumpAttackIndex = 0;
         private bool _isBasicJumpAttackStart = false;
         private bool _isNotEndCoroutine = false;
+        private Coroutine _jumpAttackMoveCoroutine;
         private float _attackInputTime = 0.0f;
         private float _attackBeInputTime = 0.0f;
         
@@ -1215,10 +1216,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (SystemMgr.Unit.isBasicJumpAttackAble == true)
             {
+                _isNotEndCoroutine = true;
                 SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack);
                 SystemMgr._fxCtrl.PlayAni(FxAniEnum.BasicJumpAttack);
                 WwiseSoundManager.instance.PlayEventSound("PC_JA1");
-                SystemMgr.Unit.StartCoroutine(BasicJumpAttackMoveCoroutine());
+                _jumpAttackMoveCoroutine = SystemMgr.Unit.StartCoroutine(BasicJumpAttackMoveCoroutine());
 
                 SystemMgr.OnBasicAttackEndAniEvent += BasicJumpAttackAniEnd;
                 SystemMgr.OnBasicAttackCallEvent += BasicJumpAttackCall;
@@ -1264,7 +1266,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnBasicAttackEndAniEvent -= BasicJumpAttackAniEnd;
             SystemMgr.OnBasicAttackCallEvent -= BasicJumpAttackCall;
             
-            SystemMgr.Unit.EndJumpAttackMove();
+            //SystemMgr.Unit.EndJumpAttackMove();
         }
 
         public override bool Transition(TransitionCondition condition)
@@ -1311,6 +1313,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             if (condition == TransitionCondition.Attack)
             {
+                if (_isBasicjumpAttackAniEnd == true)
+                    return true;
+                
                 _attackInputTime = Time.time;
 
                 if (_attackInputTime - _attackBeInputTime <= SystemMgr.Unit.BasicJumpAttackTime)
@@ -1334,18 +1339,26 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 _timer += GameManager.instance.timeMng.FixedDeltaTime;
                 SystemMgr.Unit.BasicJumpAttackMove(_jumpAttackIndex);
+                Debug.Log("JumpAttackMoveCoroutineIng... :" + _jumpAttackIndex);
                 yield return new WaitForFixedUpdate();
             }
             
+            Debug.Log("JumpMoveCoroutine End : " + _jumpAttackIndex);
             _isNotEndCoroutine = false;
             SystemMgr.Unit.EndJumpAttackMove();
         }
 
         private void BasicJumpAttack2()
         {
+            Debug.Log("BasicJumpAttack2 : " + _jumpAttackIndex);
             if(_jumpAttackIndex >= 1)
                 return;
 
+            if (_isNotEndCoroutine == true)
+            {
+                Debug.Log("코루틴 중에 스탑시키기");
+                SystemMgr.Unit.StopCoroutine(_jumpAttackMoveCoroutine);
+            }
             
             _jumpAttackIndex++;
             SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack2);
@@ -1358,10 +1371,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         private void BasicJumpAttackAniEnd()
         {
+            if (_jumpAttackIndex >= 1 && _isNotEndCoroutine)
+            {
+                Debug.Log("jumpAttack Return");
+                return;
+            }
+
+            Debug.Log("JumpAttack End :" + _jumpAttackIndex);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
             _isBasicjumpAttackAniEnd = true;
-            
-            SystemMgr.Unit.Rigidbody2D.velocity = Vector2.zero;
         }
 
         private void BasicJumpAttackCall()

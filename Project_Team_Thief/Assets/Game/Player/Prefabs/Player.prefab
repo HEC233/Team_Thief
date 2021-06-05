@@ -956,7 +956,7 @@ MonoBehaviour:
   - {x: 3, y: 0}
   - {x: -3, y: -2}
   isBasicJumpAttackAble: 1
-  _basicJumpAttackTime: 0.4
+  _basicJumpAttackTime: 0.5
   _comboTime: 3
   _hitInvincibilityTime: 1
   _hitInvincibilityTwinkleTime: 0.5

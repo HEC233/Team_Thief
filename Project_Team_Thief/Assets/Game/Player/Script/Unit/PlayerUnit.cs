@@ -767,6 +767,7 @@ public class PlayerUnit : Unit
 
     public void EndJumpAttackMove()
     {
+        _rigidbody2D.velocity = Vector2.zero;
         _rigidbody2D.gravityScale = _originalGravityScale;
     }
     
