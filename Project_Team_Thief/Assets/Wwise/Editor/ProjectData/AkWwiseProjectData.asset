@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 02de5e311348b244aaa1373a54395c29
     GuidInternal: 
-    m_lastTime: -8585801132975922996
+    m_lastTime: -8585800154683041744
     List: []
   - PhysicalPath: Virtual Acoustics\Factory Acoustic Textures.wwu
     PathAndIcons:
@@ -37,7 +37,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Factory Acoustic Textures
     guid: 6b663d46a83ca54f8b4a5fef12b883f6
     GuidInternal: 
-    m_lastTime: -8585801132975912989
+    m_lastTime: -8585800154683031739
     List:
     - name: Acoustic_Banner
       guid: f2532d2fccda8e408b8898b1b52a26d6
@@ -303,7 +303,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: e8a961f1977ddc44a7bcd68ac0d891e1
     GuidInternal: 
-    m_lastTime: -8585801132978608460
+    m_lastTime: -8585786912636345315
     List:
     - name: AMB
       guid: db08a7ec0ff5504b94c949b46b6f5e7b
@@ -447,7 +447,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-    m_lastTime: -8585801132976058014
+    m_lastTime: -8585786943539270962
     List:
     - name: SFX
       guid: b16ad34bef1eef4ab47f19504b46be7d
@@ -477,7 +477,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Queries\Default Work Unit
     guid: 1c7e3631390f494c89fb10a61eb73295
     GuidInternal: 
-    m_lastTime: -8585801118871561971
+    m_lastTime: -8585786943539260956
     List: []
   - PhysicalPath: SoundBanks\Queries\Factory Queries.wwu
     PathAndIcons:
@@ -493,7 +493,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Queries\Factory Queries
     guid: 9063ba7ff14cfa449da5fc65f66e8fc0
     GuidInternal: 
-    m_lastTime: -8585801118871551977
+    m_lastTime: -8585786943539240957
     List:
     - name: Actor-Mixer Hierarchy
       guid: 1561e2753dfc254e99f9448bc918921e
@@ -592,8 +592,45 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585801132980373778
+    m_lastTime: -8585786912636135269
     List:
+    - name: GamePause
+      guid: f4b3cc44baad794c98df39b1dabe6a22
+      id: 671786287
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: Glover
+        ObjectType: 4
+        guid: c076713c8fcce343b701a5ae6b166597
+      - ElementName: GamePause
+        ObjectType: 3
+        guid: f4b3cc44baad794c98df39b1dabe6a22
+      Path: Events\Default Work Unit\Glover\GamePause
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Glover
+      guid: c076713c8fcce343b701a5ae6b166597
+      id: 2335795962
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: Glover
+        ObjectType: 4
+        guid: c076713c8fcce343b701a5ae6b166597
+      Path: Events\Default Work Unit\Glover
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: hit
       guid: 3e8238b9a568064282a37601d3cc298f
       id: 1116398592
@@ -614,29 +651,6 @@ MonoBehaviour:
         ObjectType: 4
         guid: 3e8238b9a568064282a37601d3cc298f
       Path: Events\Default Work Unit\SFX\PC\hit
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
-    - name: hurt
-      guid: 1b6c3b3cabcbc54189d9f9f87278684b
-      id: 3193947170
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: a6bd1bd1916e0e48a19ae06256f8e399
-      - ElementName: SFX
-        ObjectType: 4
-        guid: 92e06faedefaa341bd83c48e22786e60
-      - ElementName: LightWarrior
-        ObjectType: 4
-        guid: 36c01f3e4e8b474bbfa30ea35ca5d282
-      - ElementName: hurt
-        ObjectType: 4
-        guid: 1b6c3b3cabcbc54189d9f9f87278684b
-      Path: Events\Default Work Unit\SFX\LightWarrior\hurt
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -683,6 +697,29 @@ MonoBehaviour:
         ObjectType: 4
         guid: 121e26d4f528404497678a5b93fc8787
       Path: Events\Default Work Unit\SFX\PC\hurt
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: hurt
+      guid: 1b6c3b3cabcbc54189d9f9f87278684b
+      id: 3193947170
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: SFX
+        ObjectType: 4
+        guid: 92e06faedefaa341bd83c48e22786e60
+      - ElementName: LightWarrior
+        ObjectType: 4
+        guid: 36c01f3e4e8b474bbfa30ea35ca5d282
+      - ElementName: hurt
+        ObjectType: 4
+        guid: 1b6c3b3cabcbc54189d9f9f87278684b
+      Path: Events\Default Work Unit\SFX\LightWarrior\hurt
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -1353,7 +1390,7 @@ MonoBehaviour:
       maxDuration: -1
       minDuration: -1
     - name: woosh
-      guid: 87e5e0a4047f074f987000571a38fe6a
+      guid: 8ce54a4f7d22754d86c43db378bb1f05
       id: 3099361103
       PathAndIcons:
       - ElementName: Events
@@ -1365,13 +1402,13 @@ MonoBehaviour:
       - ElementName: SFX
         ObjectType: 4
         guid: 92e06faedefaa341bd83c48e22786e60
-      - ElementName: LightWarrior
+      - ElementName: Seraphim
         ObjectType: 4
-        guid: 36c01f3e4e8b474bbfa30ea35ca5d282
+        guid: cbb8f2a798212145a2b1c6959b8be4ff
       - ElementName: woosh
         ObjectType: 4
-        guid: 87e5e0a4047f074f987000571a38fe6a
-      Path: Events\Default Work Unit\SFX\LightWarrior\woosh
+        guid: 8ce54a4f7d22754d86c43db378bb1f05
+      Path: Events\Default Work Unit\SFX\Seraphim\woosh
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -1399,7 +1436,7 @@ MonoBehaviour:
       maxDuration: -1
       minDuration: -1
     - name: woosh
-      guid: 8ce54a4f7d22754d86c43db378bb1f05
+      guid: 87e5e0a4047f074f987000571a38fe6a
       id: 3099361103
       PathAndIcons:
       - ElementName: Events
@@ -1411,13 +1448,13 @@ MonoBehaviour:
       - ElementName: SFX
         ObjectType: 4
         guid: 92e06faedefaa341bd83c48e22786e60
-      - ElementName: Seraphim
+      - ElementName: LightWarrior
         ObjectType: 4
-        guid: cbb8f2a798212145a2b1c6959b8be4ff
+        guid: 36c01f3e4e8b474bbfa30ea35ca5d282
       - ElementName: woosh
         ObjectType: 4
-        guid: 8ce54a4f7d22754d86c43db378bb1f05
-      Path: Events\Default Work Unit\SFX\Seraphim\woosh
+        guid: 87e5e0a4047f074f987000571a38fe6a
+      Path: Events\Default Work Unit\SFX\LightWarrior\woosh
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -1433,7 +1470,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 49e851bbaedb674888d0961189946708
     GuidInternal: 
-    m_lastTime: -8585801132980363777
+    m_lastTime: -8585786912636435334
     List: []
   - PhysicalPath: Game Parameters\Factory Motion.wwu
     PathAndIcons:
@@ -1446,7 +1483,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Factory Motion
     guid: 225213d7dbd1d042adc0930743567776
     GuidInternal: 
-    m_lastTime: -8585801132980358777
+    m_lastTime: -8585800154686492525
     List:
     - name: Playback_Rate
       guid: e37e38283ac11643b9c3db5c521624af
@@ -1487,7 +1524,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Factory SoundSeed Air Game Syncs
     guid: 5577163b42fb8b4598bf96f557afb3b9
     GuidInternal: 
-    m_lastTime: -8585801132980348777
+    m_lastTime: -8585800154686482521
     List:
     - name: SS_Air_Fear
       guid: 59062ef746431c4ea1b1dab46a05101e
@@ -1641,21 +1678,74 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 4fd9f844540fb04bb0247a7267f0f122
     GuidInternal: 
-    m_lastTime: -8585801132976033012
-    List: []
-  - PhysicalPath: States\New Work Unit.wwu
-    PathAndIcons:
-    - ElementName: States
-      ObjectType: 5
-      guid: 00000000000000000000000000000000
-    - ElementName: New Work Unit
-      ObjectType: 12
-      guid: 1c7ce1be3fc933439a1168c84cf2b5a7
-    ParentPath: States\New Work Unit
-    guid: 1c7ce1be3fc933439a1168c84cf2b5a7
-    GuidInternal: 
-    m_lastTime: -8585801132976023015
-    List: []
+    m_lastTime: -8585786912636245292
+    List:
+    - name: Pause_Menu
+      guid: 29bbf760fa6efe4f9061e92b937c89d7
+      id: 3422541661
+      PathAndIcons:
+      - ElementName: States
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 4fd9f844540fb04bb0247a7267f0f122
+      - ElementName: Pause_Menu
+        ObjectType: 9
+        guid: 29bbf760fa6efe4f9061e92b937c89d7
+      Path: States\Default Work Unit\Pause_Menu
+      values:
+      - name: None
+        guid: 0d6a1fcbf88b694bbb0888fc9e63a35c
+        id: 748895195
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Pause_Menu
+          ObjectType: 9
+          guid: 29bbf760fa6efe4f9061e92b937c89d7
+        - ElementName: None
+          ObjectType: 8
+          guid: 0d6a1fcbf88b694bbb0888fc9e63a35c
+      - name: Paused
+        guid: 1746cae3417ed1498f1ec02c2858950b
+        id: 319258907
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Pause_Menu
+          ObjectType: 9
+          guid: 29bbf760fa6efe4f9061e92b937c89d7
+        - ElementName: Paused
+          ObjectType: 8
+          guid: 1746cae3417ed1498f1ec02c2858950b
+      - name: Resume
+        guid: aa28219a15233a4cb8b810d6842b0264
+        id: 953277036
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Pause_Menu
+          ObjectType: 9
+          guid: 29bbf760fa6efe4f9061e92b937c89d7
+        - ElementName: Resume
+          ObjectType: 8
+          guid: aa28219a15233a4cb8b810d6842b0264
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     PathAndIcons:
@@ -1668,7 +1758,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3540249830c07b45b3ef8d491af9591a
     GuidInternal: 
-    m_lastTime: -8585801132976013009
+    m_lastTime: -8585800154683191782
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
@@ -1682,7 +1772,7 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: 557c88a89e194448849391a37b555061
     GuidInternal: 
-    m_lastTime: -8585801132975937990
+    m_lastTime: -8585800154683071747
     List: []
   ExpandedFileSystemItemIds: 0200000003000000040000000500000006000000070000000b0000000e0000000f0000002a0000002b0000002c00000035000000
   ExpandedWaapiItemIds: 

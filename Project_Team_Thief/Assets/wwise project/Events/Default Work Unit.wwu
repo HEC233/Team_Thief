@@ -251,6 +251,23 @@
 						</Folder>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="Glover" ID="{3C7176C0-CC8F-43E3-B701-A5AE6B166597}" ShortID="546847026">
+					<ChildrenList>
+						<Event Name="GamePause" ID="{44CCB3F4-ADBA-4C79-98DF-39B1DABE6A22}">
+							<ChildrenList>
+								<Action Name="" ID="{B575D41E-AC78-4F5C-80A8-3F2A0592CEE6}" ShortID="636618127">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="8"/>
+										<Property Name="FadeOutCurve" Type="int16" Value="5"/>
+										<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList/>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

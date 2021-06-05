@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\인209-019\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="110249294">
+		<SoundBank Id="393239870" Language="SFX" Hash="241492362">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -174,13 +174,22 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="992544517">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3967033470">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<IncludedAuxBusses>
 				<AuxBus Id="1622449088" Name="Auxiliary_Bus" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Auxiliary_Bus"/>
 			</IncludedAuxBusses>
+			<StateGroups>
+				<StateGroup Id="3422541661" Name="Pause_Menu" ObjectPath="\States\Default Work Unit\Pause_Menu">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Pause_Menu\None"/>
+						<State Id="319258907" Name="Paused" ObjectPath="\States\Default Work Unit\Pause_Menu\Paused"/>
+						<State Id="953277036" Name="Resume" ObjectPath="\States\Default Work Unit\Pause_Menu\Resume"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

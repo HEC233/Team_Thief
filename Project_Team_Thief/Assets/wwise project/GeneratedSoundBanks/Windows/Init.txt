@@ -1,3 +1,14 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	3422541661	Pause_Menu			\Default Work Unit\Pause_Menu	
+
+State	ID	Name	State Group			Notes
+	319258907	Paused	Pause_Menu			
+	748895195	None	Pause_Menu			
+	953277036	Resume	Pause_Menu			
+
+Custom State	ID	Name	State Group	Owner		Notes
+	99415125	Paused	Pause_Menu	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus		
+
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	504532776	Brick			\Factory Acoustic Textures\Textures\Brick	
 	513139656	Mountain			\Factory Acoustic Textures\Textures\Mountain	

@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{44F8D94F-0F54-4BB0-B024-7A7267F0F122}" SchemaVersion="103">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{44F8D94F-0F54-4BB0-B024-7A7267F0F122}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{44F8D94F-0F54-4BB0-B024-7A7267F0F122}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="Pause_Menu" ID="{60F7BB29-6EFA-4FFE-9061-E92B937C89D7}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="0.5"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{CB1F6A0D-8BF8-4B69-BB08-88FC9E63A35C}"/>
+						<State Name="Paused" ID="{E3CA4617-7E41-49D1-8F1E-C02C2858950B}"/>
+						<State Name="Resume" ID="{9A2128AA-2315-4C3A-B8B8-10D6842B0264}"/>
+					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="Paused" ID="{E3CA4617-7E41-49D1-8F1E-C02C2858950B}"/>
+							<EndState Name="Resume" ID="{9A2128AA-2315-4C3A-B8B8-10D6842B0264}"/>
+							<Time>0.5</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Resume" ID="{9A2128AA-2315-4C3A-B8B8-10D6842B0264}"/>
+							<EndState Name="Paused" ID="{E3CA4617-7E41-49D1-8F1E-C02C2858950B}"/>
+							<Time>0.5</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+					</TransitionList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>

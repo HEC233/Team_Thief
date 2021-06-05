@@ -22,7 +22,6 @@
 							<ObjectLists/>
 						</Bus>
 						<Bus Name="AMB" ID="{ECA708DB-F50F-4B50-94C9-49B46B6F5E7B}">
-							<ReferenceList/>
 							<ObjectLists/>
 						</Bus>
 						<Bus Name="BGM" ID="{06D39BC1-1717-499F-AABD-C324E60E9991}">
@@ -43,6 +42,27 @@
 							<ObjectLists/>
 						</Bus>
 					</ChildrenList>
+					<StateInfo>
+						<StateGroupList>
+							<StateGroupInfo>
+								<StateGroupRef Name="Pause_Menu" ID="{60F7BB29-6EFA-4FFE-9061-E92B937C89D7}"/>
+							</StateGroupInfo>
+						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="Paused" ID="{E3CA4617-7E41-49D1-8F1E-C02C2858950B}"/>
+								<CustomState Name="" ID="{A6BAD0BC-B939-49C1-99D9-93B0EF561D40}" ShortID="99415125">
+									<PropertyList>
+										<Property Name="BusVolume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Resume" ID="{9A2128AA-2315-4C3A-B8B8-10D6842B0264}"/>
+								<CustomState Name="" ID="{7D8409B2-551C-4231-9693-C8B8FF000E4B}" ShortID="373267153"/>
+							</CustomState>
+						</CustomStateList>
+					</StateInfo>
 					<ObjectLists/>
 				</Bus>
 				<Bus Name="Motion Factory Bus" ID="{2AF9B9C6-6EF1-46E9-B5F2-E30C9E602C74}">
