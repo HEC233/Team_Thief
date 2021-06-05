@@ -103,7 +103,7 @@ MonoBehaviour:
       dialogName: Boss1
       image: {fileID: 0}
       leftDown: {x: -3, y: -3}
-      rightUp: {x: 39, y: 12}
+      rightUp: {x: 38, y: 12}
       unitName: 
       spawnPos: {x: 0, y: 0}
       count: 0

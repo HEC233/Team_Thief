@@ -14,7 +14,6 @@ public class UICommandInfo : MonoBehaviour
     public GameObject commandCoolTime;
 
     private Transform playerTr;
-    private Camera mainCam;
 
     private List<UIElementCommand> panelList = new List<UIElementCommand>();
     private List<UICommandCoolTime> coolTimeList = new List<UICommandCoolTime>();
@@ -61,7 +60,6 @@ public class UICommandInfo : MonoBehaviour
         }
 
         playerTr = null;
-        mainCam = Camera.main;
     }
 
     private void Update()
@@ -72,8 +70,7 @@ public class UICommandInfo : MonoBehaviour
         }
         else
         {
-            var screenPos = mainCam.WorldToScreenPoint(playerTr.position + Vector3.down);
-            verticalPanelRect.anchoredPosition = new Vector2(screenPos.x / Screen.width * 480, screenPos.y / Screen.height * 270);
+            verticalPanelRect.anchoredPosition = GameManager.instance.uiMng.GetScreenPos(playerTr.position + Vector3.down);
 
             foreach (var e in panelList)
             {
