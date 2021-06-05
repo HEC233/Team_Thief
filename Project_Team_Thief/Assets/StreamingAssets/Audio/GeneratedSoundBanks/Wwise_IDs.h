@@ -13,6 +13,12 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID DANDELION_BOOM = 3148959641U;
+        static const AkUniqueID DANDELION_FA = 208042395U;
+        static const AkUniqueID LIGHTWARRIOR_AR = 4014153887U;
+        static const AkUniqueID LIGHTWARRIOR_FS = 3896710555U;
+        static const AkUniqueID LIGHTWARRIOR_SWING = 11536312U;
+        static const AkUniqueID PAUSE = 3092587493U;
         static const AkUniqueID PC_AXE = 690267075U;
         static const AkUniqueID PC_BA1 = 438455619U;
         static const AkUniqueID PC_BA2 = 438455616U;
@@ -25,30 +31,25 @@ namespace AK
         static const AkUniqueID PC_HIT_BLADE = 4017075331U;
         static const AkUniqueID PC_HIT_HAMMER = 3385077829U;
         static const AkUniqueID PC_HURT = 2523322754U;
+        static const AkUniqueID PC_JA1 = 705617627U;
+        static const AkUniqueID PC_JA2 = 705617624U;
         static const AkUniqueID PC_JUMP = 3162924009U;
+        static const AkUniqueID PC_KOPSH1 = 1065092545U;
+        static const AkUniqueID PC_KOPSH2 = 1065092546U;
+        static const AkUniqueID PC_KOPSH3 = 1065092547U;
         static const AkUniqueID PC_LAND = 3795174U;
         static const AkUniqueID PC_SLIDE = 1281925152U;
-        static const AkUniqueID PC_SPEAR_CHARGE = 2685062319U;
+        static const AkUniqueID PC_SNAKE_SWORD1 = 3746366218U;
+        static const AkUniqueID PC_SNAKE_SWORD2 = 3746366217U;
+        static const AkUniqueID PC_SNAKE_SWORD3 = 3746366216U;
         static const AkUniqueID PC_SPEAR_RUSH = 2779137053U;
         static const AkUniqueID PC_STOP = 118156989U;
         static const AkUniqueID PC_WALL = 1438052377U;
+        static const AkUniqueID RESUME = 953277036U;
+        static const AkUniqueID SERAPHIM_AR = 3566318014U;
+        static const AkUniqueID SERAPHIM_FS = 3549540426U;
+        static const AkUniqueID SERAPHIM_SHOT = 967849143U;
     } // namespace EVENTS
-
-    namespace STATES
-    {
-        namespace PAUSE_MENU
-        {
-            static const AkUniqueID GROUP = 3422541661U;
-
-            namespace STATE
-            {
-                static const AkUniqueID NONE = 748895195U;
-                static const AkUniqueID PAUSED = 319258907U;
-                static const AkUniqueID RESUME = 953277036U;
-            } // namespace STATE
-        } // namespace PAUSE_MENU
-
-    } // namespace STATES
 
     namespace GAME_PARAMETERS
     {
@@ -69,7 +70,9 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
-        static const AkUniqueID SFX = 393239870U;
+        static const AkUniqueID ENEMY = 2299321487U;
+        static const AkUniqueID PC = 1635194334U;
+        static const AkUniqueID UI = 1551306167U;
     } // namespace BANKS
 
     namespace BUSSES

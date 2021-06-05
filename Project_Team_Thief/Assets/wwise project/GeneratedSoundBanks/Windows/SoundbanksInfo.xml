@@ -11,16 +11,33 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="241492362">
-			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
-			<ShortName>SFX</ShortName>
-			<Path>SFX.bnk</Path>
+		<SoundBank Id="1355168291" Language="SFX" Hash="3892875624">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<IncludedAuxBusses>
+				<AuxBus Id="1622449088" Name="Auxiliary_Bus" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Auxiliary_Bus"/>
+			</IncludedAuxBusses>
+		</SoundBank>
+		<SoundBank Id="1551306167" Language="SFX" Hash="3973784475">
+			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
+			<ShortName>UI</ShortName>
+			<Path>UI.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3092587493" Name="Pause" ObjectPath="\Events\Default Work Unit\Glober\Pause" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="953277036" Name="Resume" ObjectPath="\Events\Default Work Unit\Glober\Resume" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+			</IncludedEvents>
+		</SoundBank>
+		<SoundBank Id="1635194334" Language="SFX" Hash="2969948401">
+			<ObjectPath>\SoundBanks\Default Work Unit\PC</ObjectPath>
+			<ShortName>PC</ShortName>
+			<Path>PC.bnk</Path>
 			<IncludedEvents>
 				<Event Id="690267075" Name="PC_axe" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_axe" DurationType="OneShot" DurationMin="0.253048" DurationMax="0.284037">
 					<IncludedMemoryFiles>
 						<File Id="987553898" Language="SFX">
 							<ShortName>SFX_PC_axe.wav</ShortName>
-							<Path>SFX\SFX_PC_axe_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_axe_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -28,7 +45,7 @@
 					<IncludedMemoryFiles>
 						<File Id="1008207653" Language="SFX">
 							<ShortName>SFX_PC_woosh.wav</ShortName>
-							<Path>SFX\SFX_PC_woosh_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_woosh_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -36,7 +53,7 @@
 					<IncludedMemoryFiles>
 						<File Id="1008207653" Language="SFX">
 							<ShortName>SFX_PC_woosh.wav</ShortName>
-							<Path>SFX\SFX_PC_woosh_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_woosh_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -44,7 +61,7 @@
 					<IncludedMemoryFiles>
 						<File Id="1008207653" Language="SFX">
 							<ShortName>SFX_PC_woosh.wav</ShortName>
-							<Path>SFX\SFX_PC_woosh_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_woosh_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -52,23 +69,23 @@
 					<IncludedMemoryFiles>
 						<File Id="1008207653" Language="SFX">
 							<ShortName>SFX_PC_woosh.wav</ShortName>
-							<Path>SFX\SFX_PC_woosh_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_woosh_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1271964801" Name="PC_dash" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_dash" DurationType="OneShot" DurationMin="0.238826" DurationMax="0.337751">
+				<Event Id="1271964801" Name="PC_dash" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_dash" DurationType="OneShot" DurationMin="0.180996" DurationMax="0.203161">
 					<IncludedMemoryFiles>
 						<File Id="501540947" Language="SFX">
 							<ShortName>SFX_PC_dash.wav</ShortName>
-							<Path>SFX\SFX_PC_dash_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_dash_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="3067029096" Name="PC_FS" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_FS" DurationType="Infinite">
 					<IncludedMemoryFiles>
-						<File Id="427331776" Language="SFX">
+						<File Id="873939562" Language="SFX">
 							<ShortName>SFX_PC_FS.wav</ShortName>
-							<Path>SFX\SFX_PC_FS_D79FB2B7.wem</Path>
+							<Path>SFX\SFX_PC_FS_294B52A9.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -76,7 +93,7 @@
 					<IncludedMemoryFiles>
 						<File Id="590939762" Language="SFX">
 							<ShortName>SFX_PC_hammer_Smash.wav</ShortName>
-							<Path>SFX\SFX_PC_hammer_Smash_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_hammer_Smash_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -84,7 +101,7 @@
 					<IncludedMemoryFiles>
 						<File Id="242449067" Language="SFX">
 							<ShortName>SFX_PC_hammer_Swing.wav</ShortName>
-							<Path>SFX\SFX_PC_hammer_Swing_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_hammer_Swing_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -92,7 +109,7 @@
 					<IncludedMemoryFiles>
 						<File Id="839774164" Language="SFX">
 							<ShortName>SFX_PC_HIT_blade.wav</ShortName>
-							<Path>SFX\SFX_PC_HIT_blade_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_HIT_blade_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -100,7 +117,7 @@
 					<IncludedMemoryFiles>
 						<File Id="294639420" Language="SFX">
 							<ShortName>SFX_PC_HIT_hammer.wav</ShortName>
-							<Path>SFX\SFX_PC_HIT_hammer_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_HIT_hammer_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -108,27 +125,67 @@
 					<IncludedMemoryFiles>
 						<File Id="539243910" Language="SFX">
 							<ShortName>SFX_PC_Hurt2.wav</ShortName>
-							<Path>SFX\SFX_PC_Hurt2_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_Hurt2_46401910.wem</Path>
 						</File>
 						<File Id="856789864" Language="SFX">
 							<ShortName>SFX_PC_Hurt1.wav</ShortName>
-							<Path>SFX\SFX_PC_Hurt1_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_Hurt1_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3162924009" Name="PC_Jump" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_Jump" DurationType="OneShot" DurationMin="0.215109" DurationMax="0.271020">
+				<Event Id="705617627" Name="PC_JA1" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_JA1" DurationType="OneShot" DurationMin="0.312270" DurationMax="0.441617">
+					<IncludedMemoryFiles>
+						<File Id="1008207653" Language="SFX">
+							<ShortName>SFX_PC_woosh.wav</ShortName>
+							<Path>SFX\SFX_PC_woosh_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="705617624" Name="PC_JA2" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_JA2" DurationType="OneShot" DurationMin="0.312270" DurationMax="0.441617">
+					<IncludedMemoryFiles>
+						<File Id="1008207653" Language="SFX">
+							<ShortName>SFX_PC_woosh.wav</ShortName>
+							<Path>SFX\SFX_PC_woosh_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3162924009" Name="PC_Jump" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_Jump" DurationType="OneShot" DurationMin="0.090453" DurationMax="0.113964">
 					<IncludedMemoryFiles>
 						<File Id="897023030" Language="SFX">
 							<ShortName>SFX_PC_jump.wav</ShortName>
-							<Path>SFX\SFX_PC_jump_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_jump_C269BB80.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3795174" Name="PC_land" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_land" DurationType="OneShot" DurationMin="0.295424" DurationMax="0.372210">
+				<Event Id="1065092545" Name="PC_Kopsh1" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh1" DurationType="OneShot" DurationMin="0.250729" DurationMax="0.281434">
+					<IncludedMemoryFiles>
+						<File Id="1008207653" Language="SFX">
+							<ShortName>SFX_PC_woosh.wav</ShortName>
+							<Path>SFX\SFX_PC_woosh_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1065092546" Name="PC_Kopsh2" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh2" DurationType="OneShot" DurationMin="0.229920" DurationMax="0.258076">
+					<IncludedMemoryFiles>
+						<File Id="1008207653" Language="SFX">
+							<ShortName>SFX_PC_woosh.wav</ShortName>
+							<Path>SFX\SFX_PC_woosh_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1065092547" Name="PC_Kopsh3" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh3" DurationType="OneShot" DurationMin="0.190017" DurationMax="0.213287">
+					<IncludedMemoryFiles>
+						<File Id="1008207653" Language="SFX">
+							<ShortName>SFX_PC_woosh.wav</ShortName>
+							<Path>SFX\SFX_PC_woosh_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3795174" Name="PC_land" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_land" DurationType="OneShot" DurationMin="0.396627" DurationMax="0.499719">
 					<IncludedMemoryFiles>
 						<File Id="447645998" Language="SFX">
 							<ShortName>SFX_PC_land.wav</ShortName>
-							<Path>SFX\SFX_PC_land_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_land_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -136,15 +193,39 @@
 					<IncludedMemoryFiles>
 						<File Id="835747766" Language="SFX">
 							<ShortName>SFX_PC_slide.wav</ShortName>
-							<Path>SFX\SFX_PC_slide_D79FB2B7.wem</Path>
+							<Path>SFX\SFX_PC_slide_F01E125A.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2685062319" Name="PC_spear_Charge" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_spear_Charge" DurationType="OneShot" DurationMin="0.340329" DurationMax="0.360566">
+				<Event Id="3746366218" Name="PC_Snake_Sword1" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword1" DurationType="OneShot" DurationMin="0.172222" DurationMax="0.172222">
 					<IncludedMemoryFiles>
-						<File Id="884030604" Language="SFX">
-							<ShortName>SFX_PC_spear_Charge.wav</ShortName>
-							<Path>SFX\SFX_PC_spear_Charge_10C4C929.wem</Path>
+						<File Id="636430321" Language="SFX">
+							<ShortName>SFX_PC_SnakeSword1.wav</ShortName>
+							<Path>SFX\SFX_PC_SnakeSword1_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3746366217" Name="PC_Snake_Sword2" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword2" DurationType="OneShot" DurationMin="0.851300" DurationMax="0.918813">
+					<IncludedMemoryFiles>
+						<File Id="13143024" Language="SFX">
+							<ShortName>SFX_PC_SnakeSword2_2.wav</ShortName>
+							<Path>SFX\SFX_PC_SnakeSword2_2_46401910.wem</Path>
+						</File>
+						<File Id="396690813" Language="SFX">
+							<ShortName>SFX_PC_SnakeSword2_1.wav</ShortName>
+							<Path>SFX\SFX_PC_SnakeSword2_1_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3746366216" Name="PC_Snake_Sword3" ObjectPath="\Events\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword3" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="753457588" Language="SFX">
+							<ShortName>SFX_PC_SnakeSword3_chain3.wav</ShortName>
+							<Path>SFX\SFX_PC_SnakeSword3_chain3_45F17D09.wem</Path>
+						</File>
+						<File Id="1001260328" Language="SFX">
+							<ShortName>Spin_TwirlingWhoosh.wav</ShortName>
+							<Path>SFX\Spin_TwirlingWhoosh_E0A1F73E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -152,44 +233,98 @@
 					<IncludedMemoryFiles>
 						<File Id="367170398" Language="SFX">
 							<ShortName>SFX_PC_spear_Rush.wav</ShortName>
-							<Path>SFX\SFX_PC_spear_Rush_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_spear_Rush_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="118156989" Name="PC_stop" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_stop" DurationType="OneShot" DurationMin="0.371172" DurationMax="0.416626">
+				<Event Id="118156989" Name="PC_stop" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_stop" DurationType="OneShot" DurationMin="0.355676" DurationMax="0.399233">
 					<IncludedMemoryFiles>
 						<File Id="71523468" Language="SFX">
 							<ShortName>SFX_PC_stop.wav</ShortName>
-							<Path>SFX\SFX_PC_stop_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_stop_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1438052377" Name="PC_wall" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_wall" DurationType="OneShot" DurationMin="0.210000" DurationMax="0.210000">
+				<Event Id="1438052377" Name="PC_wall" ObjectPath="\Events\Default Work Unit\SFX\PC\movement\PC_wall" DurationType="OneShot" DurationMin="0.092918" DurationMax="0.098443">
 					<IncludedMemoryFiles>
 						<File Id="152241030" Language="SFX">
 							<ShortName>SFX_PC_wall.wav</ShortName>
-							<Path>SFX\SFX_PC_wall_10C4C929.wem</Path>
+							<Path>SFX\SFX_PC_wall_CC9362F0.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="3967033470">
-			<ObjectPath>Init</ObjectPath>
-			<ShortName>Init</ShortName>
-			<Path>Init.bnk</Path>
-			<IncludedAuxBusses>
-				<AuxBus Id="1622449088" Name="Auxiliary_Bus" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Auxiliary_Bus"/>
-			</IncludedAuxBusses>
-			<StateGroups>
-				<StateGroup Id="3422541661" Name="Pause_Menu" ObjectPath="\States\Default Work Unit\Pause_Menu">
-					<States>
-						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Pause_Menu\None"/>
-						<State Id="319258907" Name="Paused" ObjectPath="\States\Default Work Unit\Pause_Menu\Paused"/>
-						<State Id="953277036" Name="Resume" ObjectPath="\States\Default Work Unit\Pause_Menu\Resume"/>
-					</States>
-				</StateGroup>
-			</StateGroups>
+		<SoundBank Id="2299321487" Language="SFX" Hash="3805661471">
+			<ObjectPath>\SoundBanks\Default Work Unit\Enemy</ObjectPath>
+			<ShortName>Enemy</ShortName>
+			<Path>Enemy.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3148959641" Name="Dandelion_Boom" ObjectPath="\Events\Default Work Unit\SFX\Enemy\Dandelion\Dandelion_Boom" MaxAttenuation="30.000000" DurationType="OneShot" DurationMin="1.464696" DurationMax="1.644066">
+					<IncludedMemoryFiles>
+						<File Id="514265212" Language="SFX">
+							<ShortName>SFX_Dandelion_Boom.wav</ShortName>
+							<Path>SFX\SFX_Dandelion_Boom_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="208042395" Name="Dandelion_FA" ObjectPath="\Events\Default Work Unit\SFX\Enemy\Dandelion\Dandelion_FA" MaxAttenuation="30.000000" DurationType="OneShot" DurationMin="0.097641" DurationMax="0.109598">
+					<IncludedMemoryFiles>
+						<File Id="1052154211" Language="SFX">
+							<ShortName>SFX_Dandelion_FA.wav</ShortName>
+							<Path>SFX\SFX_Dandelion_FA_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4014153887" Name="LightWarrior_AR" ObjectPath="\Events\Default Work Unit\SFX\Enemy\LightWarrior\LightWarrior_AR" MaxAttenuation="30.000000" DurationType="OneShot" DurationMin="1.238188" DurationMax="1.472461">
+					<IncludedMemoryFiles>
+						<File Id="986728204" Language="SFX">
+							<ShortName>SFX_LightWarrior_AR.wav</ShortName>
+							<Path>SFX\SFX_LightWarrior_AR_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3896710555" Name="LightWarrior_FS" ObjectPath="\Events\Default Work Unit\SFX\Enemy\LightWarrior\LightWarrior_FS" MaxAttenuation="30.000000" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="492561759" Language="SFX">
+							<ShortName>SFX_LightWarrior_FS2.wav</ShortName>
+							<Path>SFX\SFX_LightWarrior_FS2_874E3359.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="11536312" Name="LightWarrior_Swing" ObjectPath="\Events\Default Work Unit\SFX\Enemy\LightWarrior\LightWarrior_Swing" MaxAttenuation="30.000000" DurationType="OneShot" DurationMin="0.212275" DurationMax="0.238271">
+					<IncludedMemoryFiles>
+						<File Id="242449067" Language="SFX">
+							<ShortName>SFX_PC_hammer_Swing.wav</ShortName>
+							<Path>SFX\SFX_PC_hammer_Swing_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3566318014" Name="Seraphim_AR" ObjectPath="\Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_AR" MaxAttenuation="30.000000" DurationType="OneShot" DurationMin="0.488715" DurationMax="0.548564">
+					<IncludedMemoryFiles>
+						<File Id="861657718" Language="SFX">
+							<ShortName>SFX_Seraphim_AR.wav</ShortName>
+							<Path>SFX\SFX_Seraphim_AR_6577C28F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3549540426" Name="Seraphim_FS" ObjectPath="\Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_FS" MaxAttenuation="30.000000" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="427331776" Language="SFX">
+							<ShortName>SFX_PC_FS.wav</ShortName>
+							<Path>SFX\SFX_PC_FS_B2793148.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="967849143" Name="Seraphim_Shot" ObjectPath="\Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_Shot" MaxAttenuation="30.000000" DurationType="OneShot" DurationMin="1.107929" DurationMax="1.243608">
+					<IncludedMemoryFiles>
+						<File Id="487472076" Language="SFX">
+							<ShortName>SFX_Seraphim_Shot.wav</ShortName>
+							<Path>SFX\SFX_Seraphim_Shot_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

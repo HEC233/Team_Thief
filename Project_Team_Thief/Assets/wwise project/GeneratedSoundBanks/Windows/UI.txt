@@ -1,0 +1,4 @@
+Event	ID	Name			Wwise Object Path	Notes
+	953277036	Resume			\Default Work Unit\Glober\Resume	
+	3092587493	Pause			\Default Work Unit\Glober\Pause	
+

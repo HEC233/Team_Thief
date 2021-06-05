@@ -7,7 +7,7 @@
 					<PropertyList>
 						<Property Name="Maximum" Type="int32">
 							<ValueList>
-								<Value>1048576</Value>
+								<Value>200000</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -59,6 +59,14 @@
 						<ObjectRef Name="Dandelion_Boom" ID="{3D63B58C-8358-4B70-8FE3-47CDF33D2DA6}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="LightWarrior_FS" ID="{4A5BB839-1538-4C4D-A57E-DD2D34F5BC89}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Dandelion_FA" ID="{264C2F49-23C4-4CDD-BFD8-9315760525E6}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="UI" ID="{F445C7F8-BF04-4B63-AECC-6DFF3A969EAB}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Pause" ID="{0CF96DE7-E364-4722-82B7-95C224A9CAFC}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Resume" ID="{E066D744-36F4-49AB-AFC2-01E05CC4005C}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
