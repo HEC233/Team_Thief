@@ -12,11 +12,17 @@ public class UIHpMonster : MonoBehaviour
     private MonsterUnit attachedUnit;
     public Camera camera;
 
-    private bool show = false;
+    private bool bShow = false;
+    private bool bInited = false;
 
     private void Awake()
     {
         _rect = GetComponent<RectTransform>();
+    }
+
+    public void SetUninit()
+    {
+        bInited = false;
     }
 
     public void Init(MonsterUnit unit)
@@ -30,14 +36,21 @@ public class UIHpMonster : MonoBehaviour
         delayHp.sizeDelta = _rect.sizeDelta;
         curHp.sizeDelta = _rect.sizeDelta;
 
-        show = false;
-        maxHp.gameObject.SetActive(show);
-        delayHp.gameObject.SetActive(show);
-        curHp.gameObject.SetActive(show);
+        bShow = false;
+        maxHp.gameObject.SetActive(bShow);
+        delayHp.gameObject.SetActive(bShow);
+        curHp.gameObject.SetActive(bShow);
+
+        bInited = true;
     }
 
     private void Update()
     {
+        if(!bInited)
+        {
+            return;
+        }
+
         var screenPos = camera.WorldToScreenPoint(attachedUnit.GetHpPos());
         screenPos = new Vector2(screenPos.x / Screen.width * 480, screenPos.y / Screen.height * 270);
 
@@ -46,16 +59,16 @@ public class UIHpMonster : MonoBehaviour
 
     public void HpUpdate()
     {
-        show = true;
+        bShow = true;
         StopAllCoroutines();
         StartCoroutine(HpAnimation());
     }
 
     IEnumerator HpAnimation()
     {
-        maxHp.gameObject.SetActive(show);
-        delayHp.gameObject.SetActive(show);
-        curHp.gameObject.SetActive(show);
+        maxHp.gameObject.SetActive(bShow);
+        delayHp.gameObject.SetActive(bShow);
+        curHp.gameObject.SetActive(bShow);
 
         curHp.sizeDelta = new Vector2(attachedUnit.GetCurHp() / 200, curHp.sizeDelta.y);
 

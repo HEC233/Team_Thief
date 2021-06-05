@@ -21,9 +21,11 @@ public class TimeManager : MonoBehaviour
 
     public bool IsHitStop => _isHitStop;
 
+    [SerializeField]
     private float _timeScale = 1;
     public float TimeScale => _timeScale;
 
+    [SerializeField]
     private float _prevTimeScale = 0;
 
     public float DeltaTime { get { return Time.deltaTime * _timeScale; } }
@@ -52,10 +54,18 @@ public class TimeManager : MonoBehaviour
 
     public void UnbindAll()
     {
+        Debug.Log("UNBIND ALL");
         startHitstopEvent = null;
         endHitstopEvent = null;
         startBulletTimeEvent = null;
         endBulletTimeEvent = null;
+    }
+
+    public void Reset()
+    {
+        endHitstopEvent?.Invoke(1.0f);
+        endBulletTimeEvent?.Invoke(1.0f);
+        ResetTime();
     }
 
     private bool _isStoped = false;
@@ -64,25 +74,34 @@ public class TimeManager : MonoBehaviour
     public void ResetTime()
     {
         _timeStopRequiredCount = 0;
+        Debug.Log("timeStop require reset : " + _timeStopRequiredCount);
         _timeScale = 1;
+        _prevTimeScale = 1;
     }
     public void StopTime()
     {
+
         _timeStopRequiredCount++;
+        Debug.Log("timeStop required : " + _timeStopRequiredCount);
         if (_isStoped)
+        {
             return;
-        _prevTimeScale = _timeScale;
-        _timeScale = 0;
-        startHitstopEvent?.Invoke(_timeScale);
+        }
+        startHitstopEvent?.Invoke(0);
         _isStoped = true;
     }
     public void ResumeTime()
     {
         _timeStopRequiredCount--;
+        Debug.Log("timeResume required : " + _timeStopRequiredCount);
         if (_timeStopRequiredCount > 0)
+        {
+            Debug.Log("현재 이 부분때문에 정상 진행이 안됨 임시로 리턴 품");
+            // 증가는 하는데 감소는 하지 않음 esc 연타시.
             return;
-        _timeScale = _prevTimeScale;
-        endHitstopEvent?.Invoke(_timeScale);
+        }
+
+        endHitstopEvent?.Invoke(1);
         _isStoped = false;
     }
 
@@ -91,12 +110,15 @@ public class TimeManager : MonoBehaviour
     // 리지드 바디의 프리즈를 이용해서 잠깐 폭력 멈춰두는건?
     public void HitStop(float time)
     {
+        if(_isStoped == true)
+            return;
+
         // 불릿 타임 중 히트 스탑이 호출 될 경우 히트 스탑이 끝난 뒤 불릿 타임으로 돌아가기 위해.
         if(_isBulletTime == true)
         {
             _prevTimeScale = _timeScale;
         }
-
+        
         _isHitStop = true;
         _timeScale = 0;
         StartCoroutine(HitStopTimerCoroutine(time));
@@ -158,7 +180,11 @@ public class TimeManager : MonoBehaviour
         float prevTimeScale = _timeScale;
         while (tick <= time)
         {
-            tick += Time.fixedDeltaTime;
+            if (GameManager.instance.GameState != GameManager.GameStateEnum.Pause)
+            {
+                tick += Time.fixedDeltaTime;
+            }
+
             yield return new WaitForFixedUpdate();
         }
         

@@ -61,7 +61,9 @@ public class MonsterUnit : Unit
         _customTimeScale = customTimeScale;
         _originalVelocity = _rigid.velocity;
         _rigid.velocity *= _customTimeScale;
-        _originalGravityScale = _rigid.gravityScale;
+        /// 김태성 긴급 수정을 위해 수정
+        //_originalGravityScale = _rigid.gravityScale;
+        /// 김태성 긴급 수정을 위해 수정
         _rigid.gravityScale *= _customTimeScale * _customTimeScale;
         _maxSpeed = _unitData.maxSpeed * _customTimeScale;
         _minSpeed = _unitData.minSpeed * _customTimeScale;
@@ -131,6 +133,11 @@ public class MonsterUnit : Unit
                 _rigid.velocity = velocity.normalized * _maxSpeed;
             _isVerticalMoving = false;
         }
+    }
+
+    private void OnDestroy()
+    {
+        dieEvent.Invoke();
     }
 
     public float GetCurHp()

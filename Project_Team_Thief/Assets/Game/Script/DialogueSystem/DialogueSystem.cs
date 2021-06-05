@@ -23,7 +23,7 @@ public class DialogueSystem : MonoBehaviour
     private bool bSkipping = false;
     private float skipTimeCheck = 0;
 
-    public bool CheckRunning() { return bCodeRuning; }
+    public bool CheckRunning() { return bCodeRuning || bPaused; }
 
 
     InputProcessActor inputProcess;

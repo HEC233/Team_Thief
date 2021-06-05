@@ -15,6 +15,8 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
     private GameObject m_firstSelectButton;
     private GameObject m_lastSelectButton;
 
+    private Coroutine pauseAnimation;
+
     private void Awake()
     {
         _rect = GetComponent<RectTransform>();
@@ -22,16 +24,47 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
 
     public void Toggle(bool value)
     {
-        if (!this.gameObject.activeSelf && !value)
+        if (pauseAnimation == null && this.gameObject.activeSelf == value)
+        {
             return;
+        }
         this.gameObject.SetActive(true);
         if (value)
         {
             m_lastSelectButton = null;
             GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_firstSelectButton);
+            GameManager.instance.timeMng.StopTime();
         }
-        StopAllCoroutines();
-        StartCoroutine(PauseAnimation(value));
+        else
+        {
+            GameManager.instance.timeMng.ResumeTime();
+        }
+        if (pauseAnimation != null)
+        {
+            EndAnimation(value);
+        }
+        else
+        {
+            pauseAnimation = StartCoroutine(PauseAnimation(value));
+        }
+    }
+
+    private void EndAnimation(bool value)
+    {
+        StopCoroutine(pauseAnimation);
+        pauseAnimation = null;
+        if (value)
+        {
+            buttons.anchoredPosition = Vector2.zero;
+            canvasGroup.alpha = 1.0f;
+            background.color = new Color(0, 0, 0, 0.9f);
+            canvasGroup.interactable = true;
+        }
+        else
+        {
+            canvasGroup.interactable = false;
+        }
+        this.gameObject.SetActive(value);
     }
 
     private IEnumerator PauseAnimation(bool value)
@@ -49,7 +82,6 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
             canvasGroup.alpha = 0f;
             background.color = new Color(0, 0, 0, 0);
 
-            GameManager.instance.timeMng.StopTime();
             yield return new WaitForSeconds(0.1f);
             this.gameObject.SetActive(value);
 
@@ -85,9 +117,10 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
                 yield return null;
             }
 
-            GameManager.instance.timeMng.ResumeTime();
             this.gameObject.SetActive(value);
         }
+
+        pauseAnimation = null;
     }
 
     public void Resume()

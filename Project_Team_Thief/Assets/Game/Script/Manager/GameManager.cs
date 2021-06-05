@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public GameStateEnum GameState
     {
         get { return _gameState; }
-        set { _prevState = _gameState; _gameState = value; uiMng.ToggleUI(value); }
+        set { _prevState = _gameState; _gameState = value; uiMng.ToggleUI(value); Debug.Log("GameState Changed : " + _gameState); }
     }
 
     public FreameChecker frameChecker;
@@ -132,11 +132,12 @@ public class GameManager : MonoBehaviour
     {
         yield return GameLoader.instance.SceneLoad(SceneName);
         shadow.UnRegistAllCollider();
-        dialogueSystem.EndDialogue();
+        if (dialogueSystem.CheckRunning()) dialogueSystem.EndDialogue();
         GameState = GameStateEnum.InGame;
         ChangeActorToPlayer();
-        timeMng.ResetTime();
+        timeMng.UnbindAll();
         cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
+        cameraMng.FindCameras();
         cameraMng.Bind();
         var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;
@@ -152,6 +153,7 @@ public class GameManager : MonoBehaviour
             GameState = GameStateEnum.InGame;
             ChangeActorToPlayer();
             dialogueSystem.ResumeDialogue();
+            WwiseSoundManager.instance.ResumeAllSound();
         }
         // inGame -> pause
         else if (GameState == GameStateEnum.InGame)
@@ -159,6 +161,7 @@ public class GameManager : MonoBehaviour
             GameState = GameStateEnum.Pause;
             SetControlActor(uiMng.UiActor);
             dialogueSystem.PauseDialogue();
+            WwiseSoundManager.instance.PauseAllSound();
 
         }
         // mainMenu -> ExitGame
@@ -171,6 +174,7 @@ public class GameManager : MonoBehaviour
         {
             GameState = _prevState;
             SetControlActor(uiMng.UiActor);
+            WwiseSoundManager.instance.ResumeAllSound();
         }
     }
 

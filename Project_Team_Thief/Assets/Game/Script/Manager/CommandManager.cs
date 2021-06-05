@@ -77,7 +77,7 @@ public class CommandManager : MonoBehaviour
         // 던파에서 커맨드를 저장 위위 아래아래 Z 스킬 위위 아래 z
         // 중간에 다른 키가 입력됐을 때 스킬이 발동되는 경우?
 
-        if (key == 'Z' || key == 'X' || key == 'C' || key == 'S') // 커맨드 결정 키
+        if (key == 'Z' || key == 'X' || key == 'S') // 커맨드 결정 키
         {
             for (int i = 0; i < _commandCtrls.Count; i++)
             {

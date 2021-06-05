@@ -58,6 +58,7 @@ public class CameraManager : MonoBehaviour
     
     public void Shake(float amplitudeGain, float frequencyGain, float time)
     {
+        FindCameras();
         _liveVirtualCameraMultiChannelPerlin.m_AmplitudeGain = amplitudeGain;
         _liveVirtualCameraMultiChannelPerlin.m_FrequencyGain = frequencyGain;
         //StartCoroutine(ShakeCoroutine(time));
@@ -65,6 +66,11 @@ public class CameraManager : MonoBehaviour
 
     public void AllCinemachineFollowChange(Transform transform)
     {
+        if (_mainVirtualCamera == null || _zoomInVirtualCamera == null)
+        {
+            FindCameras();
+        }
+        
         _zoomInVirtualCamera.m_Follow = transform;
         _mainVirtualCamera.m_Follow = transform;
     }
@@ -103,11 +109,14 @@ public class CameraManager : MonoBehaviour
 
     private void OnHitStopEvnetCall(float timeScale)
     {
+        Debug.Log("HITSTOP IN CAMERA");
         CinemachineCore.UniformDeltaTimeOverride = 0;
     }
 
     private void OnHitStopEndEventCall(float timeScale)
     {
+        Debug.Log("HITSTOP END IN CAMERA");
+
         CinemachineCore.UniformDeltaTimeOverride = -1;
     }
 

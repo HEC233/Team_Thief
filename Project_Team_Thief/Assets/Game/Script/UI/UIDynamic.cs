@@ -22,7 +22,9 @@ public class UIDynamic : MonoBehaviour
         foreach(var m in monsterHps)
         {
             m.gameObject.SetActive(false);
+            m.SetUninit();
         }
+        this.gameObject.SetActive(true);
     }
 
     private void Awake()
@@ -32,7 +34,10 @@ public class UIDynamic : MonoBehaviour
 
     public void Toggle(bool value)
     {
-        this.gameObject.SetActive(value);
+        foreach (var d in damageTexts)
+        {
+            d.SetVisible(value);
+        }
     }
 
     private UIHpReduceInfo GetDamageText()
