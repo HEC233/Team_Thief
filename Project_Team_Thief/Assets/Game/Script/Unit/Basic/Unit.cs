@@ -100,9 +100,17 @@ public class Unit : MonoBehaviour
     // 유닛 공격의 상태이상을 조정합니다.
     public Unit SetDamageAbnormal(AbnormalState abnormal)
     {
-        _damage.abnormal = abnormal;
+        //_damage.abnormal = abnormal;
+        _damage.abnormal = (int)abnormal;
 
         return this;
+    }
+
+    
+    // 유닛의 Hp를 회복합니다.
+    public virtual void HandleHpRecovery(Damage damage)
+    {
+        
     }
     
     public Unit SetHitPosition(Vector3 position)
