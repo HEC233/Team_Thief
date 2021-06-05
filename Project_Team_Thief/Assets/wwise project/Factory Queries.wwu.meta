@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Project_Team_Thief/Assets/wwise project/States/New Work Unit.wwu.meta
+guid: 6e64ce420c2f68140a7b659751804391
+========
 guid: 90399b1e6696786418a40163cc338040
+>>>>>>>> Team_Thief/SoundDev:Project_Team_Thief/Assets/wwise project/Factory Queries.wwu.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
