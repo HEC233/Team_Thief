@@ -50,6 +50,8 @@ public class MonsterUnit : Unit
         get { return !Mathf.Approximately(GetSpeed().x, 0.0f); }
     }
 
+    public void TurnOnInvincibility() { bInvincibility = true; }
+
     // 커스텀 타임스케일을 위한 부분들 시작
     private float _originalGravityScale = 1.0f;
     private float _maxSpeed;

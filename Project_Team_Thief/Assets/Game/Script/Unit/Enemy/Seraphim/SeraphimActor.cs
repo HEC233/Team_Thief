@@ -392,6 +392,7 @@ namespace PS.Enemy.Seraphim
         {
             actor.animCtrl.PlayAni(AniState.Die);
             timeCheck = 0.5f;
+            actor.unit.TurnOnInvincibility();
         }
 
         public override void Exit(SeraphimActor actor)
