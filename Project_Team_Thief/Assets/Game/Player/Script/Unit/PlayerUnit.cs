@@ -533,7 +533,8 @@ public class PlayerUnit : Unit
         _jumpCount--;
         _isGround = false;
 
-        var power = new Vector3(0, _jumpPower * _timeScale, 0.0f);
+        var power = new Vector3(0, _jumpPower * GameManager.instance.timeMng.TimeScale, 0.0f);
+        Debug.Log(power);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -541,7 +542,7 @@ public class PlayerUnit : Unit
     {
         _jumpCount--;
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
-        var power = new Vector3(0, _jumpPower * _timeScale, 0.0f);
+        var power = new Vector3(0, _jumpPower * GameManager.instance.timeMng.TimeScale, 0.0f);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -552,7 +553,9 @@ public class PlayerUnit : Unit
 
     public void AddJumpForce()
     {
-        _rigidbody2D.AddForce((new Vector2(0, _addJumpPower) * _addAllJumpPpower) * _timeScale * GameManager.instance.timeMng.FixedDeltaTime, ForceMode2D.Impulse);
+        _rigidbody2D.AddForce(
+            (new Vector2(0, _addJumpPower) * _addAllJumpPpower) * GameManager.instance.timeMng.TimeScale *
+            GameManager.instance.timeMng.FixedDeltaTime, ForceMode2D.Impulse);
     }
 
     public bool CheckIsJumpAble()

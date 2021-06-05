@@ -2516,14 +2516,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private void EndHitStopEvnetCall(float _timeScale)
     {
+        Unit.EndHitStop(_timeScale);
+        AnimationCtrl.SetAnimationTimeSclae(_timeScale);
+        _fxCtrl.SetAnimationTimeSclae(_timeScale);
+        
         if (_hitstopCondition != TransitionCondition.None)
         {
             Transition(_hitstopCondition);
         }
-        
-        Unit.EndHitStop(_timeScale);
-        AnimationCtrl.SetAnimationTimeSclae(_timeScale);
-        _fxCtrl.SetAnimationTimeSclae(_timeScale);
 
     }
     
