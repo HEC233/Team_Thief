@@ -23,7 +23,11 @@ public class UICommandCoolTime : MonoBehaviour
     public void SetData(CommandManager.CommandCtrl data)
     {
         _data = data;
+        bCoolTimeReady = false;
     }
+
+    float t = 0;
+    const float length = 0.5f;
 
     private void Update()
     {
@@ -33,26 +37,41 @@ public class UICommandCoolTime : MonoBehaviour
         {
             bCoolTimeReady = false;
         }
-        else if (!bCoolTimeReady)
+        else
         {
-            StartCoroutine(CoolTimeReadyAnimation());
+            if (!bCoolTimeReady)
+            {
+                bCoolTimeReady = true;
+                t = 0;
+            }
+            else
+            {
+                if (t <= length)
+                {
+                    skillIconRect.localScale = Vector3.Lerp(Vector3.one * 1.5f, Vector3.one, t / length);
 
-            bCoolTimeReady = true;
+                    t += Time.deltaTime;
+                }
+                else
+                {
+                    skillIconRect.localScale = Vector3.one;
+                }    
+            }
         }
     }
 
-    private IEnumerator CoolTimeReadyAnimation()
-    {
-        float t = 0;
-        const float length = 0.5f;
-        while (t <= length)
-        {
-            skillIconRect.localScale = Vector3.Lerp(Vector3.one * 1.5f, Vector3.one, t / length);
+    //private IEnumerator CoolTimeReadyAnimation()
+    //{
+    //    float t = 0;
+    //    const float length = 0.5f;
+    //    while (t <= length)
+    //    {
+    //        skillIconRect.localScale = Vector3.Lerp(Vector3.one * 1.5f, Vector3.one, t / length);
 
-            t += Time.deltaTime;
-            yield return null;
-        }
-        skillIconRect.localScale = Vector3.one;
-        yield break;
-    }
+    //        t += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    skillIconRect.localScale = Vector3.one;
+    //    yield break;
+    //}
 }
