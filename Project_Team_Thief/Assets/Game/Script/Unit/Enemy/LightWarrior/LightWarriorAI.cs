@@ -315,7 +315,7 @@ namespace PS.Enemy.LightWarrior.AI
                 // 스킬 사용 후 스킬이 끝날때까지 기다려주는 처리 필요
                 //-----------------------------------------
                 case InnerState.Attack:
-                    bool value = (ai.attackDistance >= ai.GetDistance()) && (ai.isLookRight ? ai.GetDistance(false) > 0 : ai.GetDistance(false) < 0);
+                    bool value = ((ai.attackDistance >= ai.GetDistance()) && (ai.isLookRight ? ai.GetDistance(false) > 0 : ai.GetDistance(false) < 0) || ai.GetDistance() <= 1);
                     if (value)
                     {
                         if (_AttackCool <= 0)
