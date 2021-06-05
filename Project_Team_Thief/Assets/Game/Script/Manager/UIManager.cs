@@ -218,6 +218,18 @@ public class UIManager : MonoBehaviour
         uiPlayerInfo.SetShowCommandInfo(value);
     }
 
+    public Vector3 GetScreenPos(Vector3 worldPos)
+    {
+        //float ratio = Screen.currentResolution.height / Screen.currentResolution.width;
+        //float ratioRcp = 1 / ratio;
+
+        var screenPos = GameManager.instance.cameraMng.mainCam.WorldToScreenPoint(worldPos);
+        screenPos = new Vector2(screenPos.x / Screen.width * 480, screenPos.y / Screen.height * 270);
+
+
+        return screenPos;
+    }
+
     public class UIActor : IActor
     {
         private UIManager m_uiManager;

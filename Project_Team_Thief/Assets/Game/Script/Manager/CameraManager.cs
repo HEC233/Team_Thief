@@ -19,6 +19,8 @@ public class CameraManager : MonoBehaviour
 
     public event UnityAction OnZoomInEndEvent = null;
 
+    public Camera mainCam;
+
     private void Start()
     {
         Bind();
@@ -47,6 +49,8 @@ public class CameraManager : MonoBehaviour
         {
             _zoomInVirtualCamera = GameObject.Find("CM ZoomVcam").GetComponent<CinemachineVirtualCamera>();
         }
+
+        mainCam = Camera.main;
     }
     
     public void OnLiveChange()

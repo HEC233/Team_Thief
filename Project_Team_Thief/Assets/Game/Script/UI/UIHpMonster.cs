@@ -10,7 +10,6 @@ public class UIHpMonster : MonoBehaviour
     public RectTransform curHp;
 
     private MonsterUnit attachedUnit;
-    public Camera camera;
 
     private bool bShow = false;
     private bool bInited = false;
@@ -51,8 +50,7 @@ public class UIHpMonster : MonoBehaviour
             return;
         }
 
-        var screenPos = camera.WorldToScreenPoint(attachedUnit.GetHpPos());
-        screenPos = new Vector2(screenPos.x / Screen.width * 480, screenPos.y / Screen.height * 270);
+        var screenPos = GameManager.instance.uiMng.GetScreenPos(attachedUnit.GetHpPos());
 
         _rect.anchoredPosition = screenPos;
     }
