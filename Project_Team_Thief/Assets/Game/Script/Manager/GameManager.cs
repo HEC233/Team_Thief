@@ -190,6 +190,7 @@ public class GameManager : MonoBehaviour
     {
         shadow.UnRegistAllCollider();
         yield return GameLoader.instance.SceneLoad("MainScene");
+        WwiseSoundManager.instance.ResumeAllSound();
         GameState = GameStateEnum.MainMenu;
         SetControlActor(uiMng.UiActor);
     }
