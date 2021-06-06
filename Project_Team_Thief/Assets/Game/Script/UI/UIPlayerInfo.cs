@@ -51,7 +51,7 @@ public class UIPlayerInfo : MonoBehaviour
     public void Toggle(bool value)
     {
         this.gameObject.SetActive(value);
-        commandInfo.gameObject.SetActive(_bUseCommandInfo && value);
+        commandInfo.gameObject.SetActive(value);
     }
 
     public void SetShowCommandInfo(bool value)
