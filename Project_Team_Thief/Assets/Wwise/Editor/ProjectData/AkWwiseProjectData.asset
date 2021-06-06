@@ -303,7 +303,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: e8a961f1977ddc44a7bcd68ac0d891e1
     GuidInternal: 
-    m_lastTime: -8585786872191900985
+    m_lastTime: -8585786864774851804
     List:
     - name: AMB
       guid: db08a7ec0ff5504b94c949b46b6f5e7b
@@ -447,7 +447,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-    m_lastTime: -8585786870050881796
+    m_lastTime: -8585786860398574769
     List:
     - name: Enemy
       guid: 4180b20eab728742bb28e1477a6e3154
@@ -503,7 +503,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585786870050721881
+    m_lastTime: -8585786860295030133
     List:
     - name: Dandelion
       guid: bbdc4fdd927ecf48a5881615e6ab92ca
@@ -1910,21 +1910,74 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 4fd9f844540fb04bb0247a7267f0f122
     GuidInternal: 
-    m_lastTime: -8585786872190958774
-    List: []
-  - PhysicalPath: States\New Work Unit.wwu
-    PathAndIcons:
-    - ElementName: States
-      ObjectType: 5
-      guid: 00000000000000000000000000000000
-    - ElementName: New Work Unit
-      ObjectType: 12
-      guid: 1c7ce1be3fc933439a1168c84cf2b5a7
-    ParentPath: States\New Work Unit
-    guid: 1c7ce1be3fc933439a1168c84cf2b5a7
-    GuidInternal: 
-    m_lastTime: -8585786872190958774
-    List: []
+    m_lastTime: -8585786864820528511
+    List:
+    - name: Pause_Menu
+      guid: 29bbf760fa6efe4f9061e92b937c89d7
+      id: 3422541661
+      PathAndIcons:
+      - ElementName: States
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 4fd9f844540fb04bb0247a7267f0f122
+      - ElementName: Pause_Menu
+        ObjectType: 9
+        guid: 29bbf760fa6efe4f9061e92b937c89d7
+      Path: States\Default Work Unit\Pause_Menu
+      values:
+      - name: None
+        guid: 0d6a1fcbf88b694bbb0888fc9e63a35c
+        id: 748895195
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Pause_Menu
+          ObjectType: 9
+          guid: 29bbf760fa6efe4f9061e92b937c89d7
+        - ElementName: None
+          ObjectType: 8
+          guid: 0d6a1fcbf88b694bbb0888fc9e63a35c
+      - name: Paused
+        guid: 1746cae3417ed1498f1ec02c2858950b
+        id: 319258907
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Pause_Menu
+          ObjectType: 9
+          guid: 29bbf760fa6efe4f9061e92b937c89d7
+        - ElementName: Paused
+          ObjectType: 8
+          guid: 1746cae3417ed1498f1ec02c2858950b
+      - name: Resume
+        guid: aa28219a15233a4cb8b810d6842b0264
+        id: 953277036
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Pause_Menu
+          ObjectType: 9
+          guid: 29bbf760fa6efe4f9061e92b937c89d7
+        - ElementName: Resume
+          ObjectType: 8
+          guid: aa28219a15233a4cb8b810d6842b0264
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     PathAndIcons:
@@ -1953,7 +2006,7 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585787909052066279
     List: []
-  ExpandedFileSystemItemIds: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000e0000001000000011000000260000002f00000030000000
+  ExpandedFileSystemItemIds: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000e0000001000000011000000260000002f000000300000003c0000003d000000
   ExpandedWaapiItemIds: 
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
