@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour
         {
             if (GameState == GameStateEnum.InGame)
             {
-                AkSoundEngine.StopAll();    // 임시 코드
                 EscapeButton();
             }
         }

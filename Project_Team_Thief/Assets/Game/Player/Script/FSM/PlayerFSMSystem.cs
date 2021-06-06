@@ -92,7 +92,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private void Bind()
     {
-        Debug.Log("PLAYERFSM BIND");
         GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvnetCall;
         GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
         GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
@@ -1343,24 +1342,20 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 _timer += GameManager.instance.timeMng.FixedDeltaTime;
                 SystemMgr.Unit.BasicJumpAttackMove(_jumpAttackIndex);
-                Debug.Log("JumpAttackMoveCoroutineIng... :" + _jumpAttackIndex);
                 yield return new WaitForFixedUpdate();
             }
             
-            Debug.Log("JumpMoveCoroutine End : " + _jumpAttackIndex);
             _isNotEndCoroutine = false;
             SystemMgr.Unit.EndJumpAttackMove();
         }
 
         private void BasicJumpAttack2()
         {
-            Debug.Log("BasicJumpAttack2 : " + _jumpAttackIndex);
             if(_jumpAttackIndex >= 1)
                 return;
 
             if (_isNotEndCoroutine == true)
             {
-                Debug.Log("코루틴 중에 스탑시키기");
                 SystemMgr.Unit.StopCoroutine(_jumpAttackMoveCoroutine);
             }
             
@@ -1377,11 +1372,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (_jumpAttackIndex >= 1 && _isNotEndCoroutine)
             {
-                Debug.Log("jumpAttack Return");
                 return;
             }
 
-            Debug.Log("JumpAttack End :" + _jumpAttackIndex);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
             _isBasicjumpAttackAniEnd = true;
         }

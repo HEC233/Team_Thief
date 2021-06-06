@@ -54,7 +54,6 @@ public class TimeManager : MonoBehaviour
 
     public void UnbindAll()
     {
-        Debug.Log("UNBIND ALL");
         startHitstopEvent = null;
         endHitstopEvent = null;
         startBulletTimeEvent = null;
@@ -74,7 +73,6 @@ public class TimeManager : MonoBehaviour
     public void ResetTime()
     {
         _timeStopRequiredCount = 0;
-        Debug.Log("timeStop require reset : " + _timeStopRequiredCount);
         _timeScale = 1;
         _prevTimeScale = 1;
     }
@@ -82,7 +80,6 @@ public class TimeManager : MonoBehaviour
     {
 
         _timeStopRequiredCount++;
-        Debug.Log("timeStop required : " + _timeStopRequiredCount);
         if (_isStoped)
         {
             return;
@@ -94,7 +91,6 @@ public class TimeManager : MonoBehaviour
     public void ResumeTime()
     {
         _timeStopRequiredCount--;
-        Debug.Log("timeResume required : " + _timeStopRequiredCount);
         if (_timeStopRequiredCount > 0)
         {
             Debug.Log("현재 이 부분때문에 정상 진행이 안됨 임시로 리턴 품");
