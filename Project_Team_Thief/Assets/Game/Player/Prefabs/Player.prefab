@@ -896,10 +896,10 @@ MonoBehaviour:
   _maxHp: 100
   _curHp: 100
   _decreaseHp: 0.2
-  _encroachmentPerPlayerHitDamageMax: 0.2
-  _encroachmentPerPlayerAttackDamageMax: 0.2
-  _encroachmentRecoveryPerTime: 0.04
-  _encroachmentRecoveryAmount: -0.55
+  _encroachmentPerPlayerHitDamageMax: 0
+  _encroachmentPerPlayerAttackDamageMax: 0.7
+  _encroachmentRecoveryPerTime: 0.06
+  _encroachmentRecoveryAmount: -0.45
   _aniFastAmount: 2
   _minSpeed: 1
   _maxSpeed: 8
@@ -931,8 +931,8 @@ MonoBehaviour:
   - 5
   - 0.2
   _basicAttackCansleTime: 0
-  _basicAttackMinDamage: 90
-  _basicAtaackMaxDamage: 110
+  _basicAttackMinDamage: 130
+  _basicAtaackMaxDamage: 150
   _basicAttackCtrlArr:
   - {fileID: 1542053514905396923}
   - {fileID: 1542053514773876517}
@@ -962,7 +962,7 @@ MonoBehaviour:
   _hitInvincibilityTime: 1
   _hitInvincibilityTwinkleTime: 0.5
   _hitTime: 0.5
-  _encroachmentDecreaseCombo: 30
+  _encroachmentDecreaseCombo: 20
   _baiscAttackEncroachmentDecrease: -10
   _skillAxeData: {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
   _skillSpearData: {fileID: 11400000, guid: e8948507ae42110479fddb18fa2f4d59, type: 2}

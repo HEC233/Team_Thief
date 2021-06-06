@@ -26,9 +26,9 @@ MonoBehaviour:
   - {x: 0.5, y: 1}
   - {x: 0, y: 0}
   _attackDamageArr:
+  - 300
   - 400
   - 500
-  - 600
   _playerMovePostionXArr:
   - 8
   - -2
