@@ -1671,7 +1671,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe);
             WwiseSoundManager.instance.PlayEventSound("PC_axe");
-
+            GameManager.instance.uiMng.TurnXButtonUI(true);
             _gameSkillObject = InvokeSkill();
         }
 
@@ -1685,6 +1685,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
             _isAniEnd = false;
             _isAxe2Action = false;
+            GameManager.instance.uiMng.TurnXButtonUI(false);
+
         }
 
         public override bool Transition(TransitionCondition condition)
@@ -1748,7 +1750,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe2);
                 SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe2);
                 WwiseSoundManager.instance.PlayEventSound("PC_axe");
-
+                GameManager.instance.uiMng.TurnXButtonUI(false);
                 _gameSkillObject2 = InvokeSkill();
             }
 
@@ -1965,6 +1967,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
             WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
+            GameManager.instance.uiMng.TurnXButtonUI(true);
 
             _gameSkillObject = InvokeSkill();
             
@@ -1988,6 +1991,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _attackBeInputTime = 0;
             _attackInputTime = 0;
             _isAniEnd = false;
+            
+            GameManager.instance.uiMng.TurnXButtonUI(false);
+
         }
 
         public override bool Transition(TransitionCondition condition)
@@ -2055,6 +2061,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
 
             _gameSkillObject = InvokeSkill();
+
+            if (SystemMgr.Unit.skillKopshIndex == _skillKopshAniArr.Length - 1)
+            {
+                GameManager.instance.uiMng.TurnXButtonUI(false);
+            }
         }
         
         private bool IsEndOrNextCheck()
@@ -2127,6 +2138,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _attackTime = SystemMgr.Unit.SkillPlainSwordAttackTime;
 
             _gameSkillObject = InvokeSkill();
+            
+            GameManager.instance.uiMng.TurnXButtonUI(true);
         }
 
         public override void Update()
@@ -2152,6 +2165,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _attackInputTime = 0;
             _isAniEnd = false;
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+            
+            GameManager.instance.uiMng.TurnXButtonUI(false);
+
         }
 
         public override bool Transition(TransitionCondition condition)
@@ -2237,10 +2253,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             SystemMgr.AnimationCtrl.PlayAni(_skillPlainSwordAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
-            
+
             if (SystemMgr.Unit.skillPlainSwordIndex == 2)
+            {
                 _soundID = WwiseSoundManager.instance.PlayEventSound(
                     _skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+                
+                GameManager.instance.uiMng.TurnXButtonUI(false);
+
+            }
             else
             {
                 WwiseSoundManager.instance.PlayEventSound(
