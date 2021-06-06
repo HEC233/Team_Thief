@@ -36,7 +36,7 @@ public class UIDynamic : MonoBehaviour
     {
         if(ChainButton.gameObject.activeSelf)
         {
-            ChainButton.anchoredPosition = GameManager.instance.uiMng.GetScreenPos(GameManager.instance.GetControlActor().GetUnit().transform.position + Vector3.up * 1.5);
+            ChainButton.anchoredPosition = GameManager.instance.uiMng.GetScreenPos(GameManager.instance.GetControlActor().GetUnit().transform.position + Vector3.up * 1.5f);
         }
     }
 
