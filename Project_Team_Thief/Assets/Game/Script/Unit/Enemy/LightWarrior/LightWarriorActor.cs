@@ -43,7 +43,6 @@ public class LightWarriorActor : MonoBehaviour, IActor
         var v = GameManager.instance.timeMng;
         if (v)
         {
-            Debug.Log("ENEMY UNIT REGESTER");
             v.startBulletTimeEvent += TimeScaleChangeEnterCallback;
             v.endBulletTimeEvent += TimeScaleChangeExitCallback;
             v.startHitstopEvent += TimeScaleChangeEnterCallback;

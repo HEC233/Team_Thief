@@ -32,12 +32,13 @@ public class WwiseSoundManager : MonoBehaviour
 
     public void PauseAllSound()
     {
-        AkSoundEngine.Suspend();
+        AkSoundEngine.PostEvent("Pause", gameObject);
     }
 
     public void ResumeAllSound()
     {
-        AkSoundEngine.WakeupFromSuspend();
+        AkSoundEngine.PostEvent("Resume", gameObject);
+        //AkSoundEngine.WakeupFromSuspend();
     }
     
 }

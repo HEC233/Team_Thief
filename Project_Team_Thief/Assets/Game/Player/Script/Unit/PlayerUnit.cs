@@ -209,6 +209,8 @@ public class PlayerUnit : Unit
     
     private float _comboTimer;
     private int _curCombo = 0;
+    private int _comboRemainder = 0;
+    private int _drainCombo = 0;
     private bool _isContinuingCombo = false;
     private Coroutine _comboCoroutine;
     
@@ -533,7 +535,7 @@ public class PlayerUnit : Unit
         _jumpCount--;
         _isGround = false;
 
-        var power = new Vector3(0, _jumpPower * _timeScale, 0.0f);
+        var power = new Vector3(0, _jumpPower * GameManager.instance.timeMng.TimeScale, 0.0f);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -541,7 +543,7 @@ public class PlayerUnit : Unit
     {
         _jumpCount--;
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
-        var power = new Vector3(0, _jumpPower * _timeScale, 0.0f);
+        var power = new Vector3(0, _jumpPower * GameManager.instance.timeMng.TimeScale, 0.0f);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -552,7 +554,9 @@ public class PlayerUnit : Unit
 
     public void AddJumpForce()
     {
-        _rigidbody2D.AddForce((new Vector2(0, _addJumpPower) * _addAllJumpPpower) * _timeScale * GameManager.instance.timeMng.FixedDeltaTime, ForceMode2D.Impulse);
+        _rigidbody2D.AddForce(
+            (new Vector2(0, _addJumpPower) * _addAllJumpPpower) * GameManager.instance.timeMng.TimeScale *
+            GameManager.instance.timeMng.FixedDeltaTime, ForceMode2D.Impulse);
     }
 
     public bool CheckIsJumpAble()
@@ -698,6 +702,35 @@ public class PlayerUnit : Unit
         }
     }
 
+    private Damage CalcDamageAbnormalIsDrain(Damage damage)
+    {
+        if (_comboRecoveryAmount == 0)
+        {
+            return damage;
+        }
+
+        if (_drainCombo == 0 || _drainCombo < 19)
+        {
+            damage.abnormal = 0;
+            return damage;
+        }
+
+        _comboRemainder = _drainCombo & _comboRecoveryAmount;
+        
+        
+        if (_comboRemainder >= 0)
+        {
+            Debug.Log("_comboRemainder : " + _comboRemainder);
+            Debug.Log("_drainCombo : " + _drainCombo);
+            damage.abnormal = (int)AbnormalState.Spare8;
+            _drainCombo = 0;
+        }
+
+        _comboRemainder = 0;
+        
+        return damage;
+    }
+
     private void SetBasicDamage(int attackIndex)
     {
         _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * _encroachmentPerPlayerAttackDamage;
@@ -705,10 +738,9 @@ public class PlayerUnit : Unit
         //============== 고재협이 편집함 ======================
         _basicAttackDamage.additionalInfo = attackIndex;
         //=====================================================
-        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
-        {
-            _basicAttackDamage.abnormal = (int)AbnormalState.Spare8;
-        }
+
+        _basicAttackDamage = CalcDamageAbnormalIsDrain(_basicAttackDamage);
+
     }
     
     public void SetBasicAttack()
@@ -1054,12 +1086,7 @@ public class PlayerUnit : Unit
 
     public void SKillSpearAttack(Damage damage)
     {
-        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
-        {
-            damage.abnormal = (int)AbnormalState.Spare8;
-        }
-        
-        _skillSpearAttackCtrl.SetDamage(damage);
+        _skillSpearAttackCtrl.SetDamage(CalcDamageAbnormalIsDrain(damage));
         _skillSpearAttackCtrl.Progress();
     }
 
@@ -1070,12 +1097,7 @@ public class PlayerUnit : Unit
 
     public void SkillHammerAttack(Damage damage)
     {
-        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
-        {
-            damage.abnormal = (int)AbnormalState.Spare8;
-        }
-        
-        _skillHammerAttackCtrl.SetDamage(damage);
+        _skillHammerAttackCtrl.SetDamage(CalcDamageAbnormalIsDrain(damage));
         _skillHammerAttackCtrl.Progress();
     }
 
@@ -1086,12 +1108,7 @@ public class PlayerUnit : Unit
 
     public void SkillKopshAttack(Damage damage)
     {
-        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
-        {
-            damage.abnormal = (int)AbnormalState.Spare8;
-        }
-        
-        _skillKopshAttackCtrls[skillKopshIndex].SetDamage(damage);
+        _skillKopshAttackCtrls[skillKopshIndex].SetDamage(CalcDamageAbnormalIsDrain(damage));
         _skillKopshAttackCtrls[skillKopshIndex].Progress();
     }
     
@@ -1103,24 +1120,14 @@ public class PlayerUnit : Unit
 
     public void SkillPlainSwordAttack(Damage damage)
     {
-        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
-        {
-            damage.abnormal = (int)AbnormalState.Spare8;
-        }
-        
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(damage);
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(CalcDamageAbnormalIsDrain(damage));
         _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
     }
 
     public void SkillPlainSwordMultiAttack(Damage damage)
     {
         _skillPlainDamage = damage;
-        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
-        {
-            _skillPlainDamage.abnormal = (int)AbnormalState.Spare8;
-        }
-        
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(_skillPlainDamage);
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(CalcDamageAbnormalIsDrain(_skillPlainDamage));
         _skillPlainSwordMultiAttackCoroutine = StartCoroutine(SkillPlainSwordMultiAttackCoroutine());
     }
 
@@ -1145,6 +1152,7 @@ public class PlayerUnit : Unit
     public void OnAddComboEventCall(string skillname)
     {
         _curCombo++;
+        _drainCombo++;
         
         if (_isContinuingCombo == true)
         {
@@ -1271,6 +1279,7 @@ public class PlayerUnit : Unit
         
         _isContinuingCombo = false;
         _curCombo = 0;
+        _drainCombo = 0;
     }
 
     IEnumerator HitstopMoveCoroutine()
@@ -1426,12 +1435,8 @@ public class PlayerUnit : Unit
 
             if (timer >= _skillPlainSwordAttackInterval)
             {
-                if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
-                {
-                    _skillPlainDamage.abnormal = (int)AbnormalState.Spare8;
-                }
-        
-                _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(_skillPlainDamage);
+                _SkillPlainSwordAttackCtrls[skillPlainSwordIndex]
+                    .SetDamage(CalcDamageAbnormalIsDrain(_skillPlainDamage));
                 _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
                 timer = 0.0f;
             }

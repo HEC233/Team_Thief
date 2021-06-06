@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
@@ -74,6 +75,18 @@ public class GameManager : MonoBehaviour
         ApplySetting(_settingData);
     }
 
+    // 게임의 포커스가 나갔을 경우.
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus == false)
+        {
+            if (GameState == GameStateEnum.InGame)
+            {
+                EscapeButton();
+            }
+        }
+    }
+
     private IActor m_playerActor;
     public void SetPlayerActor(IActor actor)
     {
@@ -146,13 +159,13 @@ public class GameManager : MonoBehaviour
 
     public void EscapeButton()
     {
-
         // pause -> inGame
         if (GameState == GameStateEnum.Pause)
         {
             GameState = GameStateEnum.InGame;
             ChangeActorToPlayer();
             dialogueSystem.ResumeDialogue();
+            Debug.Log("InGame");
             WwiseSoundManager.instance.ResumeAllSound();
         }
         // inGame -> pause
@@ -161,8 +174,8 @@ public class GameManager : MonoBehaviour
             GameState = GameStateEnum.Pause;
             SetControlActor(uiMng.UiActor);
             dialogueSystem.PauseDialogue();
+            Debug.Log("Pause");
             WwiseSoundManager.instance.PauseAllSound();
-
         }
         // mainMenu -> ExitGame
         else if (GameState == GameStateEnum.MainMenu)
@@ -190,6 +203,7 @@ public class GameManager : MonoBehaviour
     {
         shadow.UnRegistAllCollider();
         yield return GameLoader.instance.SceneLoad("MainScene");
+        WwiseSoundManager.instance.ResumeAllSound();
         GameState = GameStateEnum.MainMenu;
         SetControlActor(uiMng.UiActor);
     }
