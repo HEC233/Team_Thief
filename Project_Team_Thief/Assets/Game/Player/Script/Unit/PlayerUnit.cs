@@ -735,12 +735,12 @@ public class PlayerUnit : Unit
 
     public float GetDamageWeightFromEencroachment()
     {
-        return _encroachmentPerPlayerAttackDamageMax * (1 + _encroachment / 100);
+        return _encroachmentPerPlayerAttackDamageMax + (1 + (1 + _encroachment) / 100);
     }
 
     public float GetHitDamageWeightFromEncroachment()
     {
-        return _encroachmentPerPlayerHitDamageMax * (1 + _encroachment / 100);
+        return _encroachmentPerPlayerHitDamageMax + (1 + (1 + _encroachment) / 100);
     }
 
     private void SetBasicDamage(int attackIndex)
