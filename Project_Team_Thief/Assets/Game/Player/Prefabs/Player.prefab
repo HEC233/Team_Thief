@@ -111,7 +111,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _zoomInTime: 0.04
-  _zoomInSize: 4
+  _zoomInSize: 5
   _zoomOutCurve:
     serializedVersion: 2
     m_Curve:
@@ -2123,7 +2123,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _zoomInTime: 0.2
-  _zoomInSize: 4
+  _zoomInSize: 6
   _zoomOutCurve:
     serializedVersion: 2
     m_Curve:

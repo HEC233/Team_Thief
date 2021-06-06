@@ -303,7 +303,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: e8a961f1977ddc44a7bcd68ac0d891e1
     GuidInternal: 
-    m_lastTime: -8585787909056224223
+    m_lastTime: -8585786550990070355
     List:
     - name: AMB
       guid: db08a7ec0ff5504b94c949b46b6f5e7b
@@ -447,7 +447,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-    m_lastTime: -8585787909052301938
+    m_lastTime: -8585786550989810302
     List:
     - name: Enemy
       guid: 4180b20eab728742bb28e1477a6e3154
@@ -477,6 +477,20 @@ MonoBehaviour:
         ObjectType: 7
         guid: b16ad34bef1eef4ab47f19504b46be7d
       Path: SoundBanks\Default Work Unit\PC
+    - name: UI
+      guid: f8c745f404bf634baecc6dff3a969eab
+      id: 1551306167
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 763b13b4fefea14c804ac0e94554340e
+      - ElementName: UI
+        ObjectType: 7
+        guid: f8c745f404bf634baecc6dff3a969eab
+      Path: SoundBanks\Default Work Unit\UI
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -489,7 +503,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585787909056984462
+    m_lastTime: -8585786550990730506
     List:
     - name: Dandelion
       guid: bbdc4fdd927ecf48a5881615e6ab92ca
@@ -583,6 +597,23 @@ MonoBehaviour:
         ObjectType: 4
         guid: 6893e63a85929b4f8c8e7b8fc78ee449
       Path: Events\Default Work Unit\SFX\Enemy
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Glober
+      guid: e3e9a3d4a2142541943ca7e271093a74
+      id: 1532441726
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: Glober
+        ObjectType: 4
+        guid: e3e9a3d4a2142541943ca7e271093a74
+      Path: Events\Default Work Unit\Glober
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -756,6 +787,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Pause
+      guid: e76df90c64e3224782b795c224a9cafc
+      id: 3092587493
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: Glober
+        ObjectType: 4
+        guid: e3e9a3d4a2142541943ca7e271093a74
+      - ElementName: Pause
+        ObjectType: 3
+        guid: e76df90c64e3224782b795c224a9cafc
+      Path: Events\Default Work Unit\Glober\Pause
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: PC
       guid: ea6a0a5aa8057d448e3651300b3aa078
       id: 1635194334
@@ -1478,6 +1529,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.098443
       minDuration: 0.092918
+    - name: Resume
+      guid: 44d766e0f436ab49afc201e05cc4005c
+      id: 953277036
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: Glober
+        ObjectType: 4
+        guid: e3e9a3d4a2142541943ca7e271093a74
+      - ElementName: Resume
+        ObjectType: 3
+        guid: 44d766e0f436ab49afc201e05cc4005c
+      Path: Events\Default Work Unit\Glober\Resume
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Seraphim
       guid: cbb8f2a798212145a2b1c6959b8be4ff
       id: 2215233064
@@ -1631,7 +1702,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 49e851bbaedb674888d0961189946708
     GuidInternal: 
-    m_lastTime: -8585787909056964457
+    m_lastTime: -8585786912636435334
     List: []
   - PhysicalPath: Game Parameters\Factory Motion.wwu
     PathAndIcons:
@@ -1839,21 +1910,74 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 4fd9f844540fb04bb0247a7267f0f122
     GuidInternal: 
-    m_lastTime: -8585787909052271928
-    List: []
-  - PhysicalPath: States\New Work Unit.wwu
-    PathAndIcons:
-    - ElementName: States
-      ObjectType: 5
-      guid: 00000000000000000000000000000000
-    - ElementName: New Work Unit
-      ObjectType: 12
-      guid: 1c7ce1be3fc933439a1168c84cf2b5a7
-    ParentPath: States\New Work Unit
-    guid: 1c7ce1be3fc933439a1168c84cf2b5a7
-    GuidInternal: 
-    m_lastTime: -8585787909052261926
-    List: []
+    m_lastTime: -8585786550989740289
+    List:
+    - name: Pause_Menu
+      guid: 29bbf760fa6efe4f9061e92b937c89d7
+      id: 3422541661
+      PathAndIcons:
+      - ElementName: States
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 4fd9f844540fb04bb0247a7267f0f122
+      - ElementName: Pause_Menu
+        ObjectType: 9
+        guid: 29bbf760fa6efe4f9061e92b937c89d7
+      Path: States\Default Work Unit\Pause_Menu
+      values:
+      - name: None
+        guid: 0d6a1fcbf88b694bbb0888fc9e63a35c
+        id: 748895195
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Pause_Menu
+          ObjectType: 9
+          guid: 29bbf760fa6efe4f9061e92b937c89d7
+        - ElementName: None
+          ObjectType: 8
+          guid: 0d6a1fcbf88b694bbb0888fc9e63a35c
+      - name: Paused
+        guid: 1746cae3417ed1498f1ec02c2858950b
+        id: 319258907
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Pause_Menu
+          ObjectType: 9
+          guid: 29bbf760fa6efe4f9061e92b937c89d7
+        - ElementName: Paused
+          ObjectType: 8
+          guid: 1746cae3417ed1498f1ec02c2858950b
+      - name: Resume
+        guid: aa28219a15233a4cb8b810d6842b0264
+        id: 953277036
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Pause_Menu
+          ObjectType: 9
+          guid: 29bbf760fa6efe4f9061e92b937c89d7
+        - ElementName: Resume
+          ObjectType: 8
+          guid: aa28219a15233a4cb8b810d6842b0264
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     PathAndIcons:
@@ -1866,7 +1990,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3540249830c07b45b3ef8d491af9591a
     GuidInternal: 
-    m_lastTime: -8585787909052241926
+    m_lastTime: -8585786872224889031
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu

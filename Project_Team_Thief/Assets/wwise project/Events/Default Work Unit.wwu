@@ -435,6 +435,37 @@
 						</Folder>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="Glober" ID="{D4A3E9E3-14A2-4125-943C-A7E271093A74}" ShortID="852428185">
+					<ChildrenList>
+						<Event Name="Pause" ID="{0CF96DE7-E364-4722-82B7-95C224A9CAFC}">
+							<ChildrenList>
+								<Action Name="" ID="{C4FAF44C-D850-41CA-8558-2A0E4917AAB7}" ShortID="935986657">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="8"/>
+										<Property Name="FadeOutCurve" Type="int16" Value="7"/>
+										<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList/>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Resume" ID="{E066D744-36F4-49AB-AFC2-01E05CC4005C}">
+							<ChildrenList>
+								<Action Name="" ID="{FB9446B6-8DDF-4FAF-80FA-24F556E66FD7}" ShortID="412626318">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="10"/>
+										<Property Name="FadeInCurve" Type="int16" Value="6"/>
+										<Property Name="FadeOutCurve" Type="int16" Value="7"/>
+										<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList/>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

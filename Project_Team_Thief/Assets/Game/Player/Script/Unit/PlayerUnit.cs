@@ -708,7 +708,7 @@ public class PlayerUnit : Unit
         //============== 고재협이 편집함 ======================
         _basicAttackDamage.additionalInfo = attackIndex;
         //=====================================================
-        if (_curCombo % _comboRecoveryAmount == 0)
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
         {
             _basicAttackDamage.abnormal = (int)AbnormalState.Spare8;
         }
@@ -1057,7 +1057,7 @@ public class PlayerUnit : Unit
 
     public void SKillSpearAttack(Damage damage)
     {
-        if (_curCombo % _comboRecoveryAmount == 0)
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
         {
             damage.abnormal = (int)AbnormalState.Spare8;
         }
@@ -1073,7 +1073,7 @@ public class PlayerUnit : Unit
 
     public void SkillHammerAttack(Damage damage)
     {
-        if (_curCombo % _comboRecoveryAmount == 0)
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
         {
             damage.abnormal = (int)AbnormalState.Spare8;
         }
@@ -1089,7 +1089,7 @@ public class PlayerUnit : Unit
 
     public void SkillKopshAttack(Damage damage)
     {
-        if (_curCombo % _comboRecoveryAmount == 0)
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
         {
             damage.abnormal = (int)AbnormalState.Spare8;
         }
@@ -1106,7 +1106,7 @@ public class PlayerUnit : Unit
 
     public void SkillPlainSwordAttack(Damage damage)
     {
-        if (_curCombo % _comboRecoveryAmount == 0)
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
         {
             damage.abnormal = (int)AbnormalState.Spare8;
         }
@@ -1118,7 +1118,7 @@ public class PlayerUnit : Unit
     public void SkillPlainSwordMultiAttack(Damage damage)
     {
         _skillPlainDamage = damage;
-        if (_curCombo % _comboRecoveryAmount == 0)
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
         {
             _skillPlainDamage.abnormal = (int)AbnormalState.Spare8;
         }
@@ -1429,7 +1429,7 @@ public class PlayerUnit : Unit
 
             if (timer >= _skillPlainSwordAttackInterval)
             {
-                if (_curCombo % _comboRecoveryAmount == 0)
+                if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
                 {
                     _skillPlainDamage.abnormal = (int)AbnormalState.Spare8;
                 }
