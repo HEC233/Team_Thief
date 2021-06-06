@@ -27,7 +27,7 @@ public class SkillAxeController : SkillControllerBase
         _unit = Unit as PlayerUnit;
 
         _damage = new Damage();
-        _damage.power = (_skillAxeData.AxeAttackDamage * _unit.Encroachment) * _unit.EncroachmentPerPlayerAttackDamageMax;
+        _damage.power = (_skillAxeData.AxeAttackDamage * (_unit.Encroachment + 1) ) * _unit.EncroachmentPerPlayerAttackDamageMax;
         _damage.knockBack = _skillAxeData.KnockBackPower;
         _damage.additionalInfo = 3;
     }

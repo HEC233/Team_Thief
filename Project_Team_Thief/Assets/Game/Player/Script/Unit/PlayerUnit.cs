@@ -736,7 +736,7 @@ public class PlayerUnit : Unit
     private void SetBasicDamage(int attackIndex)
     {
         _basicAttackDamage.power = (Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * 
-                                   _encroachment) * _encroachmentPerPlayerAttackDamageMax;
+                                   (_encroachment + 1)) * _encroachmentPerPlayerAttackDamageMax;
         _basicAttackDamage.knockBack = new Vector2(_basicAttackKnockBackArr[attackIndex].x * _facingDir, _basicAttackKnockBackArr[attackIndex].y);
         //============== 고재협이 편집함 ======================
         _basicAttackDamage.additionalInfo = attackIndex;
@@ -788,7 +788,8 @@ public class PlayerUnit : Unit
 
     public void SetBasicJumpDamage(int index)
     {
-        _basicJumpAttackDamage.power =(UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * _encroachment) *
+        _basicJumpAttackDamage.power =
+            (UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * (_encroachment + 1)) *
             _encroachmentPerPlayerAttackDamageMax;
         _basicJumpAttackDamage.knockBack = new Vector2(_basicJumpAttackKnockBackArr[index].x * _facingDir,
             _basicJumpAttackKnockBackArr[index].y);

@@ -27,7 +27,7 @@ public class SkillKopshController : SkillControllerBase
         _unit = Unit as PlayerUnit;
 
         _damage = new Damage();
-        _damage.power = (_skillKopshData.AttackDamageArr[_unit.skillKopshIndex] * _unit.Encroachment) *
+        _damage.power = (_skillKopshData.AttackDamageArr[_unit.skillKopshIndex] * (_unit.Encroachment + 1)) *
                         _unit.EncroachmentPerPlayerAttackDamageMax;
         _damage.knockBack = new Vector2(_skillKopshData.KnockBackPowerArr[_unit.skillKopshIndex].x * _unit.FacingDir,
             _skillKopshData.KnockBackPowerArr[_unit.skillKopshIndex].y);

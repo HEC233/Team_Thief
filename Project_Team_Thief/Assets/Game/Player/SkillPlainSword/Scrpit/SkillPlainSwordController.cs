@@ -25,7 +25,7 @@ public class SkillPlainSwordController : SkillControllerBase
         _unit = Unit as PlayerUnit;
 
         _damage = new Damage();
-        _damage.power = (_skillPlainSwordData.AttackDamageArr[_unit.skillPlainSwordIndex] * _unit.Encroachment) *
+        _damage.power = (_skillPlainSwordData.AttackDamageArr[_unit.skillPlainSwordIndex] * (_unit.Encroachment + 1)) *
                         _unit.EncroachmentPerPlayerAttackDamageMax;
         
         if (_unit.skillPlainSwordIndex == 1)
