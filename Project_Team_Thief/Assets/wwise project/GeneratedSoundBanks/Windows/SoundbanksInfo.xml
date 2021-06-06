@@ -11,13 +11,22 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="3892875624">
+		<SoundBank Id="1355168291" Language="SFX" Hash="2738626114">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<IncludedAuxBusses>
 				<AuxBus Id="1622449088" Name="Auxiliary_Bus" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Auxiliary_Bus"/>
 			</IncludedAuxBusses>
+			<StateGroups>
+				<StateGroup Id="3422541661" Name="Pause_Menu" ObjectPath="\States\Default Work Unit\Pause_Menu">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Pause_Menu\None"/>
+						<State Id="319258907" Name="Paused" ObjectPath="\States\Default Work Unit\Pause_Menu\Paused"/>
+						<State Id="953277036" Name="Resume" ObjectPath="\States\Default Work Unit\Pause_Menu\Resume"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
 		<SoundBank Id="1551306167" Language="SFX" Hash="3973784475">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
@@ -28,7 +37,7 @@
 				<Event Id="953277036" Name="Resume" ObjectPath="\Events\Default Work Unit\Glober\Resume" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1635194334" Language="SFX" Hash="2969948401">
+		<SoundBank Id="1635194334" Language="SFX" Hash="3319000288">
 			<ObjectPath>\SoundBanks\Default Work Unit\PC</ObjectPath>
 			<ShortName>PC</ShortName>
 			<Path>PC.bnk</Path>
@@ -85,7 +94,7 @@
 					<IncludedMemoryFiles>
 						<File Id="873939562" Language="SFX">
 							<ShortName>SFX_PC_FS.wav</ShortName>
-							<Path>SFX\SFX_PC_FS_294B52A9.wem</Path>
+							<Path>SFX\SFX_PC_FS_074C5D04.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

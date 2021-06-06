@@ -509,6 +509,9 @@
 															</ValueList>
 														</Property>
 														<Property Name="Pitch" Type="int32">
+															<ValueList>
+																<Value>330</Value>
+															</ValueList>
 															<ModifierList>
 																<ModifierInfo>
 																	<Modifier Name="" ID="{39A7C673-2981-4C8D-AC0D-1ED771074CC8}">
@@ -523,7 +526,7 @@
 														</Property>
 														<Property Name="Volume" Type="Real64">
 															<ValueList>
-																<Value>-9</Value>
+																<Value>-12</Value>
 															</ValueList>
 															<ModifierList>
 																<ModifierInfo>
@@ -549,7 +552,9 @@
 													<ChildrenList>
 														<AudioFileSource Name="SFX_PC_FS" ID="{832B3545-4A77-4AA5-9E61-8EB8ADB1A970}">
 															<PropertyList>
-																<Property Name="TrimEnd" Type="Real64" Value="0.4"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.116210207026534"/>
+																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+																<Property Name="TrimEnd" Type="Real64" Value="0.34"/>
 															</PropertyList>
 															<Language>SFX</Language>
 															<AudioFile>SFX_PC_FS.wav</AudioFile>
