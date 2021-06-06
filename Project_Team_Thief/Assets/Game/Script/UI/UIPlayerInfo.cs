@@ -57,7 +57,7 @@ public class UIPlayerInfo : MonoBehaviour
     public void SetShowCommandInfo(bool value)
     {
         _bUseCommandInfo = value;
-        commandInfo.gameObject.SetActive(value);
+        commandInfo.verticalPanel.gameObject.SetActive(value);
     }
 
     public void InitInfo()

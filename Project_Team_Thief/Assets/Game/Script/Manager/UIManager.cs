@@ -230,6 +230,11 @@ public class UIManager : MonoBehaviour
         return screenPos;
     }
 
+    public void TurnXButtonUI(bool value)
+    {
+        uiDynamic.TurnChangButton(value);
+    }
+
     public class UIActor : IActor
     {
         private UIManager m_uiManager;

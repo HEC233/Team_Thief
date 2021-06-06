@@ -7,6 +7,8 @@ public class UIDynamic : MonoBehaviour
     public GameObject monsterHP;
     public GameObject damageText;
     RectTransform _rect;
+    [SerializeField]
+    RectTransform ChainButton;
 
     private List<UIHpReduceInfo> damageTexts = new List<UIHpReduceInfo>();
     private List<UIHpMonster> monsterHps = new List<UIHpMonster>();
@@ -30,12 +32,25 @@ public class UIDynamic : MonoBehaviour
         _rect = GetComponent<RectTransform>();
     }
 
+    private void Update()
+    {
+        if(ChainButton.gameObject.activeSelf)
+        {
+            ChainButton.anchoredPosition = GameManager.instance.uiMng.GetScreenPos(GameManager.instance.GetControlActor().GetUnit().transform.position + Vector3.up * 1.5);
+        }
+    }
+
     public void Toggle(bool value)
     {
         foreach (var d in damageTexts)
         {
             d.SetVisible(value);
         }
+    }
+
+    public void TurnChangButton(bool value)
+    {
+        ChainButton.gameObject.SetActive(value);
     }
 
     private UIHpReduceInfo GetDamageText()
