@@ -19,7 +19,9 @@ public class HpOrbController : MonoBehaviour
     [SerializeField]
     private float _speed;
     [SerializeField]
-    private float _time;
+    private float _moveTime;
+    [SerializeField]
+    private float _existTime;
 
 
     private void Start()
@@ -47,11 +49,11 @@ public class HpOrbController : MonoBehaviour
         float t = 0;
         float speed = _speed;
 
-        while (t < _time)
+        while (t < _moveTime)
         {
             var d = GameManager.instance.timeMng.DeltaTime;
             t += d;
-            var dt = d / _time;
+            var dt = d / _moveTime;
 
             transform.position += direction * d * speed;
 
@@ -92,7 +94,7 @@ public class HpOrbController : MonoBehaviour
                 }
             }
 
-            if (time >= 5)
+            if (time >= _existTime)
             {
                 gameObject.SetActive(false);
             }
