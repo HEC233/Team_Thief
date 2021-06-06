@@ -51,6 +51,22 @@ namespace AK
         static const AkUniqueID SERAPHIM_SHOT = 967849143U;
     } // namespace EVENTS
 
+    namespace STATES
+    {
+        namespace PAUSE_MENU
+        {
+            static const AkUniqueID GROUP = 3422541661U;
+
+            namespace STATE
+            {
+                static const AkUniqueID NONE = 748895195U;
+                static const AkUniqueID PAUSED = 319258907U;
+                static const AkUniqueID RESUME = 953277036U;
+            } // namespace STATE
+        } // namespace PAUSE_MENU
+
+    } // namespace STATES
+
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID PLAYBACK_RATE = 1524500807U;

@@ -46,9 +46,9 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	835747766	SFX_PC_slide	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_slide_F01E125A.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_slide		27101
 	839774164	SFX_PC_HIT_blade	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_HIT_blade_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\hit\SFX_PC_HIT_blade		6137
 	856789864	SFX_PC_Hurt1	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_Hurt1_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\hurt\PC_Hurt\SFX_PC_Hurt1		4631
-	873939562	SFX_PC_FS	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_FS_294B52A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\PC_FS\SFX_PC_FS		3678
+	873939562	SFX_PC_FS	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_FS_074C5D04.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\PC_FS\SFX_PC_FS		3204
 	897023030	SFX_PC_jump	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_jump_C269BB80.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_jump		1586
 	987553898	SFX_PC_axe	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_axe_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\SFX_PC_axe		2479
 	1001260328	SFX_PC_SnakeSword3	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\Spin_TwirlingWhoosh_E0A1F73E.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_SnakeSword\SFX_PC_SnakeSword3		7566
-	1008207653	SFX_PC_woosh	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_woosh_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_BA2\SFX_PC_woosh		3571
+	1008207653	SFX_PC_woosh	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_woosh_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_Kopsh2\SFX_PC_woosh		3571
 
