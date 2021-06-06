@@ -14,7 +14,6 @@ public static class HpOrbGenerateor
             if(!orb.gameObject.activeSelf)
             {
                 target = orb;
-                target.Init();
                 break;
             }
         }
@@ -24,6 +23,7 @@ public static class HpOrbGenerateor
             orbs.Add(target = go.GetComponent<HpOrbController>());
         }
 
+        target.Init();
         target.gameObject.transform.position = pos;
 
         return target;

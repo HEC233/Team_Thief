@@ -52,13 +52,13 @@ MonoBehaviour:
     m_Bits: 1024
   animator: {fileID: 6974008256068146465}
   damage:
-    power: 10
-    knockBack: {x: 0, y: 0}
+    power: 3
+    knockBack: {x: 0, y: -2}
     abnormal: 0
     hitPosition: {x: 0, y: 0, z: 0}
     additionalInfo: 0
-  _speed: 5
-  _time: 0.5
+  _speed: 3
+  _time: 0.01
 --- !u!61 &8292653838860905444
 BoxCollider2D:
   m_ObjectHideFlags: 0
