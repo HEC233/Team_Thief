@@ -57,15 +57,15 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 4900000, guid: 357a041ee320aef46bda13b4c9c158a7, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 357a041ee320aef46bda13b4c9c158a7, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 1ff0426ae940a074989cb2c476f94ac2
     m_Address: Assets/Game/Data/TextAsset/Bytecode/Tutorial04.bytes
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 4900000, guid: 1ff0426ae940a074989cb2c476f94ac2, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 1ff0426ae940a074989cb2c476f94ac2, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 8a1f1fdf6db68fe4f874873a916ff167
     m_Address: Assets/Game/UI/Image/Portrait/Sp_PC_Portrait.png
     m_ReadOnly: 0
@@ -106,20 +106,27 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 4900000, guid: 84202d19b07be9842bd2c0ea23f26055, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 84202d19b07be9842bd2c0ea23f26055, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 48af32ea4228d6745b9c654ec79ca038
     m_Address: Assets/Game/Data/TextAsset/Bytecode/Boss1_01.bytes
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 4900000, guid: 48af32ea4228d6745b9c654ec79ca038, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 48af32ea4228d6745b9c654ec79ca038, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: fb61cdf9ff8e56e4fa7129dba3d13d67
     m_Address: Assets/Game/Data/TextAsset/Bytecode/DialogueScript.bytes
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 064c53a2eed793942932a7e4cd317384
+    m_Address: Assets/Game/Prefab/HpOrb.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0

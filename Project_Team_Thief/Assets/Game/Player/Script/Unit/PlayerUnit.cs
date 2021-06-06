@@ -204,7 +204,9 @@ public class PlayerUnit : Unit
     [Header("Combo Variable")]
     [SerializeField]
     private float _comboTime;
-
+    [SerializeField]
+    private int _comboRecoveryAmount;
+    
     private float _comboTimer;
     private int _curCombo = 0;
     private bool _isContinuingCombo = false;
@@ -297,6 +299,7 @@ public class PlayerUnit : Unit
     private bool _skillPlainSwordIsAble = true;
     private bool _skillPlainSwordEnd = false;
     private float _skillPlainSwordAttackInterval;
+    private Damage _skillPlainDamage;
     private Coroutine _skillPlainSwordMultiAttackCoroutine = null;
     [SerializeField]
     private float _skillPlainSwordAttackTime;
@@ -702,6 +705,10 @@ public class PlayerUnit : Unit
         //============== 고재협이 편집함 ======================
         _basicAttackDamage.additionalInfo = attackIndex;
         //=====================================================
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
+        {
+            _basicAttackDamage.abnormal = (int)AbnormalState.Spare8;
+        }
     }
     
     public void SetBasicAttack()
@@ -826,6 +833,18 @@ public class PlayerUnit : Unit
             playerInfo.CurHP = _curHp;
             Dead();
         }
+    }
+
+    public override void HandleHpRecovery(Damage damage)
+    {
+        _curHp += damage.power;
+
+        if (_curHp >= 100)
+        {
+            _curHp = 100;
+        }
+        
+        playerInfo.CurHP = _curHp;
     }
 
     private void Dead()
@@ -1035,6 +1054,11 @@ public class PlayerUnit : Unit
 
     public void SKillSpearAttack(Damage damage)
     {
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
+        {
+            damage.abnormal = (int)AbnormalState.Spare8;
+        }
+        
         _skillSpearAttackCtrl.SetDamage(damage);
         _skillSpearAttackCtrl.Progress();
     }
@@ -1046,6 +1070,11 @@ public class PlayerUnit : Unit
 
     public void SkillHammerAttack(Damage damage)
     {
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
+        {
+            damage.abnormal = (int)AbnormalState.Spare8;
+        }
+        
         _skillHammerAttackCtrl.SetDamage(damage);
         _skillHammerAttackCtrl.Progress();
     }
@@ -1057,6 +1086,11 @@ public class PlayerUnit : Unit
 
     public void SkillKopshAttack(Damage damage)
     {
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
+        {
+            damage.abnormal = (int)AbnormalState.Spare8;
+        }
+        
         _skillKopshAttackCtrls[skillKopshIndex].SetDamage(damage);
         _skillKopshAttackCtrls[skillKopshIndex].Progress();
     }
@@ -1069,13 +1103,24 @@ public class PlayerUnit : Unit
 
     public void SkillPlainSwordAttack(Damage damage)
     {
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
+        {
+            damage.abnormal = (int)AbnormalState.Spare8;
+        }
+        
         _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(damage);
         _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
     }
 
     public void SkillPlainSwordMultiAttack(Damage damage)
     {
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(damage);
+        _skillPlainDamage = damage;
+        if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
+        {
+            _skillPlainDamage.abnormal = (int)AbnormalState.Spare8;
+        }
+        
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(_skillPlainDamage);
         _skillPlainSwordMultiAttackCoroutine = StartCoroutine(SkillPlainSwordMultiAttackCoroutine());
     }
 
@@ -1381,6 +1426,12 @@ public class PlayerUnit : Unit
 
             if (timer >= _skillPlainSwordAttackInterval)
             {
+                if (_comboRecoveryAmount != 0 && _curCombo % _comboRecoveryAmount == 0)
+                {
+                    _skillPlainDamage.abnormal = (int)AbnormalState.Spare8;
+                }
+        
+                _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(_skillPlainDamage);
                 _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
                 timer = 0.0f;
             }

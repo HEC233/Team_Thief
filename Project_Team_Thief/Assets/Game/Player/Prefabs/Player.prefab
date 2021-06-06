@@ -958,6 +958,7 @@ MonoBehaviour:
   isBasicJumpAttackAble: 1
   _basicJumpAttackTime: 0.5
   _comboTime: 3
+  _comboRecoveryAmount: 20
   _hitInvincibilityTime: 1
   _hitInvincibilityTwinkleTime: 0.5
   _hitTime: 0.5
