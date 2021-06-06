@@ -212,6 +212,7 @@ public class PlayerUnit : Unit
     private float _comboTimer;
     private int _curCombo = 0;
     private int _comboRemainder = 0;
+    private int _drainSaveCombo = 0;
     private int _drainCombo = 0;
     private bool _isContinuingCombo = false;
     private Coroutine _comboCoroutine;
@@ -711,21 +712,27 @@ public class PlayerUnit : Unit
             return damage;
         }
 
-        if (_drainCombo == 0 || _drainCombo < 19)
+        _drainCombo = _curCombo;
+        Debug.Log("_drainCombo : " + _drainCombo);
+        Debug.Log("_drainSaveCombo : " + _drainSaveCombo);
+        
+        if (_drainCombo == 0 || (_drainCombo - _drainSaveCombo) <= 19)
         {
             damage.abnormal = 0;
             return damage;
         }
 
-        _comboRemainder = _drainCombo & _comboRecoveryAmount;
+
         
-        
+        _comboRemainder = (_drainCombo - _drainSaveCombo) & _comboRecoveryAmount;
+
         if (_comboRemainder >= 0)
         {
-            Debug.Log("_comboRemainder : " + _comboRemainder);
-            Debug.Log("_drainCombo : " + _drainCombo);
+            Debug.Log("성공 _drainCombo : " + _drainCombo);
+            Debug.Log("성공 _drainSaveCombo : " + _drainSaveCombo);
+
+            _drainSaveCombo = _drainCombo;
             damage.abnormal = (int)AbnormalState.Spare8;
-            _drainCombo = 0;
         }
 
         _comboRemainder = 0;
@@ -1168,8 +1175,7 @@ public class PlayerUnit : Unit
     public void OnAddComboEventCall(string skillname)
     {
         _curCombo++;
-        _drainCombo++;
-        
+
         if (_isContinuingCombo == true)
         {
             _comboTimer = _comboTime;
@@ -1295,7 +1301,7 @@ public class PlayerUnit : Unit
         
         _isContinuingCombo = false;
         _curCombo = 0;
-        _drainCombo = 0;
+        _drainSaveCombo = 0;
     }
 
     IEnumerator HitstopMoveCoroutine()
