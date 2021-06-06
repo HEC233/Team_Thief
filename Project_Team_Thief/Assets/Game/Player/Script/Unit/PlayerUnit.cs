@@ -54,12 +54,14 @@ public class PlayerUnit : Unit
     [SerializeField]
     private float _decreaseHp;
     private float _encroachment;
-    [SerializeField, Tooltip("잠식력에 비례해서 플레이어가 더 맞는 데미지(1.0 이상)")]
-    private float _encroachmentPerPlayerHitDamage;
+    public float Encroachment => _encroachment;
+    
+    [SerializeField, Tooltip("잠식력에 비례해서 플레이어가 더 맞는 최대 보정 값(1.0 미만)")]
+    private float _encroachmentPerPlayerHitDamageMax;
 
-    [SerializeField, Tooltip("잠식력에 비례해서 플레이어가 더 때리는 데미지(1.0 이상)")]
-    private float _encroachmentPerPlayerAttackDamage;
-    public float EncroachmentPerPlayerAttackDamage => _encroachmentPerPlayerAttackDamage;
+    [SerializeField, Tooltip("잠식력에 비례해서 플레이어가 더 때리는 데미지 최대 보정 값(1.0 미만)")]
+    private float _encroachmentPerPlayerAttackDamageMax;
+    public float EncroachmentPerPlayerAttackDamageMax => _encroachmentPerPlayerAttackDamageMax;
 
     [SerializeField, Tooltip("몇 초마다 잠식력이 회복 될 지")]
     private float _encroachmentRecoveryPerTime;
@@ -733,7 +735,8 @@ public class PlayerUnit : Unit
 
     private void SetBasicDamage(int attackIndex)
     {
-        _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * _encroachmentPerPlayerAttackDamage;
+        _basicAttackDamage.power = (Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * 
+                                   _encroachment) * _encroachmentPerPlayerAttackDamageMax;
         _basicAttackDamage.knockBack = new Vector2(_basicAttackKnockBackArr[attackIndex].x * _facingDir, _basicAttackKnockBackArr[attackIndex].y);
         //============== 고재협이 편집함 ======================
         _basicAttackDamage.additionalInfo = attackIndex;
@@ -785,10 +788,13 @@ public class PlayerUnit : Unit
 
     public void SetBasicJumpDamage(int index)
     {
-        _basicJumpAttackDamage.power = UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * _encroachmentPerPlayerAttackDamage;
+        _basicJumpAttackDamage.power =(UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * _encroachment) *
+            _encroachmentPerPlayerAttackDamageMax;
         _basicJumpAttackDamage.knockBack = new Vector2(_basicJumpAttackKnockBackArr[index].x * _facingDir,
             _basicJumpAttackKnockBackArr[index].y);
         _basicJumpAttackDamage.additionalInfo = 3;
+
+        _basicJumpAttackDamage = CalcDamageAbnormalIsDrain(_basicJumpAttackDamage);
     }
 
     public void BasicJumpAttack(int jumpAttackIndex)
@@ -846,7 +852,7 @@ public class PlayerUnit : Unit
             return;
         
         _hitDamage = inputDamage;
-        _hitDamage.power *= _encroachmentPerPlayerHitDamage;
+        _hitDamage.power = (_hitDamage.power * _encroachment) * _encroachmentPerPlayerHitDamageMax;
         hitEvent?.Invoke();
     }
 
