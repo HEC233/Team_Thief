@@ -27,8 +27,7 @@ public class SkillSpearController : SkillControllerBase
         _unit = Unit as PlayerUnit;
 
         _damage = new Damage();
-        _damage.power = (_skillSpearData.AttackDamage * _unit.Encroachment) *
-                        _unit.EncroachmentPerPlayerAttackDamageMax;
+        _damage.power = _skillSpearData.AttackDamage * _unit.GetDamageWeightFromEencroachment();
         _damage.knockBack = new Vector2(_skillSpearData.KnockBackPower.x * _unit.FacingDir,
             _skillSpearData.KnockBackPower.y);
         _damage.additionalInfo = 5;

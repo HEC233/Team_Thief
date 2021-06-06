@@ -733,10 +733,20 @@ public class PlayerUnit : Unit
         return damage;
     }
 
+    public float GetDamageWeightFromEencroachment()
+    {
+        return _encroachmentPerPlayerAttackDamageMax * (1 + _encroachment / 100);
+    }
+
+    public float GetHitDamageWeightFromEncroachment()
+    {
+        return _encroachmentPerPlayerHitDamageMax * (1 + _encroachment / 100);
+    }
+
     private void SetBasicDamage(int attackIndex)
     {
-        _basicAttackDamage.power = (Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * 
-                                   (_encroachment + 1)) * _encroachmentPerPlayerAttackDamageMax;
+        _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) *
+                                    GetDamageWeightFromEencroachment();
         _basicAttackDamage.knockBack = new Vector2(_basicAttackKnockBackArr[attackIndex].x * _facingDir, _basicAttackKnockBackArr[attackIndex].y);
         //============== 고재협이 편집함 ======================
         _basicAttackDamage.additionalInfo = attackIndex;
@@ -789,8 +799,7 @@ public class PlayerUnit : Unit
     public void SetBasicJumpDamage(int index)
     {
         _basicJumpAttackDamage.power =
-            (UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * (_encroachment + 1)) *
-            _encroachmentPerPlayerAttackDamageMax;
+            UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * GetDamageWeightFromEencroachment();
         _basicJumpAttackDamage.knockBack = new Vector2(_basicJumpAttackKnockBackArr[index].x * _facingDir,
             _basicJumpAttackKnockBackArr[index].y);
         _basicJumpAttackDamage.additionalInfo = 3;
@@ -853,7 +862,7 @@ public class PlayerUnit : Unit
             return;
         
         _hitDamage = inputDamage;
-        _hitDamage.power = (_hitDamage.power * _encroachment) * _encroachmentPerPlayerHitDamageMax;
+        _hitDamage.power = _hitDamage.power * GetHitDamageWeightFromEncroachment();
         hitEvent?.Invoke();
     }
 

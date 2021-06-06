@@ -23,8 +23,7 @@ public class SkillHammerController : SkillControllerBase
         _unit = Unit as PlayerUnit;
 
         _damage = new Damage();
-        _damage.power = (_skillHammerData.AttackDamage * (_unit.Encroachment + 1)) *
-                        _unit.EncroachmentPerPlayerAttackDamageMax;
+        _damage.power = _skillHammerData.AttackDamage * _unit.GetDamageWeightFromEencroachment();
         _damage.knockBack = new Vector2(_skillHammerData.KnockBackPower.x * _unit.FacingDir,
             _skillHammerData.KnockBackPower.y);
         _damage.additionalInfo = 4;
