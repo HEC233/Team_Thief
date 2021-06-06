@@ -9,6 +9,7 @@ public class Addressable : MonoBehaviour
     public static Addressable instance;
 
     private CAsset<GameObject> unit;
+    private CAsset<GameObject> prefab;
     private CAsset<TextAsset> text;
     private CAsset<Sprite> sprite;
 
@@ -25,6 +26,7 @@ public class Addressable : MonoBehaviour
         }
 
         unit = new CAsset<GameObject>("Unit");
+        prefab = new CAsset<GameObject>("Prefab");
         text = new CAsset<TextAsset>("Text");
         sprite = new CAsset<Sprite>("Sprite");
 
@@ -35,11 +37,13 @@ public class Addressable : MonoBehaviour
     public IEnumerator LoadAll()
     {
         yield return StartCoroutine(unit.Load());
+        yield return StartCoroutine(prefab.Load());
         yield return StartCoroutine(text.Load());
         yield return StartCoroutine(sprite.Load());
     }
 
     public GameObject GetUnit(string name) { return unit.Get(name); }
+    public GameObject GetPrefab(string name) { return prefab.Get(name); }
     public TextAsset GetText(string name) { return text.Get(name); }
     public Sprite GetSprite(string name) { return sprite.Get(name); }
 
