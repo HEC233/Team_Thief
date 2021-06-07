@@ -37,7 +37,6 @@ public class LightWarriorActor : MonoBehaviour, IActor
         RegistEventForGameManager();
     }
     
-
     public void RegistEventForGameManager()
     {
         var v = GameManager.instance.timeMng;

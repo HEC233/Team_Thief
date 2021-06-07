@@ -150,7 +150,10 @@ public class GameManager : MonoBehaviour
         WwiseSoundManager.instance.StopMainBgm();
         WwiseSoundManager.instance.PlayInGameBgm();
         ChangeActorToPlayer();
-        //timeMng.UnbindAll();
+        
+        timeMng.UnbindAll();
+        FX.Bind();
+
         cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
         cameraMng.FindCameras();
         cameraMng.Bind();
