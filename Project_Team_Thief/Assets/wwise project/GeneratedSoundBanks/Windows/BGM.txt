@@ -1,0 +1,8 @@
+Event	ID	Name			Wwise Object Path	Notes
+	984691642	InGame			\Default Work Unit\BGM\InGame	
+	3161908922	Main			\Default Work Unit\BGM\Main	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	48503471	BGM_Main	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_Main_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\Main\BGM_Main\BGM_Main		211079
+	750339061	BGM_InGame	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_InGame_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\InGame\BGM_InGame\BGM_InGame		1549688
+
