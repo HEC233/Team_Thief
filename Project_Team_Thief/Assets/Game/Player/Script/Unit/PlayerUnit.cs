@@ -813,8 +813,8 @@ public class PlayerUnit : Unit
 
     public void BasicJumpAttack(int jumpAttackIndex)
     {
-        SetBasicDamage(jumpAttackIndex);
-        _basicJumpAttackCtrlArr[jumpAttackIndex].SetDamage(_basicAttackDamage);
+        SetBasicJumpDamage(jumpAttackIndex);
+        _basicJumpAttackCtrlArr[jumpAttackIndex].SetDamage(_basicJumpAttackDamage);
         _basicJumpAttackCtrlArr[jumpAttackIndex].Progress();
     }
 
