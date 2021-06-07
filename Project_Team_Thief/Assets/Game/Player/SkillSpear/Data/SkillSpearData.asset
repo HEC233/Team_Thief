@@ -22,4 +22,4 @@ MonoBehaviour:
   _knockBackPower: {x: 50, y: 0}
   _playerMovePostionX: 9
   _playerMoveTime: 0.1
-  _attackDamage: 3600
+  _attackDamage: 2700
