@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour
         ChangeActorToPlayer();
         
         timeMng.UnbindAll();
+        timeMng.Reset();
         FX.Bind();
 
         cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
