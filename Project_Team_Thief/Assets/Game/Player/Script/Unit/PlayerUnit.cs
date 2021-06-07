@@ -1499,7 +1499,6 @@ public class PlayerUnit : Unit
                 if (_tick >= 0.1f)
                 {
                     count++;
-
                     if (count % 2 == 1)
                     {
                         _spriteRenderer.color = new Color32(255, 255, 255, 127);
