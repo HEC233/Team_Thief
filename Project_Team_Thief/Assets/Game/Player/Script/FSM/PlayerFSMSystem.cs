@@ -955,7 +955,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (SystemMgr.Unit.IsGround)
                 return true;
-
+            //
+            // if (condition == TransitionCondition.Dash)
+            //     return true;
+            
             if (condition == TransitionCondition.WallClimbing)
                 return true;
 
@@ -2206,6 +2209,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override bool Transition(TransitionCondition condition)
         {
             if (condition == TransitionCondition.Hit)
+                return true;
+            if (condition == TransitionCondition.Jump)
                 return true;
             
             if (condition == TransitionCondition.SkillAxe)
