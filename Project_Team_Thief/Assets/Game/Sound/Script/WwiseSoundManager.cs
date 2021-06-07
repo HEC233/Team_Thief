@@ -8,6 +8,8 @@ public class WwiseSoundManager : MonoBehaviour
     public static WwiseSoundManager instance;
     private uint _bgmInGameSoundId;
     private uint _bgmMainSoundId;
+    private bool _isPlayingInGameBgm;
+    private bool _isPlayingMainBgm;
     
     private void Awake()
     {
@@ -29,21 +31,37 @@ public class WwiseSoundManager : MonoBehaviour
 
     public void PlayMainBgm()
     {
+        if (_isPlayingMainBgm == true)
+        {
+            AkSoundEngine.StopPlayingID(_bgmMainSoundId);
+            _isPlayingMainBgm = false;
+        }
+
+        _isPlayingMainBgm = true;
         _bgmMainSoundId = AkSoundEngine.PostEvent("Main", gameObject);
     }
     
     public void StopMainBgm()
     {
+        _isPlayingMainBgm = false;
         AkSoundEngine.StopPlayingID(_bgmMainSoundId);
     }
 
     public void PlayInGameBgm()
     {
+        if (_isPlayingInGameBgm == true)
+        {
+            AkSoundEngine.StopPlayingID(_bgmInGameSoundId);
+            _isPlayingInGameBgm = false;
+        }
+
+        _isPlayingInGameBgm = true;
         _bgmInGameSoundId = AkSoundEngine.PostEvent("InGame", gameObject);
     }
 
     public void StopInGameBgm()
     {
+        _isPlayingMainBgm = false;
         AkSoundEngine.StopPlayingID(_bgmInGameSoundId);
     }
 

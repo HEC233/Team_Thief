@@ -538,6 +538,8 @@ public class PlayerUnit : Unit
         _jumpCount--;
         _isGround = false;
 
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
+        
         var power = new Vector3(0, _jumpPower * GameManager.instance.timeMng.TimeScale, 0.0f);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
@@ -1497,7 +1499,6 @@ public class PlayerUnit : Unit
                 if (_tick >= 0.1f)
                 {
                     count++;
-
                     if (count % 2 == 1)
                     {
                         _spriteRenderer.color = new Color32(255, 255, 255, 127);
