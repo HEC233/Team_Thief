@@ -1294,7 +1294,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return true;
             if (condition == TransitionCondition.Hit)
                 return true;
-            
+
+            if (condition == TransitionCondition.Dash)
+                return true;
             
             if (_isBasicjumpAttackAniEnd == false)
                 return false;
