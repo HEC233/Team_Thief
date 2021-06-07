@@ -75,7 +75,7 @@ public class UIPlayerInfo : MonoBehaviour
     {
         commandInfo.gameObject.SetActive(true);
         commandInfo.Init();
-        commandInfo.gameObject.SetActive(_bUseCommandInfo);
+        commandInfo.verticalPanel.gameObject.SetActive(_bUseCommandInfo);
     }
 
     public void SetHP()

@@ -25,7 +25,10 @@ public class UICommandInfo : MonoBehaviour
 
     public void Init()
     {
-        foreach(var p in panelList)
+        var verticalEnable = verticalPanel.gameObject.activeSelf;
+        verticalPanel.gameObject.SetActive(true);
+
+        foreach (var p in panelList)
         {
             DestroyImmediate(p.gameObject);
         }
@@ -60,6 +63,8 @@ public class UICommandInfo : MonoBehaviour
         }
 
         playerTr = null;
+
+        verticalPanel.gameObject.SetActive(verticalEnable);
     }
 
     private void Update()
