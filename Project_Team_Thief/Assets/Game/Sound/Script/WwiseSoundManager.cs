@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class WwiseSoundManager : MonoBehaviour
 {
-    public static WwiseSoundManager instance; 
+    public static WwiseSoundManager instance;
+    private uint _bgmInGameSoundId;
+    private uint _bgmMainSoundId;
     
     private void Awake()
     {
@@ -18,6 +20,31 @@ public class WwiseSoundManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+    }
+
+    private void Start()
+    {
+        PlayMainBgm();
+    }
+
+    public void PlayMainBgm()
+    {
+        _bgmMainSoundId = AkSoundEngine.PostEvent("Main", gameObject);
+    }
+    
+    public void StopMainBgm()
+    {
+        AkSoundEngine.StopPlayingID(_bgmMainSoundId);
+    }
+
+    public void PlayInGameBgm()
+    {
+        _bgmInGameSoundId = AkSoundEngine.PostEvent("InGame", gameObject);
+    }
+
+    public void StopInGameBgm()
+    {
+        AkSoundEngine.StopPlayingID(_bgmInGameSoundId);
     }
 
     public uint PlayEventSound(string eventName)

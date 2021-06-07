@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Bits: 1024
   animator: {fileID: 6974008256068146465}
   damage:
-    power: 3
+    power: 10
     knockBack: {x: 0, y: -3}
     abnormal: 0
     hitPosition: {x: 0, y: 0, z: 0}
