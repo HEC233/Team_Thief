@@ -1700,11 +1700,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isAniEnd = false;
             _isAxe2Action = false;
             GameManager.instance.uiMng.TurnXButtonUI(false);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
 
         }
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Hit)
+                return true;
+            
             if (condition == TransitionCondition.SkillSpear)
                 return true;
             if (condition == TransitionCondition.SkillHammer)
@@ -1819,10 +1823,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
             _isAniEnd = false;
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+            
         }
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Hit)
+                return true;
+            
             if (condition == TransitionCondition.SkillSpear)
                 return true;
             if (condition == TransitionCondition.SkillHammer)
@@ -1900,10 +1909,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
             _isAniEnd = false;
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+
         }
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Hit)
+                return true;
             
             if (condition == TransitionCondition.SkillAxe)
                 return true;
@@ -2013,6 +2026,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Hit)
+                return true;
+            
             if (condition == TransitionCondition.SkillAxe)
                 return true;
             if (condition == TransitionCondition.SkillHammer)
@@ -2187,6 +2203,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Hit)
+                return true;
+            
             if (condition == TransitionCondition.SkillAxe)
                 return true;
             if (condition == TransitionCondition.SkillHammer)
