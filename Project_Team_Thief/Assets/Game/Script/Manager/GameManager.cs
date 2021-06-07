@@ -147,6 +147,8 @@ public class GameManager : MonoBehaviour
         shadow.UnRegistAllCollider();
         if (dialogueSystem.CheckRunning()) dialogueSystem.EndDialogue();
         GameState = GameStateEnum.InGame;
+        WwiseSoundManager.instance.StopMainBgm();
+        WwiseSoundManager.instance.PlayInGameBgm();
         ChangeActorToPlayer();
         timeMng.UnbindAll();
         cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
@@ -204,6 +206,9 @@ public class GameManager : MonoBehaviour
         shadow.UnRegistAllCollider();
         yield return GameLoader.instance.SceneLoad("MainScene");
         WwiseSoundManager.instance.ResumeAllSound();
+        Debug.Log("Sound Main BGM");
+        WwiseSoundManager.instance.StopInGameBgm();
+        WwiseSoundManager.instance.PlayMainBgm();
         GameState = GameStateEnum.MainMenu;
         SetControlActor(uiMng.UiActor);
     }
