@@ -955,7 +955,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (SystemMgr.Unit.IsGround)
                 return true;
-
+            //
+            // if (condition == TransitionCondition.Dash)
+            //     return true;
+            
             if (condition == TransitionCondition.WallClimbing)
                 return true;
 
