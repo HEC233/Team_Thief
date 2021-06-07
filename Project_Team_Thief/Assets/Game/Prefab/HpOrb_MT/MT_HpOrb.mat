@@ -7,9 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
-  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
-  m_ShaderKeywords: 
+  m_Name: MT_HpOrb
+  m_Shader: {fileID: -6465566751694194690, guid: da9b8ed7ac2502840a3fb6dcc97ad02b,
+    type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_D374CA55:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _AlphaTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -38,6 +43,8 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     m_Colors:
+    - Color_2B69FBE2: {r: 2, g: 2, b: 2, a: 1}
+    - Color_FEBE0066: {r: 19.876291, g: 5.809993, b: 7.6447277, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
