@@ -30,6 +30,8 @@ public class DialogueSystem : MonoBehaviour
 
     public bool InitializeData(out string ErrorMessage)
     {
+        ui?.SetShowDialogue(false);
+        
         bInitialized = false;
         ErrorMessage = string.Empty;
 
