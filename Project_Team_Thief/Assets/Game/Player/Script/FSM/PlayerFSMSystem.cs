@@ -422,6 +422,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (condition == TransitionCondition.Hit)
                 return true;
+
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillSpear)
+                return true;
+            if (condition == TransitionCondition.SkillKopsh)
+                return true;
             
             if (SystemMgr.Unit.IsGround == true)
             {
@@ -591,6 +598,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override bool Transition(TransitionCondition condition)
         {
             if (condition == TransitionCondition.Hit)
+                return true;
+            
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillSpear)
+                return true;
+            if (condition == TransitionCondition.SkillKopsh)
                 return true;
             
             if (_isFaill)
@@ -2434,16 +2448,29 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         var condition = ChangeSkillNameToTransitionCondition(skillName);
         if (condition == TransitionCondition.None)
             return;
+
         
         // 스킬 사용이 불가능한 조건
-        if (CurrState == TransitionCondition.Jump)
-            return;
-        if (CurrState == TransitionCondition.Falling)
-            return;
-        if (CurrState == TransitionCondition.WallClimbing)
-            return;
-        if (CurrState == TransitionCondition.Hit)
-            return;
+        if (condition == TransitionCondition.SkillAxe || condition == TransitionCondition.SkillSpear ||
+            condition == TransitionCondition.SkillKopsh)
+        {
+            if (CurrState == TransitionCondition.WallClimbing)
+                return;
+            if (CurrState == TransitionCondition.Hit)
+                return;
+        }
+        else
+        {
+            if (CurrState == TransitionCondition.Jump)
+                return;
+            if (CurrState == TransitionCondition.Falling)
+                return;
+            if (CurrState == TransitionCondition.WallClimbing)
+                return;
+            if (CurrState == TransitionCondition.Hit)
+                return;            
+        }
+
 
         if (CheckSkillPossibleConditions(condition) == true)
         {
