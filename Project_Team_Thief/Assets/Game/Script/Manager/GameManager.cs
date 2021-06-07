@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
         if (dialogueSystem.CheckRunning()) dialogueSystem.EndDialogue();
         GameState = GameStateEnum.InGame;
         ChangeActorToPlayer();
-        timeMng.UnbindAll();
+        //timeMng.UnbindAll();
         cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
         cameraMng.FindCameras();
         cameraMng.Bind();

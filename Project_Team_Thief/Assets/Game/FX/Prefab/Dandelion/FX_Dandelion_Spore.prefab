@@ -9644,6 +9644,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 3449445872681018374}
+  - {fileID: 3542673441103029226}
+  - {fileID: 5736546339422157673}
+  - {fileID: 1555680166273271921}
 --- !u!114 &8645380922615741182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14508,7 +14511,6 @@ GameObject:
   - component: {fileID: 6123954166746673762}
   - component: {fileID: 3542673441103029226}
   - component: {fileID: 4421312068960904269}
-  - component: {fileID: 3355692823019753884}
   - component: {fileID: 283584392787550012}
   m_Layer: 0
   m_Name: FX_Dandelion_Spore
@@ -19363,20 +19365,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &3355692823019753884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7967110706518302822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleSystems:
-  - {fileID: 3542673441103029226}
 --- !u!114 &283584392787550012
 MonoBehaviour:
   m_ObjectHideFlags: 0

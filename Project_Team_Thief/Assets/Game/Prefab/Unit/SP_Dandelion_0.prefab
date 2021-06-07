@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7960616442208830288}
   - component: {fileID: 5146415836812878301}
+  - component: {fileID: 178609191766943232}
   m_Layer: 0
   m_Name: SP_Dandelion_0
   m_TagString: Untagged
@@ -83,6 +84,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &178609191766943232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214039861417924097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e318fed9b4897a479db506f602218e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystems:
+  - {fileID: 5859055587678520981}
+  - {fileID: 5745311115104371065}
+  - {fileID: 3534523329901582842}
+  - {fileID: 7712285044854270690}
 --- !u!1001 &9120185883101651603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,11 +168,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Dandelion_Spore
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5405345450815808135, guid: d8afba2fae09f3147a39dde6e496cbf4,
+        type: 3}
+      propertyPath: particleSystems.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405345450815808135, guid: d8afba2fae09f3147a39dde6e496cbf4,
+        type: 3}
+      propertyPath: particleSystems.Array.data[1]
+      value: 
+      objectReference: {fileID: 5745311115104371065}
+    - target: {fileID: 5405345450815808135, guid: d8afba2fae09f3147a39dde6e496cbf4,
+        type: 3}
+      propertyPath: particleSystems.Array.data[2]
+      value: 
+      objectReference: {fileID: 3534523329901582842}
+    - target: {fileID: 5405345450815808135, guid: d8afba2fae09f3147a39dde6e496cbf4,
+        type: 3}
+      propertyPath: particleSystems.Array.data[3]
+      value: 
+      objectReference: {fileID: 7712285044854270690}
+    m_RemovedComponents:
+    - {fileID: 5405345450815808135, guid: d8afba2fae09f3147a39dde6e496cbf4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d8afba2fae09f3147a39dde6e496cbf4, type: 3}
 --- !u!4 &7820148574334606429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1303747078185533134, guid: d8afba2fae09f3147a39dde6e496cbf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 9120185883101651603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5859055587678520981 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3449445872681018374, guid: d8afba2fae09f3147a39dde6e496cbf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 9120185883101651603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5745311115104371065 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3542673441103029226, guid: d8afba2fae09f3147a39dde6e496cbf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 9120185883101651603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3534523329901582842 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5736546339422157673, guid: d8afba2fae09f3147a39dde6e496cbf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 9120185883101651603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7712285044854270690 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1555680166273271921, guid: d8afba2fae09f3147a39dde6e496cbf4,
     type: 3}
   m_PrefabInstance: {fileID: 9120185883101651603}
   m_PrefabAsset: {fileID: 0}
