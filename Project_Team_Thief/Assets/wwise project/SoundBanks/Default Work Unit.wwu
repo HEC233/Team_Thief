@@ -71,6 +71,14 @@
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>
+				<SoundBank Name="BGM" ID="{475253DF-0F17-43A5-9F35-81151D8D2033}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Main" ID="{7C2390F1-7EFC-45D9-8997-2C2FD7BF2852}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="InGame" ID="{D4241932-EB79-4BAA-BC56-E038376AA87F}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
 			</ChildrenList>
 		</WorkUnit>
 	</SoundBanks>

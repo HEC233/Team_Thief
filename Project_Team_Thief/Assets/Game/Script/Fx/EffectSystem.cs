@@ -16,17 +16,24 @@ namespace PS.FX
     public class EffectSystem : MonoBehaviour
     {
         public List<Effect> effects = new List<Effect>();
-        Dictionary<string, List<GameObject>> effectPool = new Dictionary<string, List<GameObject>>();
-        Dictionary<string, List<GameObject>> activeEffectPool = new Dictionary<string, List<GameObject>>();
+        Dictionary<string, List<EffectController>> effectPool = new Dictionary<string, List<EffectController>>();
+        Dictionary<string, List<EffectController>> activeEffectPool = new Dictionary<string, List<EffectController>>();
 
         private void Start()
         {
             foreach(var fx in effects)
             {
-                effectPool.Add(fx.name, new List<GameObject>());
-                activeEffectPool.Add(fx.name, new List<GameObject>());
+                effectPool.Add(fx.name, new List<EffectController>());
+                activeEffectPool.Add(fx.name, new List<EffectController>());
             }
 
+            Bind();
+
+            StartCoroutine(EndEffectChecker());
+        }
+
+        public void Bind()
+        {
             var timeMng = GameManager.instance.timeMng;
             if (timeMng)
             {
@@ -35,8 +42,6 @@ namespace PS.FX
                 timeMng.startHitstopEvent += TimeScaleChangeCallback;
                 timeMng.endHitstopEvent += TimeScaleChangeCallback;
             }
-
-            StartCoroutine(EndEffectChecker());
         }
 
         private void TimeScaleChangeCallback(float customTimeScale)
@@ -46,7 +51,7 @@ namespace PS.FX
                 var checkPool = activeEffectPool[e.name];
                 foreach(var efx in checkPool)
                 {
-                    efx.GetComponent<EffectController>().SetSpeed(customTimeScale);
+                    efx.SetSpeed(customTimeScale);
                 }
             }
         }
@@ -60,11 +65,11 @@ namespace PS.FX
             }
 
             var pool = effectPool[effectName];
-            GameObject effect = null;
+            EffectController effect = null;
 
             for(int i = 0; i < pool.Count; i++)
             {
-                if(!pool[i].activeSelf)
+                if(!pool[i].gameObject.activeSelf)
                 {
                     effect = pool[i];
                     pool.Remove(effect);
@@ -76,16 +81,16 @@ namespace PS.FX
                 {
                     if (e.name == effectName)
                     {
-                        effect = Instantiate(e.prefab, transform);
+                        effect = Instantiate(e.prefab, transform).GetComponent<EffectController>();
                         break;
                     }
                 }
             }
 
-            var particle = effect.GetComponent<EffectController>();
+            var particle = effect;
             if (particle)
             {
-                effect.SetActive(true);
+                effect.gameObject.SetActive(true);
                 effect.transform.position = position;
                 effect.transform.rotation = quaternion;
                 
@@ -111,10 +116,10 @@ namespace PS.FX
                     int iter = 0;
                     while(iter < checkPool.Count)
                     {
-                        if(checkPool[iter].GetComponent<EffectController>().isStopped)
+                        if(checkPool[iter].isStopped)
                         {
-                            checkPool[iter].GetComponent<EffectController>().SetSpeed(1);
-                            checkPool[iter].SetActive(false);
+                            checkPool[iter].SetSpeed(1);
+                            checkPool[iter].gameObject.SetActive(false);
                             effectPool[e.name].Add(checkPool[iter]);
                             checkPool.RemoveAt(iter);
                         }

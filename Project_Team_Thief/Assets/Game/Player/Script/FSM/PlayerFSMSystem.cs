@@ -1992,6 +1992,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _attackInputTime = 0;
             _isAniEnd = false;
             
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
             GameManager.instance.uiMng.TurnXButtonUI(false);
 
         }

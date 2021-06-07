@@ -85,6 +85,10 @@ public class DialogueSystem : MonoBehaviour
 
     private void Update()
     {
+        if(!bInitialized)
+        {
+            return;
+        }
         if(bSkipping)
         {
             skipTimeCheck += Time.deltaTime;
@@ -110,6 +114,10 @@ public class DialogueSystem : MonoBehaviour
     private bool bPaused = false;
     public void PauseDialogue()
     {
+        if (!bInitialized)
+        {
+            return;
+        }
         ui.Puase();
         if (bCodeRuning)
         {
@@ -120,6 +128,10 @@ public class DialogueSystem : MonoBehaviour
 
     public void ResumeDialogue()
     {
+        if (!bInitialized)
+        {
+            return;
+        }
         ui.Resume();
         if (bPaused)
         {
@@ -155,6 +167,10 @@ public class DialogueSystem : MonoBehaviour
 
     public void StartDialogue(int CodeIndex)
     {
+        if (!bInitialized)
+        {
+            return;
+        }
         if (code == null)
         {
             return;
@@ -182,7 +198,11 @@ public class DialogueSystem : MonoBehaviour
     /// </summary>
     public void EndDialogue()
     {
-        if(!bAutoPass)
+        if (!bInitialized)
+        {
+            return;
+        }
+        if (!bAutoPass)
         {
             GameManager.instance?.timeMng.ResumeTime(); 
             GameManager.instance?.ChangeActorToPlayer();

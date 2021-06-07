@@ -60,6 +60,7 @@ public class GameLoader : MonoBehaviour
 
         GameManager.instance.timeMng.Reset();
         GameManager.instance.timeMng.UnbindAll();
+        GameManager.instance.FX.Bind();
 
         yield return SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
 

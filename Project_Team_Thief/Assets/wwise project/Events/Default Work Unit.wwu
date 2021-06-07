@@ -466,6 +466,32 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="BGM" ID="{EDBC4A3C-264B-423B-B4FA-6007E992EC3F}" ShortID="577548673">
+					<ChildrenList>
+						<Event Name="Main" ID="{7C2390F1-7EFC-45D9-8997-2C2FD7BF2852}">
+							<ChildrenList>
+								<Action Name="" ID="{26B3B460-2A3B-4B79-8526-32A92A50296B}" ShortID="751407883">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="BGM_Main" ID="{036AF5AF-B868-4143-AFB0-28AC066B14AE}" WorkUnitID="{871D10D4-2536-42B0-8162-644CCEA41079}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="InGame" ID="{D4241932-EB79-4BAA-BC56-E038376AA87F}">
+							<ChildrenList>
+								<Action Name="" ID="{954B97EE-84A0-4335-9B06-EE007614304F}" ShortID="564990775">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="BGM_InGame" ID="{004487E7-6BC4-4538-A5B8-F8A9E64EB6CC}" WorkUnitID="{871D10D4-2536-42B0-8162-644CCEA41079}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

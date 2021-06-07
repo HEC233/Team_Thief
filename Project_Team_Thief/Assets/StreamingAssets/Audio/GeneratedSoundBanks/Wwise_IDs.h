@@ -15,9 +15,11 @@ namespace AK
     {
         static const AkUniqueID DANDELION_BOOM = 3148959641U;
         static const AkUniqueID DANDELION_FA = 208042395U;
+        static const AkUniqueID INGAME = 984691642U;
         static const AkUniqueID LIGHTWARRIOR_AR = 4014153887U;
         static const AkUniqueID LIGHTWARRIOR_FS = 3896710555U;
         static const AkUniqueID LIGHTWARRIOR_SWING = 11536312U;
+        static const AkUniqueID MAIN = 3161908922U;
         static const AkUniqueID PAUSE = 3092587493U;
         static const AkUniqueID PC_AXE = 690267075U;
         static const AkUniqueID PC_BA1 = 438455619U;
@@ -86,6 +88,7 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
+        static const AkUniqueID BGM = 412724365U;
         static const AkUniqueID ENEMY = 2299321487U;
         static const AkUniqueID PC = 1635194334U;
         static const AkUniqueID UI = 1551306167U;

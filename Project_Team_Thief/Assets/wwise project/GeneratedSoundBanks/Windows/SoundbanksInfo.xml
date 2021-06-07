@@ -11,6 +11,29 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
+		<SoundBank Id="412724365" Language="SFX" Hash="2198504868">
+			<ObjectPath>\SoundBanks\Default Work Unit\BGM</ObjectPath>
+			<ShortName>BGM</ShortName>
+			<Path>BGM.bnk</Path>
+			<IncludedEvents>
+				<Event Id="984691642" Name="InGame" ObjectPath="\Events\Default Work Unit\BGM\InGame" DurationType="OneShot" DurationMin="218.540405" DurationMax="218.540405">
+					<IncludedMemoryFiles>
+						<File Id="750339061" Language="SFX">
+							<ShortName>BGM_InGame.wav</ShortName>
+							<Path>SFX\BGM_InGame_F01E125A.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3161908922" Name="Main" ObjectPath="\Events\Default Work Unit\BGM\Main" DurationType="OneShot" DurationMin="338.268311" DurationMax="338.268311">
+					<IncludedMemoryFiles>
+						<File Id="48503471" Language="SFX">
+							<ShortName>BGM_Main.wav</ShortName>
+							<Path>SFX\BGM_Main_F01E125A.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
 		<SoundBank Id="1355168291" Language="SFX" Hash="2738626114">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
@@ -37,7 +60,7 @@
 				<Event Id="953277036" Name="Resume" ObjectPath="\Events\Default Work Unit\Glober\Resume" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1635194334" Language="SFX" Hash="3319000288">
+		<SoundBank Id="1635194334" Language="SFX" Hash="236923714">
 			<ObjectPath>\SoundBanks\Default Work Unit\PC</ObjectPath>
 			<ShortName>PC</ShortName>
 			<Path>PC.bnk</Path>
@@ -94,7 +117,7 @@
 					<IncludedMemoryFiles>
 						<File Id="873939562" Language="SFX">
 							<ShortName>SFX_PC_FS.wav</ShortName>
-							<Path>SFX\SFX_PC_FS_074C5D04.wem</Path>
+							<Path>SFX\SFX_PC_FS_885F95D3.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

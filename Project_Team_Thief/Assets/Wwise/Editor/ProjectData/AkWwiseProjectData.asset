@@ -447,8 +447,22 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-    m_lastTime: -8585786248948750979
+    m_lastTime: -8585785498726476657
     List:
+    - name: BGM
+      guid: df535247170fa5439f3581151d8d2033
+      id: 412724365
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 763b13b4fefea14c804ac0e94554340e
+      - ElementName: BGM
+        ObjectType: 7
+        guid: df535247170fa5439f3581151d8d2033
+      Path: SoundBanks\Default Work Unit\BGM
     - name: Enemy
       guid: 4180b20eab728742bb28e1477a6e3154
       id: 2299321487
@@ -503,8 +517,25 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585786248948841003
+    m_lastTime: -8585785498734888129
     List:
+    - name: BGM
+      guid: 3c4abced4b263b42b4fa6007e992ec3f
+      id: 412724365
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: BGM
+        ObjectType: 4
+        guid: 3c4abced4b263b42b4fa6007e992ec3f
+      Path: Events\Default Work Unit\BGM
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Dandelion
       guid: bbdc4fdd927ecf48a5881615e6ab92ca
       id: 898275277
@@ -663,6 +694,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: InGame
+      guid: 321924d479ebaa4bbc56e038376aa87f
+      id: 984691642
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: BGM
+        ObjectType: 4
+        guid: 3c4abced4b263b42b4fa6007e992ec3f
+      - ElementName: InGame
+        ObjectType: 3
+        guid: 321924d479ebaa4bbc56e038376aa87f
+      Path: Events\Default Work Unit\BGM\InGame
+      maxAttenuation: 0
+      maxDuration: 218.5404
+      minDuration: 218.5404
     - name: LightWarrior
       guid: 36c01f3e4e8b474bbfa30ea35ca5d282
       id: 3359626199
@@ -764,6 +815,26 @@ MonoBehaviour:
       maxAttenuation: 30
       maxDuration: 0.238271
       minDuration: 0.212275
+    - name: Main
+      guid: f190237cfc7ed94589972c2fd7bf2852
+      id: 3161908922
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: BGM
+        ObjectType: 4
+        guid: 3c4abced4b263b42b4fa6007e992ec3f
+      - ElementName: Main
+        ObjectType: 3
+        guid: f190237cfc7ed94589972c2fd7bf2852
+      Path: Events\Default Work Unit\BGM\Main
+      maxAttenuation: 0
+      maxDuration: 338.2683
+      minDuration: 338.2683
     - name: movement
       guid: a53b43673eeb3b43aaa67685fb868df7
       id: 2129636626
@@ -2006,7 +2077,7 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585786249080668721
     List: []
-  ExpandedFileSystemItemIds: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000e0000001000000011000000260000002f000000300000003c0000003d000000
+  ExpandedFileSystemItemIds: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000e0000001000000011000000260000002f000000300000003c0000003d0000003f00000040000000
   ExpandedWaapiItemIds: 
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
