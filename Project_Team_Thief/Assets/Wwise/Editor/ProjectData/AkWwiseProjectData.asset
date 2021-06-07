@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 02de5e311348b244aaa1373a54395c29
     GuidInternal: 
-    m_lastTime: -8585786249080658719
+    m_lastTime: -8585785310812692397
     List: []
   - PhysicalPath: Virtual Acoustics\Factory Acoustic Textures.wwu
     PathAndIcons:
@@ -37,7 +37,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Factory Acoustic Textures
     guid: 6b663d46a83ca54f8b4a5fef12b883f6
     GuidInternal: 
-    m_lastTime: -8585786249080648714
+    m_lastTime: -8585785310812672385
     List:
     - name: Acoustic_Banner
       guid: f2532d2fccda8e408b8898b1b52a26d6
@@ -303,7 +303,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: e8a961f1977ddc44a7bcd68ac0d891e1
     GuidInternal: 
-    m_lastTime: -8585786248948770986
+    m_lastTime: -8585785310825395945
     List:
     - name: AMB
       guid: db08a7ec0ff5504b94c949b46b6f5e7b
@@ -447,7 +447,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-    m_lastTime: -8585785498426763329
+    m_lastTime: -8585785310812952453
     List:
     - name: BGM
       guid: df535247170fa5439f3581151d8d2033
@@ -517,7 +517,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585785498433791531
+    m_lastTime: -8585785310826656256
     List:
     - name: BGM
       guid: 3c4abced4b263b42b4fa6007e992ec3f
@@ -582,9 +582,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: 8cb5633d5883704b8fe347cdf33d2da6
       Path: Events\Default Work Unit\SFX\Enemy\Dandelion\Dandelion_Boom
-      maxAttenuation: 30
-      maxDuration: 1.644066
-      minDuration: 1.464696
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Dandelion_FA
       guid: 492f4c26c423dd4cbfd89315760525e6
       id: 208042395
@@ -608,9 +608,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: 492f4c26c423dd4cbfd89315760525e6
       Path: Events\Default Work Unit\SFX\Enemy\Dandelion\Dandelion_FA
-      maxAttenuation: 30
-      maxDuration: 0.109598
-      minDuration: 0.097641
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Enemy
       guid: 6893e63a85929b4f8c8e7b8fc78ee449
       id: 2299321487
@@ -712,8 +712,8 @@ MonoBehaviour:
         guid: 321924d479ebaa4bbc56e038376aa87f
       Path: Events\Default Work Unit\BGM\InGame
       maxAttenuation: 0
-      maxDuration: 218.5404
-      minDuration: 218.5404
+      maxDuration: -1
+      minDuration: -1
     - name: LightWarrior
       guid: 36c01f3e4e8b474bbfa30ea35ca5d282
       id: 3359626199
@@ -760,9 +760,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: ab72eee9e45f4247ac843ea1eaac1219
       Path: Events\Default Work Unit\SFX\Enemy\LightWarrior\LightWarrior_AR
-      maxAttenuation: 30
-      maxDuration: 1.472461
-      minDuration: 1.238188
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: LightWarrior_FS
       guid: 39b85b4a38154d4ca57edd2d34f5bc89
       id: 3896710555
@@ -786,7 +786,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 39b85b4a38154d4ca57edd2d34f5bc89
       Path: Events\Default Work Unit\SFX\Enemy\LightWarrior\LightWarrior_FS
-      maxAttenuation: 30
+      maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
     - name: LightWarrior_Swing
@@ -812,9 +812,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: ae51c33313d2364b9ff9d0ffe1ddac56
       Path: Events\Default Work Unit\SFX\Enemy\LightWarrior\LightWarrior_Swing
-      maxAttenuation: 30
-      maxDuration: 0.238271
-      minDuration: 0.212275
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Main
       guid: f190237cfc7ed94589972c2fd7bf2852
       id: 3161908922
@@ -833,8 +833,8 @@ MonoBehaviour:
         guid: f190237cfc7ed94589972c2fd7bf2852
       Path: Events\Default Work Unit\BGM\Main
       maxAttenuation: 0
-      maxDuration: 338.2683
-      minDuration: 338.2683
+      maxDuration: -1
+      minDuration: -1
     - name: movement
       guid: a53b43673eeb3b43aaa67685fb868df7
       id: 2129636626
@@ -876,8 +876,8 @@ MonoBehaviour:
         guid: e76df90c64e3224782b795c224a9cafc
       Path: Events\Default Work Unit\Glober\Pause
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: -1
+      minDuration: -1
     - name: PC
       guid: ea6a0a5aa8057d448e3651300b3aa078
       id: 1635194334
@@ -922,8 +922,8 @@ MonoBehaviour:
         guid: d47428919ce8614b8a404ece3c8aa4b6
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_axe
       maxAttenuation: 0
-      maxDuration: 0.284037
-      minDuration: 0.253048
+      maxDuration: -1
+      minDuration: -1
     - name: PC_BA1
       guid: a21b9edebde59744bd1bc3361f18f645
       id: 438455619
@@ -948,8 +948,8 @@ MonoBehaviour:
         guid: a21b9edebde59744bd1bc3361f18f645
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_BA1
       maxAttenuation: 0
-      maxDuration: 0.441617
-      minDuration: 0.31227
+      maxDuration: -1
+      minDuration: -1
     - name: PC_BA2
       guid: 076720f7da89fc40bd8b27adb45b1458
       id: 438455616
@@ -974,8 +974,8 @@ MonoBehaviour:
         guid: 076720f7da89fc40bd8b27adb45b1458
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_BA2
       maxAttenuation: 0
-      maxDuration: 0.441617
-      minDuration: 0.31227
+      maxDuration: -1
+      minDuration: -1
     - name: PC_BA3
       guid: 233c8dddd592a34f98c53638ec09f6a2
       id: 438455617
@@ -1000,8 +1000,8 @@ MonoBehaviour:
         guid: 233c8dddd592a34f98c53638ec09f6a2
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_BA3
       maxAttenuation: 0
-      maxDuration: 0.281434
-      minDuration: 0.250729
+      maxDuration: -1
+      minDuration: -1
     - name: PC_BA4
       guid: dd938e893917004fa741f809568c6994
       id: 438455622
@@ -1026,8 +1026,8 @@ MonoBehaviour:
         guid: dd938e893917004fa741f809568c6994
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_BA4
       maxAttenuation: 0
-      maxDuration: 0.513179
-      minDuration: 0.484377
+      maxDuration: -1
+      minDuration: -1
     - name: PC_dash
       guid: b1315a8b6b22f647a4379c44a796b89f
       id: 1271964801
@@ -1052,8 +1052,8 @@ MonoBehaviour:
         guid: b1315a8b6b22f647a4379c44a796b89f
       Path: Events\Default Work Unit\SFX\PC\movement\PC_dash
       maxAttenuation: 0
-      maxDuration: 0.203161
-      minDuration: 0.180996
+      maxDuration: -1
+      minDuration: -1
     - name: PC_dead
       guid: 0a91719112d0dc40b2e639b550fd4cb2
       id: 1373322195
@@ -1130,8 +1130,8 @@ MonoBehaviour:
         guid: 68618d4ca15a3a42a0e1d7534bcd522a
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_hammaer_Smash
       maxAttenuation: 0
-      maxDuration: 1.101409
-      minDuration: 0.981244
+      maxDuration: -1
+      minDuration: -1
     - name: PC_hammaer_Swing
       guid: 81bc5f868073e24ea2aaa97ce34ea79a
       id: 4253460925
@@ -1156,8 +1156,8 @@ MonoBehaviour:
         guid: 81bc5f868073e24ea2aaa97ce34ea79a
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_hammaer_Swing
       maxAttenuation: 0
-      maxDuration: 0.202689
-      minDuration: 0.180576
+      maxDuration: -1
+      minDuration: -1
     - name: PC_HIT_blade
       guid: 6f4eda03ed03084e80fe8e63dd183177
       id: 4017075331
@@ -1182,8 +1182,8 @@ MonoBehaviour:
         guid: 6f4eda03ed03084e80fe8e63dd183177
       Path: Events\Default Work Unit\SFX\PC\hit\PC_HIT_blade
       maxAttenuation: 0
-      maxDuration: 0.723195
-      minDuration: 0.69856
+      maxDuration: -1
+      minDuration: -1
     - name: PC_HIT_hammer
       guid: e6e7f6a9d13e6b469fef9e35c042657d
       id: 3385077829
@@ -1208,8 +1208,8 @@ MonoBehaviour:
         guid: e6e7f6a9d13e6b469fef9e35c042657d
       Path: Events\Default Work Unit\SFX\PC\hit\PC_HIT_hammer
       maxAttenuation: 0
-      maxDuration: 19.538424
-      minDuration: 17.406754
+      maxDuration: -1
+      minDuration: -1
     - name: PC_hurt
       guid: 623554bcc884ff4b9af089ef59edd651
       id: 2523322754
@@ -1234,8 +1234,8 @@ MonoBehaviour:
         guid: 623554bcc884ff4b9af089ef59edd651
       Path: Events\Default Work Unit\SFX\PC\hurt\PC_hurt
       maxAttenuation: 0
-      maxDuration: 0.504117
-      minDuration: 0.237357
+      maxDuration: -1
+      minDuration: -1
     - name: PC_JA1
       guid: 2b73ac60a762894c82844c22d3a4758b
       id: 705617627
@@ -1260,8 +1260,8 @@ MonoBehaviour:
         guid: 2b73ac60a762894c82844c22d3a4758b
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_JA1
       maxAttenuation: 0
-      maxDuration: 0.441617
-      minDuration: 0.31227
+      maxDuration: -1
+      minDuration: -1
     - name: PC_JA2
       guid: dec7cc8ca95b73468a74b24aaef6cb78
       id: 705617624
@@ -1286,8 +1286,8 @@ MonoBehaviour:
         guid: dec7cc8ca95b73468a74b24aaef6cb78
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_JA2
       maxAttenuation: 0
-      maxDuration: 0.441617
-      minDuration: 0.31227
+      maxDuration: -1
+      minDuration: -1
     - name: PC_Jump
       guid: 1586390e55cdf542a0dccf542b88a73c
       id: 3162924009
@@ -1312,8 +1312,8 @@ MonoBehaviour:
         guid: 1586390e55cdf542a0dccf542b88a73c
       Path: Events\Default Work Unit\SFX\PC\movement\PC_Jump
       maxAttenuation: 0
-      maxDuration: 0.113964
-      minDuration: 0.090453
+      maxDuration: -1
+      minDuration: -1
     - name: PC_Kopsh1
       guid: d2d1412154434b4bbd256b48fc5c7261
       id: 1065092545
@@ -1338,8 +1338,8 @@ MonoBehaviour:
         guid: d2d1412154434b4bbd256b48fc5c7261
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh1
       maxAttenuation: 0
-      maxDuration: 0.281434
-      minDuration: 0.250729
+      maxDuration: -1
+      minDuration: -1
     - name: PC_Kopsh2
       guid: bc13255b422f77428659c80f6973c7ea
       id: 1065092546
@@ -1364,8 +1364,8 @@ MonoBehaviour:
         guid: bc13255b422f77428659c80f6973c7ea
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh2
       maxAttenuation: 0
-      maxDuration: 0.258076
-      minDuration: 0.22992
+      maxDuration: -1
+      minDuration: -1
     - name: PC_Kopsh3
       guid: ef8ee41411e9d04ebf49af1395305424
       id: 1065092547
@@ -1390,8 +1390,8 @@ MonoBehaviour:
         guid: ef8ee41411e9d04ebf49af1395305424
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_Kopsh3
       maxAttenuation: 0
-      maxDuration: 0.213287
-      minDuration: 0.190017
+      maxDuration: -1
+      minDuration: -1
     - name: PC_land
       guid: cea5fca4ece7cf4885ae55e2f9187f34
       id: 3795174
@@ -1416,8 +1416,8 @@ MonoBehaviour:
         guid: cea5fca4ece7cf4885ae55e2f9187f34
       Path: Events\Default Work Unit\SFX\PC\movement\PC_land
       maxAttenuation: 0
-      maxDuration: 0.499719
-      minDuration: 0.396627
+      maxDuration: -1
+      minDuration: -1
     - name: PC_slide
       guid: c019c8820cedfb41b724fadfdde1b801
       id: 1281925152
@@ -1468,8 +1468,8 @@ MonoBehaviour:
         guid: 0669529f08b2144697d4072f9e236bcd
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword1
       maxAttenuation: 0
-      maxDuration: 0.172222
-      minDuration: 0.172222
+      maxDuration: -1
+      minDuration: -1
     - name: PC_Snake_Sword2
       guid: 84bfd7df715e544f946446ab18ac9a09
       id: 3746366217
@@ -1494,8 +1494,8 @@ MonoBehaviour:
         guid: 84bfd7df715e544f946446ab18ac9a09
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_Snake_Sword2
       maxAttenuation: 0
-      maxDuration: 0.918813
-      minDuration: 0.8513
+      maxDuration: -1
+      minDuration: -1
     - name: PC_Snake_Sword3
       guid: 7271e8f41e25f04faf14bbc7ec3620f0
       id: 3746366216
@@ -1546,8 +1546,8 @@ MonoBehaviour:
         guid: fdc9325631d80d43b2b018c52fcae1d0
       Path: Events\Default Work Unit\SFX\PC\woosh\PC_spear_Rush
       maxAttenuation: 0
-      maxDuration: 0.245564
-      minDuration: 0.231514
+      maxDuration: -1
+      minDuration: -1
     - name: PC_stop
       guid: 8a4792d33ef4a34f8c6e0a44dc3c6c96
       id: 118156989
@@ -1572,8 +1572,8 @@ MonoBehaviour:
         guid: 8a4792d33ef4a34f8c6e0a44dc3c6c96
       Path: Events\Default Work Unit\SFX\PC\movement\PC_stop
       maxAttenuation: 0
-      maxDuration: 0.399233
-      minDuration: 0.355676
+      maxDuration: -1
+      minDuration: -1
     - name: PC_wall
       guid: e99cae6b407afe4ab486f959ae36a69f
       id: 1438052377
@@ -1598,8 +1598,8 @@ MonoBehaviour:
         guid: e99cae6b407afe4ab486f959ae36a69f
       Path: Events\Default Work Unit\SFX\PC\movement\PC_wall
       maxAttenuation: 0
-      maxDuration: 0.098443
-      minDuration: 0.092918
+      maxDuration: -1
+      minDuration: -1
     - name: Resume
       guid: 44d766e0f436ab49afc201e05cc4005c
       id: 953277036
@@ -1618,8 +1618,8 @@ MonoBehaviour:
         guid: 44d766e0f436ab49afc201e05cc4005c
       Path: Events\Default Work Unit\Glober\Resume
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Seraphim
       guid: cbb8f2a798212145a2b1c6959b8be4ff
       id: 2215233064
@@ -1666,9 +1666,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: b6cf57b8c0f7694aad50a9676290a4d2
       Path: Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_AR
-      maxAttenuation: 30
-      maxDuration: 0.548564
-      minDuration: 0.488715
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Seraphim_FS
       guid: 8798619bfdcd1d46b31ff797570f259f
       id: 3549540426
@@ -1692,7 +1692,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 8798619bfdcd1d46b31ff797570f259f
       Path: Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_FS
-      maxAttenuation: 30
+      maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
     - name: Seraphim_Shot
@@ -1718,9 +1718,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: fbc2a61e413c094090488c505ce1968e
       Path: Events\Default Work Unit\SFX\Enemy\Seraphim\Seraphim_Shot
-      maxAttenuation: 30
-      maxDuration: 1.243608
-      minDuration: 1.107929
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: SFX
       guid: 92e06faedefaa341bd83c48e22786e60
       id: 393239870
@@ -1773,7 +1773,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 49e851bbaedb674888d0961189946708
     GuidInternal: 
-    m_lastTime: -8585786249083762964
+    m_lastTime: -8585785310826586234
     List: []
   - PhysicalPath: Game Parameters\Factory Motion.wwu
     PathAndIcons:
@@ -1786,7 +1786,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Factory Motion
     guid: 225213d7dbd1d042adc0930743567776
     GuidInternal: 
-    m_lastTime: -8585786249083752962
+    m_lastTime: -8585785310826576237
     List:
     - name: Playback_Rate
       guid: e37e38283ac11643b9c3db5c521624af
@@ -1827,7 +1827,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Factory SoundSeed Air Game Syncs
     guid: 5577163b42fb8b4598bf96f557afb3b9
     GuidInternal: 
-    m_lastTime: -8585786249083742954
+    m_lastTime: -8585785310826566238
     List:
     - name: SS_Air_Fear
       guid: 59062ef746431c4ea1b1dab46a05101e
@@ -1981,7 +1981,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 4fd9f844540fb04bb0247a7267f0f122
     GuidInternal: 
-    m_lastTime: -8585786248948740975
+    m_lastTime: -8585785310812848873
     List:
     - name: Pause_Menu
       guid: 29bbf760fa6efe4f9061e92b937c89d7
@@ -2061,7 +2061,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3540249830c07b45b3ef8d491af9591a
     GuidInternal: 
-    m_lastTime: -8585786249080728735
+    m_lastTime: -8585785310812822425
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
@@ -2075,7 +2075,7 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: 557c88a89e194448849391a37b555061
     GuidInternal: 
-    m_lastTime: -8585786249080668721
+    m_lastTime: -8585785310812702403
     List: []
   ExpandedFileSystemItemIds: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000e0000001000000011000000260000002f000000300000003c0000003d0000003f00000040000000
   ExpandedWaapiItemIds: 

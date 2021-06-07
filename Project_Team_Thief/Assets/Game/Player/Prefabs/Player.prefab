@@ -942,7 +942,7 @@ MonoBehaviour:
   - {x: 3, y: 0}
   - {x: 3, y: 0}
   - {x: 0, y: 0}
-  - {x: 3, y: 5.5}
+  - {x: 2, y: 5.6}
   _basicJumpAttackCtrlArr:
   - {fileID: 1542053514262991507}
   - {fileID: 1789575075951729271}
@@ -954,7 +954,7 @@ MonoBehaviour:
   - {x: 0, y: -4}
   _basicJumpAttackKnockBackArr:
   - {x: 3, y: 0}
-  - {x: -3, y: -5}
+  - {x: -3, y: -30}
   isBasicJumpAttackAble: 1
   _basicJumpAttackTime: 0.5
   _comboTime: 3
