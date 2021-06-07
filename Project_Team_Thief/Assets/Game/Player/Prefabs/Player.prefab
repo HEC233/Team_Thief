@@ -954,7 +954,7 @@ MonoBehaviour:
   - {x: 0, y: -4}
   _basicJumpAttackKnockBackArr:
   - {x: 3, y: 0}
-  - {x: -3, y: -2}
+  - {x: -3, y: -5}
   isBasicJumpAttackAble: 1
   _basicJumpAttackTime: 0.5
   _comboTime: 3
@@ -1032,7 +1032,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11051166, y: 0.21452188}
+  m_Offset: {x: 1.0933404, y: 1.0331407}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1043,7 +1043,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.0451725, y: 2.433097}
+  m_Size: {x: 3.8477402, y: 3.2356634}
   m_EdgeRadius: 0
 --- !u!114 &1542053514262991507
 MonoBehaviour:
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   _isDisplyFx: 0
   _isPlaySFX: 0
   _isZoomIn: 0
-  _hitStopTime: 0.094
+  _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
@@ -1547,7 +1547,7 @@ MonoBehaviour:
   _isAbleFlash: 0
   _isAbleHitStop: 1
   _isAbleBulltTime: 0
-  _isAbleCameraShake: 0
+  _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 1
   _isZoomIn: 0
@@ -2261,7 +2261,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11051166, y: 0.21452188}
+  m_Offset: {x: 0.5957484, y: 1.4504771}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2272,7 +2272,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.0451725, y: 2.433097}
+  m_Size: {x: 2.0820901, y: 1.8231438}
   m_EdgeRadius: 0
 --- !u!114 &1789575075951729271
 MonoBehaviour:
@@ -2380,7 +2380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ImpulseDefinition:
     m_ImpulseChannel: 1
-    m_RawSignal: {fileID: 11400000, guid: 7eb6739696869c54f822c793aa14891c, type: 2}
+    m_RawSignal: {fileID: 11400000, guid: 80c8db55482e5044eb0692d5df91774b, type: 2}
     m_AmplitudeGain: 1
     m_FrequencyGain: 1
     m_RepeatMode: 0
