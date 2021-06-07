@@ -2210,7 +2210,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (condition == TransitionCondition.Hit)
                 return true;
-            
+            if (condition == TransitionCondition.Jump)
+                return true;
             
             if (condition == TransitionCondition.SkillAxe)
                 return true;
