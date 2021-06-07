@@ -713,8 +713,6 @@ public class PlayerUnit : Unit
         }
 
         _drainCombo = _curCombo;
-        Debug.Log("_drainCombo : " + _drainCombo);
-        Debug.Log("_drainSaveCombo : " + _drainSaveCombo);
         
         if (_drainCombo == 0 || (_drainCombo - _drainSaveCombo) <= 19)
         {
@@ -728,9 +726,6 @@ public class PlayerUnit : Unit
 
         if (_comboRemainder >= 0)
         {
-            Debug.Log("성공 _drainCombo : " + _drainCombo);
-            Debug.Log("성공 _drainSaveCombo : " + _drainSaveCombo);
-
             _drainSaveCombo = _drainCombo;
             damage.abnormal = (int)AbnormalState.Spare8;
         }
