@@ -44,7 +44,7 @@ Material:
     - _EnableExternalAlpha: 0
     m_Colors:
     - Color_2B69FBE2: {r: 2, g: 2, b: 2, a: 1}
-    - Color_FEBE0066: {r: 5.2164755, g: 1.5294378, b: 2.0210428, a: 1}
+    - Color_FEBE0066: {r: 19.876291, g: 5.809993, b: 7.6447277, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
