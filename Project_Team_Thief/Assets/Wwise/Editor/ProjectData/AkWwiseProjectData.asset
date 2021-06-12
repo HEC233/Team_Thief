@@ -447,7 +447,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-    m_lastTime: -8585785310812952453
+    m_lastTime: -8585781353691845265
     List:
     - name: BGM
       guid: df535247170fa5439f3581151d8d2033
@@ -517,7 +517,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585785310826656256
+    m_lastTime: -8585781354251719337
     List:
     - name: BGM
       guid: 3c4abced4b263b42b4fa6007e992ec3f
@@ -611,6 +611,46 @@ MonoBehaviour:
       maxAttenuation: 30
       maxDuration: 0.109598
       minDuration: 0.097641
+    - name: Encroaching
+      guid: 9121fcbab779794eaa72c021aab995c7
+      id: 3817345010
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: UI
+        ObjectType: 4
+        guid: 21337fa8b5360c44a47eb8f9f71e9e27
+      - ElementName: Encroaching
+        ObjectType: 3
+        guid: 9121fcbab779794eaa72c021aab995c7
+      Path: Events\Default Work Unit\UI\Encroaching
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Encroachment_Die
+      guid: cd169e97e6655c409166003a3fa53613
+      id: 1088284125
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: UI
+        ObjectType: 4
+        guid: 21337fa8b5360c44a47eb8f9f71e9e27
+      - ElementName: Encroachment_Die
+        ObjectType: 3
+        guid: cd169e97e6655c409166003a3fa53613
+      Path: Events\Default Work Unit\UI\Encroachment_Die
+      maxAttenuation: 0
+      maxDuration: 0.34068
+      minDuration: 0.34068
     - name: Enemy
       guid: 6893e63a85929b4f8c8e7b8fc78ee449
       id: 2299321487
@@ -1738,6 +1778,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: UI
+      guid: 21337fa8b5360c44a47eb8f9f71e9e27
+      id: 1551306167
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: UI
+        ObjectType: 4
+        guid: 21337fa8b5360c44a47eb8f9f71e9e27
+      Path: Events\Default Work Unit\UI
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: woosh
       guid: 55be1080b422fa4b9400d154a11d4df2
       id: 3099361103
@@ -1773,7 +1830,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 49e851bbaedb674888d0961189946708
     GuidInternal: 
-    m_lastTime: -8585785310826586234
+    m_lastTime: -8585781354251869369
     List: []
   - PhysicalPath: Game Parameters\Factory Motion.wwu
     PathAndIcons:
