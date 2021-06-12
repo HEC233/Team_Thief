@@ -492,6 +492,47 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="UI" ID="{A87F3321-36B5-440C-A47E-B8F9F71E9E27}" ShortID="182340179">
+					<ChildrenList>
+						<Event Name="Encroaching" ID="{BAFC2191-79B7-4E79-AA72-C021AAB995C7}">
+							<ChildrenList>
+								<Action Name="" ID="{034B89F8-0F62-412F-A024-CEC7FB4A507B}" ShortID="575069310">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="0.5"/>
+										<Property Name="FadeInCurve" Type="int16" Value="1"/>
+										<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="FX_UI_encroaching" ID="{1DE7ACFD-82EB-4406-BB06-A1A0C6ED723F}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{EEF349F0-A607-4AA5-A20E-AFCEA894C0DF}" ShortID="479626879">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="FX_UI_encroachment" ID="{57EFC52F-29F6-4C96-ABED-3B9E14B61FE0}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Encroachment_Die" ID="{979E16CD-65E6-405C-9166-003A3FA53613}">
+							<ChildrenList>
+								<Action Name="" ID="{FCB6E63D-00D9-475E-A96B-EF5A30F5E3F8}" ShortID="553669270">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="0.05"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="FX_UI_encroachment_Die" ID="{CEF19DE3-5BE5-47CE-873C-6A4EFD16F550}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

@@ -51,11 +51,31 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1551306167" Language="SFX" Hash="3973784475">
+		<SoundBank Id="1551306167" Language="SFX" Hash="1793193761">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
 			<ShortName>UI</ShortName>
 			<Path>UI.bnk</Path>
 			<IncludedEvents>
+				<Event Id="3817345010" Name="Encroaching" ObjectPath="\Events\Default Work Unit\UI\Encroaching" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="645515515" Language="SFX">
+							<ShortName>FX_UI_encroachment.wav</ShortName>
+							<Path>SFX\FX_UI_encroachment_46401910.wem</Path>
+						</File>
+						<File Id="790706826" Language="SFX">
+							<ShortName>FX_UI_encroaching.wav</ShortName>
+							<Path>SFX\FX_UI_encroaching_F01E125A.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1088284125" Name="Encroachment_Die" ObjectPath="\Events\Default Work Unit\UI\Encroachment_Die" DurationType="OneShot" DurationMin="0.340680" DurationMax="0.340680">
+					<IncludedMemoryFiles>
+						<File Id="216858074" Language="SFX">
+							<ShortName>FX_UI_encroachment_Die.wav</ShortName>
+							<Path>SFX\FX_UI_encroachment_Die_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3092587493" Name="Pause" ObjectPath="\Events\Default Work Unit\Glober\Pause" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="953277036" Name="Resume" ObjectPath="\Events\Default Work Unit\Glober\Resume" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 			</IncludedEvents>

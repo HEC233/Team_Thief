@@ -2591,6 +2591,150 @@
 						</Folder>
 					</ChildrenList>
 				</Folder>
+				<ActorMixer Name="UI" ID="{B36A44E1-DADC-41B6-BD52-04D676A7E23D}" ShortID="564826441">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="FX_UI_encroachment" ID="{57EFC52F-29F6-4C96-ABED-3B9E14B61FE0}" ShortID="958341687">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="FX_UI_encroachment" ID="{E0466957-DB73-4826-95E6-4C7AFFCABD01}">
+									<Language>SFX</Language>
+									<AudioFile>FX_UI_encroachment.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="645515515"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="FX_UI_encroachment" ID="{E0466957-DB73-4826-95E6-4C7AFFCABD01}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="FX_UI_encroachment_Die" ID="{CEF19DE3-5BE5-47CE-873C-6A4EFD16F550}" ShortID="503504673">
+							<PropertyList>
+								<Property Name="OverrideEffect" Type="bool" Value="True"/>
+								<Property Name="OverrideOutput" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-9</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+								</Reference>
+								<Reference Name="Effect0">
+									<Custom>
+										<Effect Name="Wwise Delay (Custom)" ID="{F14C5843-7395-47C2-9ABB-9FA550CD8871}" ShortID="217916557" PluginName="Wwise Delay" CompanyID="0" PluginID="106" PluginType="3">
+											<PropertyList>
+												<Property Name="DelayTime" Type="Real32" Value="0.22"/>
+												<Property Name="Feedback" Type="Real32" Value="24"/>
+												<Property Name="WetDryMix" Type="Real32" Value="14"/>
+											</PropertyList>
+										</Effect>
+									</Custom>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{1EA34681-F8D6-43F2-ADA9-66FB86FC13C8}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="FX_UI_encroachment_Die" ID="{3254C299-F3BE-4F9B-8E77-86F5E75B383A}">
+									<Language>SFX</Language>
+									<AudioFile>FX_UI_encroachment_Die.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="216858074"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="FX_UI_encroachment_Die" ID="{3254C299-F3BE-4F9B-8E77-86F5E75B383A}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="FX_UI_encroaching" ID="{1DE7ACFD-82EB-4406-BB06-A1A0C6ED723F}" ShortID="461980601">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="FX_UI_encroaching" ID="{89936FCD-7666-4696-94CE-1AD438140AE0}">
+									<Language>SFX</Language>
+									<AudioFile>FX_UI_encroaching.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="790706826"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="FX_UI_encroaching" ID="{89936FCD-7666-4696-94CE-1AD438140AE0}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="FX_UI_encroachment_Die2" ID="{D18A37BC-AD37-4A10-A204-9AF58EDEA62F}" ShortID="510012650">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="FX_UI_encroachment_Die2" ID="{7CE52221-09C7-40B1-8E67-BFB2F366D2E6}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="1.9"/>
+										<Property Name="TrimEnd" Type="Real64" Value="2.685"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>FX_UI_encroachment_Die2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1024280230"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="FX_UI_encroachment_Die2" ID="{7CE52221-09C7-40B1-8E67-BFB2F366D2E6}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

@@ -1,4 +1,14 @@
 Event	ID	Name			Wwise Object Path	Notes
 	953277036	Resume			\Default Work Unit\Glober\Resume	
+	1088284125	Encroachment_Die			\Default Work Unit\UI\Encroachment_Die	
 	3092587493	Pause			\Default Work Unit\Glober\Pause	
+	3817345010	Encroaching			\Default Work Unit\UI\Encroaching	
+
+Effect plug-ins	ID	Name	Type				Notes
+	217916557	Wwise Delay (Custom)	Wwise Delay			
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	216858074	FX_UI_encroachment_Die	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\FX_UI_encroachment_Die_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\FX_UI_encroachment_Die		3206
+	645515515	FX_UI_encroachment	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\FX_UI_encroachment_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\FX_UI_encroachment		9017
+	790706826	FX_UI_encroaching	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\FX_UI_encroaching_F01E125A.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\FX_UI_encroaching		744967
 
