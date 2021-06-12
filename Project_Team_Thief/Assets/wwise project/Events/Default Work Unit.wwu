@@ -531,6 +531,22 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Encroaching_End" ID="{456D11CD-94B3-4D7A-9D98-5F89762606D9}">
+							<ChildrenList>
+								<Action Name="" ID="{E515D81B-D5AF-48A3-BADF-024295946888}" ShortID="20487128">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeOutCurve" Type="int16" Value="5"/>
+										<Property Name="FadeTime" Type="Real64" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="FX_UI_encroaching" ID="{1DE7ACFD-82EB-4406-BB06-A1A0C6ED723F}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

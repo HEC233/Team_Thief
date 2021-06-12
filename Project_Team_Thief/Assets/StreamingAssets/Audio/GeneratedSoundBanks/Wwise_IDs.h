@@ -16,6 +16,7 @@ namespace AK
         static const AkUniqueID DANDELION_BOOM = 3148959641U;
         static const AkUniqueID DANDELION_FA = 208042395U;
         static const AkUniqueID ENCROACHING = 3817345010U;
+        static const AkUniqueID ENCROACHING_END = 3609145192U;
         static const AkUniqueID ENCROACHMENT_DIE = 1088284125U;
         static const AkUniqueID INGAME = 984691642U;
         static const AkUniqueID LIGHTWARRIOR_AR = 4014153887U;

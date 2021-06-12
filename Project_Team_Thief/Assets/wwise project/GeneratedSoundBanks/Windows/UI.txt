@@ -2,6 +2,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	953277036	Resume			\Default Work Unit\Glober\Resume	
 	1088284125	Encroachment_Die			\Default Work Unit\UI\Encroachment_Die	
 	3092587493	Pause			\Default Work Unit\Glober\Pause	
+	3609145192	Encroaching_End			\Default Work Unit\UI\Encroaching_End	
 	3817345010	Encroaching			\Default Work Unit\UI\Encroaching	
 
 Effect plug-ins	ID	Name	Type				Notes

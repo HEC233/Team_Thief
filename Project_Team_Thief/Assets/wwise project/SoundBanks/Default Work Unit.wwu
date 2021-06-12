@@ -75,6 +75,7 @@
 						<ObjectRef Name="Encroachment_Die" ID="{979E16CD-65E6-405C-9166-003A3FA53613}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Pause" ID="{0CF96DE7-E364-4722-82B7-95C224A9CAFC}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Resume" ID="{E066D744-36F4-49AB-AFC2-01E05CC4005C}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Encroaching_End" ID="{456D11CD-94B3-4D7A-9D98-5F89762606D9}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Encroaching" ID="{BAFC2191-79B7-4E79-AA72-C021AAB995C7}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
