@@ -53,6 +53,8 @@ public class PlayerUnit : Unit
     private float _curHp;
     [SerializeField]
     private float _decreaseHp;
+    
+    [Header("Encroachment")]
     private float _encroachment;
     public float Encroachment => _encroachment;
     
@@ -69,6 +71,10 @@ public class PlayerUnit : Unit
     [SerializeField, Tooltip("잠식력이 얼마나 회복 될 지")]
     private float _encroachmentRecoveryAmount;
 
+    private bool[] _encroachmentLevelArr = new bool[5] {false, false, false, false, false};
+    private int _encroachmentLevelIndex = 0;
+    
+    
     [SerializeField, Header("Ani Variable")]
     private float _aniFastAmount;
     public float AniFastAmount => _aniFastAmount;
@@ -528,7 +534,6 @@ public class PlayerUnit : Unit
         }
 
         return false;
-        
     }
 
 
@@ -956,9 +961,101 @@ public class PlayerUnit : Unit
     //     return skillObject;
     // }
 
+    private void EncroachmentProduction()
+    {
+        switch (_encroachmentLevelIndex)
+        {
+            case 4:
+                if (_encroachmentLevelArr[_encroachmentLevelIndex] == true)
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+                break;
+            case 3:
+                if (_encroachmentLevelArr[_encroachmentLevelIndex] == true)
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+                break;
+            case 2:
+                if (_encroachmentLevelArr[_encroachmentLevelIndex] == true)
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+                break;
+            case 1:
+                if (_encroachmentLevelArr[_encroachmentLevelIndex] == true)
+                {
+
+                }
+                else
+                {
+
+                }
+                break;
+            case 0:
+                if (_encroachmentLevelArr[_encroachmentLevelIndex] == true)
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+                break;
+        }
+
+        for (int i = 0; i < _encroachmentLevelArr.Length; i++)
+        {
+            _encroachmentLevelArr[i] = false;
+        }
+
+        _encroachmentLevelArr[_encroachmentLevelIndex] = true;
+    }
+
+    private void SetEncroachmentProduction()
+    {
+        if (_encroachment >= 80)
+        {
+            _encroachmentLevelIndex = 4;
+        }
+        else if (_encroachment >= 60)
+        {
+            _encroachmentLevelIndex = 3;
+        }
+        else if (_encroachment >= 40)
+        {
+            _encroachmentLevelIndex = 2;
+        }
+        else if (_encroachment >= 20)
+        {
+            _encroachmentLevelIndex = 1;
+        }
+        else if (_encroachment >= 10)
+        {
+            _encroachmentLevelIndex = 0;
+        }
+
+        EncroachmentProduction();
+    }
+    
     private void ChangeEncroachment(float encroachmentIncrease)
     {
         _encroachment += encroachmentIncrease;
+        SetEncroachmentProduction();
+        
         if (_encroachment < 0)
         {
             _encroachment = 0;
@@ -966,9 +1063,15 @@ public class PlayerUnit : Unit
         playerInfo.CurEncroachment = _encroachment;
         if (_encroachment >= 100)
         {
-            Dead();
+            
         }
     }
+
+    public void HandleDead()
+    {
+        Dead();
+    }
+    
 
     private void FindEncroachmentDecreaseFromSkillData(string skillName)
     {
