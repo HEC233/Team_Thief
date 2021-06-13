@@ -15,7 +15,7 @@ MonoBehaviour:
   _numberOfTimesTheSkill: 1
   _coolTime: 3
   _skillName: Skill3Hammer
-  _increaseEncroachment: 25
+  _increaseEncroachment: -25
   _encroachmentDecrease: 0
   _cinemachineSignalSource: {fileID: 11400000, guid: 2f357948ba6cd7748b068ef03b02bdab,
     type: 2}
