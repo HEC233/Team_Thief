@@ -1474,16 +1474,14 @@ public class PlayerUnit : Unit
         float timer = 0.0f;
         while (true)
         {
-            if (_encroachment > 0)
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+
+            if (timer >= _encroachmentRecoveryPerTime)
             {
-                timer += Time.fixedDeltaTime;
-                
-                if (timer >= _encroachmentRecoveryPerTime)
-                {
-                    timer = 0.0f;
-                    ChangeEncroachment(_encroachmentRecoveryAmount);
-                }
+                timer = 0.0f;
+                ChangeEncroachment(_encroachmentRecoveryAmount);
             }
+
             yield return new WaitForFixedUpdate();
         }
     }
