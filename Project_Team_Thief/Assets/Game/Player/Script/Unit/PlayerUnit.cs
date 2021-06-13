@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using PS.FX;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
@@ -70,7 +71,15 @@ public class PlayerUnit : Unit
 
     [SerializeField, Tooltip("잠식력이 얼마나 회복 될 지")]
     private float _encroachmentRecoveryAmount;
+    [SerializeField]
+    private float _encroachmentProductionFadeOutTime;
+    
+    [SerializeField]
+    private ParticleSystem[] _encroachmentProductionParticleSystems;
 
+    [SerializeField] 
+    private EffectController _encrochmentDeadEffectController;
+    private bool _nonEncroachment = true;
     private bool[] _encroachmentLevelArr = new bool[5] {false, false, false, false, false};
     private int _encroachmentLevelIndex = 0;
     
@@ -965,87 +974,106 @@ public class PlayerUnit : Unit
     {
         switch (_encroachmentLevelIndex)
         {
-            case 4:
-                if (_encroachmentLevelArr[_encroachmentLevelIndex] == true)
+            case 99:
+                if (_nonEncroachment == true)
                 {
-                    
+                    _nonEncroachment = false;
+                    _spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
+                    StartCoroutine(EncroachmentProductionParticleFadeOut(0));
                 }
-                else
+
+                WwiseSoundManager.instance.PlayEventSound("Encroaching_End");
+                
+                break;
+            case 4:
+                if (_encroachmentLevelArr[_encroachmentLevelIndex] == false)
                 {
-                    
+                    StartCoroutine(EncroachmentProductionParticleFadeOut(_encroachmentLevelIndex - 1));
+
+                    _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
+                    _spriteRenderer.color = new Color(0, 0, 0, 0.3f);
+                    _encroachmentLevelArr[_encroachmentLevelIndex] = true;
                 }
                 break;
             case 3:
-                if (_encroachmentLevelArr[_encroachmentLevelIndex] == true)
+                if (_encroachmentLevelArr[_encroachmentLevelIndex] == false)
                 {
-                    
-                }
-                else
-                {
-                    
+                    StartCoroutine(EncroachmentProductionParticleFadeOut(_encroachmentLevelIndex - 1));
+
+                    _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
+                    _spriteRenderer.color = new Color(0, 0, 0, 0.5f);
+                    _encroachmentLevelArr[_encroachmentLevelIndex] = true;
                 }
                 break;
             case 2:
-                if (_encroachmentLevelArr[_encroachmentLevelIndex] == true)
+                if (_encroachmentLevelArr[_encroachmentLevelIndex] == false)
                 {
-                    
-                }
-                else
-                {
-                    
+                    StartCoroutine(EncroachmentProductionParticleFadeOut(_encroachmentLevelIndex - 1));
+
+                    _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
+                    _spriteRenderer.color = new Color(0, 0, 0, 0.5f);
+                    _encroachmentLevelArr[_encroachmentLevelIndex] = true;
                 }
                 break;
             case 1:
-                if (_encroachmentLevelArr[_encroachmentLevelIndex] == true)
+                if (_encroachmentLevelArr[_encroachmentLevelIndex] == false)
                 {
-
-                }
-                else
-                {
-
+                    StartCoroutine(EncroachmentProductionParticleFadeOut(_encroachmentLevelIndex - 1));
+                    
+                    _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
+                    _spriteRenderer.color = new Color(0, 0, 0, 0.7f);
+                    _encroachmentLevelArr[_encroachmentLevelIndex] = true;
                 }
                 break;
             case 0:
-                if (_encroachmentLevelArr[_encroachmentLevelIndex] == true)
+                if (_encroachmentLevelArr[_encroachmentLevelIndex] == false)
                 {
+                    _nonEncroachment = true;
+                    _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
+                    _spriteRenderer.color = new Color(0, 0, 0, 0.9f);
+                    _encroachmentLevelArr[_encroachmentLevelIndex] = true;
                     
-                }
-                else
-                {
-                    
+                    WwiseSoundManager.instance.PlayEventSound("Encroaching");
                 }
                 break;
         }
 
         for (int i = 0; i < _encroachmentLevelArr.Length; i++)
         {
+            if (_encroachmentLevelArr[i] == true)
+            {
+                if (i != _encroachmentLevelIndex)
+                    StartCoroutine(EncroachmentProductionParticleFadeOut(i));
+            }
+            
             _encroachmentLevelArr[i] = false;
         }
 
-        _encroachmentLevelArr[_encroachmentLevelIndex] = true;
+        if (_encroachmentLevelIndex != 99)
+            _encroachmentLevelArr[_encroachmentLevelIndex] = true;
     }
 
     private void SetEncroachmentProduction()
     {
         if (_encroachment >= 80)
         {
-            _encroachmentLevelIndex = 4;
+            _encroachmentLevelIndex = 3;
         }
         else if (_encroachment >= 60)
         {
-            _encroachmentLevelIndex = 3;
+            _encroachmentLevelIndex = 2;
         }
         else if (_encroachment >= 40)
         {
-            _encroachmentLevelIndex = 2;
+            _encroachmentLevelIndex = 1;
         }
         else if (_encroachment >= 20)
         {
-            _encroachmentLevelIndex = 1;
-        }
-        else if (_encroachment >= 10)
-        {
             _encroachmentLevelIndex = 0;
+        }
+        else if (_encroachment <= 10)
+        {
+            _encroachmentLevelIndex = 99;
         }
 
         EncroachmentProduction();
@@ -1063,15 +1091,9 @@ public class PlayerUnit : Unit
         playerInfo.CurEncroachment = _encroachment;
         if (_encroachment >= 100)
         {
-            
+            StartCoroutine(EncroachmentDaedProduction());
         }
     }
-
-    public void HandleDead()
-    {
-        Dead();
-    }
-    
 
     private void FindEncroachmentDecreaseFromSkillData(string skillName)
     {
@@ -1456,6 +1478,58 @@ public class PlayerUnit : Unit
             }
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    IEnumerator EncroachmentProductionParticleFadeOut(int particlefadeOutIndex)
+    {
+        float timer = _encroachmentProductionFadeOutTime;
+        var particleChildrens = _encroachmentProductionParticleSystems[particlefadeOutIndex]
+            .GetComponentsInChildren<ParticleSystem>();
+
+        ParticleSystemRenderer particleSystemRenderer;
+        Material particleMaterial;
+        float programerAlpha = 0.0f;
+        
+        while (timer > 0.0f)
+        {
+            timer -= GameManager.instance.timeMng.FixedDeltaTime;
+            programerAlpha = Mathf.Lerp(0, 1, timer);
+
+            for (int i = 1; i < particleChildrens.Length; i++)
+            {
+                particleSystemRenderer = particleChildrens[i].GetComponent<ParticleSystemRenderer>();
+                particleMaterial = particleSystemRenderer.material;
+                particleMaterial.SetFloat("Vector1_1F53A638", programerAlpha);
+            }
+
+
+            yield return new WaitForFixedUpdate();
+        }
+        
+        for (int i = 1; i < particleChildrens.Length; i++)
+        {
+            particleSystemRenderer = particleChildrens[i].GetComponent<ParticleSystemRenderer>();
+            particleMaterial = particleSystemRenderer.material;
+            particleMaterial.SetFloat("Vector1_1F53A638", 1.0f);
+        }
+        
+        _encroachmentProductionParticleSystems[particlefadeOutIndex].gameObject.SetActive(false);
+    }
+
+    IEnumerator EncroachmentDaedProduction()
+    {
+        WwiseSoundManager.instance.PlayEventSound("Encroachment_Die");
+        _encrochmentDeadEffectController.gameObject.SetActive(true);
+        _encrochmentDeadEffectController.Play();
+
+        yield return null;
+        
+        while (_encrochmentDeadEffectController.isStopped == false)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        
+        Dead();
     }
 
     IEnumerator SkillAxeCoolTimeCoroutine()
