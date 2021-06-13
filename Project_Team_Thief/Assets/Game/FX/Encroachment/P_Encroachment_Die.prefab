@@ -33701,3 +33701,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 8850777891580478603}
+  - {fileID: 936452459050461429}
+  - {fileID: 936452459847125652}
+  - {fileID: 936452458345169657}
+  - {fileID: 936452458757850646}
+  - {fileID: 936452458672034346}
+  - {fileID: 936452458909881810}
