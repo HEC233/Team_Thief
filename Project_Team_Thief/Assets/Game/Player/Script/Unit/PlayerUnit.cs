@@ -82,7 +82,7 @@ public class PlayerUnit : Unit
     private bool _nonEncroachment = true;
     private bool[] _encroachmentLevelArr = new bool[5] {false, false, false, false, false};
     private int _encroachmentLevelIndex = 0;
-    
+    private bool _isEncrochmentDeadCoroutine = false;
     
     [SerializeField, Header("Ani Variable")]
     private float _aniFastAmount;
@@ -1091,7 +1091,8 @@ public class PlayerUnit : Unit
         playerInfo.CurEncroachment = _encroachment;
         if (_encroachment >= 100)
         {
-            StartCoroutine(EncroachmentDaedProduction());
+            if (_isEncrochmentDeadCoroutine == false)
+                StartCoroutine(EncroachmentDaedProduction());
         }
     }
 
@@ -1518,6 +1519,8 @@ public class PlayerUnit : Unit
 
     IEnumerator EncroachmentDaedProduction()
     {
+        _isEncrochmentDeadCoroutine = true;
+        
         WwiseSoundManager.instance.PlayEventSound("Encroachment_Die");
         _encrochmentDeadEffectController.gameObject.SetActive(true);
         _encrochmentDeadEffectController.Play();

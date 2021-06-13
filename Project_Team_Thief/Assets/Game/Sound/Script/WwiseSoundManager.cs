@@ -33,8 +33,7 @@ public class WwiseSoundManager : MonoBehaviour
     {
         if (_isPlayingMainBgm == true)
         {
-            AkSoundEngine.StopPlayingID(_bgmMainSoundId);
-            _isPlayingMainBgm = false;
+            StopMainBgm();
         }
 
         _isPlayingMainBgm = true;
@@ -45,14 +44,14 @@ public class WwiseSoundManager : MonoBehaviour
     {
         _isPlayingMainBgm = false;
         AkSoundEngine.StopPlayingID(_bgmMainSoundId);
+        AkSoundEngine.StopAll();
     }
 
     public void PlayInGameBgm()
     {
         if (_isPlayingInGameBgm == true)
         {
-            AkSoundEngine.StopPlayingID(_bgmInGameSoundId);
-            _isPlayingInGameBgm = false;
+            StopInGameBgm();
         }
 
         _isPlayingInGameBgm = true;
@@ -63,6 +62,7 @@ public class WwiseSoundManager : MonoBehaviour
     {
         _isPlayingMainBgm = false;
         AkSoundEngine.StopPlayingID(_bgmInGameSoundId);
+        AkSoundEngine.StopAll();
     }
 
     public uint PlayEventSound(string eventName)
