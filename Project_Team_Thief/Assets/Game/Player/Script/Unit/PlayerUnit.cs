@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using PS.FX;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -1351,6 +1352,22 @@ public class PlayerUnit : Unit
         _isHitstop = true;
         _hitstopPrevVelocity = _rigidbody2D.velocity;
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        
+        // 현재 잠식력 연출이 쉐이더로 작동하기 때문에 파티클 시스템을 건들여도 멈추지 않음
+        // AD랑 얘기해봐야할 듯.
+        // ParticleSystem[] particleSystems;
+        // ParticleSystem.MainModule mainModule;
+        //
+        // for (int i = 0; i < _encroachmentProductionParticleSystems.Length; i++)
+        // {
+        //     particleSystems = _encroachmentProductionParticleSystems[i].GetComponentsInChildren<ParticleSystem>();
+        //     foreach (var item in particleSystems)
+        //     {
+        //         mainModule = item.main;
+        //         mainModule.simulationSpeed = 0;
+        //     }
+        // }
     }
 
     public void EndHitStop(float timeScale)
@@ -1359,6 +1376,19 @@ public class PlayerUnit : Unit
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
         _timeScale = timeScale;
         _rigidbody2D.velocity = _hitstopPrevVelocity;
+        
+        // ParticleSystem[] particleSystems;
+        // ParticleSystem.MainModule mainModule;
+        
+        // for (int i = 0; i < _encroachmentProductionParticleSystems.Length; i++)
+        // {
+        //     particleSystems = _encroachmentProductionParticleSystems[i].GetComponentsInChildren<ParticleSystem>();
+        //     foreach (var item in particleSystems)
+        //     {
+        //         mainModule = item.main;
+        //         mainModule.simulationSpeed = 1;
+        //     }
+        // }
     }
 
     public Vector3 GetVelocity()
