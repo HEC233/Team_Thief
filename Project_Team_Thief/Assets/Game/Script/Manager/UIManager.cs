@@ -191,13 +191,14 @@ public class UIManager : MonoBehaviour
 
     public void PlayerDead()
     {
-        uiGameOver.gameObject.SetActive(true);
-        StartCoroutine(GameOver());
+        //uiGameOver.gameObject.SetActive(true);
+        //StartCoroutine(GameOver());
+        GameManager.instance.ReloadScene();
     }
 
     public void TurnOffGameOverScreen()
     {
-        uiGameOver.gameObject.SetActive(false);
+        //uiGameOver.gameObject.SetActive(false);
     }
 
     IEnumerator GameOver()
