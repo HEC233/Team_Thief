@@ -6,6 +6,7 @@ using UnityEngine;
 using PS.Util.Tile;
 using PS.FX;
 using PS.Shadow;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -141,6 +142,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ReloadScene()
+    {
+        LoadGame(SceneManager.GetActiveScene().name);
+    }
+
     IEnumerator StartGameCoroutine(string SceneName)
     {
         yield return GameLoader.instance.SceneLoad(SceneName);
@@ -150,7 +156,8 @@ public class GameManager : MonoBehaviour
         WwiseSoundManager.instance.StopMainBgm();
         WwiseSoundManager.instance.PlayInGameBgm();
         ChangeActorToPlayer();
-        
+        isPlayerDead = false;
+
         timeMng.UnbindAll();
         timeMng.Reset();
         FX.Bind();

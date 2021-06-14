@@ -130,7 +130,7 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
 
     public void Restart()
     {
-
+        GameManager.instance.ReloadScene();
     }
 
     public void Setting()
