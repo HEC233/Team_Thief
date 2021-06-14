@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_New Shader Graph 1
+  m_Name: MT_POLDan5
   m_Shader: {fileID: -6465566751694194690, guid: 1a5c42512ef26444cb33b8a3005dfffc,
     type: 3}
   m_ShaderKeywords: 
