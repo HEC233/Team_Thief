@@ -10,7 +10,7 @@ Event	ID	Name			Wwise Object Path	Notes
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	242449067	SFX_LightWarrior_Swing	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_hammer_Swing_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\ENEMY\LightWarrior\SFX_LightWarrior_Swing		2142
-	427331776	SFX_Seraphim_FS	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_FS_B2793148.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\ENEMY\Seraphim\Seraphim_FS\SFX_Seraphim_FS		2983
+	427331776	SFX_Seraphim_FS	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_FS_6D06B35E.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\ENEMY\Seraphim\Seraphim_FS\SFX_Seraphim_FS		2511
 	487472076	SFX_Seraphim_Shot	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_Seraphim_Shot_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\ENEMY\Seraphim\SFX_Seraphim_Shot		11103
 	492561759	SFX_LightWarrior_FS	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_LightWarrior_FS2_874E3359.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\ENEMY\LightWarrior\LightWarrior_FS\SFX_LightWarrior_FS		3411
 	514265212	SFX_Dandelion_Boom	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_Dandelion_Boom_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\ENEMY\Dadelion\SFX_Dandelion_Boom		15181

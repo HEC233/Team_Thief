@@ -491,6 +491,11 @@
 											<PropertyList>
 												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
 												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-3</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -525,9 +530,6 @@
 															</ModifierList>
 														</Property>
 														<Property Name="Volume" Type="Real64">
-															<ValueList>
-																<Value>-12</Value>
-															</ValueList>
 															<ModifierList>
 																<ModifierInfo>
 																	<Modifier Name="" ID="{67438A65-C96A-4D0E-B7E3-2436E6392366}">
@@ -2118,7 +2120,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-10</Value>
+														<Value>-3</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -2353,11 +2355,6 @@
 														<Value>True</Value>
 													</ValueList>
 												</Property>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-10</Value>
-													</ValueList>
-												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -2426,7 +2423,7 @@
 													<ChildrenList>
 														<AudioFileSource Name="SFX_PC_FS" ID="{BECC5DE5-CD8B-4949-90E0-1D8917566260}">
 															<PropertyList>
-																<Property Name="TrimEnd" Type="Real64" Value="0.3"/>
+																<Property Name="TrimEnd" Type="Real64" Value="0.21"/>
 															</PropertyList>
 															<Language>SFX</Language>
 															<AudioFile>SFX_PC_FS.wav</AudioFile>
@@ -2781,6 +2778,285 @@
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
+				<Folder Name="AMB" ID="{5024A047-9113-4C3A-B1B9-27D7D6C180FB}" ShortID="500418065">
+					<ChildrenList>
+						<RandomSequenceContainer Name="AMB_Lake" ID="{F6AB6308-747F-456B-AC82-4501BFA3FE4E}" ShortID="177457157">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Lake" ID="{2EB195A9-4141-4C22-BD4B-19B4F427E66A}" WorkUnitID="{A2788169-699F-4F56-88AF-1B77B9428A9A}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="AMB" ID="{ECA708DB-F50F-4B50-94C9-49B46B6F5E7B}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="AMB_Lake1" ID="{71822192-8D35-4DEF-BFA5-2C6772F3379A}" ShortID="237871805">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Lake1" ID="{6ECE5EE0-9B94-4009-836C-A119FBB2E7BA}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Lake1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="780665729"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Lake1" ID="{6ECE5EE0-9B94-4009-836C-A119FBB2E7BA}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Lake2" ID="{0919046F-7D5E-4A54-821C-421B1845823C}" ShortID="846331667">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Lake2" ID="{F48C8213-3D75-4A0B-9DFE-26EE853761D8}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Lake2.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="751910604"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Lake2" ID="{F48C8213-3D75-4A0B-9DFE-26EE853761D8}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Lake" ID="{19ED9E7E-38F2-4855-873E-05E5A1765002}" ShortID="567333747">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Lake" ID="{061D0626-9629-4C72-8565-9CF3147C6D3C}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Lake.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="391437322"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Lake" ID="{061D0626-9629-4C72-8565-9CF3147C6D3C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="AMB_Forest" ID="{A2EA3FD1-4F68-4F52-8804-1A89F1F7BCDA}" ShortID="745421341">
+							<PropertyList>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="AMB" ID="{ECA708DB-F50F-4B50-94C9-49B46B6F5E7B}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="AMB_Forest1" ID="{19A84091-AA12-486B-A78E-FCBF86AFFB53}" ShortID="798505224">
+									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{22CBC05A-C9EA-480C-96DD-2030945674BF}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="10"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="IsStreamingEnabled" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Forest1" ID="{21D32CD7-146B-4D0F-802F-191139DB4A65}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Forest1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="787562443"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Forest1" ID="{21D32CD7-146B-4D0F-802F-191139DB4A65}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Forest2" ID="{4C2105CC-DDB7-432C-A512-DDB2131FD4B5}" ShortID="966364850">
+									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{8D5B102B-B91C-489E-B318-1FEE7E054458}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="10"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="IsStreamingEnabled" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Forest2" ID="{6A0CFFE4-9A07-4114-AAF5-87BB2E186A3D}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Forest2.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="969849231"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Forest2" ID="{6A0CFFE4-9A07-4114-AAF5-87BB2E186A3D}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Forest3" ID="{BB5A8C6F-3A92-4351-9C74-A0168E38E23F}" ShortID="940508811">
+									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{A00A9CAE-6BCE-40A2-9FE1-16ED6AE342AB}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="10"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="IsStreamingEnabled" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Forest3" ID="{F2C1C1E8-DA06-4A06-B16B-2317E18155F8}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Forest3.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="890041261"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Forest3" ID="{F2C1C1E8-DA06-4A06-B16B-2317E18155F8}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="AMB_Forest4" ID="{BF37FB72-F271-4FBB-8250-92651BAD7CFA}" ShortID="704359813">
+									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{E0F381D1-1148-464C-841A-0C1E1A14E2B2}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="10"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="IsStreamingEnabled" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMB_Forest4" ID="{41653635-02BB-4F66-B3C5-479527C5B9DD}">
+											<Language>SFX</Language>
+											<AudioFile>AMB_Forest4.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="146979425"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="AMB_Forest4" ID="{41653635-02BB-4F66-B3C5-479527C5B9DD}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</RandomSequenceContainer>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

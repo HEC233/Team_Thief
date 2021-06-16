@@ -50,5 +50,5 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	897023030	SFX_PC_jump	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_jump_C269BB80.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\movement\SFX_PC_jump		1586
 	987553898	SFX_PC_axe	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_axe_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\SFX_PC_axe		2479
 	1001260328	SFX_PC_SnakeSword3	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\Spin_TwirlingWhoosh_E0A1F73E.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_SnakeSword\SFX_PC_SnakeSword3		7566
-	1008207653	SFX_PC_woosh	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_woosh_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_BA4\SFX_PC_woosh		3571
+	1008207653	SFX_PC_woosh	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\SFX_PC_woosh_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX\PC\whoosh\PC_BA3\SFX_PC_woosh		3571
 

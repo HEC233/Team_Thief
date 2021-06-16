@@ -88,6 +88,8 @@
 						<ObjectRef Name="Boss" ID="{03CD3760-927E-4362-B665-FB7F8056476B}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Main" ID="{7C2390F1-7EFC-45D9-8997-2C2FD7BF2852}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="InGame" ID="{D4241932-EB79-4BAA-BC56-E038376AA87F}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Forest" ID="{ED043769-B1B7-4D08-ACDA-1E297C81100E}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Lake" ID="{1F0A063B-302E-4E1D-9B4E-75D31410B5C2}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

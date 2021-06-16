@@ -8,10 +8,27 @@
 		<ExternalSourcesOutputRoot>C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
-	<StreamedFiles/>
+	<StreamedFiles>
+		<File Id="146979425" Language="SFX">
+			<ShortName>AMB_Forest4.wav</ShortName>
+			<Path>SFX\AMB_Forest4_46401910.wem</Path>
+		</File>
+		<File Id="787562443" Language="SFX">
+			<ShortName>AMB_Forest1.wav</ShortName>
+			<Path>SFX\AMB_Forest1_46401910.wem</Path>
+		</File>
+		<File Id="890041261" Language="SFX">
+			<ShortName>AMB_Forest3.wav</ShortName>
+			<Path>SFX\AMB_Forest3_46401910.wem</Path>
+		</File>
+		<File Id="969849231" Language="SFX">
+			<ShortName>AMB_Forest2.wav</ShortName>
+			<Path>SFX\AMB_Forest2_46401910.wem</Path>
+		</File>
+	</StreamedFiles>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="412724365" Language="SFX" Hash="1046619519">
+		<SoundBank Id="412724365" Language="SFX" Hash="3955933080">
 			<ObjectPath>\SoundBanks\Default Work Unit\BGM</ObjectPath>
 			<ShortName>BGM</ShortName>
 			<Path>BGM.bnk</Path>
@@ -58,11 +75,47 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
+				<Event Id="491961918" Name="Forest" ObjectPath="\Events\Default Work Unit\AMB\Forest" DurationType="Infinite">
+					<ReferencedStreamedFiles>
+						<File Id="146979425" Language="SFX">
+							<ShortName>AMB_Forest4.wav</ShortName>
+							<Path>SFX\AMB_Forest4_46401910.wem</Path>
+						</File>
+						<File Id="787562443" Language="SFX">
+							<ShortName>AMB_Forest1.wav</ShortName>
+							<Path>SFX\AMB_Forest1_46401910.wem</Path>
+						</File>
+						<File Id="890041261" Language="SFX">
+							<ShortName>AMB_Forest3.wav</ShortName>
+							<Path>SFX\AMB_Forest3_46401910.wem</Path>
+						</File>
+						<File Id="969849231" Language="SFX">
+							<ShortName>AMB_Forest2.wav</ShortName>
+							<Path>SFX\AMB_Forest2_46401910.wem</Path>
+						</File>
+					</ReferencedStreamedFiles>
+				</Event>
 				<Event Id="984691642" Name="InGame" ObjectPath="\Events\Default Work Unit\BGM\InGame" DurationType="OneShot" DurationMin="218.540405" DurationMax="218.540405">
 					<IncludedMemoryFiles>
 						<File Id="750339061" Language="SFX">
 							<ShortName>BGM_InGame.wav</ShortName>
 							<Path>SFX\BGM_InGame_F01E125A.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="624189772" Name="Lake" ObjectPath="\Events\Default Work Unit\AMB\Lake" MaxAttenuation="50.000000" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="391437322" Language="SFX">
+							<ShortName>AMB_Lake.wav</ShortName>
+							<Path>SFX\AMB_Lake_46401910.wem</Path>
+						</File>
+						<File Id="751910604" Language="SFX">
+							<ShortName>AMB_Lake2.wav</ShortName>
+							<Path>SFX\AMB_Lake2_46401910.wem</Path>
+						</File>
+						<File Id="780665729" Language="SFX">
+							<ShortName>AMB_Lake1.wav</ShortName>
+							<Path>SFX\AMB_Lake1_46401910.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -150,7 +203,7 @@
 				<Event Id="953277036" Name="Resume" ObjectPath="\Events\Default Work Unit\Glober\Resume" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1635194334" Language="SFX" Hash="236923714">
+		<SoundBank Id="1635194334" Language="SFX" Hash="4029036975">
 			<ObjectPath>\SoundBanks\Default Work Unit\PC</ObjectPath>
 			<ShortName>PC</ShortName>
 			<Path>PC.bnk</Path>
@@ -377,7 +430,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="2299321487" Language="SFX" Hash="3805661471">
+		<SoundBank Id="2299321487" Language="SFX" Hash="3142499950">
 			<ObjectPath>\SoundBanks\Default Work Unit\Enemy</ObjectPath>
 			<ShortName>Enemy</ShortName>
 			<Path>Enemy.bnk</Path>
@@ -434,7 +487,7 @@
 					<IncludedMemoryFiles>
 						<File Id="427331776" Language="SFX">
 							<ShortName>SFX_PC_FS.wav</ShortName>
-							<Path>SFX\SFX_PC_FS_B2793148.wem</Path>
+							<Path>SFX\SFX_PC_FS_6D06B35E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

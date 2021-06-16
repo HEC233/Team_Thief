@@ -4,6 +4,13 @@
 		<WorkUnit Name="Default Work Unit" ID="{871D10D4-2536-42B0-8162-644CCEA41079}" PersistMode="Standalone">
 			<ChildrenList>
 				<MusicPlaylistContainer Name="InGame" ID="{89BD964B-B767-4A54-92DC-32727327BA20}" ShortID="571030189">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-4</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
@@ -140,7 +147,7 @@
 						<Property Name="Tempo" Type="Real64" Value="90"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-2</Value>
+								<Value>-5</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -926,7 +933,7 @@
 						<Property Name="Tempo" Type="Real64" Value="90"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-10</Value>
+								<Value>-14</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>

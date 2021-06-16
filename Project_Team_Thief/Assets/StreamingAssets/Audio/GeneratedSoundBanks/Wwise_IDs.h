@@ -21,7 +21,9 @@ namespace AK
         static const AkUniqueID ENCROACHING = 3817345010U;
         static const AkUniqueID ENCROACHING_END = 3609145192U;
         static const AkUniqueID ENCROACHMENT_DIE = 1088284125U;
+        static const AkUniqueID FOREST = 491961918U;
         static const AkUniqueID INGAME = 984691642U;
+        static const AkUniqueID LAKE = 624189772U;
         static const AkUniqueID LIGHTWARRIOR_AR = 4014153887U;
         static const AkUniqueID LIGHTWARRIOR_FS = 3896710555U;
         static const AkUniqueID LIGHTWARRIOR_SWING = 11536312U;

@@ -1,4 +1,6 @@
 Event	ID	Name			Wwise Object Path	Notes
+	491961918	Forest			\Default Work Unit\AMB\Forest	
+	624189772	Lake			\Default Work Unit\AMB\Lake	
 	984691642	InGame			\Default Work Unit\BGM\InGame	
 	1560169506	Boss			\Default Work Unit\BGM\Boss	
 	3161908922	Main			\Default Work Unit\BGM\Main	
@@ -18,6 +20,15 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	108733210	BGM_Boss3	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_Boss3_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\Boss\Boss3\BGM_Boss3\BGM_Boss3		197957
 	211590476	BGM_Boss1	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_Boss1_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\Boss\Boss1\BGM_Boss1\BGM_Boss1		460473
 	299864427	BGM_Boss2	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_Boss2_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\Boss\Boss2\BGM_Boss2\BGM_Boss2		199555
+	391437322	AMB_Lake	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\AMB_Lake_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\AMB\AMB_Lake\AMB_Lake		31474
 	607181814	BGM_Boss_Dead	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_Boss_Dead_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\Boss\Boss_Dead\BGM_Boss_Dead\BGM_Boss_Dead		64823
 	750339061	BGM_InGame	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_InGame_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\InGame\BGM_InGame\BGM_InGame		1549688
+	751910604	AMB_Lake2	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\AMB_Lake2_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\AMB\AMB_Lake\AMB_Lake2		55265
+	780665729	AMB_Lake1	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\AMB_Lake1_46401910.wem		\Actor-Mixer Hierarchy\Default Work Unit\AMB\AMB_Lake\AMB_Lake1		49445
+
+Streamed Audio	ID	Name	Audio source file	Generated audio file	Wwise Object Path	Notes
+	146979425	AMB_Forest4	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\AMB_Forest4_46401910.wem	146979425.wem	\Actor-Mixer Hierarchy\Default Work Unit\AMB\AMB_Forest\AMB_Forest4	
+	787562443	AMB_Forest1	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\AMB_Forest1_46401910.wem	787562443.wem	\Actor-Mixer Hierarchy\Default Work Unit\AMB\AMB_Forest\AMB_Forest1	
+	890041261	AMB_Forest3	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\AMB_Forest3_46401910.wem	890041261.wem	\Actor-Mixer Hierarchy\Default Work Unit\AMB\AMB_Forest\AMB_Forest3	
+	969849231	AMB_Forest2	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\AMB_Forest2_46401910.wem	969849231.wem	\Actor-Mixer Hierarchy\Default Work Unit\AMB\AMB_Forest\AMB_Forest2	
 

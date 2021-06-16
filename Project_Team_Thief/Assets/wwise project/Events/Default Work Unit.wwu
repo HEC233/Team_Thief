@@ -582,6 +582,32 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="AMB" ID="{A97CBB38-0D3F-4490-8FC1-B030AF8E032A}" ShortID="25426126">
+					<ChildrenList>
+						<Event Name="Lake" ID="{1F0A063B-302E-4E1D-9B4E-75D31410B5C2}">
+							<ChildrenList>
+								<Action Name="" ID="{9DE14866-45E0-4FA4-BA9C-A62E797491D6}" ShortID="42846134">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Lake" ID="{F6AB6308-747F-456B-AC82-4501BFA3FE4E}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Forest" ID="{ED043769-B1B7-4D08-ACDA-1E297C81100E}">
+							<ChildrenList>
+								<Action Name="" ID="{7A132A6A-55C1-443C-98DA-D5AAD5C40DEB}" ShortID="951462065">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB_Forest" ID="{A2EA3FD1-4F68-4F52-8804-1A89F1F7BCDA}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
