@@ -73,7 +73,9 @@
 					</PropertyList>
 					<ObjectInclusionList>
 						<ObjectRef Name="Encroachment_Die" ID="{979E16CD-65E6-405C-9166-003A3FA53613}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Click" ID="{84E297B6-BC91-41F1-83B9-2861DD915B9E}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Pause" ID="{0CF96DE7-E364-4722-82B7-95C224A9CAFC}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Click_Exit" ID="{2B5CDF5D-F3CE-47DA-9045-9919C7B0CE12}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Resume" ID="{E066D744-36F4-49AB-AFC2-01E05CC4005C}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Encroaching_End" ID="{456D11CD-94B3-4D7A-9D98-5F89762606D9}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Encroaching" ID="{BAFC2191-79B7-4E79-AA72-C021AAB995C7}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
@@ -83,6 +85,7 @@
 				</SoundBank>
 				<SoundBank Name="BGM" ID="{475253DF-0F17-43A5-9F35-81151D8D2033}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Boss" ID="{03CD3760-927E-4362-B665-FB7F8056476B}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Main" ID="{7C2390F1-7EFC-45D9-8997-2C2FD7BF2852}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="InGame" ID="{D4241932-EB79-4BAA-BC56-E038376AA87F}" WorkUnitID="{D11BBDA6-6E91-480E-A19A-E06256F8E399}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>

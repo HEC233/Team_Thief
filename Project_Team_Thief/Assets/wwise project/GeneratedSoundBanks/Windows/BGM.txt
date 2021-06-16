@@ -1,8 +1,23 @@
 Event	ID	Name			Wwise Object Path	Notes
 	984691642	InGame			\Default Work Unit\BGM\InGame	
+	1560169506	Boss			\Default Work Unit\BGM\Boss	
 	3161908922	Main			\Default Work Unit\BGM\Main	
+
+State Group	ID	Name			Wwise Object Path	Notes
+	3985068258	Boss_Phase			\Default Work Unit\Boss_Phase	
+
+State	ID	Name	State Group			Notes
+	748895195	None	Boss_Phase			
+	2044049779	Dead	Boss_Phase			
+	3630028968	Phase2	Boss_Phase			
+	3630028969	Phase3	Boss_Phase			
+	3630028971	Phase1	Boss_Phase			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	48503471	BGM_Main	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_Main_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\Main\BGM_Main\BGM_Main		211079
+	108733210	BGM_Boss3	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_Boss3_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\Boss\Boss3\BGM_Boss3\BGM_Boss3		197957
+	211590476	BGM_Boss1	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_Boss1_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\Boss\Boss1\BGM_Boss1\BGM_Boss1		460473
+	299864427	BGM_Boss2	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_Boss2_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\Boss\Boss2\BGM_Boss2\BGM_Boss2		199555
+	607181814	BGM_Boss_Dead	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_Boss_Dead_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\Boss\Boss_Dead\BGM_Boss_Dead\BGM_Boss_Dead		64823
 	750339061	BGM_InGame	C:\Users\qkarm\Documents\Team_Thief\Project_Team_Thief\Assets\wwise project\.cache\Windows\SFX\BGM_InGame_F01E125A.wem		\Interactive Music Hierarchy\Default Work Unit\InGame\BGM_InGame\BGM_InGame		1549688
 

@@ -303,7 +303,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: e8a961f1977ddc44a7bcd68ac0d891e1
     GuidInternal: 
-    m_lastTime: -8585785310825395945
+    m_lastTime: -8585777567191166912
     List:
     - name: AMB
       guid: db08a7ec0ff5504b94c949b46b6f5e7b
@@ -447,7 +447,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-    m_lastTime: -8585781051031655850
+    m_lastTime: -8585777567190366737
     List:
     - name: BGM
       guid: df535247170fa5439f3581151d8d2033
@@ -517,7 +517,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585781051040796570
+    m_lastTime: -8585777567190546777
     List:
     - name: BGM
       guid: 3c4abced4b263b42b4fa6007e992ec3f
@@ -536,6 +536,66 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Boss
+      guid: 6037cd037e926243b665fb7f8056476b
+      id: 1560169506
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: BGM
+        ObjectType: 4
+        guid: 3c4abced4b263b42b4fa6007e992ec3f
+      - ElementName: Boss
+        ObjectType: 3
+        guid: 6037cd037e926243b665fb7f8056476b
+      Path: Events\Default Work Unit\BGM\Boss
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Click
+      guid: b697e28491bcf14183b92861dd915b9e
+      id: 1584507803
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: UI
+        ObjectType: 4
+        guid: 21337fa8b5360c44a47eb8f9f71e9e27
+      - ElementName: Click
+        ObjectType: 3
+        guid: b697e28491bcf14183b92861dd915b9e
+      Path: Events\Default Work Unit\UI\Click
+      maxAttenuation: 0
+      maxDuration: 1.27585
+      minDuration: 1.27585
+    - name: Click_Exit
+      guid: 5ddf5c2bcef3da4790459919c7b0ce12
+      id: 2518663686
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: UI
+        ObjectType: 4
+        guid: 21337fa8b5360c44a47eb8f9f71e9e27
+      - ElementName: Click_Exit
+        ObjectType: 3
+        guid: 5ddf5c2bcef3da4790459919c7b0ce12
+      Path: Events\Default Work Unit\UI\Click_Exit
+      maxAttenuation: 0
+      maxDuration: 1.27585
+      minDuration: 1.27585
     - name: Dandelion
       guid: bbdc4fdd927ecf48a5881615e6ab92ca
       id: 898275277
@@ -2058,8 +2118,106 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 4fd9f844540fb04bb0247a7267f0f122
     GuidInternal: 
-    m_lastTime: -8585785310812848873
+    m_lastTime: -8585777567190646798
     List:
+    - name: Boss_Phase
+      guid: f255a61ec74c724aa4b7aed8f0d3f831
+      id: 3985068258
+      PathAndIcons:
+      - ElementName: States
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 4fd9f844540fb04bb0247a7267f0f122
+      - ElementName: Boss_Phase
+        ObjectType: 9
+        guid: f255a61ec74c724aa4b7aed8f0d3f831
+      Path: States\Default Work Unit\Boss_Phase
+      values:
+      - name: Dead
+        guid: 625f078e6d39c84e9c121e0f0cb5a478
+        id: 2044049779
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Boss_Phase
+          ObjectType: 9
+          guid: f255a61ec74c724aa4b7aed8f0d3f831
+        - ElementName: Dead
+          ObjectType: 8
+          guid: 625f078e6d39c84e9c121e0f0cb5a478
+      - name: None
+        guid: f8965d056ef93b448260e5da884790b9
+        id: 748895195
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Boss_Phase
+          ObjectType: 9
+          guid: f255a61ec74c724aa4b7aed8f0d3f831
+        - ElementName: None
+          ObjectType: 8
+          guid: f8965d056ef93b448260e5da884790b9
+      - name: Phase1
+        guid: 5b6a672fe418e64daaee5cb5ddbbacdb
+        id: 3630028971
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Boss_Phase
+          ObjectType: 9
+          guid: f255a61ec74c724aa4b7aed8f0d3f831
+        - ElementName: Phase1
+          ObjectType: 8
+          guid: 5b6a672fe418e64daaee5cb5ddbbacdb
+      - name: Phase2
+        guid: a8dd3252e6321a46a33c47cc3474eb10
+        id: 3630028968
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Boss_Phase
+          ObjectType: 9
+          guid: f255a61ec74c724aa4b7aed8f0d3f831
+        - ElementName: Phase2
+          ObjectType: 8
+          guid: a8dd3252e6321a46a33c47cc3474eb10
+      - name: Phase3
+        guid: 54a589ad329f3540a8363c0ecd14c888
+        id: 3630028969
+        PathAndIcons:
+        - ElementName: States
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 4fd9f844540fb04bb0247a7267f0f122
+        - ElementName: Boss_Phase
+          ObjectType: 9
+          guid: f255a61ec74c724aa4b7aed8f0d3f831
+        - ElementName: Phase3
+          ObjectType: 8
+          guid: 54a589ad329f3540a8363c0ecd14c888
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
     - name: Pause_Menu
       guid: 29bbf760fa6efe4f9061e92b937c89d7
       id: 3422541661

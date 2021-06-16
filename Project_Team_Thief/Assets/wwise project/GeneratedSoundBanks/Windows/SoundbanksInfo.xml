@@ -11,11 +11,53 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="412724365" Language="SFX" Hash="2198504868">
+		<SoundBank Id="412724365" Language="SFX" Hash="1046619519">
 			<ObjectPath>\SoundBanks\Default Work Unit\BGM</ObjectPath>
 			<ShortName>BGM</ShortName>
 			<Path>BGM.bnk</Path>
 			<IncludedEvents>
+				<Event Id="1560169506" Name="Boss" ObjectPath="\Events\Default Work Unit\BGM\Boss" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="108733210" Language="SFX">
+							<ShortName>BGM_Boss3.wav</ShortName>
+							<Path>SFX\BGM_Boss3_F01E125A.wem</Path>
+						</File>
+						<File Id="211590476" Language="SFX">
+							<ShortName>BGM_Boss1.wav</ShortName>
+							<Path>SFX\BGM_Boss1_F01E125A.wem</Path>
+						</File>
+						<File Id="299864427" Language="SFX">
+							<ShortName>BGM_Boss2.wav</ShortName>
+							<Path>SFX\BGM_Boss2_F01E125A.wem</Path>
+						</File>
+						<File Id="607181814" Language="SFX">
+							<ShortName>BGM_Boss_Dead.wav</ShortName>
+							<Path>SFX\BGM_Boss_Dead_F01E125A.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{5232DDA8-32E6-461A-A33C-47CC3474EB10}">
+							<Media>
+								<File Id="299864427"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{2F676A5B-18E4-4DE6-AAEE-5CB5DDBBACDB}">
+							<Media>
+								<File Id="211590476"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{AD89A554-9F32-4035-A836-3C0ECD14C888}">
+							<Media>
+								<File Id="108733210"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{8E075F62-396D-4EC8-9C12-1E0F0CB5A478}">
+							<Media>
+								<File Id="607181814"/>
+							</Media>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
 				<Event Id="984691642" Name="InGame" ObjectPath="\Events\Default Work Unit\BGM\InGame" DurationType="OneShot" DurationMin="218.540405" DurationMax="218.540405">
 					<IncludedMemoryFiles>
 						<File Id="750339061" Language="SFX">
@@ -33,8 +75,19 @@
 					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
+			<StateGroups>
+				<StateGroup Id="3985068258" Name="Boss_Phase" ObjectPath="\States\Default Work Unit\Boss_Phase">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Boss_Phase\None"/>
+						<State Id="3630028971" Name="Phase1" ObjectPath="\States\Default Work Unit\Boss_Phase\Phase1"/>
+						<State Id="3630028968" Name="Phase2" ObjectPath="\States\Default Work Unit\Boss_Phase\Phase2"/>
+						<State Id="3630028969" Name="Phase3" ObjectPath="\States\Default Work Unit\Boss_Phase\Phase3"/>
+						<State Id="2044049779" Name="Dead" ObjectPath="\States\Default Work Unit\Boss_Phase\Dead"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2738626114">
+		<SoundBank Id="1355168291" Language="SFX" Hash="1056364772">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -51,11 +104,27 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1551306167" Language="SFX" Hash="1471952600">
+		<SoundBank Id="1551306167" Language="SFX" Hash="4269321962">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
 			<ShortName>UI</ShortName>
 			<Path>UI.bnk</Path>
 			<IncludedEvents>
+				<Event Id="1584507803" Name="Click" ObjectPath="\Events\Default Work Unit\UI\Click" DurationType="OneShot" DurationMin="1.275850" DurationMax="1.275850">
+					<IncludedMemoryFiles>
+						<File Id="500034149" Language="SFX">
+							<ShortName>UI_Click1.wav</ShortName>
+							<Path>SFX\UI_Click1_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2518663686" Name="Click_Exit" ObjectPath="\Events\Default Work Unit\UI\Click_Exit" DurationType="OneShot" DurationMin="1.275850" DurationMax="1.275850">
+					<IncludedMemoryFiles>
+						<File Id="146560293" Language="SFX">
+							<ShortName>UI_Click2.wav</ShortName>
+							<Path>SFX\UI_Click2_46401910.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3817345010" Name="Encroaching" ObjectPath="\Events\Default Work Unit\UI\Encroaching" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="645515515" Language="SFX">

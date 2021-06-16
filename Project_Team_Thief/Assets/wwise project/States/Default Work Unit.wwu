@@ -27,6 +27,15 @@
 						</Transition>
 					</TransitionList>
 				</StateGroup>
+				<StateGroup Name="Boss_Phase" ID="{1EA655F2-4CC7-4A72-A4B7-AED8F0D3F831}">
+					<ChildrenList>
+						<State Name="None" ID="{055D96F8-F96E-443B-8260-E5DA884790B9}"/>
+						<State Name="Phase1" ID="{2F676A5B-18E4-4DE6-AAEE-5CB5DDBBACDB}"/>
+						<State Name="Phase2" ID="{5232DDA8-32E6-461A-A33C-47CC3474EB10}"/>
+						<State Name="Phase3" ID="{AD89A554-9F32-4035-A836-3C0ECD14C888}"/>
+						<State Name="Dead" ID="{8E075F62-396D-4EC8-9C12-1E0F0CB5A478}"/>
+					</ChildrenList>
+				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>
 	</States>

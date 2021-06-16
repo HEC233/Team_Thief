@@ -13,6 +13,9 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID BOSS = 1560169506U;
+        static const AkUniqueID CLICK = 1584507803U;
+        static const AkUniqueID CLICK_EXIT = 2518663686U;
         static const AkUniqueID DANDELION_BOOM = 3148959641U;
         static const AkUniqueID DANDELION_FA = 208042395U;
         static const AkUniqueID ENCROACHING = 3817345010U;
@@ -58,6 +61,20 @@ namespace AK
 
     namespace STATES
     {
+        namespace BOSS_PHASE
+        {
+            static const AkUniqueID GROUP = 3985068258U;
+
+            namespace STATE
+            {
+                static const AkUniqueID DEAD = 2044049779U;
+                static const AkUniqueID NONE = 748895195U;
+                static const AkUniqueID PHASE1 = 3630028971U;
+                static const AkUniqueID PHASE2 = 3630028968U;
+                static const AkUniqueID PHASE3 = 3630028969U;
+            } // namespace STATE
+        } // namespace BOSS_PHASE
+
         namespace PAUSE_MENU
         {
             static const AkUniqueID GROUP = 3422541661U;

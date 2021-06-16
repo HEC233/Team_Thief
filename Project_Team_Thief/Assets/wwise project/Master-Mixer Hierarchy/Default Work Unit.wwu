@@ -36,6 +36,13 @@
 							<ObjectLists/>
 						</Bus>
 						<Bus Name="BGM" ID="{06D39BC1-1717-499F-AABD-C324E60E9991}">
+							<PropertyList>
+								<Property Name="BusVolume" Type="Real64">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ObjectLists/>
 						</Bus>
 						<Bus Name="Voice" ID="{FCE1CE36-899F-4EB5-A915-9AF7B87C2228}">

@@ -490,6 +490,17 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Boss" ID="{03CD3760-927E-4362-B665-FB7F8056476B}">
+							<ChildrenList>
+								<Action Name="" ID="{7F821D2F-BF3B-409C-B03B-F2A8AF4B9059}" ShortID="596194042">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Boss" ID="{2300C0CF-B151-44E0-AB79-97379F4E716B}" WorkUnitID="{871D10D4-2536-42B0-8162-644CCEA41079}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{A87F3321-36B5-440C-A47E-B8F9F71E9E27}" ShortID="182340179">
@@ -542,6 +553,28 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="FX_UI_encroaching" ID="{1DE7ACFD-82EB-4406-BB06-A1A0C6ED723F}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Click" ID="{84E297B6-BC91-41F1-83B9-2861DD915B9E}">
+							<ChildrenList>
+								<Action Name="" ID="{5C5E7FDB-CAC6-4179-A74D-BD8E05F90FE1}" ShortID="758404522">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Click1" ID="{A8AA44A0-A745-45D9-8A7D-78D6AB626AED}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Click_Exit" ID="{2B5CDF5D-F3CE-47DA-9045-9919C7B0CE12}">
+							<ChildrenList>
+								<Action Name="" ID="{1433F7B8-4721-442E-87E5-92C4BDBAAD35}" ShortID="981850099">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Click2" ID="{D5C4F802-F224-4E6F-ABF9-05F49DAEF7BB}" WorkUnitID="{7C8F6756-2067-4B7D-9957-884A18C94235}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
