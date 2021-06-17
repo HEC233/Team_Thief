@@ -303,7 +303,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: e8a961f1977ddc44a7bcd68ac0d891e1
     GuidInternal: 
-    m_lastTime: -8585777567191166912
+    m_lastTime: -8585776947749235666
     List:
     - name: AMB
       guid: db08a7ec0ff5504b94c949b46b6f5e7b
@@ -447,7 +447,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 763b13b4fefea14c804ac0e94554340e
     GuidInternal: 
-    m_lastTime: -8585777567190366737
+    m_lastTime: -8585776947734629754
     List:
     - name: BGM
       guid: df535247170fa5439f3581151d8d2033
@@ -517,8 +517,25 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: a6bd1bd1916e0e48a19ae06256f8e399
     GuidInternal: 
-    m_lastTime: -8585777567190546777
+    m_lastTime: -8585776947749970154
     List:
+    - name: AMB
+      guid: 38bb7ca93f0d90448fc1b030af8e032a
+      id: 1117531639
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: AMB
+        ObjectType: 4
+        guid: 38bb7ca93f0d90448fc1b030af8e032a
+      Path: Events\Default Work Unit\AMB
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: BGM
       guid: 3c4abced4b263b42b4fa6007e992ec3f
       id: 412724365
@@ -751,6 +768,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Forest
+      guid: 693704edb7b1084dacda1e297c81100e
+      id: 491961918
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: AMB
+        ObjectType: 4
+        guid: 38bb7ca93f0d90448fc1b030af8e032a
+      - ElementName: Forest
+        ObjectType: 3
+        guid: 693704edb7b1084dacda1e297c81100e
+      Path: Events\Default Work Unit\AMB\Forest
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Glober
       guid: e3e9a3d4a2142541943ca7e271093a74
       id: 1532441726
@@ -834,6 +871,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 218.5404
       minDuration: 218.5404
+    - name: Lake
+      guid: 3b060a1f2e301d4e9b4e75d31410b5c2
+      id: 624189772
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: a6bd1bd1916e0e48a19ae06256f8e399
+      - ElementName: AMB
+        ObjectType: 4
+        guid: 38bb7ca93f0d90448fc1b030af8e032a
+      - ElementName: Lake
+        ObjectType: 3
+        guid: 3b060a1f2e301d4e9b4e75d31410b5c2
+      Path: Events\Default Work Unit\AMB\Lake
+      maxAttenuation: 50
+      maxDuration: -1
+      minDuration: -1
     - name: LightWarrior
       guid: 36c01f3e4e8b474bbfa30ea35ca5d282
       id: 3359626199
@@ -2118,7 +2175,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 4fd9f844540fb04bb0247a7267f0f122
     GuidInternal: 
-    m_lastTime: -8585777567190646798
+    m_lastTime: -8585776947734609816
     List:
     - name: Boss_Phase
       guid: f255a61ec74c724aa4b7aed8f0d3f831
