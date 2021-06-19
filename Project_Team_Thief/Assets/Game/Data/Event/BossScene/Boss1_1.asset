@@ -119,7 +119,7 @@ MonoBehaviour:
       sfxName: 
       bgmName: 
       sceneName: 
-    - type: 15
+    - type: 16
       actionLength: 0
       dialogName: Boss1
       image: {fileID: 0}

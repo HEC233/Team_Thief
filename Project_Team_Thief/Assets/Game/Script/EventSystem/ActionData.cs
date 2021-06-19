@@ -9,7 +9,7 @@ namespace PS.Event
         Dialog, CutScene, RestrictStart, RestrictEnd,
         Spawn, CameraChange, CameraShake, CameraZoom,
         CharacterMove, CharacterAnimation, Effect,
-        SFX, BGMChange, BGMEnd, BGMStart, BossActive, LoadScene
+        SFX, BGMChange, BGMEnd, BGMStart, BGMStateChange , BossActive, LoadScene
     }
 
     public enum CameraShakeIntensity
@@ -69,6 +69,10 @@ namespace PS.Event
 
         // for BGM Change
         public string bgmName;
+        
+        // for BGM State Change
+        public string bgmStateGroupName;
+        public string bgmStateName;
 
         // for LoadScene
         public string sceneName;

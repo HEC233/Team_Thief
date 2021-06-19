@@ -35,7 +35,7 @@ MonoBehaviour:
     skipable: 0
     autopass: 1
     actions:
-    - type: 16
+    - type: 17
       actionLength: 0
       dialogName: 
       image: {fileID: 0}

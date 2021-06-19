@@ -30,6 +30,19 @@ public class WwiseSoundManager : MonoBehaviour
         PlayMainBgm();
     }
 
+    public void StopAllBGM()
+    {
+        if (_isPlayingMainBgm == true)
+        {
+            StopMainBgm();
+        }
+        
+        if (_isPlayingInGameBgm == true)
+        {
+            StopInGameBgm();
+        }
+    }
+
     public void PlayMainBgm()
     {
         if (_isPlayingMainBgm == true)
@@ -48,17 +61,36 @@ public class WwiseSoundManager : MonoBehaviour
         AkSoundEngine.StopAll();
     }
 
-    public void PlayInGameBgm()
+    public void PlayInGameBgm(string SceneName)
     {
         if (_isPlayingInGameBgm == true)
         {
             StopInGameBgm();
         }
 
+        switch (SceneName)
+        {
+            case "Tutorial":
+                _bgmInGameSoundId = AkSoundEngine.PostEvent("InGame", gameObject);
+                break;
+            case "HHG":
+                _bgmInGameSoundId = AkSoundEngine.PostEvent("InGame", gameObject);
+                break;
+            case "BossStage":
+                _bgmInGameSoundId = AkSoundEngine.PostEvent("Boss", gameObject);
+                ChangeBGMState("Boss_Phase", "Phase1");
+                break;
+        }
+        
         _isPlayingInGameBgm = true;
-        _bgmInGameSoundId = AkSoundEngine.PostEvent("InGame", gameObject);
+
     }
 
+    public void ChangeBGMState(string StateGroup, string bgmStateName)
+    {
+        AkSoundEngine.SetState(StateGroup, bgmStateName);
+    }
+    
     public void PlayAMBSound(string SceneName)
     {
         switch (SceneName)

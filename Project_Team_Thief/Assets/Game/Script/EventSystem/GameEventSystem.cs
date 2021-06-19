@@ -173,6 +173,10 @@ public class GameEventSystem : MonoBehaviour
                         break;
                     case ActionType.BGMStart:
                         break;
+                    case ActionType.BGMStateChange:
+                        yield return StartCoroutine(ChangeBGMState(actionData.bgmStateGroupName,
+                            actionData.bgmStateName));
+                        break;
                     case ActionType.BossActive:
                         yield return StartCoroutine(BossActive(actionData.unitName));
                         break;
@@ -339,6 +343,12 @@ public class GameEventSystem : MonoBehaviour
 
     private IEnumerator BGMStart()
     {
+        yield return null;
+    }
+    
+    private IEnumerator ChangeBGMState(string StateGroup, string bgmStateName)
+    {
+        WwiseSoundManager.instance.ChangeBGMState(StateGroup, bgmStateName);
         yield return null;
     }
 

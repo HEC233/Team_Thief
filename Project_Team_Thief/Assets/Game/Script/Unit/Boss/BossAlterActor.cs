@@ -99,6 +99,9 @@ public class BossAlterActor : MonoBehaviour, IActor
 
     private IEnumerator Pattern1Coroutine()
     {
+        //WwiseSoundManager.instance.ChangeBGMState("Boss_Phase", "Phase2");
+        GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddQueue("BOSS_PHASE2");
+
         float timeCheck = 0;
         while (true)
         {
@@ -114,6 +117,7 @@ public class BossAlterActor : MonoBehaviour, IActor
 
     private IEnumerator Pattern2Coroutine()
     {
+        GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddQueue("BOSS_PHASE3");
         float timeCheck = 0;
         while(true)
         {
@@ -267,6 +271,7 @@ public class BossAlterActor : MonoBehaviour, IActor
         if (3 < wave)
         {
             Transition(TransitionCondition.Die);
+            GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddQueue("DEAD");
             StopAllCoroutines();
         }
         else

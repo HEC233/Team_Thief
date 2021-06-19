@@ -153,8 +153,8 @@ public class GameManager : MonoBehaviour
         shadow.UnRegistAllCollider();
         if (dialogueSystem.CheckRunning()) dialogueSystem.EndDialogue();
         GameState = GameStateEnum.InGame;
-        WwiseSoundManager.instance.StopMainBgm();
-        WwiseSoundManager.instance.PlayInGameBgm();
+        WwiseSoundManager.instance.StopAllBGM();
+        WwiseSoundManager.instance.PlayInGameBgm(SceneName);
         WwiseSoundManager.instance.PlayAMBSound(SceneName);
         ChangeActorToPlayer();
         isPlayerDead = false;

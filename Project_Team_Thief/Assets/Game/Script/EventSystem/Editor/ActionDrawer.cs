@@ -101,6 +101,16 @@ namespace PS.Event
                         var bgmName = property.FindPropertyRelative("bgmName");
                         bgmName.stringValue = EditorGUI.TextField(rect, "사운드", bgmName.stringValue);
                         break;
+                    case (int)ActionType.BGMStateChange:
+                        var bgmStateGroupName = property.FindPropertyRelative("bgmStateGroupName");
+                        bgmStateGroupName.stringValue = EditorGUI.TextField(rect, "BGM 그룹", bgmStateGroupName.stringValue);
+                        rect.y += height;
+                        var bgStateName = property.FindPropertyRelative("bgmStateName");
+                        bgStateName.stringValue = EditorGUI.TextField(rect, "BGM State", bgStateName.stringValue);
+
+
+                        // actionLength.floatValue = EditorGUI.FloatField(rect, "연출 시간", actionLength.floatValue);
+                        break;
                     case (int)ActionType.BossActive:
                         var bossName = property.FindPropertyRelative("unitName");
                         bossName.stringValue = EditorGUI.TextField(rect, "보스이름", bossName.stringValue);
@@ -126,6 +136,7 @@ namespace PS.Event
                 case (int)ActionType.LoadScene:
                     returnValue += EditorGUIUtility.singleLineHeight;
                     break;
+                case (int)ActionType.BGMStateChange:
                 case (int)ActionType.CutScene:
                 case (int)ActionType.RestrictStart:
                 case (int)ActionType.CameraChange:
@@ -140,6 +151,7 @@ namespace PS.Event
                     break;
                 case (int)ActionType.Effect:
                     returnValue += EditorGUIUtility.singleLineHeight * 4;
+                    break;
                     break;
             }
 
