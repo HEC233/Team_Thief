@@ -23,6 +23,13 @@ public class BossAlterActor : MonoBehaviour, IActor
     private bool bSpawning = false;
     Coroutine EnemyDeadCheck;
 
+    private bool bIsDead = false;
+
+    public float lightPillarInterval;
+    public float lightExplosionInterval;
+    public Damage pillarDamage;
+    public Damage explosionDamage;
+
     private void Awake()
     {
         unit = GetComponentInParent<BossAlterUnit>();
@@ -34,6 +41,91 @@ public class BossAlterActor : MonoBehaviour, IActor
     private void Start()
     {
         unit.SetInvincibility(true);
+    }
+
+    public LightPillarPattern[] lightPillarPatterns;
+
+    private IEnumerator LightPillarAttack(int index)
+    {
+        var pattern = lightPillarPatterns[index];
+        int count = 0;
+        bool[] actived = new bool[pattern.times.Length];
+        float timeCheck = 0;
+
+        while(count < pattern.times.Length)
+        {
+            for(int i = 0; i < pattern.times.Length; i++)
+            {
+                if(!actived[i] && pattern.times[i] < timeCheck)
+                {
+                    GameManager.instance.FX.Play("BossAttack1", pattern.positions[i].position);
+                    StartCoroutine(Pattern1Attck(pattern.positions[i].position.x));
+                    count++;
+                    actived[i] = true;
+                }
+            }
+
+            timeCheck += GameManager.instance.timeMng.DeltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator Pattern1Attck(float x)
+    {
+        yield return new WaitForSeconds(1);
+
+        var player = GameManager.instance.GetPlayerActor().GetUnit();
+        if (player.tag != "Player")
+            yield break;
+
+        if (Mathf.Abs(player.transform.position.x - x) < 3)
+        {
+            player.HandleHit(pillarDamage);
+        }
+    }
+    private IEnumerator Pattern2Attck(Vector2 center)
+    {
+        yield return new WaitForSeconds(2);
+
+        var player = GameManager.instance.GetPlayerActor().GetUnit();
+        if (player.tag != "Player")
+            yield break;
+
+        if ((center - new Vector2(player.transform.position.x, player.transform.position.y)).sqrMagnitude < 5)
+        {
+            player.HandleHit(explosionDamage);
+        }
+    }
+
+    private IEnumerator Pattern1Coroutine()
+    {
+        float timeCheck = 0;
+        while (true)
+        {
+            if (timeCheck > lightPillarInterval)
+            {
+                StartCoroutine(LightPillarAttack(Random.Range(0, lightPillarPatterns.Length)));
+                timeCheck = 0;
+            }
+            timeCheck += GameManager.instance.timeMng.DeltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator Pattern2Coroutine()
+    {
+        float timeCheck = 0;
+        while(true)
+        {
+            if (timeCheck > lightExplosionInterval)
+            {
+                GameManager.instance.FX.Play("BossAttack2", this.transform.position);
+                StartCoroutine(Pattern2Attck(this.transform.position));
+                timeCheck = 0;
+            }
+            timeCheck += GameManager.instance.timeMng.DeltaTime;
+            yield return null;
+        }
     }
 
     private void Spawn()
@@ -149,6 +241,7 @@ public class BossAlterActor : MonoBehaviour, IActor
                 GameManager.instance.uiMng.BossDie();
                 unit.SetInvincibility(true);
                 animCtrl.PlayAni(AniState.Die);
+                bIsDead = true;
                 break;
         }
 
@@ -174,6 +267,7 @@ public class BossAlterActor : MonoBehaviour, IActor
         if (3 < wave)
         {
             Transition(TransitionCondition.Die);
+            StopAllCoroutines();
         }
         else
         {
@@ -181,6 +275,16 @@ public class BossAlterActor : MonoBehaviour, IActor
             GameManager.instance.uiMng.BossDie();
             unit.SetInvincibility(true);
             Spawn();
+
+            if (wave == 2)
+            {
+                StartCoroutine(Pattern1Coroutine());
+            }
+
+            if (wave == 3)
+            {
+                StartCoroutine(Pattern2Coroutine());
+            }
         }
     }
 }
@@ -194,4 +298,12 @@ public struct SpawnData
     public int count;
     public float enterDelay;
     public float interval;
+}
+
+
+[System.Serializable]
+public struct LightPillarPattern
+{
+    public Transform[] positions;
+    public float[] times;
 }

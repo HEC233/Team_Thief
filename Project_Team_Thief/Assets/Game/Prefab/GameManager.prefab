@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e0badc6d37ce448bb4f3497c7be144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeScale: 1
+  _prevTimeScale: 0
 --- !u!114 &1594952880785257368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +245,7 @@ MonoBehaviour:
   _cinemachineBlenderSettings: {fileID: 11400000, guid: 83361b755313076438eefd5d29aceb1b,
     type: 2}
   _zoomInVirtualCamera: {fileID: 0}
+  mainCam: {fileID: 0}
 --- !u!114 &1997881170352566880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +315,12 @@ MonoBehaviour:
       type: 3}
   - name: DandelionAttack
     prefab: {fileID: 2808335577227163727, guid: d8afba2fae09f3147a39dde6e496cbf4,
+      type: 3}
+  - name: BossAttack1
+    prefab: {fileID: 9073657352681279463, guid: 47177e0bc2892e0449b8ddd576662118,
+      type: 3}
+  - name: BossAttack2
+    prefab: {fileID: 7863415115021276226, guid: 588f84c0ac172464a90b1e900a629a77,
       type: 3}
 --- !u!114 &-5078904260765545550
 MonoBehaviour:
