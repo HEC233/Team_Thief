@@ -93,7 +93,7 @@ public class TimeManager : MonoBehaviour
         _timeStopRequiredCount--;
         if (_timeStopRequiredCount > 0)
         {
-            Debug.Log("현재 이 부분때문에 정상 진행이 안됨 임시로 리턴 품");
+            //Debug.Log("현재 이 부분때문에 정상 진행이 안됨 임시로 리턴 품");
             // 증가는 하는데 감소는 하지 않음 esc 연타시.
             return;
         }
