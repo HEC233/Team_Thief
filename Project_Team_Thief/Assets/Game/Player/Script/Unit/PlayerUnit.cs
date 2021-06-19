@@ -699,6 +699,16 @@ public class PlayerUnit : Unit
         _rigidbody2D.velocity = Vector2.zero;
         _rigidbody2D.gravityScale = _wallSlideingGravityScale;
     }
+
+    public void SetPlayerPhysicMaterial()
+    {
+        _rigidbody2D.sharedMaterial = _dashPhysicMaterial;
+    }
+
+    public void SetPlayerDefaultPhysicMaterial()
+    {
+        _rigidbody2D.sharedMaterial = null;
+    }
     
     public void WallJump()
     {
