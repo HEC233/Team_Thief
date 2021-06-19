@@ -179,6 +179,7 @@ public class GameManager : MonoBehaviour
             ChangeActorToPlayer();
             dialogueSystem.ResumeDialogue();
             Debug.Log("InGame");
+            WwiseSoundManager.instance.PlayEventSound("Click_Exit");
             WwiseSoundManager.instance.ResumeAllSound();
         }
         // inGame -> pause
@@ -188,6 +189,7 @@ public class GameManager : MonoBehaviour
             SetControlActor(uiMng.UiActor);
             dialogueSystem.PauseDialogue();
             Debug.Log("Pause");
+            WwiseSoundManager.instance.PlayEventSound("Click_Exit");
             WwiseSoundManager.instance.PauseAllSound();
         }
         // mainMenu -> ExitGame

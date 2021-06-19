@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0cccbbf34fb9b4f8dcc64b813e8e57, type: 3}
+  m_Name: 1F0A063B-302E-4E1D-9B4E-75D31410B5C2
+  m_EditorClassIdentifier: 
+  objectName: Lake
+  id: 624189772
+  guid: 1F0A063B-302E-4E1D-9B4E-75D31410B5C2

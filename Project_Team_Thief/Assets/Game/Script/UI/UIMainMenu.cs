@@ -30,16 +30,19 @@ public class UIMainMenu : MonoBehaviour, IUIFocus
     public void GameStart()
     {
         GameManager.instance.StartGame();
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
     public void GameSetting()
     {
         GameManager.instance.GameState = GameManager.GameStateEnum.Setting;
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
     public void GameEnd()
     {
         GameManager.instance.ExitGame();
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
     public void FocusWithMouse()

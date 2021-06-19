@@ -42,20 +42,24 @@ public class UISettingMenu : MonoBehaviour
     {
         GameManager.instance.ApplySetting(data);
         GameManager.instance.EscapeButton();
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
     public void ToggleButtonFPS(bool value)
     {
         data.bShowFPS = value;
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
     public void ToggleButtonDeveloperConsole(bool value)
     {
         data.bUseDeveloperConsole = value;
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
     public void ToggleButtonCommandAssist(bool value)
     {
         data.bDontUseCommandAssist = value;
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 }

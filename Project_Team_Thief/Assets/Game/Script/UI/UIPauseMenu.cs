@@ -126,26 +126,31 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
     public void Resume()
     {
         GameManager.instance.EscapeButton();
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
     public void Restart()
     {
         GameManager.instance.ReloadScene();
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
     public void Setting()
     {
         GameManager.instance.GameState = GameManager.GameStateEnum.Setting;
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
     public void ExitToMainMenu()
     {
         GameManager.instance.ExitToMainMenu();
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
     public void ExitGame()
     {
         GameManager.instance.ExitGame();
+        WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
     public void FocusWithMouse()
