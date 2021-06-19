@@ -8,6 +8,7 @@ public class WwiseSoundManager : MonoBehaviour
     public static WwiseSoundManager instance;
     private uint _bgmInGameSoundId;
     private uint _bgmMainSoundId;
+    private uint _ambSoundId;
     private bool _isPlayingInGameBgm;
     private bool _isPlayingMainBgm;
     
@@ -56,6 +57,19 @@ public class WwiseSoundManager : MonoBehaviour
 
         _isPlayingInGameBgm = true;
         _bgmInGameSoundId = AkSoundEngine.PostEvent("InGame", gameObject);
+    }
+
+    public void PlayAMBSound(string SceneName)
+    {
+        switch (SceneName)
+        {
+            case "HHG":
+                _ambSoundId = AkSoundEngine.PostEvent("Forest", gameObject);
+                break;
+            case "BossState":
+                _ambSoundId = AkSoundEngine.PostEvent("Forest", gameObject);
+                break;
+        }
     }
 
     public void StopInGameBgm()

@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour
         GameState = GameStateEnum.InGame;
         WwiseSoundManager.instance.StopMainBgm();
         WwiseSoundManager.instance.PlayInGameBgm();
+        WwiseSoundManager.instance.PlayAMBSound(SceneName);
         ChangeActorToPlayer();
         isPlayerDead = false;
 
@@ -178,7 +179,6 @@ public class GameManager : MonoBehaviour
             GameState = GameStateEnum.InGame;
             ChangeActorToPlayer();
             dialogueSystem.ResumeDialogue();
-            Debug.Log("InGame");
             WwiseSoundManager.instance.PlayEventSound("Click_Exit");
             WwiseSoundManager.instance.ResumeAllSound();
         }
@@ -188,7 +188,6 @@ public class GameManager : MonoBehaviour
             GameState = GameStateEnum.Pause;
             SetControlActor(uiMng.UiActor);
             dialogueSystem.PauseDialogue();
-            Debug.Log("Pause");
             WwiseSoundManager.instance.PlayEventSound("Click_Exit");
             WwiseSoundManager.instance.PauseAllSound();
         }
