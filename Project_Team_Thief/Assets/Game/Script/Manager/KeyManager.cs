@@ -77,7 +77,7 @@ public class KeyManager : MonoBehaviour
             {
                 return;
             }
-
+        
             if (Input.GetKey(KeyCode.C))
             {
                 controlUnit.Transition(TransitionCondition.Jump);
@@ -96,6 +96,9 @@ public class KeyManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.X))
                 controlUnit.Transition(TransitionCondition.Attack);
+
+            if (Input.GetKeyDown(KeyCode.Z))
+                controlUnit.Transition(TransitionCondition.Action);
 
             List<KeyCode> releasedInput = new List<KeyCode>();
 

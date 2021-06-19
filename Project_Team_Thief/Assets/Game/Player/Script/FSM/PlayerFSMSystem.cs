@@ -1823,7 +1823,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool InputKey(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.Attack)
+            if (condition == TransitionCondition.Action)
             {
                 TwoAxeAction();
                 return false;
@@ -2127,7 +2127,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool InputKey(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.Attack)
+            if (condition == TransitionCondition.Action)
             {
                 _attackInputTime = Time.time;
 
@@ -2306,7 +2306,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool InputKey(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.Attack)
+            if (condition == TransitionCondition.Action)
             {
                 _attackInputTime = Time.time;
 
