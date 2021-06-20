@@ -992,7 +992,7 @@ public class PlayerUnit : Unit
                 if (_nonEncroachment == true)
                 {
                     _nonEncroachment = false;
-                    _spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
+                    //_spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
                     StartCoroutine(EncroachmentProductionParticleFadeOut(0));
                 }
 
@@ -1015,8 +1015,8 @@ public class PlayerUnit : Unit
                     StartCoroutine(EncroachmentProductionParticleFadeOut(_encroachmentLevelIndex - 1));
 
                     _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
-                    ColorUtility.TryParseHtmlString("#262626", out _encroachmentColor);
-                    _spriteRenderer.color = _encroachmentColor;
+                    // ColorUtility.TryParseHtmlString("#262626", out _encroachmentColor);
+                    // _spriteRenderer.color = _encroachmentColor;
                     _encroachmentLevelArr[_encroachmentLevelIndex] = true;
                 }
                 break;
@@ -1026,8 +1026,8 @@ public class PlayerUnit : Unit
                     StartCoroutine(EncroachmentProductionParticleFadeOut(_encroachmentLevelIndex - 1));
 
                     _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
-                    ColorUtility.TryParseHtmlString("#4C4C4C", out _encroachmentColor);
-                    _spriteRenderer.color = _encroachmentColor;
+                    // ColorUtility.TryParseHtmlString("#4C4C4C", out _encroachmentColor);
+                    // _spriteRenderer.color = _encroachmentColor;
                     _encroachmentLevelArr[_encroachmentLevelIndex] = true;
                 }
                 break;
@@ -1037,8 +1037,8 @@ public class PlayerUnit : Unit
                     StartCoroutine(EncroachmentProductionParticleFadeOut(_encroachmentLevelIndex - 1));
                     
                     _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
-                    ColorUtility.TryParseHtmlString("#7F7F7F", out _encroachmentColor);
-                    _spriteRenderer.color = _encroachmentColor;
+                    // ColorUtility.TryParseHtmlString("#7F7F7F", out _encroachmentColor);
+                    // _spriteRenderer.color = _encroachmentColor;
                     _encroachmentLevelArr[_encroachmentLevelIndex] = true;
                 }
                 break;
@@ -1047,8 +1047,8 @@ public class PlayerUnit : Unit
                 {
                     _nonEncroachment = true;
                     _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
-                    ColorUtility.TryParseHtmlString("#B2B2B2", out _encroachmentColor);
-                    _spriteRenderer.color = _encroachmentColor;
+                    // ColorUtility.TryParseHtmlString("#B2B2B2", out _encroachmentColor);
+                    // _spriteRenderer.color = _encroachmentColor;
                     _encroachmentLevelArr[_encroachmentLevelIndex] = true;
                     
                     WwiseSoundManager.instance.PlayEventSound("Encroaching");
