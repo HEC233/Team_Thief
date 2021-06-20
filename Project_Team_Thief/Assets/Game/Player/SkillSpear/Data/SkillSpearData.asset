@@ -15,7 +15,7 @@ MonoBehaviour:
   _numberOfTimesTheSkill: 1
   _coolTime: 7.3333335
   _skillName: Skill2Spear
-  _increaseEncroachment: -40
+  _increaseEncroachment: -8
   _encroachmentDecrease: 0
   _cinemachineSignalSource: {fileID: 11400000, guid: b9fda150f7888e846a99f5f14b20cb9a,
     type: 2}
