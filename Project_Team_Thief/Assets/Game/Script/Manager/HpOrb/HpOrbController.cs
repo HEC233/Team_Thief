@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class HpOrbController : MonoBehaviour
 {
-    public BoxCollider2D checkBox;
+    public CircleCollider2D checkBox;
     public LayerMask hitBoxLayer;
     private ContactFilter2D contactFilter = new ContactFilter2D();
+    public Rigidbody2D rigid;
 
     public Animator animator;
 
@@ -43,7 +44,7 @@ public class HpOrbController : MonoBehaviour
 
     IEnumerator MoveAnimation()
     {
-        Vector3 direction = new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 1f), 0);
+        Vector2 direction = new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 1f));
         direction = direction.normalized;
 
         float t = 0;
@@ -55,7 +56,7 @@ public class HpOrbController : MonoBehaviour
             t += d;
             var dt = d / _moveTime;
 
-            transform.position += direction * d * speed;
+            rigid.MovePosition(rigid.position + direction * d * speed);
 
             speed -= _speed * dt;
 
