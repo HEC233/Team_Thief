@@ -1595,10 +1595,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             if (condition == TransitionCondition.JumpAttack)
+            {
+                SystemMgr.Unit.CheckMovementDir(SystemMgr.Unit.FacingDir * -1);
                 return true;
-            
+            }
+
             if (condition == TransitionCondition.WallJump)
+            {
                 return true;
+            }
 
             if (condition == TransitionCondition.Idle)
                 return true;
