@@ -1594,6 +1594,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return true;
             }
 
+            if (condition == TransitionCondition.JumpAttack)
+                return true;
+            
             if (condition == TransitionCondition.WallJump)
                 return true;
 
@@ -1623,6 +1626,11 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                     {
                         SystemMgr.Transition(TransitionCondition.WallJump);
                     }
+                }
+
+                if (condition == TransitionCondition.Attack)
+                {
+                    SystemMgr.Transition(TransitionCondition.JumpAttack);
                 }
             }
 
@@ -1823,7 +1831,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool InputKey(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.Action)
+            if (condition == TransitionCondition.Attack)
             {
                 TwoAxeAction();
                 return false;
@@ -2127,7 +2135,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool InputKey(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.Action)
+            if (condition == TransitionCondition.Attack)
             {
                 _attackInputTime = Time.time;
 
@@ -2306,7 +2314,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool InputKey(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.Action)
+            if (condition == TransitionCondition.Attack)
             {
                 _attackInputTime = Time.time;
 
@@ -2450,6 +2458,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     
     public bool Transition(TransitionCondition condition, object param = null)
     {
+        Debug.Log("Condition : " + condition);
         if (GetState(CurrState).InputKey(condition) == false)
         {
             return false;

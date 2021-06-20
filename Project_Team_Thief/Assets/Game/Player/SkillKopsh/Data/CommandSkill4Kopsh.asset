@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484f46132f38df34b8c13b876f9708d2, type: 3}
   m_Name: CommandSkill4Kopsh
   m_EditorClassIdentifier: 
-  commandString: LRZ
-  reverseCommandString: RLZ
+  commandString: LRX
+  reverseCommandString: RLX
   coolTime: 3
   maxCoolTIme: 3
   skillName: Skill4Kopsh
