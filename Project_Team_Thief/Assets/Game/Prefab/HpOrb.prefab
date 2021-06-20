@@ -62,7 +62,7 @@ MonoBehaviour:
     additionalInfo: 0
   _speed: 3
   _moveTime: 1
-  _existTime: 2
+  _existTime: 5
 --- !u!95 &6974008256068146465
 Animator:
   serializedVersion: 3

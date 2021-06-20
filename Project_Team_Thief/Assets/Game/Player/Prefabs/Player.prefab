@@ -899,7 +899,7 @@ MonoBehaviour:
   _encroachmentPerPlayerHitDamageMax: 0
   _encroachmentPerPlayerAttackDamageMax: 0.7
   _encroachmentRecoveryPerTime: 0.06
-  _encroachmentRecoveryAmount: 0.3
+  _encroachmentRecoveryAmount: 0.25
   _encroachmentProductionFadeOutTime: 0.24
   _encroachmentProductionParticleSystems: []
   _encrochmentDeadEffectController: {fileID: -7752829527656273129, guid: 498a543669a86384d822957fcd19439d,
