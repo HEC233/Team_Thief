@@ -88,7 +88,7 @@ public class KeyManager : MonoBehaviour
             if (Input.GetKey(KeyCode.RightArrow))
                 controlUnit.Transition(TransitionCondition.RightMove);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Z))
                 controlUnit.Transition(TransitionCondition.Dash);
 
             if (Input.GetKey(KeyCode.UpArrow))
@@ -97,8 +97,8 @@ public class KeyManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X))
                 controlUnit.Transition(TransitionCondition.Attack);
 
-            if (Input.GetKeyDown(KeyCode.Z))
-                controlUnit.Transition(TransitionCondition.Action);
+            // if (Input.GetKeyDown(KeyCode.Z))
+            //     controlUnit.Transition(TransitionCondition.Action);
 
             List<KeyCode> releasedInput = new List<KeyCode>();
 
