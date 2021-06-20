@@ -15,7 +15,7 @@ MonoBehaviour:
   _numberOfTimesTheSkill: 1
   _coolTime: 8
   _skillName: Skill5PlainSword
-  _increaseEncroachment: -35
+  _increaseEncroachment: -18
   _encroachmentDecrease: 0
   _cinemachineSignalSourceArr:
   - {fileID: 11400000, guid: 6e5e9662fd3f3204cbb0412240b1887b, type: 2}

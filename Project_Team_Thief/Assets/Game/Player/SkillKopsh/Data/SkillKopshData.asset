@@ -15,7 +15,7 @@ MonoBehaviour:
   _numberOfTimesTheSkill: 1
   _coolTime: 3
   _skillName: Skill4Kopsh
-  _increaseEncroachment: -20
+  _increaseEncroachment: -18
   _encroachmentDecrease: 0
   _cinemachineSignalSourceArr:
   - {fileID: 11400000, guid: b48422a21c79a9a4d868d26c3efe0296, type: 2}
