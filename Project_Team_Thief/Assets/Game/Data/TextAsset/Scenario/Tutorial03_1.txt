@@ -7,5 +7,4 @@ ChangeLeft Sp_PC_Portrait
 ChangeName NIX
 SetDown
 Next
-Next
 }

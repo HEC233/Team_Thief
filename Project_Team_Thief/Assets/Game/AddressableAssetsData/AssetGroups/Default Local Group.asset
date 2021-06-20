@@ -129,6 +129,20 @@ MonoBehaviour:
     - Prefab
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 1243b61f3cde7104196a2b50e472c444
+    m_Address: Assets/Game/Data/TextAsset/Bytecode/TutorialCutScene2.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Text
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 68c203ba5eec3ac49a4a0f0a9de050b8
+    m_Address: Assets/Game/Data/TextAsset/Bytecode/TutorialCutScene1.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Text
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cf711df1b7a7a54c9861afe5fde6759, type: 2}
   m_SchemaSet:

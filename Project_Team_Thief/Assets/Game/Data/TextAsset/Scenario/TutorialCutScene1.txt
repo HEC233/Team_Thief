@@ -1,0 +1,10 @@
+Move TTCUTSCENE1
+EnablePortrait
+HighLightLeft
+ChangeLeft Sp_NPC_GoD_Portrait
+ChangeName GoD
+SetDown
+Next
+ChangeLeft Sp_PC_Portrait
+ChangeName NIX
+Next
