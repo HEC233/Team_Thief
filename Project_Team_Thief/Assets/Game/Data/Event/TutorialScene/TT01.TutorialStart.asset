@@ -17,13 +17,13 @@ MonoBehaviour:
   name: "\uD29C\uD1A0\uB9AC\uC5BC"
   stopCondition: 
   eventType: 0
-  triggerType: 1
+  triggerType: 2
   trigger:
     NPCname: 
     xCmp: 0
-    xValue: 0
+    xValue: 24
     yCmp: 0
-    yValue: 0
+    yValue: 2
   playAmount: 0
   playCount: 1
   stoptime: 0
@@ -55,4 +55,6 @@ MonoBehaviour:
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 
+      bgmStateGroupName: 
+      bgmStateName: 
       sceneName: 
