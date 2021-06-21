@@ -439,14 +439,35 @@
 					<ChildrenList>
 						<Event Name="Pause" ID="{0CF96DE7-E364-4722-82B7-95C224A9CAFC}">
 							<ChildrenList>
-								<Action Name="" ID="{C4FAF44C-D850-41CA-8558-2A0E4917AAB7}" ShortID="935986657">
+								<Action Name="" ID="{E719E751-807D-48FE-827C-BA33E0FBFB26}" ShortID="765736062">
 									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="8"/>
-										<Property Name="FadeOutCurve" Type="int16" Value="7"/>
-										<Property Name="FadeTime" Type="Real64" Value="0.5"/>
-										<Property Name="Scope" Type="int16" Value="1"/>
+										<Property Name="ActionType" Type="int16" Value="7"/>
 									</PropertyList>
-									<ReferenceList/>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="BGM" ID="{06D39BC1-1717-499F-AABD-C324E60E9991}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{2855B4A9-EDA6-468D-8719-37B4581DEE67}" ShortID="57036810">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="7"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Auxiliary_Bus" ID="{6CD209D4-9213-4699-B4CA-344B47A649DE}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{423EB582-AB1F-4A48-A2DC-8BA78DF8464C}" ShortID="586322541">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="7"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AMB" ID="{ECA708DB-F50F-4B50-94C9-49B46B6F5E7B}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+										</Reference>
+									</ReferenceList>
 								</Action>
 							</ChildrenList>
 						</Event>
