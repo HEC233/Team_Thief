@@ -894,7 +894,7 @@ public class PlayerUnit : Unit
             return;
         
         _hitDamage = inputDamage;
-        _hitDamage.power = _hitDamage.power * GetHitDamageWeightFromEncroachment();
+        _hitDamage.power = _hitDamage.power;
         hitEvent?.Invoke();
     }
 
