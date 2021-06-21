@@ -2588,13 +2588,13 @@
 						</Folder>
 					</ChildrenList>
 				</Folder>
-				<ActorMixer Name="UI" ID="{B36A44E1-DADC-41B6-BD52-04D676A7E23D}" ShortID="564826441">
+				<ActorMixer Name="Encroaching" ID="{B36A44E1-DADC-41B6-BD52-04D676A7E23D}" ShortID="564826441">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+							<ObjectRef Name="BGM" ID="{06D39BC1-1717-499F-AABD-C324E60E9991}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -2727,52 +2727,6 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="FX_UI_encroachment_Die2" ID="{7CE52221-09C7-40B1-8E67-BFB2F366D2E6}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="UI_Click1" ID="{A8AA44A0-A745-45D9-8A7D-78D6AB626AED}" ShortID="141114800">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="UI_Click1" ID="{E9BAB488-2480-40EB-88D9-10CDCBFB053F}">
-									<Language>SFX</Language>
-									<AudioFile>UI_Click1.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="500034149"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="UI_Click1" ID="{E9BAB488-2480-40EB-88D9-10CDCBFB053F}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="UI_Click2" ID="{D5C4F802-F224-4E6F-ABF9-05F49DAEF7BB}" ShortID="316303592">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="UI_Click2" ID="{FA086689-C8CC-47F7-91BD-89D6049B8424}">
-									<Language>SFX</Language>
-									<AudioFile>UI_Click2.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="146560293"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="UI_Click2" ID="{FA086689-C8CC-47F7-91BD-89D6049B8424}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -3057,6 +3011,65 @@
 						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
+				<ActorMixer Name="UI" ID="{4592C04F-5A6B-4851-9FF4-7C106F2D263F}" ShortID="755251253">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="UI" ID="{8B1B8B00-3C1E-43F7-9282-68801276A2F9}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="UI_Click2" ID="{D5C4F802-F224-4E6F-ABF9-05F49DAEF7BB}" ShortID="316303592">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="UI" ID="{8B1B8B00-3C1E-43F7-9282-68801276A2F9}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="UI_Click2" ID="{FA086689-C8CC-47F7-91BD-89D6049B8424}">
+									<Language>SFX</Language>
+									<AudioFile>UI_Click2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="146560293"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="UI_Click2" ID="{FA086689-C8CC-47F7-91BD-89D6049B8424}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="UI_Click1" ID="{A8AA44A0-A745-45D9-8A7D-78D6AB626AED}" ShortID="141114800">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F55A4935-69EE-4ADD-89B7-529F8297318A}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="UI" ID="{8B1B8B00-3C1E-43F7-9282-68801276A2F9}" WorkUnitID="{F161A9E8-7D97-44DC-A7BC-D68AC0D891E1}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="UI_Click1" ID="{E9BAB488-2480-40EB-88D9-10CDCBFB053F}">
+									<Language>SFX</Language>
+									<AudioFile>UI_Click1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="500034149"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="UI_Click1" ID="{E9BAB488-2480-40EB-88D9-10CDCBFB053F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
