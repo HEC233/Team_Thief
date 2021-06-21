@@ -40,7 +40,11 @@ public class BossAlterActor : MonoBehaviour, IActor
 
     private void Start()
     {
+        StopAllCoroutines();
         unit.SetInvincibility(true);
+        wave = 1;
+        bSpawning = false;
+        bIsDead = false;
     }
 
     public LightPillarPattern[] lightPillarPatterns;
@@ -123,8 +127,8 @@ public class BossAlterActor : MonoBehaviour, IActor
         {
             if (timeCheck > lightExplosionInterval)
             {
-                GameManager.instance.FX.Play("BossAttack2", this.transform.position);
-                StartCoroutine(Pattern2Attck(this.transform.position));
+                GameManager.instance.FX.Play("BossAttack2", this.transform.position + Vector3.up * 4.5f);
+                StartCoroutine(Pattern2Attck(this.transform.position + Vector3.up * 4.5f));
                 timeCheck = 0;
             }
             timeCheck += GameManager.instance.timeMng.DeltaTime;
@@ -229,6 +233,8 @@ public class BossAlterActor : MonoBehaviour, IActor
 
     public bool Transition(TransitionCondition condition, object param = null)
     {
+        if (!this.gameObject.activeSelf)
+            return false;
         switch (condition)
         {
             case TransitionCondition.BossAwake:
