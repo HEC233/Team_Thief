@@ -22,8 +22,10 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Unit
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 8718974563859108410, guid: e972f2be0e9e66840a07f6b053f57afe,
+      type: 3}
+    m_TargetAsset: {fileID: 8718974563859108410, guid: e972f2be0e9e66840a07f6b053f57afe,
+      type: 3}
   - m_GUID: 403847deb9dc8a743884034b63902be2
     m_Address: Assets/Game/Prefab/Unit/Seraphim.prefab
     m_ReadOnly: 0
@@ -43,8 +45,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 5cddf5d774db44a4eae6b08e31dc674c, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 5cddf5d774db44a4eae6b08e31dc674c, type: 3}
   - m_GUID: 3049a41df98c5434089c300a7d4e22f7
     m_Address: Assets/Game/Sprite/Unit/Mini Boss/Mini BOSS.png
     m_ReadOnly: 0
@@ -64,8 +66,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-    m_MainAsset: {fileID: 2800000, guid: 8a1f1fdf6db68fe4f874873a916ff167, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 8a1f1fdf6db68fe4f874873a916ff167, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 1fbf94e5eab6b3748bc977f628812ea0
     m_Address: Assets/Game/Data/TextAsset/Bytecode/Tutorial03_2.bytes
     m_ReadOnly: 0
@@ -150,6 +152,20 @@ MonoBehaviour:
     - Sprite
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 1776c788b5400b24dba083acc6a7c197
+    m_Address: Assets/Game/Player/CSV/PlayerData.csv
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Text
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: cab34e50924901f4f84042f47da2d55e
+    m_Address: Assets/Game/Player/CSV/PlayerSkillData.csv
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Text
+    m_MainAsset: {fileID: 4900000, guid: cab34e50924901f4f84042f47da2d55e, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: cab34e50924901f4f84042f47da2d55e, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cf711df1b7a7a54c9861afe5fde6759, type: 2}
   m_SchemaSet:
