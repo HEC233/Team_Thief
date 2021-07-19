@@ -1,0 +1,2 @@
+﻿id,name,grade,isGet,coolTime,isCasting,attackRange,castingTime,target,description,buffTime,skillNumberOfTimes,damage1,damage2,damage3,hitInterval1,hitInterval2,hitInterval3,knockBackTime1,knockBackTime2,knockBackTime3,knockBack1X,knockBack1Y,knockBack2X,knockBack2Y,knockBack3X,knockBack3Y,stiffness,moveTime1,moveTime2,moveTime3,moveX1,moveY1,moveX2,moveY2,moveX3,moveY3,statusEffect1,statusEffect2,statusEffect3,statusEffect4,Icon,firstDelay,endDelay
+1,더미값공격,normal,FALSE,0,1,0,0,0,더미 공격,0,0,100,0,0,0,0,0,0.16,0,0,5,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
