@@ -46,8 +46,24 @@ public class PlayerUnit : Unit
     //---
     public SOPlayer playerInfo;
     //---
+
+    private List<Dictionary<string, object>> _playerData;
     
     ///////////////////////////// 데이터로 관리 할 변수
+
+    /// 스테이트 레벨
+    private int _maxHpStateLevel = 1;
+    private int _runSpeedStateLevel = 1;
+    private int _jumpPowerStateLevel = 1;
+    private int _dashRangeStateLevel = 1;
+    private int _dashCoolTimeStateLevel = 1;
+    private int _deathCountStateLevel = 1;
+    private int _deathHPStateLevel = 1;
+    private int _criticalStateLevel = 1;
+    private int _attackSppedStateLevel = 1;
+    private int _defStateLevel = 1;
+    
+    
     // 기본 스탯
     [SerializeField]
     private float _maxHp;
@@ -94,47 +110,46 @@ public class PlayerUnit : Unit
     
     // 이동 관련 변수
     [Header("Move Variable")]
-    [SerializeField]
-    private float _minSpeed = 0.8f;
-    [SerializeField]
-    private float _maxSpeed = 6.5f;
-    [SerializeField]
-    private float _moveStopSpeed = 1.0f;
-    private float _curSpeed = 0.0f;
-
-    private bool _isTouchMaxSpeed = false;
+    private float _moveSpeed;
+    // [SerializeField]
+    // private float _minSpeed = 0.8f;
+    // [SerializeField]
+    // private float _maxSpeed = 6.5f;
+    // [SerializeField]
+    // private float _moveStopSpeed = 1.0f;
+    // private float _curSpeed = 0.0f;
+    //private bool _isTouchMaxSpeed = false;
     
     // 점프 관련 변수
-    private int _jumpCount = 0;
-    private int _maxJumpCount = 2;
-    private float _maxJumpTime = 0.1f;
-    public float MaxJumpTime => _maxJumpTime;
-
     [Header("Jump Variable")]
     [SerializeField]
     private float _coyoteTime = 0.2f;
     private float _maxCoyoteTime = 0.2f; 
-    [SerializeField]
     private float _jumpPower = 5.0f;
-    [SerializeField] 
-    private float _addAllJumpPpower = 8.0f;
-    [SerializeField]
-    private float _addJumpPower = 4f;
-    
-    // 구르기 관련 변수
-    //[Header("Roll Variable")]
-    //[SerializeField]
-    private float _rollGoalX = 10;
-    //[SerializeField]
-    private float _rollTime = 0.0f;
 
-    public float RollTime => _rollTime;
+    private int _jumpCount = 0;
+    private int _maxJumpCount = 2;
+    // private float _maxJumpTime = 0.1f;
+    // public float MaxJumpTime => _maxJumpTime;
+    // [SerializeField] 
+    // private float _addAllJumpPpower = 8.0f;
+    // [SerializeField]
+    // private float _addJumpPower = 4f;
     
-    private float _rollSpeed = 0.5f;
-    //[SerializeField]
-    private float _rollCoolTime;
-    private bool _isRollAble = true;
-    public bool IsRollAble => _isRollAble;
+    // // 구르기 관련 변수
+    // //[Header("Roll Variable")]
+    // //[SerializeField]
+    // private float _rollGoalX = 10;
+    // //[SerializeField]
+    // private float _rollTime = 0.0f;
+    //
+    // public float RollTime => _rollTime;
+    //
+    // private float _rollSpeed = 0.5f;
+    // //[SerializeField]
+    // private float _rollCoolTime;
+    // private bool _isRollAble = true;
+    // public bool IsRollAble => _isRollAble;
     
     //[SerializeField] 
     private PhysicsMaterial2D _dashPhysicMaterial;
@@ -145,15 +160,23 @@ public class PlayerUnit : Unit
     [SerializeField]
     private float _dashGoalX = 0;
 
-    [SerializeField]
-    private float _dashCoolTime;
     
     private bool _isDashAble = true;
     public bool isDashAble => _isDashAble;
     private float _dashSpeed = 0;
     public float DashTime => _dashTime;
+    private float _dashRange;
+    private float _dashCoolTime;
+
+    // DeathRevers Variable
+    private int _deathCount;
+    private float _deathHp;
+
+    // Attack Variable
+    private float _critical;
+    private float _attackSpeed;
     
-    
+
     // WallSlideing Variable
     [Header("Wallslideing Variable")]
     [SerializeField]
@@ -246,6 +269,8 @@ public class PlayerUnit : Unit
     private float _hitTime = 0.0f;
     public float HitTime => _hitTime;
     private bool _isInvincibility = false;
+    private float _def;
+    
 
     [Header("Encroachment Variable")] 
     [SerializeField]
@@ -255,21 +280,6 @@ public class PlayerUnit : Unit
     
     // Skill Variable
     [Header("Skill Variable")]
-    /// </기획 변동으로 인해 미사용>
-    // // Shadow Walk
-    // [SerializeField]
-    // private ShadowWalkColCtrl _shadowWalkColCtrl;
-    // [SerializeField]
-    // private ShadowWalkSkillData _shadowWalkSkillData;
-    // public Shadow shadowWalkShadow;
-    //
-    // public ShadowWalkSkillData ShadowWalkSkillData => _shadowWalkSkillData;
-    //
-    // private bool _isSkillShadowWalkAble = true;
-    // private float _skillShadowWalkNumberOfTimes;
-    // private float _skillShadowWalkCoolTime;
-    /// </기획 변동으로 인해 미사용>
-
     [SerializeField, Header("SkillAxe")]
     private SkillAxeData _skillAxeData;
     public SkillAxeData SkillAxeData => _skillAxeData;
@@ -347,15 +357,21 @@ public class PlayerUnit : Unit
 
     void Start()
     {
+        LoadPlayerData();
         Init();
         Bind();
     }
 
     void Init()
     {
-        SetVariable(0.2f, 2, 0.4f);
+        SetVariable();
 
         StartCoroutine(EncroachmentRecoveryCoroutine());
+    }
+
+    private void LoadPlayerData()
+    {
+        _playerData = CSVReader.Read("PlayerData");
     }
 
     private void Bind()
@@ -434,11 +450,11 @@ public class PlayerUnit : Unit
     
     // 향후에는 데이터 센터 클래스라던가 데이터를 가지고 있는 함수에서 직접 호출로 받아 올 수 있도록
     // 수정 할 예정
-    public void SetVariable(float coyoteTime, int maxJumpCount, float maxJumpTime)
+    public void SetVariable()
     {
-        _maxCoyoteTime = coyoteTime;
-        _maxJumpCount = maxJumpCount;
-        _maxJumpTime = maxJumpTime;
+        
+        _maxCoyoteTime = 0.2f;
+        //_maxJumpTime = 0.4f;
 
         _jumpCount = _maxJumpCount;
         _coyoteTime = _maxCoyoteTime;
@@ -446,7 +462,26 @@ public class PlayerUnit : Unit
         _originalGravityScale = _rigidbody2D.gravityScale;
 
         _curHp = _maxHp;
+        
+        _maxHp = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "maxHp"));
+        _moveSpeed = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "moveSpeed"));
+        _jumpPower = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "jumpPower"));
+        _dashRange = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "dashRange"));
+        _dashCoolTime = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "dashCoolTime"));
+        _deathCount = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "deathCount"));
+        _deathHp = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "deathHP"));
+        _critical = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "critical"));
+        _attackSpeed = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "attackSpeed"));
+        _def = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "def"));
+        _maxJumpCount = 2;
 
+
+        Debug.Log("_maxHp : " + _maxHp + " _moveSpeed : " + _moveSpeed + " _jumpPower : " + _jumpPower + " _dashRange : " +
+                  _dashRange +
+                  " _dashCoolTime : " + _dashCoolTime + " _deathCount : " + _deathCount + " _deathHp : " + _deathHp +
+                  " _critical : " + _critical +
+                  " _attackSpeed : " + _attackSpeed + " _def : " + _def);
+        
         //---
         playerInfo.CurHP = _curHp;
         playerInfo.MaxHP = _maxHp;
@@ -457,8 +492,6 @@ public class PlayerUnit : Unit
         _basicAttackDamage = new Damage();
         _hitDamage = new Damage();
         
-        // _skillShadowWalkNumberOfTimes = _shadowWalkSkillData.NumberOfTimesTheSkill;
-        // _skillShadowWalkCoolTime = _shadowWalkSkillData.CoolTime;
 
         _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
         _skillAxeCoolTime = _skillAxeData.CoolTime;
@@ -487,8 +520,24 @@ public class PlayerUnit : Unit
         GameManager.instance.commandManager.GetCommandData(_skillPlainSwordData.SkillName).maxCoolTIme =
             _skillPlainSwordData.CoolTime;
     }
-    
 
+
+    private object GetDataFromStateLevel(int stateLevel, string dataName)
+    {
+        int index = 0;
+        
+        for (int i = 0; i < _playerData.Count; i++)
+        {
+            if ((int)_playerData[i]["stateLevel"] == stateLevel)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        return _playerData[index][dataName];
+    }
+    
     public override void Idle()
     {
         base.Idle();
@@ -507,47 +556,49 @@ public class PlayerUnit : Unit
 
     public override void Move()
     {
-        _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0) * GameManager.instance.timeMng.TimeScale, ForceMode2D.Impulse);
+        _rigidbody2D.velocity = new Vector2(_moveSpeed * _facingDir, _rigidbody2D.velocity.y);
+            
+        //_rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0) * GameManager.instance.timeMng.TimeScale, ForceMode2D.Impulse);
 
-        if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
-        {
-            _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
-            _isTouchMaxSpeed = true;
-        }
+        // if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
+        // {
+        //     _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
+        //     _isTouchMaxSpeed = true;
+        // }
 
         // Vector2 dir = moveUtil.moveforce(5);
         // Rigidbody2D.addfoce(dir);
     }
 
-    public void SetVelocityMaxMoveSpeed()
-    {
-        _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
-        _isTouchMaxSpeed = true;
-    }
+    // public void SetVelocityMaxMoveSpeed()
+    // {
+    //     _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
+    //     _isTouchMaxSpeed = true;
+    // }
 
     public void MoveStop()
     {
         if (GameManager.instance.timeMng.IsBulletTime == false)
-            _rigidbody2D.velocity = new Vector2(_moveStopSpeed * _facingDir, _rigidbody2D.velocity.y);
-    }
-
-    public void MoveEnd()
-    {
-        _isTouchMaxSpeed = false;
-    }
-
-    public bool IsRunningInertia()
-    {
-        //return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 1.0f ? true : false;
-        
-        if (_isTouchMaxSpeed == true)
         {
-            _isTouchMaxSpeed = false;
-            return true;
+            _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
         }
-
-        return false;
+        // if (GameManager.instance.timeMng.IsBulletTime == false)
+        //     _rigidbody2D.velocity = new Vector2(_moveStopSpeed * _facingDir, _rigidbody2D.velocity.y);
     }
+    
+
+    // public bool IsRunningInertia()
+    // {
+    //     //return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 1.0f ? true : false;
+    //     
+    //     if (_isTouchMaxSpeed == true)
+    //     {
+    //         _isTouchMaxSpeed = false;
+    //         return true;
+    //     }
+    //
+    //     return false;
+    // }
 
 
     public override void Jump()
@@ -570,17 +621,17 @@ public class PlayerUnit : Unit
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
-    public void JumpMoveStop()
-    {
-        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-    }
+    // public void JumpMoveStop()
+    // {
+    //     _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+    // }
 
-    public void AddJumpForce()
-    {
-        _rigidbody2D.AddForce(
-            (new Vector2(0, _addJumpPower) * _addAllJumpPpower) * GameManager.instance.timeMng.TimeScale *
-            GameManager.instance.timeMng.FixedDeltaTime, ForceMode2D.Impulse);
-    }
+    // public void AddJumpForce()
+    // {
+    //     _rigidbody2D.AddForce(
+    //         (new Vector2(0, _addJumpPower) * _addAllJumpPpower) * GameManager.instance.timeMng.TimeScale *
+    //         GameManager.instance.timeMng.FixedDeltaTime, ForceMode2D.Impulse);
+    // }
 
     public bool CheckIsJumpAble()
     {
@@ -593,6 +644,16 @@ public class PlayerUnit : Unit
         return false;
     }
 
+    public bool CheckIsDoubleJump()
+    {
+        if (_jumpCount >= 1)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void ResetJumpVal()
     {
         _jumpCount = _maxJumpCount;
@@ -600,25 +661,25 @@ public class PlayerUnit : Unit
         _coyoteTime = _maxCoyoteTime;
     }
 
-    public void SetRoll()
-    {
-        _rigidbody2D.sharedMaterial = _dashPhysicMaterial;
-        _rollSpeed = (1 / _rollTime) * _rollGoalX;
-    }
+    // public void SetRoll()
+    // {
+    //     _rigidbody2D.sharedMaterial = _dashPhysicMaterial;
+    //     _rollSpeed = (1 / _rollTime) * _rollGoalX;
+    // }
 
-    public void Roll()
-    {
-        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-        var power = new Vector2((_rollSpeed) * _facingDir * _timeScale, 0);
-        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
-    }
+    // public void Roll()
+    // {
+    //     _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+    //     var power = new Vector2((_rollSpeed) * _facingDir * _timeScale, 0);
+    //     _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    // }
 
-    public void EndRoll()
-    {
-        _rigidbody2D.sharedMaterial = null;
-        if (_isRollAble == true)
-            StartCoroutine(RollCoolTimeCoroutine());
-    }
+    // public void EndRoll()
+    // {
+    //     _rigidbody2D.sharedMaterial = null;
+    //     if (_isRollAble == true)
+    //         StartCoroutine(RollCoolTimeCoroutine());
+    // }
     
     // private int counter = 0;
     // Vector2 power = Vector2.zero;
@@ -877,10 +938,12 @@ public class PlayerUnit : Unit
 
     public void BasicJumpMove(int inputDir)
     {
-        _rigidbody2D.AddForce(new Vector2(_minSpeed * inputDir * GameManager.instance.timeMng.TimeScale, 0), ForceMode2D.Impulse);
+        _rigidbody2D.velocity = new Vector2(_moveSpeed * inputDir, _rigidbody2D.velocity.y);
         
-        if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
-            _rigidbody2D.velocity = new Vector2(_maxSpeed * inputDir, _rigidbody2D.velocity.y);
+        // _rigidbody2D.AddForce(new Vector2(_minSpeed * inputDir * GameManager.instance.timeMng.TimeScale, 0), ForceMode2D.Impulse);
+        //
+        // if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
+        //     _rigidbody2D.velocity = new Vector2(_maxSpeed * inputDir, _rigidbody2D.velocity.y);
     }
     
     public override void HandleHit(in Damage inputDamage)
@@ -1339,14 +1402,15 @@ public class PlayerUnit : Unit
     {
         _timeScale = timeScale;
 
-        _maxSpeed = _maxSpeed * _timeScale;
+        _moveSpeed = _moveSpeed * _moveSpeed;
+        //_maxSpeed = _maxSpeed * _timeScale;
         _rigidbody2D.velocity *= _timeScale;
         _rigidbody2D.gravityScale *= _timeScale * _timeScale;
     }
 
     public void EndBulletTime(float timeScale)
     {
-        _maxSpeed = _maxSpeed * (1 / _timeScale);
+        _moveSpeed = _moveSpeed * (1 / _timeScale);
         _rigidbody2D.velocity *= 1 / _timeScale; 
 
         _timeScale = timeScale;
@@ -1483,18 +1547,18 @@ public class PlayerUnit : Unit
         }
     }
 
-    IEnumerator RollCoolTimeCoroutine()
-    {
-        _isRollAble = false;
-        float timer = 0.0f;
-        while (timer < _rollCoolTime)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-
-        _isRollAble = true;
-    }
+    // IEnumerator RollCoolTimeCoroutine()
+    // {
+    //     _isRollAble = false;
+    //     float timer = 0.0f;
+    //     while (timer < _rollCoolTime)
+    //     {
+    //         timer += GameManager.instance.timeMng.FixedDeltaTime;
+    //         yield return new WaitForFixedUpdate();
+    //     }
+    //
+    //     _isRollAble = true;
+    // }
     
     IEnumerator DashCoolTimeCoroutine()
     {

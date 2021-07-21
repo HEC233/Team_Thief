@@ -40,25 +40,6 @@ public class Addressable : MonoBehaviour
         yield return StartCoroutine(prefab.Load());
         yield return StartCoroutine(text.Load());
         yield return StartCoroutine(sprite.Load());
-            
-        var list = CSVReader.Read("PlayerData");
-
-        for (int i = 0; i < list.Count; i++)
-        {
-            Debug.Log("stateLevel " + list[i]["stateLevel"] + " " +
-                      "maxHp" + list[i]["maxHp"] + " " +
-                      "runSpeed" + list[i]["runSpeed"] + " " +
-                      "jumpPower " + list[i]["jumpPower"] + " " +
-                      "dashRange " + list[i]["dashCoolTime"] + " " +
-                      "deathCount " + list[i]["deathCount"] + " " +
-                      "deathHP " + list[i]["deathHP"] + " " +
-                      "critical " + list[i]["critical"] + " " +
-                      "attackSpeed " + list[i]["attackSpeed"] + " " +
-                      "def " + list[i]["def"] + " "
-            );
-        }
-        
-        Debug.Log(list[0]["stateLevel"].GetType());
     }
 
     public GameObject GetUnit(string name) { return unit.Get(name); }
