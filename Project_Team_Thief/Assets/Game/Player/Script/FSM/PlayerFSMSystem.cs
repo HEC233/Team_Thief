@@ -1082,7 +1082,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return true;
             if (condition == TransitionCondition.Falling)
             {
-                Debug.Log(condition);
                 return true;
             }
 
@@ -1093,10 +1092,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (condition != TransitionCondition.Jump)
             {
-                Debug.Log("_jumpInputTime : " + _jumpInputTime);
-                Debug.Log("_jumpBeInputTime : " + _jumpBeInputTime);
-                Debug.Log("_jumpBeInputTime - _jumpInputTime : " + (_jumpInputTime - _jumpBeInputTime));
-                
                 if (_jumpInputTime - _jumpBeInputTime >= _wallJumpEndTime)
                 {
                     if (_isFristCall == true)
@@ -1170,7 +1165,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
             SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
-            WwiseSoundManager.instance.PlayEventSound(_basicAttackSoundArr[0]);
+            //WwiseSoundManager.instance.PlayEventSound(_basicAttackSoundArr[0]);
             
             _attackBeInputTime = Time.time;
             SystemMgr.Unit.SetBasicAttack();
@@ -1325,7 +1320,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
                     SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
                     SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
-                    WwiseSoundManager.instance.PlayEventSound(_basicAttackSoundArr[_basicAttackIndex]);
+                    //WwiseSoundManager.instance.PlayEventSound(_basicAttackSoundArr[_basicAttackIndex]);
                 }
             }
             else
@@ -2173,7 +2168,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
-            WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
+            //WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
             GameManager.instance.uiMng.TurnXButtonUI(true);
 
             _gameSkillObject = InvokeSkill();
@@ -2269,7 +2264,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
-            WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
+            //WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
 
             _gameSkillObject = InvokeSkill();
 
@@ -2342,8 +2337,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
             SystemMgr.AnimationCtrl.PlayAni(_skillPlainSwordAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
-            //SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillPlainSword2);
-            WwiseSoundManager.instance.PlayEventSound(_skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            //WwiseSoundManager.instance.PlayEventSound(_skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
 
             _attackBeInputTime = Time.time;
             _attackTime = SystemMgr.Unit.SkillPlainSwordAttackTime;
@@ -2472,16 +2466,16 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             if (SystemMgr.Unit.skillPlainSwordIndex == 2)
             {
-                _soundID = WwiseSoundManager.instance.PlayEventSound(
-                    _skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+                // _soundID = WwiseSoundManager.instance.PlayEventSound(
+                //     _skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
                 
                 GameManager.instance.uiMng.TurnXButtonUI(false);
 
             }
             else
             {
-                WwiseSoundManager.instance.PlayEventSound(
-                    _skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+                // WwiseSoundManager.instance.PlayEventSound(
+                //     _skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
             }
 
             _gameSkillObject = InvokeSkill();

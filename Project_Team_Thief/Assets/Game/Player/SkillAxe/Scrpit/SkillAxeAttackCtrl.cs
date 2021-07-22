@@ -9,21 +9,10 @@ public class SkillAxeAttackCtrl : AttackBase
 {
     public event UnityAction OnEndSkillEvent;
     
-    [SerializeField] 
-    private BoxCollider2D _basicAttackCollider2D;
     [SerializeField]
     private Rigidbody2D _rigidbody2D;
     [SerializeField]
-    private CinemachineImpulseSource _cinemachineImpulseSource;
-    [SerializeField]
     private SpriteRenderer _spriteRenderer;
-    
-    private SignalSourceAsset _cinemachineSignalSource;
-    
-    private ContactFilter2D _contactFilter2D;
-    private List<Collider2D> result = new List<Collider2D>();
-    private bool _isInit = false;
-    private bool _isEnter = false;
 
     private float _movePositionX;
     private float _moveTime;
@@ -38,101 +27,30 @@ public class SkillAxeAttackCtrl : AttackBase
 
     public void Init(float movePosX, float moveTime, SignalSourceAsset cinemachineSignalSource, float dir, float axeMultiStageHit, float axeMultiStageHitInterval)
     {
-        _isInit = true;
-
         _movePositionX = movePosX;
         _moveTime = moveTime;
-        _cinemachineSignalSource = cinemachineSignalSource;
+        _signalSourceAsset = cinemachineSignalSource;
         _dir = dir;
         _axeMultiStageHit = axeMultiStageHit;
         _axeMultiStageHitInterval = axeMultiStageHitInterval;
         _axeMultiStageHitCoroutuineCounter = 0;
 
-        _cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _cinemachineSignalSource;
+        _cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _signalSourceAsset;
         _moveSpeed = (1 / _moveTime) * _movePositionX;
         _damage.knockBack = new Vector2(_damage.knockBack.x * _dir, _damage.knockBack.y);
-        
-        _contactFilter2D.useTriggers = true;
-        _contactFilter2D.useLayerMask = true;
-        _contactFilter2D.layerMask = _hitLayerMask;
 
         StartCoroutine(AxeMoveCoroutine());
         
     }
-
-    public void Progress()
-    {
-        if(_isInit == false)
-            return;
-        Bind();
-
-        PlaySfx();
-        PlayFx();
-
-        if (_isEnter == true)
-        {
-            HitStop();
-            CameraShake();
-            ZoomIn();
-        }
-    }
     
-    public override void Flash()
-    {
-        if (_isAbleFlash == false)
-            return;
-    }
-
-    public override void HitStop()
-    {
-        if (_isAbleHitStop == false)
-            return;
-
-        GameManager.instance.timeMng.HitStop(_hitStopTime);
-    }
-
-    public override void BulltTime()
-    {
-        if (_isAbleBulltTime == false)
-            return;
-        
-        GameManager.instance.timeMng.BulletTime(_bulletTimeScale, _bulltTime);
-    }
-
-    public override void PlayFx()
-    {
-        if (_isDisplyFx == false)
-            return;
-    }
-
-    public override void PlaySfx()
-    {
-        if (_isPlaySFX == false)
-            return;
-
-        //WwiseSoundManager.instance.PlayEventSound("PC_HIT_blade");
-    }
-    
-    public override void CameraShake()
-    {
-        if (_isAbleCameraShake == false)
-            return;
-        _cinemachineImpulseSource.GenerateImpulse();
-        //GameManager.instance.cameraMng.Shake(_cameraShakeAmplitudeGain, _cameraShakeFrequencyGain, _camerShakeTime);
-    }
-
-    public override void AttackDamage()
-    {
-    }
-
     public void AttackDamage(Collider2D item)
     {
         //============== 고재협이 편집함 ======================
-        _damage.hitPosition = item.ClosestPoint(_basicAttackCollider2D.bounds.center);
+        _damage.hitPosition = item.ClosestPoint(_attackCollider2D.bounds.center);
         //=====================================================
         item.GetComponentInParent<Unit>().HandleHit(_damage);
         
-        OnEnemyHitEvent?.Invoke("Skill1Axe");
+        OnEnemyHitEvent?.Invoke();
     }
 
     private Collider2D FindEnemyObj()
@@ -140,9 +58,9 @@ public class SkillAxeAttackCtrl : AttackBase
         _isEnter = false;
 
         // 다음 프레임에 활성화가 되기 때문에 바로 끄면 체크 X
-        if (_basicAttackCollider2D.IsTouchingLayers(_hitLayerMask))
+        if (_attackCollider2D.IsTouchingLayers(_hitLayerMask))
         {
-            _basicAttackCollider2D.OverlapCollider(_contactFilter2D, result);
+            _attackCollider2D.OverlapCollider(_contactFilter2D, result);
             foreach (var item in result)
             {
                 if (_enterEnemyHashList.Contains(item.GetHashCode()) == true)
@@ -163,48 +81,6 @@ public class SkillAxeAttackCtrl : AttackBase
         return null;
     }
     
-    public override void ZoomIn()
-    {
-        if (_isZoomIn == false)
-        {
-            return;
-        }
-        
-        _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
-        _cinemachineBlendDefinition.m_CustomCurve = _zoomInCurve;
-        _cinemachineBlendDefinition.m_Time = _zoomInTime;
-
-        GameManager.instance.cameraMng.ZoomIn(_cinemachineBlendDefinition, _zoomInSize);
-    }
-
-    private void ZoomOut()
-    {
-        GameManager.instance.cameraMng.ZoomOut(ZoomOutBlendDefinition());
-    }
-
-    public override CinemachineBlendDefinition ZoomOutBlendDefinition()
-    {
-        _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
-        _cinemachineBlendDefinition.m_CustomCurve = _zoomOutCurve;
-        _cinemachineBlendDefinition.m_Time = _zoomOutTime;
-
-        return _cinemachineBlendDefinition;
-    }
-
-    public override void UnBind()
-    {
-        GameManager.instance.cameraMng.OnZoomInEndEvent -= ZoomOut;
-    }
-
-    private void Bind()
-    {
-        GameManager.instance.cameraMng.OnZoomInEndEvent += ZoomOut;
-    }
-
-    public override void SetDamage(in Damage damage)
-    {
-        _damage = damage;
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

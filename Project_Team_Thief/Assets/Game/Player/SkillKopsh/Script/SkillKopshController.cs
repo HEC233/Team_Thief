@@ -33,8 +33,8 @@ public class SkillKopshController : SkillControllerBase
             _skillKopshData.KnockBackPowerArr[_unit.skillKopshIndex].y);
         _damage.additionalInfo = _unit.skillKopshIndex;
 
-        _unit._skillKopshAttackCtrls[_unit.skillKopshIndex].signalSourceAsset =
-            _skillKopshData.CinemachineSignalSourceArr[_unit.skillKopshIndex];
+        _unit._skillKopshAttackCtrls[_unit.skillKopshIndex]
+            .Init(_damage, _skillKopshData.CinemachineSignalSourceArr[_unit.skillKopshIndex]);
 
         _rushSpeed = (1 / _skillKopshData.PlayerMoveTimeArr[_unit.skillKopshIndex]) *
                      _skillKopshData.PlayerMovePostionXArr[_unit.skillKopshIndex];

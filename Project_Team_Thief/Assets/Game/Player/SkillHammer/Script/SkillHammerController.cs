@@ -28,7 +28,7 @@ public class SkillHammerController : SkillControllerBase
             _skillHammerData.KnockBackPower.y);
         _damage.additionalInfo = 4;
 
-        _unit._skillHammerAttackCtrl.signalSourceAsset = _skillHammerData.CinemachineSignalSource;
+        _unit._skillHammerAttackCtrl.Init(_damage, _skillHammerData.CinemachineSignalSource);
 
         _unit.OnSkillHammerAttackEvent += AttackSkillHammer;
     }

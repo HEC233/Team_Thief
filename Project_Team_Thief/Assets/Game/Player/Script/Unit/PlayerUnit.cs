@@ -192,7 +192,7 @@ public class PlayerUnit : Unit
     private float _wallSlideingUpPower = 0;
     [SerializeField] 
     private float _wallSlideingGravityScale = 1;
-    
+
     // BasicAttack Variable
     [Header("BasicAttack Variable")] 
     // [SerializeField]
@@ -378,16 +378,6 @@ public class PlayerUnit : Unit
     {
         for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
         {
-            _basicAttackCtrlArr[i].OnChangeDirEvent += OnChangeDirEventCall;
-        }
-
-        for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
-        {
-            _basicJumpAttackCtrlArr[i].OnChangeDirEvent += OnChangeDirEventCall;
-        }
-
-        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
-        {
             _basicAttackCtrlArr[i].OnEnemyHitEvent += OnAddComboEventCall;
         }
 
@@ -413,16 +403,6 @@ public class PlayerUnit : Unit
 
     private void UnBind()
     {
-        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
-        {
-            _basicAttackCtrlArr[i].OnChangeDirEvent -= OnChangeDirEventCall;
-        }
-
-        for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
-        {
-            _basicJumpAttackCtrlArr[i].OnChangeDirEvent -= OnChangeDirEventCall;
-        }
-
         for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
         {
             _basicAttackCtrlArr[i].OnEnemyHitEvent -= OnAddComboEventCall;
@@ -858,7 +838,7 @@ public class PlayerUnit : Unit
     public void BasicAttack(int attackIndex)
     {
         SetBasicDamage(attackIndex);
-        _basicAttackCtrlArr[attackIndex].SetDamage(_basicAttackDamage);
+        _basicAttackCtrlArr[attackIndex].Init(_basicAttackDamage);
         _basicAttackCtrlArr[attackIndex].Progress();
     }
 
@@ -903,7 +883,7 @@ public class PlayerUnit : Unit
     public void BasicJumpAttack(int jumpAttackIndex)
     {
         SetBasicJumpDamage(jumpAttackIndex);
-        _basicJumpAttackCtrlArr[jumpAttackIndex].SetDamage(_basicJumpAttackDamage);
+        _basicJumpAttackCtrlArr[jumpAttackIndex].Init(_basicJumpAttackDamage);
         _basicJumpAttackCtrlArr[jumpAttackIndex].Progress();
     }
 
@@ -1302,7 +1282,7 @@ public class PlayerUnit : Unit
     
     public void OnSkillSpearRushEventCall()
     {
-        _skillSpearAttackCtrl.GetEnemyList();
+        _skillSpearAttackCtrl.SetSpearRush();
         OnSkillSpearRushEvent?.Invoke();
     }
 
@@ -1313,7 +1293,7 @@ public class PlayerUnit : Unit
 
     public void SKillSpearAttack(Damage damage)
     {
-        _skillSpearAttackCtrl.SetDamage(CalcDamageAbnormalIsDrain(damage));
+        _skillSpearAttackCtrl.Init(CalcDamageAbnormalIsDrain(damage));
         _skillSpearAttackCtrl.Progress();
     }
 
@@ -1324,7 +1304,7 @@ public class PlayerUnit : Unit
 
     public void SkillHammerAttack(Damage damage)
     {
-        _skillHammerAttackCtrl.SetDamage(CalcDamageAbnormalIsDrain(damage));
+        _skillHammerAttackCtrl.Init(CalcDamageAbnormalIsDrain(damage));
         _skillHammerAttackCtrl.Progress();
     }
 
@@ -1335,7 +1315,7 @@ public class PlayerUnit : Unit
 
     public void SkillKopshAttack(Damage damage)
     {
-        _skillKopshAttackCtrls[skillKopshIndex].SetDamage(CalcDamageAbnormalIsDrain(damage));
+        _skillKopshAttackCtrls[skillKopshIndex].Init(CalcDamageAbnormalIsDrain(damage));
         _skillKopshAttackCtrls[skillKopshIndex].Progress();
     }
     
@@ -1347,14 +1327,14 @@ public class PlayerUnit : Unit
 
     public void SkillPlainSwordAttack(Damage damage)
     {
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(CalcDamageAbnormalIsDrain(damage));
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Init(CalcDamageAbnormalIsDrain(damage));
         _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
     }
 
     public void SkillPlainSwordMultiAttack(Damage damage)
     {
         _skillPlainDamage = damage;
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(CalcDamageAbnormalIsDrain(_skillPlainDamage));
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Init(CalcDamageAbnormalIsDrain(_skillPlainDamage));
         _skillPlainSwordMultiAttackCoroutine = StartCoroutine(SkillPlainSwordMultiAttackCoroutine());
     }
 
@@ -1364,8 +1344,10 @@ public class PlayerUnit : Unit
             return;
         
         StopCoroutine(_skillPlainSwordMultiAttackCoroutine);
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].ZoomOut();
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].UnBind();
+        
+        // 사복검 에러 시 여기 체크
+        // _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].ZoomOut();
+        // _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].UnBind();
     }
 
     public void SkillPlainSwordFastInterval()
@@ -1376,7 +1358,7 @@ public class PlayerUnit : Unit
 
     //  리팩토링 할 때  skillData를 다 따로 가지고 있지 말고
     // skillDataBase 리스트를 하나 만들어서 거기 담아놓자.
-    public void OnAddComboEventCall(string skillname)
+    public void OnAddComboEventCall()
     {
         _curCombo++;
 
@@ -1747,8 +1729,6 @@ public class PlayerUnit : Unit
     {
         float timer = 0.2f;
         _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].FristProgress();
-
         while (true)
         {
             timer += GameManager.instance.timeMng.FixedDeltaTime;
@@ -1756,7 +1736,7 @@ public class PlayerUnit : Unit
             if (timer >= _skillPlainSwordAttackInterval)
             {
                 _SkillPlainSwordAttackCtrls[skillPlainSwordIndex]
-                    .SetDamage(CalcDamageAbnormalIsDrain(_skillPlainDamage));
+                    .Init(CalcDamageAbnormalIsDrain(_skillPlainDamage));
                 _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
                 timer = 0.0f;
             }

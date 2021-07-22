@@ -34,7 +34,7 @@ public class SkillSpearController : SkillControllerBase
 
         _rushSpped = (1 / _skillSpearData.PlayerMoveTime) * _skillSpearData.PlayerMovePostionX;
 
-        _unit._skillSpearAttackCtrl.signalSourceAsset = _skillSpearData.CinemachineSignalSource;
+        _unit._skillSpearAttackCtrl.Init(_damage, _skillSpearData.CinemachineSignalSource);
         _unit.OnSkillSpearRushEvent += StartSpearRush;
         _unit.OnSkillSpearAttackEvent += AttackSkillSpear;
         
