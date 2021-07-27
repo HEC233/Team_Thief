@@ -372,6 +372,7 @@ public class PlayerUnit : Unit
     private void LoadPlayerData()
     {
         _playerData = CSVReader.Read("PlayerData");
+        var playerSkillData = CSVReader.Read("PlayerSkillData");
     }
 
     private void Bind()
@@ -432,17 +433,13 @@ public class PlayerUnit : Unit
     // 수정 할 예정
     public void SetVariable()
     {
-        
         _maxCoyoteTime = 0.2f;
-        //_maxJumpTime = 0.4f;
 
         _jumpCount = _maxJumpCount;
         _coyoteTime = _maxCoyoteTime;
 
         _originalGravityScale = _rigidbody2D.gravityScale;
 
-        _curHp = _maxHp;
-        
         _maxHp = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "maxHp"));
         _moveSpeed = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "moveSpeed"));
         _jumpPower = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "jumpPower"));
@@ -454,14 +451,9 @@ public class PlayerUnit : Unit
         _attackSpeed = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "attackSpeed"));
         _def = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "def"));
         _maxJumpCount = 2;
-
-
-        Debug.Log("_maxHp : " + _maxHp + " _moveSpeed : " + _moveSpeed + " _jumpPower : " + _jumpPower + " _dashRange : " +
-                  _dashRange +
-                  " _dashCoolTime : " + _dashCoolTime + " _deathCount : " + _deathCount + " _deathHp : " + _deathHp +
-                  " _critical : " + _critical +
-                  " _attackSpeed : " + _attackSpeed + " _def : " + _def);
         
+        _curHp = _maxHp;
+
         //---
         playerInfo.CurHP = _curHp;
         playerInfo.MaxHP = _maxHp;
@@ -593,24 +585,12 @@ public class PlayerUnit : Unit
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
-    public void DoubleJump()
-    {
-        _jumpCount--;
-        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
-        var power = new Vector3(0, _jumpPower * GameManager.instance.timeMng.TimeScale, 0.0f);
-        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
-    }
-
-    // public void JumpMoveStop()
+    // public void DoubleJump()
     // {
-    //     _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-    // }
-
-    // public void AddJumpForce()
-    // {
-    //     _rigidbody2D.AddForce(
-    //         (new Vector2(0, _addJumpPower) * _addAllJumpPpower) * GameManager.instance.timeMng.TimeScale *
-    //         GameManager.instance.timeMng.FixedDeltaTime, ForceMode2D.Impulse);
+    //     _jumpCount--;
+    //     _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
+    //     var power = new Vector3(0, _jumpPower * GameManager.instance.timeMng.TimeScale, 0.0f);
+    //     _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     // }
 
     public bool CheckIsJumpAble()
@@ -640,58 +620,6 @@ public class PlayerUnit : Unit
         isBasicJumpAttackAble = true;
         _coyoteTime = _maxCoyoteTime;
     }
-
-    // public void SetRoll()
-    // {
-    //     _rigidbody2D.sharedMaterial = _dashPhysicMaterial;
-    //     _rollSpeed = (1 / _rollTime) * _rollGoalX;
-    // }
-
-    // public void Roll()
-    // {
-    //     _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-    //     var power = new Vector2((_rollSpeed) * _facingDir * _timeScale, 0);
-    //     _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
-    // }
-
-    // public void EndRoll()
-    // {
-    //     _rigidbody2D.sharedMaterial = null;
-    //     if (_isRollAble == true)
-    //         StartCoroutine(RollCoolTimeCoroutine());
-    // }
-    
-    // private int counter = 0;
-    // Vector2 power = Vector2.zero;
-    // public void AddRollPower()
-    // {
-    //     if (counter < (int) (_rollTime / Time.fixedDeltaTime))
-    //     {
-    //         counter++;
-    //         _rollPerMoveX = _rollGoalX / (_rollTime / Time.fixedDeltaTime);
-    //         power = new Vector2(_rollPerMoveX * _facingDir, 0);
-    //         //Debug.Log(Physics2D.gravity * Time.deltaTime);
-    //         //power += Physics2D.gravity * Time.deltaTime;
-    //         power += new Vector2(transform.position.x, transform.position.y);
-    //
-    //         if (IsGround == false)
-    //             power += Physics2D.gravity * Time.fixedDeltaTime;
-    //         
-    //         _rigidbody2D.MovePosition(power);
-    //     }
-    //     else
-    //     {
-    //         _rigidbody2D.velocity = new Vector2(0, power.y);
-    //         counter = 0;
-    //     }
-    // }
-
-    public void RollStop()
-    {
-        if (IsGround)
-            _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-    }
-    
     
     public void SetDash()
     {
