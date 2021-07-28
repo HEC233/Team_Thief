@@ -372,7 +372,6 @@ public class PlayerUnit : Unit
     private void LoadPlayerData()
     {
         _playerData = CSVReader.Read("PlayerData");
-        var playerSkillData = CSVReader.Read("PlayerSkillData");
     }
 
     private void Bind()

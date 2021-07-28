@@ -18,6 +18,7 @@ public class CSVReader : MonoBehaviour
     {
         List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
         TextAsset csvData = Addressable.instance.GetText(fileName);
+        
 
         var lines = Regex.Split(csvData.text, LINE_SPLIT_RE);
 
