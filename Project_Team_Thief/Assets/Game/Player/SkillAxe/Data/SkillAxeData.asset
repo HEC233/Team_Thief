@@ -12,18 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0643a2e5688b9540a2608cbdf113c6a, type: 3}
   m_Name: SkillAxeData
   m_EditorClassIdentifier: 
+  _id: 2
   _numberOfTimesTheSkill: 2
-  _coolTime: 3
+  _cinemachineSignalSource: {fileID: 11400000, guid: eb351fd8ca44c3c4db67561a895cdc01,
+    type: 2}
   _skillName: Skill1Axe
   _increaseEncroachment: -18
   _encroachmentDecrease: 0
+  _name: "\uD68C\uC804\uB3C4\uB07C \uB358\uC9C0\uAE30"
+  _grade: "\uB808\uC5B4"
+  _isGet: 0
+  _class: "\uC554\uC0B4\uC790"
+  _coolTime: 3
+  _description: "\uD68C\uC804\uB3C4\uB07C\uB97C \uB358\uC9C4\uB2E4, \uCD94\uAC00
+    \uD0A4 \uC785\uB825 \uC2DC \uD55C\uBC88 \uB354 \uB358\uC9C4\uB2E4."
   _axeGameObject: {fileID: 3841240397383621464, guid: 3624dd1e695c1004e96f2ca043568a51,
     type: 3}
-  _cinemachineSignalSource: {fileID: 11400000, guid: eb351fd8ca44c3c4db67561a895cdc01,
-    type: 2}
-  _knockBackPower: {x: 1, y: 0.3}
   _axeMovePostionX: 8
   _axeMoveTime: 0.3
-  _axeAttackDamage: 166
-  _axeMultiStageHit: 3
-  _axeMultiStageHitInterval: 0.2
