@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62d4ba29d24338478b3fd334126ab16, type: 3}
+  m_Name: SkillSpearData
+  m_EditorClassIdentifier: 
+  _numberOfTimesTheSkill: 1
+  _coolTime: 7.3333335
+  _skillName: Skill2Spear
+  _increaseEncroachment: -8
+  _encroachmentDecrease: 0
+  _cinemachineSignalSource: {fileID: 11400000, guid: b9fda150f7888e846a99f5f14b20cb9a,
+    type: 2}
+  _knockBackPower: {x: 50, y: 0}
+  _playerMovePostionX: 9
+  _playerMoveTime: 0.1
+  _attackDamage: 2700

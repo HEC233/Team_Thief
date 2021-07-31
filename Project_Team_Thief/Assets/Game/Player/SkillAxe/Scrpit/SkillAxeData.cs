@@ -9,15 +9,7 @@ public class SkillAxeData : SkillDataBase
     [SerializeField] 
     private GameObject _axeGameObject;
     public GameObject AxeGameObject => _axeGameObject;
-    
-    [SerializeField] 
-    private SignalSourceAsset _cinemachineSignalSource;
-    public SignalSourceAsset CinemachineSignalSource => _cinemachineSignalSource;
 
-    [SerializeField] 
-    private Vector2 _knockBackPower;
-    public Vector2 KnockBackPower => _knockBackPower;
-    
     [SerializeField]
     private float _axeMovePostionX;
     public float AxeMovePostionX => _axeMovePostionX;
@@ -25,20 +17,7 @@ public class SkillAxeData : SkillDataBase
     [SerializeField] 
     private float _axeMoveTime;
     public float AxeMoveTime => _axeMoveTime;
-
-    [SerializeField]
-    private float _axeAttackDamage;
-    public float AxeAttackDamage => _axeAttackDamage;
-
-    [SerializeField]
-    private float _axeMultiStageHit;
-    public float AxeMultiStageHit => _axeMultiStageHit;
-
-    [SerializeField]
-    private float _axeMultiStageHitInterval;
-    public float AxeMultiStageHitInterval => _axeMultiStageHitInterval;
-
-
+    
     public override SkillControllerBase GetSkillController(GameSkillObject skillObject, Unit unit)
     {
         return new SkillAxeController(skillObject, this, unit);

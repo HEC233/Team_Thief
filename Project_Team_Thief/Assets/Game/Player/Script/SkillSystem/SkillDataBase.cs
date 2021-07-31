@@ -1,13 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public abstract class SkillDataBase : ScriptableObject
 {
+    [SerializeField]
+    private int _id;
+    public int ID => _id;
+
+    
     [SerializeField, Tooltip("스킬 사용 가능 횟수")] 
     private int _numberOfTimesTheSkill; // 스킬 사용 가능 횟수.
     public int NumberOfTimesTheSkill => _numberOfTimesTheSkill;
 
+    [SerializeField] 
+    private SignalSourceAsset _cinemachineSignalSource;
+    public SignalSourceAsset CinemachineSignalSource => _cinemachineSignalSource;
 
     [SerializeField] 
     private string _skillName;
@@ -26,11 +35,6 @@ public abstract class SkillDataBase : ScriptableObject
     
     //New Data -> skill Info
     [SerializeField]
-    private int _id;
-    public int ID => _id;
-
-    [SerializeField]
-
     private string _name;
     public string Name
     {

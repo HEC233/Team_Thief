@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 367252614}
   - component: {fileID: 367252611}
   - component: {fileID: 512310134}
+  - component: {fileID: 1058721105}
+  - component: {fileID: 1058721107}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -118,6 +120,56 @@ MonoBehaviour:
   unloadTriggerList: 958ca0ea
   bankNameInternal: 
   valueGuidInternal: 
+--- !u!114 &1058721105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367252610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d29a78f2fed6f49ba46246a8b55a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: ae8d9d44
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6f61656de095ce242b01554912681541,
+      type: 2}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
+--- !u!114 &1058721107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367252610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d29a78f2fed6f49ba46246a8b55a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: ae8d9d44
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 609ec6963c7802a4d87768f66449f03d,
+      type: 2}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
 --- !u!1 &4990086937456659575
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68e97b409ffe0149bd4eb6b93e208ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillDatabases: []
+  _skillDatabases:
+  - {fileID: 11400000, guid: f588fdeff19d47048ad1818350e66f48, type: 2}
 --- !u!114 &4990086937456659571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,9 +518,6 @@ MonoBehaviour:
   _commandInputTime: 0.3
   _soCommandDatas:
   - {fileID: 11400000, guid: 3f4c201fd2d7adb4b994191777107033, type: 2}
-  - {fileID: 11400000, guid: 557c8a8fa08379043b4769311e8cd633, type: 2}
-  - {fileID: 11400000, guid: dbde029310c5c2d40956256c759ab53d, type: 2}
-  - {fileID: 11400000, guid: 98c9144e224adec44889f0481148cc88, type: 2}
   - {fileID: 11400000, guid: 5e1758b61e6fa9e4c804fbdadc741e8b, type: 2}
 --- !u!114 &24858456
 MonoBehaviour:

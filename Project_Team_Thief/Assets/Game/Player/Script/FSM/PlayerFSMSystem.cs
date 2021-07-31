@@ -1768,78 +1768,78 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         }
     }
 
-    /// </기획 변경으로 인해 미사용>
-    private class SkillShadowWalkState : CustomFSMStateBase, ISkillStateBase
-    {
-        private Shadow _inAreaShadow = null;
-        private GameSkillObject _gameSkillObject;
-        private ShadowWalkSkillData _shadowWalkSkillData;
-        
-        public SkillShadowWalkState(PlayerFSMSystem system, ShadowWalkSkillData shadowWalkSkillData) : base(system)
-        {
-            _shadowWalkSkillData = shadowWalkSkillData;
-        }
-
-        public override void StartState()
-        {
-            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
-            //SystemMgr.AnimationCtrl.PlayAni(AniState.SkillShadowWalk);
-            _gameSkillObject = InvokeShadowWalkSkill();
-        }
- 
-
-        public override void Update()
-        {
-            SystemMgr.Unit.Progress();
-        }
-
-        public override void EndState()
-        {
-            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
-        }
-
-        public override bool Transition(TransitionCondition condition)
-        {
-            if (condition == TransitionCondition.Idle)
-                return true;
-            
-            return false;
-        }
-
-        public override bool InputKey(TransitionCondition condition)
-        {
-            return false;
-        }
-
-        private void OnAnimationEndEvnetCall()
-        {
-            SystemMgr.Transition(TransitionCondition.Idle);
-        }
-
-        private GameSkillObject InvokeShadowWalkSkill()
-        {
-            var skillObject = GameManager.instance.GameSkillMgr.GetSkillObject();
-
-            if (skillObject == null)
-            {
-                Debug.LogError("Skill Obejct Is Null");
-                return null;
-            }
-
-            skillObject.InitSkill(_shadowWalkSkillData.GetSkillController(skillObject, SystemMgr.Unit));
-            return skillObject;
-        }
-
-        public bool IsAbleTransition()
-        {
-            //_inAreaShadow = SystemMgr.Unit.GetAbleShadowWalk();
-
-            if (_inAreaShadow == null)
-                return false;
-
-            return true;
-        }
-    }
+    // </기획 변경으로 인해 미사용>
+    // private class SkillShadowWalkState : CustomFSMStateBase, ISkillStateBase
+    // {
+    //     private Shadow _inAreaShadow = null;
+    //     private GameSkillObject _gameSkillObject;
+    //     private ShadowWalkSkillData _shadowWalkSkillData;
+    //     
+    //     public SkillShadowWalkState(PlayerFSMSystem system, ShadowWalkSkillData shadowWalkSkillData) : base(system)
+    //     {
+    //         _shadowWalkSkillData = shadowWalkSkillData;
+    //     }
+    //
+    //     public override void StartState()
+    //     {
+    //         SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+    //         //SystemMgr.AnimationCtrl.PlayAni(AniState.SkillShadowWalk);
+    //         _gameSkillObject = InvokeShadowWalkSkill();
+    //     }
+    //
+    //
+    //     public override void Update()
+    //     {
+    //         SystemMgr.Unit.Progress();
+    //     }
+    //
+    //     public override void EndState()
+    //     {
+    //         SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+    //     }
+    //
+    //     public override bool Transition(TransitionCondition condition)
+    //     {
+    //         if (condition == TransitionCondition.Idle)
+    //             return true;
+    //         
+    //         return false;
+    //     }
+    //
+    //     public override bool InputKey(TransitionCondition condition)
+    //     {
+    //         return false;
+    //     }
+    //
+    //     private void OnAnimationEndEvnetCall()
+    //     {
+    //         SystemMgr.Transition(TransitionCondition.Idle);
+    //     }
+    //
+    //     private GameSkillObject InvokeShadowWalkSkill()
+    //     {
+    //         var skillObject = GameManager.instance.GameSkillMgr.GetSkillObject();
+    //
+    //         if (skillObject == null)
+    //         {
+    //             Debug.LogError("Skill Obejct Is Null");
+    //             return null;
+    //         }
+    //
+    //         skillObject.InitSkill(_shadowWalkSkillData.GetSkillController(skillObject, SystemMgr.Unit));
+    //         return skillObject;
+    //     }
+    //
+    //     public bool IsAbleTransition()
+    //     {
+    //         //_inAreaShadow = SystemMgr.Unit.GetAbleShadowWalk();
+    //
+    //         if (_inAreaShadow == null)
+    //             return false;
+    //
+    //         return true;
+    //     }
+    // }
 
     private class SkillAxeState : CustomFSMStateBase, ISkillStateBase
     {
@@ -1970,342 +1970,345 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         }
     }
 
-    class SkillSpearState : CustomFSMStateBase, ISkillStateBase
-    {
-        private SkillSpearData _skillSpearData;
-        private bool _isAniEnd = false;
-        private GameSkillObject _gameSkillObject;
-        
-        public SkillSpearState(PlayerFSMSystem system, SkillSpearData skillSpearData) : base(system)
-        {
-            _skillSpearData = skillSpearData;
-        }
+    // </기획 변경으로 인해 미사용>
+    // class SkillSpearState : CustomFSMStateBase, ISkillStateBase
+    // {
+    //     private SkillSpearData _skillSpearData;
+    //     private bool _isAniEnd = false;
+    //     private GameSkillObject _gameSkillObject;
+    //     
+    //     public SkillSpearState(PlayerFSMSystem system, SkillSpearData skillSpearData) : base(system)
+    //     {
+    //         _skillSpearData = skillSpearData;
+    //     }
+    //
+    //     public override void StartState()
+    //     {
+    //         SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+    //         SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSpear);
+    //         SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSpear);
+    //
+    //         _gameSkillObject = InvokeSkill();
+    //     }
+    //
+    //     public override void Update()
+    //     {
+    //     }
+    //
+    //     public override void EndState()
+    //     {
+    //         SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+    //         _isAniEnd = false;
+    //         SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+    //         
+    //     }
+    //
+    //     public override bool Transition(TransitionCondition condition)
+    //     {
+    //         if (condition == TransitionCondition.Hit)
+    //             return true;
+    //         
+    //         if (condition == TransitionCondition.SkillSpear)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillHammer)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillKopsh)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillPlainSword)
+    //             return true;
+    //         
+    //         if (_isAniEnd == true)
+    //         {
+    //             return true;
+    //         }
+    //
+    //         return false;
+    //     }
+    //
+    //     public override bool InputKey(TransitionCondition condition)
+    //     {
+    //         return true;
+    //     }
+    //
+    //     public bool IsAbleTransition()
+    //     {
+    //         return SystemMgr.Unit.IsAbleSkillSpear();
+    //     }
+    //     
+    //     private void OnAnimationEndEvnetCall()
+    //     {
+    //         _isAniEnd = true;
+    //         SystemMgr.Transition(TransitionCondition.Idle);
+    //     }
+    //     
+    //     private GameSkillObject InvokeSkill()
+    //     {
+    //         var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+    //
+    //         if (skillObejct == null)
+    //         {
+    //             Debug.LogError("AexSkillObj is Null");
+    //             return null;
+    //         }
+    //
+    //         skillObejct.InitSkill(_skillSpearData.GetSkillController(skillObejct, SystemMgr.Unit));
+    //         return skillObejct;
+    //     }
+    // }
 
-        public override void StartState()
-        {
-            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
-            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSpear);
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSpear);
-
-            _gameSkillObject = InvokeSkill();
-        }
-
-        public override void Update()
-        {
-        }
-
-        public override void EndState()
-        {
-            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
-            _isAniEnd = false;
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
-            
-        }
-
-        public override bool Transition(TransitionCondition condition)
-        {
-            if (condition == TransitionCondition.Hit)
-                return true;
-            
-            if (condition == TransitionCondition.SkillSpear)
-                return true;
-            if (condition == TransitionCondition.SkillHammer)
-                return true;
-            if (condition == TransitionCondition.SkillKopsh)
-                return true;
-            if (condition == TransitionCondition.SkillPlainSword)
-                return true;
-            
-            if (_isAniEnd == true)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public override bool InputKey(TransitionCondition condition)
-        {
-            return true;
-        }
-
-        public bool IsAbleTransition()
-        {
-            return SystemMgr.Unit.IsAbleSkillSpear();
-        }
-        
-        private void OnAnimationEndEvnetCall()
-        {
-            _isAniEnd = true;
-            SystemMgr.Transition(TransitionCondition.Idle);
-        }
-        
-        private GameSkillObject InvokeSkill()
-        {
-            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
-
-            if (skillObejct == null)
-            {
-                Debug.LogError("AexSkillObj is Null");
-                return null;
-            }
-
-            skillObejct.InitSkill(_skillSpearData.GetSkillController(skillObejct, SystemMgr.Unit));
-            return skillObejct;
-        }
-    }
-
-    private class SkillHammerState : CustomFSMStateBase, ISkillStateBase
-    {
-        private SkillHammerData _skillHammerData;
-        private bool _isAniEnd = false;
-        private GameSkillObject _gameSkillObject;
-        
-        public SkillHammerState(PlayerFSMSystem system, SkillHammerData skillHammerData) : base(system)
-        {
-            _skillHammerData = skillHammerData;
-        }
-
-        public override void StartState()
-        {
-            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillHammer);
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillHammer);
-            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
-            WwiseSoundManager.instance.PlayEventSound("PC_hammaer_Swing");
-
-            _gameSkillObject = InvokeSkill();
-        }
-
-        public override void Update()
-        {
-        }
-
-        public override void EndState()
-        {
-            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
-            _isAniEnd = false;
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
-
-        }
-
-        public override bool Transition(TransitionCondition condition)
-        {
-            if (condition == TransitionCondition.Hit)
-                return true;
-            
-            if (condition == TransitionCondition.SkillAxe)
-                return true;
-            if (condition == TransitionCondition.SkillSpear)
-                return true;
-            if (condition == TransitionCondition.SkillKopsh)
-                return true;
-            if (condition == TransitionCondition.SkillPlainSword)
-                return true;
-            
-            if (_isAniEnd == false)
-                return false;
-            
-            return true;
-        }
-
-        public override bool InputKey(TransitionCondition condition)
-        {
-            return true;
-        }
-
-        public bool IsAbleTransition()
-        {
-            return SystemMgr.Unit.IsAbleSkillHammer();
-        }
-        
-        private void OnAnimationEndEvnetCall()
-        {
-            _isAniEnd = true;
-            SystemMgr.Transition(TransitionCondition.Idle);
-        }
-        
-        private GameSkillObject InvokeSkill()
-        {
-            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
-
-            if (skillObejct == null)
-            {
-                Debug.LogError("HammerSkillObj is Null");
-                return null;
-            }
-
-            skillObejct.InitSkill(_skillHammerData.GetSkillController(skillObejct, SystemMgr.Unit));
-            return skillObejct;
-        }
-    }
-
-    private class SkillKopshState : CustomFSMStateBase, ISkillStateBase
-    {
-        private SkillKopshData _skillKopshData;
-        private bool _isAniEnd = false;
-        private GameSkillObject _gameSkillObject;
-        
-        private float _attackInputTime = 0.0f;
-        private float _attackBeInputTime = 0.0f;
-        private float _attackTime = 0.5f;
-        private int _skillKopshNextIndex = 0;
-        
-        private AniState[] _skillKopshAniArr =
-            new AniState[] {AniState.SkillKopsh, AniState.SkillKopsh2, AniState.SkillKopsh3};
-
-        private FxAniEnum[] _skillKopshFxAniArr = new FxAniEnum[]
-            {FxAniEnum.SkillKopsh, FxAniEnum.SkillKopsh2, FxAniEnum.SkillKopsh3};
-
-        private string[] _skillKopshSoundArr = new string[] {"PC_Kopsh1", "PC_Kopsh2", "PC_Kopsh3"};
-        
-        public SkillKopshState(PlayerFSMSystem system, SkillKopshData skillKopshData) : base(system)
-        {
-            _skillKopshData = skillKopshData;
-        }
-
-        public override void StartState()
-        {
-            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
-            SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
-            SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
-            //WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
-            GameManager.instance.uiMng.TurnXButtonUI(true);
-
-            _gameSkillObject = InvokeSkill();
-            
-            _attackTime = SystemMgr.Unit.SkillKopshAttackTime;
-            _attackBeInputTime = Time.time;
-        }
-
-        public override void Update()
-        {
-        }
-
-        public override void EndState()
-        {
-            SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr._fxCtrl.SetSpeed(1);
-            
-            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
-            
-            _skillKopshNextIndex = 0;
-            SystemMgr.Unit.skillKopshIndex = 0;
-            _attackBeInputTime = 0;
-            _attackInputTime = 0;
-            _isAniEnd = false;
-            
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
-            GameManager.instance.uiMng.TurnXButtonUI(false);
-
-        }
-
-        public override bool Transition(TransitionCondition condition)
-        {
-            if (condition == TransitionCondition.Hit)
-                return true;
-            
-            if (condition == TransitionCondition.SkillAxe)
-                return true;
-            if (condition == TransitionCondition.SkillHammer)
-                return true;
-            if (condition == TransitionCondition.SkillSpear)
-                return true;
-            if (condition == TransitionCondition.SkillPlainSword)
-                return true;
-            
-            if (_isAniEnd == true)
-                return true;
-            
-            return false;
-        }
-
-        public override bool InputKey(TransitionCondition condition)
-        {
-            if (condition == TransitionCondition.Attack)
-            {
-                _attackInputTime = Time.time;
-
-                if (_attackInputTime - _attackBeInputTime <= _attackTime)
-                {
-                    _skillKopshNextIndex = SystemMgr.Unit.skillKopshIndex + 1;
-                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
-                    SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
-                }
-
-                _attackBeInputTime = Time.time;
-
-                return false;
-            }
-            return true;
-        }
-
-        public bool IsAbleTransition()
-        {
-            return SystemMgr.Unit.IsAbleSkillKopsh();
-        }
-        
-        private void OnAnimationEndEvnetCall()
-        {
-            if(IsEndOrNextCheck() == true)
-            {
-                NextKopshAction();
-            }
-            else
-            {
-                _isAniEnd = true;
-                SystemMgr.Transition(TransitionCondition.Idle);
-            }
-        }
-
-        private void NextKopshAction()
-        {
-            SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr._fxCtrl.SetSpeed(1);
-            
-            SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
-            SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
-            //WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
-
-            _gameSkillObject = InvokeSkill();
-
-            if (SystemMgr.Unit.skillKopshIndex == _skillKopshAniArr.Length - 1)
-            {
-                GameManager.instance.uiMng.TurnXButtonUI(false);
-            }
-        }
-        
-        private bool IsEndOrNextCheck()
-        {
-            if (SystemMgr.Unit.skillKopshIndex != _skillKopshNextIndex)
-            {
-                if (_skillKopshNextIndex > _skillKopshAniArr.Length - 1)
-                {
-                    return false;
-                }
-                else
-                {
-                    SystemMgr.Unit.skillKopshIndex = _skillKopshNextIndex;
-                    return true;
-                }
-            }
-            
-            return false;
-        }
-        
-        private GameSkillObject InvokeSkill()
-        {
-            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
-
-            if (skillObejct == null)
-            {
-                Debug.LogError("AexSkillObj is Null");
-                return null;
-            }
-
-            skillObejct.InitSkill(_skillKopshData.GetSkillController(skillObejct, SystemMgr.Unit));
-            return skillObejct;
-        }
-    }
+    /// </기획 변경으로 인해 미사용>
+    // private class SkillHammerState : CustomFSMStateBase, ISkillStateBase
+    // {
+    //     private SkillHammerData _skillHammerData;
+    //     private bool _isAniEnd = false;
+    //     private GameSkillObject _gameSkillObject;
+    //     
+    //     public SkillHammerState(PlayerFSMSystem system, SkillHammerData skillHammerData) : base(system)
+    //     {
+    //         _skillHammerData = skillHammerData;
+    //     }
+    //
+    //     public override void StartState()
+    //     {
+    //         SystemMgr.AnimationCtrl.PlayAni(AniState.SkillHammer);
+    //         SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillHammer);
+    //         SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+    //         WwiseSoundManager.instance.PlayEventSound("PC_hammaer_Swing");
+    //
+    //         _gameSkillObject = InvokeSkill();
+    //     }
+    //
+    //     public override void Update()
+    //     {
+    //     }
+    //
+    //     public override void EndState()
+    //     {
+    //         SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+    //         _isAniEnd = false;
+    //         SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+    //
+    //     }
+    //
+    //     public override bool Transition(TransitionCondition condition)
+    //     {
+    //         if (condition == TransitionCondition.Hit)
+    //             return true;
+    //         
+    //         if (condition == TransitionCondition.SkillAxe)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillSpear)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillKopsh)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillPlainSword)
+    //             return true;
+    //         
+    //         if (_isAniEnd == false)
+    //             return false;
+    //         
+    //         return true;
+    //     }
+    //
+    //     public override bool InputKey(TransitionCondition condition)
+    //     {
+    //         return true;
+    //     }
+    //
+    //     public bool IsAbleTransition()
+    //     {
+    //         return SystemMgr.Unit.IsAbleSkillHammer();
+    //     }
+    //     
+    //     private void OnAnimationEndEvnetCall()
+    //     {
+    //         _isAniEnd = true;
+    //         SystemMgr.Transition(TransitionCondition.Idle);
+    //     }
+    //     
+    //     private GameSkillObject InvokeSkill()
+    //     {
+    //         var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+    //
+    //         if (skillObejct == null)
+    //         {
+    //             Debug.LogError("HammerSkillObj is Null");
+    //             return null;
+    //         }
+    //
+    //         skillObejct.InitSkill(_skillHammerData.GetSkillController(skillObejct, SystemMgr.Unit));
+    //         return skillObejct;
+    //     }
+    // }
+    
+    // </기획 변경으로 인해 미사용>
+    // private class SkillKopshState : CustomFSMStateBase, ISkillStateBase
+    // {
+    //     private SkillKopshData _skillKopshData;
+    //     private bool _isAniEnd = false;
+    //     private GameSkillObject _gameSkillObject;
+    //     
+    //     private float _attackInputTime = 0.0f;
+    //     private float _attackBeInputTime = 0.0f;
+    //     private float _attackTime = 0.5f;
+    //     private int _skillKopshNextIndex = 0;
+    //     
+    //     private AniState[] _skillKopshAniArr =
+    //         new AniState[] {AniState.SkillKopsh, AniState.SkillKopsh2, AniState.SkillKopsh3};
+    //
+    //     private FxAniEnum[] _skillKopshFxAniArr = new FxAniEnum[]
+    //         {FxAniEnum.SkillKopsh, FxAniEnum.SkillKopsh2, FxAniEnum.SkillKopsh3};
+    //
+    //     private string[] _skillKopshSoundArr = new string[] {"PC_Kopsh1", "PC_Kopsh2", "PC_Kopsh3"};
+    //     
+    //     public SkillKopshState(PlayerFSMSystem system, SkillKopshData skillKopshData) : base(system)
+    //     {
+    //         _skillKopshData = skillKopshData;
+    //     }
+    //
+    //     public override void StartState()
+    //     {
+    //         SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
+    //         SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
+    //         SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
+    //         //WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
+    //         GameManager.instance.uiMng.TurnXButtonUI(true);
+    //
+    //         _gameSkillObject = InvokeSkill();
+    //         
+    //         _attackTime = SystemMgr.Unit.SkillKopshAttackTime;
+    //         _attackBeInputTime = Time.time;
+    //     }
+    //
+    //     public override void Update()
+    //     {
+    //     }
+    //
+    //     public override void EndState()
+    //     {
+    //         SystemMgr.AnimationCtrl.SetSpeed(1);
+    //         SystemMgr._fxCtrl.SetSpeed(1);
+    //         
+    //         SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+    //         
+    //         _skillKopshNextIndex = 0;
+    //         SystemMgr.Unit.skillKopshIndex = 0;
+    //         _attackBeInputTime = 0;
+    //         _attackInputTime = 0;
+    //         _isAniEnd = false;
+    //         
+    //         SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+    //         GameManager.instance.uiMng.TurnXButtonUI(false);
+    //
+    //     }
+    //
+    //     public override bool Transition(TransitionCondition condition)
+    //     {
+    //         if (condition == TransitionCondition.Hit)
+    //             return true;
+    //         
+    //         if (condition == TransitionCondition.SkillAxe)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillHammer)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillSpear)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillPlainSword)
+    //             return true;
+    //         
+    //         if (_isAniEnd == true)
+    //             return true;
+    //         
+    //         return false;
+    //     }
+    //
+    //     public override bool InputKey(TransitionCondition condition)
+    //     {
+    //         if (condition == TransitionCondition.Attack)
+    //         {
+    //             _attackInputTime = Time.time;
+    //
+    //             if (_attackInputTime - _attackBeInputTime <= _attackTime)
+    //             {
+    //                 _skillKopshNextIndex = SystemMgr.Unit.skillKopshIndex + 1;
+    //                 SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+    //                 SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+    //             }
+    //
+    //             _attackBeInputTime = Time.time;
+    //
+    //             return false;
+    //         }
+    //         return true;
+    //     }
+    //
+    //     public bool IsAbleTransition()
+    //     {
+    //         return SystemMgr.Unit.IsAbleSkillKopsh();
+    //     }
+    //     
+    //     private void OnAnimationEndEvnetCall()
+    //     {
+    //         if(IsEndOrNextCheck() == true)
+    //         {
+    //             NextKopshAction();
+    //         }
+    //         else
+    //         {
+    //             _isAniEnd = true;
+    //             SystemMgr.Transition(TransitionCondition.Idle);
+    //         }
+    //     }
+    //
+    //     private void NextKopshAction()
+    //     {
+    //         SystemMgr.AnimationCtrl.SetSpeed(1);
+    //         SystemMgr._fxCtrl.SetSpeed(1);
+    //         
+    //         SystemMgr.AnimationCtrl.PlayAni(_skillKopshAniArr[SystemMgr.Unit.skillKopshIndex]);
+    //         SystemMgr._fxCtrl.PlayAni(_skillKopshFxAniArr[SystemMgr.Unit.skillKopshIndex]);
+    //         //WwiseSoundManager.instance.PlayEventSound(_skillKopshSoundArr[SystemMgr.Unit.skillKopshIndex]);
+    //
+    //         _gameSkillObject = InvokeSkill();
+    //
+    //         if (SystemMgr.Unit.skillKopshIndex == _skillKopshAniArr.Length - 1)
+    //         {
+    //             GameManager.instance.uiMng.TurnXButtonUI(false);
+    //         }
+    //     }
+    //     
+    //     private bool IsEndOrNextCheck()
+    //     {
+    //         if (SystemMgr.Unit.skillKopshIndex != _skillKopshNextIndex)
+    //         {
+    //             if (_skillKopshNextIndex > _skillKopshAniArr.Length - 1)
+    //             {
+    //                 return false;
+    //             }
+    //             else
+    //             {
+    //                 SystemMgr.Unit.skillKopshIndex = _skillKopshNextIndex;
+    //                 return true;
+    //             }
+    //         }
+    //         
+    //         return false;
+    //     }
+    //     
+    //     private GameSkillObject InvokeSkill()
+    //     {
+    //         var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+    //
+    //         if (skillObejct == null)
+    //         {
+    //             Debug.LogError("AexSkillObj is Null");
+    //             return null;
+    //         }
+    //
+    //         skillObejct.InitSkill(_skillKopshData.GetSkillController(skillObejct, SystemMgr.Unit));
+    //         return skillObejct;
+    //     }
+    // }
 
     private class SkillPlainSwordState : CustomFSMStateBase, ISkillStateBase
     {
@@ -2534,9 +2537,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.Hit, new HitState(this));
         //AddState(TransitionCondition.SkillShadowWalk, new SkillShadowWalkState(this, Unit.ShadowWalkSkillData));
         AddState(TransitionCondition.SkillAxe, new SkillAxeState(this, Unit.SkillAxeData));
-        AddState(TransitionCondition.SkillSpear, new SkillSpearState(this, Unit.SkillSpearData));
-        AddState(TransitionCondition.SkillHammer, new SkillHammerState(this, Unit.SkillHammerData));
-        AddState(TransitionCondition.SkillKopsh, new SkillKopshState(this, Unit.SkillKopshData));
+        // AddState(TransitionCondition.SkillSpear, new SkillSpearState(this, Unit.SkillSpearData));
+        // AddState(TransitionCondition.SkillHammer, new SkillHammerState(this, Unit.SkillHammerData));
+        // AddState(TransitionCondition.SkillKopsh, new SkillKopshState(this, Unit.SkillKopshData));
         AddState(TransitionCondition.SkillPlainSword, new SkillPlainSwordState(this, Unit.SkillPlainSwordData));
         AddState(TransitionCondition.Die, new DieState(this));
     }

@@ -45,10 +45,10 @@ public class ShadowWalkSkillController : SkillControllerBase
 
     private void CameraShake()
     {
-        var cinemachineImpulseSource = SkillObject.gameObject.AddComponent<CinemachineImpulseSource>();
-        cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _shadowWalkSkillData.CinemachineImpulseSource;
-        cinemachineImpulseSource.GenerateImpulse();
-        SkillObject.DestroyComponent(cinemachineImpulseSource);
+        // var cinemachineImpulseSource = SkillObject.gameObject.AddComponent<CinemachineImpulseSource>();
+        // cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _shadowWalkSkillData.CinemachineImpulseSource;
+        // cinemachineImpulseSource.GenerateImpulse();
+        // SkillObject.DestroyComponent(cinemachineImpulseSource);
     }
 
     private void CrateShadowLump()

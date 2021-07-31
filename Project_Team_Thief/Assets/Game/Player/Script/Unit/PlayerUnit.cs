@@ -482,14 +482,15 @@ public class PlayerUnit : Unit
 
         GameManager.instance.commandManager.GetCommandData(_skillAxeData.SkillName).maxCoolTIme =
             _skillAxeData.CoolTime;
-        GameManager.instance.commandManager.GetCommandData(_skillSpearData.SkillName).maxCoolTIme =
-            _skillSpearData.CoolTime;
-        GameManager.instance.commandManager.GetCommandData(_skillHammerData.SkillName).maxCoolTIme =
-            _skillHammerData.CoolTime;
-        GameManager.instance.commandManager.GetCommandData(_skillKopshData.SkillName).maxCoolTIme =
-            _skillKopshData.CoolTime;
+        // GameManager.instance.commandManager.GetCommandData(_skillSpearData.SkillName).maxCoolTIme =
+        //     _skillSpearData.CoolTime;
+        // GameManager.instance.commandManager.GetCommandData(_skillHammerData.SkillName).maxCoolTIme =
+        //     _skillHammerData.CoolTime;
+        // GameManager.instance.commandManager.GetCommandData(_skillKopshData.SkillName).maxCoolTIme =
+        //     _skillKopshData.CoolTime;
         GameManager.instance.commandManager.GetCommandData(_skillPlainSwordData.SkillName).maxCoolTIme =
             _skillPlainSwordData.CoolTime;
+
     }
 
 

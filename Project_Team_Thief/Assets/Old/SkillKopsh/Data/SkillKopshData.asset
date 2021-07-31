@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea4211de84bd1e4ea0d11e216b0a5a8, type: 3}
+  m_Name: SkillKopshData
+  m_EditorClassIdentifier: 
+  _numberOfTimesTheSkill: 1
+  _coolTime: 3
+  _skillName: Skill4Kopsh
+  _increaseEncroachment: -18
+  _encroachmentDecrease: 0
+  _cinemachineSignalSourceArr:
+  - {fileID: 11400000, guid: b48422a21c79a9a4d868d26c3efe0296, type: 2}
+  - {fileID: 11400000, guid: 349bd4152b1b4e648a305c010167e5f6, type: 2}
+  - {fileID: 11400000, guid: 019e2bcfb6a32a94897923b52550bb3a, type: 2}
+  _knockBackPowerArr:
+  - {x: 0, y: 0}
+  - {x: 0.5, y: 1}
+  - {x: 0, y: 0}
+  _attackDamageArr:
+  - 300
+  - 400
+  - 500
+  _playerMovePostionXArr:
+  - 8
+  - -2
+  - 0
+  _playerMoveTimeArr:
+  - 0.05
+  - 0.05
+  - 0

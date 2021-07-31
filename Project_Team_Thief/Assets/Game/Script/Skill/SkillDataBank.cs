@@ -12,7 +12,7 @@ public class SkillDataBank : MonoBehaviour
 
     private List<Dictionary<string, object>> _playerSkillData;
 
-    private Dictionary<string, SkillDataBase> _SkillDataBaseDic;
+    private Dictionary<string, SkillDataBase> _skillDataBaseDic;
 
     private GameLoader.SceneLoadCallback _sceneLoadCallback;
 
@@ -45,7 +45,8 @@ public class SkillDataBank : MonoBehaviour
         LoadSkillData("PlayerSkillData");
 
         SettingSkillData();
-        
+        SettingSkillDataBaseDic();
+
     }
 
     private bool SceneLoadCallBack(out string Error)
@@ -69,73 +70,96 @@ public class SkillDataBank : MonoBehaviour
     {
         for (int i = 0; i < _skillDatabases.Count; i++)
         {
-            var _skillDataFindIndex = _skillDatabases.FindIndex(e => e.ID == i);
+            //var _skillDataFindIndex = _skillDatabases.FindIndex(e => e.ID == i);
+            
+            _skillDatabases[i].Name = _playerSkillData[_skillDatabases[i].ID]["name"].ToString();
+            _skillDatabases[i].Grade = _playerSkillData[_skillDatabases[i].ID]["grade"].ToString();
+            _skillDatabases[i].IsGet = Convert.ToBoolean(_playerSkillData[_skillDatabases[i].ID]["isGet"]);
+            _skillDatabases[i].Class = _playerSkillData[_skillDatabases[i].ID]["class"].ToString();
+            _skillDatabases[i].CoolTime =Convert.ToInt32(_playerSkillData[_skillDatabases[i].ID]["coolTime"]);
+            _skillDatabases[i].IsCasting =
+                Convert.ToBoolean(_playerSkillData[_skillDatabases[i].ID]["isCasting"]);
+            _skillDatabases[i].AttackRange =
+                Convert.ToInt32(_playerSkillData[_skillDatabases[i].ID]["attackRange"]);
+            _skillDatabases[i].CastingTime =
+                Convert.ToInt32(_playerSkillData[_skillDatabases[i].ID]["castingTime"]);
+            _skillDatabases[i].Target =
+                Convert.ToInt32(_playerSkillData[_skillDatabases[i].ID]["target"]);
+            _skillDatabases[i].Description = _playerSkillData[_skillDatabases[i].ID]["description"].ToString();
+            _skillDatabases[i].BuffTime = (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["buffTime"]);
+            _skillDatabases[i].SkillNumberOfTimes =
+                Convert.ToInt32(_playerSkillData[_skillDatabases[i].ID]["skillNumberOfTimes"]);
 
-            _skillDatabases[_skillDataFindIndex].Name = _playerSkillData[i]["name"].ToString();
-            _skillDatabases[_skillDataFindIndex].Grade = _playerSkillData[i]["grade"].ToString();
-            _skillDatabases[_skillDataFindIndex].IsGet = Convert.ToBoolean(_playerSkillData[i]["isGet"]);
-            //_skillDatabases[_skillDataFindIndex].Class = _playerSkillData[i]["class"].ToString();
-            _skillDatabases[_skillDataFindIndex].CoolTime =Convert.ToInt32(_playerSkillData[i]["coolTime"]);
-            _skillDatabases[_skillDataFindIndex].IsCasting =
-                Convert.ToBoolean(_playerSkillData[i]["isCasting"]);
-            _skillDatabases[_skillDataFindIndex].AttackRange =
-                Convert.ToInt32(_playerSkillData[i]["attackRange"]);
-            _skillDatabases[_skillDataFindIndex].CastingTime =
-                Convert.ToInt32(_playerSkillData[i]["castingTime"]);
-            _skillDatabases[_skillDataFindIndex].Target =
-                Convert.ToInt32(_playerSkillData[i]["target"]);
-            _skillDatabases[_skillDataFindIndex].Description = _playerSkillData[i]["description"].ToString();
-            _skillDatabases[_skillDataFindIndex].BuffTime = (float)Convert.ToDouble(_playerSkillData[i]["buffTime"]);
-            _skillDatabases[_skillDataFindIndex].SkillNumberOfTimes =
-                Convert.ToInt32(_playerSkillData[i]["skillNumberOfTimes"]);
-
-            _skillDatabases[_skillDataFindIndex].Stiffness = (float)Convert.ToDouble(_playerSkillData[i]["stiffness"]);
-            _skillDatabases[_skillDataFindIndex].FristDelay = (float)Convert.ToDouble(_playerSkillData[i]["fristDelay"]);
-            _skillDatabases[_skillDataFindIndex].EndDelay = (float)Convert.ToDouble(_playerSkillData[i]["endDelay"]);
-            _skillDatabases[_skillDataFindIndex].Icon = _playerSkillData[i]["icon"].ToString();
+            _skillDatabases[i].Stiffness = (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["stiffness"]);
+            _skillDatabases[i].FristDelay = (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["firstDelay"]);
+            _skillDatabases[i].EndDelay = (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["endDelay"]);
+            _skillDatabases[i].Icon = _playerSkillData[_skillDatabases[i].ID]["icon"].ToString();
 
 
             
             for (int j = 0; j < 3; j++)
             {
-                _skillDatabases[_skillDataFindIndex].Damages[i] =
-                    Convert.ToInt32(_playerSkillData[i]["damage" + (i + 1)]);
+                _skillDatabases[i].Damages[j] =
+                    Convert.ToInt32(_playerSkillData[_skillDatabases[i].ID]["damage" + (j + 1)]);
                 
-                _skillDatabases[_skillDataFindIndex].HitIntervals[i] =
-                    (float)Convert.ToDouble(_playerSkillData[i]["hitInterval" + (i + 1)]);
+                _skillDatabases[i].HitIntervals[j] =
+                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["hitInterval" + (j + 1)]);
                 
-                // _skillDatabases[_skillDataFindIndex].HitNumberOfTimes[i] =
-                //     Convert.ToInt32(_playerSkillData[i]["hitNumberOfTime" + (i + 1)]);
+                 _skillDatabases[i].HitNumberOfTimes[j] =
+                     Convert.ToInt32(_playerSkillData[_skillDatabases[i].ID]["hitNumberOfTimes" + (j + 1)]);
                 
-                _skillDatabases[_skillDataFindIndex].KnockBackTimes[i] =
-                    (float)Convert.ToDouble(_playerSkillData[i]["knockBackTime" + (i + 1)]);
+                _skillDatabases[i].KnockBackTimes[j] =
+                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["knockBackTime" + (j + 1)]);
                 
-                _skillDatabases[_skillDataFindIndex].KnockBackXs[i] =
-                    (float)Convert.ToDouble(_playerSkillData[i]["knockBackX" + (i + 1)]);
+                _skillDatabases[i].KnockBackXs[j] =
+                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["knockBackX" + (j + 1)]);
                 
-                _skillDatabases[_skillDataFindIndex].KnockBackYs[i] =
-                    (float)Convert.ToDouble(_playerSkillData[i]["knockBackY" + (i + 1)]);
+                _skillDatabases[i].KnockBackYs[j] =
+                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["knockBackY" + (j + 1)]);
                 
-                _skillDatabases[_skillDataFindIndex].MoveTimes[i] =
-                    (float)Convert.ToDouble(_playerSkillData[i]["moveTime" + (i + 1)]);
+                _skillDatabases[i].MoveTimes[j] =
+                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["moveTime" + (j + 1)]);
                 
-                _skillDatabases[_skillDataFindIndex].MoveXs[i] =
-                    (float)Convert.ToDouble(_playerSkillData[i]["moveX" + (i + 1)]);
+                _skillDatabases[i].MoveXs[j] =
+                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["moveX" + (j + 1)]);
                 
-                _skillDatabases[_skillDataFindIndex].MoveYs[i] =
-                    (float)Convert.ToDouble(_playerSkillData[i]["moveY" + (i + 1)]);
+                _skillDatabases[i].MoveYs[j] =
+                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["moveY" + (j + 1)]);
             }
 
             for (int j = 0; j < 4; j++)
             {
-                _skillDatabases[_skillDataFindIndex].StatusEffects[i] =
-                    Convert.ToInt32(_playerSkillData[i]["statusEffect" + (i + 1)]);
+                _skillDatabases[i].StatusEffects[j] =
+                    Convert.ToInt32(_playerSkillData[_skillDatabases[i].ID]["statusEffect" + (j + 1)]);
             }
-
 
         }
         
-        
     }
+
+    private void SettingSkillDataBaseDic()
+    {
+        _skillDataBaseDic = new Dictionary<string, SkillDataBase>();
+
+        for (int i = 0; i < _skillDatabases.Count; i++)
+        {
+            var _skillDataFindIndex = _skillDatabases.FindIndex(e => e.ID == i);
+
+            _skillDataBaseDic[_skillDatabases[_skillDataFindIndex].Name] = _skillDatabases[i];
+        }
+    }
+
+    public SkillDataBase GetSkillData(string skillName)
+    {
+        if (_skillDataBaseDic.ContainsKey(skillName) == false)
+        {
+            Debug.LogError("is Not Skill Data in Dic");
+            return null;
+        }
+
+        return _skillDataBaseDic[skillName];
+    }
+    
+    
 
 }
