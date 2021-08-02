@@ -358,6 +358,7 @@ public class PlayerUnit : Unit
     void Start()
     {
         LoadPlayerData();
+        
         Init();
         Bind();
     }
@@ -462,21 +463,21 @@ public class PlayerUnit : Unit
 
         _basicAttackDamage = new Damage();
         _hitDamage = new Damage();
-        
 
-        _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
+        //TODO 여기 갈아 엎어야함
+        _skillAxeNumberOfTimes = 1;//_skillAxeData.NumberOfTimesTheSkill;
         _skillAxeCoolTime = _skillAxeData.CoolTime;
 
-        _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
+        _skillSpearNumberOfTimes = 1;//_skillSpearData.NumberOfTimesTheSkill;
         _skillSpearCoolTime = _skillSpearData.CoolTime;
-        
-        _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
-        _skillHammerCoolTime = _skillHammerData.CoolTime;
 
-        _skillKopshNumberOfTimes = _skillKopshData.NumberOfTimesTheSkill;
-        _skillKopshCoolTime = _skillKopshData.CoolTime;
+        // _skillHammerNumberOfTimes = _1;//skillHammerData.NumberOfTimesTheSkill;
+        // _skillHammerCoolTime = _skillHammerData.CoolTime;
+        //
+        // _skillKopshNumberOfTimes = _skillKopshData.NumberOfTimesTheSkill;
+        // _skillKopshCoolTime = _skillKopshData.CoolTime;
 
-        _skillPlainSwordNumberOfTimes = _skillPlainSwordData.NumberOfTimesTheSkill;
+        _skillPlainSwordNumberOfTimes = 1;// _skillPlainSwordData.NumberOfTimesTheSkill;
         _skillPlainSwordCoolTime = _skillPlainSwordData.CoolTime;
         _skillPlainSwordAttackInterval = _skillPlainSwordData.MultiStateHitInterval;
 
@@ -1153,42 +1154,42 @@ public class PlayerUnit : Unit
         return true;
     }
     
-    public bool IsAbleSkillHammer()
-    {
-        if (_skillHammerIsAble == false)
-        {
-            return false;
-        }
-        
-        _skillHammerNumberOfTimes--;
-        //ChangeEncroachment(SkillHammerData.IncreaseEncroachment);
+    // public bool IsAbleSkillHammer()
+    // {
+    //     if (_skillHammerIsAble == false)
+    //     {
+    //         return false;
+    //     }
+    //     
+    //     _skillHammerNumberOfTimes--;
+    //     //ChangeEncroachment(SkillHammerData.IncreaseEncroachment);
+    //
+    //     
+    //     if (_skillHammerNumberOfTimes <= 0)
+    //     {
+    //         StartCoroutine(SkillHammerCoolTimeCoroutine());
+    //     }
+    //
+    //     return true;
+    // }
 
-        
-        if (_skillHammerNumberOfTimes <= 0)
-        {
-            StartCoroutine(SkillHammerCoolTimeCoroutine());
-        }
-
-        return true;
-    }
-
-    public bool IsAbleSkillKopsh()
-    {
-        if (_skillKopshIsAble == false)
-        {
-            return false;
-        }
-
-        _skillKopshNumberOfTimes--;
-        //ChangeEncroachment(SkillKopshData.IncreaseEncroachment);
-
-        if (_skillKopshNumberOfTimes <= 0)
-        {
-            StartCoroutine(SkillKopshCoolTimeCoroutine());
-        }
-
-        return true;
-    }
+    // public bool IsAbleSkillKopsh()
+    // {
+    //     if (_skillKopshIsAble == false)
+    //     {
+    //         return false;
+    //     }
+    //
+    //     _skillKopshNumberOfTimes--;
+    //     //ChangeEncroachment(SkillKopshData.IncreaseEncroachment);
+    //
+    //     if (_skillKopshNumberOfTimes <= 0)
+    //     {
+    //         StartCoroutine(SkillKopshCoolTimeCoroutine());
+    //     }
+    //
+    //     return true;
+    // }
 
     public bool IsAbleSkillPlainSword()
     {
@@ -1581,7 +1582,7 @@ public class PlayerUnit : Unit
         }
 
         _skillAexIsAble = true;
-        _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
+        _skillAxeNumberOfTimes = 1;//_skillAxeData.NumberOfTimesTheSkill;
     }
     
     IEnumerator SkillSpearCoolTimeCoroutine()
@@ -1599,42 +1600,42 @@ public class PlayerUnit : Unit
         }
 
         _skillSpearIsAble = true;
-        _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
+        _skillSpearNumberOfTimes = 1;//_skillSpearData.NumberOfTimesTheSkill;
     }
     
-    IEnumerator SkillHammerCoolTimeCoroutine()
-    {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillHammerData.Name);
-        _skillHammerIsAble = false;
-        float timer = 0.0f;
-        _commandData.coolTime = 0;
-        while (timer < _skillHammerCoolTime)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-            _commandData.coolTime = timer;
-            yield return new WaitForFixedUpdate();
-        }
+    // IEnumerator SkillHammerCoolTimeCoroutine()
+    // {
+    //     var _commandData = GameManager.instance.commandManager.GetCommandData(_skillHammerData.Name);
+    //     _skillHammerIsAble = false;
+    //     float timer = 0.0f;
+    //     _commandData.coolTime = 0;
+    //     while (timer < _skillHammerCoolTime)
+    //     {
+    //         timer += GameManager.instance.timeMng.FixedDeltaTime;
+    //         _commandData.coolTime = timer;
+    //         yield return new WaitForFixedUpdate();
+    //     }
+    //
+    //     _skillHammerIsAble = true;
+    //     _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
+    // }
 
-        _skillHammerIsAble = true;
-        _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
-    }
-
-    IEnumerator SkillKopshCoolTimeCoroutine()
-    {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillKopshData.Name);
-        _skillKopshIsAble = false;
-        float timer = 0.0f;
-        _commandData.coolTime = 0;
-        while (timer < _skillKopshCoolTime)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-            _commandData.coolTime = timer;
-            yield return new WaitForFixedUpdate();
-        }
-
-        _skillKopshIsAble = true;
-        _skillKopshNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
-    }
+    // IEnumerator SkillKopshCoolTimeCoroutine()
+    // {
+    //     var _commandData = GameManager.instance.commandManager.GetCommandData(_skillKopshData.Name);
+    //     _skillKopshIsAble = false;
+    //     float timer = 0.0f;
+    //     _commandData.coolTime = 0;
+    //     while (timer < _skillKopshCoolTime)
+    //     {
+    //         timer += GameManager.instance.timeMng.FixedDeltaTime;
+    //         _commandData.coolTime = timer;
+    //         yield return new WaitForFixedUpdate();
+    //     }
+    //
+    //     _skillKopshIsAble = true;
+    //     _skillKopshNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
+    // }
     
     IEnumerator SkillPlainSwordCoolTimeCoroutine()
     {
@@ -1650,7 +1651,7 @@ public class PlayerUnit : Unit
         }
 
         _skillPlainSwordIsAble = true;
-        _skillPlainSwordNumberOfTimes = _skillPlainSwordData.NumberOfTimesTheSkill;
+        _skillPlainSwordNumberOfTimes = 1; //_skillPlainSwordData.NumberOfTimesTheSkill;
     }
     
     IEnumerator SkillPlainSwordMultiAttackCoroutine()

@@ -34,15 +34,14 @@ public class SkillAxeController : SkillControllerBase
 
     private void Progress()
     {
-       
         _skillAxeAttackCtrl =
             GameObject.Instantiate(_skillAxeData.AxeGameObject, Unit.transform.position, quaternion.identity)
                 .GetComponent<SkillAxeAttackCtrl>();
-
+        Debug.Log(_skillAxeData.HitNumberOfTimes[0]);
         _skillAxeAttackCtrl.OnEndSkillEvent += EndSkill;
         _skillAxeAttackCtrl.OnEnemyHitEvent += _unit.OnAddComboEventCall;
         _skillAxeAttackCtrl.Init(_damage, _skillAxeData.CinemachineSignalSource);
-        _skillAxeAttackCtrl.Init(_skillAxeData.AxeMovePostionX, _skillAxeData.AxeMoveTime, _skillAxeData.CinemachineSignalSource, _unit.FacingDir, _skillAxeData.HitNumberOfTimes[0], _skillAxeData.HitIntervals[0]);
+        _skillAxeAttackCtrl.Init(_skillAxeData.ProjectileMoveX, _skillAxeData.ProjectileMoveTime, _skillAxeData.CinemachineSignalSource, _unit.FacingDir, _skillAxeData.HitNumberOfTimes[0], _skillAxeData.HitIntervals[0]);
         
     }
 

@@ -101,6 +101,7 @@ public class SkillAxeAttackCtrl : AttackBase
 
         _axeMultiStageHitCoroutuineCounter++;
 
+        Unit target = collider2D.GetComponentInParent<Unit>();
         float _timer = _axeMultiStageHitInterval;
         float _counter = 0;
 
@@ -114,9 +115,9 @@ public class SkillAxeAttackCtrl : AttackBase
                 {
                     yield break;
                 }
-
-                Progress();
-                AttackDamage(collider2D);
+                Debug.Log("multStageHit");
+                ProgressTargetSelection(collider2D);
+                //AttackDamage(collider2D);
 
                 _counter++;
                 _timer = 0.0f;

@@ -42,6 +42,7 @@ public class SkillDataBank : MonoBehaviour
     private void Init()
     {
         _isInit = true;
+        ResetSkillData();
         
         LoadSkillData("PlayerSkillData");
 
@@ -61,6 +62,42 @@ public class SkillDataBank : MonoBehaviour
 
         return true;
     }
+
+    private void ResetSkillData()
+    {
+        for (int i = 0; i < _skillDatabases.Count; i++)
+        {
+            _skillDatabases[i].Name = String.Empty;
+            _skillDatabases[i].Grade = String.Empty;
+            _skillDatabases[i].IsGet = false;
+            _skillDatabases[i].Class = String.Empty;
+            _skillDatabases[i].CoolTime = 0;
+            _skillDatabases[i].IsCasting = false;
+            _skillDatabases[i].AttackRange = 0;
+            _skillDatabases[i].Target = 0;
+            _skillDatabases[i].Description = String.Empty;
+            _skillDatabases[i].BuffTime = 0;
+            _skillDatabases[i].SkillNumberOfTimes = 0;
+            _skillDatabases[i].Damages = new List<int>();
+            _skillDatabases[i].HitIntervals = new List<float>();
+            _skillDatabases[i].HitNumberOfTimes = new List<int>();
+            _skillDatabases[i].KnockBackTimes = new List<float>();
+            _skillDatabases[i].KnockBackXs = new List<float>();
+            _skillDatabases[i].KnockBackYs = new List<float>();
+            _skillDatabases[i].Stiffness = 0;
+            _skillDatabases[i].MoveTimes = new List<float>();
+            _skillDatabases[i].MoveXs = new List<float>();
+            _skillDatabases[i].MoveYs = new List<float>();
+            _skillDatabases[i].ProjectileMoveTime = 0;
+            _skillDatabases[i].ProjectileMoveX = 0;
+            _skillDatabases[i].ProjectileMoveY = 0;
+            _skillDatabases[i].StatusEffects = new List<int>();
+            _skillDatabases[i].FristDelay = 0;
+            _skillDatabases[i].EndDelay = 0;
+            _skillDatabases[i].NextSkill = 0;
+            _skillDatabases[i].Icon = String.Empty;
+        }
+    }
     
     private void LoadSkillData(string skillDataCsvName)
     {
@@ -69,6 +106,8 @@ public class SkillDataBank : MonoBehaviour
 
     private void SettingSkillData()
     {
+        Debug.Log("Setting Skill Data");
+        
         for (int i = 0; i < _skillDatabases.Count; i++)
         {
             //var _skillDataFindIndex = _skillDatabases.FindIndex(e => e.ID == i);
@@ -95,8 +134,15 @@ public class SkillDataBank : MonoBehaviour
             _skillDatabases[i].FristDelay = (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["firstDelay"]);
             _skillDatabases[i].EndDelay = (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["endDelay"]);
             _skillDatabases[i].Icon = _playerSkillData[_skillDatabases[i].ID]["icon"].ToString();
+            _skillDatabases[i].ProjectileMoveTime =
+                (float) Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["projectileMoveTime"]);
+            _skillDatabases[i].ProjectileMoveX =
+                (float) Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["projectileMoveX"]);
+            _skillDatabases[i].ProjectileMoveY =
+                (float) Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["projectileMoveY"]);
 
             var hitNumberOfTimes = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["hitNumberOfTimes"]);
+            Debug.Log(hitNumberOfTimes);
             SplitDataAndPutInlist(_skillDatabases[i].HitNumberOfTimes, hitNumberOfTimes);
 
             var damages = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["damage"]);
@@ -135,16 +181,15 @@ public class SkillDataBank : MonoBehaviour
 
         for (int i = 0; i < _skillDatabases.Count; i++)
         {
-            var _skillDataFindIndex = _skillDatabases.FindIndex(e => e.ID == i);
-
-            _skillDataBaseDic[_skillDatabases[_skillDataFindIndex].Name] = _skillDatabases[i];
+            _skillDataBaseDic[_skillDatabases[i].Name] = _skillDatabases[i];
         }
     }
 
     private void SplitDataAndPutInlist(in List<int> data, string splitData)
     {
         var splitDataToList = splitData.Split('/').ToList();
-
+        
+        
         for (int i = 0; i < splitDataToList.Count; i++)
         {
             data.Add(Convert.ToInt32(splitDataToList[i]));

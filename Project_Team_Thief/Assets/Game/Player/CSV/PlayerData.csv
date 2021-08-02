@@ -1,7 +1,7 @@
-﻿stateLevel,maxHp,runSpeed,jumpPower,dashRange,dashCoolTime,deathCount,deathHP,critical,attackSpeed,def
-1,100,5,6,3,1.5,1,0,20,1,0
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
+﻿stateLevel,maxHp,moveSpeed,jumpPower,dashRange,dashCoolTime,deathCount,deathHP,critical,attackSpeed,def
+1,100,5,15,3,0.2,1,30,10,1,20
+2,150,5,5,3,0.2,2,30,20,1.1,20
+3,200,5,5,3,0.2,2,30,30,1.2,20
+4,250,5,5,3,0.2,2,30,35,1.3,20
+5,300,5,5,3,0.2,2,30,40,1.4,20
+6,350,5,5,3,0.2,2,30,50,1.5,20

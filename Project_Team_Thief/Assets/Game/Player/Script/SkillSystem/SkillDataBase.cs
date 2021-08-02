@@ -10,9 +10,9 @@ public abstract class SkillDataBase : ScriptableObject
     public int ID => _id;
 
     
-    [SerializeField, Tooltip("스킬 사용 가능 횟수")] 
-    private int _numberOfTimesTheSkill; // 스킬 사용 가능 횟수.
-    public int NumberOfTimesTheSkill => _numberOfTimesTheSkill;
+    // [SerializeField, Tooltip("스킬 사용 가능 횟수")] 
+    // private int _numberOfTimesTheSkill; // 스킬 사용 가능 횟수.
+    // public int NumberOfTimesTheSkill => _numberOfTimesTheSkill;
 
     [SerializeField] 
     private SignalSourceAsset _cinemachineSignalSource;
@@ -152,7 +152,8 @@ public abstract class SkillDataBase : ScriptableObject
         set => _hitIntervals = value;
     }
 
-    private List<int> _hitNumberOfTimes;
+    [SerializeField]
+    private List<int> _hitNumberOfTimes = new List<int>();
 
     public List<int> HitNumberOfTimes
     {
@@ -216,12 +217,12 @@ public abstract class SkillDataBase : ScriptableObject
         set => _moveYs = value;
     }
 
-    private float projectileMoveTime;
+    private float _projectileMoveTime;
 
     public float ProjectileMoveTime
     {
-        get => projectileMoveTime;
-        set => projectileMoveTime = value;
+        get => _projectileMoveTime;
+        set => _projectileMoveTime = value;
     }
 
     private float projectileMoveX;

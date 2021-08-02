@@ -101,10 +101,9 @@ public class AttackBase : MonoBehaviour
         }
 
         AttackAreaDetection();
-        
+
         if (_isEnter == true)
         {
-            
             AttackDamage();
             PlayFx();
             PlaySfx();
@@ -120,7 +119,31 @@ public class AttackBase : MonoBehaviour
         
         AttackEnd();
     }
-    
+
+    public virtual void ProgressTargetSelection(Collider2D target)
+    {
+        if (_isInit == false)
+        {
+            Debug.LogError("Is Not Init Attack Ctrl");
+            return;
+        }
+
+        AttackDamage(target);
+        PlayFx();
+        PlaySfx();
+        HitStop();
+        BulltTime();
+        CameraShake();
+        ZoomIn();
+
+        if (_isAlwaysPlaySFX)
+        {
+            PlaySfx();
+        }
+
+        AttackEnd();
+    }
+
     public virtual void Init(Damage damage)
     {
         if (_attackCollider2D == null)
@@ -223,7 +246,6 @@ public class AttackBase : MonoBehaviour
             }
         }
         
-        Debug.Log("after is Enter? : " + _isEnter);
     }
 
     private void AttackDamage()
@@ -249,7 +271,16 @@ public class AttackBase : MonoBehaviour
                 OnEnemyHitEvent?.Invoke();
             }
         }
+    }
 
+    private void AttackDamage(Collider2D target)
+    {
+        //============== 고재협이 편집함 ======================
+        _damage.hitPosition = target.ClosestPoint(_attackCollider2D.bounds.center);
+        //=====================================================
+        target.GetComponentInParent<Unit>().HandleHit(_damage);
+        
+        OnEnemyHitEvent?.Invoke();
     }
 
     private void CameraShake()

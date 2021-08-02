@@ -1849,13 +1849,13 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private GameSkillObject _gameSkillObject;
         private GameSkillObject _gameSkillObject2;
         
-        public SkillAxeState(PlayerFSMSystem system, SkillAxeData skillAxeData) : base(system)
+        public SkillAxeState(PlayerFSMSystem system) : base(system)
         {
-            _skillAxeData = skillAxeData;
         }
 
         public override void StartState()
         {
+            _skillAxeData = (SkillAxeData)SkillDataBank.instance.GetSkillData("회전도끼 던지기");
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe);
@@ -2536,7 +2536,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.JumpAttack, new BasicJumpAttack(this));
         AddState(TransitionCondition.Hit, new HitState(this));
         //AddState(TransitionCondition.SkillShadowWalk, new SkillShadowWalkState(this, Unit.ShadowWalkSkillData));
-        AddState(TransitionCondition.SkillAxe, new SkillAxeState(this, Unit.SkillAxeData));
+        AddState(TransitionCondition.SkillAxe, new SkillAxeState(this));
         // AddState(TransitionCondition.SkillSpear, new SkillSpearState(this, Unit.SkillSpearData));
         // AddState(TransitionCondition.SkillHammer, new SkillHammerState(this, Unit.SkillHammerData));
         // AddState(TransitionCondition.SkillKopsh, new SkillKopshState(this, Unit.SkillKopshData));
@@ -2682,7 +2682,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     {
         switch (skillName)
         {
-            case "Skill1Axe":
+            case "회전도끼 던지기":
                 return TransitionCondition.SkillAxe;
                 break;
             case "Skill2Spear":

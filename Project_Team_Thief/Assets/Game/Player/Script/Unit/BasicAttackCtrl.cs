@@ -8,10 +8,6 @@ using Assert = UnityEngine.Assertions.Assert;
 
 public class BasicAttackCtrl : AttackBase
 {
-    public override void Progress()
-    {
-        base.Progress();
-    }
 
     public override void AttackEnd()
     {
