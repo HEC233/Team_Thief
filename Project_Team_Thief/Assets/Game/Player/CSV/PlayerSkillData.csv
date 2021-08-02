@@ -1,12 +1,9 @@
-﻿id,name,class,grade,isGet,coolTime,isCasting,attackRange,castingTime,target,description,buffTime,skillNumberOfTimes,damage1,damage2,damage3,hitInterval1,hitInterval2,hitInterval3,hitNumberOfTimes1,hitNumberOfTimes2,hitNumberOfTimes3,knockBackTime1,knockBackTime2,knockBackTime3,knockBackX1,knockBackY1,knockBackX2 ,knockBackY2,knockBackX3,knockBackY3,stiffness,moveTime1,moveTime2,moveTime3,moveX1,moveY1,moveX2,moveY2,moveX3,moveY3,statusEffect1,statusEffect2,statusEffect3,statusEffect4,icon,firstDelay,endDelay
-0,기본공격,기본,노말,TRUE,0,FALSE,0,0,0,전방에 발차기를 날려 적을 뒤로 밀어낸다.,0,1,100,0,0,0,0,0,1,0,0,0.06,0,0,2,0,0,0,0,0,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2
-1,점프공격,기본,노말,TRUE,0,FALSE,0,0,0,"점프, 낙하상태에서 적을 한번벤다, 추가키 입력 시 아래로 내려찍는다.",0,1,100,150,0,0,0,0,1,1,0,0.04,0.04,0,0.3,5,0,0,0,0,0.5,0.06,0.04,0,0.5,5,0,0,0,0,0,0,0,0,0,0,0
-2,회전도끼 던지기,암살자,레어,FALSE,3,FALSE,0,0,0,"회전도끼를 던진다, 추가 키 입력 시 한번 더 던진다.",0,1,150,0,0,0.08,0,0,6,0,0,0,0,0,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2
-3,사복검 찌르기,학살자,레어,FALSE,3,FALSE,0,0,0,전방에 사복검을 날려 적을 찌른 후 추가 키 입력 시 끌어온다.,0,1,500,300,0,0.04,0,0,2,1,0,0.04,0.1,0,1,0,-5,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2
-4,사복검 난무,학살자,유니크,FALSE,10,FALSE,0,0,0,"제자리에서 사복검을 펼쳐 난무한다, 난무중 이동이 가능하다.",0,20,500,0,0,0.08,0,0,3,0,0,0.04,0,0,0.2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2
-5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+﻿id,name,icon,class,grade,isGet,coolTime,isCasting,castingTime,attackRange,target,description,buffTime,skillNumberOfTimes,damage,hitNumberOfTimes,hitInterval,moveTime,moveX,moveY,projectileMoveTime,projectileMoveX,projectileMoveY,knockBackTime,knockBackX,knockBackY,stiffness,statusEffect,firstDelay,endDelay,nextSkill
+0,기본공격,none,기본,노말,1,0,0,0,0,0,none,0,1,50,1,0,0,0,0,0,0,0,0.06,2,0,0.3,none,0,1,0
+1,점프공격1타,none,기본,노말,1,0,0,0,0,0,none,0,1,50,1,0,0.05,0.5,0,0,0,0,0.05,1,0,0.3,none,0,1,0
+2,점프공격2타,none,기본,노말,1,0,0,0,0,0,none,0,1,50,1,0,0.05,0.5,-16,0,0,0,0.05,0.5,-16,0.3,none,0,1,0
+3,회전도끼 던지기,UI_Skill_SpinAxe,암살자,레어,0,3,0,0,0,0,"회전도끼를 던진다, 추가 키 입력 시 한번 더 던진다.",0,1,100,3,0.5,0.4,10,0,0,0,0,0.04,0.3,0,0.2,none,0,1,0
+4,회전도끼 추가공격,none,암살자,레어,1,0,0,0,0,0,none,0,1,150,1,0,0.04,-0.3,0,0.4,10,0,0.1,2,0,1,none,0,1,0
+5,사복검 찌르기,UI_Skill_PlainSwordSting,학살자,레어,0,3,0,0,0,0,전방에 사복검을 날려 적을 찌른다. 추가 키 입력 시 끌어온다.,0,1,100,1,0,0,0,0,0,0,0,0.06,1,0,1,none,0,1,0
+6,사복검 찌르기 추가공격,none,학살자,레어,1,0,0,0,0,0,none,0,1,200,1,0,0,0,0,0,0,0,0.06,-10,0.5,1,none,0,1,0
+7,사복검 난무,UI_Skill_PlainSwordflurry,학살자,유니크,0,10,0,0,0,0,"제자리에서 사복검을 펼쳐 난무한다, 난무중 이동이 가능하다.",0,20,70,3,0,0,0,0,0,0,0,0.04,0.1,0,1,none,0,1,0

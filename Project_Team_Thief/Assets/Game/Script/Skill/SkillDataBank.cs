@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SkillDataBank : MonoBehaviour
@@ -95,44 +96,35 @@ public class SkillDataBank : MonoBehaviour
             _skillDatabases[i].EndDelay = (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["endDelay"]);
             _skillDatabases[i].Icon = _playerSkillData[_skillDatabases[i].ID]["icon"].ToString();
 
+            var hitNumberOfTimes = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["hitNumberOfTimes"]);
+            SplitDataAndPutInlist(_skillDatabases[i].HitNumberOfTimes, hitNumberOfTimes);
 
+            var damages = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["damage"]);
+            SplitDataAndPutInlist(_skillDatabases[i].Damages, damages);
             
-            for (int j = 0; j < 3; j++)
-            {
-                _skillDatabases[i].Damages[j] =
-                    Convert.ToInt32(_playerSkillData[_skillDatabases[i].ID]["damage" + (j + 1)]);
-                
-                _skillDatabases[i].HitIntervals[j] =
-                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["hitInterval" + (j + 1)]);
-                
-                 _skillDatabases[i].HitNumberOfTimes[j] =
-                     Convert.ToInt32(_playerSkillData[_skillDatabases[i].ID]["hitNumberOfTimes" + (j + 1)]);
-                
-                _skillDatabases[i].KnockBackTimes[j] =
-                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["knockBackTime" + (j + 1)]);
-                
-                _skillDatabases[i].KnockBackXs[j] =
-                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["knockBackX" + (j + 1)]);
-                
-                _skillDatabases[i].KnockBackYs[j] =
-                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["knockBackY" + (j + 1)]);
-                
-                _skillDatabases[i].MoveTimes[j] =
-                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["moveTime" + (j + 1)]);
-                
-                _skillDatabases[i].MoveXs[j] =
-                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["moveX" + (j + 1)]);
-                
-                _skillDatabases[i].MoveYs[j] =
-                    (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["moveY" + (j + 1)]);
-            }
+            var hitInterval = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["hitInterval"]);
+            SplitDataAndPutInlist(_skillDatabases[i].HitIntervals, hitInterval);
+            
+            var knockBackTimes = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["knockBackTime"]);
+            SplitDataAndPutInlist(_skillDatabases[i].KnockBackTimes, knockBackTimes);
+            
+            var knockBackX = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["knockBackX"]);
+            SplitDataAndPutInlist(_skillDatabases[i].KnockBackXs, knockBackX);
+            
+            var knockBackY = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["knockBackY"]);
+            SplitDataAndPutInlist(_skillDatabases[i].KnockBackYs, knockBackY);
 
-            for (int j = 0; j < 4; j++)
-            {
-                _skillDatabases[i].StatusEffects[j] =
-                    Convert.ToInt32(_playerSkillData[_skillDatabases[i].ID]["statusEffect" + (j + 1)]);
-            }
+            var moveTime = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["moveTime"]);
+            SplitDataAndPutInlist(_skillDatabases[i].MoveTimes, moveTime);
+            
+            var moveX = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["moveX"]);
+            SplitDataAndPutInlist(_skillDatabases[i].MoveXs, moveX);
 
+            var moveY = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["moveY"]);
+            SplitDataAndPutInlist(_skillDatabases[i].MoveYs, moveY);
+            
+            var statusEffect = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["statusEffect"]);
+            SplitDataAndPutInlist(_skillDatabases[i].StatusEffects, statusEffect);
         }
         
     }
@@ -146,6 +138,26 @@ public class SkillDataBank : MonoBehaviour
             var _skillDataFindIndex = _skillDatabases.FindIndex(e => e.ID == i);
 
             _skillDataBaseDic[_skillDatabases[_skillDataFindIndex].Name] = _skillDatabases[i];
+        }
+    }
+
+    private void SplitDataAndPutInlist(in List<int> data, string splitData)
+    {
+        var splitDataToList = splitData.Split('/').ToList();
+
+        for (int i = 0; i < splitDataToList.Count; i++)
+        {
+            data.Add(Convert.ToInt32(splitDataToList[i]));
+        }
+    }
+    
+    private void SplitDataAndPutInlist(in List<float> data, string splitData)
+    {
+        var splitDataToList = splitData.Split('/').ToList();
+
+        for (int i = 0; i < splitDataToList.Count; i++)
+        {
+            data.Add((float)Convert.ToDouble(splitDataToList[i]));
         }
     }
 

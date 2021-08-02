@@ -18,20 +18,20 @@ public abstract class SkillDataBase : ScriptableObject
     private SignalSourceAsset _cinemachineSignalSource;
     public SignalSourceAsset CinemachineSignalSource => _cinemachineSignalSource;
 
-    [SerializeField] 
-    private string _skillName;
-
-    public string SkillName => _skillName;
-
-    [SerializeField] 
-    private float _increaseEncroachment;
-
-    public float IncreaseEncroachment => _increaseEncroachment;
-
-    [SerializeField] 
-    private float _encroachmentDecrease;
-
-    public float DecreaseEncroachment => _encroachmentDecrease;
+    // [SerializeField] 
+    // private string _skillName;
+    //
+    // public string SkillName => _skillName;
+    //
+    // [SerializeField] 
+    // private float _increaseEncroachment;
+    //
+    // public float IncreaseEncroachment => _increaseEncroachment;
+    //
+    // [SerializeField] 
+    // private float _encroachmentDecrease;
+    //
+    // public float DecreaseEncroachment => _encroachmentDecrease;
     
     //New Data -> skill Info
     [SerializeField]
@@ -85,21 +85,21 @@ public abstract class SkillDataBase : ScriptableObject
         get => _isCasting;
         set => _isCasting = value;
     }
-
-    private int _attackRange;
-
-    public int AttackRange
-    {
-        get => _attackRange;
-        set => _attackRange = value;
-    }
-
+    
     private int _castingTime;
 
     public int CastingTime
     {
         get => _castingTime;
         set => _castingTime = value;
+    }
+    
+    private int _attackRange;
+
+    public int AttackRange
+    {
+        get => _attackRange;
+        set => _attackRange = value;
     }
 
     private int _target;
@@ -136,49 +136,49 @@ public abstract class SkillDataBase : ScriptableObject
     }
 
     //New Data -> Skill Attack Info
-    private int[] _damages = new int[3];
+    private List<int> _damages;
 
-    public int[] Damages
+    public List<int> Damages
     {
         get => _damages;
         set => _damages = value;
     }
 
-    private float[] _hitIntervals = new float[3];
+    private List<float> _hitIntervals;
 
-    public float[] HitIntervals
+    public List<float> HitIntervals
     {
         get => _hitIntervals;
         set => _hitIntervals = value;
     }
 
-    private int[] _hitNumberOfTimes = new int[3];
+    private List<int> _hitNumberOfTimes;
 
-    public int[] HitNumberOfTimes
+    public List<int> HitNumberOfTimes
     {
         get => _hitNumberOfTimes;
         set => _hitNumberOfTimes = value;
     }
 
-    private float[] _knockBackTimes = new float[3];
+    private List<float> _knockBackTimes;
 
-    public float[] KnockBackTimes
+    public  List<float> KnockBackTimes
     {
         get => _knockBackTimes;
         set => _knockBackTimes = value;
     }
 
-    private float[] _knockBackXs = new float[3];
+    private List<float> _knockBackXs;
 
-    public float[] KnockBackXs
+    public  List<float> KnockBackXs
     {
         get => _knockBackXs;
         set => _knockBackXs = value;
     }
 
-    private float[] _knockBackYs = new float[3];
+    private List<float> _knockBackYs;
     
-    public float[] KnockBackYs
+    public List<float> KnockBackYs
     {
         get => _knockBackYs;
         set => _knockBackYs = value;
@@ -192,34 +192,58 @@ public abstract class SkillDataBase : ScriptableObject
     }
 
     //New Data -> Skill Move Info
-    private float[] _moveTimes = new float[3];
+    private List<float> _moveTimes;
 
-    public float[] MoveTimes
+    public  List<float> MoveTimes
     {
         get => _moveTimes;
         set => _moveTimes = value;
     }
 
-    private float[] _moveXs = new float[3];
+    private List<float> _moveXs;
 
-    public float[] MoveXs
+    public  List<float> MoveXs
     {
         get => _moveXs;
         set => _moveXs = value;
     }
 
-    private float[] _moveYs = new float[3];
+    private List<float> _moveYs;
 
-    public float[] MoveYs
+    public  List<float> MoveYs
     {
         get => _moveYs;
         set => _moveYs = value;
     }
 
-    //New Data -> Skill Effect Info
-    private int[] _statusEffects = new int[4];
+    private float projectileMoveTime;
 
-    public int[] StatusEffects
+    public float ProjectileMoveTime
+    {
+        get => projectileMoveTime;
+        set => projectileMoveTime = value;
+    }
+
+    private float projectileMoveX;
+
+    public float ProjectileMoveX
+    {
+        get => projectileMoveX;
+        set => projectileMoveX = value;
+    }
+    
+    private float projectileMoveY;
+
+    public float ProjectileMoveY
+    {
+        get => projectileMoveY;
+        set => projectileMoveY = value;
+    }
+    
+    //New Data -> Skill Effect Info
+    private List<int> _statusEffects;
+
+    public List<int> StatusEffects
     {
         get => _statusEffects;
         set => _statusEffects = value;
@@ -240,6 +264,14 @@ public abstract class SkillDataBase : ScriptableObject
     {
         get => _endDelay;
         set => _endDelay = value;
+    }
+
+    private float nextSkill;
+
+    public float NextSkill
+    {
+        get => nextSkill;
+        set => nextSkill = value;
     }
 
     //New Data -> Etc

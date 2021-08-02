@@ -480,7 +480,7 @@ public class PlayerUnit : Unit
         _skillPlainSwordCoolTime = _skillPlainSwordData.CoolTime;
         _skillPlainSwordAttackInterval = _skillPlainSwordData.MultiStateHitInterval;
 
-        GameManager.instance.commandManager.GetCommandData(_skillAxeData.SkillName).maxCoolTIme =
+        GameManager.instance.commandManager.GetCommandData(_skillAxeData.Name).maxCoolTIme =
             _skillAxeData.CoolTime;
         // GameManager.instance.commandManager.GetCommandData(_skillSpearData.SkillName).maxCoolTIme =
         //     _skillSpearData.CoolTime;
@@ -488,7 +488,7 @@ public class PlayerUnit : Unit
         //     _skillHammerData.CoolTime;
         // GameManager.instance.commandManager.GetCommandData(_skillKopshData.SkillName).maxCoolTIme =
         //     _skillKopshData.CoolTime;
-        GameManager.instance.commandManager.GetCommandData(_skillPlainSwordData.SkillName).maxCoolTIme =
+        GameManager.instance.commandManager.GetCommandData(_skillPlainSwordData.Name).maxCoolTIme =
             _skillPlainSwordData.CoolTime;
 
     }
@@ -1087,34 +1087,34 @@ public class PlayerUnit : Unit
 
     private void FindEncroachmentDecreaseFromSkillData(string skillName)
     {
-        float encroachmentIncrease = 0.0f;
-        
-        if (_skillAxeData.SkillName == skillName)
-        {
-            encroachmentIncrease = _skillAxeData.DecreaseEncroachment;
-        }
-        else if (_skillSpearData.SkillName == skillName)
-        {
-            encroachmentIncrease = _skillSpearData.DecreaseEncroachment;
-        }
-        else if (_skillHammerData.SkillName == skillName)
-        {
-            encroachmentIncrease = _skillHammerData.DecreaseEncroachment;
-        }
-        else if (_skillKopshData.SkillName == skillName)
-        {
-            encroachmentIncrease = _skillKopshData.DecreaseEncroachment;
-        }
-        else if (_skillPlainSwordData.SkillName == skillName)
-        {
-            encroachmentIncrease =  _skillPlainSwordData.DecreaseEncroachment;
-        }
-        else if ("Basic" == skillName)
-        {
-            encroachmentIncrease = _baiscAttackEncroachmentDecrease;
-        }
-        
-        ChangeEncroachment(encroachmentIncrease);
+        // float encroachmentIncrease = 0.0f;
+        //
+        // if (_skillAxeData.SkillName == skillName)
+        // {
+        //     encroachmentIncrease = _skillAxeData.DecreaseEncroachment;
+        // }
+        // else if (_skillSpearData.SkillName == skillName)
+        // {
+        //     encroachmentIncrease = _skillSpearData.DecreaseEncroachment;
+        // }
+        // else if (_skillHammerData.SkillName == skillName)
+        // {
+        //     encroachmentIncrease = _skillHammerData.DecreaseEncroachment;
+        // }
+        // else if (_skillKopshData.SkillName == skillName)
+        // {
+        //     encroachmentIncrease = _skillKopshData.DecreaseEncroachment;
+        // }
+        // else if (_skillPlainSwordData.SkillName == skillName)
+        // {
+        //     encroachmentIncrease =  _skillPlainSwordData.DecreaseEncroachment;
+        // }
+        // else if ("Basic" == skillName)
+        // {
+        //     encroachmentIncrease = _baiscAttackEncroachmentDecrease;
+        // }
+        //
+        // ChangeEncroachment(encroachmentIncrease);
     }
     
     public bool IsAbleSkillAxe()
@@ -1125,7 +1125,7 @@ public class PlayerUnit : Unit
         }
 
         _skillAxeNumberOfTimes--;
-        ChangeEncroachment(_skillAxeData.IncreaseEncroachment);
+        //ChangeEncroachment(_skillAxeData.IncreaseEncroachment);
 
         if (_skillAxeNumberOfTimes <= 0)
         {
@@ -1143,7 +1143,7 @@ public class PlayerUnit : Unit
         }
 
         _skillSpearNumberOfTimes--;
-        ChangeEncroachment(_skillSpearData.IncreaseEncroachment);
+        //ChangeEncroachment(_skillSpearData.IncreaseEncroachment);
         
         if (_skillSpearNumberOfTimes <= 0)
         {
@@ -1161,7 +1161,7 @@ public class PlayerUnit : Unit
         }
         
         _skillHammerNumberOfTimes--;
-        ChangeEncroachment(SkillHammerData.IncreaseEncroachment);
+        //ChangeEncroachment(SkillHammerData.IncreaseEncroachment);
 
         
         if (_skillHammerNumberOfTimes <= 0)
@@ -1180,7 +1180,7 @@ public class PlayerUnit : Unit
         }
 
         _skillKopshNumberOfTimes--;
-        ChangeEncroachment(SkillKopshData.IncreaseEncroachment);
+        //ChangeEncroachment(SkillKopshData.IncreaseEncroachment);
 
         if (_skillKopshNumberOfTimes <= 0)
         {
@@ -1198,7 +1198,7 @@ public class PlayerUnit : Unit
         }
 
         _skillPlainSwordNumberOfTimes--;
-        ChangeEncroachment(SkillPlainSwordData.IncreaseEncroachment);
+        //ChangeEncroachment(SkillPlainSwordData.IncreaseEncroachment);
 
         if (_skillPlainSwordNumberOfTimes <= 0)
         {
@@ -1568,7 +1568,7 @@ public class PlayerUnit : Unit
 
     IEnumerator SkillAxeCoolTimeCoroutine()
     {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillAxeData.SkillName);
+        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillAxeData.Name);
         _skillAexIsAble = false;
         float timer = 0.0f;
         _commandData.coolTime = 0;
@@ -1586,7 +1586,7 @@ public class PlayerUnit : Unit
     
     IEnumerator SkillSpearCoolTimeCoroutine()
     {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(SkillSpearData.SkillName);
+        var _commandData = GameManager.instance.commandManager.GetCommandData(SkillSpearData.Name);
         _skillSpearIsAble = false;
         float timer = 0.0f;
 
@@ -1604,7 +1604,7 @@ public class PlayerUnit : Unit
     
     IEnumerator SkillHammerCoolTimeCoroutine()
     {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillHammerData.SkillName);
+        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillHammerData.Name);
         _skillHammerIsAble = false;
         float timer = 0.0f;
         _commandData.coolTime = 0;
@@ -1621,7 +1621,7 @@ public class PlayerUnit : Unit
 
     IEnumerator SkillKopshCoolTimeCoroutine()
     {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillKopshData.SkillName);
+        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillKopshData.Name);
         _skillKopshIsAble = false;
         float timer = 0.0f;
         _commandData.coolTime = 0;
@@ -1638,7 +1638,7 @@ public class PlayerUnit : Unit
     
     IEnumerator SkillPlainSwordCoolTimeCoroutine()
     {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillPlainSwordData.SkillName);
+        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillPlainSwordData.Name);
         _skillPlainSwordIsAble = false;
         float timer = 0.0f;
         _commandData.coolTime = 0;
