@@ -78,6 +78,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _coolTime = value;
     }
 
+    [SerializeField]
     private bool _isCasting;
 
     public bool IsCasting
@@ -86,6 +87,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _isCasting = value;
     }
     
+    [SerializeField]
     private int _castingTime;
 
     public int CastingTime
@@ -93,7 +95,8 @@ public abstract class SkillDataBase : ScriptableObject
         get => _castingTime;
         set => _castingTime = value;
     }
-    
+
+    [SerializeField]
     private int _attackRange;
 
     public int AttackRange
@@ -102,6 +105,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _attackRange = value;
     }
 
+    [SerializeField]
     private int _target;
 
     public int Target
@@ -119,6 +123,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _description = value;
     }
 
+    [SerializeField]
     private float _buffTime;
 
     public float BuffTime
@@ -127,6 +132,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _buffTime = value;
     }
 
+    [SerializeField]
     private int _skillNumberOfTimes;
 
     public int SkillNumberOfTimes
@@ -136,6 +142,7 @@ public abstract class SkillDataBase : ScriptableObject
     }
 
     //New Data -> Skill Attack Info
+    [SerializeField]
     private List<int> _damages;
 
     public List<int> Damages
@@ -143,7 +150,8 @@ public abstract class SkillDataBase : ScriptableObject
         get => _damages;
         set => _damages = value;
     }
-
+    
+    [SerializeField]
     private List<float> _hitIntervals;
 
     public List<float> HitIntervals
@@ -161,6 +169,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _hitNumberOfTimes = value;
     }
 
+    [SerializeField]
     private List<float> _knockBackTimes;
 
     public  List<float> KnockBackTimes
@@ -169,6 +178,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _knockBackTimes = value;
     }
 
+    [SerializeField]
     private List<float> _knockBackXs;
 
     public  List<float> KnockBackXs
@@ -177,6 +187,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _knockBackXs = value;
     }
 
+    [SerializeField]
     private List<float> _knockBackYs;
     
     public List<float> KnockBackYs
@@ -184,6 +195,8 @@ public abstract class SkillDataBase : ScriptableObject
         get => _knockBackYs;
         set => _knockBackYs = value;
     }
+    
+    [SerializeField]
     private float _stiffness;
 
     public float Stiffness
@@ -193,6 +206,8 @@ public abstract class SkillDataBase : ScriptableObject
     }
 
     //New Data -> Skill Move Info
+    
+    [SerializeField]
     private List<float> _moveTimes;
 
     public  List<float> MoveTimes
@@ -201,6 +216,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _moveTimes = value;
     }
 
+    [SerializeField]
     private List<float> _moveXs;
 
     public  List<float> MoveXs
@@ -209,6 +225,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _moveXs = value;
     }
 
+    [SerializeField]
     private List<float> _moveYs;
 
     public  List<float> MoveYs
@@ -217,6 +234,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _moveYs = value;
     }
 
+    [SerializeField]
     private float _projectileMoveTime;
 
     public float ProjectileMoveTime
@@ -225,6 +243,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _projectileMoveTime = value;
     }
 
+    [SerializeField]
     private float projectileMoveX;
 
     public float ProjectileMoveX
@@ -233,6 +252,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => projectileMoveX = value;
     }
     
+    [SerializeField]
     private float projectileMoveY;
 
     public float ProjectileMoveY
@@ -242,6 +262,7 @@ public abstract class SkillDataBase : ScriptableObject
     }
     
     //New Data -> Skill Effect Info
+    [SerializeField]
     private List<int> _statusEffects;
 
     public List<int> StatusEffects
@@ -251,6 +272,7 @@ public abstract class SkillDataBase : ScriptableObject
     }
 
     //New Data -> Skill Delay Info
+    [SerializeField]
     private float _fristDelay;
 
     public float FristDelay
@@ -259,6 +281,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _fristDelay = value;
     }
 
+    [SerializeField]
     private float _endDelay;
 
     public float EndDelay
@@ -267,6 +290,7 @@ public abstract class SkillDataBase : ScriptableObject
         set => _endDelay = value;
     }
 
+    [SerializeField]
     private float nextSkill;
 
     public float NextSkill
@@ -276,6 +300,7 @@ public abstract class SkillDataBase : ScriptableObject
     }
 
     //New Data -> Etc
+    [SerializeField]
     private string _icon;
 
     public string Icon

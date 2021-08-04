@@ -174,6 +174,11 @@ public class AttackBase : MonoBehaviour
         _signalSourceAsset = signalSourceAsset;
         _cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _signalSourceAsset;
     }
+
+    public virtual void Init(Damage damage, SkillDataBase skillData)
+    {
+        Init(damage);
+    }
     
     protected void Bind()
     {

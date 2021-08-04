@@ -25,34 +25,33 @@ public class SkillAxeAttackCtrl : AttackBase
 
     private List<int> _enterEnemyHashList = new List<int>();    // Hash를 key로 사용하려 한다. 이에 관해서 상의 필요할 듯.
 
-    public void Init(float movePosX, float moveTime, SignalSourceAsset cinemachineSignalSource, float dir, float axeMultiStageHit, float axeMultiStageHitInterval)
+    public override void Init(Damage damage, SkillDataBase skillData)
     {
-        _movePositionX = movePosX;
-        _moveTime = moveTime;
-        _signalSourceAsset = cinemachineSignalSource;
-        _dir = dir;
-        _axeMultiStageHit = axeMultiStageHit;
-        _axeMultiStageHitInterval = axeMultiStageHitInterval;
+        base.Init(damage, skillData);
+        
+        SkillAxeData skillAxeData = (SkillAxeData) skillData;
+        _movePositionX = skillAxeData.ProjectileMoveX;
+        _moveTime = skillAxeData.ProjectileMoveTime;
+        _signalSourceAsset = skillAxeData.CinemachineSignalSource;
+        _axeMultiStageHit = skillAxeData.HitNumberOfTimes[0];
+        _axeMultiStageHitInterval = skillAxeData.HitIntervals[0];
         _axeMultiStageHitCoroutuineCounter = 0;
+        _curAxeMultiStageHitCoroutuineCounter = 0;
 
-        _cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _signalSourceAsset;
+        if (_cinemachineImpulseSource != null)
+        {
+            _cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _signalSourceAsset;
+        }
+
         _moveSpeed = (1 / _moveTime) * _movePositionX;
-        _damage.knockBack = new Vector2(_damage.knockBack.x * _dir, _damage.knockBack.y);
-
-        StartCoroutine(AxeMoveCoroutine());
-        
     }
-    
-    public void AttackDamage(Collider2D item)
+
+    public void StartAxeProgress(float dir)
     {
-        //============== 고재협이 편집함 ======================
-        _damage.hitPosition = item.ClosestPoint(_attackCollider2D.bounds.center);
-        //=====================================================
-        item.GetComponentInParent<Unit>().HandleHit(_damage);
+        _dir = dir;
         
-        OnEnemyHitEvent?.Invoke();
+        StartCoroutine(AxeMoveCoroutine());
     }
-
     private Collider2D FindEnemyObj()
     {
         _isEnter = false;
@@ -115,7 +114,6 @@ public class SkillAxeAttackCtrl : AttackBase
                 {
                     yield break;
                 }
-                Debug.Log("multStageHit");
                 ProgressTargetSelection(collider2D);
                 //AttackDamage(collider2D);
 

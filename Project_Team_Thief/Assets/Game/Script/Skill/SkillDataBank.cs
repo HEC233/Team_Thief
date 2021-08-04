@@ -106,8 +106,6 @@ public class SkillDataBank : MonoBehaviour
 
     private void SettingSkillData()
     {
-        Debug.Log("Setting Skill Data");
-        
         for (int i = 0; i < _skillDatabases.Count; i++)
         {
             //var _skillDataFindIndex = _skillDatabases.FindIndex(e => e.ID == i);
@@ -142,7 +140,6 @@ public class SkillDataBank : MonoBehaviour
                 (float) Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["projectileMoveY"]);
 
             var hitNumberOfTimes = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["hitNumberOfTimes"]);
-            Debug.Log(hitNumberOfTimes);
             SplitDataAndPutInlist(_skillDatabases[i].HitNumberOfTimes, hitNumberOfTimes);
 
             var damages = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["damage"]);
