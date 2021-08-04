@@ -34,9 +34,9 @@ public class SkillSpearController : SkillControllerBase
 
         _rushSpped = (1 / _skillSpearData.PlayerMoveTime) * _skillSpearData.PlayerMovePostionX;
 
-        _unit._skillSpearAttackCtrl.Init(_damage, _skillSpearData.CinemachineSignalSource);
-        _unit.OnSkillSpearRushEvent += StartSpearRush;
-        _unit.OnSkillSpearAttackEvent += AttackSkillSpear;
+        // _unit._skillSpearAttackCtrl.Init(_damage, _skillSpearData.CinemachineSignalSource);
+        // _unit.OnSkillSpearRushEvent += StartSpearRush;
+        // _unit.OnSkillSpearAttackEvent += AttackSkillSpear;
         
     }
 
@@ -44,8 +44,8 @@ public class SkillSpearController : SkillControllerBase
     {
         base.Release();
         
-        _unit.OnSkillSpearRushEvent -= StartSpearRush;
-        _unit.OnSkillSpearAttackEvent -= AttackSkillSpear;
+        // _unit.OnSkillSpearRushEvent -= StartSpearRush;
+        // _unit.OnSkillSpearAttackEvent -= AttackSkillSpear;
     }
 
     private void StartSpearRush()
@@ -58,7 +58,7 @@ public class SkillSpearController : SkillControllerBase
     private void AttackSkillSpear()
     {
         Debug.Log("SkillSpearAttack");
-        _unit.SKillSpearAttack(_damage);
+        //_unit.SKillSpearAttack(_damage);
         OnEndSkillAction?.Invoke();
 
     }

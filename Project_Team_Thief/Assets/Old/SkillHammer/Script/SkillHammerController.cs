@@ -28,21 +28,21 @@ public class SkillHammerController : SkillControllerBase
             _skillHammerData.KnockBackPower.y);
         _damage.additionalInfo = 4;
 
-        _unit._skillHammerAttackCtrl.Init(_damage, _skillHammerData.CinemachineSignalSource);
-
-        _unit.OnSkillHammerAttackEvent += AttackSkillHammer;
+        // _unit._skillHammerAttackCtrl.Init(_damage, _skillHammerData.CinemachineSignalSource);
+        //
+        // _unit.OnSkillHammerAttackEvent += AttackSkillHammer;
     }
 
     public override void Release()
     {
         base.Release();
         
-        _unit.OnSkillHammerAttackEvent -= AttackSkillHammer;
+        //_unit.OnSkillHammerAttackEvent -= AttackSkillHammer;
     }
 
     public void AttackSkillHammer()
     {
-        _unit.SkillHammerAttack(_damage);
+        //_unit.SkillHammerAttack(_damage);
         
         OnEndSkillAction?.Invoke();
     }
