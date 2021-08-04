@@ -12,6 +12,10 @@ public class UICommandInfo : MonoBehaviour
     public Transform horizonalPanel;
     public GameObject commandAssist;
     public GameObject commandCoolTime;
+    
+    // 김태성
+    private List<SkillSlotManager.SkillSlot> _skillSlots;
+    // 김태성
 
     private Transform playerTr;
 
@@ -39,8 +43,13 @@ public class UICommandInfo : MonoBehaviour
         }
         coolTimeList.Clear();
 
-        _commandDatas = GameManager.instance.commandManager.GetCommandCtrl();
-        foreach (var c in _commandDatas)
+        //_commandDatas = GameManager.instance.commandManager.GetCommandCtrl();
+        
+        // 김태성
+        _skillSlots = GameManager.instance.SkillSlotManager.SkillSlots;
+        //
+        
+        foreach (var c in _skillSlots)
         {
             string commandString = c.CommandString;
             UIElementCommand element = null;
@@ -61,6 +70,29 @@ public class UICommandInfo : MonoBehaviour
             coolTimeList.Add(cool);
             element.SetCoolTimeComponent(cool);
         }
+
+        
+        // foreach (var c in _commandDatas)
+        // {
+        //     string commandString = c.CommandString;
+        //     UIElementCommand element = null;
+        //     GameObject go = null;
+        //
+        //     for (int i = 0; i < 2; i++)
+        //     {
+        //         go = GameObject.Instantiate(commandAssist, verticalPanel);
+        //         go.transform.localScale = Vector3.one;
+        //         element = go.GetComponent<UIElementCommand>();
+        //         element.InitCommandInfo(c, commandString);
+        //         panelList.Add(element);
+        //         commandString = c.ReverseCommandString;
+        //     }
+        //     go = GameObject.Instantiate(commandCoolTime, horizonalPanel);
+        //     go.transform.localScale = Vector3.one;
+        //     var cool = go.GetComponent<UICommandCoolTime>();
+        //     coolTimeList.Add(cool);
+        //     element.SetCoolTimeComponent(cool);
+        // }
 
         playerTr = null;
 

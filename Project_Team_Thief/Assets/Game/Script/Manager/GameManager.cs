@@ -39,7 +39,8 @@ public class GameManager : MonoBehaviour
     public GameSkillMgr GameSkillMgr;
     public ShadowControlManager ShadowControlManager;
 
-    public CommandManager commandManager;
+    //public CommandManager commandManager;
+    public SkillSlotManager SkillSlotManager;
     public Spawner spawner;
     public DialogueSystem dialogueSystem;
 

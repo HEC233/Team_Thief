@@ -78,7 +78,6 @@ public abstract class SkillDataBase : ScriptableObject
         set => _coolTime = value;
     }
 
-    [SerializeField]
     private bool _isCasting;
 
     public bool IsCasting
@@ -301,13 +300,23 @@ public abstract class SkillDataBase : ScriptableObject
 
     //New Data -> Etc
     [SerializeField]
-    private string _icon;
+    private string _iconName;
 
-    public string Icon
+    public string IconName
+    {
+        get => _iconName;
+        set => _iconName = value;
+    }
+
+    [SerializeField] 
+    private Sprite _icon;
+
+    public Sprite Icon
     {
         get => _icon;
         set => _icon = value;
     }
+
 
     // Unit까지 넣어주자.
     public abstract SkillControllerBase GetSkillController(GameSkillObject skillObject, Unit unit);

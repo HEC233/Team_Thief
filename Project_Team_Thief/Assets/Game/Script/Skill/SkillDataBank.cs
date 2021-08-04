@@ -95,7 +95,7 @@ public class SkillDataBank : MonoBehaviour
             _skillDatabases[i].FristDelay = 0;
             _skillDatabases[i].EndDelay = 0;
             _skillDatabases[i].NextSkill = 0;
-            _skillDatabases[i].Icon = String.Empty;
+            _skillDatabases[i].IconName = String.Empty;
         }
     }
     
@@ -131,7 +131,7 @@ public class SkillDataBank : MonoBehaviour
             _skillDatabases[i].Stiffness = (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["stiffness"]);
             _skillDatabases[i].FristDelay = (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["firstDelay"]);
             _skillDatabases[i].EndDelay = (float)Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["endDelay"]);
-            _skillDatabases[i].Icon = _playerSkillData[_skillDatabases[i].ID]["icon"].ToString();
+            _skillDatabases[i].IconName = _playerSkillData[_skillDatabases[i].ID]["icon"].ToString();
             _skillDatabases[i].ProjectileMoveTime =
                 (float) Convert.ToDouble(_playerSkillData[_skillDatabases[i].ID]["projectileMoveTime"]);
             _skillDatabases[i].ProjectileMoveX =
@@ -168,6 +168,8 @@ public class SkillDataBank : MonoBehaviour
             
             var statusEffect = Convert.ToString(_playerSkillData[_skillDatabases[i].ID]["statusEffect"]);
             SplitDataAndPutInlist(_skillDatabases[i].StatusEffects, statusEffect);
+
+            _skillDatabases[i].Icon = Addressable.instance.GetSprite(_skillDatabases[i].IconName);
         }
         
     }

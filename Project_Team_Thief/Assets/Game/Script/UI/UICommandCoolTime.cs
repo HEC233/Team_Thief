@@ -11,7 +11,9 @@ public class UICommandCoolTime : MonoBehaviour
     private Image skillIcon;
     [SerializeField]
     private RectTransform skillIconRect;
-    private CommandManager.CommandCtrl _data;
+    
+    // 김태성 수정 CommandCtrl -> SkillSlot
+    private SkillSlotManager.SkillSlot _data;
 
     private bool bCoolTimeReady;
 
@@ -20,7 +22,8 @@ public class UICommandCoolTime : MonoBehaviour
         skillIcon.sprite = sprite;
     }
 
-    public void SetData(CommandManager.CommandCtrl data)
+    // 김태성 수정 CommandCtrl -> SkillSlot
+    public void SetData(SkillSlotManager.SkillSlot data)
     {
         _data = data;
         bCoolTimeReady = false;
@@ -31,7 +34,7 @@ public class UICommandCoolTime : MonoBehaviour
 
     private void Update()
     {
-        coolTimeImage.fillAmount = 1 - Mathf.Clamp01(_data.CommandData.coolTime / _data.CommandData.maxCoolTIme);
+        coolTimeImage.fillAmount = 1 - Mathf.Clamp01(_data.SkillSlotCurCoolTime / _data.SkillDataBase.CoolTime);
 
         if (coolTimeImage.fillAmount != 0)
         {

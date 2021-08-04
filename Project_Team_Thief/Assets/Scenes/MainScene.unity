@@ -5626,22 +5626,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+    - target: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
-      propertyPath: _skillDatabases.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
-        type: 3}
-      propertyPath: _skillDatabases.Array.data[0]
+      propertyPath: _skillSlotCommandDatas.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1,
+      objectReference: {fileID: 11400000, guid: e068fcfcb8a24904081756de3c0a7d37,
         type: 2}
-    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+    - target: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
-      propertyPath: _skillDatabases.Array.data[1]
+      propertyPath: _skillSlotCommandDatas.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 5d4868f48c06c1c468032faa0449a618,
+      objectReference: {fileID: 11400000, guid: bade7e3e038cb204eb29cbc434cf4668,
+        type: 2}
+    - target: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillSlotCommandDatas.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: c5035b95b0a874442b060379f93c69e3,
+        type: 2}
+    - target: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillSlotCommandDatas.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f0d414cf7063914aae17456fba37949,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}

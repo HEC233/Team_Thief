@@ -99,7 +99,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         Unit.hitEvent += UnitHitEventCall;
         Unit.OnPlayerDeadEvent += UnitDeadEventCall;
         
-        GameManager.instance.commandManager.OnCommandCastEvent += OnCommandCastEventCall;
+        //GameManager.instance.commandManager.OnCommandCastEvent += OnCommandCastEventCall;
+        GameManager.instance.SkillSlotManager.OnCommandCastEvent += OnCommandCastEventCall;
     }
 
     private void UnBind()
@@ -111,7 +112,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         Unit.hitEvent -= UnitHitEventCall;
         Unit.OnPlayerDeadEvent -= UnitDeadEventCall;
         
-        GameManager.instance.commandManager.OnCommandCastEvent -= OnCommandCastEventCall;
+        //GameManager.instance.commandManager.OnCommandCastEvent -= OnCommandCastEventCall;
+        GameManager.instance.SkillSlotManager.OnCommandCastEvent -= OnCommandCastEventCall;
     }
 
     private class IdleState : CustomFSMStateBase
@@ -1883,7 +1885,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (condition == TransitionCondition.Hit)
                 return true;
-            
+
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
             if (condition == TransitionCondition.SkillSpear)
                 return true;
             if (condition == TransitionCondition.SkillHammer)
@@ -1927,7 +1931,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public bool IsAbleTransition()
         {
-            return SystemMgr.Unit.IsAbleSkillAxe();
+            return true;
         }
 
         private void OnAnimationEndEvnetCall()
@@ -2443,7 +2447,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public bool IsAbleTransition()
         {
-            return SystemMgr.Unit.IsAbleSkillPlainSword();
+            return true;
         }
         
         private void OnAnimationEndEventCall()
@@ -2551,9 +2555,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return false;
         }
         
-        if (CurrState == condition) 
+        // 가져 올 State가 Skill이라는 확정사항이므로 괜찮은걸까?
+        // 스킬의 경우 같은 스테이트로 재진입 하는 것을 허용해야 하므로 아래와 같이 처리함.
+        var state = GetState(condition) as ISkillStateBase;
+        if (state == null)
         {
-            return false;
+            if (CurrState == condition)
+            {
+                return false;
+            }
         }
 
         if (CheckStateChangeAbleCondition(condition) == false)
@@ -2633,11 +2643,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     public void StartJumpKeyPressDetectCoroutine()
     {
         StartCoroutine(JumpKeyPressDetectCoroutine());
-    }
-
-    private void OnIsBattleIdleEventCall(bool isBattle)
-    {
-        _isBattleIdle = isBattle;
     }
     
 

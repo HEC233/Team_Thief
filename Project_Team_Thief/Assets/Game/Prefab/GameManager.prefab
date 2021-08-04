@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 4990086937456659570}
   - component: {fileID: 4990086937456659573}
   - component: {fileID: 4990086937456659572}
+  - component: {fileID: 7344668481236701322}
   - component: {fileID: 8551760458102242141}
   - component: {fileID: 4990086937456659571}
   - component: {fileID: 4990086937456659568}
@@ -236,6 +237,7 @@ MonoBehaviour:
   GameSkillMgr: {fileID: 24858456}
   ShadowControlManager: {fileID: 0}
   commandManager: {fileID: 7279758012565860687}
+  SkillSlotManager: {fileID: 7344668481236701322}
   spawner: {fileID: 5982225679925883762}
   dialogueSystem: {fileID: 2558102683189895491}
   shadow: {fileID: -5078904260765545550}
@@ -254,6 +256,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d86edf50e20374fb1b9c2beac6bf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7344668481236701322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4990086937456659575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1efdde3afd9e45c43a44cc8f4dd98ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillSlotNumber: 4
+  _skillSlotCommandDatas:
+  - {fileID: 11400000, guid: 3f4c201fd2d7adb4b994191777107033, type: 2}
+  - {fileID: 11400000, guid: 3f4c201fd2d7adb4b994191777107033, type: 2}
+  - {fileID: 11400000, guid: 3f4c201fd2d7adb4b994191777107033, type: 2}
+  - {fileID: 11400000, guid: 3f4c201fd2d7adb4b994191777107033, type: 2}
+  _skillDataBases:
+  - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
+  - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
+  - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
+  - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
+  _commandInputTime: 0.1
 --- !u!114 &8551760458102242141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillDatabases:
-  - {fileID: 11400000, guid: f588fdeff19d47048ad1818350e66f48, type: 2}
+  - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
+  - {fileID: 11400000, guid: 5d4868f48c06c1c468032faa0449a618, type: 2}
 --- !u!114 &4990086937456659571
 MonoBehaviour:
   m_ObjectHideFlags: 0
