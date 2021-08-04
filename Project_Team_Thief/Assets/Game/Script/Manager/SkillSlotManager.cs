@@ -60,6 +60,19 @@ public class SkillSlotManager : MonoBehaviour
             _skillSlots[i].InsertSkillDataBase(_skillDataBases[i]);
         }
     }
+
+    // 왼쪽부터 순서대로 빈 공간에 스킬 삽입
+    public void InsertSkillBaseInSkillSlot(SkillDataBase skillDataBase)
+    {
+        for (int i = 0; i < _skillSlots.Count; i++)
+        {
+            if (_skillSlots[i].SkillDataBase == null)
+            {
+                _skillSlots[i].InsertSkillDataBase(skillDataBase);
+                break;
+            }
+        }
+    }
     
     public void Inputkey(char key)
     {
