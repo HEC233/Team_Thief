@@ -76,14 +76,15 @@ public class EncroachmentManager : MonoBehaviour
 
     private void SetEncroachment()
     {
-        if (_encroachment <= 0)
-        {
-            _encroachment = 100;
-        }
-        else // 감소된 잠식력에 비례해서 증가시켜주는 부분
-        {
-            _encroachment += _encroachmentRecoveryAmount;
-        }
+        _encroachmentRecoveryAmount = CalcEncroachmentRecoveryAmount();
+        
+        ChangeEncroachment(_encroachmentRecoveryAmount);
+    }
+
+    // 어떠한 공식으로 회복량을 정할 껀지 필요.
+    private float CalcEncroachmentRecoveryAmount()
+    {
+        return _encroachmentRecoveryAmount;
     }
         
     private void ChangeEncroachment(float encroachmentIncrease)

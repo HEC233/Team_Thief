@@ -100,7 +100,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         Unit.OnPlayerDeadEvent += UnitDeadEventCall;
         
         //GameManager.instance.commandManager.OnCommandCastEvent += OnCommandCastEventCall;
-        GameManager.instance.SkillSlotManager.OnCommandCastEvent += OnCommandCastEventCall;
+        GameManager.instance.skillSlotManager.OnCommandCastEvent += OnCommandCastEventCall;
     }
 
     private void UnBind()
@@ -113,7 +113,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         Unit.OnPlayerDeadEvent -= UnitDeadEventCall;
         
         //GameManager.instance.commandManager.OnCommandCastEvent -= OnCommandCastEventCall;
-        GameManager.instance.SkillSlotManager.OnCommandCastEvent -= OnCommandCastEventCall;
+        GameManager.instance.skillSlotManager.OnCommandCastEvent -= OnCommandCastEventCall;
     }
 
     private class IdleState : CustomFSMStateBase

@@ -43,7 +43,7 @@ public class Shadow : ShadowBase
 
     public override void ChangeControlState(float controlTime)
     {
-        GameManager.instance.ShadowControlManager.OnControlActive += OnControlActiveEventOn;
+        //GameManager.instance.ShadowControlManager.OnControlActive += OnControlActiveEventOn;
         isControlState = true;
         OnChangeControlAction?.Invoke();
         
@@ -53,7 +53,7 @@ public class Shadow : ShadowBase
 
     public override void ChagneIdleState()
     {
-        GameManager.instance.ShadowControlManager.OnControlActive -= OnControlActiveEventOn;
+        //GameManager.instance.ShadowControlManager.OnControlActive -= OnControlActiveEventOn;
         isControlState = false;
         OnChangeIdleAction?.Invoke();
         

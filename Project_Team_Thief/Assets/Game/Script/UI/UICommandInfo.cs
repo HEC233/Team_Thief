@@ -46,7 +46,7 @@ public class UICommandInfo : MonoBehaviour
         //_commandDatas = GameManager.instance.commandManager.GetCommandCtrl();
         
         // 김태성
-        _skillSlots = GameManager.instance.SkillSlotManager.SkillSlots;
+        _skillSlots = GameManager.instance.skillSlotManager.SkillSlots;
         //
         
         foreach (var c in _skillSlots)

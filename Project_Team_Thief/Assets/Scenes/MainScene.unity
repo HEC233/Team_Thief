@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5621,6 +5621,16 @@ PrefabInstance:
       propertyPath: uiMng
       value: 
       objectReference: {fileID: 568382080}
+    - target: {fileID: 4990086937456659573, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: skillSlotManager
+      value: 
+      objectReference: {fileID: 1058721104}
+    - target: {fileID: 4990086937456659573, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: encroachmentManager
+      value: 
+      objectReference: {fileID: 1058721105}
     - target: {fileID: 4990086937456659575, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: m_Name
@@ -5628,6 +5638,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
+--- !u!114 &1058721104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1058721103}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1efdde3afd9e45c43a44cc8f4dd98ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1058721105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8773367656388211677, guid: 1180cfdb66658d9489baa39e9c3402fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1058721103}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3278bad8a4cbb944fb48f9887af8a207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1065770122
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = System.Random;
 
 public class SkillDataBank : MonoBehaviour
 {
@@ -204,6 +205,15 @@ public class SkillDataBank : MonoBehaviour
             data.Add((float)Convert.ToDouble(splitDataToList[i]));
         }
     }
+
+    // 해당 함수로 랜덤한 데이터를 가져올 때 중복인지 체크가 외부에서 필요함.
+    public SkillDataBase GetRandomSKillDataBase()
+    {
+        int randIndex = UnityEngine.Random.Range(0, _skillDatabases.Count);
+
+        return _skillDatabases[randIndex];
+    }
+    
 
     public SkillDataBase GetSkillData(string skillName)
     {

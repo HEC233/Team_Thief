@@ -37,10 +37,10 @@ public class GameManager : MonoBehaviour
     public UIManager uiMng;
     public EffectSystem FX;
     public GameSkillMgr GameSkillMgr;
-    public ShadowControlManager ShadowControlManager;
+    public EncroachmentManager encroachmentManager;
 
     //public CommandManager commandManager;
-    public SkillSlotManager SkillSlotManager;
+    public SkillSlotManager skillSlotManager;
     public Spawner spawner;
     public DialogueSystem dialogueSystem;
 

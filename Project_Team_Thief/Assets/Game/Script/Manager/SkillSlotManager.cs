@@ -73,6 +73,11 @@ public class SkillSlotManager : MonoBehaviour
             }
         }
     }
+
+    public void RockSkillSlot(int slotIndex)
+    {
+        _skillSlots[slotIndex].RockSlot();
+    }
     
     public void Inputkey(char key)
     {
@@ -142,9 +147,9 @@ public class SkillSlotManager : MonoBehaviour
         private int _reversCommandCount;
         private bool _isActiveSkillSlot;
         private float _skillSlotCoolTime;
-        
         private float _skillSlotCurCoolTime;
-
+        private bool _isRock;
+        
         public float SkillSlotCurCoolTime
         {
             get => _skillSlotCurCoolTime;
@@ -161,6 +166,7 @@ public class SkillSlotManager : MonoBehaviour
             _reverseCommandString = CommandData.reverseCommandString;
             _commandList = new List<char>();
             _isActiveSkillSlot = false;
+            _isRock = false;
 
             _skillSlotCoolTime = 0.0f;
             _skillSlotCurCoolTime = 0.0f;
@@ -183,6 +189,11 @@ public class SkillSlotManager : MonoBehaviour
             get { return _reverseCommandString; }
         }
 
+        public void RockSlot()
+        {
+            _isRock = true;
+        }
+
         public void InsertSkillDataBase(SkillDataBase skillDataBase)
         {
             _skillDataBase = skillDataBase;
@@ -192,6 +203,9 @@ public class SkillSlotManager : MonoBehaviour
 
         public void RemoveSkillDataBase()
         {
+            if(_isRock)
+                return;
+
             _skillSlotCurCoolTime = 0.0f;
             _skillSlotCoolTime = 0.0f;
 
