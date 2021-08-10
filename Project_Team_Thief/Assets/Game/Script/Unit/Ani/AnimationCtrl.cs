@@ -37,6 +37,8 @@ public enum AniState
     SkillPlainSword,    // 29
     SkillPlainSword2,   // 30
     SkillPlainSword3,   // 31
+    SkillDoubleCross,   // 32
+    SkillDoubleCross2,  // 33
 
     // SkillShadowWalk,// 20
     // ShadowControl,  // 21

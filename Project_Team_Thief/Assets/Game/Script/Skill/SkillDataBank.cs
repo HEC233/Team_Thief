@@ -110,7 +110,7 @@ public class SkillDataBank : MonoBehaviour
         for (int i = 0; i < _skillDatabases.Count; i++)
         {
             //var _skillDataFindIndex = _skillDatabases.FindIndex(e => e.ID == i);
-            
+
             _skillDatabases[i].Name = _playerSkillData[_skillDatabases[i].ID]["name"].ToString();
             _skillDatabases[i].Grade = _playerSkillData[_skillDatabases[i].ID]["grade"].ToString();
             _skillDatabases[i].IsGet = Convert.ToBoolean(_playerSkillData[_skillDatabases[i].ID]["isGet"]);
@@ -171,6 +171,12 @@ public class SkillDataBank : MonoBehaviour
             SplitDataAndPutInlist(_skillDatabases[i].StatusEffects, statusEffect);
 
             _skillDatabases[i].Icon = Addressable.instance.GetSprite(_skillDatabases[i].IconName);
+
+            if (_skillDatabases[i].Icon == null)
+            {
+                _skillDatabases[i].Icon = Addressable.instance.GetSprite("none");
+            }
+                
         }
         
     }

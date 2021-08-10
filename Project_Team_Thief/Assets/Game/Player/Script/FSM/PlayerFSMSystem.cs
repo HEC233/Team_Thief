@@ -1214,7 +1214,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             if (condition == TransitionCondition.SkillAxe)
                 return true;
-            if (condition == TransitionCondition.SkillSpear)
+            if (condition == TransitionCondition.SkillDoubleCross)
                 return true;
             if (condition == TransitionCondition.SkillHammer)
                 return true;
@@ -2346,8 +2346,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
             //WwiseSoundManager.instance.PlayEventSound(_skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
 
-            _attackBeInputTime = Time.time;
             _attackTime = SystemMgr.Unit.SkillPlainSwordAttackTime;
+            _attackBeInputTime = Time.time;
 
             _gameSkillObject = InvokeSkill();
             
@@ -2520,6 +2520,175 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return skillObejct;
         }
     }
+
+    private class SkillDoubleCrossState : CustomFSMStateBase, ISkillStateBase
+    {
+        private GameSkillObject _gameSkillObject;
+        private SkillDoubleCrossData[] _skillDoubleCrossData = new SkillDoubleCrossData[2];
+        private int _curSkillIndex = 0;
+        private int _nextSkillIndex = 0;
+        private float _attackInputTime = 0.0f;
+        private float _attackBeInputTime = 0.0f;
+        private float _attackTime = 1.5f;
+        private bool _isSkillEnd = false;
+        private bool _isInit = false;
+
+        private AniState[] _skillDoubleCrossAniArr =
+            new AniState[] {AniState.SkillDoubleCross, AniState.SkillDoubleCross2};
+
+        // private FxAniEnum[] _skillPlainSwordFxAniArr = new FxAniEnum[]
+        //     {FxAniEnum.SkillPlainSword, FxAniEnum.SkillPlainSword2, FxAniEnum.SkillPlainSword3};
+        
+        public SkillDoubleCrossState(PlayerFSMSystem system) : base(system)
+        {
+            
+        }
+
+        private void Init()
+        {
+            _isInit = true;
+            _skillDoubleCrossData[0] = SkillDataBank.instance.GetSkillData("더블크로스") as SkillDoubleCrossData;
+            _skillDoubleCrossData[1] = SkillDataBank.instance.GetSkillData("더블크로스 추가공격") as SkillDoubleCrossData;
+        }
+
+        public override void StartState()
+        {
+            if (_isInit == false)
+            {
+                Init();
+            }
+            
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillDoubleCross);
+            //GameManager.instance.uiMng.TurnXButtonUI(true);
+            _attackBeInputTime = Time.time;
+            _gameSkillObject = InvokeSkill();
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+        }
+
+        public override void EndState()
+        {
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+            ResetValue();
+            //GameManager.instance.uiMng.TurnXButtonUI(false);
+        }
+
+        private void ResetValue()
+        {
+            _isSkillEnd = false;
+            _curSkillIndex = 0;
+            _nextSkillIndex = 0;
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (_isSkillEnd == false)
+            {
+                return false;
+            }
+            
+            return true;
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            if (condition == TransitionCondition.Attack)
+            {
+                _attackInputTime = Time.time;
+
+                if (_attackInputTime - _attackBeInputTime <= _attackTime)
+                {
+                    _nextSkillIndex = _curSkillIndex + 1;
+                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                    SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                }
+
+                _attackBeInputTime = Time.time;
+
+                return false;
+            }
+            
+            return true;
+        }
+
+        public bool IsAbleTransition()
+        {
+            return true;
+        }
+        
+        private bool IsEndOrNextCheck()
+        {
+            if (_curSkillIndex != _nextSkillIndex)
+            {
+                if (_nextSkillIndex > _skillDoubleCrossAniArr.Length - 1)
+                {
+                    return false;
+                }
+                else
+                {
+                    _curSkillIndex = _nextSkillIndex;
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        private void NextAction()
+        {
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr._fxCtrl.SetSpeed(1);   
+            
+            SystemMgr.AnimationCtrl.PlayAni(_skillDoubleCrossAniArr[_curSkillIndex]);
+            //SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            
+            _gameSkillObject = InvokeSkill();
+        }
+        
+        private void OnAnimationEndEventCall()
+        {
+            if (IsEndOrNextCheck() == true)
+            {
+                NextAction();
+            }
+            else
+            {
+                SystemMgr.StartCoroutine(WaitEndDelay());
+            }
+        }
+        
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("SkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillDoubleCrossData[_curSkillIndex]
+                .GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
+        }
+
+        IEnumerator WaitEndDelay()
+        {
+            float timer = 0.0f;
+            while (_skillDoubleCrossData[_curSkillIndex].EndDelay >= timer)
+            {
+                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isSkillEnd = true;
+            SystemMgr.Transition(TransitionCondition.Idle);
+        }
+    }
     
     
     protected override void RegisterState()
@@ -2545,6 +2714,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         // AddState(TransitionCondition.SkillHammer, new SkillHammerState(this, Unit.SkillHammerData));
         // AddState(TransitionCondition.SkillKopsh, new SkillKopshState(this, Unit.SkillKopshData));
         AddState(TransitionCondition.SkillPlainSword, new SkillPlainSwordState(this, Unit.SkillPlainSwordData));
+        AddState(TransitionCondition.SkillDoubleCross, new SkillDoubleCrossState(this));
         AddState(TransitionCondition.Die, new DieState(this));
     }
     
@@ -2554,7 +2724,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             return false;
         }
-        
+
         // 가져 올 State가 Skill이라는 확정사항이므로 괜찮은걸까?
         // 스킬의 경우 같은 스테이트로 재진입 하는 것을 허용해야 하므로 아래와 같이 처리함.
         var state = GetState(condition) as ISkillStateBase;
@@ -2679,6 +2849,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             CheckSkillActionPlayerDir(isReverse);
             Transition(condition);
+
         }
 
     }
@@ -2690,17 +2861,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             case "회전도끼 던지기":
                 return TransitionCondition.SkillAxe;
                 break;
-            case "Skill2Spear":
-                return TransitionCondition.SkillSpear;
-                break;
-            case "Skill3Hammer":
-                return TransitionCondition.SkillHammer;
-                break;
-            case "Skill4Kopsh":
-                return TransitionCondition.SkillKopsh;
-                break;
-            case "Skill5PlainSword":
-                return TransitionCondition.SkillPlainSword;
+            case "더블크로스":
+                return TransitionCondition.SkillDoubleCross;
                 break;
             default:
                 break;

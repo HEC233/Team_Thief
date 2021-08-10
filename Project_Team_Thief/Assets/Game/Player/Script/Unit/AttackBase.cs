@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
@@ -218,13 +219,17 @@ public class AttackBase : MonoBehaviour
     {
         if (_isDisplyFx == false)
             return;
-        
+        if (_fxName == String.Empty)
+            return;
+
         GameManager.instance.FX.Play(_fxName, _damage.hitPosition);
     }
 
     protected virtual void PlaySfx()
     {
         if (_isPlaySFX == false)
+            return;
+        if (_sfxSoundName == String.Empty)
             return;
         
         _sfxSoundId = WwiseSoundManager.instance.PlayEventSound(_sfxSoundName);

@@ -8,31 +8,11 @@ public abstract class SkillDataBase : ScriptableObject
     [SerializeField]
     private int _id;
     public int ID => _id;
-
     
-    // [SerializeField, Tooltip("스킬 사용 가능 횟수")] 
-    // private int _numberOfTimesTheSkill; // 스킬 사용 가능 횟수.
-    // public int NumberOfTimesTheSkill => _numberOfTimesTheSkill;
-
     [SerializeField] 
     private SignalSourceAsset _cinemachineSignalSource;
     public SignalSourceAsset CinemachineSignalSource => _cinemachineSignalSource;
 
-    // [SerializeField] 
-    // private string _skillName;
-    //
-    // public string SkillName => _skillName;
-    //
-    // [SerializeField] 
-    // private float _increaseEncroachment;
-    //
-    // public float IncreaseEncroachment => _increaseEncroachment;
-    //
-    // [SerializeField] 
-    // private float _encroachmentDecrease;
-    //
-    // public float DecreaseEncroachment => _encroachmentDecrease;
-    
     //New Data -> skill Info
     [SerializeField]
     private string _name;
