@@ -71,6 +71,12 @@ public class PlayerUnit : Unit
     private float _curHp;
     [SerializeField]
     private float _decreaseHp;
+
+    private float def;
+    
+    // 특수 효과 관련 변수
+    private bool _isSuperArmor = false;
+    public bool IsSuperArmor => _isSuperArmor;
     
     [Header("Encroachment")]
     private float _encroachment;
@@ -760,6 +766,7 @@ public class PlayerUnit : Unit
     public void Hit()
     {
         _curHp -= _hitDamage.power * _decreaseHp;
+        HitKnockBack();
         StartCoroutine(InvincibilityTimeCoroutine());
 
         //---
@@ -797,6 +804,11 @@ public class PlayerUnit : Unit
 
     public void HitKnockBack()
     {
+        if (_isSuperArmor == true)
+        {
+            return;
+        }
+
         _rigidbody2D.velocity = Vector2.zero;
         _rigidbody2D.AddForce(_hitDamage.knockBack, ForceMode2D.Impulse);
     }
@@ -1000,6 +1012,11 @@ public class PlayerUnit : Unit
         return _isWallTouch;
     }
 
+    public void ActiveSuperArmor(float superArmorTime)
+    {
+        StartCoroutine(SuperArmorCoroutine(superArmorTime));
+    }
+
     IEnumerator ComboCoroutine()
     {
         _isContinuingCombo = true;
@@ -1088,7 +1105,20 @@ public class PlayerUnit : Unit
 
             yield return new WaitForFixedUpdate();
         }
+    }
 
+    IEnumerator SuperArmorCoroutine(float superArmorTime)
+    {
+        float timer = 0.0f;
+        _isSuperArmor = true;
+        
+        while (superArmorTime >= timer)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        _isSuperArmor = false;
     }
     
     IEnumerator InvincibilityTimeCoroutine()

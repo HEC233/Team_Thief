@@ -35,6 +35,7 @@ public enum TransitionCondition
     SkillKopsh,
     SkillPlainSword,
     SkillDoubleCross,
+    SkillWallSummon,
     Action,
 
     // Shadow

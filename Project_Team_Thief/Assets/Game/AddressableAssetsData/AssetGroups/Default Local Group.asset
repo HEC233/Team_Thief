@@ -157,7 +157,7 @@ MonoBehaviour:
     - Text
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: cab34e50924901f4f84042f47da2d55e
+  - m_GUID: 4999c978e60064b49951d8a5b6694289
     m_Address: Assets/Game/Player/CSV/PlayerSkillData.csv
     m_ReadOnly: 0
     m_SerializedLabels:
