@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fxAnimator: {fileID: 4427280222664978861}
   _effectSystem: {fileID: 0}
---- !u!1 &1542053513146765891
+--- !u!1 &253444250132052552
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,45 +127,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1542053513146765890}
-  - component: {fileID: 1542053513146765893}
-  - component: {fileID: 1542053513146765892}
-  - component: {fileID: 880093929}
+  - component: {fileID: 3778185268532719185}
+  - component: {fileID: 5365076611863026172}
+  - component: {fileID: 616151796793591469}
+  - component: {fileID: 82627242721173803}
   m_Layer: 13
-  m_Name: BasicAttack3
-  m_TagString: Player
+  m_Name: SkillSnakeSwordSting2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1542053513146765890
+--- !u!4 &3778185268532719185
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542053513146765891}
+  m_GameObject: {fileID: 253444250132052552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: -0.06, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1542053513734912283}
-  m_RootOrder: 2
+  m_Father: {fileID: 8114190704867105074}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1542053513146765893
+--- !u!61 &5365076611863026172
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542053513146765891}
+  m_GameObject: {fileID: 253444250132052552}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.4179255, y: 0.50255084}
+  m_Offset: {x: 0.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -176,101 +176,65 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.1860723, y: 2.515102}
+  m_Size: {x: 9, y: 2}
   m_EdgeRadius: 0
---- !u!114 &1542053513146765892
+--- !u!114 &616151796793591469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542053513146765891}
+  m_GameObject: {fileID: 253444250132052552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dbb04fa8ee8fa048a299c270c3a2fef, type: 3}
+  m_Script: {fileID: 11500000, guid: d60907f876694fc4bbc014ed415ab9af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 0
+  _isAbleHitStop: 1
   _isAbleBulltTime: 0
   _isAbleCameraShake: 1
-  _isDisplyFx: 0
+  _isDisplyFx: 1
   _isPlaySFX: 1
   _isAlwaysPlaySFX: 1
   _isZoomIn: 0
-  _hitStopTime: 0.2
-  _bulltTime: 0
-  _bulletTimeScale: 0
+  _hitStopTime: 0
+  _bulltTime: 0.5
+  _bulletTimeScale: 0.5
   _flashTime: 0
   _criticalPercentage: 0
-  _sfxSoundName: PC_BA3
+  _sfxSoundName: 
   _zoomInCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomInTime: 0.02
-  _zoomInSize: 3
+  _zoomInTime: 0
+  _zoomInSize: 0
   _zoomOutCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomOutTime: 0.1
+  _zoomOutTime: 0
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
   _flashGO: {fileID: 0}
-  _attackCollider2D: {fileID: 1542053513146765893}
-  _cinemachineImpulseSource: {fileID: 880093929}
---- !u!114 &880093929
+  _attackCollider2D: {fileID: 5365076611863026172}
+  _cinemachineImpulseSource: {fileID: 82627242721173803}
+--- !u!114 &82627242721173803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542053513146765891}
+  m_GameObject: {fileID: 253444250132052552}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
@@ -278,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ImpulseDefinition:
     m_ImpulseChannel: 1
-    m_RawSignal: {fileID: 11400000, guid: 7eb6739696869c54f822c793aa14891c, type: 2}
+    m_RawSignal: {fileID: 0}
     m_AmplitudeGain: 1
     m_FrequencyGain: 1
     m_RepeatMode: 0
@@ -292,30 +256,12 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_DecayShape:
         serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0.21227264
-          inSlope: -0.28803706
-          outSlope: -0.28803706
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0.94166666
-        - serializedVersion: 3
-          time: 1
-          value: 0.0070754886
-          inSlope: 0.02021904
-          outSlope: 0.02021904
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.233334
-          outWeight: 0
+        m_Curve: []
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       m_AttackTime: 0
-      m_SustainTime: 0.24
+      m_SustainTime: 0.2
       m_DecayTime: 0.7
       m_ScaleWithImpact: 1
       m_HoldForever: 0
@@ -536,7 +482,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1542053513848848401}
+        m_MethodName: OnSkillSnakeSwordStingAttackEventCall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   - m_PersistentCalls:
       m_Calls: []
   - m_PersistentCalls:
@@ -580,9 +537,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1542053514905396921}
-  - {fileID: 1542053514773876515}
-  - {fileID: 1542053513146765890}
-  - {fileID: 1853913867857350695}
   - {fileID: 1542053514262991505}
   - {fileID: 9036358588398247694}
   m_Father: {fileID: 1542053513835489099}
@@ -797,16 +751,7 @@ MonoBehaviour:
   _basicAttackCansleTime: 0
   _basicAttackMinDamage: 130
   _basicAtaackMaxDamage: 150
-  _basicAttackCtrlArr:
-  - {fileID: 1542053514905396923}
-  - {fileID: 1542053514773876517}
-  - {fileID: 1542053513146765892}
-  - {fileID: 5892634633465391629}
-  _basicAttackKnockBackArr:
-  - {x: 3, y: 0}
-  - {x: 3, y: 0}
-  - {x: 0, y: 0}
-  - {x: 2, y: 5.6}
+  _basicAttackCtrl: {fileID: 1542053514905396923}
   _basicJumpAttackCtrlArr:
   - {fileID: 1542053514262991507}
   - {fileID: 1789575075951729271}
@@ -831,6 +776,9 @@ MonoBehaviour:
   _skillDoubleCrossAttackBase:
   - {fileID: 9182828640096000393}
   - {fileID: 7971447644293416146}
+  _skillSnakeSwordStingAttackBase:
+  - {fileID: 2837312275065007078}
+  - {fileID: 616151796793591469}
   _skillPlainSwordData: {fileID: 11400000, guid: 5d4868f48c06c1c468032faa0449a618,
     type: 2}
   _SkillPlainSwordAttackCtrls:
@@ -872,7 +820,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1542053513734912283}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1542053514262991504
 BoxCollider2D:
@@ -919,8 +867,8 @@ MonoBehaviour:
   _isAbleBulltTime: 0
   _isAbleCameraShake: 1
   _isDisplyFx: 0
-  _isPlaySFX: 0
-  _isAlwaysPlaySFX: 0
+  _isPlaySFX: 1
+  _isAlwaysPlaySFX: 1
   _isZoomIn: 0
   _hitStopTime: 0
   _bulltTime: 0
@@ -943,7 +891,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _zoomOutTime: 0
-  _fxName: 
+  _fxName: PC_JA1
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -1091,211 +1039,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.67, y: 1.65}
   m_EdgeRadius: 0
---- !u!1 &1542053514773876512
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1542053514773876515}
-  - component: {fileID: 1542053514773876514}
-  - component: {fileID: 1542053514773876517}
-  - component: {fileID: 118430823}
-  m_Layer: 13
-  m_Name: BasicAttack2
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1542053514773876515
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542053514773876512}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: -0.06, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1542053513734912283}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1542053514773876514
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542053514773876512}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.24713063, y: 0.6787312}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.718051, y: 3.570415}
-  m_EdgeRadius: 0
---- !u!114 &1542053514773876517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542053514773876512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dbb04fa8ee8fa048a299c270c3a2fef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isAbleCritical: 0
-  _isChangeDir: 0
-  _isAbleFlash: 0
-  _isAbleHitStop: 1
-  _isAbleBulltTime: 0
-  _isAbleCameraShake: 1
-  _isDisplyFx: 0
-  _isPlaySFX: 1
-  _isAlwaysPlaySFX: 1
-  _isZoomIn: 0
-  _hitStopTime: 0.16
-  _bulltTime: 0
-  _bulletTimeScale: 0
-  _flashTime: 0
-  _criticalPercentage: 0
-  _sfxSoundName: PC_BA2
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0.02
-  _zoomInSize: 3
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0.1
-  _fxName: 
-  _hitLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  _flashGO: {fileID: 0}
-  _attackCollider2D: {fileID: 1542053514773876514}
-  _cinemachineImpulseSource: {fileID: 118430823}
---- !u!114 &118430823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542053514773876512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_RawSignal: {fileID: 11400000, guid: ab5e8c5544421b348bf91b448897405f, type: 2}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0.20047174
-          inSlope: -0.7066364
-          outSlope: -0.7066364
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0.14682886
-        - serializedVersion: 3
-          time: 1
-          value: 0.0023498535
-          inSlope: -0.022512373
-          outSlope: -0.022512373
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.07815945
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 1000
-    m_PropagationSpeed: 343
 --- !u!1 &1542053514894491113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1082,7 @@ GameObject:
   - component: {fileID: 1542053514905396923}
   - component: {fileID: 1849541954}
   m_Layer: 13
-  m_Name: BasicAttack1
+  m_Name: BasicAttack
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2086,7 +1829,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1542053513734912283}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1063996903331590112
 BoxCollider2D:
@@ -2133,8 +1876,8 @@ MonoBehaviour:
   _isAbleBulltTime: 0
   _isAbleCameraShake: 1
   _isDisplyFx: 0
-  _isPlaySFX: 0
-  _isAlwaysPlaySFX: 0
+  _isPlaySFX: 1
+  _isAlwaysPlaySFX: 1
   _isZoomIn: 0
   _hitStopTime: 0.2
   _bulltTime: 0
@@ -2157,7 +1900,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _zoomOutTime: 0
-  _fxName: 
+  _fxName: PC_JA2
   _hitLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -2716,211 +2459,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &5484845544927066860
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1853913867857350695}
-  - component: {fileID: 2108740490090302611}
-  - component: {fileID: 5892634633465391629}
-  - component: {fileID: 404359916371174215}
-  m_Layer: 13
-  m_Name: BasicAttack4
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1853913867857350695
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5484845544927066860}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: -0.06, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1542053513734912283}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2108740490090302611
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5484845544927066860}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.4179255, y: 0.50255084}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 5.1860723, y: 2.515102}
-  m_EdgeRadius: 0
---- !u!114 &5892634633465391629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5484845544927066860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dbb04fa8ee8fa048a299c270c3a2fef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isAbleCritical: 0
-  _isChangeDir: 0
-  _isAbleFlash: 0
-  _isAbleHitStop: 1
-  _isAbleBulltTime: 0
-  _isAbleCameraShake: 1
-  _isDisplyFx: 0
-  _isPlaySFX: 1
-  _isAlwaysPlaySFX: 1
-  _isZoomIn: 0
-  _hitStopTime: 0.2
-  _bulltTime: 0
-  _bulletTimeScale: 0
-  _flashTime: 0
-  _criticalPercentage: 0
-  _sfxSoundName: PC_BA4
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0.02
-  _zoomInSize: 3
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0.1
-  _fxName: 
-  _hitLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  _flashGO: {fileID: 0}
-  _attackCollider2D: {fileID: 2108740490090302611}
-  _cinemachineImpulseSource: {fileID: 404359916371174215}
---- !u!114 &404359916371174215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5484845544927066860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_RawSignal: {fileID: 11400000, guid: 7eb6739696869c54f822c793aa14891c, type: 2}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0.21227264
-          inSlope: -0.28803706
-          outSlope: -0.28803706
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0.94166666
-        - serializedVersion: 3
-          time: 1
-          value: 0.0070754886
-          inSlope: 0.02021904
-          outSlope: 0.02021904
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.233334
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.24
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 1000
-    m_PropagationSpeed: 343
 --- !u!1 &6497595643358267776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2953,9 +2491,162 @@ Transform:
   - {fileID: 7624106574930786513}
   - {fileID: 8886252971218979349}
   - {fileID: 4104865925060628037}
+  - {fileID: 1632805504231969339}
+  - {fileID: 3778185268532719185}
   m_Father: {fileID: 1542053513835489099}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7326898907885789918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1632805504231969339}
+  - component: {fileID: 1497568206611993100}
+  - component: {fileID: 2837312275065007078}
+  - component: {fileID: 1727129470715943258}
+  m_Layer: 13
+  m_Name: SkillSnakeSwordSting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1632805504231969339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7326898907885789918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8114190704867105074}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1497568206611993100
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7326898907885789918}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 9, y: 2}
+  m_EdgeRadius: 0
+--- !u!114 &2837312275065007078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7326898907885789918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d60907f876694fc4bbc014ed415ab9af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAbleCritical: 0
+  _isChangeDir: 0
+  _isAbleFlash: 0
+  _isAbleHitStop: 1
+  _isAbleBulltTime: 0
+  _isAbleCameraShake: 1
+  _isDisplyFx: 1
+  _isPlaySFX: 1
+  _isAlwaysPlaySFX: 1
+  _isZoomIn: 1
+  _hitStopTime: 0
+  _bulltTime: 0.5
+  _bulletTimeScale: 0.5
+  _flashTime: 0
+  _criticalPercentage: 0
+  _sfxSoundName: 
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
+  _fxName: 
+  _hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _flashGO: {fileID: 0}
+  _attackCollider2D: {fileID: 1497568206611993100}
+  _cinemachineImpulseSource: {fileID: 1727129470715943258}
+--- !u!114 &1727129470715943258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7326898907885789918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &8485270878824298519
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ public class SkillDoubleCrossController : SkillControllerBase
         _damage = new Damage();
         _damage.power = _skillDoubleCrossData.Damages[0];
         _damage.knockBack = new Vector2(_skillDoubleCrossData.KnockBackXs[0], _skillDoubleCrossData.KnockBackYs[0]);
+        _damage.additionalInfo = _index;
         // 넉백 타임은?
         _damage.stiffness = _skillDoubleCrossData.Stiffness;
         

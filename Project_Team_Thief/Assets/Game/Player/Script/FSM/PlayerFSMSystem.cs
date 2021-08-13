@@ -1135,48 +1135,49 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     
     private class BasicAttackState : CustomFSMStateBase
     {
-        private int _basicAttackIndex = 0;
-        private int _nextBasicAttackIndex = 0;
-        private float _attackInputTime = 0.0f;
-        private float _attackBeInputTime = 0.0f;
-        private float _attackTime = 0.5f;
         private bool _isBasicAttackEnd = false;
-        private float _timer = 0.0f;
-        private float _BasicAttackMoveTime = 0.0f;
-        private bool _isNotEndCoroutine = false;
-        private bool _isBasicAttackAniEnd = false;
-        private float _basicAttackDelay = 0.0f;
-        private bool _isBasicAttackAble = true;
+        private bool _isInit = false;
+        private SkillDataBase _basicAttackDataBase;
+        private Damage _damage;
 
-        private AniState[] _basicAttackAniArr =
-            new AniState[] {AniState.Attack, AniState.Attack2, AniState.Attack3, AniState.Attack4};
-
-        private FxAniEnum[] _basicAttackFxAniArr = new FxAniEnum[]
-            {FxAniEnum.BasicAttack, FxAniEnum.BasicAttack2, FxAniEnum.BasicAttack3, FxAniEnum.BasicAttack4};
-
-        private string[] _basicAttackSoundArr = new string[] {"PC_BA1", "PC_BA2", "PC_BA3", "PC_BA4"};
-        
         public BasicAttackState(PlayerFSMSystem system) : base(system)
         {
         }
 
+        private void Init()
+        {
+            if (_isInit == true)
+            {
+                return;
+            }
+            
+            _isInit = true;
+            _basicAttackDataBase = SkillDataBank.instance.GetSkillData("기본공격");
+            _damage = new Damage();
+        }
+
         public override void StartState()
         {
-                SystemMgr.OnBasicAttackEndAniEvent += EndOrNextCheck;
+            Init();
+            SystemMgr.OnBasicAttackEndAniEvent += EndOrNextCheck;
             SystemMgr.OnBasicAttackCallEvent += BasicAttackCall;
 
-            SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
-            SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
-            //WwiseSoundManager.instance.PlayEventSound(_basicAttackSoundArr[0]);
+            SystemMgr.AnimationCtrl.PlayAni(AniState.Attack);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.BasicAttack);
             
-            _attackBeInputTime = Time.time;
             SystemMgr.Unit.SetBasicAttack();
+            _damage.power = _basicAttackDataBase.Damages[0];
+            _damage.knockBack = new Vector2(_basicAttackDataBase.KnockBackXs[0] * SystemMgr.Unit.FacingDir,
+                _basicAttackDataBase.KnockBackYs[0]);
+            _damage.additionalInfo = 0;
+            _damage.stiffness = _basicAttackDataBase.Stiffness;
+
         }
 
         public override void Update()
         {
             SystemMgr.Unit.Progress();
-
+            //Debug.Log(SystemMgr._animationCtrl.GetCurAniTime());
             if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
                 SystemMgr.Transition(TransitionCondition.Falling);
             
@@ -1192,15 +1193,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Unit.EndBasicAttack();
             SystemMgr.Unit.BasicAttackMoveStop();
             
-            _basicAttackIndex = 0;
-            _nextBasicAttackIndex = 0;
-            _attackInputTime = 0;
-            _attackBeInputTime = 0;
-            _timer = 0.0f;
-            _BasicAttackMoveTime = 0.0f;
             _isBasicAttackEnd = false;
-            _isNotEndCoroutine = false;
-            _isBasicAttackAniEnd = false;
 
             SystemMgr.OnBasicAttackEndAniEvent -= EndOrNextCheck;
             SystemMgr.OnBasicAttackCallEvent -= BasicAttackCall;
@@ -1208,6 +1201,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (condition == TransitionCondition.Attack)
+                return false;
+            
             if (condition == TransitionCondition.Hit)
                 return true;
             
@@ -1216,7 +1212,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return true;
             if (condition == TransitionCondition.SkillDoubleCross)
                 return true;
-            if (condition == TransitionCondition.SkillHammer)
+            if (condition == TransitionCondition.SkillSnakeSwordSting)
                 return true;
             if (condition == TransitionCondition.SkillKopsh)
                 return true;
@@ -1224,7 +1220,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return true;
 
             
-            if (_isBasicAttackEnd == true || _isBasicAttackAble == false)
+            
+            if (_isBasicAttackEnd == true)
             {
                 if (condition == TransitionCondition.None)
                     return false;
@@ -1264,184 +1261,181 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool InputKey(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.Attack)
-            {
-                _attackInputTime = Time.time;
-
-                if (_attackInputTime - _attackBeInputTime <= _attackTime)
-                {
-                    _nextBasicAttackIndex = _basicAttackIndex + 1;
-                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
-                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
-                }
-
-                _attackBeInputTime = Time.time;
-
-                return false;
-            }
-            if (_isBasicAttackAniEnd)
-            {
-                if (condition == TransitionCondition.LeftMove)
-                {
-                    SystemMgr.Unit.CheckMovementDir(-1);
-                    if (_isNotEndCoroutine == false)
-                        SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
-                }
-
-                if (condition == TransitionCondition.RightMove)
-                {
-                    SystemMgr.Unit.CheckMovementDir(1);
-                    if (_isNotEndCoroutine == false)
-                        SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
-                }
-
-                _isBasicAttackAniEnd = false;
-            }
+            // if (_isBasicAttackAniEnd)
+            // {
+            //     if (condition == TransitionCondition.LeftMove)
+            //     {
+            //         SystemMgr.Unit.CheckMovementDir(-1);
+            //         if (_isNotEndCoroutine == false)
+            //             SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
+            //     }
+            //
+            //     if (condition == TransitionCondition.RightMove)
+            //     {
+            //         SystemMgr.Unit.CheckMovementDir(1);
+            //         if (_isNotEndCoroutine == false)
+            //             SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
+            //     }
+            //
+            //     _isBasicAttackAniEnd = false;
+            // }
             
             return true;
         }
 
         private void EndOrNextCheck()
         {
-            if (_basicAttackIndex != _nextBasicAttackIndex)
-            {
-                if (_nextBasicAttackIndex > _basicAttackAniArr.Length - 1)
-                {
-                    // _basicAttackIndex = 0;
-                    // _nextBasicAttackIndex = 0;
-                    _isBasicAttackEnd = true;
-                    SystemMgr.Transition(TransitionCondition.Idle);
-                    
-                }
-                else
-                {
-                    _basicAttackIndex = _nextBasicAttackIndex;
-                    
-                    SystemMgr.AnimationCtrl.SetSpeed(1);
-                    SystemMgr.AnimationCtrl.SetSpeed(1);
+            // if (_basicAttackIndex != _nextBasicAttackIndex)
+            // {
+            //     if (_nextBasicAttackIndex > _basicAttackAniArr.Length - 1)
+            //     {
+            //         // _basicAttackIndex = 0;
+            //         // _nextBasicAttackIndex = 0;
+            //         _isBasicAttackEnd = true;
+            //         SystemMgr.Transition(TransitionCondition.Idle);
+            //         
+            //     }
+            //     else
+            //     {
+            //         _basicAttackIndex = _nextBasicAttackIndex;
+            //         
+            //         SystemMgr.AnimationCtrl.SetSpeed(1);
+            //         SystemMgr.AnimationCtrl.SetSpeed(1);
+            //
+            //         SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
+            //         SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
+            //         //WwiseSoundManager.instance.PlayEventSound(_basicAttackSoundArr[_basicAttackIndex]);
+            //     }
+            // }
+            // else
+            // {
+            // }
+            // _isBasicAttackAniEnd = true;
 
-                    SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
-                    SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
-                    //WwiseSoundManager.instance.PlayEventSound(_basicAttackSoundArr[_basicAttackIndex]);
-                }
-            }
-            else
-            {
-                _isBasicAttackEnd = true;
-                 SystemMgr.Transition(TransitionCondition.Idle);
-            }
-            _isBasicAttackAniEnd = true;
+            SystemMgr.StartCoroutine(WaitEndDelay());
         }
         
         private void BasicAttackCall()
         {
-            SystemMgr.Unit.BasicAttack(_basicAttackIndex);
+            SystemMgr.Unit.BasicAttack(_damage);
         }
 
-        IEnumerator BasicAttackMoveCoroutine()
+        IEnumerator WaitEndDelay()
         {
-            _isNotEndCoroutine = true;
-            _BasicAttackMoveTime = SystemMgr.Unit.BasicAttackMoveTimeArr[_basicAttackIndex];
-
-            _timer = 0.02f;
-            while (_timer < _BasicAttackMoveTime)
+            float timer = 0.0f;
+            while (_basicAttackDataBase.EndDelay >= timer)
             {
-                _timer += GameManager.instance.timeMng.FixedDeltaTime;
-                SystemMgr.Unit.BasicAttackMove(_basicAttackIndex);
-                yield return new WaitForFixedUpdate();
-            }
-            
-            SystemMgr.Unit.EndBasicAttack();
-            if (_basicAttackIndex == 2)
-            {
-                SystemMgr.Unit.BasicAttackMoveStop();
-            }
-            _isNotEndCoroutine = false;
-        }
-
-        IEnumerator BasicAttackDelayCoroutine()
-        {
-            float _timer = 0.0f;
-
-            _isBasicAttackAble = false;
-            _basicAttackDelay = SystemMgr.Unit.BasicAttackDelay;
-            
-            while (_timer < _basicAttackDelay)
-            {
-                _timer += GameManager.instance.timeMng.FixedDeltaTime;
+                timer += GameManager.instance.timeMng.FixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
-            _isBasicAttackAble = true;
+            _isBasicAttackEnd = true;
+            SystemMgr.Transition(TransitionCondition.Idle);
         }
         
+        // IEnumerator BasicAttackMoveCoroutine()
+        // {
+        //     _isNotEndCoroutine = true;
+        //     _BasicAttackMoveTime = SystemMgr.Unit.BasicAttackMoveTimeArr[_basicAttackIndex];
+        //
+        //     _timer = 0.02f;
+        //     while (_timer < _BasicAttackMoveTime)
+        //     {
+        //         _timer += GameManager.instance.timeMng.FixedDeltaTime;
+        //         SystemMgr.Unit.BasicAttackMove(_basicAttackIndex);
+        //         yield return new WaitForFixedUpdate();
+        //     }
+        //     
+        //     SystemMgr.Unit.EndBasicAttack();
+        //     if (_basicAttackIndex == 2)
+        //     {
+        //         SystemMgr.Unit.BasicAttackMoveStop();
+        //     }
+        //     _isNotEndCoroutine = false;
+        // }
     }
     
     private class BasicJumpAttack : CustomFSMStateBase
     {
         private bool _isBasicjumpAttackAniEnd = false;
+        private bool _isWaitDelay = false;
         private int _jumpAttackIndex = 0;
-        private bool _isBasicJumpAttackStart = false;
+        private int _jumpAttackNextIndex = 0;
         private bool _isNotEndCoroutine = false;
         private Coroutine _jumpAttackMoveCoroutine;
         private float _attackInputTime = 0.0f;
         private float _attackBeInputTime = 0.0f;
+        private SkillDataBase[] _basicJumpAttackData = new SkillDataBase[2];
+        private bool _isInit = false;
+        private Damage _damage = new Damage();
+
+        private Vector2 _basicJumpAttackMoveDir = new Vector2(); 
         
         public BasicJumpAttack(PlayerFSMSystem system) : base(system)
         {
         }
 
+        private void Init()
+        {
+            if (_isInit == true)
+            {
+                return;
+            }
+
+            _isInit = true;
+            _damage = new Damage();
+            _basicJumpAttackData[0] = SkillDataBank.instance.GetSkillData("점프공격1타");
+            _basicJumpAttackData[1] = SkillDataBank.instance.GetSkillData("점프공격2타");
+
+        }
+
+        private void SetDamage()
+        {
+            _damage.power = _basicJumpAttackData[_jumpAttackIndex].Damages[0];
+            _damage.knockBack = new Vector2(_basicJumpAttackData[_jumpAttackIndex].KnockBackXs[0] * SystemMgr.Unit.FacingDir,
+                _basicJumpAttackData[_jumpAttackIndex].KnockBackYs[0]);
+            _damage.stiffness = _basicJumpAttackData[_jumpAttackIndex].Stiffness;
+            _damage.additionalInfo = _jumpAttackIndex;
+        }
+
         public override void StartState()
         {
+            Init();
+            
             if (SystemMgr.Unit.isBasicJumpAttackAble == true)
             {
                 _isNotEndCoroutine = true;
                 SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack);
                 SystemMgr._fxCtrl.PlayAni(FxAniEnum.BasicJumpAttack);
-                WwiseSoundManager.instance.PlayEventSound("PC_JA1");
                 _jumpAttackMoveCoroutine = SystemMgr.Unit.StartCoroutine(BasicJumpAttackMoveCoroutine());
 
                 SystemMgr.OnBasicAttackEndAniEvent += BasicJumpAttackAniEnd;
                 SystemMgr.OnBasicAttackCallEvent += BasicJumpAttackCall;
                 SystemMgr.Unit.isBasicJumpAttackAble = false;
                 _attackBeInputTime = Time.time;
-                _isBasicJumpAttackStart = true;
+
+                SetDamage();
             }
             else
             {
-                _isBasicJumpAttackStart = false;
- 
-                if (SystemMgr.Unit.IsGround == true)
-                {
-                    SystemMgr.Transition(TransitionCondition.Idle);
-                }
-                else
-                    SystemMgr.Transition(TransitionCondition.Falling);
+                TransitionIdleOrFalling();
             }
         }
 
         public override void Update()
         {
             SystemMgr.Unit.Progress();
-
-            if (_isBasicjumpAttackAniEnd == true)
-            {
-                if (SystemMgr.Unit.IsGround == true)
-                {
-                    SystemMgr.Transition(TransitionCondition.Idle);
-                }
-                else
-                    SystemMgr.Transition(TransitionCondition.Falling);
-            }
         }
 
         public override void EndState()
         {
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
             _isBasicjumpAttackAniEnd = false;
-            _isBasicJumpAttackStart = false;
             _jumpAttackIndex = 0;
-            
+            _jumpAttackNextIndex = 0;
+            _basicJumpAttackMoveDir = Vector2.zero;
+            _isWaitDelay = false;
+
             SystemMgr.OnBasicAttackEndAniEvent -= BasicJumpAttackAniEnd;
             SystemMgr.OnBasicAttackCallEvent -= BasicJumpAttackCall;
             
@@ -1450,6 +1444,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
+            if (_isBasicjumpAttackAniEnd == false)
+                return false;
+            
             if (condition == TransitionCondition.Idle)
                 return true;
             if (condition == TransitionCondition.Falling)
@@ -1460,27 +1457,24 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.Dash)
                 return true;
             
-            if (_isBasicjumpAttackAniEnd == false)
-                return false;
-            else
-            {
-                if (SystemMgr.Unit.IsGround == false)
-                {
-                    if (condition == TransitionCondition.Falling)
-                        return true;
-                }
-                else
-                {
 
-                }
-                
-            }
+            // else
+            // {
+            //     if (SystemMgr.Unit.IsGround == false)
+            //     {
+            //         if (condition == TransitionCondition.Falling)
+            //             return true;
+            //     }
+            //}
 
             return false;
         }
 
         public override bool InputKey(TransitionCondition condition)
         {
+            if (_isWaitDelay == true)
+                return true;
+            
             if (condition == TransitionCondition.LeftMove)
             {
                 if (_isNotEndCoroutine == false)
@@ -1494,19 +1488,43 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             if (condition == TransitionCondition.Attack)
             {
-                if (_isBasicjumpAttackAniEnd == true)
-                    return true;
-                
                 _attackInputTime = Time.time;
 
                 if (_attackInputTime - _attackBeInputTime <= SystemMgr.Unit.BasicJumpAttackTime)
                 {
-                    BasicJumpAttack2();
+                    _jumpAttackNextIndex = _jumpAttackIndex + 1;
                 }
 
             }
 
             return true;
+        }
+
+        private void TransitionIdleOrFalling()
+        {
+            if(SystemMgr.CurrState != TransitionCondition.JumpAttack)
+                return;
+            
+            if (_isBasicjumpAttackAniEnd == true)
+            {
+                if (SystemMgr.Unit.IsGround == true)
+                {
+                    SystemMgr.Transition(TransitionCondition.Idle);
+                }
+                else
+                    SystemMgr.Transition(TransitionCondition.Falling);
+            }
+        }
+
+        private void BasicJumpAttackMove()
+        {
+            _basicJumpAttackMoveDir.x = (1 / _basicJumpAttackData[_jumpAttackIndex].MoveTimes[0]) *
+                                        _basicJumpAttackData[_jumpAttackIndex].MoveXs[0] * SystemMgr.Unit.FacingDir;
+            _basicJumpAttackMoveDir.y = (1 / _basicJumpAttackData[_jumpAttackIndex].MoveTimes[0]) *
+                                        _basicJumpAttackData[_jumpAttackIndex].MoveYs[0];
+            _basicJumpAttackMoveDir *= GameManager.instance.timeMng.TimeScale;
+            SystemMgr.Unit.Rigidbody2D.velocity = Vector2.zero;
+            SystemMgr.Unit.Rigidbody2D.AddForce(_basicJumpAttackMoveDir, ForceMode2D.Impulse);
         }
         
         IEnumerator BasicJumpAttackMoveCoroutine()
@@ -1514,12 +1532,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Unit.SetJumpAttackMove();
             
             _isNotEndCoroutine = true;
-            float _basicJumpAttackMoveTime = SystemMgr.Unit.BasicJumpAttackMoveTimeArr[_jumpAttackIndex];
-            float _timer = 0.02f;
+            float _basicJumpAttackMoveTime = _basicJumpAttackData[_jumpAttackIndex].MoveTimes[0];
+            float _timer = 0.0f;
             while (_timer < _basicJumpAttackMoveTime)
             {
                 _timer += GameManager.instance.timeMng.FixedDeltaTime;
-                SystemMgr.Unit.BasicJumpAttackMove(_jumpAttackIndex);
+                BasicJumpAttackMove();
                 yield return new WaitForFixedUpdate();
             }
             
@@ -1529,37 +1547,50 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         private void BasicJumpAttack2()
         {
-            if(_jumpAttackIndex >= 1)
-                return;
-
+            SetDamage();
+            
             if (_isNotEndCoroutine == true)
             {
                 SystemMgr.Unit.StopCoroutine(_jumpAttackMoveCoroutine);
             }
             
-            _jumpAttackIndex++;
             SystemMgr.AnimationCtrl.PlayAni(AniState.JumpAttack2);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.JumpAttackFx2);
             SystemMgr.Unit.StartCoroutine(BasicJumpAttackMoveCoroutine());
-            WwiseSoundManager.instance.PlayEventSound("PC_JA2");
-
         }
         
 
         private void BasicJumpAttackAniEnd()
         {
-            if (_jumpAttackIndex >= 1 && _isNotEndCoroutine)
+            if (_jumpAttackNextIndex > _jumpAttackIndex && _jumpAttackNextIndex < 2)
             {
-                return;
+                _jumpAttackIndex = _jumpAttackNextIndex;
+                BasicJumpAttack2();
             }
-
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
-            _isBasicjumpAttackAniEnd = true;
+            else
+            {
+                SystemMgr.StartCoroutine(WaitEndDelay());
+            }
         }
 
         private void BasicJumpAttackCall()
         {
-            SystemMgr.Unit.BasicJumpAttack(_jumpAttackIndex);
+            SystemMgr.Unit.BasicJumpAttack(_jumpAttackIndex, _damage);
+        }
+        
+        IEnumerator WaitEndDelay()
+        {
+            _isWaitDelay = true;
+            float timer = 0.0f;
+            while (_basicJumpAttackData[_jumpAttackIndex].EndDelay >= timer)
+            {
+                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isBasicjumpAttackAniEnd = true;
+            _isWaitDelay = false;
+            TransitionIdleOrFalling();
         }
     }
     
@@ -1768,80 +1799,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             GameManager.instance.uiMng.PlayerDead();
         }
     }
-
-    // </기획 변경으로 인해 미사용>
-    // private class SkillShadowWalkState : CustomFSMStateBase, ISkillStateBase
-    // {
-    //     private Shadow _inAreaShadow = null;
-    //     private GameSkillObject _gameSkillObject;
-    //     private ShadowWalkSkillData _shadowWalkSkillData;
-    //     
-    //     public SkillShadowWalkState(PlayerFSMSystem system, ShadowWalkSkillData shadowWalkSkillData) : base(system)
-    //     {
-    //         _shadowWalkSkillData = shadowWalkSkillData;
-    //     }
-    //
-    //     public override void StartState()
-    //     {
-    //         SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
-    //         //SystemMgr.AnimationCtrl.PlayAni(AniState.SkillShadowWalk);
-    //         _gameSkillObject = InvokeShadowWalkSkill();
-    //     }
-    //
-    //
-    //     public override void Update()
-    //     {
-    //         SystemMgr.Unit.Progress();
-    //     }
-    //
-    //     public override void EndState()
-    //     {
-    //         SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
-    //     }
-    //
-    //     public override bool Transition(TransitionCondition condition)
-    //     {
-    //         if (condition == TransitionCondition.Idle)
-    //             return true;
-    //         
-    //         return false;
-    //     }
-    //
-    //     public override bool InputKey(TransitionCondition condition)
-    //     {
-    //         return false;
-    //     }
-    //
-    //     private void OnAnimationEndEvnetCall()
-    //     {
-    //         SystemMgr.Transition(TransitionCondition.Idle);
-    //     }
-    //
-    //     private GameSkillObject InvokeShadowWalkSkill()
-    //     {
-    //         var skillObject = GameManager.instance.GameSkillMgr.GetSkillObject();
-    //
-    //         if (skillObject == null)
-    //         {
-    //             Debug.LogError("Skill Obejct Is Null");
-    //             return null;
-    //         }
-    //
-    //         skillObject.InitSkill(_shadowWalkSkillData.GetSkillController(skillObject, SystemMgr.Unit));
-    //         return skillObject;
-    //     }
-    //
-    //     public bool IsAbleTransition()
-    //     {
-    //         //_inAreaShadow = SystemMgr.Unit.GetAbleShadowWalk();
-    //
-    //         if (_inAreaShadow == null)
-    //             return false;
-    //
-    //         return true;
-    //     }
-    // }
-
+    
     private class SkillAxeState : CustomFSMStateBase, ISkillStateBase
     {
         private bool _isAniEnd = false;
@@ -1893,7 +1851,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return true;
             if (condition == TransitionCondition.SkillKopsh)
                 return true;
-            if (condition == TransitionCondition.SkillPlainSword)
+            if (condition == TransitionCondition.SkillSnakeSwordSting)
                 return true;
 
             if (_isAniEnd == false)
@@ -1973,212 +1931,212 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         }
     }
     
-    private class SkillPlainSwordState : CustomFSMStateBase, ISkillStateBase
-    {
-        private SkillPlainSwordData _skillPlainSwordData;
-        private GameSkillObject _gameSkillObject;
-
-        private bool _isAniEnd = false;
-        private float _attackInputTime = 0.0f;
-        private float _attackBeInputTime = 0.0f;
-        private float _attackTime = 0.5f;
-        private int _skillPlainSwordNextIndex = 0;
-        private uint _soundID;
-        
-        private AniState[] _skillPlainSwordAniArr =
-            new AniState[] {AniState.SkillPlainSword, AniState.SkillPlainSword2, AniState.SkillPlainSword3};
-
-        private FxAniEnum[] _skillPlainSwordFxAniArr = new FxAniEnum[]
-            {FxAniEnum.SkillPlainSword, FxAniEnum.SkillPlainSword2, FxAniEnum.SkillPlainSword3};
-
-        private string[] _skillPlainSwordSoundArr = new string[] {"PC_Snake_Sword1", "PC_Snake_Sword2", "PC_Snake_Sword3"};
-
-        public SkillPlainSwordState(PlayerFSMSystem system, SkillPlainSwordData skillPlainSwordData) : base(system)
-        {
-            _skillPlainSwordData = skillPlainSwordData;
-        }
-
-        public override void StartState()
-        {
-            SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
-            SystemMgr.AnimationCtrl.PlayAni(_skillPlainSwordAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
-            SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
-            //WwiseSoundManager.instance.PlayEventSound(_skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
-
-            _attackTime = SystemMgr.Unit.SkillPlainSwordAttackTime;
-            _attackBeInputTime = Time.time;
-
-            _gameSkillObject = InvokeSkill();
-            
-            GameManager.instance.uiMng.TurnXButtonUI(true);
-        }
-
-        public override void Update()
-        {
-        }
-
-        public override void EndState()
-        {
-            if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
-            {
-                SystemMgr.Unit.SkillPlainSwordEnd();
-                WwiseSoundManager.instance.StopEventSoundFromId(_soundID);
-            }
-            
-            SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr._fxCtrl.SetSpeed(1);
-            
-            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
-            
-            _skillPlainSwordNextIndex = 0;
-            SystemMgr.Unit.skillPlainSwordIndex = 0;
-            _attackBeInputTime = 0;
-            _attackInputTime = 0;
-            _isAniEnd = false;
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
-            
-            GameManager.instance.uiMng.TurnXButtonUI(false);
-
-        }
-
-        public override bool Transition(TransitionCondition condition)
-        {
-            if (condition == TransitionCondition.Hit)
-                return true;
-            if (condition == TransitionCondition.Jump)
-                return true;
-            
-            if (condition == TransitionCondition.SkillAxe)
-                return true;
-            if (condition == TransitionCondition.SkillHammer)
-                return true;
-            if (condition == TransitionCondition.SkillSpear)
-                return true;
-            if (condition == TransitionCondition.SkillKopsh)
-                return true;
-            
-            if (_isAniEnd == true)
-                return true;
-            
-            return false;
-        }
-
-        public override bool InputKey(TransitionCondition condition)
-        {
-            if (condition == TransitionCondition.Attack)
-            {
-                _attackInputTime = Time.time;
-
-                if (_attackInputTime - _attackBeInputTime <= _attackTime)
-                {
-                    _skillPlainSwordNextIndex = SystemMgr.Unit.skillPlainSwordIndex + 1;
-                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
-                    SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
-
-                    if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
-                    {
-                        SystemMgr.Unit.SkillPlainSwordFastInterval();
-                    }
-                }
-
-                _attackBeInputTime = Time.time;
-
-                return false;
-            }
-
-            if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
-            {
-                if (condition == TransitionCondition.LeftMove)
-                {
-                    SystemMgr.Unit.CheckMovementDir(-1);
-                    SystemMgr.Unit.Move();
-                }
-
-                if (condition == TransitionCondition.RightMove)
-                {
-                    SystemMgr.Unit.CheckMovementDir(1);
-                    SystemMgr.Unit.Move();
-                }
-            }
-
-            return true;
-        }
-
-        public bool IsAbleTransition()
-        {
-            return true;
-        }
-        
-        private void OnAnimationEndEventCall()
-        {
-            if(IsEndOrNextCheck() == true)
-            {
-                NextAction();
-            }
-            else
-            {
-                _isAniEnd = true;
-                SystemMgr.Transition(TransitionCondition.Idle);
-            }
-        }
-
-        private void NextAction()
-        {
-            SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr._fxCtrl.SetSpeed(1);   
-            
-            SystemMgr.AnimationCtrl.PlayAni(_skillPlainSwordAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
-            SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
-
-            if (SystemMgr.Unit.skillPlainSwordIndex == 2)
-            {
-                // _soundID = WwiseSoundManager.instance.PlayEventSound(
-                //     _skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
-                
-                GameManager.instance.uiMng.TurnXButtonUI(false);
-
-            }
-            else
-            {
-                // WwiseSoundManager.instance.PlayEventSound(
-                //     _skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
-            }
-
-            _gameSkillObject = InvokeSkill();
-        }
-
-        private bool IsEndOrNextCheck()
-        {
-            if (SystemMgr.Unit.skillPlainSwordIndex != _skillPlainSwordNextIndex)
-            {
-                if (_skillPlainSwordNextIndex > _skillPlainSwordAniArr.Length - 1)
-                {
-                    return false;
-                }
-                else
-                {
-                    SystemMgr.Unit.skillPlainSwordIndex = _skillPlainSwordNextIndex;
-                    return true;
-                }
-            }
-            
-            return false;
-        }
-        
-        private GameSkillObject InvokeSkill()
-        {
-            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
-
-            if (skillObejct == null)
-            {
-                Debug.LogError("SkillObj is Null");
-                return null;
-            }
-
-            skillObejct.InitSkill(_skillPlainSwordData.GetSkillController(skillObejct, SystemMgr.Unit));
-            return skillObejct;
-        }
-    }
+    // private class SkillPlainSwordState : CustomFSMStateBase, ISkillStateBase
+    // {
+    //     private SkillPlainSwordData _skillPlainSwordData;
+    //     private GameSkillObject _gameSkillObject;
+    //
+    //     private bool _isAniEnd = false;
+    //     private float _attackInputTime = 0.0f;
+    //     private float _attackBeInputTime = 0.0f;
+    //     private float _attackTime = 0.5f;
+    //     private int _skillPlainSwordNextIndex = 0;
+    //     private uint _soundID;
+    //     
+    //     private AniState[] _skillPlainSwordAniArr =
+    //         new AniState[] {AniState.SkillPlainSword, AniState.SkillPlainSword2, AniState.SkillPlainSword3};
+    //
+    //     private FxAniEnum[] _skillPlainSwordFxAniArr = new FxAniEnum[]
+    //         {FxAniEnum.SkillPlainSword, FxAniEnum.SkillPlainSword2, FxAniEnum.SkillPlainSword3};
+    //
+    //     private string[] _skillPlainSwordSoundArr = new string[] {"PC_Snake_Sword1", "PC_Snake_Sword2", "PC_Snake_Sword3"};
+    //
+    //     public SkillPlainSwordState(PlayerFSMSystem system, SkillPlainSwordData skillPlainSwordData) : base(system)
+    //     {
+    //         _skillPlainSwordData = skillPlainSwordData;
+    //     }
+    //
+    //     public override void StartState()
+    //     {
+    //         SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
+    //         SystemMgr.AnimationCtrl.PlayAni(_skillPlainSwordAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+    //         SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+    //         //WwiseSoundManager.instance.PlayEventSound(_skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+    //
+    //         _attackTime = SystemMgr.Unit.SkillPlainSwordAttackTime;
+    //         _attackBeInputTime = Time.time;
+    //
+    //         _gameSkillObject = InvokeSkill();
+    //         
+    //         GameManager.instance.uiMng.TurnXButtonUI(true);
+    //     }
+    //
+    //     public override void Update()
+    //     {
+    //     }
+    //
+    //     public override void EndState()
+    //     {
+    //         if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
+    //         {
+    //             SystemMgr.Unit.SkillPlainSwordEnd();
+    //             WwiseSoundManager.instance.StopEventSoundFromId(_soundID);
+    //         }
+    //         
+    //         SystemMgr.AnimationCtrl.SetSpeed(1);
+    //         SystemMgr._fxCtrl.SetSpeed(1);
+    //         
+    //         SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+    //         
+    //         _skillPlainSwordNextIndex = 0;
+    //         SystemMgr.Unit.skillPlainSwordIndex = 0;
+    //         _attackBeInputTime = 0;
+    //         _attackInputTime = 0;
+    //         _isAniEnd = false;
+    //         SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+    //         
+    //         GameManager.instance.uiMng.TurnXButtonUI(false);
+    //
+    //     }
+    //
+    //     public override bool Transition(TransitionCondition condition)
+    //     {
+    //         if (condition == TransitionCondition.Hit)
+    //             return true;
+    //         if (condition == TransitionCondition.Jump)
+    //             return true;
+    //         
+    //         if (condition == TransitionCondition.SkillAxe)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillHammer)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillSpear)
+    //             return true;
+    //         if (condition == TransitionCondition.SkillKopsh)
+    //             return true;
+    //         
+    //         if (_isAniEnd == true)
+    //             return true;
+    //         
+    //         return false;
+    //     }
+    //
+    //     public override bool InputKey(TransitionCondition condition)
+    //     {
+    //         if (condition == TransitionCondition.Attack)
+    //         {
+    //             _attackInputTime = Time.time;
+    //
+    //             if (_attackInputTime - _attackBeInputTime <= _attackTime)
+    //             {
+    //                 _skillPlainSwordNextIndex = SystemMgr.Unit.skillPlainSwordIndex + 1;
+    //                 SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+    //                 SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+    //
+    //                 if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
+    //                 {
+    //                     SystemMgr.Unit.SkillPlainSwordFastInterval();
+    //                 }
+    //             }
+    //
+    //             _attackBeInputTime = Time.time;
+    //
+    //             return false;
+    //         }
+    //
+    //         if (SystemMgr.Unit.skillPlainSwordIndex == _skillPlainSwordAniArr.Length - 1)
+    //         {
+    //             if (condition == TransitionCondition.LeftMove)
+    //             {
+    //                 SystemMgr.Unit.CheckMovementDir(-1);
+    //                 SystemMgr.Unit.Move();
+    //             }
+    //
+    //             if (condition == TransitionCondition.RightMove)
+    //             {
+    //                 SystemMgr.Unit.CheckMovementDir(1);
+    //                 SystemMgr.Unit.Move();
+    //             }
+    //         }
+    //
+    //         return true;
+    //     }
+    //
+    //     public bool IsAbleTransition()
+    //     {
+    //         return true;
+    //     }
+    //     
+    //     private void OnAnimationEndEventCall()
+    //     {
+    //         if(IsEndOrNextCheck() == true)
+    //         {
+    //             NextAction();
+    //         }
+    //         else
+    //         {
+    //             _isAniEnd = true;
+    //             SystemMgr.Transition(TransitionCondition.Idle);
+    //         }
+    //     }
+    //
+    //     private void NextAction()
+    //     {
+    //         SystemMgr.AnimationCtrl.SetSpeed(1);
+    //         SystemMgr._fxCtrl.SetSpeed(1);   
+    //         
+    //         SystemMgr.AnimationCtrl.PlayAni(_skillPlainSwordAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+    //         SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+    //
+    //         if (SystemMgr.Unit.skillPlainSwordIndex == 2)
+    //         {
+    //             // _soundID = WwiseSoundManager.instance.PlayEventSound(
+    //             //     _skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+    //             
+    //             GameManager.instance.uiMng.TurnXButtonUI(false);
+    //
+    //         }
+    //         else
+    //         {
+    //             // WwiseSoundManager.instance.PlayEventSound(
+    //             //     _skillPlainSwordSoundArr[SystemMgr.Unit.skillPlainSwordIndex]);
+    //         }
+    //
+    //         _gameSkillObject = InvokeSkill();
+    //     }
+    //
+    //     private bool IsEndOrNextCheck()
+    //     {
+    //         if (SystemMgr.Unit.skillPlainSwordIndex != _skillPlainSwordNextIndex)
+    //         {
+    //             if (_skillPlainSwordNextIndex > _skillPlainSwordAniArr.Length - 1)
+    //             {
+    //                 return false;
+    //             }
+    //             else
+    //             {
+    //                 SystemMgr.Unit.skillPlainSwordIndex = _skillPlainSwordNextIndex;
+    //                 return true;
+    //             }
+    //         }
+    //         
+    //         return false;
+    //     }
+    //     
+    //     private GameSkillObject InvokeSkill()
+    //     {
+    //         var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+    //
+    //         if (skillObejct == null)
+    //         {
+    //             Debug.LogError("SkillObj is Null");
+    //             return null;
+    //         }
+    //
+    //         skillObejct.InitSkill(_skillPlainSwordData.GetSkillController(skillObejct, SystemMgr.Unit));
+    //         return skillObejct;
+    //     }
+    // }
 
     private class SkillDoubleCrossState : CustomFSMStateBase, ISkillStateBase
     {
@@ -2246,6 +2204,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override bool Transition(TransitionCondition condition)
         {
             if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillSnakeSwordSting)
                 return true;
             
             if (_isSkillEnd == false)
@@ -2388,7 +2348,186 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return true;
         }
     }
-    
+
+    private class SkillSnakeSwordStingState : CustomFSMStateBase, ISkillStateBase
+    {
+        private GameSkillObject _gameSkillObject;
+        private SkillSnakeSwordStingData[] _skillSnakeSwordStingDatas = new SkillSnakeSwordStingData[2];
+        private bool _isInit = false;
+        private int _curSkillIndex = 0;
+        private int _nextSkillIndex = 0;
+        private float _attackInputTime = 0.0f;
+        private float _attackBeInputTime = 0.0f;
+        private float _attackTime = 1.5f;
+        private bool _isSkillEnd = false;
+
+        private AniState[] _skillSnakeSwordStingAniArr =
+            new AniState[] {AniState.SkillSnakeSwordSting1, AniState.SkillSnakeSwordSting2};
+        
+        public SkillSnakeSwordStingState(PlayerFSMSystem system) : base(system) { }
+        private void Init()
+        {
+            if(_isInit == true)
+                return;
+
+            _isInit = true;
+            _skillSnakeSwordStingDatas[0] = SkillDataBank.instance.GetSkillData("사복검 찌르기") as SkillSnakeSwordStingData;
+            _skillSnakeSwordStingDatas[1] = SkillDataBank.instance.GetSkillData("사복검 찌르기 추가공격") as SkillSnakeSwordStingData;
+        }
+
+        public override void StartState()
+        {
+            Init();
+            
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSnakeSwordStingDelay);
+            //GameManager.instance.uiMng.TurnXButtonUI(true);
+            _attackBeInputTime = Time.time;
+            //_gameSkillObject = InvokeSkill();
+
+            SystemMgr.StartCoroutine(WaitStartDelay());
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+        }
+
+        public override void EndState()
+        {
+            ResetValue();
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+        }
+        
+        private void ResetValue()
+        {
+            _isSkillEnd = false;
+            _curSkillIndex = 0;
+            _nextSkillIndex = 0;
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillDoubleCross)
+                return true;
+            
+            if (_isSkillEnd == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            if (condition == TransitionCondition.Attack)
+            {
+                _attackInputTime = Time.time;
+
+                if (_attackInputTime - _attackBeInputTime <= _attackTime)
+                {
+                    _nextSkillIndex = _curSkillIndex + 1;
+                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                    SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                }
+
+                _attackBeInputTime = Time.time;
+
+                return false;
+            }
+            
+            return true;
+        }
+
+        public bool IsAbleTransition()
+        {
+            return true;
+        }
+        
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("SkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillSnakeSwordStingDatas[_curSkillIndex]
+                .GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
+        }
+        
+        private void OnAnimationEndEventCall()
+        {
+            if (IsEndOrNextCheck() == true)
+            {
+                NextAction();
+            }
+            else
+            {
+                SystemMgr.StartCoroutine(WaitEndDelay());
+            }
+        }
+        
+        private bool IsEndOrNextCheck()
+        {
+            if (_curSkillIndex != _nextSkillIndex)
+            {
+                if (_nextSkillIndex > _skillSnakeSwordStingAniArr.Length - 1)
+                {
+                    return false;
+                }
+                else
+                {
+                    _curSkillIndex = _nextSkillIndex;
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        private void NextAction()
+        {
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr._fxCtrl.SetSpeed(1);   
+            
+            SystemMgr.AnimationCtrl.PlayAni(_skillSnakeSwordStingAniArr[_curSkillIndex]);
+            //SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            
+            _gameSkillObject = InvokeSkill();
+        }
+
+        IEnumerator WaitStartDelay()
+        {
+            float timer = 0.0f;
+            while (_skillSnakeSwordStingDatas[_curSkillIndex].FristDelay >= timer)
+            {
+                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+            
+            NextAction();
+        }
+
+        IEnumerator WaitEndDelay()
+        {
+            float timer = 0.0f;
+            _isSkillEnd = false;
+            while (_skillSnakeSwordStingDatas[_curSkillIndex].EndDelay >= timer)
+            {
+                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isSkillEnd = true;
+            SystemMgr.Transition(TransitionCondition.Idle);
+        }
+    }
     
     protected override void RegisterState()
     {
@@ -2407,9 +2546,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.JumpAttack, new BasicJumpAttack(this));
         AddState(TransitionCondition.Hit, new HitState(this));
         AddState(TransitionCondition.SkillAxe, new SkillAxeState(this));
-        AddState(TransitionCondition.SkillPlainSword, new SkillPlainSwordState(this, Unit.SkillPlainSwordData));
+        //AddState(TransitionCondition.SkillPlainSword, new SkillPlainSwordState(this, Unit.SkillPlainSwordData));
         AddState(TransitionCondition.SkillDoubleCross, new SkillDoubleCrossState(this));
         AddState(TransitionCondition.SkillWallSummon, new SkillWallSummonState(this));
+        AddState(TransitionCondition.SkillSnakeSwordSting, new SkillSnakeSwordStingState(this));
         AddState(TransitionCondition.Die, new DieState(this));
     }
     
@@ -2558,6 +2698,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 break;
             case "더블크로스":
                 return TransitionCondition.SkillDoubleCross;
+                break;
+            case "사복검 찌르기":
+                return TransitionCondition.SkillSnakeSwordSting;
                 break;
             default:
                 break;

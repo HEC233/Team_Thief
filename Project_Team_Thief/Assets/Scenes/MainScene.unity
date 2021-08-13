@@ -5643,6 +5643,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
+      propertyPath: _skillDataBases.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7be92052f2556e04b8d0ae0792aed92a,
+        type: 2}
+    - target: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
       propertyPath: _skillDataBases.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: b366ff89bcd1ad547a86cf5d09bf7d79,
@@ -5650,7 +5656,7 @@ PrefabInstance:
     - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: _skillDatabases.Array.size
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
@@ -5663,6 +5669,36 @@ PrefabInstance:
       propertyPath: _skillDatabases.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 32b29d5e90c4e4c4f9718f7d94abab38,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: ee3a752e33e029e4fabced14c21f0a37,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: dc8ad55abde2bf44181d00ac08aba545,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 17467cf713c51264398d74e7da4a11b4,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7be92052f2556e04b8d0ae0792aed92a,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: efcc9859b54bf6242b7101edad9bf3b6,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
@@ -7209,7 +7245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.5, y: -2.4999847}
+  m_AnchoredPosition: {x: 2.5, y: -2.5}
   m_SizeDelta: {x: -5, y: -5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1416829769

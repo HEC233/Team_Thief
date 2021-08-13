@@ -197,9 +197,7 @@ public class PlayerUnit : Unit
 
     private Damage _basicAttackDamage;
     [SerializeField]
-    private BasicAttackCtrl[] _basicAttackCtrlArr;
-    [SerializeField]
-    private Vector2[] _basicAttackKnockBackArr;
+    private BasicAttackCtrl _basicAttackCtrl;
     [SerializeField]
     private BasicAttackCtrl[] _basicJumpAttackCtrlArr;
 
@@ -261,7 +259,14 @@ public class PlayerUnit : Unit
 
     public AttackBase[] SkillDoubleCrossAttackBase => _skillDoubleCrossAttackBase;
 
-    public event UnityAction OnSkillDoubleCrossAttackEvent = null; 
+    public event UnityAction OnSkillDoubleCrossAttackEvent = null;
+
+    [Header("SkillSnakeSwordSting")]
+    [SerializeField]
+    private AttackBase[] _skillSnakeSwordStingAttackBase;
+    public AttackBase[] SkillSnakeSwordStingAttackBase => _skillSnakeSwordStingAttackBase;
+    public event UnityAction OnSkillSnakeSwordStingAttackEvent = null;
+
     
     [SerializeField, Header("SkillPlainSword")]
     private SkillPlainSwordData _skillPlainSwordData;
@@ -317,10 +322,7 @@ public class PlayerUnit : Unit
 
     private void Bind()
     {
-        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
-        {
-            _basicAttackCtrlArr[i].OnEnemyHitEvent += OnAddComboEventCall;
-        }
+        _basicAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
 
         for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
         {
@@ -337,10 +339,7 @@ public class PlayerUnit : Unit
 
     private void UnBind()
     {
-        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
-        {
-            _basicAttackCtrlArr[i].OnEnemyHitEvent -= OnAddComboEventCall;
-        }
+        _basicAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
 
         for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
         {
@@ -645,14 +644,14 @@ public class PlayerUnit : Unit
 
     private void SetBasicDamage(int attackIndex)
     {
-        _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) *
-                                    GetDamageWeightFromEencroachment();
-        _basicAttackDamage.knockBack = new Vector2(_basicAttackKnockBackArr[attackIndex].x * _facingDir, _basicAttackKnockBackArr[attackIndex].y);
-        //============== 고재협이 편집함 ======================
-        _basicAttackDamage.additionalInfo = attackIndex;
-        //=====================================================
-
-        _basicAttackDamage = CalcDamageAbnormalIsDrain(_basicAttackDamage);
+        // _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) *
+        //                             GetDamageWeightFromEencroachment();
+        // _basicAttackDamage.knockBack = new Vector2(_basicAttackKnockBackArr[attackIndex].x * _facingDir, _basicAttackKnockBackArr[attackIndex].y);
+        // //============== 고재협이 편집함 ======================
+        // _basicAttackDamage.additionalInfo = attackIndex;
+        // //=====================================================
+        //
+        // _basicAttackDamage = CalcDamageAbnormalIsDrain(_basicAttackDamage);
 
     }
     
@@ -662,11 +661,12 @@ public class PlayerUnit : Unit
         _rigidbody2D.velocity = Vector2.zero;
     }
 
-    public void BasicAttack(int attackIndex)
+    // 데미지에 추가 보정을 해야하는 경우 여기서 수정해서 넘기면 될 듯
+    public void BasicAttack(Damage damage)
     {
-        SetBasicDamage(attackIndex);
-        _basicAttackCtrlArr[attackIndex].Init(_basicAttackDamage);
-        _basicAttackCtrlArr[attackIndex].Progress();
+        //SetBasicDamage(attackIndex);
+        _basicAttackCtrl.Init(damage);
+        _basicAttackCtrl.Progress();
     }
 
     public void BasicAttackMove(int basicAttackIndex)
@@ -691,21 +691,20 @@ public class PlayerUnit : Unit
         _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
     }
 
-    public void SetBasicJumpDamage(int index)
-    {
-        _basicJumpAttackDamage.power =
-            UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * GetDamageWeightFromEencroachment();
-        _basicJumpAttackDamage.knockBack = new Vector2(_basicJumpAttackKnockBackArr[index].x * _facingDir,
-            _basicJumpAttackKnockBackArr[index].y);
-        _basicJumpAttackDamage.additionalInfo = 3;
+    // public void SetBasicJumpDamage(int index)
+    // {
+    //     _basicJumpAttackDamage.power =
+    //         UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * GetDamageWeightFromEencroachment();
+    //     _basicJumpAttackDamage.knockBack = new Vector2(_basicJumpAttackKnockBackArr[index].x * _facingDir,
+    //         _basicJumpAttackKnockBackArr[index].y);
+    //     _basicJumpAttackDamage.additionalInfo = 3;
+    //
+    //     _basicJumpAttackDamage = CalcDamageAbnormalIsDrain(_basicJumpAttackDamage);
+    // }
 
-        _basicJumpAttackDamage = CalcDamageAbnormalIsDrain(_basicJumpAttackDamage);
-    }
-
-    public void BasicJumpAttack(int jumpAttackIndex)
+    public void BasicJumpAttack(int jumpAttackIndex, Damage damage)
     {
-        SetBasicJumpDamage(jumpAttackIndex);
-        _basicJumpAttackCtrlArr[jumpAttackIndex].Init(_basicJumpAttackDamage);
+        _basicJumpAttackCtrlArr[jumpAttackIndex].Init(damage);
         _basicJumpAttackCtrlArr[jumpAttackIndex].Progress();
     }
 
@@ -721,21 +720,21 @@ public class PlayerUnit : Unit
         _rigidbody2D.gravityScale = _originalGravityScale;
     }
     
-    public void BasicJumpAttackMove(int basicJumpAttackIndex)
-    {
-        _basicJumpAttackMoveSpeed = 
-            (1 / _basicJumpAttackMoveTimeArr[basicJumpAttackIndex]) *
-            _basicJumpAttackMoveGoalArr[basicJumpAttackIndex].x;
-        
-        float _basicJumpAttackMoveYSpeed = (1 / _basicJumpAttackMoveTimeArr[basicJumpAttackIndex]) *
-                                           _basicJumpAttackMoveGoalArr[basicJumpAttackIndex].y;
-        
-        _rigidbody2D.velocity = new Vector2(0, 0);
-
-        var power = new Vector2((_basicJumpAttackMoveSpeed) * _facingDir * GameManager.instance.timeMng.TimeScale,
-            _basicJumpAttackMoveYSpeed * GameManager.instance.timeMng.TimeScale);
-        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
-    }
+    // public void BasicJumpAttackMove(int basicJumpAttackIndex)
+    // {
+    //     _basicJumpAttackMoveSpeed = 
+    //         (1 / _basicJumpAttackMoveTimeArr[basicJumpAttackIndex]) *
+    //         _basicJumpAttackMoveGoalArr[basicJumpAttackIndex].x;
+    //     
+    //     float _basicJumpAttackMoveYSpeed = (1 / _basicJumpAttackMoveTimeArr[basicJumpAttackIndex]) *
+    //                                        _basicJumpAttackMoveGoalArr[basicJumpAttackIndex].y;
+    //     
+    //     _rigidbody2D.velocity = new Vector2(0, 0);
+    //
+    //     var power = new Vector2((_basicJumpAttackMoveSpeed) * _facingDir * GameManager.instance.timeMng.TimeScale,
+    //         _basicJumpAttackMoveYSpeed * GameManager.instance.timeMng.TimeScale);
+    //     _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    // }
     
 
     public void BasicJumpMove(int inputDir)
@@ -827,6 +826,11 @@ public class PlayerUnit : Unit
     public void OnSkillDoubleCrossAttackEventCall()
     {
         OnSkillDoubleCrossAttackEvent?.Invoke();
+    }
+    
+    public void OnSkillSnakeSwordStingAttackEventCall()
+    {
+        OnSkillSnakeSwordStingAttackEvent?.Invoke();
     }
     
     public void OnSkillPlainSwordAttackEventCall()

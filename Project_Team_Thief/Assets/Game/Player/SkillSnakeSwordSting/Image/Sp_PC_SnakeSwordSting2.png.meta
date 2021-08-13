@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: f515790c0d8911d47895143bdc61c371
+guid: 072c123bbd9382f44af6b0ab3f121e11
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4761657296172128008
-    second: Sp_PC_SnakeSwordSting1Delay_0
+      213: 465212351485612310
+    second: Sp_PC_SnakeSwordSting2_0
   - first:
-      213: -7299978893059877947
-    second: Sp_PC_SnakeSwordSting1Delay_1
+      213: -3164704069375775278
+    second: Sp_PC_SnakeSwordSting2_1
   - first:
-      213: -5409078534284281135
-    second: Sp_PC_SnakeSwordSting1Delay_2
+      213: -6870013252212705948
+    second: Sp_PC_SnakeSwordSting2_2
   - first:
-      213: 4077868403970737356
-    second: Sp_PC_SnakeSwordSting1Delay_3
+      213: 7062499180121138643
+    second: Sp_PC_SnakeSwordSting2_3
   - first:
-      213: -799180078664326864
-    second: Sp_PC_SnakeSwordSting1Delay_4
+      213: 2129840211054456478
+    second: Sp_PC_SnakeSwordSting2_4
+  - first:
+      213: -2441511711424537697
+    second: Sp_PC_SnakeSwordSting2_5
+  - first:
+      213: 5698974159129605339
+    second: Sp_PC_SnakeSwordSting2_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -102,106 +108,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sp_PC_SnakeSwordSting1Delay_0
+      name: Sp_PC_SnakeSwordSting2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 96
         height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f8638fdae13bedb0800000000000000
-      internalID: -4761657296172128008
+      spriteID: 6119c6b3b24c47600800000000000000
+      internalID: 465212351485612310
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_PC_SnakeSwordSting1Delay_1
+      name: Sp_PC_SnakeSwordSting2_1
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 96
         height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c3115bafd341ba90800000000000000
-      internalID: -7299978893059877947
+      spriteID: 2ddaf9d8a66b414d0800000000000000
+      internalID: -3164704069375775278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_PC_SnakeSwordSting1Delay_2
+      name: Sp_PC_SnakeSwordSting2_2
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 96
         height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1da7bc94bb71fe4b0800000000000000
-      internalID: -5409078534284281135
+      spriteID: 465b2a3985fc8a0a0800000000000000
+      internalID: -6870013252212705948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_PC_SnakeSwordSting1Delay_3
+      name: Sp_PC_SnakeSwordSting2_3
       rect:
         serializedVersion: 2
         x: 288
         y: 0
         width: 96
         height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc4077b35bf779830800000000000000
-      internalID: 4077868403970737356
+      spriteID: 3d5ab99e599030260800000000000000
+      internalID: 7062499180121138643
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sp_PC_SnakeSwordSting1Delay_4
+      name: Sp_PC_SnakeSwordSting2_4
       rect:
         serializedVersion: 2
         x: 384
         y: 0
         width: 96
         height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 031e4a3e3fdb8e4f0800000000000000
-      internalID: -799180078664326864
+      spriteID: e9e6e383366be8d10800000000000000
+      internalID: 2129840211054456478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sp_PC_SnakeSwordSting2_5
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 96
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9b959db8020e1ed0800000000000000
+      internalID: -2441511711424537697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sp_PC_SnakeSwordSting2_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd4fc03adc2d61f40800000000000000
+      internalID: 5698974159129605339
       vertices: []
       indices: 
       edges: []
@@ -209,7 +257,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 46101e087c369cc47ad9ed9e32d7feb9
+    spriteID: 19d7242684ceb7d42b9911624b98056a
     internalID: 0
     vertices: []
     indices: 

@@ -104,17 +104,16 @@ public class SkillSlotManager : MonoBehaviour
             {
                 if (_skillSlots[i].CheckCommand() == true)
                 {
-                    ResetAllCommandList();
                     break;
                 }
 
                 if (_skillSlots[i].CheckReverseCommand() == true)
                 {
-                    ResetAllCommandList();
                     break;
                 }
             }
             
+            ResetAllCommandList();
         }
         
         _beInputTime = Time.time;
