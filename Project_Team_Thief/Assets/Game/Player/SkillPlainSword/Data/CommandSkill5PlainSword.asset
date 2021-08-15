@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandString: RUX
   reverseCommandString: LUX
-  coolTime: 8
-  maxCoolTIme: 8
-  skillName: Skill5PlainSword
+  coolTime: 10
+  maxCoolTIme: 10
+  skillName: "\uC0AC\uBCF5\uAC80 \uB09C\uBB34"
   skillIcon: {fileID: 21300000, guid: 937370a19d4168f458cb84539aff9c2d, type: 3}

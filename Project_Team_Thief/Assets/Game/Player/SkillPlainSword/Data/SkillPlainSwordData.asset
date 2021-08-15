@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa94344aeca57304d8b0b2c70f2e1670, type: 3}
   m_Name: SkillPlainSwordData
   m_EditorClassIdentifier: 
+  _id: 7
   _numberOfTimesTheSkill: 1
-  _coolTime: 8
-  _skillName: Skill5PlainSword
-  _increaseEncroachment: -18
-  _encroachmentDecrease: 0
+  _cinemachineSignalSource: {fileID: 0}
+  _name: "\uD68C\uC804\uB3C4\uB07C \uB358\uC9C0\uAE30"
+  _grade: "\uB808\uC5B4"
+  _isGet: 0
+  _class: "\uC554\uC0B4\uC790"
+  _coolTime: 3
+  _description: "\uD68C\uC804\uB3C4\uB07C\uB97C \uB358\uC9C4\uB2E4, \uCD94\uAC00
+    \uD0A4 \uC785\uB825 \uC2DC \uD55C\uBC88 \uB354 \uB358\uC9C4\uB2E4."
   _cinemachineSignalSourceArr:
   - {fileID: 11400000, guid: 6e5e9662fd3f3204cbb0412240b1887b, type: 2}
   - {fileID: 11400000, guid: ecba626b821b05c449d5eec90c473e21, type: 2}

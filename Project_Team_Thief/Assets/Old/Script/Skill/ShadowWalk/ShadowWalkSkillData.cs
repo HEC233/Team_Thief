@@ -14,10 +14,7 @@ public class ShadowWalkSkillData : SkillDataBase
     [SerializeField]
     private float _shadowLumpAmount = 0.0f;
     public float ShadowLumpAmount => _shadowLumpAmount;
-    [SerializeField]
-    private SignalSourceAsset _cinemachineImpulseSource;
-    public SignalSourceAsset CinemachineImpulseSource => _cinemachineImpulseSource;
-    
+
     [SerializeField]
     private float _controlTime = 0.0f;
 

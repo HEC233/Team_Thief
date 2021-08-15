@@ -27,4 +27,5 @@ public struct Damage
     [HideInInspector]
     public Vector3 hitPosition;
     public int additionalInfo;
+    public float stiffness; // 경직 시간
 }

@@ -46,8 +46,24 @@ public class PlayerUnit : Unit
     //---
     public SOPlayer playerInfo;
     //---
+
+    private List<Dictionary<string, object>> _playerData;
     
     ///////////////////////////// 데이터로 관리 할 변수
+
+    /// 스테이트 레벨
+    private int _maxHpStateLevel = 1;
+    private int _runSpeedStateLevel = 1;
+    private int _jumpPowerStateLevel = 1;
+    private int _dashRangeStateLevel = 1;
+    private int _dashCoolTimeStateLevel = 1;
+    private int _deathCountStateLevel = 1;
+    private int _deathHPStateLevel = 1;
+    private int _criticalStateLevel = 1;
+    private int _attackSppedStateLevel = 1;
+    private int _defStateLevel = 1;
+    
+    
     // 기본 스탯
     [SerializeField]
     private float _maxHp;
@@ -55,6 +71,12 @@ public class PlayerUnit : Unit
     private float _curHp;
     [SerializeField]
     private float _decreaseHp;
+
+    private float def;
+    
+    // 특수 효과 관련 변수
+    private bool _isSuperArmor = false;
+    public bool IsSuperArmor => _isSuperArmor;
     
     [Header("Encroachment")]
     private float _encroachment;
@@ -94,48 +116,18 @@ public class PlayerUnit : Unit
     
     // 이동 관련 변수
     [Header("Move Variable")]
-    [SerializeField]
-    private float _minSpeed = 0.8f;
-    [SerializeField]
-    private float _maxSpeed = 6.5f;
-    [SerializeField]
-    private float _moveStopSpeed = 1.0f;
-    private float _curSpeed = 0.0f;
+    private float _moveSpeed;
 
-    private bool _isTouchMaxSpeed = false;
-    
     // 점프 관련 변수
-    private int _jumpCount = 0;
-    private int _maxJumpCount = 2;
-    private float _maxJumpTime = 0.1f;
-    public float MaxJumpTime => _maxJumpTime;
-
     [Header("Jump Variable")]
     [SerializeField]
     private float _coyoteTime = 0.2f;
     private float _maxCoyoteTime = 0.2f; 
-    [SerializeField]
     private float _jumpPower = 5.0f;
-    [SerializeField] 
-    private float _addAllJumpPpower = 8.0f;
-    [SerializeField]
-    private float _addJumpPower = 4f;
-    
-    // 구르기 관련 변수
-    //[Header("Roll Variable")]
-    //[SerializeField]
-    private float _rollGoalX = 10;
-    //[SerializeField]
-    private float _rollTime = 0.0f;
 
-    public float RollTime => _rollTime;
-    
-    private float _rollSpeed = 0.5f;
-    //[SerializeField]
-    private float _rollCoolTime;
-    private bool _isRollAble = true;
-    public bool IsRollAble => _isRollAble;
-    
+    private int _jumpCount = 0;
+    private int _maxJumpCount = 2;
+
     //[SerializeField] 
     private PhysicsMaterial2D _dashPhysicMaterial;
     
@@ -145,15 +137,23 @@ public class PlayerUnit : Unit
     [SerializeField]
     private float _dashGoalX = 0;
 
-    [SerializeField]
-    private float _dashCoolTime;
     
     private bool _isDashAble = true;
     public bool isDashAble => _isDashAble;
     private float _dashSpeed = 0;
     public float DashTime => _dashTime;
+    private float _dashRange;
+    private float _dashCoolTime;
+
+    // DeathRevers Variable
+    private int _deathCount;
+    private float _deathHp;
+
+    // Attack Variable
+    private float _critical;
+    private float _attackSpeed;
     
-    
+
     // WallSlideing Variable
     [Header("Wallslideing Variable")]
     [SerializeField]
@@ -169,7 +169,7 @@ public class PlayerUnit : Unit
     private float _wallSlideingUpPower = 0;
     [SerializeField] 
     private float _wallSlideingGravityScale = 1;
-    
+
     // BasicAttack Variable
     [Header("BasicAttack Variable")] 
     // [SerializeField]
@@ -197,9 +197,7 @@ public class PlayerUnit : Unit
 
     private Damage _basicAttackDamage;
     [SerializeField]
-    private BasicAttackCtrl[] _basicAttackCtrlArr;
-    [SerializeField]
-    private Vector2[] _basicAttackKnockBackArr;
+    private BasicAttackCtrl _basicAttackCtrl;
     [SerializeField]
     private BasicAttackCtrl[] _basicJumpAttackCtrlArr;
 
@@ -246,71 +244,28 @@ public class PlayerUnit : Unit
     private float _hitTime = 0.0f;
     public float HitTime => _hitTime;
     private bool _isInvincibility = false;
+    private float _def;
+    
 
     [Header("Encroachment Variable")] 
     [SerializeField]
     private int _encroachmentDecreaseCombo;
     [SerializeField]
     private int _baiscAttackEncroachmentDecrease;
-    
-    // Skill Variable
-    [Header("Skill Variable")]
-    /// </기획 변동으로 인해 미사용>
-    // // Shadow Walk
-    // [SerializeField]
-    // private ShadowWalkColCtrl _shadowWalkColCtrl;
-    // [SerializeField]
-    // private ShadowWalkSkillData _shadowWalkSkillData;
-    // public Shadow shadowWalkShadow;
-    //
-    // public ShadowWalkSkillData ShadowWalkSkillData => _shadowWalkSkillData;
-    //
-    // private bool _isSkillShadowWalkAble = true;
-    // private float _skillShadowWalkNumberOfTimes;
-    // private float _skillShadowWalkCoolTime;
-    /// </기획 변동으로 인해 미사용>
 
-    [SerializeField, Header("SkillAxe")]
-    private SkillAxeData _skillAxeData;
-    public SkillAxeData SkillAxeData => _skillAxeData;
-    private float _skillAxeNumberOfTimes;
-    private float _skillAxeCoolTime;
-    private bool _skillAexIsAble = true;
 
-    [SerializeField, Header("SkillSpear")] 
-    private SkillSpearData _skillSpearData;
-    public SkillSpearData SkillSpearData => _skillSpearData;
-    public SkillSpearAttackCtrl _skillSpearAttackCtrl;
-    private float _skillSpearNumberOfTimes;
-    private float _skillSpearCoolTime;
-    private bool _skillSpearIsAble = true;
+    [Header("SkillDoubleCross")] [SerializeField]
+    private AttackBase[] _skillDoubleCrossAttackBase;
 
-    public event UnityAction OnSkillSpearRushEvent = null;
-    public event UnityAction OnSkillSpearAttackEvent = null;
-    
-    [SerializeField, Header("SkillHammer")]
-    private SkillHammerData _skillHammerData;
-    public SkillHammerData SkillHammerData => _skillHammerData;
-    public SkillHammerAttackCtrl _skillHammerAttackCtrl;     // 나중에 다른 스크립트로 교체 or 같은 스크립트로 캡슐화? 그런게 필요
-    private float _skillHammerNumberOfTimes;
-    private float _skillHammerCoolTime;
-    private bool _skillHammerIsAble = true;
-    
-    public event UnityAction OnSkillHammerAttackEvent = null;
+    public AttackBase[] SkillDoubleCrossAttackBase => _skillDoubleCrossAttackBase;
 
-    [SerializeField, Header("SkillKopsh")]
-    private SkillKopshData _skillKopshData;
-    public SkillKopshData SkillKopshData => _skillKopshData;
-    public SkillKopshAttackCtrl[] _skillKopshAttackCtrls;
-    public int skillKopshIndex = 0;
-    private float _skillKopshNumberOfTimes;
-    private float _skillKopshCoolTime;
-    private bool _skillKopshIsAble = true;
+    public event UnityAction OnSkillDoubleCrossAttackEvent = null;
+
+    [Header("SkillSnakeSwordSting")]
     [SerializeField]
-    private float _skillKopshAttackTime;
-    public float SkillKopshAttackTime => _skillKopshAttackTime;
-    
-    public event UnityAction OnSkillKopshAttackEvent = null;
+    private AttackBase[] _skillSnakeSwordStingAttackBase;
+    public AttackBase[] SkillSnakeSwordStingAttackBase => _skillSnakeSwordStingAttackBase;
+    public event UnityAction OnSkillSnakeSwordStingAttackEvent = null;
 
     
     [SerializeField, Header("SkillPlainSword")]
@@ -334,7 +289,9 @@ public class PlayerUnit : Unit
     //////////////////////////// 데이터로 관리 할 변수
 
     private float _originalGravityScale = 0;
-    
+
+    public float OriginalGravityScale => _originalGravityScale;
+
     private Vector2 _hitstopPrevVelocity = Vector2.zero;
     private Damage _hitDamage;
 
@@ -347,46 +304,31 @@ public class PlayerUnit : Unit
 
     void Start()
     {
+        LoadPlayerData();
+        
         Init();
         Bind();
     }
 
     void Init()
     {
-        SetVariable(0.2f, 2, 0.4f);
+        SetVariable();
+    }
 
-        StartCoroutine(EncroachmentRecoveryCoroutine());
+    private void LoadPlayerData()
+    {
+        _playerData = CSVReader.Read("PlayerData");
     }
 
     private void Bind()
     {
-        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
-        {
-            _basicAttackCtrlArr[i].OnChangeDirEvent += OnChangeDirEventCall;
-        }
-
-        for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
-        {
-            _basicJumpAttackCtrlArr[i].OnChangeDirEvent += OnChangeDirEventCall;
-        }
-
-        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
-        {
-            _basicAttackCtrlArr[i].OnEnemyHitEvent += OnAddComboEventCall;
-        }
+        _basicAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
 
         for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
         {
             _basicJumpAttackCtrlArr[i].OnEnemyHitEvent += OnAddComboEventCall;
         }
 
-        _skillSpearAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
-        _skillHammerAttackCtrl.OnEnemyHitEvent += OnAddComboEventCall;
-
-        for (int i = 0; i < _skillKopshAttackCtrls.Length; i++)
-        {
-            _skillKopshAttackCtrls[i].OnEnemyHitEvent += OnAddComboEventCall;
-        }
         
         for (int i = 0; i < _SkillPlainSwordAttackCtrls.Length; i++)
         {
@@ -397,33 +339,13 @@ public class PlayerUnit : Unit
 
     private void UnBind()
     {
-        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
-        {
-            _basicAttackCtrlArr[i].OnChangeDirEvent -= OnChangeDirEventCall;
-        }
-
-        for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
-        {
-            _basicJumpAttackCtrlArr[i].OnChangeDirEvent -= OnChangeDirEventCall;
-        }
-
-        for (int i = 0; i < _basicAttackCtrlArr.Length; i++)
-        {
-            _basicAttackCtrlArr[i].OnEnemyHitEvent -= OnAddComboEventCall;
-        }
+        _basicAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
 
         for (int i = 0; i < _basicJumpAttackCtrlArr.Length; i++)
         {
             _basicJumpAttackCtrlArr[i].OnEnemyHitEvent -= OnAddComboEventCall;
         }
 
-        _skillSpearAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
-        _skillHammerAttackCtrl.OnEnemyHitEvent -= OnAddComboEventCall;
-        
-        for (int i = 0; i < _skillKopshAttackCtrls.Length; i++)
-        {
-            _skillKopshAttackCtrls[i].OnEnemyHitEvent -= OnAddComboEventCall;
-        }
         
         for (int i = 0; i < _SkillPlainSwordAttackCtrls.Length; i++)
         {
@@ -434,17 +356,27 @@ public class PlayerUnit : Unit
     
     // 향후에는 데이터 센터 클래스라던가 데이터를 가지고 있는 함수에서 직접 호출로 받아 올 수 있도록
     // 수정 할 예정
-    public void SetVariable(float coyoteTime, int maxJumpCount, float maxJumpTime)
+    public void SetVariable()
     {
-        _maxCoyoteTime = coyoteTime;
-        _maxJumpCount = maxJumpCount;
-        _maxJumpTime = maxJumpTime;
+        _maxCoyoteTime = 0.2f;
 
         _jumpCount = _maxJumpCount;
         _coyoteTime = _maxCoyoteTime;
 
         _originalGravityScale = _rigidbody2D.gravityScale;
 
+        _maxHp = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "maxHp"));
+        _moveSpeed = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "moveSpeed"));
+        _jumpPower = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "jumpPower"));
+        _dashRange = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "dashRange"));
+        _dashCoolTime = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "dashCoolTime"));
+        _deathCount = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "deathCount"));
+        _deathHp = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "deathHP"));
+        _critical = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "critical"));
+        _attackSpeed = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "attackSpeed"));
+        _def = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "def"));
+        _maxJumpCount = 2;
+        
         _curHp = _maxHp;
 
         //---
@@ -456,42 +388,30 @@ public class PlayerUnit : Unit
 
         _basicAttackDamage = new Damage();
         _hitDamage = new Damage();
-        
-        // _skillShadowWalkNumberOfTimes = _shadowWalkSkillData.NumberOfTimesTheSkill;
-        // _skillShadowWalkCoolTime = _shadowWalkSkillData.CoolTime;
 
-        _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
-        _skillAxeCoolTime = _skillAxeData.CoolTime;
+        //TODO 여기 갈아 엎어야함
 
-        _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
-        _skillSpearCoolTime = _skillSpearData.CoolTime;
-        
-        _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
-        _skillHammerCoolTime = _skillHammerData.CoolTime;
-
-        _skillKopshNumberOfTimes = _skillKopshData.NumberOfTimesTheSkill;
-        _skillKopshCoolTime = _skillKopshData.CoolTime;
-
-        _skillPlainSwordNumberOfTimes = _skillPlainSwordData.NumberOfTimesTheSkill;
+        _skillPlainSwordNumberOfTimes = 1;
         _skillPlainSwordCoolTime = _skillPlainSwordData.CoolTime;
         _skillPlainSwordAttackInterval = _skillPlainSwordData.MultiStateHitInterval;
-
-        GameManager.instance.commandManager.GetCommandData(_skillAxeData.SkillName).maxCoolTIme =
-            _skillAxeData.CoolTime;
-        GameManager.instance.commandManager.GetCommandData(_skillSpearData.SkillName).maxCoolTIme =
-            _skillSpearData.CoolTime;
-        GameManager.instance.commandManager.GetCommandData(_skillHammerData.SkillName).maxCoolTIme =
-            _skillHammerData.CoolTime;
-        GameManager.instance.commandManager.GetCommandData(_skillKopshData.SkillName).maxCoolTIme =
-            _skillKopshData.CoolTime;
-        GameManager.instance.commandManager.GetCommandData(_skillPlainSwordData.SkillName).maxCoolTIme =
-            _skillPlainSwordData.CoolTime;
+        
     }
-    
 
-    public override void Idle()
+
+    private object GetDataFromStateLevel(int stateLevel, string dataName)
     {
-        base.Idle();
+        int index = 0;
+        
+        for (int i = 0; i < _playerData.Count; i++)
+        {
+            if ((int)_playerData[i]["stateLevel"] == stateLevel)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        return _playerData[index][dataName];
     }
 
     public void Progress()
@@ -507,47 +427,48 @@ public class PlayerUnit : Unit
 
     public override void Move()
     {
-        _rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0) * GameManager.instance.timeMng.TimeScale, ForceMode2D.Impulse);
+        _rigidbody2D.velocity = new Vector2(_moveSpeed * _facingDir, _rigidbody2D.velocity.y);
+        //_rigidbody2D.AddForce(new Vector2(_minSpeed * _facingDir, 0) * GameManager.instance.timeMng.TimeScale, ForceMode2D.Impulse);
 
-        if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
-        {
-            _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
-            _isTouchMaxSpeed = true;
-        }
+        // if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
+        // {
+        //     _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
+        //     _isTouchMaxSpeed = true;
+        // }
 
         // Vector2 dir = moveUtil.moveforce(5);
         // Rigidbody2D.addfoce(dir);
     }
 
-    public void SetVelocityMaxMoveSpeed()
-    {
-        _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
-        _isTouchMaxSpeed = true;
-    }
+    // public void SetVelocityMaxMoveSpeed()
+    // {
+    //     _rigidbody2D.velocity = new Vector2(_maxSpeed * _facingDir, _rigidbody2D.velocity.y);
+    //     _isTouchMaxSpeed = true;
+    // }
 
     public void MoveStop()
     {
         if (GameManager.instance.timeMng.IsBulletTime == false)
-            _rigidbody2D.velocity = new Vector2(_moveStopSpeed * _facingDir, _rigidbody2D.velocity.y);
-    }
-
-    public void MoveEnd()
-    {
-        _isTouchMaxSpeed = false;
-    }
-
-    public bool IsRunningInertia()
-    {
-        //return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 1.0f ? true : false;
-        
-        if (_isTouchMaxSpeed == true)
         {
-            _isTouchMaxSpeed = false;
-            return true;
+            _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
         }
-
-        return false;
+        // if (GameManager.instance.timeMng.IsBulletTime == false)
+        //     _rigidbody2D.velocity = new Vector2(_moveStopSpeed * _facingDir, _rigidbody2D.velocity.y);
     }
+    
+
+    // public bool IsRunningInertia()
+    // {
+    //     //return Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed - 1.0f ? true : false;
+    //     
+    //     if (_isTouchMaxSpeed == true)
+    //     {
+    //         _isTouchMaxSpeed = false;
+    //         return true;
+    //     }
+    //
+    //     return false;
+    // }
 
 
     public override void Jump()
@@ -562,25 +483,13 @@ public class PlayerUnit : Unit
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
-    public void DoubleJump()
-    {
-        _jumpCount--;
-        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
-        var power = new Vector3(0, _jumpPower * GameManager.instance.timeMng.TimeScale, 0.0f);
-        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
-    }
-
-    public void JumpMoveStop()
-    {
-        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-    }
-
-    public void AddJumpForce()
-    {
-        _rigidbody2D.AddForce(
-            (new Vector2(0, _addJumpPower) * _addAllJumpPpower) * GameManager.instance.timeMng.TimeScale *
-            GameManager.instance.timeMng.FixedDeltaTime, ForceMode2D.Impulse);
-    }
+    // public void DoubleJump()
+    // {
+    //     _jumpCount--;
+    //     _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
+    //     var power = new Vector3(0, _jumpPower * GameManager.instance.timeMng.TimeScale, 0.0f);
+    //     _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    // }
 
     public bool CheckIsJumpAble()
     {
@@ -593,64 +502,22 @@ public class PlayerUnit : Unit
         return false;
     }
 
+    public bool CheckIsDoubleJump()
+    {
+        if (_jumpCount >= 1)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void ResetJumpVal()
     {
         _jumpCount = _maxJumpCount;
         isBasicJumpAttackAble = true;
         _coyoteTime = _maxCoyoteTime;
     }
-
-    public void SetRoll()
-    {
-        _rigidbody2D.sharedMaterial = _dashPhysicMaterial;
-        _rollSpeed = (1 / _rollTime) * _rollGoalX;
-    }
-
-    public void Roll()
-    {
-        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-        var power = new Vector2((_rollSpeed) * _facingDir * _timeScale, 0);
-        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
-    }
-
-    public void EndRoll()
-    {
-        _rigidbody2D.sharedMaterial = null;
-        if (_isRollAble == true)
-            StartCoroutine(RollCoolTimeCoroutine());
-    }
-    
-    // private int counter = 0;
-    // Vector2 power = Vector2.zero;
-    // public void AddRollPower()
-    // {
-    //     if (counter < (int) (_rollTime / Time.fixedDeltaTime))
-    //     {
-    //         counter++;
-    //         _rollPerMoveX = _rollGoalX / (_rollTime / Time.fixedDeltaTime);
-    //         power = new Vector2(_rollPerMoveX * _facingDir, 0);
-    //         //Debug.Log(Physics2D.gravity * Time.deltaTime);
-    //         //power += Physics2D.gravity * Time.deltaTime;
-    //         power += new Vector2(transform.position.x, transform.position.y);
-    //
-    //         if (IsGround == false)
-    //             power += Physics2D.gravity * Time.fixedDeltaTime;
-    //         
-    //         _rigidbody2D.MovePosition(power);
-    //     }
-    //     else
-    //     {
-    //         _rigidbody2D.velocity = new Vector2(0, power.y);
-    //         counter = 0;
-    //     }
-    // }
-
-    public void RollStop()
-    {
-        if (IsGround)
-            _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-    }
-    
     
     public void SetDash()
     {
@@ -777,14 +644,14 @@ public class PlayerUnit : Unit
 
     private void SetBasicDamage(int attackIndex)
     {
-        _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) *
-                                    GetDamageWeightFromEencroachment();
-        _basicAttackDamage.knockBack = new Vector2(_basicAttackKnockBackArr[attackIndex].x * _facingDir, _basicAttackKnockBackArr[attackIndex].y);
-        //============== 고재협이 편집함 ======================
-        _basicAttackDamage.additionalInfo = attackIndex;
-        //=====================================================
-
-        _basicAttackDamage = CalcDamageAbnormalIsDrain(_basicAttackDamage);
+        // _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) *
+        //                             GetDamageWeightFromEencroachment();
+        // _basicAttackDamage.knockBack = new Vector2(_basicAttackKnockBackArr[attackIndex].x * _facingDir, _basicAttackKnockBackArr[attackIndex].y);
+        // //============== 고재협이 편집함 ======================
+        // _basicAttackDamage.additionalInfo = attackIndex;
+        // //=====================================================
+        //
+        // _basicAttackDamage = CalcDamageAbnormalIsDrain(_basicAttackDamage);
 
     }
     
@@ -794,11 +661,12 @@ public class PlayerUnit : Unit
         _rigidbody2D.velocity = Vector2.zero;
     }
 
-    public void BasicAttack(int attackIndex)
+    // 데미지에 추가 보정을 해야하는 경우 여기서 수정해서 넘기면 될 듯
+    public void BasicAttack(Damage damage)
     {
-        SetBasicDamage(attackIndex);
-        _basicAttackCtrlArr[attackIndex].SetDamage(_basicAttackDamage);
-        _basicAttackCtrlArr[attackIndex].Progress();
+        //SetBasicDamage(attackIndex);
+        _basicAttackCtrl.Init(damage);
+        _basicAttackCtrl.Progress();
     }
 
     public void BasicAttackMove(int basicAttackIndex)
@@ -823,26 +691,20 @@ public class PlayerUnit : Unit
         _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
     }
 
-    public override void Attack()
-    {
-        base.Attack();
-    }
+    // public void SetBasicJumpDamage(int index)
+    // {
+    //     _basicJumpAttackDamage.power =
+    //         UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * GetDamageWeightFromEencroachment();
+    //     _basicJumpAttackDamage.knockBack = new Vector2(_basicJumpAttackKnockBackArr[index].x * _facingDir,
+    //         _basicJumpAttackKnockBackArr[index].y);
+    //     _basicJumpAttackDamage.additionalInfo = 3;
+    //
+    //     _basicJumpAttackDamage = CalcDamageAbnormalIsDrain(_basicJumpAttackDamage);
+    // }
 
-    public void SetBasicJumpDamage(int index)
+    public void BasicJumpAttack(int jumpAttackIndex, Damage damage)
     {
-        _basicJumpAttackDamage.power =
-            UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * GetDamageWeightFromEencroachment();
-        _basicJumpAttackDamage.knockBack = new Vector2(_basicJumpAttackKnockBackArr[index].x * _facingDir,
-            _basicJumpAttackKnockBackArr[index].y);
-        _basicJumpAttackDamage.additionalInfo = 3;
-
-        _basicJumpAttackDamage = CalcDamageAbnormalIsDrain(_basicJumpAttackDamage);
-    }
-
-    public void BasicJumpAttack(int jumpAttackIndex)
-    {
-        SetBasicJumpDamage(jumpAttackIndex);
-        _basicJumpAttackCtrlArr[jumpAttackIndex].SetDamage(_basicJumpAttackDamage);
+        _basicJumpAttackCtrlArr[jumpAttackIndex].Init(damage);
         _basicJumpAttackCtrlArr[jumpAttackIndex].Progress();
     }
 
@@ -858,29 +720,31 @@ public class PlayerUnit : Unit
         _rigidbody2D.gravityScale = _originalGravityScale;
     }
     
-    public void BasicJumpAttackMove(int basicJumpAttackIndex)
-    {
-        _basicJumpAttackMoveSpeed = 
-            (1 / _basicJumpAttackMoveTimeArr[basicJumpAttackIndex]) *
-            _basicJumpAttackMoveGoalArr[basicJumpAttackIndex].x;
-        
-        float _basicJumpAttackMoveYSpeed = (1 / _basicJumpAttackMoveTimeArr[basicJumpAttackIndex]) *
-                                           _basicJumpAttackMoveGoalArr[basicJumpAttackIndex].y;
-        
-        _rigidbody2D.velocity = new Vector2(0, 0);
-
-        var power = new Vector2((_basicJumpAttackMoveSpeed) * _facingDir * GameManager.instance.timeMng.TimeScale,
-            _basicJumpAttackMoveYSpeed * GameManager.instance.timeMng.TimeScale);
-        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
-    }
+    // public void BasicJumpAttackMove(int basicJumpAttackIndex)
+    // {
+    //     _basicJumpAttackMoveSpeed = 
+    //         (1 / _basicJumpAttackMoveTimeArr[basicJumpAttackIndex]) *
+    //         _basicJumpAttackMoveGoalArr[basicJumpAttackIndex].x;
+    //     
+    //     float _basicJumpAttackMoveYSpeed = (1 / _basicJumpAttackMoveTimeArr[basicJumpAttackIndex]) *
+    //                                        _basicJumpAttackMoveGoalArr[basicJumpAttackIndex].y;
+    //     
+    //     _rigidbody2D.velocity = new Vector2(0, 0);
+    //
+    //     var power = new Vector2((_basicJumpAttackMoveSpeed) * _facingDir * GameManager.instance.timeMng.TimeScale,
+    //         _basicJumpAttackMoveYSpeed * GameManager.instance.timeMng.TimeScale);
+    //     _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    // }
     
 
     public void BasicJumpMove(int inputDir)
     {
-        _rigidbody2D.AddForce(new Vector2(_minSpeed * inputDir * GameManager.instance.timeMng.TimeScale, 0), ForceMode2D.Impulse);
+        _rigidbody2D.velocity = new Vector2(_moveSpeed * inputDir, _rigidbody2D.velocity.y);
         
-        if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
-            _rigidbody2D.velocity = new Vector2(_maxSpeed * inputDir, _rigidbody2D.velocity.y);
+        // _rigidbody2D.AddForce(new Vector2(_minSpeed * inputDir * GameManager.instance.timeMng.TimeScale, 0), ForceMode2D.Impulse);
+        //
+        // if (Mathf.Abs(_rigidbody2D.velocity.x) >= _maxSpeed)
+        //     _rigidbody2D.velocity = new Vector2(_maxSpeed * inputDir, _rigidbody2D.velocity.y);
     }
     
     public override void HandleHit(in Damage inputDamage)
@@ -901,6 +765,7 @@ public class PlayerUnit : Unit
     public void Hit()
     {
         _curHp -= _hitDamage.power * _decreaseHp;
+        HitKnockBack();
         StartCoroutine(InvincibilityTimeCoroutine());
 
         //---
@@ -938,6 +803,11 @@ public class PlayerUnit : Unit
 
     public void HitKnockBack()
     {
+        if (_isSuperArmor == true)
+        {
+            return;
+        }
+
         _rigidbody2D.velocity = Vector2.zero;
         _rigidbody2D.AddForce(_hitDamage.knockBack, ForceMode2D.Impulse);
     }
@@ -946,337 +816,23 @@ public class PlayerUnit : Unit
     {
         _hitDamage = new Damage();
     }
-
     
-    // public Shadow GetAbleShadowWalk()
-    // {
-    //     shadowWalkShadow = null;
-    //     
-    //     if (_skillShadowWalkNumberOfTimes > 0)
-    //     {
-    //         shadowWalkShadow = _shadowWalkColCtrl.CheckAreaInsideShadow();
-    //
-    //         if (shadowWalkShadow == null)
-    //             return null;
-    //         
-    //         _skillShadowWalkNumberOfTimes--;
-    //         _encroachment -= _shadowWalkSkillData.EncroachmentPer;
-    //     }
-    //     
-    //     if (_skillShadowWalkNumberOfTimes <= 0)
-    //     {
-    //         if (_isSkillShadowWalkAble == true)
-    //         {
-    //             StartCoroutine(ShadowWalkCoolTimeCoroutine());
-    //         }
-    //     }
-    //
-    //     return shadowWalkShadow;
-    // }
-
-    // public GameSkillObject InvokeShadowWalkSkill()
-    // {
-    //     var skillObject = GameManager.instance.GameSkillMgr.GetSkillObject();
-    //     if (skillObject == null)
-    //         return null;
-    //     
-    //     skillObject.InitSkill(_shadowWalkSkillData.GetSkillController(skillObject, this));
-    //     return skillObject;
-    // }
-
-    private void EncroachmentProduction()
-    {
-        switch (_encroachmentLevelIndex)
-        {
-            case 99:
-                if (_nonEncroachment == true)
-                {
-                    _nonEncroachment = false;
-                    //_spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
-                    StartCoroutine(EncroachmentProductionParticleFadeOut(0));
-                }
-
-                WwiseSoundManager.instance.PlayEventSound("Encroaching_End");
-                
-                break;
-            // case 4:
-            //     if (_encroachmentLevelArr[_encroachmentLevelIndex] == false)
-            //     {
-            //         StartCoroutine(EncroachmentProductionParticleFadeOut(_encroachmentLevelIndex - 1));
-            //
-            //         _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
-            //         _spriteRenderer.color = new Color(0, 0, 0, 0.3f);
-            //         _encroachmentLevelArr[_encroachmentLevelIndex] = true;
-            //     }
-            //     break;
-            case 3:
-                if (_encroachmentLevelArr[_encroachmentLevelIndex] == false)
-                {
-                    StartCoroutine(EncroachmentProductionParticleFadeOut(_encroachmentLevelIndex - 1));
-
-                    _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
-                    // ColorUtility.TryParseHtmlString("#262626", out _encroachmentColor);
-                    // _spriteRenderer.color = _encroachmentColor;
-                    _encroachmentLevelArr[_encroachmentLevelIndex] = true;
-                }
-                break;
-            case 2:
-                if (_encroachmentLevelArr[_encroachmentLevelIndex] == false)
-                {
-                    StartCoroutine(EncroachmentProductionParticleFadeOut(_encroachmentLevelIndex - 1));
-
-                    _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
-                    // ColorUtility.TryParseHtmlString("#4C4C4C", out _encroachmentColor);
-                    // _spriteRenderer.color = _encroachmentColor;
-                    _encroachmentLevelArr[_encroachmentLevelIndex] = true;
-                }
-                break;
-            case 1:
-                if (_encroachmentLevelArr[_encroachmentLevelIndex] == false)
-                {
-                    StartCoroutine(EncroachmentProductionParticleFadeOut(_encroachmentLevelIndex - 1));
-                    
-                    _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
-                    // ColorUtility.TryParseHtmlString("#7F7F7F", out _encroachmentColor);
-                    // _spriteRenderer.color = _encroachmentColor;
-                    _encroachmentLevelArr[_encroachmentLevelIndex] = true;
-                }
-                break;
-            case 0:
-                if (_encroachmentLevelArr[_encroachmentLevelIndex] == false)
-                {
-                    _nonEncroachment = true;
-                    _encroachmentProductionParticleSystems[_encroachmentLevelIndex].gameObject.SetActive(true);
-                    // ColorUtility.TryParseHtmlString("#B2B2B2", out _encroachmentColor);
-                    // _spriteRenderer.color = _encroachmentColor;
-                    _encroachmentLevelArr[_encroachmentLevelIndex] = true;
-                    
-                    WwiseSoundManager.instance.PlayEventSound("Encroaching");
-                }
-                break;
-        }
-
-        for (int i = 0; i < _encroachmentLevelArr.Length; i++)
-        {
-            if (_encroachmentLevelArr[i] == true)
-            {
-                if (i != _encroachmentLevelIndex)
-                    StartCoroutine(EncroachmentProductionParticleFadeOut(i));
-            }
-            
-            _encroachmentLevelArr[i] = false;
-        }
-
-        if (_encroachmentLevelIndex != 99)
-            _encroachmentLevelArr[_encroachmentLevelIndex] = true;
-    }
-
-    private void SetEncroachmentProduction()
-    {
-        if (_encroachment >= 80)
-        {
-            _encroachmentLevelIndex = 3;
-        }
-        else if (_encroachment >= 60)
-        {
-            _encroachmentLevelIndex = 2;
-        }
-        else if (_encroachment >= 40)
-        {
-            _encroachmentLevelIndex = 1;
-        }
-        else if (_encroachment >= 20)
-        {
-            _encroachmentLevelIndex = 0;
-        }
-        else if (_encroachment <= 10)
-        {
-            _encroachmentLevelIndex = 99;
-        }
-
-        EncroachmentProduction();
-    }
     
     private void ChangeEncroachment(float encroachmentIncrease)
     {
-        _encroachment += encroachmentIncrease;
-        SetEncroachmentProduction();
-        
-        if (_encroachment < 0)
-        {
-            _encroachment = 0;
-        }
         playerInfo.CurEncroachment = _encroachment;
-        if (_encroachment >= 100)
-        {
-            if (_isEncrochmentDeadCoroutine == false)
-                StartCoroutine(EncroachmentDaedProduction());
-        }
     }
 
-    private void FindEncroachmentDecreaseFromSkillData(string skillName)
+    public void OnSkillDoubleCrossAttackEventCall()
     {
-        float encroachmentIncrease = 0.0f;
-        
-        if (_skillAxeData.SkillName == skillName)
-        {
-            encroachmentIncrease = _skillAxeData.DecreaseEncroachment;
-        }
-        else if (_skillSpearData.SkillName == skillName)
-        {
-            encroachmentIncrease = _skillSpearData.DecreaseEncroachment;
-        }
-        else if (_skillHammerData.SkillName == skillName)
-        {
-            encroachmentIncrease = _skillHammerData.DecreaseEncroachment;
-        }
-        else if (_skillKopshData.SkillName == skillName)
-        {
-            encroachmentIncrease = _skillKopshData.DecreaseEncroachment;
-        }
-        else if (_skillPlainSwordData.SkillName == skillName)
-        {
-            encroachmentIncrease =  _skillPlainSwordData.DecreaseEncroachment;
-        }
-        else if ("Basic" == skillName)
-        {
-            encroachmentIncrease = _baiscAttackEncroachmentDecrease;
-        }
-        
-        ChangeEncroachment(encroachmentIncrease);
+        OnSkillDoubleCrossAttackEvent?.Invoke();
     }
     
-    public bool IsAbleSkillAxe()
+    public void OnSkillSnakeSwordStingAttackEventCall()
     {
-        if (_skillAexIsAble == false)
-        {
-            return false;
-        }
-
-        _skillAxeNumberOfTimes--;
-        ChangeEncroachment(_skillAxeData.IncreaseEncroachment);
-
-        if (_skillAxeNumberOfTimes <= 0)
-        {
-            StartCoroutine(SkillAxeCoolTimeCoroutine());
-        }
-        
-        return true;
-    }
-
-    public bool IsAbleSkillSpear()
-    {
-        if (_skillSpearIsAble == false)
-        {
-            return false;
-        }
-
-        _skillSpearNumberOfTimes--;
-        ChangeEncroachment(_skillSpearData.IncreaseEncroachment);
-        
-        if (_skillSpearNumberOfTimes <= 0)
-        {
-            StartCoroutine(SkillSpearCoolTimeCoroutine());
-        }
-
-        return true;
+        OnSkillSnakeSwordStingAttackEvent?.Invoke();
     }
     
-    public bool IsAbleSkillHammer()
-    {
-        if (_skillHammerIsAble == false)
-        {
-            return false;
-        }
-        
-        _skillHammerNumberOfTimes--;
-        ChangeEncroachment(SkillHammerData.IncreaseEncroachment);
-
-        
-        if (_skillHammerNumberOfTimes <= 0)
-        {
-            StartCoroutine(SkillHammerCoolTimeCoroutine());
-        }
-
-        return true;
-    }
-
-    public bool IsAbleSkillKopsh()
-    {
-        if (_skillKopshIsAble == false)
-        {
-            return false;
-        }
-
-        _skillKopshNumberOfTimes--;
-        ChangeEncroachment(SkillKopshData.IncreaseEncroachment);
-
-        if (_skillKopshNumberOfTimes <= 0)
-        {
-            StartCoroutine(SkillKopshCoolTimeCoroutine());
-        }
-
-        return true;
-    }
-
-    public bool IsAbleSkillPlainSword()
-    {
-        if (_skillPlainSwordIsAble == false)
-        {
-            return false;
-        }
-
-        _skillPlainSwordNumberOfTimes--;
-        ChangeEncroachment(SkillPlainSwordData.IncreaseEncroachment);
-
-        if (_skillPlainSwordNumberOfTimes <= 0)
-        {
-            StartCoroutine(SkillPlainSwordCoolTimeCoroutine());
-        }
-        
-        return true;
-    }
-    
-    public void OnSkillSpearRushEventCall()
-    {
-        _skillSpearAttackCtrl.GetEnemyList();
-        OnSkillSpearRushEvent?.Invoke();
-    }
-
-    public void OnSkillSpearAttackEventCall()
-    {
-        OnSkillSpearAttackEvent?.Invoke();
-    }
-
-    public void SKillSpearAttack(Damage damage)
-    {
-        _skillSpearAttackCtrl.SetDamage(CalcDamageAbnormalIsDrain(damage));
-        _skillSpearAttackCtrl.Progress();
-    }
-
-    public void OnSkillHammerAttackEventCall()
-    {
-        OnSkillHammerAttackEvent?.Invoke();
-    }
-
-    public void SkillHammerAttack(Damage damage)
-    {
-        _skillHammerAttackCtrl.SetDamage(CalcDamageAbnormalIsDrain(damage));
-        _skillHammerAttackCtrl.Progress();
-    }
-
-    public void OnSkillKopshAttackEvnetCall()
-    {
-        OnSkillKopshAttackEvent?.Invoke();
-    }
-
-    public void SkillKopshAttack(Damage damage)
-    {
-        _skillKopshAttackCtrls[skillKopshIndex].SetDamage(CalcDamageAbnormalIsDrain(damage));
-        _skillKopshAttackCtrls[skillKopshIndex].Progress();
-    }
-    
-
     public void OnSkillPlainSwordAttackEventCall()
     {
         OnSkillPlainSwordAttackEvent?.Invoke();
@@ -1284,14 +840,14 @@ public class PlayerUnit : Unit
 
     public void SkillPlainSwordAttack(Damage damage)
     {
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(CalcDamageAbnormalIsDrain(damage));
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Init(CalcDamageAbnormalIsDrain(damage));
         _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
     }
 
     public void SkillPlainSwordMultiAttack(Damage damage)
     {
         _skillPlainDamage = damage;
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].SetDamage(CalcDamageAbnormalIsDrain(_skillPlainDamage));
+        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Init(CalcDamageAbnormalIsDrain(_skillPlainDamage));
         _skillPlainSwordMultiAttackCoroutine = StartCoroutine(SkillPlainSwordMultiAttackCoroutine());
     }
 
@@ -1301,8 +857,10 @@ public class PlayerUnit : Unit
             return;
         
         StopCoroutine(_skillPlainSwordMultiAttackCoroutine);
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].ZoomOut();
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].UnBind();
+        
+        // 사복검 에러 시 여기 체크
+        // _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].ZoomOut();
+        // _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].UnBind();
     }
 
     public void SkillPlainSwordFastInterval()
@@ -1313,7 +871,7 @@ public class PlayerUnit : Unit
 
     //  리팩토링 할 때  skillData를 다 따로 가지고 있지 말고
     // skillDataBase 리스트를 하나 만들어서 거기 담아놓자.
-    public void OnAddComboEventCall(string skillname)
+    public void OnAddComboEventCall()
     {
         _curCombo++;
 
@@ -1339,14 +897,15 @@ public class PlayerUnit : Unit
     {
         _timeScale = timeScale;
 
-        _maxSpeed = _maxSpeed * _timeScale;
+        //_moveSpeed = _moveSpeed * _moveSpeed;
+        //_maxSpeed = _maxSpeed * _timeScale;
         _rigidbody2D.velocity *= _timeScale;
         _rigidbody2D.gravityScale *= _timeScale * _timeScale;
     }
 
     public void EndBulletTime(float timeScale)
     {
-        _maxSpeed = _maxSpeed * (1 / _timeScale);
+        //_moveSpeed = _moveSpeed * (1 / _timeScale);
         _rigidbody2D.velocity *= 1 / _timeScale; 
 
         _timeScale = timeScale;
@@ -1457,6 +1016,11 @@ public class PlayerUnit : Unit
         return _isWallTouch;
     }
 
+    public void ActiveSuperArmor(float superArmorTime)
+    {
+        StartCoroutine(SuperArmorCoroutine(superArmorTime));
+    }
+
     IEnumerator ComboCoroutine()
     {
         _isContinuingCombo = true;
@@ -1482,19 +1046,7 @@ public class PlayerUnit : Unit
             yield return new WaitForFixedUpdate();
         }
     }
-
-    IEnumerator RollCoolTimeCoroutine()
-    {
-        _isRollAble = false;
-        float timer = 0.0f;
-        while (timer < _rollCoolTime)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-
-        _isRollAble = true;
-    }
+    
     
     IEnumerator DashCoolTimeCoroutine()
     {
@@ -1507,59 +1059,6 @@ public class PlayerUnit : Unit
         }
 
         _isDashAble = true;
-    }
-
-    IEnumerator EncroachmentRecoveryCoroutine()
-    {
-        float timer = 0.0f;
-        while (true)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-
-            if (timer >= _encroachmentRecoveryPerTime)
-            {
-                timer = 0.0f;
-                ChangeEncroachment(_encroachmentRecoveryAmount);
-            }
-
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
-    IEnumerator EncroachmentProductionParticleFadeOut(int particlefadeOutIndex)
-    {
-        float timer = _encroachmentProductionFadeOutTime;
-        var particleChildrens = _encroachmentProductionParticleSystems[particlefadeOutIndex]
-            .GetComponentsInChildren<ParticleSystem>();
-
-        ParticleSystemRenderer particleSystemRenderer;
-        Material particleMaterial;
-        float programerAlpha = 0.0f;
-        
-        while (timer > 0.0f)
-        {
-            timer -= GameManager.instance.timeMng.FixedDeltaTime;
-            programerAlpha = Mathf.Lerp(0, 1, timer);
-
-            for (int i = 1; i < particleChildrens.Length; i++)
-            {
-                particleSystemRenderer = particleChildrens[i].GetComponent<ParticleSystemRenderer>();
-                particleMaterial = particleSystemRenderer.material;
-                particleMaterial.SetFloat("Vector1_1F53A638", programerAlpha);
-            }
-
-
-            yield return new WaitForFixedUpdate();
-        }
-        
-        for (int i = 1; i < particleChildrens.Length; i++)
-        {
-            particleSystemRenderer = particleChildrens[i].GetComponent<ParticleSystemRenderer>();
-            particleMaterial = particleSystemRenderer.material;
-            particleMaterial.SetFloat("Vector1_1F53A638", 1.0f);
-        }
-        
-        _encroachmentProductionParticleSystems[particlefadeOutIndex].gameObject.SetActive(false);
     }
 
     IEnumerator EncroachmentDaedProduction()
@@ -1592,99 +1091,10 @@ public class PlayerUnit : Unit
         Dead();
     }
 
-    IEnumerator SkillAxeCoolTimeCoroutine()
-    {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillAxeData.SkillName);
-        _skillAexIsAble = false;
-        float timer = 0.0f;
-        _commandData.coolTime = 0;
-        
-        while (timer < _skillAxeCoolTime)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-            _commandData.coolTime = timer;
-            yield return new WaitForFixedUpdate();
-        }
-
-        _skillAexIsAble = true;
-        _skillAxeNumberOfTimes = _skillAxeData.NumberOfTimesTheSkill;
-    }
-    
-    IEnumerator SkillSpearCoolTimeCoroutine()
-    {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(SkillSpearData.SkillName);
-        _skillSpearIsAble = false;
-        float timer = 0.0f;
-
-        _commandData.coolTime = 0;
-        while (timer < _skillSpearCoolTime)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-            _commandData.coolTime = timer;
-            yield return new WaitForFixedUpdate();
-        }
-
-        _skillSpearIsAble = true;
-        _skillSpearNumberOfTimes = _skillSpearData.NumberOfTimesTheSkill;
-    }
-    
-    IEnumerator SkillHammerCoolTimeCoroutine()
-    {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillHammerData.SkillName);
-        _skillHammerIsAble = false;
-        float timer = 0.0f;
-        _commandData.coolTime = 0;
-        while (timer < _skillHammerCoolTime)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-            _commandData.coolTime = timer;
-            yield return new WaitForFixedUpdate();
-        }
-
-        _skillHammerIsAble = true;
-        _skillHammerNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
-    }
-
-    IEnumerator SkillKopshCoolTimeCoroutine()
-    {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillKopshData.SkillName);
-        _skillKopshIsAble = false;
-        float timer = 0.0f;
-        _commandData.coolTime = 0;
-        while (timer < _skillKopshCoolTime)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-            _commandData.coolTime = timer;
-            yield return new WaitForFixedUpdate();
-        }
-
-        _skillKopshIsAble = true;
-        _skillKopshNumberOfTimes = _skillHammerData.NumberOfTimesTheSkill;
-    }
-    
-    IEnumerator SkillPlainSwordCoolTimeCoroutine()
-    {
-        var _commandData = GameManager.instance.commandManager.GetCommandData(_skillPlainSwordData.SkillName);
-        _skillPlainSwordIsAble = false;
-        float timer = 0.0f;
-        _commandData.coolTime = 0;
-        while (timer < _skillPlainSwordCoolTime)
-        {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
-            _commandData.coolTime = timer;
-            yield return new WaitForFixedUpdate();
-        }
-
-        _skillPlainSwordIsAble = true;
-        _skillPlainSwordNumberOfTimes = _skillPlainSwordData.NumberOfTimesTheSkill;
-    }
-    
     IEnumerator SkillPlainSwordMultiAttackCoroutine()
     {
         float timer = 0.2f;
         _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].FristProgress();
-
         while (true)
         {
             timer += GameManager.instance.timeMng.FixedDeltaTime;
@@ -1692,30 +1102,28 @@ public class PlayerUnit : Unit
             if (timer >= _skillPlainSwordAttackInterval)
             {
                 _SkillPlainSwordAttackCtrls[skillPlainSwordIndex]
-                    .SetDamage(CalcDamageAbnormalIsDrain(_skillPlainDamage));
+                    .Init(CalcDamageAbnormalIsDrain(_skillPlainDamage));
                 _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
                 timer = 0.0f;
             }
 
             yield return new WaitForFixedUpdate();
         }
-
     }
 
+    IEnumerator SuperArmorCoroutine(float superArmorTime)
+    {
+        float timer = 0.0f;
+        _isSuperArmor = true;
+        
+        while (superArmorTime >= timer)
+        {
+            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
 
-    // IEnumerator ShadowWalkCoolTimeCoroutine()
-    // {
-    //     _isSkillShadowWalkAble = false;
-    //     float timer = 0.0f;
-    //     while (timer < _shadowWalkSkillData.CoolTime)
-    //     {
-    //         timer += GameManager.instance.timeMng.FixedDeltaTime;
-    //         yield return new WaitForFixedUpdate();
-    //     }
-    //
-    //     _isSkillShadowWalkAble = true;
-    //     _skillShadowWalkNumberOfTimes = _shadowWalkSkillData.NumberOfTimesTheSkill;
-    // }
+        _isSuperArmor = false;
+    }
     
     IEnumerator InvincibilityTimeCoroutine()
     {

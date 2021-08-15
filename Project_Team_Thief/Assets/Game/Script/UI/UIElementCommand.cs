@@ -11,7 +11,9 @@ public class UIElementCommand : MonoBehaviour
     public GameObject commandCell;
 
     public RectTransform frame;
-    private CommandManager.CommandCtrl _data;
+    
+    // 김태성 수정 CommandCtrl -> SkllSlot;
+    private SkillSlotManager.SkillSlot _data;
 
     private List<UIElementCommandCell> cells = new List<UIElementCommandCell>();
 
@@ -23,12 +25,13 @@ public class UIElementCommand : MonoBehaviour
         _rect = GetComponent<RectTransform>();
     }
 
-    public void InitCommandInfo(CommandManager.CommandCtrl data, string command)
+    // 김태성 수정 commandData -> SkillSlot
+    public void InitCommandInfo(SkillSlotManager.SkillSlot data, string command)
     {
         _data = data;
         commandString = command;
-        skillIcon.sprite = data.CommandData.skillIcon;
-        _data.CommandData.coolTime = _data.CommandData.maxCoolTIme;
+        skillIcon.sprite = data.SkillDataBase.Icon;
+        _data.SkillSlotCurCoolTime = _data.SkillDataBase.CoolTime;
 
         int length = command.Length;
         int correction = 0;
@@ -95,7 +98,7 @@ public class UIElementCommand : MonoBehaviour
 
     public void SetCoolTimeComponent(UICommandCoolTime coolTimeComponent)
     {
-        coolTimeComponent.SetSkillIcon(_data.CommandData.skillIcon);
+        coolTimeComponent.SetSkillIcon(_data.SkillDataBase.Icon);
         coolTimeComponent.SetData(_data);
     }
 

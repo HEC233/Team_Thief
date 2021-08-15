@@ -34,9 +34,11 @@ public enum AniState
     SkillKopsh,     // 26
     SkillKopsh2,    // 27
     SkillKopsh3,    // 28
-    SkillPlainSword,    // 29
-    SkillPlainSword2,   // 30
-    SkillPlainSword3,   // 31
+    SkillSnakeSwordStingDelay,    // 29
+    SkillSnakeSwordSting1,   // 30
+    SkillSnakeSwordSting2,   // 31
+    SkillDoubleCross,   // 32
+    SkillDoubleCross2,  // 33
 
     // SkillShadowWalk,// 20
     // ShadowControl,  // 21
@@ -58,7 +60,7 @@ public class AnimationCtrl : MonoBehaviour
         if (_animator.GetInteger("State") == (int)aniState)
             return;
         
-        _animator.Rebind();
+        //_animator.Rebind();
         _animator.SetInteger("State", (int) aniState);
     }
 

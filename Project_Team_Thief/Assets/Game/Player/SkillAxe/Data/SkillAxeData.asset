@@ -12,18 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0643a2e5688b9540a2608cbdf113c6a, type: 3}
   m_Name: SkillAxeData
   m_EditorClassIdentifier: 
+  _id: 3
   _numberOfTimesTheSkill: 2
-  _coolTime: 3
-  _skillName: Skill1Axe
-  _increaseEncroachment: -18
-  _encroachmentDecrease: 0
-  _axeGameObject: {fileID: 3841240397383621464, guid: 3624dd1e695c1004e96f2ca043568a51,
-    type: 3}
   _cinemachineSignalSource: {fileID: 11400000, guid: eb351fd8ca44c3c4db67561a895cdc01,
     type: 2}
-  _knockBackPower: {x: 1, y: 0.3}
+  _name: "\uC810\uD504\uACF5\uACA92\uD0C0"
+  _grade: "\uB178\uB9D0"
+  _isGet: 1
+  _class: "\uAE30\uBCF8"
+  _coolTime: 0
+  _description: none
+  _axeGameObject: {fileID: 3841240397383621464, guid: 3624dd1e695c1004e96f2ca043568a51,
+    type: 3}
   _axeMovePostionX: 8
   _axeMoveTime: 0.3
-  _axeAttackDamage: 166
-  _axeMultiStageHit: 3
-  _axeMultiStageHitInterval: 0.2

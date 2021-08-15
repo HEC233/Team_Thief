@@ -121,19 +121,19 @@ public class KeyManager : MonoBehaviour
             
             /// 스킬 입력 처리
             if (Input.GetKeyDown(KeyCode.LeftArrow))
-                GameManager.instance.commandManager.Inputkey('L');
+                GameManager.instance.skillSlotManager.Inputkey('L');
             else if (Input.GetKeyDown(KeyCode.RightArrow))
-                GameManager.instance.commandManager.Inputkey('R');
+                GameManager.instance.skillSlotManager.Inputkey('R');
             else if (Input.GetKeyDown(KeyCode.UpArrow))
-                GameManager.instance.commandManager.Inputkey('U');
+                GameManager.instance.skillSlotManager.Inputkey('U');
             else if (Input.GetKeyDown(KeyCode.DownArrow))
-                GameManager.instance.commandManager.Inputkey('D');
+                GameManager.instance.skillSlotManager.Inputkey('D');
             else if (Input.GetKeyDown(KeyCode.Z))
-                GameManager.instance.commandManager.Inputkey('Z');
+                GameManager.instance.skillSlotManager.Inputkey('Z');
             else if (Input.GetKeyDown(KeyCode.X))
-                GameManager.instance.commandManager.Inputkey('X');
+                GameManager.instance.skillSlotManager.Inputkey('X');
             else if (Input.GetKeyDown(KeyCode.Space))
-                GameManager.instance.commandManager.Inputkey('S');
+                GameManager.instance.skillSlotManager.Inputkey('S');
             /// 스킬 입력 처리
         }
         else

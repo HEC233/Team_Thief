@@ -5621,69 +5621,111 @@ PrefabInstance:
       propertyPath: uiMng
       value: 
       objectReference: {fileID: 568382080}
+    - target: {fileID: 4990086937456659573, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: skillSlotManager
+      value: 
+      objectReference: {fileID: 1058721104}
+    - target: {fileID: 4990086937456659573, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: encroachmentManager
+      value: 
+      objectReference: {fileID: 1058721105}
     - target: {fileID: 4990086937456659575, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7279758012565860687, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDataBases.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7be92052f2556e04b8d0ae0792aed92a,
+        type: 2}
+    - target: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDataBases.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: b366ff89bcd1ad547a86cf5d09bf7d79,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: b366ff89bcd1ad547a86cf5d09bf7d79,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 32b29d5e90c4e4c4f9718f7d94abab38,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: ee3a752e33e029e4fabced14c21f0a37,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: dc8ad55abde2bf44181d00ac08aba545,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 17467cf713c51264398d74e7da4a11b4,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7be92052f2556e04b8d0ae0792aed92a,
+        type: 2}
+    - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: efcc9859b54bf6242b7101edad9bf3b6,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
---- !u!1 &1058721104 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 367252610, guid: 1180cfdb66658d9489baa39e9c3402fa,
+--- !u!114 &1058721104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
     type: 3}
   m_PrefabInstance: {fileID: 1058721103}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1058721105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058721104}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d29a78f2fed6f49ba46246a8b55a72, type: 3}
+  m_Script: {fileID: 11500000, guid: 1efdde3afd9e45c43a44cc8f4dd98ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerList: ae8d9d44
-  useOtherObject: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 6f61656de095ce242b01554912681541,
-      type: 2}
-  decodeBank: 0
-  loadAsynchronous: 0
-  saveDecodedBank: 0
-  unloadTriggerList: 958ca0ea
-  bankNameInternal: 
-  valueGuidInternal: 
---- !u!114 &1058721107
+--- !u!114 &1058721105 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8773367656388211677, guid: 1180cfdb66658d9489baa39e9c3402fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1058721103}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058721104}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d29a78f2fed6f49ba46246a8b55a72, type: 3}
+  m_Script: {fileID: 11500000, guid: 3278bad8a4cbb944fb48f9887af8a207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerList: ae8d9d44
-  useOtherObject: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 609ec6963c7802a4d87768f66449f03d,
-      type: 2}
-  decodeBank: 0
-  loadAsynchronous: 0
-  saveDecodedBank: 0
-  unloadTriggerList: 958ca0ea
-  bankNameInternal: 
-  valueGuidInternal: 
 --- !u!1 &1065770122
 GameObject:
   m_ObjectHideFlags: 0

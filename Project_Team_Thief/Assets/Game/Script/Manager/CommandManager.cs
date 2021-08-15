@@ -83,13 +83,13 @@ public class CommandManager : MonoBehaviour
             {
                 if (_commandCtrls[i].CheckCommand() == true)
                 {
-                    OnCommandCastEvent?.Invoke(_commandCtrls[i].CommandData.skillName, false);
+                    //OnCommandCastEvent?.Invoke(_commandCtrls[i].CommandData.skillName, false);
                     break;
                 }
 
                 if (_commandCtrls[i].CheckReverseCommand() == true)
                 {
-                    OnCommandCastEvent?.Invoke(_commandCtrls[i].CommandData.skillName, true);
+                    //OnCommandCastEvent?.Invoke(_commandCtrls[i].CommandData.skillName, true);
                     break;
                 }
             }
@@ -108,11 +108,11 @@ public class CommandManager : MonoBehaviour
         }
     }
 
-    public SOCommandData GetCommandData(string skillName)
-    {
-        int indexForSkillName = _soCommandDatas.FindIndex(e => e.skillName == skillName);
-        return _soCommandDatas[indexForSkillName];
-    }
+    // public SOCommandData GetCommandData(string skillName)
+    // {
+    //     // int indexForSkillName = _soCommandDatas.FindIndex(e => e.skillName == skillName);
+    //     // return _soCommandDatas[indexForSkillName];
+    // }
 
     public class CommandCtrl
     {
