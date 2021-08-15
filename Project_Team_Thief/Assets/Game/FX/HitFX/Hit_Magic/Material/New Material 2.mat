@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material 1
+  m_Name: New Material 2
   m_Shader: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 2
@@ -26,7 +26,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: ab68fc0512c5af84396cf3170249de40, type: 3}
+        m_Texture: {fileID: 2800000, guid: eed9e9b51edc8bf41b1a9474f91a07b1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -34,7 +34,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: ab68fc0512c5af84396cf3170249de40, type: 3}
+        m_Texture: {fileID: 2800000, guid: eed9e9b51edc8bf41b1a9474f91a07b1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -51,7 +51,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
-    - _Blend: 2
+    - _Blend: 0
     - _BlendOp: 0
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
@@ -63,7 +63,7 @@ Material:
     - _DistortionEnabled: 0
     - _DistortionStrength: 1
     - _DistortionStrengthScaled: 0.1
-    - _DstBlend: 1
+    - _DstBlend: 10
     - _EnableExternalAlpha: 0
     - _FlipbookBlending: 0
     - _FlipbookMode: 0
@@ -80,7 +80,7 @@ Material:
     - _BaseColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.5394, g: 0.63498986, b: 1.3041189, a: 1}
+    - _EmissionColor: {r: 1.2705883, g: 1.6313726, b: 4, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
