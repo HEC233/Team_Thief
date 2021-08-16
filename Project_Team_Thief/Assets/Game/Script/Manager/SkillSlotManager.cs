@@ -79,6 +79,14 @@ public class SkillSlotManager : MonoBehaviour
         _skillSlots[slotIndex].RockSlot();
     }
     
+    // 1. 커맨드 결정키는 마지막 단 하나
+    // LR Z
+    // 2. 반드시 모든 스킬 커맨드에는 결정키가 하나 포함된다
+    // 방향키로만 이루어진 스킬은 X
+    // 3. 중복되는 커맨드는 존재하지 않음
+    // LRZ   LRZLX XX
+    // 던파에서 커맨드를 저장 위위 아래아래 Z 스킬 위위 아래 z
+    // 중간에 다른 키가 입력됐을 때 스킬이 발동되는 경우?
     public void Inputkey(char key)
     {
         _inputTime = Time.time;
@@ -88,27 +96,27 @@ public class SkillSlotManager : MonoBehaviour
 
         for (int i = 0; i < _skillSlots.Count; i++)
             _skillSlots[i].InsertKey(key);
+        
+        _beInputTime = Time.time;
+    }
 
-        // 1. 커맨드 결정키는 마지막 단 하나
-        // LR Z
-        // 2. 반드시 모든 스킬 커맨드에는 결정키가 하나 포함된다
-        // 방향키로만 이루어진 스킬은 X
-        // 3. 중복되는 커맨드는 존재하지 않음
-        // LRZ   LRZLX XX
-        // 던파에서 커맨드를 저장 위위 아래아래 Z 스킬 위위 아래 z
-        // 중간에 다른 키가 입력됐을 때 스킬이 발동되는 경우?
-
+    public bool EnterDecisionKey(char key)
+    {
+        Inputkey(key);
+        
         if (key == 'Z' || key == 'X' || key == 'S') // 커맨드 결정 키
         {
             for (int i = 0; i < _skillSlots.Count; i++)
             {
                 if (_skillSlots[i].CheckCommand() == true)
                 {
+                    return true;
                     break;
                 }
 
                 if (_skillSlots[i].CheckReverseCommand() == true)
                 {
+                    return true;
                     break;
                 }
             }
@@ -116,7 +124,7 @@ public class SkillSlotManager : MonoBehaviour
             ResetAllCommandList();
         }
         
-        _beInputTime = Time.time;
+        return false;
     }
     
     private void ResetAllCommandList()
