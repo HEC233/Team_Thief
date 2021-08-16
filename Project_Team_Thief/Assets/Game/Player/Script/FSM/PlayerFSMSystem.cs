@@ -86,7 +86,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         GameManager.instance.SetPlayerActor(this);
         GameManager.instance.ChangeActorToPlayer();
 
-        GameManager.instance.Shadow.RegistCollider(GetComponent<BoxCollider2D>());
+        GameManager.instance.ShadowParticle.RegistCollider(GetComponent<BoxCollider2D>());
         //=======================================================
     }
 
@@ -100,7 +100,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         Unit.OnPlayerDeadEvent += UnitDeadEventCall;
         
         //GameManager.instance.commandManager.OnCommandCastEvent += OnCommandCastEventCall;
-        GameManager.instance.SkillSlotManager.OnCommandCastEvent += OnCommandCastEventCall;
+        GameManager.instance.SkillSlotMng.OnCommandCastEvent += OnCommandCastEventCall;
     }
 
     private void UnBind()
@@ -113,7 +113,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         Unit.OnPlayerDeadEvent -= UnitDeadEventCall;
         
         //GameManager.instance.commandManager.OnCommandCastEvent -= OnCommandCastEventCall;
-        GameManager.instance.SkillSlotManager.OnCommandCastEvent -= OnCommandCastEventCall;
+        GameManager.instance.SkillSlotMng.OnCommandCastEvent -= OnCommandCastEventCall;
     }
 
     private class IdleState : CustomFSMStateBase
@@ -1851,7 +1851,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+            _isAniEnd = false;
+            _isAxe2Action = false;
+            GameManager.instance.uiMng.TurnXButtonUI(false);
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
+            _isAniEnd = false;
+            _isAxe2Action = false;
             GameManager.instance.UIMng.TurnXButtonUI(false);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
             ResetValue();
@@ -1924,7 +1931,15 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (IsEndOrNextCheck() == true)
             {
+                SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe2);
+                SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe2);
+                WwiseSoundManager.instance.PlayEventSound("PC_axe");
+                GameManager.instance.uiMng.TurnXButtonUI(false);
                 NextAction();
+                SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe2);
+                SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe2);
+                WwiseSoundManager.instance.PlayEventSound("PC_axe");
+                GameManager.instance.UIMng.TurnXButtonUI(false);
             }
             else
             {
@@ -1965,7 +1980,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private GameSkillObject InvokeSkill()
         {
-            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+            var skillObejct = GameManager.instance.GameSkillMng.GetSkillObject();
 
             if (skillObejct == null)
             {
@@ -2345,7 +2360,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private GameSkillObject InvokeSkill()
         {
-            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+            var skillObejct = GameManager.instance.GameSkillMng.GetSkillObject();
 
             if (skillObejct == null)
             {
@@ -2508,7 +2523,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private GameSkillObject InvokeSkill()
         {
-            var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
+            var skillObejct = GameManager.instance.GameSkillMng.GetSkillObject();
 
             if (skillObejct == null)
             {

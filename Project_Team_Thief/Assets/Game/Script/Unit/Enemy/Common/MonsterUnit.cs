@@ -98,7 +98,7 @@ public class MonsterUnit : Unit
 
         _damage.knockBack = _unitData.knockback;
 
-        GameManager.instance.Shadow.RegistCollider(_rigid.GetComponent<CapsuleCollider2D>());
+        GameManager.instance.ShadowParticle.RegistCollider(_rigid.GetComponent<CapsuleCollider2D>());
 
         GameManager.instance.UIMng?.GetMonsterHP().Init(this);
 
@@ -231,7 +231,7 @@ public class MonsterUnit : Unit
 
     public override void HandleDeath()
     {
-        GameManager.instance.Shadow.UnregistCollider(_rigid.GetComponent<CapsuleCollider2D>());
+        GameManager.instance.ShadowParticle.UnregistCollider(_rigid.GetComponent<CapsuleCollider2D>());
 
         DestroyImmediate(transform.parent.gameObject);
     }

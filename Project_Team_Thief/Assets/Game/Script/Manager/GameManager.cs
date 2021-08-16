@@ -27,55 +27,51 @@ public class GameManager : MonoBehaviour
     public GameStateEnum GameState
     {
         get { return _gameState; }
-        set { _prevState = _gameState; _gameState = value; _uiMng.ToggleUI(value); Debug.Log("GameState Changed : " + _gameState); }
+        set { _prevState = _gameState; _gameState = value; _uiManager.ToggleUI(value); Debug.Log("GameState Changed : " + _gameState); }
     }
 
     [SerializeField]
     private FreameChecker _frameChecker;
     public FreameChecker FrameChecker => _frameChecker;
     [SerializeField]
-    private CameraManager _cameraMng;
-    public CameraManager CameraMng => _cameraMng;
+    private CameraManager _cameraManager;
+    public CameraManager CameraMng => _cameraManager;
     [SerializeField]
-    private TimeManager _timeMng;
-    public TimeManager TimeMng => _timeMng;
+    private TimeManager _timeManager;
+    public TimeManager TimeMng => _timeManager;
     [SerializeField]
-    private SoundManager _soundMng;
-    public SoundManager SoundMng => _soundMng;
+    private SoundManager _soundManager;
+    public SoundManager SoundMng => _soundManager;
     [SerializeField]
-    private UIManager _uiMng;
-    public UIManager UIMng => _uiMng;
+    private UIManager _uiManager;
+    public UIManager UIMng => _uiManager;
     [SerializeField]
     private EffectSystem _fx;
     public EffectSystem FX => _fx;
     [SerializeField]
-    private GameSkillMgr _gameSkillMgr;
-    public GameSkillMgr GameSkillMgr => _gameSkillMgr;
+    private GameSkillMgr _gameSkillManagerr;
+    public GameSkillMgr GameSkillMng => _gameSkillManagerr;
     [SerializeField]
     private EncroachmentManager _encroachmentManager;
-    public EncroachmentManager EncroachmentManager => _encroachmentManager;
-
+    public EncroachmentManager EncroachmentMng => _encroachmentManager;
     //public CommandManager commandManager;
     [SerializeField]
-    private SkillSlotManager skillSlotManager;
-    public SkillSlotManager SkillSlotManager => skillSlotManager;
+    private SkillSlotManager _skillSlotManager;
+    public SkillSlotManager SkillSlotMng => _skillSlotManager;
     [SerializeField]
-    private Spawner spawner;
-    public Spawner Spawner => spawner;
+    private Spawner _spawner;
+    public Spawner Spawner => _spawner;
     [SerializeField]
-    private DialogueSystem dialogueSystem;
-    public DialogueSystem DialogueSystem => dialogueSystem;
+    private DialogueSystem _dialogueSystem;
+    public DialogueSystem DialogueSystem => _dialogueSystem;
     [SerializeField]
-    private ShadowParticleSystem shadow;
-    public ShadowParticleSystem Shadow => shadow;
-
+    private ShadowParticleSystem _shadowParticleSystem;
+    public ShadowParticleSystem ShadowParticle => _shadowParticleSystem;
     [SerializeField]
     private KeyManager _keyManager;
-    public KeyManager KeyManager => _keyManager;
+    public KeyManager KeyMng => _keyManager;
     [SerializeField]
     private Grid grid;
-    public Grid Grid => grid;
-
 
     private GameSettingData _settingData;
     public GameSettingData SettingData
@@ -148,9 +144,9 @@ public class GameManager : MonoBehaviour
     public void SetLoadingScreenShow(bool isStart)
     {
         if (isStart)
-            _uiMng.ShowLoading();
+            _uiManager.ShowLoading();
         else
-            _uiMng.StopLoading();
+            _uiManager.StopLoading();
     }
 
     public void StartGame()
@@ -178,8 +174,8 @@ public class GameManager : MonoBehaviour
     IEnumerator StartGameCoroutine(string SceneName)
     {
         yield return GameLoader.instance.SceneLoad(SceneName);
-        shadow.UnRegistAllCollider();
-        if (dialogueSystem.CheckRunning()) dialogueSystem.EndDialogue();
+        ShadowParticle.UnRegistAllCollider();
+        if (DialogueSystem.CheckRunning()) DialogueSystem.EndDialogue();
         GameState = GameStateEnum.InGame;
         WwiseSoundManager.instance.StopAllBGM();
         WwiseSoundManager.instance.PlayInGameBgm(SceneName);
@@ -187,13 +183,13 @@ public class GameManager : MonoBehaviour
         ChangeActorToPlayer();
         isPlayerDead = false;
 
-        _timeMng.UnbindAll();
-        _timeMng.Reset();
+        _timeManager.UnbindAll();
+        _timeManager.Reset();
         FX.Bind();
 
-        _cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
-        _cameraMng.FindCameras();
-        _cameraMng.Bind();
+        _cameraManager._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
+        _cameraManager.FindCameras();
+        _cameraManager.Bind();
         var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
@@ -206,7 +202,7 @@ public class GameManager : MonoBehaviour
         {
             GameState = GameStateEnum.InGame;
             ChangeActorToPlayer();
-            dialogueSystem.ResumeDialogue();
+            DialogueSystem.ResumeDialogue();
             WwiseSoundManager.instance.PlayEventSound("Click_Exit");
             WwiseSoundManager.instance.ResumeAllSound();
         }
@@ -214,8 +210,8 @@ public class GameManager : MonoBehaviour
         else if (GameState == GameStateEnum.InGame)
         {
             GameState = GameStateEnum.Pause;
-            SetControlActor(_uiMng.UiActor);
-            dialogueSystem.PauseDialogue();
+            SetControlActor(_uiManager.UiActor);
+            DialogueSystem.PauseDialogue();
             WwiseSoundManager.instance.PlayEventSound("Click_Exit");
             WwiseSoundManager.instance.PauseAllSound();
         }
@@ -228,7 +224,7 @@ public class GameManager : MonoBehaviour
         else if (GameState == GameStateEnum.Setting)
         {
             GameState = _prevState;
-            SetControlActor(_uiMng.UiActor);
+            SetControlActor(_uiManager.UiActor);
             WwiseSoundManager.instance.ResumeAllSound();
         }
     }
@@ -236,21 +232,21 @@ public class GameManager : MonoBehaviour
     public void ExitToMainMenu()
     {
         isPlayerDead = false;
-        _uiMng.TurnOffGameOverScreen();
-        dialogueSystem.EndDialogue();
+        _uiManager.TurnOffGameOverScreen();
+        DialogueSystem.EndDialogue();
         StartCoroutine(ExitGameCoroutine());
     }
 
     IEnumerator ExitGameCoroutine()
     {
-        shadow.UnRegistAllCollider();
+        ShadowParticle.UnRegistAllCollider();
         yield return GameLoader.instance.SceneLoad("MainScene");
         WwiseSoundManager.instance.ResumeAllSound();
         Debug.Log("Sound Main BGM");
         WwiseSoundManager.instance.StopInGameBgm();
         WwiseSoundManager.instance.PlayMainBgm();
         GameState = GameStateEnum.MainMenu;
-        SetControlActor(_uiMng.UiActor);
+        SetControlActor(_uiManager.UiActor);
     }
 
     public void ExitGame()
@@ -264,16 +260,16 @@ public class GameManager : MonoBehaviour
 
     public void AddTextToDeveloperConsole(string text)
     {
-        _uiMng.developerConsole?.AddLine(text);
+        _uiManager.developerConsole?.AddLine(text);
     }
 
     public void ApplySetting(GameSettingData newData)
     {
         _settingData = newData;
 
-        _frameChecker.enabled = _settingData.bShowFPS;
-        _uiMng.developerConsole?.SetConsoleUsage(_settingData.bUseDeveloperConsole);
-        _uiMng.SetShowCommandInfo(!_settingData.bDontUseCommandAssist);
+        FrameChecker.enabled = _settingData.bShowFPS;
+        _uiManager.developerConsole?.SetConsoleUsage(_settingData.bUseDeveloperConsole);
+        _uiManager.SetShowCommandInfo(!_settingData.bDontUseCommandAssist);
     }
 
     //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음
