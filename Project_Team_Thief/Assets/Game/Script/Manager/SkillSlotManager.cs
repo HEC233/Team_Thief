@@ -20,8 +20,7 @@ public class SkillSlotManager : MonoBehaviour
     public List<SkillSlot> SkillSlots => _skillSlots;
     
     [SerializeField]
-
-    private float _commandInputTime = 0.1f;
+    private float _commandInputTime = 5.0f;
 
     private float _inputTime;
     private float _beInputTime;
@@ -92,12 +91,17 @@ public class SkillSlotManager : MonoBehaviour
         _inputTime = Time.time;
 
         if (_inputTime - _beInputTime >= _commandInputTime)
+        {
+            Debug.Log("_inputTime - _beInputTime : " + (_inputTime - _beInputTime));
             ResetAllCommandList();
+        }
 
         for (int i = 0; i < _skillSlots.Count; i++)
             _skillSlots[i].InsertKey(key);
         
         _beInputTime = Time.time;
+
+        DebugSlotInKeys();
     }
 
     public bool EnterDecisionKey(char key)
@@ -110,20 +114,21 @@ public class SkillSlotManager : MonoBehaviour
             {
                 if (_skillSlots[i].CheckCommand() == true)
                 {
+                    ResetAllCommandList();
                     return true;
-                    break;
                 }
 
                 if (_skillSlots[i].CheckReverseCommand() == true)
                 {
+                    ResetAllCommandList();
                     return true;
-                    break;
                 }
             }
             
-            ResetAllCommandList();
         }
         
+        ResetAllCommandList();
+
         return false;
     }
     
@@ -132,6 +137,22 @@ public class SkillSlotManager : MonoBehaviour
         for (int i = 0; i < _skillSlots.Count; i++)
         {
             _skillSlots[i].ResetKey();
+        }
+    }
+
+    private void DebugSlotInKeys()
+    {
+        string commandString = String.Empty;
+        for (int i = 0; i < _skillSlots.Count; i++)
+        {
+            commandString = i + " slot";
+            for (int j = 0; j < _skillSlots[i].CommandList.Count; j++)
+            {
+                commandString += " " + _skillSlots[i].CommandList[j];
+            }
+            
+            Debug.Log(commandString);
+            commandString = String.Empty;
         }
     }
     

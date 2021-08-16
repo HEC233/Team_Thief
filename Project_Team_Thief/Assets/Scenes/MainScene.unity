@@ -5656,6 +5656,11 @@ PrefabInstance:
       objectReference: {fileID: 2067855061}
     - target: {fileID: 4990086937456659573, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 568382080}
+    - target: {fileID: 4990086937456659573, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
       propertyPath: _frameChecker
       value: 
       objectReference: {fileID: 2067855062}
@@ -5667,6 +5672,11 @@ PrefabInstance:
     - target: {fileID: 4990086937456659573, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: skillSlotManager
+      value: 
+      objectReference: {fileID: 1058721104}
+    - target: {fileID: 4990086937456659573, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillSlotManager
       value: 
       objectReference: {fileID: 1058721104}
     - target: {fileID: 4990086937456659573, guid: 1180cfdb66658d9489baa39e9c3402fa,
@@ -5688,6 +5698,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _commandInputTime
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}

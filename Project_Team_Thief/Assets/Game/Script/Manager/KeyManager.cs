@@ -94,29 +94,35 @@ public class KeyManager : MonoBehaviour
             if (Input.GetKey(KeyCode.UpArrow))
                 controlUnit.Transition(TransitionCondition.Wallslideing);
 
-            if (Input.GetKeyDown(KeyCode.X))
-                controlUnit.Transition(TransitionCondition.Attack);
 
-            // if (Input.GetKeyDown(KeyCode.Z))
-            //     controlUnit.Transition(TransitionCondition.Action);
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                if (GameManager.instance.SkillSlotMng.EnterDecisionKey('X') == false)
+                {
+                    controlUnit.Transition(TransitionCondition.Attack);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+                controlUnit.Transition(TransitionCondition.Action);
 
             List<KeyCode> releasedInput = new List<KeyCode>();
 
             foreach (KeyCode code in m_activeInputs)
             {
                 releasedInput.Add(code);
-
+            
                 if (!pressedInput.Contains(code))
                 {
                     releasedInput.Remove(code);
-
+            
                     if (code == KeyCode.LeftArrow || code == KeyCode.RightArrow)
                         controlUnit.Transition(TransitionCondition.StopMove);
                     //controlUnit.Transition(TransitionCondition.Idle);
                 }
-
+            
             }
-
+            
             m_activeInputs = releasedInput;
             
             /// 스킬 입력 처리
@@ -130,8 +136,6 @@ public class KeyManager : MonoBehaviour
                 GameManager.instance.SkillSlotMng.Inputkey('D');
             else if (Input.GetKeyDown(KeyCode.Z))
                 GameManager.instance.SkillSlotMng.Inputkey('Z');
-            else if (Input.GetKeyDown(KeyCode.X))
-                GameManager.instance.SkillSlotMng.Inputkey('X');
             else if (Input.GetKeyDown(KeyCode.Space))
                 GameManager.instance.SkillSlotMng.Inputkey('S');
             /// 스킬 입력 처리
