@@ -8,8 +8,12 @@ public abstract class SkillDataBase : ScriptableObject
     [SerializeField]
     private int _id;
     public int ID => _id;
-    
+
     [SerializeField] 
+    private TransitionCondition _skillCondition;
+    public TransitionCondition SkillCondition => _skillCondition;
+    
+    [SerializeField]
     private SignalSourceAsset _cinemachineSignalSource;
     public SignalSourceAsset CinemachineSignalSource => _cinemachineSignalSource;
 

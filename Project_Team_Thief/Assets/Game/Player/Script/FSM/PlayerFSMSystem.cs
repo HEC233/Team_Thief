@@ -1152,7 +1152,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             
             _isInit = true;
-            _basicAttackDataBase = SkillDataBank.instance.GetSkillData("기본공격");
+            _basicAttackDataBase = SkillDataBank.instance.GetSkillData(0);
             _damage = new Damage();
         }
 
@@ -1384,8 +1384,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             _isInit = true;
             _damage = new Damage();
-            _basicJumpAttackData[0] = SkillDataBank.instance.GetSkillData("점프공격1타");
-            _basicJumpAttackData[1] = SkillDataBank.instance.GetSkillData("점프공격2타");
+            _basicJumpAttackData[0] = SkillDataBank.instance.GetSkillData(1);
+            _basicJumpAttackData[1] = SkillDataBank.instance.GetSkillData(2);
 
         }
 
@@ -1814,7 +1814,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void StartState()
         {
-            _skillAxeData = (SkillAxeData)SkillDataBank.instance.GetSkillData("회전도끼 던지기");
+            _skillAxeData = (SkillAxeData)SkillDataBank.instance.GetSkillData(3);
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe);
@@ -2164,8 +2164,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private void Init()
         {
             _isInit = true;
-            _skillDoubleCrossData[0] = SkillDataBank.instance.GetSkillData("더블크로스") as SkillDoubleCrossData;
-            _skillDoubleCrossData[1] = SkillDataBank.instance.GetSkillData("더블크로스 추가공격") as SkillDoubleCrossData;
+            _skillDoubleCrossData[0] = SkillDataBank.instance.GetSkillData(8) as SkillDoubleCrossData;
+            _skillDoubleCrossData[1] = SkillDataBank.instance.GetSkillData(9) as SkillDoubleCrossData;
         }
 
         public override void StartState()
@@ -2371,8 +2371,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return;
 
             _isInit = true;
-            _skillSnakeSwordStingDatas[0] = SkillDataBank.instance.GetSkillData("사복검 찌르기") as SkillSnakeSwordStingData;
-            _skillSnakeSwordStingDatas[1] = SkillDataBank.instance.GetSkillData("사복검 찌르기 추가공격") as SkillSnakeSwordStingData;
+            _skillSnakeSwordStingDatas[0] = SkillDataBank.instance.GetSkillData(5) as SkillSnakeSwordStingData;
+            _skillSnakeSwordStingDatas[1] = SkillDataBank.instance.GetSkillData(6) as SkillSnakeSwordStingData;
         }
 
         public override void StartState()
@@ -2651,9 +2651,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     }
     
 
-    private void OnCommandCastEventCall(string skillName, bool isReverse)
+    private void OnCommandCastEventCall(TransitionCondition skillCondition, bool isReverse)
     {
-        var condition = ChangeSkillNameToTransitionCondition(skillName);
+        var condition = skillCondition;
         if (condition == TransitionCondition.None)
             return;
 
@@ -2689,25 +2689,25 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     }
 
-    private TransitionCondition ChangeSkillNameToTransitionCondition(string skillName)
-    {
-        switch (skillName)
-        {
-            case "회전도끼 던지기":
-                return TransitionCondition.SkillAxe;
-                break;
-            case "더블크로스":
-                return TransitionCondition.SkillDoubleCross;
-                break;
-            case "사복검 찌르기":
-                return TransitionCondition.SkillSnakeSwordSting;
-                break;
-            default:
-                break;
-        }
-
-        return TransitionCondition.None;
-    }
+    // private TransitionCondition ChangeSkillNameToTransitionCondition(string skillName)
+    // {
+    //     switch (skillName)
+    //     {
+    //         case "회전도끼 던지기":
+    //             return TransitionCondition.SkillAxe;
+    //             break;
+    //         case "더블크로스":
+    //             return TransitionCondition.SkillDoubleCross;
+    //             break;
+    //         case "사복검 찌르기":
+    //             return TransitionCondition.SkillSnakeSwordSting;
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    //
+    //     return TransitionCondition.None;
+    // }
 
     private bool CheckSkillPossibleConditions(TransitionCondition condition)
     {

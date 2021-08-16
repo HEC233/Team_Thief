@@ -14,7 +14,7 @@ public class SkillDataBank : MonoBehaviour
 
     private List<Dictionary<string, object>> _playerSkillData;
 
-    private Dictionary<string, SkillDataBase> _skillDataBaseDic;
+    private Dictionary<int, SkillDataBase> _skillDataBaseDic;
 
     private GameLoader.SceneLoadCallback _sceneLoadCallback;
 
@@ -183,11 +183,11 @@ public class SkillDataBank : MonoBehaviour
 
     private void SettingSkillDataBaseDic()
     {
-        _skillDataBaseDic = new Dictionary<string, SkillDataBase>();
+        _skillDataBaseDic = new Dictionary<int, SkillDataBase>();
 
         for (int i = 0; i < _skillDatabases.Count; i++)
         {
-            _skillDataBaseDic[_skillDatabases[i].Name] = _skillDatabases[i];
+            _skillDataBaseDic[_skillDatabases[i].ID] = _skillDatabases[i];
         }
     }
 
@@ -221,15 +221,15 @@ public class SkillDataBank : MonoBehaviour
     }
     
 
-    public SkillDataBase GetSkillData(string skillName)
+    public SkillDataBase GetSkillData(int skillId)
     {
-        if (_skillDataBaseDic.ContainsKey(skillName) == false)
+        if (_skillDataBaseDic.ContainsKey(skillId) == false)
         {
             Debug.LogError("is Not Skill Data in Dic");
             return null;
         }
 
-        return _skillDataBaseDic[skillName];
+        return _skillDataBaseDic[skillId];
     }
     
     

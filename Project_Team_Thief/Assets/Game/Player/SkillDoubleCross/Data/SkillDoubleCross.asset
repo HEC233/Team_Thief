@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SkillDoubleCross
   m_EditorClassIdentifier: 
   _id: 8
+  _skillCondition: 30
   _cinemachineSignalSource: {fileID: 11400000, guid: f275e751afa5724428a30ed270623ff1,
     type: 2}
   _name: "\uB354\uBE14\uD06C\uB85C\uC2A4"
@@ -24,8 +25,8 @@ MonoBehaviour:
   _attackRange: 0
   _target: 0
   _description: "\uCE74\uC624\uC2A4\uB97C \uD55C\uC190\uAC80\uC744 \uD615\uD0DC\uB85C
-    \uD718\uB458\uB7EC \uC804\uBC29\uC5D0 \uC801\uC744 \uBCA4\uB2E4. \uCD94\uAC00
-    \uD0A4 \uC785\uB825 \uC2DC \uD6A8\uACFC \uD55C\uC190\uAC80\uC73C\uB85C \uBCA0\uB294
+    \uD718\uB458\uB7EC \uC804\uBC29\uC5D0 \uC801\uC744 \uBCA4\uB2E4.\uCD94\uAC00
+    \uD0A4 \uC785\uB825 \uC2DC \uD6A8\uACFC\uD55C\uC190\uAC80\uC73C\uB85C \uBCA0\uB294
     \uC911, \uACF5\uACA9 \uD0A4 \uC785\uB825 \uC2DC \uC801\uC744 \uBC14\uAE65\uC73C\uB85C
     \uBCA4\uB2E4."
   _buffTime: 0

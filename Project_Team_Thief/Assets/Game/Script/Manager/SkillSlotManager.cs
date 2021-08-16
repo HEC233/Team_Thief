@@ -26,7 +26,7 @@ public class SkillSlotManager : MonoBehaviour
     private float _inputTime;
     private float _beInputTime;
     
-    public event UnityAction<string, bool> OnCommandCastEvent;
+    public event UnityAction<TransitionCondition, bool> OnCommandCastEvent;
 
     
     private void Start()
@@ -247,7 +247,7 @@ public class SkillSlotManager : MonoBehaviour
 
             if (_commandCount == _commandString.Length)
             {
-                _skillSlotManager.OnCommandCastEvent?.Invoke(_skillDataBase.Name, false);
+                _skillSlotManager.OnCommandCastEvent?.Invoke(_skillDataBase.SkillCondition, false);
                 _skillSlotManager.StartCoroutine(SlotCoolTimeCoroutine());
                 return true;
             }
@@ -277,7 +277,7 @@ public class SkillSlotManager : MonoBehaviour
 
             if (_reversCommandCount == _reverseCommandString.Length)
             {
-                _skillSlotManager.OnCommandCastEvent?.Invoke(_skillDataBase.Name, true);
+                _skillSlotManager.OnCommandCastEvent?.Invoke(_skillDataBase.SkillCondition, true);
                 _skillSlotManager.StartCoroutine(SlotCoolTimeCoroutine());
                 return true;
             }

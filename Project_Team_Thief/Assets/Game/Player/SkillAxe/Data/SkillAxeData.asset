@@ -13,16 +13,49 @@ MonoBehaviour:
   m_Name: SkillAxeData
   m_EditorClassIdentifier: 
   _id: 3
-  _numberOfTimesTheSkill: 2
+  _skillCondition: 25
   _cinemachineSignalSource: {fileID: 11400000, guid: eb351fd8ca44c3c4db67561a895cdc01,
     type: 2}
-  _name: "\uC810\uD504\uACF5\uACA92\uD0C0"
-  _grade: "\uB178\uB9D0"
-  _isGet: 1
-  _class: "\uAE30\uBCF8"
-  _coolTime: 0
-  _description: none
+  _name: "\uD68C\uC804\uB3C4\uB07C \uB358\uC9C0\uAE30"
+  _grade: "\uB808\uC5B4"
+  _isGet: 0
+  _class: "\uC554\uC0B4\uC790"
+  _coolTime: 3
+  _castingTime: 0
+  _attackRange: 0
+  _target: 0
+  _description: "\uC815\uBA74\uC744 \uD5A5\uD574 \uD68C\uC804\uD558\uB294 \uCE74\uC624\uC2A4
+    \uB3C4\uB07C\uB97C \uB358\uC838 \uB9DE\uC740\uC801\uC5D0\uAC8C \uB2E4\uB2E8\uD788\uD2B8
+    \uD53C\uD574\uB97C \uC785\uD78C\uB2E4.\uB3C4\uB07C\uC5D0 \uB9DE\uC740 \uC801\uC740
+    \uD45C\uC2DD\uC774 \uBD80\uC5EC\uB41C\uB2E4.\uB3C4\uB07C\uB97C \uD55C\uBC88 \uB354
+    \uB358\uC838 \uB2E4\uB2E8\uD788\uD2B8 \uD53C\uD574\uB97C \uC785\uD78C\uB2E4."
+  _buffTime: 0
+  _skillNumberOfTimes: 1
+  _damages: 64000000
+  _hitIntervals:
+  - 0.5
+  _hitNumberOfTimes: 03000000
+  _knockBackTimes:
+  - 0.04
+  _knockBackXs:
+  - 0.3
+  _knockBackYs:
+  - 0
+  _stiffness: 0.2
+  _moveTimes:
+  - 0
+  _moveXs:
+  - 0
+  _moveYs:
+  - 0
+  _projectileMoveTime: 0.4
+  projectileMoveX: 10
+  projectileMoveY: 0
+  _statusEffects: 00000000
+  _fristDelay: 0
+  _endDelay: 1
+  nextSkill: 0
+  _iconName: UI_Skill_ThrowSpinAxe
+  _icon: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}
   _axeGameObject: {fileID: 3841240397383621464, guid: 3624dd1e695c1004e96f2ca043568a51,
     type: 3}
-  _axeMovePostionX: 8
-  _axeMoveTime: 0.3
