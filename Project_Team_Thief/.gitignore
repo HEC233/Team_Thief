@@ -74,4 +74,11 @@ InitTestScene*.unity
 AkWwiseProjectData.asset
 AkWwiseProjectData.asset.meta
 
+# build info
+build_info
+build_info.meta
+
+# https://kcmschool.com/194
+# to ignore file under tracking, remove it from tracking
+
 # End of https://www.toptal.com/developers/gitignore/api/unity

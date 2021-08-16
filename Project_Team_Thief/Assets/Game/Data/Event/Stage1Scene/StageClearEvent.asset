@@ -55,4 +55,6 @@ MonoBehaviour:
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 
+      bgmStateGroupName: 
+      bgmStateName: 
       sceneName: BossStage
