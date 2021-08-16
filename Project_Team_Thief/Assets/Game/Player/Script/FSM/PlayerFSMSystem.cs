@@ -1139,6 +1139,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private bool _isInit = false;
         private SkillDataBase _basicAttackDataBase;
         private Damage _damage;
+        private Coroutine _waitDelayCoroutine;
 
         public BasicAttackState(PlayerFSMSystem system) : base(system)
         {
@@ -1177,7 +1178,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void Update()
         {
             SystemMgr.Unit.Progress();
-            //Debug.Log(SystemMgr._animationCtrl.GetCurAniTime());
+            
             if(SystemMgr.Unit.GetVelocity().y <= -0.1f)
                 SystemMgr.Transition(TransitionCondition.Falling);
             
@@ -1192,6 +1193,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             SystemMgr.Unit.EndBasicAttack();
             SystemMgr.Unit.BasicAttackMoveStop();
+
+            StopWaitEndDelayCoroutine();
             
             _isBasicAttackEnd = false;
 
@@ -1219,7 +1222,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.SkillPlainSword)
                 return true;
 
-            
             
             if (_isBasicAttackEnd == true)
             {
@@ -1261,63 +1263,30 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool InputKey(TransitionCondition condition)
         {
-            // if (_isBasicAttackAniEnd)
-            // {
-            //     if (condition == TransitionCondition.LeftMove)
-            //     {
-            //         SystemMgr.Unit.CheckMovementDir(-1);
-            //         if (_isNotEndCoroutine == false)
-            //             SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
-            //     }
-            //
-            //     if (condition == TransitionCondition.RightMove)
-            //     {
-            //         SystemMgr.Unit.CheckMovementDir(1);
-            //         if (_isNotEndCoroutine == false)
-            //             SystemMgr.Unit.StartCoroutine(BasicAttackMoveCoroutine());
-            //     }
-            //
-            //     _isBasicAttackAniEnd = false;
-            // }
-            
             return true;
         }
 
         private void EndOrNextCheck()
         {
-            // if (_basicAttackIndex != _nextBasicAttackIndex)
-            // {
-            //     if (_nextBasicAttackIndex > _basicAttackAniArr.Length - 1)
-            //     {
-            //         // _basicAttackIndex = 0;
-            //         // _nextBasicAttackIndex = 0;
-            //         _isBasicAttackEnd = true;
-            //         SystemMgr.Transition(TransitionCondition.Idle);
-            //         
-            //     }
-            //     else
-            //     {
-            //         _basicAttackIndex = _nextBasicAttackIndex;
-            //         
-            //         SystemMgr.AnimationCtrl.SetSpeed(1);
-            //         SystemMgr.AnimationCtrl.SetSpeed(1);
-            //
-            //         SystemMgr.AnimationCtrl.PlayAni(_basicAttackAniArr[_basicAttackIndex]);
-            //         SystemMgr._fxCtrl.PlayAni(_basicAttackFxAniArr[_basicAttackIndex]);
-            //         //WwiseSoundManager.instance.PlayEventSound(_basicAttackSoundArr[_basicAttackIndex]);
-            //     }
-            // }
-            // else
-            // {
-            // }
-            // _isBasicAttackAniEnd = true;
-
-            SystemMgr.StartCoroutine(WaitEndDelay());
+            _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
         }
         
         private void BasicAttackCall()
         {
             SystemMgr.Unit.BasicAttack(_damage);
+        }
+
+        private void StopWaitEndDelayCoroutine()
+        {
+            if (_waitDelayCoroutine == null)
+            {
+                return;
+            }
+            
+            if (_isBasicAttackEnd == false)
+            {
+                SystemMgr.StopCoroutine(_waitDelayCoroutine);
+            }
         }
 
         IEnumerator WaitEndDelay()
@@ -1332,27 +1301,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isBasicAttackEnd = true;
             SystemMgr.Transition(TransitionCondition.Idle);
         }
-        
-        // IEnumerator BasicAttackMoveCoroutine()
-        // {
-        //     _isNotEndCoroutine = true;
-        //     _BasicAttackMoveTime = SystemMgr.Unit.BasicAttackMoveTimeArr[_basicAttackIndex];
-        //
-        //     _timer = 0.02f;
-        //     while (_timer < _BasicAttackMoveTime)
-        //     {
-        //         _timer += GameManager.instance.timeMng.FixedDeltaTime;
-        //         SystemMgr.Unit.BasicAttackMove(_basicAttackIndex);
-        //         yield return new WaitForFixedUpdate();
-        //     }
-        //     
-        //     SystemMgr.Unit.EndBasicAttack();
-        //     if (_basicAttackIndex == 2)
-        //     {
-        //         SystemMgr.Unit.BasicAttackMoveStop();
-        //     }
-        //     _isNotEndCoroutine = false;
-        // }
     }
     
     private class BasicJumpAttack : CustomFSMStateBase
@@ -1812,6 +1760,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private float _attackInputTime = 0.0f;
         private float _attackBeInputTime = 0.0f;
         private float _attackTime = 1.5f;
+        private Coroutine _waitDelayCoroutine;
 
         private AniState[] _skillThrowSpinAxeAniArr =
             new AniState[] {AniState.SkillAxe, AniState.SkillAxe2};
@@ -1824,8 +1773,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private void Init()
         {
-            if(_isInit == true)
+            if (_isInit == true)
+            {
                 return;
+            }
 
             _isInit = true;
             _skillAxeDataArr[0] = SkillDataBank.instance.GetSkillData(3) as SkillAxeData;
@@ -1854,6 +1805,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
             GameManager.instance.UIMng.TurnXButtonUI(false);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+
+            StopWaitEndDelayCoroutine();
+            
             ResetValue();
         }
 
@@ -1861,7 +1815,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (condition == TransitionCondition.Hit)
                 return true;
-            
+
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
             if (condition == TransitionCondition.SkillSnakeSwordSting)
                 return true;
 
@@ -1915,6 +1871,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private void ResetValue()
         {
+            _waitDelayCoroutine = null;
             _isSkillEnd = false;
             _curSkillIndex = 0;
             _nextSkillIndex = 0;
@@ -1928,7 +1885,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             else
             {
-                SystemMgr.StartCoroutine(WaitEndDelay());
+                _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
             }
         }
         
@@ -1975,6 +1932,19 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             skillObejct.InitSkill(_skillAxeDataArr[_curSkillIndex].GetSkillController(skillObejct, SystemMgr.Unit));
             return skillObejct;
+        }
+        
+        private void StopWaitEndDelayCoroutine()
+        {
+            if (_waitDelayCoroutine == null)
+            {
+                return;
+            }
+            
+            if (_isSkillEnd == false)
+            {
+                SystemMgr.StopCoroutine(_waitDelayCoroutine);
+            }
         }
         
         IEnumerator WaitEndDelay()
@@ -2420,6 +2390,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private float _attackBeInputTime = 0.0f;
         private float _attackTime = 1.5f;
         private bool _isSkillEnd = false;
+        private Coroutine _waitDelayCoroutine;
 
         private AniState[] _skillSnakeSwordStingAniArr =
             new AniState[] {AniState.SkillSnakeSwordSting1, AniState.SkillSnakeSwordSting2};
@@ -2455,6 +2426,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
+            StopWaitEndDelayCoroutine();
+            
             ResetValue();
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
         }
@@ -2464,6 +2437,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isSkillEnd = false;
             _curSkillIndex = 0;
             _nextSkillIndex = 0;
+            _waitDelayCoroutine = null;
         }
 
         public override bool Transition(TransitionCondition condition)
@@ -2529,7 +2503,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             else
             {
-                SystemMgr.StartCoroutine(WaitEndDelay());
+                _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
             }
         }
         
@@ -2572,6 +2546,19 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             
             NextAction();
+        }
+        
+        private void StopWaitEndDelayCoroutine()
+        {
+            if (_waitDelayCoroutine == null)
+            {
+                return;
+            }
+            
+            if (_isSkillEnd == false)
+            {
+                SystemMgr.StopCoroutine(_waitDelayCoroutine);
+            }
         }
 
         IEnumerator WaitEndDelay()

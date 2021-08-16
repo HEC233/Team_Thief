@@ -5714,24 +5714,24 @@ PrefabInstance:
         type: 3}
       propertyPath: _skillDataBases.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: b366ff89bcd1ad547a86cf5d09bf7d79,
+      objectReference: {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1,
         type: 2}
     - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: _skillDatabases.Array.size
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: _skillDatabases.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: b366ff89bcd1ad547a86cf5d09bf7d79,
+      objectReference: {fileID: 11400000, guid: 4dc7817736faa58409fc529eb084cffb,
         type: 2}
     - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: _skillDatabases.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 32b29d5e90c4e4c4f9718f7d94abab38,
+      objectReference: {fileID: 11400000, guid: efcc9859b54bf6242b7101edad9bf3b6,
         type: 2}
     - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}

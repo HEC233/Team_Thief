@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 4
   _skillCondition: 0
-  _cinemachineSignalSource: {fileID: 0}
+  _cinemachineSignalSource: {fileID: 11400000, guid: eb351fd8ca44c3c4db67561a895cdc01,
+    type: 2}
   _name: "\uD68C\uC804\uB3C4\uB07C \uCD94\uAC00\uACF5\uACA9"
   _grade: "\uB808\uC5B4"
   _isGet: 0

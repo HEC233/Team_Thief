@@ -92,7 +92,6 @@ public class SkillSlotManager : MonoBehaviour
 
         if (_inputTime - _beInputTime >= _commandInputTime)
         {
-            Debug.Log("_inputTime - _beInputTime : " + (_inputTime - _beInputTime));
             ResetAllCommandList();
         }
 
@@ -151,7 +150,6 @@ public class SkillSlotManager : MonoBehaviour
                 commandString += " " + _skillSlots[i].CommandList[j];
             }
             
-            Debug.Log(commandString);
             commandString = String.Empty;
         }
     }

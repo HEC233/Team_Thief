@@ -13,34 +13,43 @@ MonoBehaviour:
   m_Name: SkillSnakeSwordStingData2
   m_EditorClassIdentifier: 
   _id: 6
-  _cinemachineSignalSource: {fileID: 0}
-  _name: 
-  _grade: 
+  _skillCondition: 0
+  _cinemachineSignalSource: {fileID: 11400000, guid: 47952d9a87aeecf45a7af5e2866c7c8d,
+    type: 2}
+  _name: "\uC0AC\uBCF5\uAC80 \uCC0C\uB974\uAE30 \uCD94\uAC00\uACF5\uACA9"
+  _grade: "\uB808\uC5B4"
   _isGet: 0
-  _class: 
+  _class: "\uD559\uC0B4\uC790"
   _coolTime: 0
   _castingTime: 0
   _attackRange: 0
   _target: 0
-  _description: 
+  _description: none
   _buffTime: 0
-  _skillNumberOfTimes: 0
-  _damages: 
-  _hitIntervals: []
-  _hitNumberOfTimes: 
-  _knockBackTimes: []
-  _knockBackXs: []
-  _knockBackYs: []
-  _stiffness: 0
-  _moveTimes: []
-  _moveXs: []
-  _moveYs: []
+  _skillNumberOfTimes: 1
+  _damages: c8000000
+  _hitIntervals:
+  - 0
+  _hitNumberOfTimes: 01000000
+  _knockBackTimes:
+  - 0.06
+  _knockBackXs:
+  - -10
+  _knockBackYs:
+  - 0.5
+  _stiffness: 1
+  _moveTimes:
+  - 0
+  _moveXs:
+  - 0
+  _moveYs:
+  - 0
   _projectileMoveTime: 0
   projectileMoveX: 0
   projectileMoveY: 0
-  _statusEffects: 
+  _statusEffects: 00000000
   _fristDelay: 0
-  _endDelay: 0
+  _endDelay: 1
   nextSkill: 0
-  _iconName: 
-  _icon: {fileID: 0}
+  _iconName: none
+  _icon: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}
