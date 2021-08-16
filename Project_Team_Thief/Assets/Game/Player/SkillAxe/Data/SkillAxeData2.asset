@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0643a2e5688b9540a2608cbdf113c6a, type: 3}
+  m_Name: SkillAxeData2
+  m_EditorClassIdentifier: 
+  _id: 4
+  _skillCondition: 0
+  _cinemachineSignalSource: {fileID: 0}
+  _name: "\uD68C\uC804\uB3C4\uB07C \uCD94\uAC00\uACF5\uACA9"
+  _grade: "\uB808\uC5B4"
+  _isGet: 0
+  _class: "\uC554\uC0B4\uC790"
+  _coolTime: 0
+  _castingTime: 0
+  _attackRange: 0
+  _target: 0
+  _description: none
+  _buffTime: 0
+  _skillNumberOfTimes: 1
+  _damages: 96000000
+  _hitIntervals:
+  - 0
+  _hitNumberOfTimes: 01000000
+  _knockBackTimes:
+  - 0.1
+  _knockBackXs:
+  - 2
+  _knockBackYs:
+  - 0
+  _stiffness: 1
+  _moveTimes:
+  - 0.04
+  _moveXs:
+  - -0.3
+  _moveYs:
+  - 0
+  _projectileMoveTime: 0.4
+  projectileMoveX: 10
+  projectileMoveY: 0
+  _statusEffects: 00000000
+  _fristDelay: 0
+  _endDelay: 1
+  nextSkill: 0
+  _iconName: none
+  _icon: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}
+  _axeGameObject: {fileID: 3841240397383621464, guid: 3624dd1e695c1004e96f2ca043568a51,
+    type: 3}

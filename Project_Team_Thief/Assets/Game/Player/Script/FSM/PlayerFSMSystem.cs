@@ -1802,24 +1802,45 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     
     private class SkillAxeState : CustomFSMStateBase, ISkillStateBase
     {
-        private bool _isAniEnd = false;
-        private bool _isAxe2Action = false;
-        private SkillAxeData _skillAxeData;
+        private SkillAxeData[] _skillAxeDataArr = new SkillAxeData[2];
         private GameSkillObject _gameSkillObject;
         private GameSkillObject _gameSkillObject2;
+        private bool _isInit = false;
+        private int _curSkillIndex = 0;
+        private int _nextSkillIndex = 0;
+        private bool _isSkillEnd = false;
+        private float _attackInputTime = 0.0f;
+        private float _attackBeInputTime = 0.0f;
+        private float _attackTime = 1.5f;
+
+        private AniState[] _skillThrowSpinAxeAniArr =
+            new AniState[] {AniState.SkillAxe, AniState.SkillAxe2};
+
+        private FxAniEnum[] skillThrowSpinAxeFxAniArr = new FxAniEnum[] {FxAniEnum.SkillAxe, FxAniEnum.SkillAxe2};
         
         public SkillAxeState(PlayerFSMSystem system) : base(system)
         {
         }
+        
+        private void Init()
+        {
+            if(_isInit == true)
+                return;
+
+            _isInit = true;
+            _skillAxeDataArr[0] = SkillDataBank.instance.GetSkillData(3) as SkillAxeData;
+            _skillAxeDataArr[1] = SkillDataBank.instance.GetSkillData(4) as SkillAxeData;
+        }
 
         public override void StartState()
         {
-            _skillAxeData = (SkillAxeData)SkillDataBank.instance.GetSkillData(3);
-            SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
-            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe);
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe);
+            Init();
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
+            SystemMgr.AnimationCtrl.PlayAni(_skillThrowSpinAxeAniArr[_curSkillIndex]);
+            SystemMgr._fxCtrl.PlayAni(skillThrowSpinAxeFxAniArr[_curSkillIndex]);
             WwiseSoundManager.instance.PlayEventSound("PC_axe");
             GameManager.instance.uiMng.TurnXButtonUI(true);
+            _attackBeInputTime = Time.time;
             _gameSkillObject = InvokeSkill();
         }
 
@@ -1830,31 +1851,21 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
-            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
-            _isAniEnd = false;
-            _isAxe2Action = false;
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
             GameManager.instance.uiMng.TurnXButtonUI(false);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
-
+            ResetValue();
         }
 
         public override bool Transition(TransitionCondition condition)
         {
             if (condition == TransitionCondition.Hit)
                 return true;
-
-            if (condition == TransitionCondition.SkillAxe)
-                return true;
-            if (condition == TransitionCondition.SkillSpear)
-                return true;
-            if (condition == TransitionCondition.SkillHammer)
-                return true;
-            if (condition == TransitionCondition.SkillKopsh)
-                return true;
+            
             if (condition == TransitionCondition.SkillSnakeSwordSting)
                 return true;
 
-            if (_isAniEnd == false)
+            if (_isSkillEnd == false)
                 return false;
             
             if (condition == TransitionCondition.Jump)
@@ -1880,9 +1891,20 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (condition == TransitionCondition.Attack)
             {
-                TwoAxeAction();
+                _attackInputTime = Time.time;
+
+                if (_attackInputTime - _attackBeInputTime <= _attackTime)
+                {
+                    _nextSkillIndex = _curSkillIndex + 1;
+                    SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                    SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
+                }
+
+                _attackBeInputTime = Time.time;
+
                 return false;
             }
+            
             return true;
         }
 
@@ -1890,32 +1912,57 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             return true;
         }
-
-        private void OnAnimationEndEvnetCall()
+        
+        private void ResetValue()
         {
-            _isAniEnd = true;
-            SystemMgr.Transition(TransitionCondition.Idle);
+            _isSkillEnd = false;
+            _curSkillIndex = 0;
+            _nextSkillIndex = 0;
         }
-
-        private void TwoAxeAction()
+        
+        private void OnAnimationEndEventCall()
         {
-            if (_isAxe2Action == false)
+            if (IsEndOrNextCheck() == true)
             {
-                SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe2);
-                SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe2);
-                WwiseSoundManager.instance.PlayEventSound("PC_axe");
-                GameManager.instance.uiMng.TurnXButtonUI(false);
-                _gameSkillObject2 = InvokeSkill();
+                NextAction();
             }
-
-            _isAxe2Action = true;
+            else
+            {
+                SystemMgr.StartCoroutine(WaitEndDelay());
+            }
         }
-
-        private void CheckPlayerDir(string skillName)
+        
+        private bool IsEndOrNextCheck()
         {
+            if (_curSkillIndex != _nextSkillIndex)
+            {
+                if (_nextSkillIndex > _skillThrowSpinAxeAniArr.Length - 1)
+                {
+                    return false;
+                }
+                else
+                {
+                    _curSkillIndex = _nextSkillIndex;
+                    return true;
+                }
+            }
             
+            return false;
         }
+        
+        private void NextAction()
+        {
+            SystemMgr.AnimationCtrl.SetSpeed(1);
+            SystemMgr._fxCtrl.SetSpeed(1);   
+            
+            SystemMgr.AnimationCtrl.PlayAni(_skillThrowSpinAxeAniArr[_curSkillIndex]);
+            SystemMgr._fxCtrl.PlayAni(skillThrowSpinAxeFxAniArr[_curSkillIndex]);
+            GameManager.instance.uiMng.TurnXButtonUI(false);
+            WwiseSoundManager.instance.PlayEventSound("PC_axe");
 
+            _gameSkillObject = InvokeSkill();
+        }
+        
         private GameSkillObject InvokeSkill()
         {
             var skillObejct = GameManager.instance.GameSkillMgr.GetSkillObject();
@@ -1925,9 +1972,22 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 Debug.LogError("AexSkillObj is Null");
                 return null;
             }
-
-            skillObejct.InitSkill(_skillAxeData.GetSkillController(skillObejct, SystemMgr.Unit));
+            
+            skillObejct.InitSkill(_skillAxeDataArr[_curSkillIndex].GetSkillController(skillObejct, SystemMgr.Unit));
             return skillObejct;
+        }
+        
+        IEnumerator WaitEndDelay()
+        {
+            float timer = 0.0f;
+            while (_skillAxeDataArr[_curSkillIndex].EndDelay >= timer)
+            {
+                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isSkillEnd = true;
+            SystemMgr.Transition(TransitionCondition.Idle);
         }
     }
     

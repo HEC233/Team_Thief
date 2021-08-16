@@ -22,15 +22,19 @@ public class SkillSnakeSwordStingController : SkillControllerBase
         _unit = Unit as PlayerUnit;
         FindIndex();
         _unit.OnSkillSnakeSwordStingAttackEvent += ReceiveAttackEvent;
+        SetDamage();
         
+        _unit.SkillSnakeSwordStingAttackBase[_index].Init(_damage, _skillSnakeSwordStingData.CinemachineSignalSource);
+    }
+    
+    private void SetDamage()
+    {
         _damage = new Damage();
         _damage.power = _skillSnakeSwordStingData.Damages[0];
         _damage.knockBack = new Vector2(_skillSnakeSwordStingData.KnockBackXs[0], _skillSnakeSwordStingData.KnockBackYs[0]);
         _damage.additionalInfo = _index;
         // 넉백 타임은?
         _damage.stiffness = _skillSnakeSwordStingData.Stiffness;
-        
-        _unit.SkillSnakeSwordStingAttackBase[_index].Init(_damage, _skillSnakeSwordStingData.CinemachineSignalSource);
     }
     
     private void FindIndex()
