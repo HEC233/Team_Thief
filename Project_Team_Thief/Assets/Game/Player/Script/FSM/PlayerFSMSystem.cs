@@ -1851,14 +1851,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override void EndState()
         {
-            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
-            _isAniEnd = false;
-            _isAxe2Action = false;
-            GameManager.instance.uiMng.TurnXButtonUI(false);
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
-            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEvnetCall;
-            _isAniEnd = false;
-            _isAxe2Action = false;
             GameManager.instance.UIMng.TurnXButtonUI(false);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
             ResetValue();
@@ -1931,15 +1924,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (IsEndOrNextCheck() == true)
             {
-                SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe2);
-                SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe2);
-                WwiseSoundManager.instance.PlayEventSound("PC_axe");
-                GameManager.instance.uiMng.TurnXButtonUI(false);
                 NextAction();
-                SystemMgr.AnimationCtrl.PlayAni(AniState.SkillAxe2);
-                SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillAxe2);
-                WwiseSoundManager.instance.PlayEventSound("PC_axe");
-                GameManager.instance.UIMng.TurnXButtonUI(false);
             }
             else
             {
