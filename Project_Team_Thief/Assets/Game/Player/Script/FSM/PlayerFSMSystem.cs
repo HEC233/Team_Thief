@@ -86,34 +86,34 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         GameManager.instance.SetPlayerActor(this);
         GameManager.instance.ChangeActorToPlayer();
 
-        GameManager.instance.shadow.RegistCollider(GetComponent<BoxCollider2D>());
+        GameManager.instance.Shadow.RegistCollider(GetComponent<BoxCollider2D>());
         //=======================================================
     }
 
     private void Bind()
     {
-        GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvnetCall;
-        GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEventCall;
-        GameManager.instance.timeMng.startHitstopEvent += StartHitStopEventCall;
-        GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvnetCall;
+        GameManager.instance.TimeMng.startBulletTimeEvent += StartBulletTimeEvnetCall;
+        GameManager.instance.TimeMng.endBulletTimeEvent += EndBulletTimeEventCall;
+        GameManager.instance.TimeMng.startHitstopEvent += StartHitStopEventCall;
+        GameManager.instance.TimeMng.endHitstopEvent += EndHitStopEvnetCall;
         Unit.hitEvent += UnitHitEventCall;
         Unit.OnPlayerDeadEvent += UnitDeadEventCall;
         
         //GameManager.instance.commandManager.OnCommandCastEvent += OnCommandCastEventCall;
-        GameManager.instance.skillSlotManager.OnCommandCastEvent += OnCommandCastEventCall;
+        GameManager.instance.SkillSlotManager.OnCommandCastEvent += OnCommandCastEventCall;
     }
 
     private void UnBind()
     {
-        GameManager.instance.timeMng.startBulletTimeEvent -= StartBulletTimeEvnetCall;
-        GameManager.instance.timeMng.endBulletTimeEvent -= EndBulletTimeEventCall;
-        GameManager.instance.timeMng.startHitstopEvent -= StartHitStopEventCall;
-        GameManager.instance.timeMng.endHitstopEvent -= EndHitStopEvnetCall;
+        GameManager.instance.TimeMng.startBulletTimeEvent -= StartBulletTimeEvnetCall;
+        GameManager.instance.TimeMng.endBulletTimeEvent -= EndBulletTimeEventCall;
+        GameManager.instance.TimeMng.startHitstopEvent -= StartHitStopEventCall;
+        GameManager.instance.TimeMng.endHitstopEvent -= EndHitStopEvnetCall;
         Unit.hitEvent -= UnitHitEventCall;
         Unit.OnPlayerDeadEvent -= UnitDeadEventCall;
         
         //GameManager.instance.commandManager.OnCommandCastEvent -= OnCommandCastEventCall;
-        GameManager.instance.skillSlotManager.OnCommandCastEvent -= OnCommandCastEventCall;
+        GameManager.instance.SkillSlotManager.OnCommandCastEvent -= OnCommandCastEventCall;
     }
 
     private class IdleState : CustomFSMStateBase
@@ -954,9 +954,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isDashEnd = false;
             _dashTime = SystemMgr.Unit.DashTime;
             _timer = 0.0f;
-            while (_timer + GameManager.instance.timeMng.FixedDeltaTime < _dashTime)
+            while (_timer + GameManager.instance.TimeMng.FixedDeltaTime < _dashTime)
             {
-                _timer += GameManager.instance.timeMng.FixedDeltaTime;
+                _timer += GameManager.instance.TimeMng.FixedDeltaTime;
                 SystemMgr.Unit.Dash();
                 yield return new WaitForFixedUpdate();
             }
@@ -1325,7 +1325,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             float timer = 0.0f;
             while (_basicAttackDataBase.EndDelay >= timer)
             {
-                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
@@ -1522,7 +1522,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                                         _basicJumpAttackData[_jumpAttackIndex].MoveXs[0] * SystemMgr.Unit.FacingDir;
             _basicJumpAttackMoveDir.y = (1 / _basicJumpAttackData[_jumpAttackIndex].MoveTimes[0]) *
                                         _basicJumpAttackData[_jumpAttackIndex].MoveYs[0];
-            _basicJumpAttackMoveDir *= GameManager.instance.timeMng.TimeScale;
+            _basicJumpAttackMoveDir *= GameManager.instance.TimeMng.TimeScale;
             SystemMgr.Unit.Rigidbody2D.velocity = Vector2.zero;
             SystemMgr.Unit.Rigidbody2D.AddForce(_basicJumpAttackMoveDir, ForceMode2D.Impulse);
         }
@@ -1536,7 +1536,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             float _timer = 0.0f;
             while (_timer < _basicJumpAttackMoveTime)
             {
-                _timer += GameManager.instance.timeMng.FixedDeltaTime;
+                _timer += GameManager.instance.TimeMng.FixedDeltaTime;
                 BasicJumpAttackMove();
                 yield return new WaitForFixedUpdate();
             }
@@ -1584,7 +1584,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             float timer = 0.0f;
             while (_basicJumpAttackData[_jumpAttackIndex].EndDelay >= timer)
             {
-                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
@@ -1650,9 +1650,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             float _timer = 0.00f;
             float _hitTime = SystemMgr.Unit.HitTime;
             
-            while (_timer + GameManager.instance.timeMng.FixedDeltaTime < _hitTime)
+            while (_timer + GameManager.instance.TimeMng.FixedDeltaTime < _hitTime)
             {
-                _timer += GameManager.instance.timeMng.FixedDeltaTime;
+                _timer += GameManager.instance.TimeMng.FixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
@@ -1796,7 +1796,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isAniEnd = true;
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEvnetCall;
             GameManager.instance.isPlayerDead = true;
-            GameManager.instance.uiMng.PlayerDead();
+            GameManager.instance.UIMng.PlayerDead();
         }
     }
     
@@ -1839,7 +1839,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.AnimationCtrl.PlayAni(_skillThrowSpinAxeAniArr[_curSkillIndex]);
             SystemMgr._fxCtrl.PlayAni(skillThrowSpinAxeFxAniArr[_curSkillIndex]);
             WwiseSoundManager.instance.PlayEventSound("PC_axe");
-            GameManager.instance.uiMng.TurnXButtonUI(true);
+            GameManager.instance.UIMng.TurnXButtonUI(true);
             _attackBeInputTime = Time.time;
             _gameSkillObject = InvokeSkill();
         }
@@ -1852,7 +1852,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void EndState()
         {
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
-            GameManager.instance.uiMng.TurnXButtonUI(false);
+            GameManager.instance.UIMng.TurnXButtonUI(false);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
             ResetValue();
         }
@@ -1957,7 +1957,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             SystemMgr.AnimationCtrl.PlayAni(_skillThrowSpinAxeAniArr[_curSkillIndex]);
             SystemMgr._fxCtrl.PlayAni(skillThrowSpinAxeFxAniArr[_curSkillIndex]);
-            GameManager.instance.uiMng.TurnXButtonUI(false);
+            GameManager.instance.UIMng.TurnXButtonUI(false);
             WwiseSoundManager.instance.PlayEventSound("PC_axe");
 
             _gameSkillObject = InvokeSkill();
@@ -1982,7 +1982,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             float timer = 0.0f;
             while (_skillAxeDataArr[_curSkillIndex].EndDelay >= timer)
             {
-                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
@@ -2363,7 +2363,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             float timer = 0.0f;
             while (_skillDoubleCrossData[_curSkillIndex].EndDelay >= timer)
             {
-                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
@@ -2567,7 +2567,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             float timer = 0.0f;
             while (_skillSnakeSwordStingDatas[_curSkillIndex].FristDelay >= timer)
             {
-                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
             
@@ -2580,7 +2580,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isSkillEnd = false;
             while (_skillSnakeSwordStingDatas[_curSkillIndex].EndDelay >= timer)
             {
-                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
@@ -2656,7 +2656,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         //     return false;
         // }
 
-        if (GameManager.instance.timeMng.IsHitStop == true)
+        if (GameManager.instance.TimeMng.IsHitStop == true)
         {
             if (condition != TransitionCondition.None)
             {

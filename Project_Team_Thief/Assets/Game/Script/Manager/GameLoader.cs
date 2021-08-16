@@ -43,7 +43,7 @@ public class GameLoader : MonoBehaviour
     private void Start()
     {
         GameManager.instance.GameState = GameManager.GameStateEnum.MainMenu;
-        GameManager.instance.SetControlActor(GameManager.instance.uiMng.UiActor);
+        GameManager.instance.SetControlActor(GameManager.instance.UIMng.UiActor);
         InitializeInternalSceneData();
     }
 
@@ -120,7 +120,7 @@ public class GameLoader : MonoBehaviour
             yield return SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
         }
         
-        GameManager.instance.timeMng.UnbindAll();
+        GameManager.instance.TimeMng.UnbindAll();
         
         foreach (var callback in sceneLoadCallbacks)
         {

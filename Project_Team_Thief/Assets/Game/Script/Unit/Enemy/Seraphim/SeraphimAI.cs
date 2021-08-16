@@ -183,7 +183,7 @@ public class SeraphimAI : MonoBehaviour
         {
             actor.Transition(TransitionCondition.Idle);
         }
-        else if (!GameManager.instance.timeMng.IsTimeStopped)
+        else if (!GameManager.instance.TimeMng.IsTimeStopped)
         {
             _curState.Process();
         }
@@ -230,7 +230,7 @@ namespace PS.Enemy.Seraphim.AI
         }
         public override void Process()
         {
-            _timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            _timeCheck -= GameManager.instance.TimeMng.DeltaTime;
             if (_timeCheck <= 0)
             {
                 if (Random.value > 0.5f)
@@ -471,9 +471,9 @@ namespace PS.Enemy.Seraphim.AI
                     break;
             }
 
-            _shotCool -= GameManager.instance.timeMng.DeltaTime;
-            _backStepCool -= GameManager.instance.timeMng.DeltaTime;
-            _timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            _shotCool -= GameManager.instance.TimeMng.DeltaTime;
+            _backStepCool -= GameManager.instance.TimeMng.DeltaTime;
+            _timeCheck -= GameManager.instance.TimeMng.DeltaTime;
         }
     }
 }

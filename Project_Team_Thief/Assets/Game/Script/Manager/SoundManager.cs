@@ -26,18 +26,18 @@ public class SoundManager : MonoBehaviour
 
     private void Bind()
     {
-        GameManager.instance.timeMng.startHitstopEvent += StartHitStopEvent;
-        GameManager.instance.timeMng.endHitstopEvent += EndHitStopEvent;
-        GameManager.instance.timeMng.startBulletTimeEvent += StartBulletTimeEvent;
-        GameManager.instance.timeMng.endBulletTimeEvent += EndBulletTimeEvent;
+        GameManager.instance.TimeMng.startHitstopEvent += StartHitStopEvent;
+        GameManager.instance.TimeMng.endHitstopEvent += EndHitStopEvent;
+        GameManager.instance.TimeMng.startBulletTimeEvent += StartBulletTimeEvent;
+        GameManager.instance.TimeMng.endBulletTimeEvent += EndBulletTimeEvent;
     }
 
     private void UnBind()
     {
-        GameManager.instance.timeMng.startHitstopEvent -= StartHitStopEvent;
-        GameManager.instance.timeMng.endHitstopEvent -= EndHitStopEvent;
-        GameManager.instance.timeMng.startBulletTimeEvent -= StartBulletTimeEvent;
-        GameManager.instance.timeMng.endBulletTimeEvent -= EndBulletTimeEvent;
+        GameManager.instance.TimeMng.startHitstopEvent -= StartHitStopEvent;
+        GameManager.instance.TimeMng.endHitstopEvent -= EndHitStopEvent;
+        GameManager.instance.TimeMng.startBulletTimeEvent -= StartBulletTimeEvent;
+        GameManager.instance.TimeMng.endBulletTimeEvent -= EndBulletTimeEvent;
     }
 
     // 효과음 재생 soundId는 아직 어떤 형태일지 정해지지 않았습니다.

@@ -170,7 +170,7 @@ public class ShadowFSMSystem : FSMSystem<TransitionCondition, ShadowFSMStateBase
         if (CheckStateChangeAbleCondition(condition) == false)
             return false;
         
-        if (GameManager.instance.timeMng.IsHitStop == true)
+        if (GameManager.instance.TimeMng.IsHitStop == true)
             return false;
         
         if (CurrState == condition)

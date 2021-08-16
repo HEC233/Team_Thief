@@ -184,13 +184,13 @@ public class AttackBase : MonoBehaviour
     protected void Bind()
     {
         if (_isZoomIn == true)
-            GameManager.instance.cameraMng.OnZoomInEndEvent += ZoomOut;
+            GameManager.instance.CameraMng.OnZoomInEndEvent += ZoomOut;
     }
 
     protected void UnBind()
     {
         if (_isZoomIn == true)
-            GameManager.instance.cameraMng.OnZoomInEndEvent -= ZoomOut;
+            GameManager.instance.CameraMng.OnZoomInEndEvent -= ZoomOut;
     }
 
     protected void Flash()
@@ -204,7 +204,7 @@ public class AttackBase : MonoBehaviour
         if (_isAbleHitStop == false)
             return;
 
-        GameManager.instance.timeMng.HitStop(_hitStopTime);
+        GameManager.instance.TimeMng.HitStop(_hitStopTime);
     }
 
     private void BulltTime()
@@ -212,7 +212,7 @@ public class AttackBase : MonoBehaviour
         if (_isAbleBulltTime == false)
             return;
         
-        GameManager.instance.timeMng.BulletTime(_bulletTimeScale, _bulltTime);
+        GameManager.instance.TimeMng.BulletTime(_bulletTimeScale, _bulltTime);
     }
 
     protected virtual void PlayFx()
@@ -317,12 +317,12 @@ public class AttackBase : MonoBehaviour
         _cinemachineBlendDefinition.m_CustomCurve = _zoomInCurve;
         _cinemachineBlendDefinition.m_Time = _zoomInTime;
 
-        GameManager.instance.cameraMng.ZoomIn(_cinemachineBlendDefinition, _zoomInSize);
+        GameManager.instance.CameraMng.ZoomIn(_cinemachineBlendDefinition, _zoomInSize);
     }
     
     private void ZoomOut()
     {
-        GameManager.instance.cameraMng.ZoomOut(ZoomOutBlendDefinition());
+        GameManager.instance.CameraMng.ZoomOut(ZoomOutBlendDefinition());
     }
     
     private CinemachineBlendDefinition ZoomOutBlendDefinition()

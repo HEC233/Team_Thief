@@ -34,7 +34,7 @@ namespace PS.FX
 
         public void Bind()
         {
-            var timeMng = GameManager.instance.timeMng;
+            var timeMng = GameManager.instance.TimeMng;
             if (timeMng)
             {
                 timeMng.startBulletTimeEvent += TimeScaleChangeCallback;

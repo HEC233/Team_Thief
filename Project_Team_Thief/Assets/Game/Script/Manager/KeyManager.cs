@@ -70,7 +70,7 @@ public class KeyManager : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.BackQuote))
             {
-                GameManager.instance.uiMng.ToggleDeveloperConsole();
+                GameManager.instance.UIMng.ToggleDeveloperConsole();
             }
 
             if(GameManager.instance.GameState != GameManager.GameStateEnum.InGame)
@@ -121,19 +121,19 @@ public class KeyManager : MonoBehaviour
             
             /// 스킬 입력 처리
             if (Input.GetKeyDown(KeyCode.LeftArrow))
-                GameManager.instance.skillSlotManager.Inputkey('L');
+                GameManager.instance.SkillSlotManager.Inputkey('L');
             else if (Input.GetKeyDown(KeyCode.RightArrow))
-                GameManager.instance.skillSlotManager.Inputkey('R');
+                GameManager.instance.SkillSlotManager.Inputkey('R');
             else if (Input.GetKeyDown(KeyCode.UpArrow))
-                GameManager.instance.skillSlotManager.Inputkey('U');
+                GameManager.instance.SkillSlotManager.Inputkey('U');
             else if (Input.GetKeyDown(KeyCode.DownArrow))
-                GameManager.instance.skillSlotManager.Inputkey('D');
+                GameManager.instance.SkillSlotManager.Inputkey('D');
             else if (Input.GetKeyDown(KeyCode.Z))
-                GameManager.instance.skillSlotManager.Inputkey('Z');
+                GameManager.instance.SkillSlotManager.Inputkey('Z');
             else if (Input.GetKeyDown(KeyCode.X))
-                GameManager.instance.skillSlotManager.Inputkey('X');
+                GameManager.instance.SkillSlotManager.Inputkey('X');
             else if (Input.GetKeyDown(KeyCode.Space))
-                GameManager.instance.skillSlotManager.Inputkey('S');
+                GameManager.instance.SkillSlotManager.Inputkey('S');
             /// 스킬 입력 처리
         }
         else

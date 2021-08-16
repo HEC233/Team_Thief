@@ -24,6 +24,6 @@ public class DandelionAI : MonoBehaviour
             timeCheck = 0;
         }
 
-        timeCheck += GameManager.instance.timeMng.DeltaTime;
+        timeCheck += GameManager.instance.TimeMng.DeltaTime;
     }
 }

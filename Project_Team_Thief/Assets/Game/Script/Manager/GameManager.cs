@@ -27,28 +27,55 @@ public class GameManager : MonoBehaviour
     public GameStateEnum GameState
     {
         get { return _gameState; }
-        set { _prevState = _gameState; _gameState = value; uiMng.ToggleUI(value); Debug.Log("GameState Changed : " + _gameState); }
+        set { _prevState = _gameState; _gameState = value; _uiMng.ToggleUI(value); Debug.Log("GameState Changed : " + _gameState); }
     }
 
-    public FreameChecker frameChecker;
-    public CameraManager cameraMng;
-    public TimeManager timeMng;
-    public SoundManager soundMng;
-    public UIManager uiMng;
-    public EffectSystem FX;
-    public GameSkillMgr GameSkillMgr;
-    public EncroachmentManager encroachmentManager;
+    [SerializeField]
+    private FreameChecker _frameChecker;
+    public FreameChecker FrameChecker => _frameChecker;
+    [SerializeField]
+    private CameraManager _cameraMng;
+    public CameraManager CameraMng => _cameraMng;
+    [SerializeField]
+    private TimeManager _timeMng;
+    public TimeManager TimeMng => _timeMng;
+    [SerializeField]
+    private SoundManager _soundMng;
+    public SoundManager SoundMng => _soundMng;
+    [SerializeField]
+    private UIManager _uiMng;
+    public UIManager UIMng => _uiMng;
+    [SerializeField]
+    private EffectSystem _fx;
+    public EffectSystem FX => _fx;
+    [SerializeField]
+    private GameSkillMgr _gameSkillMgr;
+    public GameSkillMgr GameSkillMgr => _gameSkillMgr;
+    [SerializeField]
+    private EncroachmentManager _encroachmentManager;
+    public EncroachmentManager EncroachmentManager => _encroachmentManager;
 
     //public CommandManager commandManager;
-    public SkillSlotManager skillSlotManager;
-    public Spawner spawner;
-    public DialogueSystem dialogueSystem;
-
-    public ShadowParticleSystem shadow;
+    [SerializeField]
+    private SkillSlotManager skillSlotManager;
+    public SkillSlotManager SkillSlotManager => skillSlotManager;
+    [SerializeField]
+    private Spawner spawner;
+    public Spawner Spawner => spawner;
+    [SerializeField]
+    private DialogueSystem dialogueSystem;
+    public DialogueSystem DialogueSystem => dialogueSystem;
+    [SerializeField]
+    private ShadowParticleSystem shadow;
+    public ShadowParticleSystem Shadow => shadow;
 
     [SerializeField]
     private KeyManager _keyManager;
-    public Grid grid;
+    public KeyManager KeyManager => _keyManager;
+    [SerializeField]
+    private Grid grid;
+    public Grid Grid => grid;
+
 
     private GameSettingData _settingData;
     public GameSettingData SettingData
@@ -121,9 +148,9 @@ public class GameManager : MonoBehaviour
     public void SetLoadingScreenShow(bool isStart)
     {
         if (isStart)
-            uiMng.ShowLoading();
+            _uiMng.ShowLoading();
         else
-            uiMng.StopLoading();
+            _uiMng.StopLoading();
     }
 
     public void StartGame()
@@ -160,13 +187,13 @@ public class GameManager : MonoBehaviour
         ChangeActorToPlayer();
         isPlayerDead = false;
 
-        timeMng.UnbindAll();
-        timeMng.Reset();
+        _timeMng.UnbindAll();
+        _timeMng.Reset();
         FX.Bind();
 
-        cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
-        cameraMng.FindCameras();
-        cameraMng.Bind();
+        _cameraMng._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
+        _cameraMng.FindCameras();
+        _cameraMng.Bind();
         var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
@@ -187,7 +214,7 @@ public class GameManager : MonoBehaviour
         else if (GameState == GameStateEnum.InGame)
         {
             GameState = GameStateEnum.Pause;
-            SetControlActor(uiMng.UiActor);
+            SetControlActor(_uiMng.UiActor);
             dialogueSystem.PauseDialogue();
             WwiseSoundManager.instance.PlayEventSound("Click_Exit");
             WwiseSoundManager.instance.PauseAllSound();
@@ -201,7 +228,7 @@ public class GameManager : MonoBehaviour
         else if (GameState == GameStateEnum.Setting)
         {
             GameState = _prevState;
-            SetControlActor(uiMng.UiActor);
+            SetControlActor(_uiMng.UiActor);
             WwiseSoundManager.instance.ResumeAllSound();
         }
     }
@@ -209,7 +236,7 @@ public class GameManager : MonoBehaviour
     public void ExitToMainMenu()
     {
         isPlayerDead = false;
-        uiMng.TurnOffGameOverScreen();
+        _uiMng.TurnOffGameOverScreen();
         dialogueSystem.EndDialogue();
         StartCoroutine(ExitGameCoroutine());
     }
@@ -223,7 +250,7 @@ public class GameManager : MonoBehaviour
         WwiseSoundManager.instance.StopInGameBgm();
         WwiseSoundManager.instance.PlayMainBgm();
         GameState = GameStateEnum.MainMenu;
-        SetControlActor(uiMng.UiActor);
+        SetControlActor(_uiMng.UiActor);
     }
 
     public void ExitGame()
@@ -237,16 +264,16 @@ public class GameManager : MonoBehaviour
 
     public void AddTextToDeveloperConsole(string text)
     {
-        uiMng.developerConsole?.AddLine(text);
+        _uiMng.developerConsole?.AddLine(text);
     }
 
     public void ApplySetting(GameSettingData newData)
     {
         _settingData = newData;
 
-        frameChecker.enabled = _settingData.bShowFPS;
-        uiMng.developerConsole?.SetConsoleUsage(_settingData.bUseDeveloperConsole);
-        uiMng.SetShowCommandInfo(!_settingData.bDontUseCommandAssist);
+        _frameChecker.enabled = _settingData.bShowFPS;
+        _uiMng.developerConsole?.SetConsoleUsage(_settingData.bUseDeveloperConsole);
+        _uiMng.SetShowCommandInfo(!_settingData.bDontUseCommandAssist);
     }
 
     //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음

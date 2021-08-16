@@ -50,7 +50,7 @@ public class UIHpMonster : MonoBehaviour
             return;
         }
 
-        var screenPos = GameManager.instance.uiMng.GetScreenPos(attachedUnit.GetHpPos());
+        var screenPos = GameManager.instance.UIMng.GetScreenPos(attachedUnit.GetHpPos());
 
         _rect.anchoredPosition = screenPos;
     }
@@ -79,7 +79,7 @@ public class UIHpMonster : MonoBehaviour
         var originalSize = delayHp.sizeDelta.x;
         while (timeCheck <= reduceTime)
         {
-            var deltaTime = GameManager.instance.timeMng.DeltaTime;
+            var deltaTime = GameManager.instance.TimeMng.DeltaTime;
             delayHp.sizeDelta = new Vector2(originalSize - diff * timeCheck / reduceTime, delayHp.sizeDelta.y);
 
             timeCheck += deltaTime;

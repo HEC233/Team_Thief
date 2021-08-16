@@ -171,7 +171,7 @@ public class LightWarriorAI : MonoBehaviour
         {
             actor.Transition(TransitionCondition.Idle);
         }
-        else if (!GameManager.instance.timeMng.IsTimeStopped)
+        else if (!GameManager.instance.TimeMng.IsTimeStopped)
         {
             _curState.Process();
         }
@@ -220,7 +220,7 @@ namespace PS.Enemy.LightWarrior.AI
         }
         public override void Process()
         {
-            _timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            _timeCheck -= GameManager.instance.TimeMng.DeltaTime;
             if (_timeCheck <= 0)
             {
                 if (Random.value > 0.5f)
@@ -396,8 +396,8 @@ namespace PS.Enemy.LightWarrior.AI
                  //-----------------------------------------
             }
 
-            _AttackCool -= GameManager.instance.timeMng.DeltaTime;
-            _timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            _AttackCool -= GameManager.instance.TimeMng.DeltaTime;
+            _timeCheck -= GameManager.instance.TimeMng.DeltaTime;
 
         }
     }

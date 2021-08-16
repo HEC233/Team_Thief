@@ -227,7 +227,7 @@ public class EncroachmentManager : MonoBehaviour
         
         while (timer > 0.0f)
         {
-            timer -= GameManager.instance.timeMng.FixedDeltaTime;
+            timer -= GameManager.instance.TimeMng.FixedDeltaTime;
             programerAlpha = Mathf.Lerp(0, 1, timer);
 
             for (int i = 1; i < particleChildrens.Length; i++)
@@ -257,7 +257,7 @@ public class EncroachmentManager : MonoBehaviour
         
         while (!_isEndRoom)
         {
-            _encroachmentZeroTimer += GameManager.instance.timeMng.FixedDeltaTime;
+            _encroachmentZeroTimer += GameManager.instance.TimeMng.FixedDeltaTime;
             
             yield return new WaitForFixedUpdate();
         }
@@ -274,7 +274,7 @@ public class EncroachmentManager : MonoBehaviour
                 yield return new WaitForFixedUpdate();
             }
             
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            timer += GameManager.instance.TimeMng.FixedDeltaTime;
 
             if (timer >= _encroachmentDecreasedPerTime)
             {

@@ -114,7 +114,7 @@ public class SeraphimActor : MonoBehaviour, IActor
     }
     public void RegistEventForGameManager()
     {
-        var v = GameManager.instance.timeMng;
+        var v = GameManager.instance.TimeMng;
         if (v)
         {
             v.startBulletTimeEvent += TimeScaleChangeEnterCallback;
@@ -126,7 +126,7 @@ public class SeraphimActor : MonoBehaviour, IActor
 
     public void UnregistEventForGameManager()
     {
-        var v = GameManager.instance.timeMng;
+        var v = GameManager.instance.TimeMng;
         if (v)
         {
             v.startBulletTimeEvent -= TimeScaleChangeEnterCallback;
@@ -359,7 +359,7 @@ namespace PS.Enemy.Seraphim
         public override void Process(SeraphimActor actor)
         {
             //timeCheck += GameManager.instance.timeMng.customTimeWhere???
-            timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            timeCheck -= GameManager.instance.TimeMng.DeltaTime;
 
             if (timeCheck < 0 && actor.unit.IsOnGround)
             {
@@ -405,7 +405,7 @@ namespace PS.Enemy.Seraphim
         public override void Process(SeraphimActor actor)
         {
             //timeCheck += GameManager.instance.timeMng.customTimeWhere???
-            timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            timeCheck -= GameManager.instance.TimeMng.DeltaTime;
 
             if (timeCheck < 0)
             {
@@ -442,7 +442,7 @@ namespace PS.Enemy.Seraphim
         public override void Process(SeraphimActor actor)
         {
             //timeCheck += GameManager.instance.timeMng.customTimeWhere???
-            timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            timeCheck -= GameManager.instance.TimeMng.DeltaTime;
 
             if(actor.attackAnimEnd)
             {

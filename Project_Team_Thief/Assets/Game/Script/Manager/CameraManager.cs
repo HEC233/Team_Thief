@@ -28,14 +28,14 @@ public class CameraManager : MonoBehaviour
 
     public void Bind()
     {
-        GameManager.instance.timeMng.startHitstopEvent += OnHitStopEvnetCall;
-        GameManager.instance.timeMng.endHitstopEvent += OnHitStopEndEventCall;
+        GameManager.instance.TimeMng.startHitstopEvent += OnHitStopEvnetCall;
+        GameManager.instance.TimeMng.endHitstopEvent += OnHitStopEndEventCall;
     }
 
     private void UnBind()
     {
-        GameManager.instance.timeMng.startHitstopEvent -= OnHitStopEvnetCall;
-        GameManager.instance.timeMng.endHitstopEvent -= OnHitStopEndEventCall;
+        GameManager.instance.TimeMng.startHitstopEvent -= OnHitStopEvnetCall;
+        GameManager.instance.TimeMng.endHitstopEvent -= OnHitStopEndEventCall;
     }
 
     public void FindCameras()
@@ -128,7 +128,7 @@ public class CameraManager : MonoBehaviour
         while (_cinemachineBrain.IsBlending)
         {
             Debug.Log(_cinemachineBrain.IsBlending);
-            yield return new WaitForSeconds(GameManager.instance.timeMng.FixedDeltaTime);
+            yield return new WaitForSeconds(GameManager.instance.TimeMng.FixedDeltaTime);
         }
         
         OnZoomInEndEvent?.Invoke();
@@ -146,7 +146,7 @@ public class CameraManager : MonoBehaviour
         float _shakeTick = 0.0f;
         while (_shakeTick < time)
         {
-            _shakeTick += GameManager.instance.timeMng.FixedDeltaTime;
+            _shakeTick += GameManager.instance.TimeMng.FixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
 

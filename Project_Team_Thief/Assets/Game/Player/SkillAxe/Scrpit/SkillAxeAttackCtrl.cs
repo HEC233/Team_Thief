@@ -106,7 +106,7 @@ public class SkillAxeAttackCtrl : AttackBase
 
         while (_counter < _axeMultiStageHit)
         {
-            _timer += GameManager.instance.timeMng.FixedDeltaTime;
+            _timer += GameManager.instance.TimeMng.FixedDeltaTime;
 
             if(_timer >= _axeMultiStageHitInterval)
             {
@@ -149,7 +149,7 @@ public class SkillAxeAttackCtrl : AttackBase
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.AddForce(new Vector2(_moveSpeed * _dir, 0), ForceMode2D.Impulse);
             
-            _timer += GameManager.instance.timeMng.FixedDeltaTime;
+            _timer += GameManager.instance.TimeMng.FixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
 

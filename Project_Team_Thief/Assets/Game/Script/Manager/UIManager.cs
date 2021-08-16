@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         delayHp.fillAmount = Mathf.Lerp(_lastDelayFill, curHp.fillAmount, t);
-        t += GameManager.instance.timeMng.DeltaTime;
+        t += GameManager.instance.TimeMng.DeltaTime;
     }
 
     public void ToggleUI(GameManager.GameStateEnum gameState)
@@ -224,7 +224,7 @@ public class UIManager : MonoBehaviour
         //float ratio = Screen.currentResolution.height / Screen.currentResolution.width;
         //float ratioRcp = 1 / ratio;
 
-        var screenPos = GameManager.instance.cameraMng.mainCam.WorldToScreenPoint(worldPos);
+        var screenPos = GameManager.instance.CameraMng.mainCam.WorldToScreenPoint(worldPos);
         screenPos = new Vector2(screenPos.x / Screen.width * 480, screenPos.y / Screen.height * 270);
 
 

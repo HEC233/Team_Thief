@@ -60,14 +60,14 @@ public class UIHpReduceInfo : MonoBehaviour
         animator.ResetTrigger("Critical");
         while (timeCheck > 0)
         {
-            _rect.anchoredPosition += speed * GameManager.instance.timeMng.DeltaTime;
+            _rect.anchoredPosition += speed * GameManager.instance.TimeMng.DeltaTime;
             
-            speed = new Vector2(speed.x, speed.y - 400.0f * GameManager.instance.timeMng.DeltaTime);
+            speed = new Vector2(speed.x, speed.y - 400.0f * GameManager.instance.TimeMng.DeltaTime);
 
             //damageText.color = new Color(damageText.color.r, damageText.color.g, damageText.color.b, timeCheck * 2f);
             //_rect.localScale = Vector3.one * (timeCheck + 0.5f);
 
-            timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            timeCheck -= GameManager.instance.TimeMng.DeltaTime;
             yield return null;
         }
         End();
@@ -85,9 +85,9 @@ public class UIHpReduceInfo : MonoBehaviour
 
         while (timeCheck > 0)
         {
-            _rect.anchoredPosition += speed * GameManager.instance.timeMng.DeltaTime;
+            _rect.anchoredPosition += speed * GameManager.instance.TimeMng.DeltaTime;
 
-            timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            timeCheck -= GameManager.instance.TimeMng.DeltaTime;
             yield return null;
         }
         End();

@@ -70,7 +70,7 @@ public class DandelionActor : MonoBehaviour, IActor
     private void DieTransition() { Transition(TransitionCondition.Die); }
     public void RegistEventForGameManager()
     {
-        var v = GameManager.instance.timeMng;
+        var v = GameManager.instance.TimeMng;
         if (v)
         {
             v.startBulletTimeEvent += TimeScaleChangeEnterCallback;
@@ -81,7 +81,7 @@ public class DandelionActor : MonoBehaviour, IActor
     }
     public void UnregistEventForGameManager()
     {
-        var v = GameManager.instance.timeMng;
+        var v = GameManager.instance.TimeMng;
         if (v)
         {
             v.startBulletTimeEvent -= TimeScaleChangeEnterCallback;
@@ -175,7 +175,7 @@ namespace Dandelion
 
         public override void Process(DandelionActor actor)
         {
-            timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            timeCheck -= GameManager.instance.TimeMng.DeltaTime;
 
             if (timeCheck < 0 && actor.unit.IsOnGround)
             {
@@ -220,7 +220,7 @@ namespace Dandelion
 
         public override void Process(DandelionActor actor)
         {
-            timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            timeCheck -= GameManager.instance.TimeMng.DeltaTime;
 
             if (timeCheck < 0)
             {
@@ -252,7 +252,7 @@ namespace Dandelion
 
         public override void Process(DandelionActor actor)
         {
-            timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            timeCheck -= GameManager.instance.TimeMng.DeltaTime;
 
             if (timeCheck <= 0)
             {

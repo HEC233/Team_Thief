@@ -98,9 +98,9 @@ public class MonsterUnit : Unit
 
         _damage.knockBack = _unitData.knockback;
 
-        GameManager.instance.shadow.RegistCollider(_rigid.GetComponent<CapsuleCollider2D>());
+        GameManager.instance.Shadow.RegistCollider(_rigid.GetComponent<CapsuleCollider2D>());
 
-        GameManager.instance.uiMng?.GetMonsterHP().Init(this);
+        GameManager.instance.UIMng?.GetMonsterHP().Init(this);
 
         //---------- for test ----------------
         SetDamagePower(_unitData.skillDamage)/*.SetDamageKnockBack(new Vector2(200, 200))*/;
@@ -125,7 +125,7 @@ public class MonsterUnit : Unit
         }
         else
         {
-            skipGroundCheckTime -= GameManager.instance.timeMng.DeltaTime;
+            skipGroundCheckTime -= GameManager.instance.TimeMng.DeltaTime;
         }
 
         if (isOnGround)
@@ -231,7 +231,7 @@ public class MonsterUnit : Unit
 
     public override void HandleDeath()
     {
-        GameManager.instance.shadow.UnregistCollider(_rigid.GetComponent<CapsuleCollider2D>());
+        GameManager.instance.Shadow.UnregistCollider(_rigid.GetComponent<CapsuleCollider2D>());
 
         DestroyImmediate(transform.parent.gameObject);
     }
@@ -252,8 +252,8 @@ public class MonsterUnit : Unit
         while (loop)
         {
             loop = false;
-            if (GameManager.instance.timeMng)
-                deltaTime = GameManager.instance.timeMng.DeltaTime;
+            if (GameManager.instance.TimeMng)
+                deltaTime = GameManager.instance.TimeMng.DeltaTime;
             else
                 deltaTime = Time.deltaTime;
 
@@ -327,7 +327,7 @@ public class MonsterUnit : Unit
         skipGroundCheck = true;
         skipGroundCheckTime = 0.1f;
 
-        GameManager.instance.uiMng?.ShowDamageText(inputDamage.hitPosition,
+        GameManager.instance.UIMng?.ShowDamageText(inputDamage.hitPosition,
             (int)finalDamage, 0 < (inputDamage.hitPosition - transform.position).x, false);
 
         if (_hp > 0)
