@@ -46,7 +46,7 @@ public class UICommandInfo : MonoBehaviour
         //_commandDatas = GameManager.instance.commandManager.GetCommandCtrl();
         
         // 김태성
-        _skillSlots = GameManager.instance.skillSlotManager.SkillSlots;
+        _skillSlots = GameManager.instance.SkillSlotMng.SkillSlots;
         //
         
         foreach (var c in _skillSlots)
@@ -107,7 +107,7 @@ public class UICommandInfo : MonoBehaviour
         }
         else
         {
-            verticalPanelRect.anchoredPosition = GameManager.instance.uiMng.GetScreenPos(playerTr.position + Vector3.down);
+            verticalPanelRect.anchoredPosition = GameManager.instance.UIMng.GetScreenPos(playerTr.position + Vector3.down);
 
             foreach (var e in panelList)
             {

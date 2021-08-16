@@ -229,18 +229,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83aba1311f028e4b99edc9dd5c44206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameChecker: {fileID: 4990086937456659571}
-  cameraMng: {fileID: 1594952880785257368}
-  timeMng: {fileID: 4990086937456659568}
-  soundMng: {fileID: 1997881170352566880}
-  uiMng: {fileID: 0}
-  FX: {fileID: 2141984162371750092}
-  GameSkillMgr: {fileID: 24858456}
-  ShadowControlManager: {fileID: 0}
-  SkillSlotManager: {fileID: 7344668481236701322}
-  spawner: {fileID: 5982225679925883762}
-  dialogueSystem: {fileID: 2558102683189895491}
-  shadow: {fileID: -5078904260765545550}
+  _frameChecker: {fileID: 4990086937456659571}
+  _cameraManager: {fileID: 1594952880785257368}
+  _timeManager: {fileID: 4990086937456659568}
+  _soundManager: {fileID: 1997881170352566880}
+  _uiManager: {fileID: 0}
+  _fx: {fileID: 2141984162371750092}
+  _gameSkillManagerr: {fileID: 24858456}
+  _encroachmentManager: {fileID: 0}
+  _skillSlotManager: {fileID: 0}
+  _spawner: {fileID: 5982225679925883762}
+  _dialogueSystem: {fileID: 2558102683189895491}
+  _shadowParticleSystem: {fileID: -5078904260765545550}
   _keyManager: {fileID: 4990086937456659572}
   grid: {fileID: 0}
   isPlayerDead: 0
@@ -268,6 +268,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3278bad8a4cbb944fb48f9887af8a207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _encroachmentDecreasedNumber: 0
+  _encroachmentDecreasedPerTime: 0
+  _encroachmentProductionFadeOutTime: 0
+  _encroachmentProductionParticleSystems: []
 --- !u!114 &7344668481236701322
 MonoBehaviour:
   m_ObjectHideFlags: 0

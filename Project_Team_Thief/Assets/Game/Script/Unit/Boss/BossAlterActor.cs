@@ -69,7 +69,7 @@ public class BossAlterActor : MonoBehaviour, IActor
                 }
             }
 
-            timeCheck += GameManager.instance.timeMng.DeltaTime;
+            timeCheck += GameManager.instance.TimeMng.DeltaTime;
             yield return null;
         }
     }
@@ -114,7 +114,7 @@ public class BossAlterActor : MonoBehaviour, IActor
                 StartCoroutine(LightPillarAttack(Random.Range(0, lightPillarPatterns.Length)));
                 timeCheck = 0;
             }
-            timeCheck += GameManager.instance.timeMng.DeltaTime;
+            timeCheck += GameManager.instance.TimeMng.DeltaTime;
             yield return null;
         }
     }
@@ -131,7 +131,7 @@ public class BossAlterActor : MonoBehaviour, IActor
                 StartCoroutine(Pattern2Attck(this.transform.position + Vector3.up * 4.5f));
                 timeCheck = 0;
             }
-            timeCheck += GameManager.instance.timeMng.DeltaTime;
+            timeCheck += GameManager.instance.TimeMng.DeltaTime;
             yield return null;
         }
     }
@@ -171,11 +171,11 @@ public class BossAlterActor : MonoBehaviour, IActor
             bSpawning = true;
             if (timeCheck >= data.enterDelay + data.interval * curCount)
             {
-                spawnedMonsters.Add(GameManager.instance.spawner.Spawn(data.unitName, data.position.position));
+                spawnedMonsters.Add(GameManager.instance.Spawner.Spawn(data.unitName, data.position.position));
                 curCount++;
             }
 
-            timeCheck += GameManager.instance.timeMng.DeltaTime;
+            timeCheck += GameManager.instance.TimeMng.DeltaTime;
 
             yield return null;
         }
@@ -214,15 +214,15 @@ public class BossAlterActor : MonoBehaviour, IActor
     {
         if (wave == 3)
         {
-            GameManager.instance.uiMng.SetBossHPColor(Color.red, Color.gray);
+            GameManager.instance.UIMng.SetBossHPColor(Color.red, Color.gray);
         }
         else
         {
-            GameManager.instance.uiMng.SetBossHPColor(Color.blue, Color.red);
+            GameManager.instance.UIMng.SetBossHPColor(Color.blue, Color.red);
         }
 
-        GameManager.instance.uiMng.InitBossHP(unit);
-        GameManager.instance.uiMng.BossHPUpdate();
+        GameManager.instance.UIMng.InitBossHP(unit);
+        GameManager.instance.UIMng.BossHPUpdate();
         unit.SetInvincibility(false);
     }
 
@@ -242,13 +242,13 @@ public class BossAlterActor : MonoBehaviour, IActor
                 Spawn();
                 break;
             case TransitionCondition.Hit:
-                GameManager.instance.uiMng.BossHPUpdate();
+                GameManager.instance.UIMng.BossHPUpdate();
                 animCtrl.PlayAni(AniState.Hit);
                 StartCoroutine(IdleAnimation());
                 break;
             case TransitionCondition.Die:
                 GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddQueue(unit.GetUnitName());
-                GameManager.instance.uiMng.BossDie();
+                GameManager.instance.UIMng.BossDie();
                 unit.SetInvincibility(true);
                 animCtrl.PlayAni(AniState.Die);
                 bIsDead = true;
@@ -283,7 +283,7 @@ public class BossAlterActor : MonoBehaviour, IActor
         else
         {
             unit.ResetHP();
-            GameManager.instance.uiMng.BossDie();
+            GameManager.instance.UIMng.BossDie();
             unit.SetInvincibility(true);
             Spawn();
 

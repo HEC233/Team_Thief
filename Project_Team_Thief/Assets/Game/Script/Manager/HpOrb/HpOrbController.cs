@@ -52,7 +52,7 @@ public class HpOrbController : MonoBehaviour
 
         while (t < _moveTime)
         {
-            var d = GameManager.instance.timeMng.DeltaTime;
+            var d = GameManager.instance.TimeMng.DeltaTime;
             t += d;
             var dt = d / _moveTime;
 
@@ -101,6 +101,6 @@ public class HpOrbController : MonoBehaviour
             }
 
         }
-        time += GameManager.instance.timeMng.DeltaTime;
+        time += GameManager.instance.TimeMng.DeltaTime;
     }
 }

@@ -39,7 +39,7 @@ public class LightWarriorActor : MonoBehaviour, IActor
     
     public void RegistEventForGameManager()
     {
-        var v = GameManager.instance.timeMng;
+        var v = GameManager.instance.TimeMng;
         if (v)
         {
             v.startBulletTimeEvent += TimeScaleChangeEnterCallback;
@@ -51,7 +51,7 @@ public class LightWarriorActor : MonoBehaviour, IActor
 
     public void UnregistEventForGameManager()
     {
-        var v = GameManager.instance.timeMng;
+        var v = GameManager.instance.TimeMng;
         if (v)
         {
             v.startBulletTimeEvent -= TimeScaleChangeEnterCallback;
@@ -297,7 +297,7 @@ namespace LightWarrior
 
         public override void Process(LightWarriorActor actor)
         {
-            timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            timeCheck -= GameManager.instance.TimeMng.DeltaTime;
 
             if(timeCheck < 0 && actor.unit.IsOnGround)
             {
@@ -343,7 +343,7 @@ namespace LightWarrior
 
         public override void Process(LightWarriorActor actor)
         {
-            timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            timeCheck -= GameManager.instance.TimeMng.DeltaTime;
 
             if (timeCheck < 0)
             {
@@ -379,7 +379,7 @@ namespace LightWarrior
 
         public override void Process(LightWarriorActor actor)
         {
-            timeCheck -= GameManager.instance.timeMng.DeltaTime;
+            timeCheck -= GameManager.instance.TimeMng.DeltaTime;
 
             if (timeCheck < 0)
             {

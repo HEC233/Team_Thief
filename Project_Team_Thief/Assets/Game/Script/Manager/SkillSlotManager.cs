@@ -298,7 +298,7 @@ public class SkillSlotManager : MonoBehaviour
             
             while (timer <= _skillSlotCoolTime)
             {
-                timer += GameManager.instance.timeMng.FixedDeltaTime;
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
                 _skillSlotCurCoolTime = timer;
                 yield return new WaitForFixedUpdate();
             }

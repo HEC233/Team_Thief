@@ -63,12 +63,12 @@ namespace PS.Util.DeveloperConsole
             {
                 inputField.text = string.Empty;
                 uiCanvas.SetActive(false);
-                GameManager.instance.timeMng.ResumeTime();
+                GameManager.instance.TimeMng.ResumeTime();
             }
             else
             {
                 uiCanvas.SetActive(true);
-                GameManager.instance.timeMng.StopTime();
+                GameManager.instance.TimeMng.StopTime();
                 inputField.ActivateInputField();
             }
         }

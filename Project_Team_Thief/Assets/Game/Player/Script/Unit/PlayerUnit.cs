@@ -448,7 +448,7 @@ public class PlayerUnit : Unit
 
     public void MoveStop()
     {
-        if (GameManager.instance.timeMng.IsBulletTime == false)
+        if (GameManager.instance.TimeMng.IsBulletTime == false)
         {
             _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
         }
@@ -479,7 +479,7 @@ public class PlayerUnit : Unit
 
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
         
-        var power = new Vector3(0, _jumpPower * GameManager.instance.timeMng.TimeScale, 0.0f);
+        var power = new Vector3(0, _jumpPower * GameManager.instance.TimeMng.TimeScale, 0.0f);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -531,7 +531,7 @@ public class PlayerUnit : Unit
     {
         _rigidbody2D.velocity = Vector2.zero;
 
-        var power = new Vector2((_dashSpeed) * _facingDir * GameManager.instance.timeMng.TimeScale, 0);
+        var power = new Vector2((_dashSpeed) * _facingDir * GameManager.instance.TimeMng.TimeScale, 0);
         _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -579,7 +579,7 @@ public class PlayerUnit : Unit
     
     public void WallJump()
     {
-        if (GameManager.instance.timeMng.IsBulletTime == false)
+        if (GameManager.instance.TimeMng.IsBulletTime == false)
             _rigidbody2D.gravityScale = _originalGravityScale;
         
         _rigidbody2D.velocity = Vector2.zero;
@@ -596,7 +596,7 @@ public class PlayerUnit : Unit
 
     public void WallReset()
     {
-        if (GameManager.instance.timeMng.IsBulletTime == false)
+        if (GameManager.instance.TimeMng.IsBulletTime == false)
         {
             _rigidbody2D.gravityScale = _wallSlideingGravityScale;
         }
@@ -890,7 +890,7 @@ public class PlayerUnit : Unit
         //     FindEncroachmentDecreaseFromSkillData(skillname);
         // }
 
-        GameManager.instance.uiMng.SetCombo(_curCombo);
+        GameManager.instance.UIMng.SetCombo(_curCombo);
     }
     
     public void StartBulletTime(float timeScale)
@@ -995,7 +995,7 @@ public class PlayerUnit : Unit
 
         if(_isGround == false)
         {
-            _coyoteTime -= GameManager.instance.timeMng.FixedDeltaTime;
+            _coyoteTime -= GameManager.instance.TimeMng.FixedDeltaTime;
         }
         else if (_isGround == true)
         {
@@ -1029,7 +1029,7 @@ public class PlayerUnit : Unit
 
         while (_comboTimer >= 0)
         {
-            _comboTimer -= GameManager.instance.timeMng.FixedDeltaTime;
+            _comboTimer -= GameManager.instance.TimeMng.FixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
         
@@ -1054,7 +1054,7 @@ public class PlayerUnit : Unit
         float timer = 0.0f;
         while (timer < _dashCoolTime)
         {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            timer += GameManager.instance.TimeMng.FixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
 
@@ -1076,7 +1076,7 @@ public class PlayerUnit : Unit
         
         while (timer <= _waitEncrochmentDeadTime)
         {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            timer += GameManager.instance.TimeMng.FixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
 
@@ -1097,7 +1097,7 @@ public class PlayerUnit : Unit
         _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
         while (true)
         {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            timer += GameManager.instance.TimeMng.FixedDeltaTime;
 
             if (timer >= _skillPlainSwordAttackInterval)
             {
@@ -1118,7 +1118,7 @@ public class PlayerUnit : Unit
         
         while (superArmorTime >= timer)
         {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            timer += GameManager.instance.TimeMng.FixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
 
@@ -1136,11 +1136,11 @@ public class PlayerUnit : Unit
         
         while (_totalTick <= _hitInvincibilityTime)
         {
-            _totalTick += GameManager.instance.timeMng.FixedDeltaTime;
+            _totalTick += GameManager.instance.TimeMng.FixedDeltaTime;
             if (_totalTick >= _hitInvincibilityTime * _hitInvincibilityTwinkleTime)
             {
 
-                _tick += GameManager.instance.timeMng.FixedDeltaTime;
+                _tick += GameManager.instance.TimeMng.FixedDeltaTime;
                 if (_tick >= 0.1f)
                 {
                     count++;

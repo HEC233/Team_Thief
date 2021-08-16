@@ -81,7 +81,7 @@ public class SkillDoubleCrossController : SkillControllerBase
     {
         _unit.Rigidbody2D.velocity = Vector2.zero;
 
-        var power = new Vector2(_moveSpeed * _unit.FacingDir * GameManager.instance.timeMng.TimeScale, 0);
+        var power = new Vector2(_moveSpeed * _unit.FacingDir * GameManager.instance.TimeMng.TimeScale, 0);
         _unit.Rigidbody2D.AddForce(power, ForceMode2D.Impulse);
     }
 
@@ -109,7 +109,7 @@ public class SkillDoubleCrossController : SkillControllerBase
         float timer = 0.0f;
         while (_skillDoubleCrossData.MoveTimes[0] > timer)
         {
-            timer += GameManager.instance.timeMng.FixedDeltaTime;
+            timer += GameManager.instance.TimeMng.FixedDeltaTime;
             AttackMove();
             yield return new WaitForFixedUpdate();
         }

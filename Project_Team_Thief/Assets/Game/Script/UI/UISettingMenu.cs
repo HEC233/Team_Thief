@@ -30,11 +30,11 @@ public class UISettingMenu : MonoBehaviour
             FPS.isOn = data.bShowFPS;
             DeveloperConsole.isOn = data.bUseDeveloperConsole;
             CommandAssist.isOn = data.bDontUseCommandAssist;
-            GameManager.instance?.timeMng.StopTime();
+            GameManager.instance?.TimeMng.StopTime();
         }
         else
         {
-            GameManager.instance?.timeMng.ResumeTime();
+            GameManager.instance?.TimeMng.ResumeTime();
         }
     }
     

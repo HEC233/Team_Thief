@@ -36,7 +36,7 @@ public class UIDynamic : MonoBehaviour
     {
         if(ChainButton.gameObject.activeSelf)
         {
-            ChainButton.anchoredPosition = GameManager.instance.uiMng.GetScreenPos(GameManager.instance.GetControlActor().GetUnit().transform.position + Vector3.up * 1.5f);
+            ChainButton.anchoredPosition = GameManager.instance.UIMng.GetScreenPos(GameManager.instance.GetControlActor().GetUnit().transform.position + Vector3.up * 1.5f);
         }
     }
 
@@ -97,7 +97,7 @@ public class UIDynamic : MonoBehaviour
 
     public void ShowDamageText(Vector3 position, int damageCount, bool isFromRight, bool critical)
     {
-        var screenPos = GameManager.instance.uiMng.GetScreenPos(position);
+        var screenPos = GameManager.instance.UIMng.GetScreenPos(position);
 
         GetDamageText().Show(screenPos, damageCount, isFromRight, critical);
     }

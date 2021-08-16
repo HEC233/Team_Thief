@@ -10,7 +10,7 @@ public class ExitScript : MonoBehaviour
     void Start()
     {
         time = 0;
-        GameManager.instance?.uiMng.ToggleUI(GameManager.GameStateEnum.None);
+        GameManager.instance?.UIMng.ToggleUI(GameManager.GameStateEnum.None);
     }
 
     // Update is called once per frame

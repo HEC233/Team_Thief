@@ -78,7 +78,7 @@ public class DialogueSystem : MonoBehaviour
         bInitialized = true;
         bCodeRuning = false;
 
-        ui = GameManager.instance?.uiMng.uiDialogue;
+        ui = GameManager.instance?.UIMng.uiDialogue;
         ui.SetShowDialogue(false);
 
         inputProcess = new InputProcessActor(this);
@@ -149,7 +149,7 @@ public class DialogueSystem : MonoBehaviour
     private void Start()
     {
         GameLoader.instance?.AddSceneLoadCallback(InitializeData);
-        ui = GameManager.instance?.uiMng.uiDialogue;
+        ui = GameManager.instance?.UIMng.uiDialogue;
     }
 
     public void StartDialogueWithName(string name)
@@ -206,7 +206,7 @@ public class DialogueSystem : MonoBehaviour
         }
         if (!bAutoPass)
         {
-            GameManager.instance?.timeMng.ResumeTime(); 
+            GameManager.instance?.TimeMng.ResumeTime(); 
             GameManager.instance?.ChangeActorToPlayer();
             bAutoPass = true;
         }
@@ -297,16 +297,16 @@ public class DialogueSystem : MonoBehaviour
                     break;
                 case 0x10:
                     ui.ShowInteractiveButton(true);
-                    GameManager.instance?.timeMng.StopTime();
+                    GameManager.instance?.TimeMng.StopTime();
                     GameManager.instance?.SetControlActor(inputProcess);
-                    GameManager.instance?.uiMng.SetShowCommandInfo(false);
+                    GameManager.instance?.UIMng.SetShowCommandInfo(false);
                     bAutoPass = false;
                     break;
                 case 0x11:
                     ui.ShowInteractiveButton(false);
-                    GameManager.instance?.timeMng.ResumeTime();
+                    GameManager.instance?.TimeMng.ResumeTime();
                     GameManager.instance?.ChangeActorToPlayer();
-                    GameManager.instance?.uiMng.SetShowCommandInfo(!GameManager.instance.SettingData.bDontUseCommandAssist);
+                    GameManager.instance?.UIMng.SetShowCommandInfo(!GameManager.instance.SettingData.bDontUseCommandAssist);
                     bAutoPass = true;
                     break;
                 case 0x20:

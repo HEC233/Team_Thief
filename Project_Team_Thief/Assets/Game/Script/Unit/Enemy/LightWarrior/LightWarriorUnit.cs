@@ -15,9 +15,9 @@ public class LightWarriorUnit : MonsterUnit
         }
         else
         {
-            if (GameManager.instance.shadow)
+            if (GameManager.instance.ShadowParticle)
             {
-                GameManager.instance.shadow.Burst(inputDamage.hitPosition, 10, 10, 5, true);
+                GameManager.instance.ShadowParticle.Burst(inputDamage.hitPosition, 10, 10, 5, true);
             }
             hitEvent.Invoke();
         }

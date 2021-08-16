@@ -245,9 +245,9 @@ public class GameEventSystem : MonoBehaviour
 
     private IEnumerator Dialog(string dialogName)
     {
-        GameManager.instance.dialogueSystem.StartDialogueWithName(dialogName);
+        GameManager.instance.DialogueSystem.StartDialogueWithName(dialogName);
 
-        while (GameManager.instance.dialogueSystem.CheckRunning())
+        while (GameManager.instance.DialogueSystem.CheckRunning())
         {
             yield return null;
         }
@@ -276,7 +276,7 @@ public class GameEventSystem : MonoBehaviour
 
     private IEnumerator Spawn(string unitName, Vector2Int spawnPos, int count)
     {
-        GameManager.instance?.spawner.SpawnMany(unitName, spawnPos.TileCoordToPosition3(), count);
+        GameManager.instance?.Spawner.SpawnMany(unitName, spawnPos.TileCoordToPosition3(), count);
 
         yield break;
     }
@@ -286,7 +286,7 @@ public class GameEventSystem : MonoBehaviour
         var go = GameObject.Find(cameraName);
         if (go == null) yield break;
 
-        GameManager.instance.cameraMng.AllCinemachineFollowChange(go.transform);
+        GameManager.instance.CameraMng.AllCinemachineFollowChange(go.transform);
 
         yield return new WaitForSeconds(actionLength);
     }

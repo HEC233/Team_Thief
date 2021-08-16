@@ -32,12 +32,12 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
         if (value)
         {
             m_lastSelectButton = null;
-            GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_firstSelectButton);
-            GameManager.instance.timeMng.StopTime();
+            GameManager.instance.UIMng.eventSystem.SetSelectedGameObject(m_firstSelectButton);
+            GameManager.instance.TimeMng.StopTime();
         }
         else
         {
-            GameManager.instance.timeMng.ResumeTime();
+            GameManager.instance.TimeMng.ResumeTime();
         }
         if (pauseAnimation != null)
         {
@@ -155,12 +155,12 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
 
     public void FocusWithMouse()
     {
-        m_lastSelectButton = GameManager.instance.uiMng.eventSystem.currentSelectedGameObject;
-        GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(null);
+        m_lastSelectButton = GameManager.instance.UIMng.eventSystem.currentSelectedGameObject;
+        GameManager.instance.UIMng.eventSystem.SetSelectedGameObject(null);
     }
 
     public void FocusWithKeyboard()
     {
-        GameManager.instance.uiMng.eventSystem.SetSelectedGameObject(m_lastSelectButton == null ? m_firstSelectButton : m_lastSelectButton);
+        GameManager.instance.UIMng.eventSystem.SetSelectedGameObject(m_lastSelectButton == null ? m_firstSelectButton : m_lastSelectButton);
     }
 }

@@ -71,7 +71,7 @@ public class Shadow : ShadowBase
         
         while (_timer < controlTime)
         {
-            _timer += GameManager.instance.timeMng.FixedDeltaTime;
+            _timer += GameManager.instance.TimeMng.FixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
 
