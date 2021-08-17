@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum AniState
@@ -28,8 +29,8 @@ public enum AniState
     Attack4,        // 20
     SkillAxe,       // 21
     SkillAxe2,      // 22
-    SkillSpear,     // 23
-    SkillHammer,    // 24
+    SkillSnakeSwordFlurry,     // 23
+    SkillSnakeSwordFlurryDelay,    // 24
     JumpAttack2,    // 25
     SkillKopsh,     // 26
     SkillKopsh2,    // 27
@@ -67,6 +68,11 @@ public class AnimationCtrl : MonoBehaviour
     public float GetCurAniTime()
     {
         return _animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
+    }
+
+    public float GetAniTimeFromName(string aniName)
+    {
+        return _animator.runtimeAnimatorController.animationClips.First(x => x.name == aniName).length;
     }
 
     public int GetCurrentPlayAni()

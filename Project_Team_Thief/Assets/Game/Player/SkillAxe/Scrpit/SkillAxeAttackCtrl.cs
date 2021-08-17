@@ -23,7 +23,6 @@ public class SkillAxeAttackCtrl : AttackBase
     private int _axeMultiStageHitCoroutuineCounter;
     private int _curAxeMultiStageHitCoroutuineCounter;
 
-    private List<int> _enterEnemyHashList = new List<int>();    // Hash를 key로 사용하려 한다. 이에 관해서 상의 필요할 듯.
 
     public override void Init(Damage damage, SkillDataBase skillData)
     {
@@ -52,33 +51,7 @@ public class SkillAxeAttackCtrl : AttackBase
         
         StartCoroutine(AxeMoveCoroutine());
     }
-    private Collider2D FindEnemyObj()
-    {
-        _isEnter = false;
 
-        // 다음 프레임에 활성화가 되기 때문에 바로 끄면 체크 X
-        if (_attackCollider2D.IsTouchingLayers(_hitLayerMask))
-        {
-            _attackCollider2D.OverlapCollider(_contactFilter2D, result);
-            foreach (var item in result)
-            {
-                if (_enterEnemyHashList.Contains(item.GetHashCode()) == true)
-                    continue;
-
-                if (item.gameObject.CompareTag("Player"))
-                    continue;
-
-                if (item.gameObject.CompareTag("Enemy"))
-                {
-                    _enterEnemyHashList.Add(item.GetHashCode());
-                    _isEnter = true;
-                    return item;
-                }
-            }
-        }
-
-        return null;
-    }
     
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -139,6 +112,7 @@ public class SkillAxeAttackCtrl : AttackBase
         UnBind();
         OnEndSkillEvent?.Invoke();
         Destroy(this.gameObject);
+        AttackEnd();
     }
 
     IEnumerator AxeMoveCoroutine()

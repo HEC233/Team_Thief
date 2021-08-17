@@ -267,7 +267,11 @@ public class PlayerUnit : Unit
     public AttackBase[] SkillSnakeSwordStingAttackBase => _skillSnakeSwordStingAttackBase;
     public event UnityAction OnSkillSnakeSwordStingAttackEvent = null;
 
-    
+    [Header("SkillSnakeSwordFlurry")]
+    [SerializeField]
+    private AttackBase _skillSnakeSwordFlurryAttackBase;
+    public AttackBase SkillSnakeSwordFlurryAttackBase => _skillSnakeSwordFlurryAttackBase;
+
     [SerializeField, Header("SkillPlainSword")]
     private SkillPlainSwordData _skillPlainSwordData;
     public SkillPlainSwordData SkillPlainSwordData => _skillPlainSwordData;

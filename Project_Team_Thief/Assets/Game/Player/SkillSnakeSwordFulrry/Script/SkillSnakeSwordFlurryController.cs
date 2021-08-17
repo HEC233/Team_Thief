@@ -1,0 +1,86 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SkillSnakeSwordFlurryController : SkillControllerBase
+{
+    private SkillSnakeSwordFlurryData _skillSnakeSwordFlurryData;
+    private PlayerUnit _unit;
+    private SkillAxeAttackCtrl _skillAxeAttackCtrl;
+    private Damage _damage;
+
+    public SkillSnakeSwordFlurryController(GameSkillObject skillObject, SkillDataBase data, Unit unit) : base(skillObject, data, unit) { }
+
+    public override void Invoke()
+    {
+        Init();
+    }
+    
+    private void Init()
+    {
+        _skillSnakeSwordFlurryData = SkillData as SkillSnakeSwordFlurryData;
+        _unit = Unit as PlayerUnit;
+        SetDamage();
+        _unit.SkillSnakeSwordFlurryAttackBase.Init(_damage, _skillSnakeSwordFlurryData.CinemachineSignalSource);
+        Progress();
+    }
+    
+    private void SetDamage()
+    {
+        _damage = new Damage();
+        _damage.power = _skillSnakeSwordFlurryData.Damages[0] / _skillSnakeSwordFlurryData.SkillNumberOfTimes;
+        _damage.knockBack = new Vector2(_skillSnakeSwordFlurryData.KnockBackXs[0], _skillSnakeSwordFlurryData.KnockBackYs[0]);
+        _damage.additionalInfo = 0;
+        _damage.stiffness = _skillSnakeSwordFlurryData.Stiffness;
+    }
+
+    private void Progress()
+    {
+        SkillObject.StartCoroutine(SnakeSwordFlurryCoroutine());
+    }
+
+    private void ResetValue()
+    {
+
+    }
+
+    IEnumerator SnakeSwordFlurryCoroutine()
+    {
+        float timer = 0.0f;
+        float snakeSwordFlurryHitInterval =
+            _skillSnakeSwordFlurryData.AnimationTime / _skillSnakeSwordFlurryData.SkillNumberOfTimes;
+        int count = 0;
+        while (_skillSnakeSwordFlurryData.SkillNumberOfTimes >= count)
+        {
+            timer += GameManager.instance.TimeMng.FixedDeltaTime;
+            if (timer >= snakeSwordFlurryHitInterval)
+            {
+                _unit.SkillSnakeSwordFlurryAttackBase.Progress();
+                timer = 0.0f;
+                count++;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+        
+    }
+    
+    // IEnumerator SnakeSwordMultiStageHitCoroutine(Collider2D target)
+    // {
+    //     float timer = 0.0f;
+    //     int count = 0;
+    //     while (_skillSnakeSwordFlurryData.HitNumberOfTimes[0] >= count)
+    //     {
+    //         timer += GameManager.instance.TimeMng.FixedDeltaTime;
+    //
+    //         if (timer >= _skillSnakeSwordFlurryData.HitIntervals[0])
+    //         {
+    //             timer = 0.0f;
+    //             count++;
+    //             _unit.SkillSnakeSwordFlurryAttackBase.ProgressTargetSelection(target);
+    //         }
+    //         
+    //         yield return new WaitForFixedUpdate();
+    //     }
+    //
+    // }
+}

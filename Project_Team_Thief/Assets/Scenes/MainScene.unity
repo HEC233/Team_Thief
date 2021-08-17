@@ -5716,10 +5716,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1,
         type: 2}
+    - target: {fileID: 7344668481236701322, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _skillDataBases.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5142d2669191123478c2fe2f66c299d3,
+        type: 2}
     - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
       propertyPath: _skillDatabases.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}
@@ -5761,7 +5767,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _skillDatabases.Array.data[8]
       value: 
-      objectReference: {fileID: 11400000, guid: efcc9859b54bf6242b7101edad9bf3b6,
+      objectReference: {fileID: 11400000, guid: 5142d2669191123478c2fe2f66c299d3,
         type: 2}
     - target: {fileID: 8551760458102242141, guid: 1180cfdb66658d9489baa39e9c3402fa,
         type: 3}

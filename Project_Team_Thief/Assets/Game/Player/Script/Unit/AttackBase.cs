@@ -90,6 +90,7 @@ public class AttackBase : MonoBehaviour
     [SerializeField]
     protected CinemachineImpulseSource _cinemachineImpulseSource;
 
+    private List<int> _enterEnemyHashList = new List<int>();    // Hash를 key로 사용하려 한다. 이에 관해서 상의 필요할 듯.
     
     public UnityAction OnEnemyHitEvent;
 
@@ -142,7 +143,7 @@ public class AttackBase : MonoBehaviour
             PlaySfx();
         }
 
-        AttackEnd();
+        //AttackEnd();
     }
 
     public virtual void Init(Damage damage)
@@ -292,6 +293,34 @@ public class AttackBase : MonoBehaviour
         
         OnEnemyHitEvent?.Invoke();
     }
+    
+    public Collider2D FindEnemyObj()
+    {
+        _isEnter = false;
+
+        // 다음 프레임에 활성화가 되기 때문에 바로 끄면 체크 X
+        if (_attackCollider2D.IsTouchingLayers(_hitLayerMask))
+        {
+            _attackCollider2D.OverlapCollider(_contactFilter2D, result);
+            foreach (var item in result)
+            {
+                if (_enterEnemyHashList.Contains(item.GetHashCode()) == true)
+                    continue;
+
+                if (item.gameObject.CompareTag("Player"))
+                    continue;
+
+                if (item.gameObject.CompareTag("Enemy"))
+                {
+                    _enterEnemyHashList.Add(item.GetHashCode());
+                    _isEnter = true;
+                    return item;
+                }
+            }
+        }
+
+        return null;
+    }
 
     private void CameraShake()
     {
@@ -337,7 +366,7 @@ public class AttackBase : MonoBehaviour
     public virtual void AttackEnd()
     {
         ZoomOut();
-        
+        _enterEnemyHashList.Clear();
         UnBind();
     }
     

@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1283aeb012891a546b1af189af20b0b4, type: 3}
+  m_Name: SkillSnakeSwordFlurryData
+  m_EditorClassIdentifier: 
+  _id: 7
+  _skillCondition: 29
+  _cinemachineSignalSource: {fileID: 11400000, guid: a3cfd36f4de93f946a9e69a03b098d11,
+    type: 2}
+  _name: "\uC0AC\uBCF5\uAC80 \uB09C\uBB34"
+  _grade: "\uC720\uB2C8\uD06C"
+  _isGet: 0
+  _class: "\uD559\uC0B4\uC790"
+  _coolTime: 1
+  _castingTime: 0
+  _attackRange: 0
+  _target: 0
+  _description: "\uC81C\uC790\uB9AC\uC5D0\uC11C \uC0AC\uBCF5\uAC80\uC744 \uD3BC\uCCD0
+    \uB09C\uBB34\uD55C\uB2E4, \uB09C\uBB34\uC911 \uC774\uB3D9\uC774 \uAC00\uB2A5\uD558\uB2E4."
+  _buffTime: 0
+  _skillNumberOfTimes: 20
+  _damages: 58020000
+  _hitIntervals:
+  - 0.1
+  _hitNumberOfTimes: 03000000
+  _knockBackTimes:
+  - 0.04
+  _knockBackXs:
+  - 0.1
+  _knockBackYs:
+  - 0
+  _stiffness: 1
+  _moveTimes:
+  - 0
+  _moveXs:
+  - 0
+  _moveYs:
+  - 0
+  _projectileMoveTime: 0
+  projectileMoveX: 0
+  projectileMoveY: 0
+  _statusEffects: 00000000
+  _fristDelay: 0.5
+  _endDelay: 1
+  nextSkill: 0
+  _iconName: UI_Skill_PlainSwordflurry
+  _icon: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}

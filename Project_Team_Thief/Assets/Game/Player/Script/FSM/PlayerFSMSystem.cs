@@ -1219,10 +1219,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return true;
             if (condition == TransitionCondition.SkillKopsh)
                 return true;
-            if (condition == TransitionCondition.SkillPlainSword)
-                return true;
 
-            
             if (_isBasicAttackEnd == true)
             {
                 if (condition == TransitionCondition.None)
@@ -2446,6 +2443,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return true;
             if (condition == TransitionCondition.SkillDoubleCross)
                 return true;
+            if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+                return true;
+            if (condition == TransitionCondition.SkillSnakeSwordSting)
+                return true;
             
             if (_isSkillEnd == false)
             {
@@ -2575,6 +2576,174 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr.Transition(TransitionCondition.Idle);
         }
     }
+
+    private class SkillSnakeSwordFlurryState : CustomFSMStateBase, ISkillStateBase
+    {
+        private GameSkillObject _gameSkillObject;
+        private SkillSnakeSwordFlurryData _skillSnakeSwordFlurryData;
+        private bool _isInit = false;
+        private bool _isSkillEnd = false;
+        private bool _isStartDelayEnd = false;
+        private Coroutine _waitDelayCoroutine;
+
+        
+        public SkillSnakeSwordFlurryState(PlayerFSMSystem system) : base(system) { }
+
+        private void Init()
+        {
+            if(_isInit == true)
+                return;
+
+            _isInit = true;
+            _skillSnakeSwordFlurryData = SkillDataBank.instance.GetSkillData(7) as SkillSnakeSwordFlurryData;
+
+            if (_skillSnakeSwordFlurryData == null)
+            {
+                return;
+            }
+                
+            
+            _skillSnakeSwordFlurryData.AnimationTime =
+                SystemMgr.AnimationCtrl.GetAniTimeFromName("Ani_PC_SnakeSwordFlurry");
+        }
+        
+        public override void StartState()
+        {
+            Init();
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSnakeSwordFlurryDelay);
+            SystemMgr.StartCoroutine(WaitStartDelay());
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+        }
+
+        public override void EndState()
+        {
+            StopWaitEndDelayCoroutine();
+            ResetValue();
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillDoubleCross)
+                return true;
+            if (condition == TransitionCondition.SkillSnakeSwordSting)
+                return true;
+            if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+                return true;
+            
+            if (_isSkillEnd == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            if (_isStartDelayEnd == true)
+            {
+                if (condition == TransitionCondition.LeftMove)
+                {
+                    SystemMgr.Unit.CheckMovementDir(-1);
+                    SystemMgr.Unit.Move();
+                }
+
+                if (condition == TransitionCondition.RightMove)
+                {
+                    SystemMgr.Unit.CheckMovementDir(1);
+                    SystemMgr.Unit.Move();
+                }
+            }
+
+            return true;
+        }
+        
+        public bool IsAbleTransition()
+        {
+            return true;
+        }
+        
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMng.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("SkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillSnakeSwordFlurryData.GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
+        }
+        
+        private void Action()
+        {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSnakeSwordFlurry);
+            //SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            
+            _gameSkillObject = InvokeSkill();
+        }
+        
+        private void ResetValue()
+        {
+            _isSkillEnd = false;
+            _waitDelayCoroutine = null;
+            _isStartDelayEnd = false;
+        }
+        
+        private void OnAnimationEndEventCall()
+        {
+            _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
+        }
+        
+        private void StopWaitEndDelayCoroutine()
+        {
+            if (_waitDelayCoroutine == null)
+            {
+                return;
+            }
+            
+            if (_isSkillEnd == false)
+            {
+                SystemMgr.StopCoroutine(_waitDelayCoroutine);
+            }
+        }
+        
+        IEnumerator WaitStartDelay()
+        {
+            float timer = 0.0f;
+            while (_skillSnakeSwordFlurryData.FristDelay >= timer)
+            {
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isStartDelayEnd = true;
+            Action();
+        }
+        
+        IEnumerator WaitEndDelay()
+        {
+            float timer = 0.0f;
+            _isSkillEnd = false;
+            while (_skillSnakeSwordFlurryData.EndDelay >= timer)
+            {
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isSkillEnd = true;
+            SystemMgr.Transition(TransitionCondition.Idle);
+        }
+    }
     
     protected override void RegisterState()
     {
@@ -2597,6 +2766,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.SkillDoubleCross, new SkillDoubleCrossState(this));
         AddState(TransitionCondition.SkillWallSummon, new SkillWallSummonState(this));
         AddState(TransitionCondition.SkillSnakeSwordSting, new SkillSnakeSwordStingState(this));
+        AddState(TransitionCondition.SkillSnakeSwordFlurry, new SkillSnakeSwordFlurryState(this));
         AddState(TransitionCondition.Die, new DieState(this));
     }
     

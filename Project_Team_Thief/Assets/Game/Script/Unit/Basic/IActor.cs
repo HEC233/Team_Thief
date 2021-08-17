@@ -33,7 +33,7 @@ public enum TransitionCondition
     SkillSpear,
     SkillHammer,
     SkillKopsh,
-    SkillPlainSword,
+    SkillSnakeSwordFlurry,
     SkillDoubleCross,
     SkillWallSummon,
     SkillSnakeSwordSting,
