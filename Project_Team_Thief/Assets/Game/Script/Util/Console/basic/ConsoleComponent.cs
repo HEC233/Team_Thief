@@ -26,7 +26,6 @@ namespace PS.Util.DeveloperConsole
                 return developerConsole = new DeveloperConsole(commands);
             }
         }
-        private float previousTimeScale = 1.0f;
 
         private void Awake()
         {

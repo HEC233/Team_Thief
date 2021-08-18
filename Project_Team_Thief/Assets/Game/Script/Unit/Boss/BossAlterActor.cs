@@ -23,8 +23,6 @@ public class BossAlterActor : MonoBehaviour, IActor
     private bool bSpawning = false;
     Coroutine EnemyDeadCheck;
 
-    private bool bIsDead = false;
-
     public float lightPillarInterval;
     public float lightExplosionInterval;
     public Damage pillarDamage;
@@ -44,7 +42,6 @@ public class BossAlterActor : MonoBehaviour, IActor
         unit.SetInvincibility(true);
         wave = 1;
         bSpawning = false;
-        bIsDead = false;
     }
 
     public LightPillarPattern[] lightPillarPatterns;
@@ -251,7 +248,6 @@ public class BossAlterActor : MonoBehaviour, IActor
                 GameManager.instance.UIMng.BossDie();
                 unit.SetInvincibility(true);
                 animCtrl.PlayAni(AniState.Die);
-                bIsDead = true;
                 break;
         }
 

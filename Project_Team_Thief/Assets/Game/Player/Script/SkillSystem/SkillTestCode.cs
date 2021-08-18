@@ -8,7 +8,7 @@ public class SkillTestCode : MonoBehaviour
     private GameSkillMgr _skillMgr = null;
 
     [SerializeField]
-    private SkillDataBase _skillData = null;
+    //private SkillDataBase _skillData = null;
 
     public void InvokeSkill()
     {

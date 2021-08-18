@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class ShadowUnit : Unit, IShadowBase
 {
     public event UnityAction OnChangeControlState;
-    public event UnityAction OnChangeIdleState;
+    //public event UnityAction OnChangeIdleState;
     public void ChangeControlState(float controlTime)
     {
         throw new System.NotImplementedException();

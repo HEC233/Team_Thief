@@ -53,15 +53,15 @@ public class PlayerUnit : Unit
 
     /// 스테이트 레벨
     private int _maxHpStateLevel = 1;
-    private int _runSpeedStateLevel = 1;
-    private int _jumpPowerStateLevel = 1;
-    private int _dashRangeStateLevel = 1;
-    private int _dashCoolTimeStateLevel = 1;
-    private int _deathCountStateLevel = 1;
-    private int _deathHPStateLevel = 1;
-    private int _criticalStateLevel = 1;
-    private int _attackSppedStateLevel = 1;
-    private int _defStateLevel = 1;
+    //private int _runSpeedStateLevel = 1;
+    //private int _jumpPowerStateLevel = 1;
+    //private int _dashRangeStateLevel = 1;
+    //private int _dashCoolTimeStateLevel = 1;
+    //private int _deathCountStateLevel = 1;
+    //private int _deathHPStateLevel = 1;
+    //private int _criticalStateLevel = 1;
+    //private int _attackSppedStateLevel = 1;
+    //private int _defStateLevel = 1;
     
     
     // 기본 스탯
@@ -102,9 +102,9 @@ public class PlayerUnit : Unit
 
     [SerializeField] 
     private EffectController _encrochmentDeadEffectController;
-    private bool _nonEncroachment = true;
+    //private bool _nonEncroachment = true;
     private bool[] _encroachmentLevelArr = new bool[5] {false, false, false, false, false};
-    private int _encroachmentLevelIndex = 0;
+    //private int _encroachmentLevelIndex = 0;
     private bool _isEncrochmentDeadCoroutine = false;
     [SerializeField]
     private float _waitEncrochmentDeadTime = 0.0f;
@@ -282,8 +282,8 @@ public class PlayerUnit : Unit
     public int skillPlainSwordIndex;
     private float _skillPlainSwordNumberOfTimes;
     private float _skillPlainSwordCoolTime;
-    private bool _skillPlainSwordIsAble = true;
-    private bool _skillPlainSwordEnd = false;
+    //private bool _skillPlainSwordIsAble = true;
+    //private bool _skillPlainSwordEnd = false;
     private float _skillPlainSwordAttackInterval;
     private Damage _skillPlainDamage;
     private Coroutine _skillPlainSwordMultiAttackCoroutine = null;
@@ -774,7 +774,7 @@ public class PlayerUnit : Unit
             return;
         
         _hitDamage = inputDamage;
-        _hitDamage.power = _hitDamage.power;
+        //_hitDamage.power = _hitDamage.power;
         hitEvent?.Invoke();
     }
 
