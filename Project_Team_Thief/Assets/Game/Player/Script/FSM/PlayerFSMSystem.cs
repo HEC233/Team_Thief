@@ -2701,6 +2701,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private void OnAnimationEndEventCall()
         {
+            SystemMgr._unit.SkillSnakeSwordFlurryEnd();
             _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
         }
         
@@ -2734,6 +2735,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             float timer = 0.0f;
             _isSkillEnd = false;
+            _isStartDelayEnd = false;
             while (_skillSnakeSwordFlurryData.EndDelay >= timer)
             {
                 timer += GameManager.instance.TimeMng.FixedDeltaTime;

@@ -271,6 +271,7 @@ public class PlayerUnit : Unit
     [SerializeField]
     private AttackBase _skillSnakeSwordFlurryAttackBase;
     public AttackBase SkillSnakeSwordFlurryAttackBase => _skillSnakeSwordFlurryAttackBase;
+    public event UnityAction skillSnakeSwordFlurryEndEvent = null;
 
     [SerializeField, Header("SkillPlainSword")]
     private SkillPlainSwordData _skillPlainSwordData;
@@ -853,6 +854,11 @@ public class PlayerUnit : Unit
         _skillPlainDamage = damage;
         _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Init(CalcDamageAbnormalIsDrain(_skillPlainDamage));
         _skillPlainSwordMultiAttackCoroutine = StartCoroutine(SkillPlainSwordMultiAttackCoroutine());
+    }
+
+    public void SkillSnakeSwordFlurryEnd()
+    {
+        skillSnakeSwordFlurryEndEvent?.Invoke();
     }
 
     public void SkillPlainSwordEnd()

@@ -8,6 +8,7 @@ public class SkillSnakeSwordFlurryController : SkillControllerBase
     private PlayerUnit _unit;
     private SkillAxeAttackCtrl _skillAxeAttackCtrl;
     private Damage _damage;
+    private bool _isSkillEnd = false;
 
     public SkillSnakeSwordFlurryController(GameSkillObject skillObject, SkillDataBase data, Unit unit) : base(skillObject, data, unit) { }
 
@@ -22,6 +23,7 @@ public class SkillSnakeSwordFlurryController : SkillControllerBase
         _unit = Unit as PlayerUnit;
         SetDamage();
         _unit.SkillSnakeSwordFlurryAttackBase.Init(_damage, _skillSnakeSwordFlurryData.CinemachineSignalSource);
+        _unit.skillSnakeSwordFlurryEndEvent += EndSkill;
         Progress();
     }
     
@@ -39,9 +41,17 @@ public class SkillSnakeSwordFlurryController : SkillControllerBase
         SkillObject.StartCoroutine(SnakeSwordFlurryCoroutine());
     }
 
+    private void EndSkill()
+    {
+        ResetValue();
+        OnEndSkillAction?.Invoke();
+
+    }
+
     private void ResetValue()
     {
-
+        _isSkillEnd = true;
+        _unit.skillSnakeSwordFlurryEndEvent -= EndSkill;
     }
 
     IEnumerator SnakeSwordFlurryCoroutine()
@@ -49,15 +59,13 @@ public class SkillSnakeSwordFlurryController : SkillControllerBase
         float timer = 0.0f;
         float snakeSwordFlurryHitInterval =
             _skillSnakeSwordFlurryData.AnimationTime / _skillSnakeSwordFlurryData.SkillNumberOfTimes;
-        int count = 0;
-        while (_skillSnakeSwordFlurryData.SkillNumberOfTimes >= count)
+        while (_isSkillEnd == false)
         {
             timer += GameManager.instance.TimeMng.FixedDeltaTime;
             if (timer >= snakeSwordFlurryHitInterval)
             {
                 _unit.SkillSnakeSwordFlurryAttackBase.Progress();
                 timer = 0.0f;
-                count++;
             }
             yield return new WaitForFixedUpdate();
         }
