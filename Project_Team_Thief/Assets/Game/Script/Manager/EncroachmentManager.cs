@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class EncroachmentManager : MonoBehaviour
 {
+    [Header("Data")]
+    [SerializeField] 
+    private List<BlessingPenaltyDataBase> _blessingPenaltyDatas;
+    
     [Header("Encroachment")]
     private float _encroachment;
     public float Encroachment => _encroachment;
@@ -69,12 +73,15 @@ public class EncroachmentManager : MonoBehaviour
         {
             EncroachmentPenalty();
         }
+        else
+        {
+            EncroachmentRecovery();
+        }
         
-        SetEncroachment();
         _isEndRoom = true;
     }
 
-    private void SetEncroachment()
+    private void EncroachmentRecovery()
     {
         _encroachmentRecoveryAmount = CalcEncroachmentRecoveryAmount();
         
@@ -117,6 +124,13 @@ public class EncroachmentManager : MonoBehaviour
     private void EncroachmentPenalty()
     {
         
+    }
+
+    public BlessingPenaltyDataBase GetRandomBlessingPenalty()
+    {
+        int randIndex = UnityEngine.Random.Range(0, _blessingPenaltyDatas.Count);
+
+        return _blessingPenaltyDatas[randIndex];
     }
     
     
@@ -263,27 +277,27 @@ public class EncroachmentManager : MonoBehaviour
         }
     }
     
-    IEnumerator EncroachmentRecoveryCoroutine()
-    {
-        float timer = 0.0f;
-        while (true)
-        {
-            if (_isEncroachmentActiveDecreasedCoroutine == false)
-            {
-                timer = 0.0f;
-                yield return new WaitForFixedUpdate();
-            }
-            
-            timer += GameManager.instance.TimeMng.FixedDeltaTime;
-
-            if (timer >= _encroachmentDecreasedPerTime)
-            {
-                timer = 0.0f;
-                ChangeEncroachment(_encroachmentRecoveryAmount);
-            }
-
-            yield return new WaitForFixedUpdate();
-        }
-    }
+    // IEnumerator EncroachmentRecoveryCoroutine()
+    // {
+    //     float timer = 0.0f;
+    //     while (true)
+    //     {
+    //         if (_isEncroachmentActiveDecreasedCoroutine == false)
+    //         {
+    //             timer = 0.0f;
+    //             yield return new WaitForFixedUpdate();
+    //         }
+    //         
+    //         timer += GameManager.instance.TimeMng.FixedDeltaTime;
+    //
+    //         if (timer >= _encroachmentDecreasedPerTime)
+    //         {
+    //             timer = 0.0f;
+    //             ChangeEncroachment(_encroachmentRecoveryAmount);
+    //         }
+    //
+    //         yield return new WaitForFixedUpdate();
+    //     }
+    // }
     
 }

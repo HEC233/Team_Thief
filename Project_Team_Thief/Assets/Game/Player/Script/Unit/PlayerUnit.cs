@@ -1030,6 +1030,15 @@ public class PlayerUnit : Unit
     {
         StartCoroutine(SuperArmorCoroutine(superArmorTime));
     }
+    
+    // BlessingPenalty
+
+    public void MaxHpDegradation(int maxHpDegradationAmount)
+    {
+        _maxHp -= maxHpDegradationAmount;
+    }
+    
+    //
 
     IEnumerator ComboCoroutine()
     {
