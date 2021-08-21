@@ -22,5 +22,5 @@ public abstract class BlessingPenaltyDataBase : ScriptableObject
 
     public abstract void ActivePenalty(Unit unit);
 
-    protected abstract void SetContentString();
+    public abstract void SetContentString();
 }

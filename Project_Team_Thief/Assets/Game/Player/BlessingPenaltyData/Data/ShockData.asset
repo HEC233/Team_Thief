@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56b4675aa551afc4988100e0fb2c1493, type: 3}
-  m_Name: MaxHpDegradationData
+  m_Script: {fileID: 11500000, guid: dd0e4d56af68fba448de41c17b71abeb, type: 3}
+  m_Name: ShockData
   m_EditorClassIdentifier: 
-  _id: 0
-  _name: "\uCCB4\uB825 \uC800\uD558"
-  durationString: "\uC601\uAD6C"
-  contentString: "\uCD5C\uB300 \uCCB4\uB825\uC774  \uAC10\uC18C\uD55C\uB2E4."
-  _maxHpDecreasedAmount: 50
+  _id: 5
+  _name: "\uC1FC\uD06C"
+  durationString: "\uC77C\uD68C\uC131"
+  contentString: "\uC758 \uD53C\uD574\uB97C \uC785\uB294\uB2E4"
+  _shockDamage: 50

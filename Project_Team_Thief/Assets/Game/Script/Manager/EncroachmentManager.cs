@@ -48,6 +48,15 @@ public class EncroachmentManager : MonoBehaviour
     private void Init()
     {
         _encroachmentZeroTimer = 0.0f;
+        SetPenaltyDataContent();
+    }
+
+    private void SetPenaltyDataContent()
+    {
+        for (int i = 0; i < _blessingPenaltyDatas.Count; i++)
+        {
+            _blessingPenaltyDatas[i].SetContentString();
+        }
     }
 
     // 인 게임 씬으로 들어가면 호출 될 함수.
@@ -124,6 +133,14 @@ public class EncroachmentManager : MonoBehaviour
     private void EncroachmentPenalty()
     {
         
+    }
+
+    public void ActivePenaltyFromId(int penaltyId)
+    {
+        var penaltyData = _blessingPenaltyDatas.Find(x => x.ID == penaltyId);
+        penaltyData.ActivePenalty(GameManager.instance.GetPlayerActor().GetUnit());
+
+        _blessingPenaltyDatas.Remove(penaltyData);
     }
 
     public BlessingPenaltyDataBase GetRandomBlessingPenalty()

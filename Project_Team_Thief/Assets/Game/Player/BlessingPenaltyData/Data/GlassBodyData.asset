@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4fe7e75588cb8345ac2332bcfe4af62, type: 3}
+  m_Name: GlassBodyData
+  m_EditorClassIdentifier: 
+  _id: 6
+  _name: "\uC720\uB9AC \uBAB8"
+  durationString: "\uB2E4\uC74C 2\uAC1C \uB9F5"
+  contentString: "\uBC1B\uB294 \uD53C\uD574\uAC00 \uBC30 \uC911\uAC00\uD55C\uB2E4."
+  _addDamagePerAmount: 1.5
+  _duration: 2

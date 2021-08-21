@@ -2,20 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BlessingPenaltySandbagData", menuName = "ScriptableObject/BlessingPenalty/BlessingPenaltySandbagData")]
-public class BlessingPenaltySandbagData : BlessingPenaltyDataBase
+[CreateAssetMenu(fileName = "BlessingPenaltyLivingHardData", menuName = "ScriptableObject/BlessingPenalty/BlessingPenaltyLivingHardData")]
+public class BlessingPenaltyLivingHardData : BlessingPenaltyDataBase
 {
     private PlayerUnit _playerUnit;
-    
-    [SerializeField] 
-    private float _moveSpeedDecreasedAmount;
-    public float MoveSpeedDecreasedAmount => _moveSpeedDecreasedAmount;
 
     [SerializeField] 
     private int _duration;
-
     public int Duration => _duration;
-
+    
     public override void ActivePenalty(Unit unit)
     {
         _playerUnit = unit as PlayerUnit;
@@ -25,10 +20,10 @@ public class BlessingPenaltySandbagData : BlessingPenaltyDataBase
             return;
         }
         
-        _playerUnit.ChangeMoveSpeed(_moveSpeedDecreasedAmount);
+        _playerUnit.ApplyLivingHard();
         _playerUnit.StartCoroutine(PenaltyCoroutine());
     }
-
+    
     private IEnumerator PenaltyCoroutine()
     {
         int penaltyDurationMapCount = _playerUnit.MapCount + _duration;
@@ -37,12 +32,11 @@ public class BlessingPenaltySandbagData : BlessingPenaltyDataBase
             yield return new WaitForFixedUpdate();
         }
         
-        _playerUnit.ChangeMoveSpeed(1 / _moveSpeedDecreasedAmount);
+        _playerUnit.TurnOffLivingHard();
     }
 
     public override void SetContentString()
     {
-        contentString = contentString.Insert(12, MoveSpeedDecreasedAmount.ToString());
         durationString = durationString.Insert(4, _duration.ToString());
     }
 }

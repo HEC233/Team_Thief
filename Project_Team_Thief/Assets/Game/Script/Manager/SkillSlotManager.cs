@@ -77,6 +77,16 @@ public class SkillSlotManager : MonoBehaviour
     {
         _skillSlots[slotIndex].RockSlot();
     }
+
+    public void SealSkillSlot(int slotIndex)
+    {
+        _skillSlots[slotIndex].SealSlot();
+    }
+
+    public void UnSealingSkillSlot(int slotIndex)
+    {
+        _skillSlots[slotIndex].UnSealing();
+    }
     
     // 1. 커맨드 결정키는 마지막 단 하나
     // LR Z
@@ -111,6 +121,11 @@ public class SkillSlotManager : MonoBehaviour
         {
             for (int i = 0; i < _skillSlots.Count; i++)
             {
+                if (_skillSlots[i].IsSeal == true)
+                {
+                    continue;
+                }
+                
                 if (_skillSlots[i].CheckCommand() == true)
                 {
                     ResetAllCommandList();
@@ -176,7 +191,9 @@ public class SkillSlotManager : MonoBehaviour
         private float _skillSlotCoolTime;
         private float _skillSlotCurCoolTime;
         private bool _isRock;
-        
+        private bool _isSeal;
+        public bool IsSeal => _isSeal;
+
         public float SkillSlotCurCoolTime
         {
             get => _skillSlotCurCoolTime;
@@ -194,7 +211,8 @@ public class SkillSlotManager : MonoBehaviour
             _commandList = new List<char>();
             _isActiveSkillSlot = false;
             _isRock = false;
-
+            _isSeal = false;
+            
             _skillSlotCoolTime = 0.0f;
             _skillSlotCurCoolTime = 0.0f;
             _commandCount = 0;
@@ -219,6 +237,16 @@ public class SkillSlotManager : MonoBehaviour
         public void RockSlot()
         {
             _isRock = true;
+        }
+
+        public void SealSlot()
+        {
+            _isSeal = true;
+        }
+
+        public void UnSealing()
+        {
+            _isSeal = false;
         }
 
         public void InsertSkillDataBase(SkillDataBase skillDataBase)

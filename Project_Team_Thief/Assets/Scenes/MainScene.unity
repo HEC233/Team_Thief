@@ -5775,6 +5775,53 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 4dc7817736faa58409fc529eb084cffb,
         type: 2}
+    - target: {fileID: 8773367656388211677, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _blessingPenaltyDatas.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773367656388211677, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _blessingPenaltyDatas.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 954027695c4542042b2d2f7ab68071e0,
+        type: 2}
+    - target: {fileID: 8773367656388211677, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _blessingPenaltyDatas.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 50d35b090fc792446874aa8ae46fd0f3,
+        type: 2}
+    - target: {fileID: 8773367656388211677, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _blessingPenaltyDatas.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: c94f6f016bfa79b43b72a2ae13e8f955,
+        type: 2}
+    - target: {fileID: 8773367656388211677, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _blessingPenaltyDatas.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: cd644b70ce82034469fd354971b0e25b,
+        type: 2}
+    - target: {fileID: 8773367656388211677, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _blessingPenaltyDatas.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: dbc7c3f15d066f148a3abdb41948ff2c,
+        type: 2}
+    - target: {fileID: 8773367656388211677, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _blessingPenaltyDatas.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: bc17e00f1b58ba847bc616295bcaccd4,
+        type: 2}
+    - target: {fileID: 8773367656388211677, guid: 1180cfdb66658d9489baa39e9c3402fa,
+        type: 3}
+      propertyPath: _blessingPenaltyDatas.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: e0f9e2b0f94f8604289740ea67567714,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1180cfdb66658d9489baa39e9c3402fa, type: 3}
 --- !u!114 &1058721104 stripped

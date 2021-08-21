@@ -69,8 +69,8 @@ public class PlayerUnit : Unit
     private float _maxHp;
     [SerializeField]
     private float _curHp;
-    [SerializeField]
     private float _decreaseHp;
+    public float DecreaseHp => _decreaseHp;
 
     private float def;
     
@@ -117,7 +117,8 @@ public class PlayerUnit : Unit
     // 이동 관련 변수
     [Header("Move Variable")]
     private float _moveSpeed;
-
+    public float MoveSpped => _moveSpeed;
+    
     // 점프 관련 변수
     [Header("Jump Variable")]
     [SerializeField]
@@ -151,6 +152,7 @@ public class PlayerUnit : Unit
 
     // Attack Variable
     private float _critical;
+    private float _damage;
     private float _attackSpeed;
     
 
@@ -292,6 +294,11 @@ public class PlayerUnit : Unit
     public event UnityAction OnSkillPlainSwordAttackEvent = null;
 
     //////////////////////////// 데이터로 관리 할 변수
+    
+    //  BlessingPenalty Variable
+    private bool _isLivingHard = false;
+    public bool IsLivingHard => _isLivingHard;
+    //
 
     private float _originalGravityScale = 0;
 
@@ -304,6 +311,9 @@ public class PlayerUnit : Unit
     public bool IsPlayerDead => _isPlayerDead;
     public event UnityAction OnPlayerDeadEvent;
 
+    private int _mapCount = 0;
+    public int MapCount => _mapCount; 
+    
     [SerializeField, Header("")]
     private GameObject _SlideingFx;
 
@@ -381,8 +391,9 @@ public class PlayerUnit : Unit
         _attackSpeed = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "attackSpeed"));
         _def = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "def"));
         _maxJumpCount = 2;
-        
+        _damage = 0;
         _curHp = _maxHp;
+        _decreaseHp = 1;
 
         //---
         playerInfo.CurHP = _curHp;
@@ -1025,6 +1036,12 @@ public class PlayerUnit : Unit
         _isWallTouch = Physics2D.Raycast(_handTr.position, Vector2.right * _facingDir, 0.1f, wallLayerMask);
         return _isWallTouch;
     }
+    
+
+    private void MapEndEventCall()
+    {
+        _mapCount++;
+    }
 
     public void ActiveSuperArmor(float superArmorTime)
     {
@@ -1036,6 +1053,31 @@ public class PlayerUnit : Unit
     public void MaxHpDegradation(int maxHpDegradationAmount)
     {
         _maxHp -= maxHpDegradationAmount;
+    }
+
+    public void ChangeMoveSpeed(float changeMoveSpeed)
+    {
+        _moveSpeed *= changeMoveSpeed;
+    }
+
+    public void ApplyLivingHard()
+    {
+        _isLivingHard = true;
+    }
+
+    public void TurnOffLivingHard()
+    {
+        _isLivingHard = false;
+    }
+
+    public void ChangeDamage(float changeDamageAmount)
+    {
+        _damage *= changeDamageAmount;
+    }
+
+    public void ChangeDecreaseHp(float decreaseHpAmount)
+    {
+        _decreaseHp = decreaseHpAmount;
     }
     
     //

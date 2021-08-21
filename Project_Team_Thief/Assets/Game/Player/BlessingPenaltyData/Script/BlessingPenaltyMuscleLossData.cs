@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BlessingPenaltySandbagData", menuName = "ScriptableObject/BlessingPenalty/BlessingPenaltySandbagData")]
-public class BlessingPenaltySandbagData : BlessingPenaltyDataBase
+[CreateAssetMenu(fileName = "BlessingPenaltyMuscleLossData", menuName = "ScriptableObject/BlessingPenalty/BlessingPenaltyMuscleLossData")]
+public class BlessingPenaltyMuscleLossData : BlessingPenaltyDataBase
 {
     private PlayerUnit _playerUnit;
-    
-    [SerializeField] 
-    private float _moveSpeedDecreasedAmount;
-    public float MoveSpeedDecreasedAmount => _moveSpeedDecreasedAmount;
 
     [SerializeField] 
+    private float _damageDecreasedAmount;
+    public float DamageDecreasedAmount => _damageDecreasedAmount;
+
+    [SerializeField]
     private int _duration;
-
     public int Duration => _duration;
 
     public override void ActivePenalty(Unit unit)
@@ -25,10 +24,10 @@ public class BlessingPenaltySandbagData : BlessingPenaltyDataBase
             return;
         }
         
-        _playerUnit.ChangeMoveSpeed(_moveSpeedDecreasedAmount);
+        _playerUnit.ChangeDamage(_damageDecreasedAmount);
         _playerUnit.StartCoroutine(PenaltyCoroutine());
     }
-
+    
     private IEnumerator PenaltyCoroutine()
     {
         int penaltyDurationMapCount = _playerUnit.MapCount + _duration;
@@ -37,12 +36,12 @@ public class BlessingPenaltySandbagData : BlessingPenaltyDataBase
             yield return new WaitForFixedUpdate();
         }
         
-        _playerUnit.ChangeMoveSpeed(1 / _moveSpeedDecreasedAmount);
+        _playerUnit.ChangeDamage(1 / _damageDecreasedAmount);
     }
 
     public override void SetContentString()
     {
-        contentString = contentString.Insert(12, MoveSpeedDecreasedAmount.ToString());
+        contentString = contentString.Insert(9, _damageDecreasedAmount.ToString());
         durationString = durationString.Insert(4, _duration.ToString());
     }
 }

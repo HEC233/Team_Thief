@@ -12,7 +12,6 @@ public class BlessingPenaltyHpDegradationData : BlessingPenaltyDataBase
     
     public override void ActivePenalty(Unit unit)
     {
-        SetContentString();
         var playerUnit = unit as PlayerUnit;
         
         if(playerUnit == null)
@@ -21,7 +20,7 @@ public class BlessingPenaltyHpDegradationData : BlessingPenaltyDataBase
         playerUnit.MaxHpDegradation(MAXHpDecreasedAmount);
     }
 
-    protected override void SetContentString()
+    public override void SetContentString()
     {
         contentString = contentString.Insert(7, _maxHpDecreasedAmount.ToString());
     }
