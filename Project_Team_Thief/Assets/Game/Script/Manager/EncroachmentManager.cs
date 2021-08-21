@@ -48,6 +48,7 @@ public class EncroachmentManager : MonoBehaviour
     private void Init()
     {
         _encroachmentZeroTimer = 0.0f;
+        _encroachmentNumber = 5;
         SetPenaltyDataContent();
     }
 
