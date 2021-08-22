@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c27a154710a67954f8ed7d5163372900
+guid: 7916ad1187c9238498879200c4ba05e8
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -49,8 +49,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
   spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -98,7 +98,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
+        width: 144
         height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -117,9 +117,9 @@ TextureImporter:
       name: SP_PC_ChaosHallDelay_1
       rect:
         serializedVersion: 2
-        x: 96
+        x: 144
         y: 0
-        width: 96
+        width: 144
         height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -137,7 +137,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8bec4dd7148875c4380b59670b168773
+    spriteID: 792cdbb3aeecf7b4f8d14d9b0f21bc0f
     internalID: 0
     vertices: []
     indices: 

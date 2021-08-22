@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e1b7096efabfc24aaf0a324085839cb
+guid: 0f96f874717245c4bba02a780a725c56
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -58,8 +58,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
   spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -107,7 +107,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
+        width: 144
         height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -126,9 +126,9 @@ TextureImporter:
       name: SP_PC_ChaosHallCast_1
       rect:
         serializedVersion: 2
-        x: 96
+        x: 144
         y: 0
-        width: 96
+        width: 144
         height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -147,9 +147,9 @@ TextureImporter:
       name: SP_PC_ChaosHallCast_2
       rect:
         serializedVersion: 2
-        x: 192
+        x: 288
         y: 0
-        width: 96
+        width: 144
         height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -168,9 +168,9 @@ TextureImporter:
       name: SP_PC_ChaosHallCast_3
       rect:
         serializedVersion: 2
-        x: 288
+        x: 432
         y: 0
-        width: 96
+        width: 144
         height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -189,9 +189,9 @@ TextureImporter:
       name: SP_PC_ChaosHallCast_4
       rect:
         serializedVersion: 2
-        x: 384
+        x: 576
         y: 0
-        width: 96
+        width: 144
         height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -209,7 +209,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0584a97fb1f33504ab528b613620d98b
+    spriteID: 6f64bb1b7756b284fbfab95ce88f9fee
     internalID: 0
     vertices: []
     indices: 

@@ -1,37 +1,37 @@
 fileFormatVersion: 2
-guid: 92c536dab9100ab4684b6a63a11203f6
+guid: b13f11bd02023564db536e2d287bb15b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1520769393107995944
-    second: SP_PC_MagicMissile_0
+      213: 7653267825592176887
+    second: SP_PC_MagicMissile 1_0
   - first:
-      213: -7975582513183313949
-    second: SP_PC_MagicMissile_1
+      213: 5460092792728184545
+    second: SP_PC_MagicMissile 1_1
   - first:
-      213: -8705882950541863588
-    second: SP_PC_MagicMissile_2
+      213: -7690253924559358667
+    second: SP_PC_MagicMissile 1_2
   - first:
-      213: 7405700111004509797
-    second: SP_PC_MagicMissile_3
+      213: -3753185132352435603
+    second: SP_PC_MagicMissile 1_3
   - first:
-      213: 969838395014037080
-    second: SP_PC_MagicMissile_4
+      213: -8535974172949668505
+    second: SP_PC_MagicMissile 1_4
   - first:
-      213: 1919710502416280249
-    second: SP_PC_MagicMissile_5
+      213: 3697792708321676126
+    second: SP_PC_MagicMissile 1_5
   - first:
-      213: 6227726209230604048
-    second: SP_PC_MagicMissile_6
+      213: -3154375144265637684
+    second: SP_PC_MagicMissile 1_6
   - first:
-      213: 4294631951375842549
-    second: SP_PC_MagicMissile_7
+      213: -5194707533834267081
+    second: SP_PC_MagicMissile 1_7
   - first:
-      213: -1534493987068402747
-    second: SP_PC_MagicMissile_8
+      213: 447620273286761128
+    second: SP_PC_MagicMissile 1_8
   - first:
-      213: 2977068730505749767
-    second: SP_PC_MagicMissile_9
+      213: 5245230704678945208
+    second: SP_PC_MagicMissile 1_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SP_PC_MagicMissile_0
+      name: SP_PC_MagicMissile 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d2f28a5b4425eae0800000000000000
-      internalID: -1520769393107995944
+      spriteID: 7f01953e98ed53a60800000000000000
+      internalID: 7653267825592176887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_MagicMissile_1
+      name: SP_PC_MagicMissile 1_1
       rect:
         serializedVersion: 2
         x: 96
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ef24e0f5f9015190800000000000000
-      internalID: -7975582513183313949
+      spriteID: 1e6eb37577526cb40800000000000000
+      internalID: 5460092792728184545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_MagicMissile_2
+      name: SP_PC_MagicMissile 1_2
       rect:
         serializedVersion: 2
         x: 192
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5592dc059d7e2780800000000000000
-      internalID: -8705882950541863588
+      spriteID: 535f512eccab64590800000000000000
+      internalID: -7690253924559358667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_MagicMissile_3
+      name: SP_PC_MagicMissile 1_3
       rect:
         serializedVersion: 2
         x: 288
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 566ae7d830556c660800000000000000
-      internalID: 7405700111004509797
+      spriteID: d6a0bd1e1020aebc0800000000000000
+      internalID: -3753185132352435603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_MagicMissile_4
+      name: SP_PC_MagicMissile 1_4
       rect:
         serializedVersion: 2
         x: 384
@@ -215,17 +215,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85eb850c1ee857d00800000000000000
-      internalID: 969838395014037080
+      spriteID: 76d1d6917b02a8980800000000000000
+      internalID: -8535974172949668505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_MagicMissile_5
+      name: SP_PC_MagicMissile 1_5
       rect:
         serializedVersion: 2
-        x: 479
+        x: 480
         y: 0
         width: 96
         height: 96
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9baeb18e78e24aa10800000000000000
-      internalID: 1919710502416280249
+      spriteID: e5b0b8060e2315330800000000000000
+      internalID: 3697792708321676126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_MagicMissile_6
+      name: SP_PC_MagicMissile 1_6
       rect:
         serializedVersion: 2
         x: 576
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 017849bcdf35d6650800000000000000
-      internalID: 6227726209230604048
+      spriteID: cc0a9b5d4886934d0800000000000000
+      internalID: -3154375144265637684
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_MagicMissile_7
+      name: SP_PC_MagicMissile 1_7
       rect:
         serializedVersion: 2
         x: 672
@@ -278,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fcbcce7109999b30800000000000000
-      internalID: 4294631951375842549
+      spriteID: 73653cd4501b8e7b0800000000000000
+      internalID: -5194707533834267081
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_MagicMissile_8
+      name: SP_PC_MagicMissile 1_8
       rect:
         serializedVersion: 2
         x: 768
@@ -299,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c3a0de49d164bae0800000000000000
-      internalID: -1534493987068402747
+      spriteID: 8aa45875444463600800000000000000
+      internalID: 447620273286761128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_MagicMissile_9
+      name: SP_PC_MagicMissile 1_9
       rect:
         serializedVersion: 2
         x: 864
@@ -320,8 +320,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 705e7b9bc3ca05920800000000000000
-      internalID: 2977068730505749767
+      spriteID: 8b14c55198dcac840800000000000000
+      internalID: 5245230704678945208
       vertices: []
       indices: 
       edges: []
@@ -329,7 +329,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 0a7b729a72c2d394c907e771d77c6b01
     internalID: 0
     vertices: []
     indices: 
