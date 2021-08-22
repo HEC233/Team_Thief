@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 696a69421c176144fa79f9a84fbfbe7a
+guid: 4bccc2c037d15b44eb9f069983a6ee11
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4522398337911679966
-    second: SP_PC_ThrowSpinAxe1_0
+      213: 2898939529798616121
+    second: SP_PC_ThrowSpinAxe3_0
   - first:
-      213: -1591947532947584080
-    second: SP_PC_ThrowSpinAxe1_1
+      213: 6693401485694872197
+    second: SP_PC_ThrowSpinAxe3_1
   - first:
-      213: -554923280756332892
-    second: SP_PC_ThrowSpinAxe1_2
+      213: -3200027349953541495
+    second: SP_PC_ThrowSpinAxe3_2
   - first:
-      213: 1194386218327033874
-    second: SP_PC_ThrowSpinAxe1_3
+      213: -2820558674894294587
+    second: SP_PC_ThrowSpinAxe3_3
   - first:
-      213: -5287626179802408392
-    second: SP_PC_ThrowSpinAxe1_4
+      213: 5771477359967523952
+    second: SP_PC_ThrowSpinAxe3_4
   - first:
-      213: 4263973610051256661
-    second: SP_PC_ThrowSpinAxe1_5
+      213: 8767623866349613848
+    second: SP_PC_ThrowSpinAxe3_5
   - first:
-      213: 7339973838187290202
-    second: SP_PC_ThrowSpinAxe1_6
+      213: -5528376526995233516
+    second: SP_PC_ThrowSpinAxe3_6
   - first:
-      213: -9096098574669833498
-    second: SP_PC_ThrowSpinAxe1_7
+      213: 3097904037439638505
+    second: SP_PC_ThrowSpinAxe3_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -67,8 +67,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
   spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -111,7 +111,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SP_PC_ThrowSpinAxe1_0
+      name: SP_PC_ThrowSpinAxe3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,14 +125,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edbea00e359c2ce30800000000000000
-      internalID: 4522398337911679966
+      spriteID: 9340cf2a42a1b3820800000000000000
+      internalID: 2898939529798616121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_ThrowSpinAxe1_1
+      name: SP_PC_ThrowSpinAxe3_1
       rect:
         serializedVersion: 2
         x: 96
@@ -146,14 +146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bb899d372448e9e0800000000000000
-      internalID: -1591947532947584080
+      spriteID: 58a2ae5203db3ec50800000000000000
+      internalID: 6693401485694872197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_ThrowSpinAxe1_2
+      name: SP_PC_ThrowSpinAxe3_2
       rect:
         serializedVersion: 2
         x: 192
@@ -167,14 +167,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a6acec57348c48f0800000000000000
-      internalID: -554923280756332892
+      spriteID: 98a0c7664183793d0800000000000000
+      internalID: -3200027349953541495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_ThrowSpinAxe1_3
+      name: SP_PC_ThrowSpinAxe3_3
       rect:
         serializedVersion: 2
         x: 288
@@ -188,14 +188,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 218410cffef439010800000000000000
-      internalID: 1194386218327033874
+      spriteID: 5c177c244dc5bd8d0800000000000000
+      internalID: -2820558674894294587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_ThrowSpinAxe1_4
+      name: SP_PC_ThrowSpinAxe3_4
       rect:
         serializedVersion: 2
         x: 384
@@ -209,14 +209,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83a52d721049e96b0800000000000000
-      internalID: -5287626179802408392
+      spriteID: 074d21e8418681050800000000000000
+      internalID: 5771477359967523952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_ThrowSpinAxe1_5
+      name: SP_PC_ThrowSpinAxe3_5
       rect:
         serializedVersion: 2
         x: 480
@@ -230,14 +230,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 551ceb6286dac2b30800000000000000
-      internalID: 4263973610051256661
+      spriteID: 813710e147bdca970800000000000000
+      internalID: 8767623866349613848
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_ThrowSpinAxe1_6
+      name: SP_PC_ThrowSpinAxe3_6
       rect:
         serializedVersion: 2
         x: 576
@@ -251,14 +251,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5e50d52153dcd560800000000000000
-      internalID: 7339973838187290202
+      spriteID: 41567dbd6d24743b0800000000000000
+      internalID: -5528376526995233516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_ThrowSpinAxe1_7
+      name: SP_PC_ThrowSpinAxe3_7
       rect:
         serializedVersion: 2
         x: 672
@@ -272,8 +272,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ea1ede1a8a24c180800000000000000
-      internalID: -9096098574669833498
+      spriteID: 9eb86d30f47fdfa20800000000000000
+      internalID: 3097904037439638505
       vertices: []
       indices: 
       edges: []
@@ -281,7 +281,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 70d5f38b6e253374189c88244fd64a52
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

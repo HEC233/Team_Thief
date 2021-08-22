@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: c92147453a9270d4188e8ce1df5fac3e
+guid: d3c27c17b6a2e714287ffe3c4aa169b0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6493700469968505767
-    second: SP_PC_DoubleSwing2FX_0
+      213: 7548822366240855220
+    second: SP_PC_DoubleSwing2FX 1_0
   - first:
-      213: -3991377790089810588
-    second: SP_PC_DoubleSwing2FX_1
+      213: 8386860040470355642
+    second: SP_PC_DoubleSwing2FX 1_1
   - first:
-      213: 7414626546318177998
-    second: SP_PC_DoubleSwing2FX_2
+      213: 5787433881409020741
+    second: SP_PC_DoubleSwing2FX 1_2
   - first:
-      213: -7025325939991800964
-    second: SP_PC_DoubleSwing2FX_3
+      213: 8014763023689346325
+    second: SP_PC_DoubleSwing2FX 1_3
   - first:
-      213: -2599025753959047456
-    second: SP_PC_DoubleSwing2FX_4
+      213: 2573977032856083373
+    second: SP_PC_DoubleSwing2FX 1_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,8 +58,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: 0.5, y: 0}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -102,7 +102,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SP_PC_DoubleSwing2FX_0
+      name: SP_PC_DoubleSwing2FX 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -116,14 +116,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9547db1e3ddb1e5a0800000000000000
-      internalID: -6493700469968505767
+      spriteID: 4b45f4c52fdc2c860800000000000000
+      internalID: 7548822366240855220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_DoubleSwing2FX_1
+      name: SP_PC_DoubleSwing2FX 1_1
       rect:
         serializedVersion: 2
         x: 144
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46d20511c07cb98c0800000000000000
-      internalID: -3991377790089810588
+      spriteID: abe572575cc146470800000000000000
+      internalID: 8386860040470355642
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_DoubleSwing2FX_2
+      name: SP_PC_DoubleSwing2FX 1_2
       rect:
         serializedVersion: 2
         x: 288
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec6f97b3f8b06e660800000000000000
-      internalID: 7414626546318177998
+      spriteID: 543e176b378115050800000000000000
+      internalID: 5787433881409020741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_DoubleSwing2FX_3
+      name: SP_PC_DoubleSwing2FX 1_3
       rect:
         serializedVersion: 2
         x: 432
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7393738747018e90800000000000000
-      internalID: -7025325939991800964
+      spriteID: 51d60f981882a3f60800000000000000
+      internalID: 8014763023689346325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_DoubleSwing2FX_4
+      name: SP_PC_DoubleSwing2FX 1_4
       rect:
         serializedVersion: 2
         x: 576
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0eedd25d8d76eebd0800000000000000
-      internalID: -2599025753959047456
+      spriteID: dab966f497a98b320800000000000000
+      internalID: 2573977032856083373
       vertices: []
       indices: 
       edges: []
@@ -209,13 +209,15 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: bdf1602b8f65a8e4a8cf4c86b566a3e6
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 53939f5aef00357498b6b7262e78674c, type: 3}
+      name: _Emissions
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
