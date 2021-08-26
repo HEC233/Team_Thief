@@ -6,7 +6,6 @@ public class SkillSnakeSwordFlurryController : SkillControllerBase
 {
     private SkillSnakeSwordFlurryData _skillSnakeSwordFlurryData;
     private PlayerUnit _unit;
-    private SkillAxeAttackCtrl _skillAxeAttackCtrl;
     private Damage _damage;
     private bool _isSkillEnd = false;
 
@@ -33,7 +32,9 @@ public class SkillSnakeSwordFlurryController : SkillControllerBase
         _damage.power =
             _unit.CalcSkillDamage(_skillSnakeSwordFlurryData.Damages[0] /
                                   _skillSnakeSwordFlurryData.SkillNumberOfTimes);
-        _damage.knockBack = new Vector2(_skillSnakeSwordFlurryData.KnockBackXs[0], _skillSnakeSwordFlurryData.KnockBackYs[0]);
+        _damage.knockBack =
+            new Vector2(_skillSnakeSwordFlurryData.KnockBackXs[0], _skillSnakeSwordFlurryData.KnockBackYs[0]) *
+            _unit.FacingDir;
         _damage.additionalInfo = 0;
         _damage.stiffness = _skillSnakeSwordFlurryData.Stiffness;
     }
@@ -47,7 +48,6 @@ public class SkillSnakeSwordFlurryController : SkillControllerBase
     {
         ResetValue();
         OnEndSkillAction?.Invoke();
-
     }
 
     private void ResetValue()

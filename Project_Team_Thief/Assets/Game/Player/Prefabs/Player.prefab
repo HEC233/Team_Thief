@@ -432,7 +432,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1542053513848848401}
-        m_MethodName: OnSkillSpearRushEventCall
+        m_MethodName: OnSkillBaldoAttackEventCall
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -554,7 +554,6 @@ GameObject:
   - component: {fileID: 1542053513835489096}
   - component: {fileID: 1542053513835489101}
   - component: {fileID: 1542053513835489098}
-  - component: {fileID: 8360184399801164768}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -653,25 +652,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.67, y: 1.65}
   m_EdgeRadius: 0
---- !u!95 &8360184399801164768
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542053513835489097}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d65c842afc0ac384b83dfcbf32e4b7ce, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1542053513848848430
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,6 +779,7 @@ MonoBehaviour:
   - {fileID: 2837312275065007078}
   - {fileID: 616151796793591469}
   _skillSnakeSwordFlurryAttackBase: {fileID: 2771753488246673011}
+  _skillBaldoAttackBase: {fileID: 2114163955892041197}
   _skillPlainSwordData: {fileID: 11400000, guid: 5d4868f48c06c1c468032faa0449a618,
     type: 2}
   _SkillPlainSwordAttackCtrls:
@@ -1968,6 +1949,157 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 1000
     m_PropagationSpeed: 343
+--- !u!1 &4097140313064161142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6397163148190450327}
+  - component: {fileID: 4439245261184508481}
+  - component: {fileID: 2114163955892041197}
+  - component: {fileID: 4966710198347813226}
+  m_Layer: 13
+  m_Name: SkillBaldo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6397163148190450327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097140313064161142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8114190704867105074}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &4439245261184508481
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097140313064161142}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7, y: 2.5}
+  m_EdgeRadius: 0
+--- !u!114 &2114163955892041197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097140313064161142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d60907f876694fc4bbc014ed415ab9af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAbleCritical: 0
+  _isChangeDir: 0
+  _isAbleFlash: 0
+  _isAbleHitStop: 1
+  _isAbleBulltTime: 0
+  _isAbleCameraShake: 1
+  _isDisplyFx: 1
+  _isPlaySFX: 1
+  _isAlwaysPlaySFX: 1
+  _isZoomIn: 0
+  _hitStopTime: 0
+  _bulltTime: 0.5
+  _bulletTimeScale: 0.5
+  _flashTime: 0
+  _criticalPercentage: 0
+  _sfxSoundName: 
+  _zoomInCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomInTime: 0
+  _zoomInSize: 0
+  _zoomOutCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _zoomOutTime: 0
+  _fxName: 
+  _hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _flashGO: {fileID: 0}
+  _attackCollider2D: {fileID: 4439245261184508481}
+  _cinemachineImpulseSource: {fileID: 4966710198347813226}
+--- !u!114 &4966710198347813226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097140313064161142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &4819987077810466812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,6 +2797,7 @@ Transform:
   - {fileID: 1632805504231969339}
   - {fileID: 3778185268532719185}
   - {fileID: 4275863233706727302}
+  - {fileID: 6397163148190450327}
   m_Father: {fileID: 1542053513835489099}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3116,15 +3249,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f5ac952823040c45bb3554c05782c03, type: 3}
---- !u!1 &1220389250567162997 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 399070007637419649, guid: 7f5ac952823040c45bb3554c05782c03,
-    type: 3}
-  m_PrefabInstance: {fileID: 1542053513259870964}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5373309817695003494 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6915186309504633234, guid: 7f5ac952823040c45bb3554c05782c03,
+    type: 3}
+  m_PrefabInstance: {fileID: 1542053513259870964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1220389250567162997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 399070007637419649, guid: 7f5ac952823040c45bb3554c05782c03,
     type: 3}
   m_PrefabInstance: {fileID: 1542053513259870964}
   m_PrefabAsset: {fileID: 0}

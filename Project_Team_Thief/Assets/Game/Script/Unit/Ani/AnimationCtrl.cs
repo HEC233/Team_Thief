@@ -40,6 +40,9 @@ public enum AniState
     SkillSnakeSwordSting2,   // 31
     SkillDoubleCross,   // 32
     SkillDoubleCross2,  // 33
+    SkillBaldoCast,     // 34
+    SkillBaldoDelay,    // 35
+    SkillBaldo,         // 36
 
     // SkillShadowWalk,// 20
     // ShadowControl,  // 21

@@ -276,6 +276,13 @@ public class PlayerUnit : Unit
     private AttackBase _skillSnakeSwordFlurryAttackBase;
     public AttackBase SkillSnakeSwordFlurryAttackBase => _skillSnakeSwordFlurryAttackBase;
     public event UnityAction skillSnakeSwordFlurryEndEvent = null;
+    
+    [Header("SkillBaldo")]
+    [SerializeField]
+    private AttackBase _skillBaldoAttackBase;
+    public AttackBase SkillBaldoAttackBase => _skillBaldoAttackBase;
+    public event UnityAction OnSkillBaldoAttackEvent = null;
+    
 
     [SerializeField, Header("SkillPlainSword")]
     private SkillPlainSwordData _skillPlainSwordData;
@@ -851,6 +858,11 @@ public class PlayerUnit : Unit
     {
         OnSkillSnakeSwordStingAttackEvent?.Invoke();
     }
+
+    public void OnSkillBaldoAttackEventCall()
+    {
+        OnSkillBaldoAttackEvent?.Invoke();
+    }
     
     public void OnSkillPlainSwordAttackEventCall()
     {
@@ -1049,6 +1061,11 @@ public class PlayerUnit : Unit
     public void ActiveSuperArmor(float superArmorTime)
     {
         StartCoroutine(SuperArmorCoroutine(superArmorTime));
+    }
+
+    public void ChangeCritical(float amount)
+    {
+        _critical += amount;
     }
 
     public float CalcCriticalOutDamage(float power)
