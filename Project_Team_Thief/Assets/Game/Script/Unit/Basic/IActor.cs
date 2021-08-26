@@ -38,6 +38,7 @@ public enum TransitionCondition
     SkillWallSummon,
     SkillSnakeSwordSting,
     SkillBaldo,
+    SkillSheating,
     Action,
 
     // Shadow

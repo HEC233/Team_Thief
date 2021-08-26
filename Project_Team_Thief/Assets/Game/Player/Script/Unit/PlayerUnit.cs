@@ -282,6 +282,12 @@ public class PlayerUnit : Unit
     private AttackBase _skillBaldoAttackBase;
     public AttackBase SkillBaldoAttackBase => _skillBaldoAttackBase;
     public event UnityAction OnSkillBaldoAttackEvent = null;
+
+    [Header("SkillSheating")] 
+    [SerializeField]
+    private AttackBase _skillSheatingAttackBase;
+    public AttackBase SkillSheatingAttackBase => _skillSheatingAttackBase;
+    public event UnityAction OnSkillSheatingAttackEvent = null;
     
 
     [SerializeField, Header("SkillPlainSword")]
@@ -862,6 +868,11 @@ public class PlayerUnit : Unit
     public void OnSkillBaldoAttackEventCall()
     {
         OnSkillBaldoAttackEvent?.Invoke();
+    }
+
+    public void OnSkillSheatingAttackEventCall()
+    {
+        OnSkillSheatingAttackEvent?.Invoke();
     }
     
     public void OnSkillPlainSwordAttackEventCall()

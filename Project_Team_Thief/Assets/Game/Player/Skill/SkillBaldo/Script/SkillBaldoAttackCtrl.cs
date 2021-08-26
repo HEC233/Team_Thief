@@ -14,7 +14,6 @@ public class SkillBaldoAttackCtrl : AttackBase
         if (_isEnter)
         {
             OnHitEvent?.Invoke();   
-            Debug.Log("hit");
         }
     }
 

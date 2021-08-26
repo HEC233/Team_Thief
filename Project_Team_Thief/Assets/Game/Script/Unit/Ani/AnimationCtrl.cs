@@ -43,6 +43,9 @@ public enum AniState
     SkillBaldoCast,     // 34
     SkillBaldoDelay,    // 35
     SkillBaldo,         // 36
+    SkillSheatingCast,  // 37
+    SkillSheatingDelay, // 38
+    SkillSheating,      // 39
 
     // SkillShadowWalk,// 20
     // ShadowControl,  // 21

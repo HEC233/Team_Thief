@@ -24,6 +24,12 @@ public enum FxAniEnum
     SkillPlainSword,    // 16
     SkillPlainSword2,   // 17
     SkillPlainSword3,   // 18
+    SkillBaldoCast,     // 19
+    SkillBaldoDelay,    // 20
+    SkillBaldo,         // 21
+    SkillSheatingCast,  // 22
+    SkillSheatingDelay, // 23
+    SkillSheating,      // 24
 }
 
 public class FxCtrl : MonoBehaviour

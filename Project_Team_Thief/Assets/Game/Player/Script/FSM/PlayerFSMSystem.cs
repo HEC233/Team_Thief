@@ -2774,6 +2774,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             Init();
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillBaldoCast);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillBaldoCast);
         }
 
         public override void Update()
@@ -2786,6 +2787,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             StopWaitEndDelayCoroutine();
             ResetValue();
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
         }
 
         public override bool Transition(TransitionCondition condition)
@@ -2827,6 +2829,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             {
                 _aniIndex++;
                 SystemMgr.AnimationCtrl.PlayAni(AniState.SkillBaldoDelay);
+                SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillBaldoDelay);
+
                 BulletTime();
                 SystemMgr.StartCoroutine(WaitStartDelay());
             }
@@ -2844,7 +2848,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private void Action()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillBaldo);
-            //SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillBaldo);
+
             
             _gameSkillObject = InvokeSkill();
         }
@@ -2909,6 +2914,176 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return true;
         }
     }
+
+    private class SkillSheatingState : CustomFSMStateBase, ISkillStateBase
+    {
+         private GameSkillObject _gameSkillObject;
+        private SkillSheatingData _skillSheatingData;
+        private bool _isInit = false;
+        private bool _isSkillEnd = false;
+        private bool _isStartDelayEnd = false;
+        private int _aniIndex = 0;
+        private Coroutine _waitDelayCoroutine;
+        
+        public SkillSheatingState(PlayerFSMSystem system) : base(system) { }
+
+        private void Init()
+        {
+            if(_isInit == true)
+                return;
+
+            _isInit = true;
+            _skillSheatingData = SkillDataBank.instance.GetSkillData(18) as SkillSheatingData;
+            
+        }
+        
+        public override void StartState()
+        {
+            Init();
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSheatingCast);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSheatingCast);
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+        }
+
+        public override void EndState()
+        {
+            StopWaitEndDelayCoroutine();
+            ResetValue();
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillDoubleCross)
+                return true;
+            if (condition == TransitionCondition.SkillSnakeSwordSting)
+                return true;
+            if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+                return true;
+            if (condition == TransitionCondition.SkillBaldo)
+                return true;
+            if (condition == TransitionCondition.SkillSheating)
+                return true;
+            
+            if (_isSkillEnd == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            return true;
+        }
+        
+        private void ResetValue()
+        {
+            _isSkillEnd = false;
+            _waitDelayCoroutine = null;
+            _isStartDelayEnd = false;
+            _aniIndex = 0;
+        }
+        
+        private void OnAnimationEndEventCall()
+        {
+            if (_aniIndex == 0)
+            {
+                _aniIndex++;
+                SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSheatingDelay);
+                SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSheatingDelay);
+
+                //BulletTime();
+                SystemMgr.StartCoroutine(WaitStartDelay());
+            }
+            else
+            {
+                _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
+            }
+        }
+
+        private void BulletTime()
+        {
+            //GameManager.instance.TimeMng.BulletTime(_skillSheatingData.BulletTimeScale, _skillSheatingData.BulletTimeAmount);
+        }
+        
+        private void Action()
+        {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSheating);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSheating);
+
+            
+            _gameSkillObject = InvokeSkill();
+        }
+        
+        private void StopWaitEndDelayCoroutine()
+        {
+            if (_waitDelayCoroutine == null)
+            {
+                return;
+            }
+            
+            if (_isSkillEnd == false)
+            {
+                SystemMgr.StopCoroutine(_waitDelayCoroutine);
+            }
+        }
+        
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMng.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("SkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillSheatingData.GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
+        }
+        
+        IEnumerator WaitStartDelay()
+        {
+            float timer = 0.0f;
+            while (_skillSheatingData.FristDelay >= timer)
+            {
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isStartDelayEnd = true;
+            Action();
+        }
+        
+        IEnumerator WaitEndDelay()
+        {
+            float timer = 0.0f;
+            _isSkillEnd = false;
+            _isStartDelayEnd = false;
+            while (_skillSheatingData.EndDelay >= timer)
+            {
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isSkillEnd = true;
+            SystemMgr.Transition(TransitionCondition.Idle);
+        }
+
+        public bool IsAbleTransition()
+        {
+            return true;
+        }
+    }
     
     protected override void RegisterState()
     {
@@ -2933,6 +3108,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.SkillSnakeSwordSting, new SkillSnakeSwordStingState(this));
         AddState(TransitionCondition.SkillSnakeSwordFlurry, new SkillSnakeSwordFlurryState(this));
         AddState(TransitionCondition.SkillBaldo, new SkillBaldoState(this));
+        AddState(TransitionCondition.SkillSheating, new SkillSheatingState(this));
         AddState(TransitionCondition.Die, new DieState(this));
     }
     
