@@ -30,7 +30,7 @@ public class SkillAxeController : SkillControllerBase
     private void SetDamage()
     {
         _damage = new Damage();
-        _damage.power = _skillAxeData.Damages[0];
+        _damage.power = _unit.CalcSkillDamage(_skillAxeData.Damages[0]);
         _damage.knockBack = new Vector2(_skillAxeData.KnockBackXs[0], _skillAxeData.KnockBackYs[0]);
         _damage.additionalInfo = _index;
         _damage.stiffness = _skillAxeData.Stiffness;

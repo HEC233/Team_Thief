@@ -30,7 +30,7 @@ public class SkillSnakeSwordStingController : SkillControllerBase
     private void SetDamage()
     {
         _damage = new Damage();
-        _damage.power = _skillSnakeSwordStingData.Damages[0];
+        _damage.power = _unit.CalcSkillDamage(_skillSnakeSwordStingData.Damages[0]);
         _damage.knockBack = new Vector2(_skillSnakeSwordStingData.KnockBackXs[0], _skillSnakeSwordStingData.KnockBackYs[0]);
         _damage.additionalInfo = _index;
         // 넉백 타임은?

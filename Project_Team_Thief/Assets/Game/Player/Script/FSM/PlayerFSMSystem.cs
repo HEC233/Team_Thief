@@ -1167,7 +1167,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.BasicAttack);
             
             SystemMgr.Unit.SetBasicAttack();
-            _damage.power = _basicAttackDataBase.Damages[0];
+            _damage.power = SystemMgr.Unit.CalcSkillDamage(_basicAttackDataBase.Damages[0]);
             _damage.knockBack = new Vector2(_basicAttackDataBase.KnockBackXs[0] * SystemMgr.Unit.FacingDir,
                 _basicAttackDataBase.KnockBackYs[0]);
             _damage.additionalInfo = 0;
@@ -1336,7 +1336,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         private void SetDamage()
         {
-            _damage.power = _basicJumpAttackData[_jumpAttackIndex].Damages[0];
+            _damage.power = SystemMgr.Unit.CalcSkillDamage(_basicJumpAttackData[_jumpAttackIndex].Damages[0]);
             _damage.knockBack = new Vector2(_basicJumpAttackData[_jumpAttackIndex].KnockBackXs[0] * SystemMgr.Unit.FacingDir,
                 _basicJumpAttackData[_jumpAttackIndex].KnockBackYs[0]);
             _damage.stiffness = _basicJumpAttackData[_jumpAttackIndex].Stiffness;

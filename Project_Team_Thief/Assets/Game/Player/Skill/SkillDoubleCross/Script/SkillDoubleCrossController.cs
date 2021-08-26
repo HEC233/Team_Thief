@@ -26,7 +26,7 @@ public class SkillDoubleCrossController : SkillControllerBase
         _unit.OnSkillDoubleCrossAttackEvent += ReceiveAttackEvent;
 
         _damage = new Damage();
-        _damage.power = _skillDoubleCrossData.Damages[0];
+        _damage.power =  _unit.CalcSkillDamage(_skillDoubleCrossData.Damages[0]);
         _damage.knockBack = new Vector2(_skillDoubleCrossData.KnockBackXs[0], _skillDoubleCrossData.KnockBackYs[0]);
         _damage.additionalInfo = _index;
         // 넉백 타임은?

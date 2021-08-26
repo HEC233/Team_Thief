@@ -30,7 +30,9 @@ public class SkillSnakeSwordFlurryController : SkillControllerBase
     private void SetDamage()
     {
         _damage = new Damage();
-        _damage.power = _skillSnakeSwordFlurryData.Damages[0] / _skillSnakeSwordFlurryData.SkillNumberOfTimes;
+        _damage.power =
+            _unit.CalcSkillDamage(_skillSnakeSwordFlurryData.Damages[0] /
+                                  _skillSnakeSwordFlurryData.SkillNumberOfTimes);
         _damage.knockBack = new Vector2(_skillSnakeSwordFlurryData.KnockBackXs[0], _skillSnakeSwordFlurryData.KnockBackYs[0]);
         _damage.additionalInfo = 0;
         _damage.stiffness = _skillSnakeSwordFlurryData.Stiffness;

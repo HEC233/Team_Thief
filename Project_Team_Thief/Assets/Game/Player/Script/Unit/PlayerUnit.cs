@@ -152,7 +152,9 @@ public class PlayerUnit : Unit
 
     // Attack Variable
     private float _critical;
-    private float _damage;
+    private float _criticalAmount = 1.5f;
+    private float _addDamage;
+    private float _decreaseDamage;
     private float _attackSpeed;
     
 
@@ -391,7 +393,8 @@ public class PlayerUnit : Unit
         _attackSpeed = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "attackSpeed"));
         _def = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "def"));
         _maxJumpCount = 2;
-        _damage = 0;
+        _addDamage = 0;
+        _decreaseDamage = 1;
         _curHp = _maxHp;
         _decreaseHp = 1;
 
@@ -1047,6 +1050,26 @@ public class PlayerUnit : Unit
     {
         StartCoroutine(SuperArmorCoroutine(superArmorTime));
     }
+
+    public float CalcCriticalOutDamage(float power)
+    {
+        float rand = UnityEngine.Random.Range(0, 1.0f);
+
+        if (_critical > rand)
+        {
+            return power * _criticalAmount;
+        }
+        else
+        {
+            return power;
+        }
+    }
+
+    public float CalcSkillDamage(float power)
+    {
+        float damage = power + (power * (_addDamage / 100));
+        return CalcCriticalOutDamage(damage) * _decreaseDamage;
+    }
     
     // BlessingPenalty
 
@@ -1072,7 +1095,7 @@ public class PlayerUnit : Unit
 
     public void ChangeDamage(float changeDamageAmount)
     {
-        _damage *= changeDamageAmount;
+        _decreaseDamage *= changeDamageAmount;
     }
 
     public void ChangeDecreaseHp(float decreaseHpAmount)
