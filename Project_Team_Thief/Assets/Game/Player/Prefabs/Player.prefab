@@ -779,7 +779,7 @@ MonoBehaviour:
   - {fileID: 2837312275065007078}
   - {fileID: 616151796793591469}
   _skillSnakeSwordFlurryAttackBase: {fileID: 2771753488246673011}
-  _skillBaldoAttackBase: {fileID: 2114163955892041197}
+  _skillBaldoAttackBase: {fileID: 2540636348771804994}
   _skillPlainSwordData: {fileID: 11400000, guid: 5d4868f48c06c1c468032faa0449a618,
     type: 2}
   _SkillPlainSwordAttackCtrls:
@@ -1959,7 +1959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6397163148190450327}
   - component: {fileID: 4439245261184508481}
-  - component: {fileID: 2114163955892041197}
+  - component: {fileID: 2540636348771804994}
   - component: {fileID: 4966710198347813226}
   m_Layer: 13
   m_Name: SkillBaldo
@@ -2008,7 +2008,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7, y: 2.5}
   m_EdgeRadius: 0
---- !u!114 &2114163955892041197
+--- !u!114 &2540636348771804994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2017,22 +2017,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4097140313064161142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d60907f876694fc4bbc014ed415ab9af, type: 3}
+  m_Script: {fileID: 11500000, guid: d355c74d8443bf64e81f3172dc447a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _isAbleCritical: 0
   _isChangeDir: 0
   _isAbleFlash: 0
-  _isAbleHitStop: 1
+  _isAbleHitStop: 0
   _isAbleBulltTime: 0
-  _isAbleCameraShake: 1
-  _isDisplyFx: 1
+  _isAbleCameraShake: 0
+  _isDisplyFx: 0
   _isPlaySFX: 1
   _isAlwaysPlaySFX: 1
   _isZoomIn: 0
   _hitStopTime: 0
-  _bulltTime: 0.5
-  _bulletTimeScale: 0.5
+  _bulltTime: 0
+  _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: 

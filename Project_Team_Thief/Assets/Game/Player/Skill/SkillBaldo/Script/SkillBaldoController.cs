@@ -7,6 +7,7 @@ public class SkillBaldoController : SkillControllerBase
     private SkillBaldoData _skillBaldoData;
     private PlayerUnit _unit;
     private Damage _damage;
+    private bool _isHit = false;
 
     public SkillBaldoController(GameSkillObject skillObject, SkillDataBase data, Unit unit) : base(skillObject, data, unit) { }
 
@@ -22,6 +23,7 @@ public class SkillBaldoController : SkillControllerBase
         SetDamage();
         _unit.SkillBaldoAttackBase.Init(_damage, _skillBaldoData.CinemachineSignalSource);
         _unit.OnSkillBaldoAttackEvent += ReceiveAttackEvent;
+        ((SkillBaldoAttackCtrl)_unit.SkillBaldoAttackBase).OnEnemyHitEvent += ReceiveHitEvent;
     }
     
     private void SetDamage()
@@ -44,11 +46,19 @@ public class SkillBaldoController : SkillControllerBase
     {
         _unit.SkillBaldoAttackBase.Progress();
         _unit.StartCoroutine(SpecialStateCoroutine());
+
     }
+
+    private void ReceiveHitEvent()
+    {
+        _isHit = true;
+    }
+    
     
     private void ResetValue()
     {
         _unit.OnSkillBaldoAttackEvent -= ReceiveAttackEvent;
+        _isHit = false;
     }
     
     private void EndSkill()
@@ -60,16 +70,26 @@ public class SkillBaldoController : SkillControllerBase
     private IEnumerator SpecialStateCoroutine()
     {
         float timer = 0.0f;
-        
-        _unit.ChangeCritical(_skillBaldoData.AddCriticalAmount);
+        bool _isFrist = true;
         
         while (_skillBaldoData.AddCriticalTime >= timer)
         {
+            if (_isHit == true && _isFrist == true)
+            {
+                timer = 0;
+                _unit.ChangeCritical(_skillBaldoData.AddCriticalAmount);
+                _isFrist = false;
+            }
+            
             timer += GameManager.instance.TimeMng.FixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
-        
-        _unit.ChangeCritical(-_skillBaldoData.AddCriticalAmount);
+
+        if (_isHit == true)
+        {
+            _unit.ChangeCritical(-_skillBaldoData.AddCriticalAmount);
+        }
+
         EndSkill();
     }
 }
