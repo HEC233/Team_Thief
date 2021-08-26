@@ -27,11 +27,6 @@ namespace PS.Util.DeveloperConsole
             }
         }
 
-        private void Awake()
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
-
         private void Start()
         {
             if (developerConsole == null)

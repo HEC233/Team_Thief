@@ -52,5 +52,5 @@ MonoBehaviour:
   _fristDelay: 0.5
   _endDelay: 1
   nextSkill: 0
-  _iconName: UI_Skill_PlainSwordSting
-  _icon: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}
+  _iconName: Sp_PC_Portrait
+  _icon: {fileID: 21300000, guid: 671e6ac71a94fcf45a18580b7e7a86da, type: 3}

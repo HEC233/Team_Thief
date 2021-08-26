@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3278bad8a4cbb944fb48f9887af8a207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blessingPenaltyDatas: []
   _encroachmentDecreasedNumber: 0
   _encroachmentDecreasedPerTime: 0
   _encroachmentProductionFadeOutTime: 0
