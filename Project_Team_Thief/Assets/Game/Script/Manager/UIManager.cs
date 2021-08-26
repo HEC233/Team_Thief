@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     private UIPlayerInfo uiPlayerInfo;
+    public UIPlayerInfo UIPlayerInfo => uiPlayerInfo;
     [SerializeField]
     private UIMainMenu uiMainMenu;
     [SerializeField]
@@ -50,7 +51,6 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
         if (exist)
             DestroyImmediate(this.gameObject);
         exist = true;
@@ -60,6 +60,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         GameLoader.instance?.AddSceneLoadCallback(InitUI);
+
     }
 
     private void Update()
@@ -221,11 +222,12 @@ public class UIManager : MonoBehaviour
 
     public Vector3 GetScreenPos(Vector3 worldPos)
     {
-        //float ratio = Screen.currentResolution.height / Screen.currentResolution.width;
-        //float ratioRcp = 1 / ratio;
+        float _screenRatio = Screen.currentResolution.width / Screen.currentResolution.height;
+        float final = 9 / 16 * _screenRatio;
+        float rcp = 1 / final;
 
         var screenPos = GameManager.instance.CameraMng.mainCam.WorldToScreenPoint(worldPos);
-        screenPos = new Vector2(screenPos.x / Screen.width * 480, screenPos.y / Screen.height * 270);
+        screenPos = new Vector2(screenPos.x / Screen.width * 480 , screenPos.y / Screen.height * 270);
 
 
         return screenPos;

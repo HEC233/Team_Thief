@@ -62,7 +62,7 @@ namespace PS.Event
             EditorGUIUtility.labelWidth = 80;
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("이벤트 이름");
-            _event.name = EditorGUILayout.TextField(_event.name);
+            _event.eventName = EditorGUILayout.TextField(_event.eventName);
             //EditorGUILayout.EndHorizontal();
 
             //EditorGUILayout.BeginHorizontal();

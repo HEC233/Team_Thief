@@ -24,7 +24,9 @@ public class UIPlayerInfo : MonoBehaviour
     private float _curMP;
 
     public SOPlayer playerInfo;
-    public UICommandInfo commandInfo;
+    [SerializeField]
+    private UISkillInfo _commandInfo;
+    public UISkillInfo SkillInfo => _commandInfo;
 
     private bool _bUseCommandInfo;
 
@@ -51,13 +53,12 @@ public class UIPlayerInfo : MonoBehaviour
     public void Toggle(bool value)
     {
         this.gameObject.SetActive(value);
-        commandInfo.gameObject.SetActive(value);
+        _commandInfo.gameObject.SetActive(value);
     }
 
     public void SetShowCommandInfo(bool value)
     {
         _bUseCommandInfo = value;
-        commandInfo.verticalPanel.gameObject.SetActive(value);
     }
 
     public void InitInfo()
@@ -73,9 +74,7 @@ public class UIPlayerInfo : MonoBehaviour
 
     public void CommandUpdate()
     {
-        commandInfo.gameObject.SetActive(true);
-        commandInfo.Init();
-        commandInfo.verticalPanel.gameObject.SetActive(_bUseCommandInfo);
+        _commandInfo.gameObject.SetActive(true);
     }
 
     public void SetHP()

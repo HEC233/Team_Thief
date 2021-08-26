@@ -41,7 +41,7 @@ public class NPCManager : MonoBehaviour
             {
                 nearestNpcDist = dist;
                 nearestNpcIndex = i;
-                nearestNpcName = npcs[i].name;
+                nearestNpcName = npcs[i].npcName;
             }
         }
 

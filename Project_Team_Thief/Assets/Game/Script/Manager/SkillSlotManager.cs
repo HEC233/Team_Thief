@@ -21,6 +21,7 @@ public class SkillSlotManager : MonoBehaviour
     
     [SerializeField]
     private float _commandInputTime = 5.0f;
+    public float CommandInputTime => _commandInputTime;
 
     private float _inputTime;
     private float _beInputTime;
@@ -50,13 +51,16 @@ public class SkillSlotManager : MonoBehaviour
         
         for (int i = 0; i < _skillSlotNumber; i++)
         {
-            _skillSlots.Add(new SkillSlot(_skillSlotCommandDatas[i], this));
+            var newSlot = new SkillSlot(_skillSlotCommandDatas[i], this);
+            _skillSlots.Add(newSlot);
+            GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.RegistSkillData(i, newSlot);
         }
         
         //test code
         for (int i = 0; i < _skillSlots.Count; i++)
         {
             _skillSlots[i].InsertSkillDataBase(_skillDataBases[i]);
+            GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.UpdateSkillData(i);
         }
     }
 
@@ -194,6 +198,8 @@ public class SkillSlotManager : MonoBehaviour
         private bool _isSeal;
         public bool IsSeal => _isSeal;
 
+        public float SkillSlotCoolTime => _skillSlotCoolTime;
+
         public float SkillSlotCurCoolTime
         {
             get => _skillSlotCurCoolTime;
@@ -253,6 +259,7 @@ public class SkillSlotManager : MonoBehaviour
         {
             _skillDataBase = skillDataBase;
             _skillSlotCoolTime = _skillDataBase.CoolTime;
+            _skillSlotCurCoolTime = _skillSlotCoolTime;
             _isActiveSkillSlot = true;
         }
 

@@ -14,7 +14,7 @@ public class GameLoader : MonoBehaviour
 
     // 랜덤 씬 로드를 위한 자료구조
     [System.Serializable]
-    struct SceneGroup
+    public class SceneGroup
     {
         public string theme;
         public string[] sceneNames;

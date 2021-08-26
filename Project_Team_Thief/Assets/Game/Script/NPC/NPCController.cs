@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
-    public string name;
-    private bool bInterActorable = false;
+    public string npcName;
+    //private bool bInterActorable = false;
     public Transform interactorableNoticeIcon;
 
     private void Start()

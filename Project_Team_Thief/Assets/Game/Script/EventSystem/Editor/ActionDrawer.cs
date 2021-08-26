@@ -152,7 +152,7 @@ namespace PS.Event
                 case (int)ActionType.Effect:
                     returnValue += EditorGUIUtility.singleLineHeight * 4;
                     break;
-                    break;
+                    //break;
             }
 
             return returnValue;

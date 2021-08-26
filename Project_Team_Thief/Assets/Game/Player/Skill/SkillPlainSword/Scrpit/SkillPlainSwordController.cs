@@ -12,7 +12,7 @@ public class SkillPlainSwordController : SkillControllerBase
     private Coroutine _multiHitCoroutine;
 
     private float _attackInterval = 0.0f;
-    private bool _isEnd = false;
+    //private bool _isEnd = false;
 
     public override void Invoke()
     {

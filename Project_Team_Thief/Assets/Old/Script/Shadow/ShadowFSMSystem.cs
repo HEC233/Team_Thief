@@ -25,7 +25,7 @@ public abstract class ShadowFSMStateBase : IFSMStateBase
 
 public class ShadowFSMSystem : FSMSystem<TransitionCondition, ShadowFSMStateBase>, IActor
 {
-    private ShadowUnit _shadowUnit;
+    private ShadowUnit _shadowUnit = null;
     public ShadowUnit ShadowUnit => _shadowUnit;
     
     [SerializeField] 

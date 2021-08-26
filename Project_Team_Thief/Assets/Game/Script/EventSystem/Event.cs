@@ -40,7 +40,7 @@ namespace PS.Event
     {
         public bool bFollowed;
         public string eventIndex;
-        public string name;
+        public string eventName;
         public string stopCondition;
         public EventType eventType;
         public TriggerType triggerType;

@@ -12,7 +12,7 @@ public class SkillKopshController : SkillControllerBase
 
     private Damage _damage;
 
-    private float _rushSpeed = 0;
+    //private float _rushSpeed = 0;
 
     private bool _isMove = false;
 
