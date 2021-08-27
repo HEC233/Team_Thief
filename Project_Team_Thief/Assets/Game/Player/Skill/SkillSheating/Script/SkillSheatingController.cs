@@ -8,6 +8,7 @@ public class SkillSheatingController : SkillControllerBase
     private PlayerUnit _unit;
     private Damage _damage;
     private bool _isHit = false;
+    private float _moveSpeed;
     
     public SkillSheatingController(GameSkillObject skillObject, SkillDataBase data, Unit unit) : base(skillObject, data, unit) { }
 
@@ -45,6 +46,8 @@ public class SkillSheatingController : SkillControllerBase
     private void Progress()
     {
         _unit.SkillSheatingAttackBase.Progress();
+        SetAttackMoveValue();
+        _unit.StartCoroutine(AttackMoveCoroutine());
         _unit.StartCoroutine(SpecialStateCoroutine());
 
     }
@@ -54,11 +57,34 @@ public class SkillSheatingController : SkillControllerBase
         _isHit = true;
     }
     
+    private void SetAttackMoveValue()
+    {
+        _unit.MoveStop();
+
+        _moveSpeed = (1 / _skillSheatingData.MoveTimes[0]) * _skillSheatingData.MoveXs[0];
+        _unit.Rigidbody2D.gravityScale = 0;
+    }
+    
+    private void AttackMove()
+    {
+        _unit.Rigidbody2D.velocity = Vector2.zero;
+
+        var power = new Vector2(_moveSpeed * _unit.FacingDir * GameManager.instance.TimeMng.TimeScale, 0);
+        _unit.Rigidbody2D.AddForce(power, ForceMode2D.Impulse);
+    }
+    
+    private void EndAttackMove()
+    {
+        _unit.MoveStop();
+        _unit.Rigidbody2D.gravityScale = _unit.OriginalGravityScale;
+    }
+    
     
     private void ResetValue()
     {
         _unit.OnSkillSheatingAttackEvent -= ReceiveAttackEvent;
         _isHit = false;
+        _moveSpeed = 0;
     }
     
     private void EndSkill()
@@ -91,5 +117,18 @@ public class SkillSheatingController : SkillControllerBase
         }
 
         EndSkill();
+    }
+    
+    IEnumerator AttackMoveCoroutine()
+    {
+        float timer = 0.0f;
+        while (_skillSheatingData.MoveTimes[0] > timer)
+        {
+            timer += GameManager.instance.TimeMng.FixedDeltaTime;
+            AttackMove();
+            yield return new WaitForFixedUpdate();
+        }
+
+        EndAttackMove();
     }
 }

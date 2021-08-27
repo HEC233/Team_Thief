@@ -15,39 +15,39 @@ MonoBehaviour:
   _id: 18
   _skillCondition: 34
   _cinemachineSignalSource: {fileID: 0}
-  _name: "\uBC1C\uB3C4"
+  _name: "\uB0A9\uB3C4"
   _grade: "\uB808\uC5B4"
   _isGet: 0
   _class: "\uBB34\uC0AC"
-  _coolTime: 6
+  _coolTime: 8
   _castingTime: 2
   _attackRange: 0
   _target: 0
-  _description: "\uC228\uC744 \uACE0\uB974\uBA70 \uB3C4\uB97C \uC7A1\uACE0 \uC2A4\uD0AC
-    \uC2DC\uC804 \uD6C4, \uC804\uBC29\uC5D0 \uB3C4\uB97C \uAEBC\uB0B4\uB4E4\uC5B4
-    \uBC1C\uB3C4\uD55C\uB2E4.\uBC1C\uB3C4 \uBC94\uC704\uB0B4\uC5D0 \uC788\uB294 \uC801\uC740
-    \uD53C\uD574\uB97C \uC785\uC73C\uBA74\uC11C \uBA40\uB9AC \uB0A0\uC544\uAC04\uB2E4.\uBC1C\uB3C4
-    \uBC94\uC704\uB0B4\uC5D0 \uC788\uB294 \uC544\uAD70 \uC18C\uD658\uBB3C\uB4E4\uC740
-    \uC77C\uC815 \uCCB4\uB825\uC774 \uD68C\uBCF5\uB41C\uB2E4.\uD45C\uC2DD\uC788\uB294
-    \uB300\uC0C1\uC774 \uBC1C\uB3C4\uC5D0 \uD53C\uACA9 \uC2DC \uC77C\uC815\uC2DC\uAC04
-    PC\uC758 \uAE30\uBCF8 \uCE58\uBA85\uD0C0\uC728\uC774 \uC99D\uAC00\uD55C\uB2E4."
-  _buffTime: 2
+  _description: "\uBC1C\uB3C4 \uD6C4 \uB4A4\uB85C \uC774\uB3D9\uD574 \uC8FC\uC800\uC549\uC740\uB4A4
+    \uAC80\uC744 \uB0A9\uB3C4\uD558\uBA70 \uC2A4\uD0AC\uC744 \uC2DC\uC804\uD55C\uB2E4.\uB0A9\uB3C4
+    \uBC94\uC704\uB0B4\uC5D0 \uC788\uB294 \uC801\uC740 \uB2E4\uB2E8\uD788\uD2B8 \uD53C\uD574\uB97C
+    \uC785\uC73C\uBA74\uC11C \uBA40\uB9AC \uB0A0\uC544\uAC04\uB2E4.\uBC1C\uB3C4 \uBC94\uC704\uB0B4\uC5D0
+    \uC788\uB294 \uC544\uAD70 \uC18C\uD658\uBB3C\uB4E4\uC740 \uC77C\uC815 \uCCB4\uB825\uC774
+    \uD68C\uBCF5\uB41C\uB2E4.\uD45C\uC2DD\uC788\uB294 \uB300\uC0C1\uC774 \uBC1C\uB3C4\uC5D0
+    \uD53C\uACA9 \uC2DC \uC77C\uC815\uC2DC\uAC04 PC\uC758 \uAE30\uBCF8 \uCE58\uBA85\uD0C0\uC728\uC774
+    \uC99D\uAC00\uD55C\uB2E4."
+  _buffTime: 0
   _skillNumberOfTimes: 1
   _damages: 96000000
   _hitIntervals:
-  - 0
-  _hitNumberOfTimes: 01000000
+  - 0.06
+  _hitNumberOfTimes: 05000000
   _knockBackTimes:
   - 0.1
   _knockBackXs:
-  - 10
+  - -10
   _knockBackYs:
   - 1.5
   _stiffness: 2
   _moveTimes:
-  - 0.06
+  - 0
   _moveXs:
-  - 0.5
+  - -0.5
   _moveYs:
   - 0
   _projectileMoveTime: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   _fristDelay: 1
   _endDelay: 2
   nextSkill: 0
-  _iconName: UI_Skill_baldo
+  _iconName: UI_Skill_Sheating
   _icon: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}
-  _addCriticalAmount: 0
-  _addCriticalTime: 0
+  _addCriticalAmount: 0.7
+  _addCriticalTime: 2
