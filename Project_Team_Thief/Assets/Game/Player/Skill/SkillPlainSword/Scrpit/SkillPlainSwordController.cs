@@ -21,59 +21,59 @@ public class SkillPlainSwordController : SkillControllerBase
 
     private void Init()
     {
-        _skillPlainSwordData = SkillData as SkillPlainSwordData;
-        _unit = Unit as PlayerUnit;
-
-        _damage = new Damage();
-        _damage.power = _skillPlainSwordData.AttackDamageArr[_unit.skillPlainSwordIndex] *
-                        _unit.GetDamageWeightFromEencroachment();
-        
-        if (_unit.skillPlainSwordIndex == 1)
-        {
-            _damage.knockBack = new Vector2(
-                _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].x * (_unit.FacingDir * -1),
-                _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].y);
-            
-        }
-        else
-        {
-            _damage.knockBack = new Vector2(
-                _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].x * _unit.FacingDir,
-                _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].y);
-        }
-
-        _damage.additionalInfo = _unit.skillPlainSwordIndex;
-
-        _unit._SkillPlainSwordAttackCtrls[_unit.skillPlainSwordIndex]
-            .Init(_damage, _skillPlainSwordData.CinemachineSignalSourceArr[_unit.skillPlainSwordIndex]);
-        
-        // _unit._SkillPlainSwordAttackCtrls[_unit.skillPlainSwordIndex]._cinemachineSignalSource =
-        //     _skillPlainSwordData.CinemachineSignalSourceArr[_unit.skillPlainSwordIndex];
-        // Debug.Log("Index : " + _unit._SkillPlainSwordAttackCtrls[_unit.skillPlainSwordIndex]);
-        _attackInterval = _skillPlainSwordData.MultiStateHitInterval;
-        
-        _unit.OnSkillPlainSwordAttackEvent += AttackSkillPlainSword;
+        // _skillPlainSwordData = SkillData as SkillPlainSwordData;
+        // _unit = Unit as PlayerUnit;
+        //
+        // _damage = new Damage();
+        // _damage.power = _skillPlainSwordData.AttackDamageArr[_unit.skillPlainSwordIndex] *
+        //                 _unit.GetDamageWeightFromEencroachment();
+        //
+        // if (_unit.skillPlainSwordIndex == 1)
+        // {
+        //     _damage.knockBack = new Vector2(
+        //         _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].x * (_unit.FacingDir * -1),
+        //         _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].y);
+        //     
+        // }
+        // else
+        // {
+        //     _damage.knockBack = new Vector2(
+        //         _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].x * _unit.FacingDir,
+        //         _skillPlainSwordData.KnockBackPowerArr[_unit.skillPlainSwordIndex].y);
+        // }
+        //
+        // _damage.additionalInfo = _unit.skillPlainSwordIndex;
+        //
+        // _unit._SkillPlainSwordAttackCtrls[_unit.skillPlainSwordIndex]
+        //     .Init(_damage, _skillPlainSwordData.CinemachineSignalSourceArr[_unit.skillPlainSwordIndex]);
+        //
+        // // _unit._SkillPlainSwordAttackCtrls[_unit.skillPlainSwordIndex]._cinemachineSignalSource =
+        // //     _skillPlainSwordData.CinemachineSignalSourceArr[_unit.skillPlainSwordIndex];
+        // // Debug.Log("Index : " + _unit._SkillPlainSwordAttackCtrls[_unit.skillPlainSwordIndex]);
+        // _attackInterval = _skillPlainSwordData.MultiStateHitInterval;
+        //
+        // _unit.OnSkillPlainSwordAttackEvent += AttackSkillPlainSword;
     }
     
     public override void Release()
     {
         base.Release();
 
-        _unit.OnSkillPlainSwordAttackEvent -= AttackSkillPlainSword;
+        //_unit.OnSkillPlainSwordAttackEvent -= AttackSkillPlainSword;
     }
 
     private void AttackSkillPlainSword()
     {
-        if (_unit.skillPlainSwordIndex == _unit._SkillPlainSwordAttackCtrls.Length - 1)
-        {
-            _unit.SkillPlainSwordMultiAttack(_damage);
-        }
-        else
-        {
-            _unit.SkillPlainSwordAttack(_damage);
-        }
-        
-        OnEndSkillAction?.Invoke();
+        // if (_unit.skillPlainSwordIndex == _unit._SkillPlainSwordAttackCtrls.Length - 1)
+        // {
+        //     _unit.SkillPlainSwordMultiAttack(_damage);
+        // }
+        // else
+        // {
+        //     _unit.SkillPlainSwordAttack(_damage);
+        // }
+        //
+        // OnEndSkillAction?.Invoke();
     }
 
 

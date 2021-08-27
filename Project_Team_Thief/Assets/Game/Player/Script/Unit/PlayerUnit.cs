@@ -53,15 +53,15 @@ public class PlayerUnit : Unit
 
     /// 스테이트 레벨
     private int _maxHpStateLevel = 1;
-    //private int _runSpeedStateLevel = 1;
-    //private int _jumpPowerStateLevel = 1;
-    //private int _dashRangeStateLevel = 1;
-    //private int _dashCoolTimeStateLevel = 1;
-    //private int _deathCountStateLevel = 1;
-    //private int _deathHPStateLevel = 1;
-    //private int _criticalStateLevel = 1;
-    //private int _attackSppedStateLevel = 1;
-    //private int _defStateLevel = 1;
+    private int _moveSppedStateLevel = 1;
+    private int _jumpPowerStateLevel = 1;
+    private int _dashRangeStateLevel = 1;
+    private int _dashCoolTimeStateLevel = 1;
+    private int _deathCountStateLevel = 1;
+    private int _deathHPStateLevel = 1;
+    private int _criticalStateLevel = 1;
+    private int _attackSppedStateLevel = 1;
+    private int _defStateLevel = 1;
     
     
     // 기본 스탯
@@ -173,57 +173,20 @@ public class PlayerUnit : Unit
     private float _wallSlideingUpPower = 0;
     [SerializeField] 
     private float _wallSlideingGravityScale = 1;
-
-    // BasicAttack Variable
-    [Header("BasicAttack Variable")] 
-    // [SerializeField]
-    // private float _basicAttackTime = 0.5f;
-    // public float BasicAttackTime => _basicAttackTime;r
-    [SerializeField]
-    private float _basicAttackDelay = 0.0f;
-    public float BasicAttackDelay => _basicAttackDelay;
-
-    [SerializeField] 
-    private float[] _basicAttackMoveTimeArr;
-    public float[] BasicAttackMoveTimeArr => _basicAttackMoveTimeArr;
-    [SerializeField] 
-    private float[] _basicAttackMoveGoalXArr;
-    private float _basicAttackMoveSpeed = 0.0f;
-    [SerializeField]
-    private float _basicAttackCansleTime = 0.6f;
-    public float BasicAttackCansleTime => _basicAttackCansleTime;
-
-    [SerializeField] 
-    private float _basicAttackMinDamage;
-    [SerializeField]
-    private float _basicAtaackMaxDamage;
-
-
-    private Damage _basicAttackDamage;
+    
+    [Header("BasicAttack Variable")]
     [SerializeField]
     private BasicAttackCtrl _basicAttackCtrl;
     [SerializeField]
     private BasicAttackCtrl[] _basicJumpAttackCtrlArr;
-
     [SerializeField]
-    private float[] _basicJumpAttackMoveTimeArr;
-    public float[] BasicJumpAttackMoveTimeArr => _basicJumpAttackMoveTimeArr;
-
-    [SerializeField]
-    private Vector2[] _basicJumpAttackMoveGoalArr;
-    public Vector2[] BasicJumpAttackMoveGoalXArr => _basicJumpAttackMoveGoalArr;
-    [SerializeField]
-    private Vector2[] _basicJumpAttackKnockBackArr;
-
-    private Damage _basicJumpAttackDamage;
-
-    private float _basicJumpAttackMoveSpeed = 0.0f;
-    public bool isBasicJumpAttackAble = true;
-    [SerializeField]
-    private float _basicJumpAttackTime = 0.1f;
-
+    private float _basicJumpAttackTime;
     public float BasicJumpAttackTime => _basicJumpAttackTime;
-    
+    [SerializeField] 
+    private float _basicAttackCancelTime;
+    public float BasicAttackCancelTime => _basicAttackCancelTime;
+    public bool isBasicJumpAttackAble = true;
+
     [Header("Combo Variable")]
     [SerializeField]
     private float _comboTime;
@@ -288,25 +251,12 @@ public class PlayerUnit : Unit
     private AttackBase _skillSheatingAttackBase;
     public AttackBase SkillSheatingAttackBase => _skillSheatingAttackBase;
     public event UnityAction OnSkillSheatingAttackEvent = null;
-    
 
-    [SerializeField, Header("SkillPlainSword")]
-    private SkillPlainSwordData _skillPlainSwordData;
-    public SkillPlainSwordData SkillPlainSwordData => _skillPlainSwordData;
-    public SkillPlainSwordAttackCtrl[] _SkillPlainSwordAttackCtrls;
-    public int skillPlainSwordIndex;
-    private float _skillPlainSwordNumberOfTimes;
-    private float _skillPlainSwordCoolTime;
-    //private bool _skillPlainSwordIsAble = true;
-    //private bool _skillPlainSwordEnd = false;
-    private float _skillPlainSwordAttackInterval;
-    private Damage _skillPlainDamage;
-    private Coroutine _skillPlainSwordMultiAttackCoroutine = null;
+    [Header("MagicMissile")] 
     [SerializeField]
-    private float _skillPlainSwordAttackTime;
-    public float SkillPlainSwordAttackTime => _skillPlainSwordAttackTime;
+    private AttackBase _skillMagicMissileAttackBase;
+    public AttackBase SkillMagicMissileAttackBase => _skillMagicMissileAttackBase;
 
-    public event UnityAction OnSkillPlainSwordAttackEvent = null;
 
     //////////////////////////// 데이터로 관리 할 변수
     
@@ -358,13 +308,6 @@ public class PlayerUnit : Unit
         {
             _basicJumpAttackCtrlArr[i].OnEnemyHitEvent += OnAddComboEventCall;
         }
-
-        
-        for (int i = 0; i < _SkillPlainSwordAttackCtrls.Length; i++)
-        {
-            _SkillPlainSwordAttackCtrls[i].OnEnemyHitEvent += OnAddComboEventCall;
-        }
-
     }
 
     private void UnBind()
@@ -375,13 +318,6 @@ public class PlayerUnit : Unit
         {
             _basicJumpAttackCtrlArr[i].OnEnemyHitEvent -= OnAddComboEventCall;
         }
-
-        
-        for (int i = 0; i < _SkillPlainSwordAttackCtrls.Length; i++)
-        {
-            _SkillPlainSwordAttackCtrls[i].OnEnemyHitEvent -= OnAddComboEventCall;
-        }
-        
     }
     
     // 향후에는 데이터 센터 클래스라던가 데이터를 가지고 있는 함수에서 직접 호출로 받아 올 수 있도록
@@ -396,15 +332,15 @@ public class PlayerUnit : Unit
         _originalGravityScale = _rigidbody2D.gravityScale;
 
         _maxHp = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "maxHp"));
-        _moveSpeed = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "moveSpeed"));
-        _jumpPower = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "jumpPower"));
-        _dashRange = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "dashRange"));
-        _dashCoolTime = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "dashCoolTime"));
-        _deathCount = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "deathCount"));
-        _deathHp = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "deathHP"));
-        _critical = Convert.ToInt32(GetDataFromStateLevel(_maxHpStateLevel, "critical"));
-        _attackSpeed = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "attackSpeed"));
-        _def = (float)Convert.ToDouble(GetDataFromStateLevel(_maxHpStateLevel, "def"));
+        _moveSpeed = Convert.ToInt32(GetDataFromStateLevel(_moveSppedStateLevel, "moveSpeed"));
+        _jumpPower = Convert.ToInt32(GetDataFromStateLevel(_jumpPowerStateLevel, "jumpPower"));
+        _dashRange = Convert.ToInt32(GetDataFromStateLevel(_dashRangeStateLevel, "dashRange"));
+        _dashCoolTime = (float)Convert.ToDouble(GetDataFromStateLevel(_dashCoolTimeStateLevel, "dashCoolTime"));
+        _deathCount = Convert.ToInt32(GetDataFromStateLevel(_deathCountStateLevel, "deathCount"));
+        _deathHp = (float)Convert.ToDouble(GetDataFromStateLevel(_deathHPStateLevel, "deathHP"));
+        _critical = Convert.ToInt32(GetDataFromStateLevel(_criticalStateLevel, "critical"));
+        _attackSpeed = (float)Convert.ToDouble(GetDataFromStateLevel(_attackSppedStateLevel, "attackSpeed"));
+        _def = (float)Convert.ToDouble(GetDataFromStateLevel(_defStateLevel, "def"));
         _maxJumpCount = 2;
         _addDamage = 0;
         _decreaseDamage = 1;
@@ -417,16 +353,9 @@ public class PlayerUnit : Unit
         playerInfo.CurEncroachment = _encroachment;
         playerInfo.MaxEncroachment = 100;
         //---
-
-        _basicAttackDamage = new Damage();
+        
         _hitDamage = new Damage();
 
-        //TODO 여기 갈아 엎어야함
-
-        _skillPlainSwordNumberOfTimes = 1;
-        _skillPlainSwordCoolTime = _skillPlainSwordData.CoolTime;
-        _skillPlainSwordAttackInterval = _skillPlainSwordData.MultiStateHitInterval;
-        
     }
 
 
@@ -674,19 +603,6 @@ public class PlayerUnit : Unit
         return _encroachmentPerPlayerHitDamageMax + (1 + (1 + _encroachment) / 100);
     }
 
-    private void SetBasicDamage(int attackIndex)
-    {
-        // _basicAttackDamage.power = Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) *
-        //                             GetDamageWeightFromEencroachment();
-        // _basicAttackDamage.knockBack = new Vector2(_basicAttackKnockBackArr[attackIndex].x * _facingDir, _basicAttackKnockBackArr[attackIndex].y);
-        // //============== 고재협이 편집함 ======================
-        // _basicAttackDamage.additionalInfo = attackIndex;
-        // //=====================================================
-        //
-        // _basicAttackDamage = CalcDamageAbnormalIsDrain(_basicAttackDamage);
-
-    }
-    
     public void SetBasicAttack()
     {
         _rigidbody2D.sharedMaterial = _dashPhysicMaterial;
@@ -700,17 +616,7 @@ public class PlayerUnit : Unit
         _basicAttackCtrl.Init(damage);
         _basicAttackCtrl.Progress();
     }
-
-    public void BasicAttackMove(int basicAttackIndex)
-    {
-        _basicAttackMoveSpeed = 
-            (1 / _basicAttackMoveTimeArr[basicAttackIndex]) * _basicAttackMoveGoalXArr[basicAttackIndex];
-        
-        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-
-        var power = new Vector2((_basicAttackMoveSpeed) * _facingDir * _timeScale, 0);
-        _rigidbody2D.AddForce(power, ForceMode2D.Impulse);
-    }
+    
     
     public void EndBasicAttack()
     {
@@ -722,18 +628,7 @@ public class PlayerUnit : Unit
         //if (IsGround)
         _rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
     }
-
-    // public void SetBasicJumpDamage(int index)
-    // {
-    //     _basicJumpAttackDamage.power =
-    //         UnityEngine.Random.Range(_basicAttackMinDamage, _basicAtaackMaxDamage) * GetDamageWeightFromEencroachment();
-    //     _basicJumpAttackDamage.knockBack = new Vector2(_basicJumpAttackKnockBackArr[index].x * _facingDir,
-    //         _basicJumpAttackKnockBackArr[index].y);
-    //     _basicJumpAttackDamage.additionalInfo = 3;
-    //
-    //     _basicJumpAttackDamage = CalcDamageAbnormalIsDrain(_basicJumpAttackDamage);
-    // }
-
+    
     public void BasicJumpAttack(int jumpAttackIndex, Damage damage)
     {
         _basicJumpAttackCtrlArr[jumpAttackIndex].Init(damage);
@@ -875,46 +770,12 @@ public class PlayerUnit : Unit
         OnSkillSheatingAttackEvent?.Invoke();
     }
     
-    public void OnSkillPlainSwordAttackEventCall()
-    {
-        OnSkillPlainSwordAttackEvent?.Invoke();
-    }
-
-    public void SkillPlainSwordAttack(Damage damage)
-    {
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Init(CalcDamageAbnormalIsDrain(damage));
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
-    }
-
-    public void SkillPlainSwordMultiAttack(Damage damage)
-    {
-        _skillPlainDamage = damage;
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Init(CalcDamageAbnormalIsDrain(_skillPlainDamage));
-        _skillPlainSwordMultiAttackCoroutine = StartCoroutine(SkillPlainSwordMultiAttackCoroutine());
-    }
 
     public void SkillSnakeSwordFlurryEnd()
     {
         skillSnakeSwordFlurryEndEvent?.Invoke();
     }
-
-    public void SkillPlainSwordEnd()
-    {
-        if(_skillPlainSwordMultiAttackCoroutine == null)
-            return;
-        
-        StopCoroutine(_skillPlainSwordMultiAttackCoroutine);
-        
-        // 사복검 에러 시 여기 체크
-        // _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].ZoomOut();
-        // _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].UnBind();
-    }
-
-    public void SkillPlainSwordFastInterval()
-    {
-        _skillPlainSwordAttackInterval = _skillPlainSwordData.MultiStateHitIntervalFastAmount *
-                                         _skillPlainSwordData.MultiStateHitInterval;
-    }
+    
 
     //  리팩토링 할 때  skillData를 다 따로 가지고 있지 말고
     // skillDataBase 리스트를 하나 만들어서 거기 담아놓자.
@@ -1201,26 +1062,6 @@ public class PlayerUnit : Unit
         }
         
         Dead();
-    }
-
-    IEnumerator SkillPlainSwordMultiAttackCoroutine()
-    {
-        float timer = 0.2f;
-        _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
-        while (true)
-        {
-            timer += GameManager.instance.TimeMng.FixedDeltaTime;
-
-            if (timer >= _skillPlainSwordAttackInterval)
-            {
-                _SkillPlainSwordAttackCtrls[skillPlainSwordIndex]
-                    .Init(CalcDamageAbnormalIsDrain(_skillPlainDamage));
-                _SkillPlainSwordAttackCtrls[skillPlainSwordIndex].Progress();
-                timer = 0.0f;
-            }
-
-            yield return new WaitForFixedUpdate();
-        }
     }
 
     IEnumerator SuperArmorCoroutine(float superArmorTime)

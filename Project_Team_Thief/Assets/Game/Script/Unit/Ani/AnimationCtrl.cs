@@ -46,6 +46,7 @@ public enum AniState
     SkillSheatingCast,  // 37
     SkillSheatingDelay, // 38
     SkillSheating,      // 39
+    SkillMagicMissile,  // 40
 
     // SkillShadowWalk,// 20
     // ShadowControl,  // 21

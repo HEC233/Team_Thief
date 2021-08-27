@@ -30,6 +30,8 @@ public enum FxAniEnum
     SkillSheatingCast,  // 22
     SkillSheatingDelay, // 23
     SkillSheating,      // 24
+    SkillMagicMissile,  // 25
+
 }
 
 public class FxCtrl : MonoBehaviour

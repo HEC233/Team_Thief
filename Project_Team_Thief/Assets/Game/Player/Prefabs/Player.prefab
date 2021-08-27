@@ -747,35 +747,13 @@ MonoBehaviour:
   _wallJumpPowerY: 15
   _wallSlideingUpPower: 0.5
   _wallSlideingGravityScale: 1
-  _basicAttackDelay: 0
-  _basicAttackMoveTimeArr:
-  - 0
-  - 0.045
-  - 0.06
-  - 0.045
-  _basicAttackMoveGoalXArr:
-  - 0
-  - 0.3
-  - 5
-  - 0.2
-  _basicAttackCansleTime: 0
-  _basicAttackMinDamage: 130
-  _basicAtaackMaxDamage: 150
   _basicAttackCtrl: {fileID: 1542053514905396923}
   _basicJumpAttackCtrlArr:
   - {fileID: 1542053514262991507}
   - {fileID: 1789575075951729271}
-  _basicJumpAttackMoveTimeArr:
-  - 0.05
-  - 0.05
-  _basicJumpAttackMoveGoalArr:
-  - {x: 1, y: 0}
-  - {x: 0, y: -4}
-  _basicJumpAttackKnockBackArr:
-  - {x: 3, y: 0}
-  - {x: -3, y: -30}
-  isBasicJumpAttackAble: 1
   _basicJumpAttackTime: 0.5
+  _basicAttackCancelTime: 0.1
+  isBasicJumpAttackAble: 1
   _comboTime: 3
   _comboRecoveryAmount: 40
   _hitInvincibilityTime: 1
@@ -792,14 +770,6 @@ MonoBehaviour:
   _skillSnakeSwordFlurryAttackBase: {fileID: 2771753488246673011}
   _skillBaldoAttackBase: {fileID: 2540636348771804994}
   _skillSheatingAttackBase: {fileID: 2560242976933320324}
-  _skillPlainSwordData: {fileID: 11400000, guid: 5d4868f48c06c1c468032faa0449a618,
-    type: 2}
-  _SkillPlainSwordAttackCtrls:
-  - {fileID: 3520344460148480530}
-  - {fileID: 541418563351318468}
-  - {fileID: 5626593371155512191}
-  skillPlainSwordIndex: 0
-  _skillPlainSwordAttackTime: 0.3
   _SlideingFx: {fileID: 1220389250567162997}
 --- !u!1 &1542053514262991534
 GameObject:

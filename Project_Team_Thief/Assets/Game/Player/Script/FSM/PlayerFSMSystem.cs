@@ -1228,7 +1228,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 return true;
             }
             
-            if (SystemMgr.AnimationCtrl.GetCurAniTime() >= SystemMgr.Unit.BasicAttackCansleTime)
+            if (SystemMgr.AnimationCtrl.GetCurAniTime() >= SystemMgr.Unit.BasicAttackCancelTime)
             {
                 if (condition == TransitionCondition.Dash)
                 {
@@ -3051,6 +3051,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return skillObejct;
         }
         
+        
         IEnumerator WaitStartDelay()
         {
             float timer = 0.0f;
@@ -3084,7 +3085,137 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return true;
         }
     }
-    
+
+    private class SkillMagicMissileState : CustomFSMStateBase, ISkillStateBase
+    {
+        private GameSkillObject _gameSkillObject;
+        private SkillMagicMissileData _skillMagicMissileData;
+        private bool _isInit = false;
+        private bool _isSkillEnd = false;
+        private Coroutine _waitDelayCoroutine;
+        
+        public SkillMagicMissileState(PlayerFSMSystem system) : base(system) { }
+
+        private void Init()
+        {
+            if(_isInit == true)
+                return;
+
+            _isInit = true;
+            _skillMagicMissileData = SkillDataBank.instance.GetSkillData(22) as SkillMagicMissileData;
+            
+        }
+        
+        public override void StartState()
+        {
+            Init();
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillMagicMissile);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillMagicMissile);
+            _gameSkillObject = InvokeSkill();
+        }
+
+        public override void Update()
+        {
+            SystemMgr.Unit.Progress();
+        }
+
+        public override void EndState()
+        {
+            StopWaitEndDelayCoroutine();
+            ResetValue();
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillDoubleCross)
+                return true;
+            if (condition == TransitionCondition.SkillSnakeSwordSting)
+                return true;
+            if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+                return true;
+            if (condition == TransitionCondition.SkillBaldo)
+                return true;
+            if (condition == TransitionCondition.SkillSheating)
+                return true;
+            if (condition == TransitionCondition.SkillMagicMissile)
+                return true;
+            
+            if (_isSkillEnd == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            return true;
+        }
+        
+        private void ResetValue()
+        {
+            _isSkillEnd = false;
+            _waitDelayCoroutine = null;
+        }
+
+        public bool IsAbleTransition()
+        {
+            return true;
+        }
+
+        private void OnAnimationEndEventCall()
+        {
+            _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
+        }
+
+        private void StopWaitEndDelayCoroutine()
+        {
+            if (_waitDelayCoroutine == null)
+            {
+                return;
+            }
+            
+            if (_isSkillEnd == false)
+            {
+                SystemMgr.StopCoroutine(_waitDelayCoroutine);
+            }
+        }
+        
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMng.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("SkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillMagicMissileData.GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
+        }
+
+        
+        IEnumerator WaitEndDelay()
+        {
+            float timer = 0.0f;
+            _isSkillEnd = false;
+            while (_skillMagicMissileData.EndDelay >= timer)
+            {
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isSkillEnd = true;
+            SystemMgr.Transition(TransitionCondition.Idle);
+        }
+    }
+
     protected override void RegisterState()
     {
         AddState(TransitionCondition.Idle, new IdleState(this));
@@ -3109,6 +3240,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.SkillSnakeSwordFlurry, new SkillSnakeSwordFlurryState(this));
         AddState(TransitionCondition.SkillBaldo, new SkillBaldoState(this));
         AddState(TransitionCondition.SkillSheating, new SkillSheatingState(this));
+        AddState(TransitionCondition.SkillMagicMissile, new SkillMagicMissileState(this));
         AddState(TransitionCondition.Die, new DieState(this));
     }
     

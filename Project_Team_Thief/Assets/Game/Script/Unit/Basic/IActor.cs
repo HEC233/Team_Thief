@@ -39,6 +39,7 @@ public enum TransitionCondition
     SkillSnakeSwordSting,
     SkillBaldo,
     SkillSheating,
+    SkillMagicMissile,
     Action,
 
     // Shadow
