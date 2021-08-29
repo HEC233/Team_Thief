@@ -39,7 +39,7 @@ public class NPCManager : MonoBehaviour
         controlUnit = GameManager.instance?.GetControlActor()?.GetUnit();
         nearestNpcDist = float.MaxValue;
 
-        if (controlUnit == null)
+        if (controlUnit == null || npcs == null)
             return;
         npcs[nearestNpcIndex].ActiveIcon(false); 
         bNearestNpcExist = false;
