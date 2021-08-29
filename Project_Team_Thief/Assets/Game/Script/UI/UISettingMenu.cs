@@ -41,7 +41,7 @@ public class UISettingMenu : MonoBehaviour
     public void CloseSettingMenu()
     {
         GameManager.instance.ApplySetting(data);
-        GameManager.instance.EscapeButton();
+        GameManager.instance.PauseGame();
         WwiseSoundManager.instance.PlayEventSound("Click");
     }
 

@@ -28,12 +28,11 @@ public class DialogueSystem : MonoBehaviour
 
     InputProcessActor inputProcess;
 
-    public bool InitializeData(out string ErrorMessage)
+    public bool InitializeData(ref string ErrorMessage)
     {
         ui?.SetShowDialogue(false);
         
         bInitialized = false;
-        ErrorMessage = string.Empty;
 
         var dataObject = GameObject.Find("DialogueData");
         if (dataObject == null)

@@ -9,7 +9,7 @@ public class GameLoader : MonoBehaviour
 
     private bool gameDataLoaded = false;
 
-    public delegate bool SceneLoadCallback(out string Error);
+    public delegate bool SceneLoadCallback(ref string Error);
     private List<SceneLoadCallback> sceneLoadCallbacks = new List<SceneLoadCallback>();
 
     // 랜덤 씬 로드를 위한 자료구조
@@ -42,14 +42,14 @@ public class GameLoader : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.GameState = GameManager.GameStateEnum.MainMenu;
+        GameManager.instance.GameState = GameStateEnum.MainMenu;
         GameManager.instance.SetControlActor(GameManager.instance.UIMng.UiActor);
         InitializeInternalSceneData();
     }
 
     private void InitializeInternalSceneData()
     {
-        // 인스펙터 창에서 넣은 데이터를 힙공간에 구축
+        // 인스펙터 창에서 넣은 씬에 대한 데이터를 힙공간에 구축
         _sceneLoadCheck = new Dictionary<string, bool[]>();
         foreach (var data in _sceneData)
         {
@@ -63,7 +63,10 @@ public class GameLoader : MonoBehaviour
         _sceneLoadCount = new int[_sceneData.Length];
     }
 
-    // 씬 로드시 필요한 초기화함수들을 델리게이트로 추가해주면 죠스입니다.
+    /// <summary>
+    /// 씬이 로드되고 나서 실행되기를 원하는 함수를 등록하기 위한 델리게이트를 할당하는 함수
+    /// 함수가 원하는 바를 성공시 true 리턴, 실패시 false 리턴 후 Error인수에 에러내용을 담을것.
+    /// </summary>
     public void AddSceneLoadCallback(SceneLoadCallback callback)
     {
         if (!sceneLoadCallbacks.Contains(callback))
@@ -82,8 +85,8 @@ public class GameLoader : MonoBehaviour
 
     public IEnumerator SceneLoad(string SceneName)
     {
-        GameManager.instance?.AddTextToDeveloperConsole(SceneName + " Scene Load Start");
-        GameManager.instance?.SetLoadingScreenShow(true);
+        GameManager.instance.UIMng.AddTextToDeveloperConsole(SceneName + " Scene Load Start");
+        GameManager.instance.UIMng.ShowLoading();
         if (!gameDataLoaded)
             yield return StartCoroutine(LoadGameData());
 
@@ -121,18 +124,19 @@ public class GameLoader : MonoBehaviour
         }
         
         GameManager.instance.TimeMng.UnbindAll();
-        
+
+        string error;
         foreach (var callback in sceneLoadCallbacks)
         {
-            string error = string.Empty;
-            if(!callback(out error))
+            error = string.Empty;
+            if(!callback(ref error))
             {
                 Debug.LogError(error);
-                GameManager.instance?.AddTextToDeveloperConsole(error);
+                GameManager.instance.UIMng.AddTextToDeveloperConsole(error);
             }
         }
 
-        GameManager.instance?.SetLoadingScreenShow(false);
-        GameManager.instance?.AddTextToDeveloperConsole(SceneName + " Scene Load Finished");
+        GameManager.instance.UIMng.StopLoading();
+        GameManager.instance.UIMng.AddTextToDeveloperConsole(SceneName + " Scene Load Finished");
     }
 }

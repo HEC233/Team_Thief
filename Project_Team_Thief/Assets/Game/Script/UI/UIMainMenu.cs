@@ -35,7 +35,7 @@ public class UIMainMenu : MonoBehaviour, IUIFocus
 
     public void GameSetting()
     {
-        GameManager.instance.GameState = GameManager.GameStateEnum.Setting;
+        GameManager.instance.GameState = GameStateEnum.Setting;
         WwiseSoundManager.instance.PlayEventSound("Click");
     }
 

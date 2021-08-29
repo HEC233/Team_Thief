@@ -7,8 +7,8 @@ public abstract class BlessingPenaltyDataBase : ScriptableObject
     [SerializeField]
     protected int _id;
     public int ID => _id;
-    
-    [SerializeField] 
+
+    [SerializeField]
     protected string _name;
     public string Name => _name;
 
@@ -16,9 +16,13 @@ public abstract class BlessingPenaltyDataBase : ScriptableObject
     protected string durationString;
     public string DurationString => durationString;
 
-    [SerializeField] 
+    [SerializeField]
     protected string contentString;
     public string ContentString => contentString;
+
+    [SerializeField]
+    protected string _spriteImageName;
+    public string SpriteImageName => _spriteImageName;
 
     public abstract void ActivePenalty(Unit unit);
 

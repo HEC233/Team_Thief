@@ -9,7 +9,7 @@ namespace PS.Util.DeveloperConsole.Commands
     {
         public override bool Process(out string resultMsg, string[] args)
         {
-            GameManager.instance.LoadGame(args[0]);
+            GameManager.instance.LoadScene(args[0]);
 
             resultMsg = string.Empty;
 

@@ -5,42 +5,93 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Unit",menuName = "ScriptableObject/Unit")]
 public class SOUnit : ScriptableObject
 {
-    public string unitName;
+    [SerializeField]
+    private string _unitName;
     [Space(8)]
-    public float minSpeed;
-    public float maxSpeed;
+    [SerializeField]
+    private float _minSpeed;
+    [SerializeField]
+    private float _maxSpeed;
 
     [Space(8)]
-    public float minJumpPower;
-    public float maxJumpPower;
-    public int jumpCount;
+    [SerializeField]
+    private float _minJumpPower;
+    [SerializeField]
+    private float _maxJumpPower;
+    [SerializeField]
+    private int _jumpCount;
 
     [Space(8)]
-    public float hp;
-    public float reduceHit;
-    public float knockbackMultiply;
+    [SerializeField]
+    private float _hp;
+    [SerializeField]
+    private float _reduceHit;
+    [SerializeField]
+    private float _knockbackMultiply;
 
     [Space(8)]
-    public float skillDamage;
-    public float criticalValue;
-    public int attackCount;
-    public float attackInterval;
-    public float enterDelay;
-    public float endDelay;
+    [SerializeField]
+    private float _skillDamage;
+    [SerializeField]
+    private float _criticalValue;
+    [SerializeField]
+    private int _attackCount;
+    [SerializeField]
+    private float _attackInterval;
+    [SerializeField]
+    private float _enterDelay;
+    [SerializeField]
+    private float _endDelay;
 
     [Space(8)]
-    public float coolTime;
-    public Vector2 knockback;
+    [SerializeField]
+    private float _coolTime;
+    [SerializeField]
+    private Vector2 _knockback;
 
     [Space(8)]
-    public float attackMoveX;
-    public float attackMoveXTime;
-    public float attackMoveY;
-    public float attackMoveYTime;
+    [SerializeField]
+    private float _attackMoveX;
+    [SerializeField]
+    private float _attackMoveXTime;
+    [SerializeField]
+    private float _attackMoveY;
+    [SerializeField]
+    private float _attackMoveYTime;
 
     [Space(8)]
-    public float cameraShakeIntensity;
-    public int cameraShakeCount;
-    public float hitstopLength;
-    public float bulletTimeLength;
+    [SerializeField]
+    private float _cameraShakeIntensity;
+    [SerializeField]
+    private int _cameraShakeCount;
+    [SerializeField]
+    private float _hitstopLength;
+    [SerializeField]
+    private float _bulletTimeLength;
+
+    public string unitName => _unitName;
+    public float minSpeed => _minSpeed;
+    public float maxSpeed => _maxSpeed;
+    public float minJumpPower => _minJumpPower;
+    public float maxJumpPower => _maxJumpPower;
+    public int jumpCount => _jumpCount;
+    public float hp => _hp;
+    public float reduceHit => _reduceHit;
+    public float knockbackMultiply => _knockbackMultiply;
+    public float skillDamage => _skillDamage;
+    public float criticalValue => _criticalValue;
+    public int attackCount => _attackCount;
+    public float attackInterval => _attackInterval;
+    public float enterDelay => _enterDelay;
+    public float endDelay => _endDelay;
+    public float coolTime => _coolTime;
+    public Vector2 knockback => _knockback;
+    public float attackMoveX => _attackMoveX;
+    public float attackMoveXTime => _attackMoveXTime;
+    public float attackMoveY => _attackMoveY;
+    public float attackMoveYTime => _attackMoveYTime;
+    public float cameraShakeIntensity => _cameraShakeIntensity;
+    public int cameraShakeCount => _cameraShakeCount;
+    public float hitstopLength => _hitstopLength;
+    public float bulletTimeLength => _bulletTimeLength;
 }

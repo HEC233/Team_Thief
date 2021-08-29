@@ -10,16 +10,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public enum GameStateEnum
-    {
-        MainMenu,
-        InGame,
-        Pause,
-        Setting,
-        None,
-    }
-
-
     public static GameManager instance;
 
     private GameStateEnum _gameState = GameStateEnum.InGame;
@@ -71,6 +61,10 @@ public class GameManager : MonoBehaviour
     private KeyManager _keyManager;
     public KeyManager KeyMng => _keyManager;
     [SerializeField]
+    private NPCManager _npcManager;
+    public NPCManager NPCMng => _npcManager;
+    [SerializeField]
+    private GameSettingController _gameSettingCtrl;
     private Grid grid;
 
     private GameSettingData _settingData;
@@ -107,7 +101,7 @@ public class GameManager : MonoBehaviour
         {
             if (GameState == GameStateEnum.InGame)
             {
-                EscapeButton();
+                PauseGame();
             }
         }
     }
@@ -141,20 +135,12 @@ public class GameManager : MonoBehaviour
         return _keyManager.GetControlActor();
     }
 
-    public void SetLoadingScreenShow(bool isStart)
-    {
-        if (isStart)
-            _uiManager.ShowLoading();
-        else
-            _uiManager.StopLoading();
-    }
-
     public void StartGame()
     {
         StartCoroutine(StartGameCoroutine("Tutorial"));
     }
 
-    public void LoadGame(string SceneName)
+    public void LoadScene(string SceneName)
     {
         if (SceneName == "MainScene")
         {
@@ -168,7 +154,7 @@ public class GameManager : MonoBehaviour
 
     public void ReloadScene()
     {
-        LoadGame(SceneManager.GetActiveScene().name);
+        LoadScene(SceneManager.GetActiveScene().name);
     }
 
     IEnumerator StartGameCoroutine(string SceneName)
@@ -190,42 +176,42 @@ public class GameManager : MonoBehaviour
         _cameraManager._cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
         _cameraManager.FindCameras();
         _cameraManager.Bind();
+        // 맵 그리드 할당
         var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
     }
 
-    public void EscapeButton()
+    public void PauseGame()
     {
-        // pause -> inGame
-        if (GameState == GameStateEnum.Pause)
+        switch (GameState) 
         {
-            GameState = GameStateEnum.InGame;
-            ChangeActorToPlayer();
-            DialogueSystem.ResumeDialogue();
-            WwiseSoundManager.instance.PlayEventSound("Click_Exit");
-            WwiseSoundManager.instance.ResumeAllSound();
-        }
-        // inGame -> pause
-        else if (GameState == GameStateEnum.InGame)
-        {
-            GameState = GameStateEnum.Pause;
-            SetControlActor(_uiManager.UiActor);
-            DialogueSystem.PauseDialogue();
-            WwiseSoundManager.instance.PlayEventSound("Click_Exit");
-            WwiseSoundManager.instance.PauseAllSound();
-        }
-        // mainMenu -> ExitGame
-        else if (GameState == GameStateEnum.MainMenu)
-        {
-            ExitGame();
-        }
-        // setting -> prevMenu(pause or mainMenu)
-        else if (GameState == GameStateEnum.Setting)
-        {
-            GameState = _prevState;
-            SetControlActor(_uiManager.UiActor);
-            WwiseSoundManager.instance.ResumeAllSound();
+            // 인게임에서 정지로
+            case GameStateEnum.InGame:
+                GameState = GameStateEnum.Pause;
+                SetControlActor(_uiManager.UiActor);
+                DialogueSystem.PauseDialogue();
+                WwiseSoundManager.instance.PlayEventSound("Click_Exit");
+                WwiseSoundManager.instance.PauseAllSound();
+                break;
+            // 정지에서 인게임으로
+            case GameStateEnum.Pause:
+                GameState = GameStateEnum.InGame;
+                ChangeActorToPlayer();
+                DialogueSystem.ResumeDialogue();
+                WwiseSoundManager.instance.PlayEventSound("Click_Exit");
+                WwiseSoundManager.instance.ResumeAllSound();
+                break;
+            // 메인메뉴에서 게임 종료
+            case GameStateEnum.MainMenu:
+                ExitGame();
+                break;
+            // 세팅에서 세팅끄기
+            case GameStateEnum.Setting:
+                GameState = _prevState;
+                SetControlActor(_uiManager.UiActor);
+                WwiseSoundManager.instance.ResumeAllSound();
+                break;
         }
     }
 
@@ -234,10 +220,10 @@ public class GameManager : MonoBehaviour
         isPlayerDead = false;
         _uiManager.TurnOffGameOverScreen();
         DialogueSystem.EndDialogue();
-        StartCoroutine(ExitGameCoroutine());
+        StartCoroutine(LoadMainMenuCoroutine());
     }
 
-    IEnumerator ExitGameCoroutine()
+    IEnumerator LoadMainMenuCoroutine()
     {
         ShadowParticle.UnRegistAllCollider();
         yield return GameLoader.instance.SceneLoad("MainScene");
@@ -251,16 +237,13 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
+        // 여기서 파일 저장
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
-    }
-
-    public void AddTextToDeveloperConsole(string text)
-    {
-        _uiManager.developerConsole?.AddLine(text);
     }
 
     public void ApplySetting(GameSettingData newData)
@@ -271,24 +254,4 @@ public class GameManager : MonoBehaviour
         _uiManager.developerConsole?.SetConsoleUsage(_settingData.bUseDeveloperConsole);
         _uiManager.SetShowCommandInfo(!_settingData.bDontUseCommandAssist);
     }
-
-    //====================== 빠른 구현을 위해 임의로 여기에 넣어놨음
-    public void PushEventQueue()
-    {
-        GameObject go = GameObject.Find("NPCManager");
-        if (go == null) return;
-        var nm = go.GetComponent<NPCManager>();
-        if (nm == null) return;
-
-        go = GameObject.Find("GameEventSystem");
-        if (go == null) return;
-        var es = go.GetComponent<GameEventSystem>();
-        if (es == null) return;
-
-        string nearest = nm.GetNearestNPC();
-        if (nearest != string.Empty)
-            es.AddQueue(nearest);
-    }
-
-    //======================
 }

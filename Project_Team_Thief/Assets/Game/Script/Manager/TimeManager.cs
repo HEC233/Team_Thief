@@ -177,7 +177,7 @@ public class TimeManager : MonoBehaviour
         float prevTimeScale = _timeScale;
         while (tick <= time)
         {
-            if (GameManager.instance.GameState != GameManager.GameStateEnum.Pause)
+            if (GameManager.instance.GameState != GameStateEnum.Pause)
             {
                 tick += Time.fixedDeltaTime;
             }
