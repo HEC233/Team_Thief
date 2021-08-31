@@ -125,7 +125,7 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
 
     public void Resume()
     {
-        GameManager.instance.EscapeButton();
+        GameManager.instance.PauseGame();
         WwiseSoundManager.instance.PlayEventSound("Click");
     }
 
@@ -137,7 +137,7 @@ public class UIPauseMenu : MonoBehaviour, IUIFocus
 
     public void Setting()
     {
-        GameManager.instance.GameState = GameManager.GameStateEnum.Setting;
+        GameManager.instance.GameState = GameStateEnum.Setting;
         WwiseSoundManager.instance.PlayEventSound("Click");
     }
 

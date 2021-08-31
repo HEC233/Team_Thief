@@ -17,12 +17,21 @@ public class NPCManager : MonoBehaviour
 
     private void Start()
     {
-        foreach(var npc in npcs)
+        GameLoader.instance.AddSceneLoadCallback(FindNPC);
+    }
+
+    public bool FindNPC(ref string ErrorMessage)
+    {
+        npcs = GameObject.FindObjectsOfType<NPCController>();
+
+        foreach (var npc in npcs)
         {
             var go = Instantiate(interActiveIcon, npc.interactorableNoticeIcon);
             go.transform.localPosition = Vector3.zero;
             go.transform.localScale = Vector3.one;
         }
+
+        return true;
     }
 
     private void Update()
@@ -30,7 +39,7 @@ public class NPCManager : MonoBehaviour
         controlUnit = GameManager.instance?.GetControlActor()?.GetUnit();
         nearestNpcDist = float.MaxValue;
 
-        if (controlUnit == null)
+        if (controlUnit == null || npcs == null)
             return;
         npcs[nearestNpcIndex].ActiveIcon(false); 
         bNearestNpcExist = false;
@@ -60,4 +69,15 @@ public class NPCManager : MonoBehaviour
             return string.Empty;
     }
 
+    public void PushEventQueue()
+    {
+        var go = GameObject.Find("GameEventSystem");
+        if (go == null) return;
+        var es = go.GetComponent<GameEventSystem>();
+        if (es == null) return;
+
+        string nearest = GetNearestNPC();
+        if (nearest != string.Empty)
+            es.AddQueue(nearest);
+    }
 }

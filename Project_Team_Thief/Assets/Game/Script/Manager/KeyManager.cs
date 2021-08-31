@@ -66,14 +66,14 @@ public class KeyManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                GameManager.instance.EscapeButton();
+                GameManager.instance.PauseGame();
             }
             if(Input.GetKeyDown(KeyCode.BackQuote))
             {
                 GameManager.instance.UIMng.ToggleDeveloperConsole();
             }
 
-            if(GameManager.instance.GameState != GameManager.GameStateEnum.InGame)
+            if(GameManager.instance.GameState != GameStateEnum.InGame)
             {
                 return;
             }

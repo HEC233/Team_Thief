@@ -52,10 +52,8 @@ public class SkillDataBank : MonoBehaviour
 
     }
 
-    private bool SceneLoadCallBack(out string Error)
+    private bool SceneLoadCallBack(ref string Error)
     {
-        Error = "Test";
-
         if (_isInit == false)
         {
             Init();

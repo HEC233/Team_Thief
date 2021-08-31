@@ -69,11 +69,11 @@ public class UIManager : MonoBehaviour
         t += GameManager.instance.TimeMng.DeltaTime;
     }
 
-    public void ToggleUI(GameManager.GameStateEnum gameState)
+    public void ToggleUI(GameStateEnum gameState)
     {
         switch (gameState)
         {
-            case GameManager.GameStateEnum.MainMenu:
+            case GameStateEnum.MainMenu:
                 uiPlayerInfo.Toggle(false);
                 uiDynamic.Toggle(false);
                 uiMainMenu.Toggle(true);
@@ -81,7 +81,7 @@ public class UIManager : MonoBehaviour
                 uiPauseMenu.Toggle(false);
                 m_focusedUI = uiMainMenu;
                 break;
-            case GameManager.GameStateEnum.InGame:
+            case GameStateEnum.InGame:
                 uiPlayerInfo.Toggle(true);
                 uiDynamic.Toggle(true);
                 uiMainMenu.Toggle(false);
@@ -89,7 +89,7 @@ public class UIManager : MonoBehaviour
                 uiPauseMenu.Toggle(false);
                 m_focusedUI = null;
                 break;
-            case GameManager.GameStateEnum.Pause:
+            case GameStateEnum.Pause:
                 uiPlayerInfo.Toggle(true);
                 uiDynamic.Toggle(false);
                 uiMainMenu.Toggle(false);
@@ -97,7 +97,7 @@ public class UIManager : MonoBehaviour
                 uiPauseMenu.Toggle(true);
                 m_focusedUI = uiPauseMenu;
                 break;
-            case GameManager.GameStateEnum.Setting:
+            case GameStateEnum.Setting:
                 uiPlayerInfo.Toggle(false);
                 uiDynamic.Toggle(false);
                 uiMainMenu.Toggle(false);
@@ -105,7 +105,7 @@ public class UIManager : MonoBehaviour
                 uiPauseMenu.Toggle(false);
                 m_focusedUI = null;
                 break;
-            case GameManager.GameStateEnum.None:
+            case GameStateEnum.None:
                 uiPlayerInfo.Toggle(false);
                 uiDynamic.Toggle(false);
                 uiMainMenu.Toggle(false);
@@ -176,9 +176,8 @@ public class UIManager : MonoBehaviour
     //    uiPlayerInfo.CommandUpdate();
     //    uiDynamic.Init(); 
     //}
-    public bool InitUI(out string errorMessage)
+    public bool InitUI(ref string errorMessage)
     {
-        errorMessage = string.Empty;
         uiPlayerInfo.CommandUpdate();
         uiDynamic.Init();
         bossHp.SetActive(false);
@@ -236,6 +235,11 @@ public class UIManager : MonoBehaviour
     public void TurnXButtonUI(bool value)
     {
         uiDynamic.TurnChangButton(value);
+    }
+
+    public void AddTextToDeveloperConsole(string text)
+    {
+        developerConsole?.AddLine(text);
     }
 
     public class UIActor : IActor

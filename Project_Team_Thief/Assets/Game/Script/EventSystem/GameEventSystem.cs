@@ -41,7 +41,7 @@ public class GameEventSystem : MonoBehaviour
     {
         evnetQueue.Add(value);
         
-        GameManager.instance?.AddTextToDeveloperConsole(value + " GameEventSystem queue added");
+        GameManager.instance.UIMng.AddTextToDeveloperConsole(value + " GameEventSystem queue added");
     }
 
     IEnumerator Process(PS.Event.Event data)
@@ -181,7 +181,7 @@ public class GameEventSystem : MonoBehaviour
                         yield return StartCoroutine(BossActive(actionData.unitName));
                         break;
                     case ActionType.LoadScene:
-                        GameManager.instance.LoadGame(actionData.sceneName);
+                        GameManager.instance.LoadScene(actionData.sceneName);
                         break;
 
                 }

@@ -149,13 +149,14 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.Wallslideing)
             {
                 //=============================
-                GameManager.instance.PushEventQueue();
+                GameManager.instance.NPCMng.PushEventQueue();
                 return false;
                 //=============================
             }
             if (condition == TransitionCondition.None)
+            {
                 return false;
-            
+            }
             if (condition == TransitionCondition.Jump)
             {
                 if (SystemMgr.Unit.CheckIsJumpAble() == false)
@@ -163,7 +164,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                     return false;
                 }
             }
-
             if (condition == TransitionCondition.Dash)
             {
                 if (SystemMgr.Unit.isDashAble == false)
@@ -171,7 +171,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                     return false;
                 }
             }
-            
             return true;
         }
 
