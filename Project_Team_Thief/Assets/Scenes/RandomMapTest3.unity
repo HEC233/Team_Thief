@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058f64d87cc4ab340914435043aef635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: CLEAR_POINT
+  npcName: 
   interactorableNoticeIcon: {fileID: 1774629605}
 --- !u!212 &983322800
 SpriteRenderer:
@@ -350,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1081744522
 AudioListener:
   m_ObjectHideFlags: 0
