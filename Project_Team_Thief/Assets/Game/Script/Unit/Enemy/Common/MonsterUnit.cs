@@ -5,6 +5,21 @@ using UnityEngine.Events;
 
 public class MonsterUnit : Unit
 {
+    private bool _monsterIDregisted = false;
+    protected int _monsterID = 0;
+    public int MonsterID
+    {
+        get { return _monsterID; }
+        set 
+        {
+            if(!_monsterIDregisted)
+            {
+                _monsterIDregisted = true;
+                _monsterID = value;
+            }
+        }
+    }
+
     [SerializeField]
     protected bool isOnGround = false;
     protected bool skipGroundCheck = false;

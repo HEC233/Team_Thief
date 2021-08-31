@@ -296,18 +296,6 @@ public class BossAlterActor : MonoBehaviour, IActor
     }
 }
 
-
-[System.Serializable]
-public struct SpawnData
-{
-    public Transform position;
-    public string unitName;
-    public int count;
-    public float enterDelay;
-    public float interval;
-}
-
-
 [System.Serializable]
 public struct LightPillarPattern
 {
