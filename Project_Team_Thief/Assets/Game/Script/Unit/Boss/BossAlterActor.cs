@@ -75,7 +75,7 @@ public class BossAlterActor : MonoBehaviour, IActor
     {
         yield return new WaitForSeconds(1);
 
-        var player = GameManager.instance.GetPlayerActor().GetUnit();
+        var player = GameManager.instance.PlayerActor.GetUnit();
         if (player.tag != "Player")
             yield break;
 
@@ -88,7 +88,7 @@ public class BossAlterActor : MonoBehaviour, IActor
     {
         yield return new WaitForSeconds(2);
 
-        var player = GameManager.instance.GetPlayerActor().GetUnit();
+        var player = GameManager.instance.PlayerActor.GetUnit();
         if (player.tag != "Player")
             yield break;
 

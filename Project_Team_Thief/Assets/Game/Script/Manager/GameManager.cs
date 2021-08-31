@@ -8,6 +8,11 @@ using PS.FX;
 using PS.Shadow;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// GameManager는 게임의 핵심 로직(플로우)만 담당하게
+/// 그리고 코드를 최대한 간결하고 읽기 쉽게
+/// </summary>
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -80,7 +85,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -99,43 +103,41 @@ public class GameManager : MonoBehaviour
     {
         if (hasFocus == false)
         {
-            if (GameState == GameStateEnum.InGame)
+            if (_gameState == GameStateEnum.InGame)
             {
-                PauseGame();
+                //PauseGame();
             }
         }
     }
 
-    private IActor m_playerActor;
-    public void SetPlayerActor(IActor actor)
+    //--------- 액터(컨트롤 대상)관련 로직 처리 ----------
+    private IActor _playerActor;
+    public IActor PlayerActor
     {
-        m_playerActor = actor;
+        get { return _playerActor; }
+        set { _playerActor = value; }
+    }
+    
+    /// <summary>
+    /// Control Actor, 현재 플레이어의 입력을 받아 처리하는 액터
+    /// </summary>
+    public IActor ControlActor
+    {
+        get { return _keyManager.GetControlActor(); }
+        set { _keyManager.SetControlActor(value); }
     }
 
-    public IActor GetPlayerActor()
+    public void ChangeCurActorToPlayer()
     {
-        return m_playerActor;
-    }
-
-    public void ChangeActorToPlayer()
-    {
-        if(m_playerActor != null)
+        if(_playerActor != null)
         {
-            _keyManager.SetControlActor(m_playerActor);
+            _keyManager.SetControlActor(_playerActor);
         }
     }
+    //---------------------------------------------------
 
-    public void SetControlActor(IActor actor)
-    {
-        _keyManager.SetControlActor(actor);
-    }
-
-    public IActor GetControlActor()
-    {
-        return _keyManager.GetControlActor();
-    }
-
-    public void StartGame()
+    //---------- 씬(맵)과 관련된 로직 --------------
+    public void StartNewGame()
     {
         StartCoroutine(StartGameCoroutine("Tutorial"));
     }
@@ -166,7 +168,7 @@ public class GameManager : MonoBehaviour
         WwiseSoundManager.instance.StopAllBGM();
         WwiseSoundManager.instance.PlayInGameBgm(SceneName);
         WwiseSoundManager.instance.PlayAMBSound(SceneName);
-        ChangeActorToPlayer();
+        ChangeCurActorToPlayer();
         isPlayerDead = false;
 
         _timeManager.UnbindAll();
@@ -184,12 +186,12 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        switch (GameState) 
+        switch (_gameState) 
         {
             // 인게임에서 정지로
             case GameStateEnum.InGame:
                 GameState = GameStateEnum.Pause;
-                SetControlActor(_uiManager.UiActor);
+                ControlActor = _uiManager.UiActor;
                 DialogueSystem.PauseDialogue();
                 WwiseSoundManager.instance.PlayEventSound("Click_Exit");
                 WwiseSoundManager.instance.PauseAllSound();
@@ -197,7 +199,7 @@ public class GameManager : MonoBehaviour
             // 정지에서 인게임으로
             case GameStateEnum.Pause:
                 GameState = GameStateEnum.InGame;
-                ChangeActorToPlayer();
+                ChangeCurActorToPlayer();
                 DialogueSystem.ResumeDialogue();
                 WwiseSoundManager.instance.PlayEventSound("Click_Exit");
                 WwiseSoundManager.instance.ResumeAllSound();
@@ -209,7 +211,7 @@ public class GameManager : MonoBehaviour
             // 세팅에서 세팅끄기
             case GameStateEnum.Setting:
                 GameState = _prevState;
-                SetControlActor(_uiManager.UiActor);
+                ControlActor = _uiManager.UiActor;
                 WwiseSoundManager.instance.ResumeAllSound();
                 break;
         }
@@ -232,7 +234,7 @@ public class GameManager : MonoBehaviour
         WwiseSoundManager.instance.StopInGameBgm();
         WwiseSoundManager.instance.PlayMainBgm();
         GameState = GameStateEnum.MainMenu;
-        SetControlActor(_uiManager.UiActor);
+        ControlActor = _uiManager.UiActor;
     }
 
     public void ExitGame()

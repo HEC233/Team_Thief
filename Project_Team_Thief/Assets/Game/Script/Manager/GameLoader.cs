@@ -31,7 +31,6 @@ public class GameLoader : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -43,7 +42,7 @@ public class GameLoader : MonoBehaviour
     private void Start()
     {
         GameManager.instance.GameState = GameStateEnum.MainMenu;
-        GameManager.instance.SetControlActor(GameManager.instance.UIMng.UiActor);
+        GameManager.instance.ControlActor = GameManager.instance.UIMng.UiActor;
         InitializeInternalSceneData();
     }
 

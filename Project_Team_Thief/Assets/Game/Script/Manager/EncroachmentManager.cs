@@ -139,7 +139,7 @@ public class EncroachmentManager : MonoBehaviour
     public void ActivePenaltyFromId(int penaltyId)
     {
         var penaltyData = _blessingPenaltyDatas.Find(x => x.ID == penaltyId);
-        penaltyData.ActivePenalty(GameManager.instance.GetPlayerActor().GetUnit());
+        penaltyData.ActivePenalty(GameManager.instance.PlayerActor.GetUnit());
 
         _blessingPenaltyDatas.Remove(penaltyData);
     }

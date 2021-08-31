@@ -60,16 +60,18 @@ namespace PS.Event
 
             float originalWidth = EditorGUIUtility.labelWidth;
             EditorGUIUtility.labelWidth = 80;
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("이벤트 이름");
-            _event.eventName = EditorGUILayout.TextField(_event.eventName);
+            //EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("이벤트 사용 씬");
+            _event.eventScene = EditorGUILayout.TextField(_event.eventScene);
             //EditorGUILayout.EndHorizontal();
 
+            /*
             //EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("이벤트 종류");
             _event.eventType = (EventType)EditorGUILayout.EnumPopup(_event.eventType);
             EditorGUILayout.EndHorizontal();
             EditorGUIUtility.labelWidth = originalWidth;
+            */
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("시작조건");
@@ -80,7 +82,7 @@ namespace PS.Event
             PS.Event.TriggerCondition newTrigger = new TriggerCondition();
             switch (_event.triggerType)
             {
-                case TriggerType.TRUE:
+                case TriggerType.Always:
                     break;
                 case TriggerType.Come:
                     EditorGUILayout.BeginHorizontal();
@@ -110,11 +112,6 @@ namespace PS.Event
                     break;
             }
             _event.trigger = newTrigger;
-
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("종료조건");
-            _event.stopCondition = EditorGUILayout.TextField(_event.stopCondition);
-            EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("재생횟수");

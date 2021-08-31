@@ -14,7 +14,7 @@ namespace PS.Util.DeveloperConsole.Commands
 
             if (gameMng != null)
             {
-                IActor controlActor = gameMng.GetControlActor();
+                IActor controlActor = gameMng.ControlActor;
                 if (controlActor != null)
                 {
                     if (controlActor.Transition(TransitionCondition.ForceKill))

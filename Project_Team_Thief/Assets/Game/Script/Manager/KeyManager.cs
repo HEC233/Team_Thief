@@ -23,7 +23,7 @@ public class KeyManager : MonoBehaviour
 
         List<KeyCode> pressedInput = new List<KeyCode>();
 
-        if (GameManager.instance.GetPlayerActor() != controlUnit)
+        if (GameManager.instance.PlayerActor != controlUnit)
         {
             if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
             {
