@@ -318,6 +318,7 @@ public class PlayerUnit : Unit
         {
             _basicJumpAttackCtrlArr[i].OnEnemyHitEvent -= OnAddComboEventCall;
         }
+        
     }
     
     // 향후에는 데이터 센터 클래스라던가 데이터를 가지고 있는 함수에서 직접 호출로 받아 올 수 있도록
