@@ -5,14 +5,9 @@ using System.Runtime.InteropServices;
 
 namespace PS.Event
 {
-    public enum EventType
-    {
-        Scene, Script, Battle
-    }
-
     public enum TriggerType
     {
-        Queue,TRUE,Come
+        Queue,Always,Come
     }
 
     public enum CmpType
@@ -40,9 +35,7 @@ namespace PS.Event
     {
         public bool bFollowed;
         public string eventIndex;
-        public string eventName;
-        public string stopCondition;
-        public EventType eventType;
+        public string eventScene;
         public TriggerType triggerType;
         
         public TriggerCondition trigger;

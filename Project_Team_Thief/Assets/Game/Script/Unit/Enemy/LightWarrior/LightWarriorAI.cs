@@ -53,9 +53,9 @@ public class LightWarriorAI : MonoBehaviour
     IEnumerator AIStartReady()
     {
         yield return new WaitForSeconds(0.1f);
-        if (GameManager.instance.GetControlActor() != null)
+        if (GameManager.instance.ControlActor != null)
         {
-            SetTarget(GameManager.instance.GetControlActor().GetUnit());
+            SetTarget(GameManager.instance.ControlActor.GetUnit());
         }
         var unit = (MonsterUnit)actor.GetUnit();
         while (!unit.IsOnGround)

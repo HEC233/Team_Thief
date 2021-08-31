@@ -83,8 +83,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         //GameManager.instance.SetControlActor(this);
 
         //==================== 고재협이 편집함 ==================
-        GameManager.instance.SetPlayerActor(this);
-        GameManager.instance.ChangeActorToPlayer();
+        GameManager.instance.PlayerActor = this;
+        GameManager.instance.ChangeCurActorToPlayer();
 
         GameManager.instance.ShadowParticle.RegistCollider(GetComponent<BoxCollider2D>());
         //=======================================================
