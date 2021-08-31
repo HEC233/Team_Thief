@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public List<GameObject> unit = new List<GameObject>();
+    private int _IDcount = 1;
 
     public GameObject[] Spawn(string unitName, Vector3 position, Quaternion quaternion, int count)
     {
@@ -18,6 +19,7 @@ public class Spawner : MonoBehaviour
             for (int i = 0; i < count; i++)
             {
                 ret[i] = Instantiate(unit, position, quaternion);
+                ret[i].GetComponentInChildren<MonsterUnit>().MonsterID = _IDcount++;
             }
 
             return ret;
