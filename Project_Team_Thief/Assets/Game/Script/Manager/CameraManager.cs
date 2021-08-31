@@ -18,12 +18,14 @@ public class CameraManager : MonoBehaviour
     public CinemachineVirtualCamera _zoomInVirtualCamera = null;
 
     public event UnityAction OnZoomInEndEvent = null;
-
+    private Unit playerUnit;
+    
     public Camera mainCam;
 
     private void Start()
     {
         Bind();
+        GameLoader.instance.AddSceneLoadCallback(FindAndFollowPlayer);
     }
 
     public void Bind()
@@ -36,6 +38,22 @@ public class CameraManager : MonoBehaviour
     {
         GameManager.instance.TimeMng.startHitstopEvent -= OnHitStopEvnetCall;
         GameManager.instance.TimeMng.endHitstopEvent -= OnHitStopEndEventCall;
+    }
+    
+    
+    public bool FindAndFollowPlayer(ref string ErrorMessage)
+    {
+        FindCameras();
+        playerUnit = GameManager.instance.GetControlActor()?.GetUnit();
+        
+        if (playerUnit == null)
+        {
+            playerUnit = GameObject.Find("Player").GetComponentInChildren<PlayerUnit>();
+        }
+
+        _mainVirtualCamera.Follow = playerUnit.transform;
+        
+        return true;
     }
 
     public void FindCameras()

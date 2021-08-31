@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1212,6 +1212,77 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b3e212317b4b6ed4ea95ee825f723463,
+        type: 2}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: ee3a752e33e029e4fabced14c21f0a37,
+        type: 2}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: dc8ad55abde2bf44181d00ac08aba545,
+        type: 2}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 17467cf713c51264398d74e7da4a11b4,
+        type: 2}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: b366ff89bcd1ad547a86cf5d09bf7d79,
+        type: 2}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 32b29d5e90c4e4c4f9718f7d94abab38,
+        type: 2}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b9b51138833d7f4fa8675fc961217a7,
+        type: 2}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5142d2669191123478c2fe2f66c299d3,
+        type: 2}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7be92052f2556e04b8d0ae0792aed92a,
+        type: 2}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: efcc9859b54bf6242b7101edad9bf3b6,
+        type: 2}
+    - target: {fileID: 8106726959300338560, guid: 29a66399cef21ee46b4c4b5488447aa2,
+        type: 3}
+      propertyPath: _skillDatabases.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d4868f48c06c1c468032faa0449a618,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29a66399cef21ee46b4c4b5488447aa2, type: 3}
 --- !u!1001 &5705492074024809875
