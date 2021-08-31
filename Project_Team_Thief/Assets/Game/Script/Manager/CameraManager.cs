@@ -44,7 +44,7 @@ public class CameraManager : MonoBehaviour
     public bool FindAndFollowPlayer(ref string ErrorMessage)
     {
         FindCameras();
-        playerUnit = GameManager.instance.GetPlayerActor()?.GetUnit();
+        playerUnit = GameManager.instance.PlayerActor.GetUnit();
         
         if (playerUnit == null)
         {

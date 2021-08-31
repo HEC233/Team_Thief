@@ -7,6 +7,7 @@ using PS.Util.Tile;
 using PS.FX;
 using PS.Shadow;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 /// <summary>
 /// GameManager는 게임의 핵심 로직(플로우)만 담당하게
@@ -96,6 +97,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ApplySetting(_settingData);
+
+        _mapEndEvents.AddListener(DebugLogger);
     }
 
     // 게임의 포커스가 나갔을 경우.
@@ -182,6 +185,13 @@ public class GameManager : MonoBehaviour
         var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
+        // 맵 클리어 이벤트 인보커 할당
+        var invoker = GameObject.FindObjectOfType<MapEndTrigger>();
+        if (invoker != null)
+        {
+            invoker.GetComponent<MapEndTrigger>().RegistUnityEvent(_mapEndEvents);
+        }
+        _mapStartEvents.Invoke();
     }
 
     public void PauseGame()
@@ -256,4 +266,28 @@ public class GameManager : MonoBehaviour
         _uiManager.developerConsole?.SetConsoleUsage(_settingData.bUseDeveloperConsole);
         _uiManager.SetShowCommandInfo(!_settingData.bDontUseCommandAssist);
     }
+
+    //--------------------------------------------------
+
+    //---------- 맵의 진행 로직과 관련된 부분 ----------
+
+    // public으로 노출시키지 않은 것은 밖에서 Invoke 하는 것을 막기 위함
+    private UnityEvent _mapStartEvents = new UnityEvent();
+    private UnityEvent _mapEndEvents = new UnityEvent();
+
+    public void AddMapStartEventListener(UnityAction action)
+    {
+        _mapStartEvents.AddListener(action);
+    }
+    public void AddMapEndEventListener(UnityAction action)
+    {
+        _mapEndEvents.AddListener(action);
+    }
+
+    public void DebugLogger()
+    {
+        Debug.Log("MapEndEventInvoked!");
+    }
+
+    //--------------------------------------------------
 }

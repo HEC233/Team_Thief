@@ -23,6 +23,7 @@ public class GameLoader : MonoBehaviour
     }
     [SerializeField]
     private SceneGroup[] _sceneData;
+    private string _curTheme = string.Empty;
     private Dictionary<string, bool[]> _sceneLoadCheck;
     private int[] _sceneLoadCount;
 
@@ -91,6 +92,14 @@ public class GameLoader : MonoBehaviour
 
         if (_sceneLoadCheck.ContainsKey(SceneName))
         {
+            if(_curTheme != SceneName)
+            {
+                var sceneCheck = _sceneLoadCheck[SceneName];
+                for(int i = 0; i < sceneCheck.Length; i++)
+                {
+                    sceneCheck[i] = false;
+                }
+            }    
             int index = 0;
             while(_sceneData[index].theme != SceneName)
             {
@@ -104,6 +113,9 @@ public class GameLoader : MonoBehaviour
             {
                 var sceneCheck = _sceneLoadCheck[SceneName];
                 int randomIndex = 0;
+                // 이 부분은 랜덤맵을 찾는 것을 10회만 하겠다는 구문
+                // 혹여나 랜덤맵이 개수가 로드 횟수보다 적을 경우 무한히 맵을 찾기 위해 루프를 도는 것을 방지 하기 위함
+                // 그래서 혹여나 10회 안에 랜덤한 맵을 찾아내지 못하는 경우 중복한 맵이 나올수 있음
                 for (int i = 0; i < 10; i++)
                 {
                     randomIndex = Random.Range(0, sceneCheck.Length);
@@ -116,10 +128,12 @@ public class GameLoader : MonoBehaviour
                 _sceneLoadCount[index]++;
                 yield return SceneManager.LoadSceneAsync(_sceneData[index].sceneNames[randomIndex], LoadSceneMode.Single);
             }
+            _curTheme = SceneName;
         }
         else
         {
             yield return SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
+            _curTheme = string.Empty;
         }
         
         GameManager.instance.TimeMng.UnbindAll();
