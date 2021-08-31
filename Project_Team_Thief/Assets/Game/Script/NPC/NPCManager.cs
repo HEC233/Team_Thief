@@ -10,7 +10,7 @@ public class NPCManager : MonoBehaviour
     private GameObject interActiveIcon;
     private string nearestNpcName;
     private float nearestNpcDist;
-    private int nearestNpcIndex = 0;
+    private int nearestNpcIndex;
     private bool bNearestNpcExist = false;
 
     private Unit controlUnit;
@@ -31,12 +31,13 @@ public class NPCManager : MonoBehaviour
             go.transform.localScale = Vector3.one;
         }
 
+        nearestNpcIndex = 0;
         return true;
     }
 
     private void Update()
     {
-        controlUnit = GameManager.instance?.GetControlActor()?.GetUnit();
+        controlUnit = GameManager.instance.ControlActor.GetUnit();
         nearestNpcDist = float.MaxValue;
 
         if (controlUnit == null || npcs == null)
