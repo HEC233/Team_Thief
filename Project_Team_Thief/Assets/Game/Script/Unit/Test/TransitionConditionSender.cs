@@ -8,7 +8,7 @@ public class TransitionConditionSender : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.SetControlActor(actor);
+        GameManager.instance.ControlActor = actor;
     }
 
     public void SendCondition(TransitionCondition condition)

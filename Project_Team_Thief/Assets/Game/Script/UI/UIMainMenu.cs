@@ -29,7 +29,7 @@ public class UIMainMenu : MonoBehaviour, IUIFocus
 
     public void GameStart()
     {
-        GameManager.instance.StartGame();
+        GameManager.instance.StartNewGame();
         WwiseSoundManager.instance.PlayEventSound("Click");
     }
 

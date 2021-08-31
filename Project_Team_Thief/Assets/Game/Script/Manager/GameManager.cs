@@ -7,6 +7,12 @@ using PS.Util.Tile;
 using PS.FX;
 using PS.Shadow;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+
+/// <summary>
+/// GameManager는 게임의 핵심 로직(플로우)만 담당하게
+/// 그리고 코드를 최대한 간결하고 읽기 쉽게
+/// </summary>
 
 public class GameManager : MonoBehaviour
 {
@@ -80,7 +86,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -92,6 +97,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ApplySetting(_settingData);
+
+        _mapEndEvents.AddListener(DebugLogger);
     }
 
     // 게임의 포커스가 나갔을 경우.
@@ -99,43 +106,41 @@ public class GameManager : MonoBehaviour
     {
         if (hasFocus == false)
         {
-            if (GameState == GameStateEnum.InGame)
+            if (_gameState == GameStateEnum.InGame)
             {
-                PauseGame();
+                //PauseGame();
             }
         }
     }
 
-    private IActor m_playerActor;
-    public void SetPlayerActor(IActor actor)
+    //--------- 액터(컨트롤 대상)관련 로직 처리 ----------
+    private IActor _playerActor;
+    public IActor PlayerActor
     {
-        m_playerActor = actor;
+        get { return _playerActor; }
+        set { _playerActor = value; }
+    }
+    
+    /// <summary>
+    /// Control Actor, 현재 플레이어의 입력을 받아 처리하는 액터
+    /// </summary>
+    public IActor ControlActor
+    {
+        get { return _keyManager.GetControlActor(); }
+        set { _keyManager.SetControlActor(value); }
     }
 
-    public IActor GetPlayerActor()
+    public void ChangeCurActorToPlayer()
     {
-        return m_playerActor;
-    }
-
-    public void ChangeActorToPlayer()
-    {
-        if(m_playerActor != null)
+        if(_playerActor != null)
         {
-            _keyManager.SetControlActor(m_playerActor);
+            _keyManager.SetControlActor(_playerActor);
         }
     }
+    //---------------------------------------------------
 
-    public void SetControlActor(IActor actor)
-    {
-        _keyManager.SetControlActor(actor);
-    }
-
-    public IActor GetControlActor()
-    {
-        return _keyManager.GetControlActor();
-    }
-
-    public void StartGame()
+    //---------- 씬(맵)과 관련된 로직 --------------
+    public void StartNewGame()
     {
         StartCoroutine(StartGameCoroutine("Tutorial"));
     }
@@ -166,7 +171,7 @@ public class GameManager : MonoBehaviour
         WwiseSoundManager.instance.StopAllBGM();
         WwiseSoundManager.instance.PlayInGameBgm(SceneName);
         WwiseSoundManager.instance.PlayAMBSound(SceneName);
-        ChangeActorToPlayer();
+        ChangeCurActorToPlayer();
         isPlayerDead = false;
 
         _timeManager.UnbindAll();
@@ -180,16 +185,23 @@ public class GameManager : MonoBehaviour
         var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
+        // 맵 클리어 이벤트 인보커 할당
+        var invoker = GameObject.FindObjectOfType<MapEndTrigger>();
+        if (invoker != null)
+        {
+            invoker.GetComponent<MapEndTrigger>().RegistUnityEvent(_mapEndEvents);
+        }
+        _mapStartEvents.Invoke();
     }
 
     public void PauseGame()
     {
-        switch (GameState) 
+        switch (_gameState) 
         {
             // 인게임에서 정지로
             case GameStateEnum.InGame:
                 GameState = GameStateEnum.Pause;
-                SetControlActor(_uiManager.UiActor);
+                ControlActor = _uiManager.UiActor;
                 DialogueSystem.PauseDialogue();
                 WwiseSoundManager.instance.PlayEventSound("Click_Exit");
                 WwiseSoundManager.instance.PauseAllSound();
@@ -197,7 +209,7 @@ public class GameManager : MonoBehaviour
             // 정지에서 인게임으로
             case GameStateEnum.Pause:
                 GameState = GameStateEnum.InGame;
-                ChangeActorToPlayer();
+                ChangeCurActorToPlayer();
                 DialogueSystem.ResumeDialogue();
                 WwiseSoundManager.instance.PlayEventSound("Click_Exit");
                 WwiseSoundManager.instance.ResumeAllSound();
@@ -209,7 +221,7 @@ public class GameManager : MonoBehaviour
             // 세팅에서 세팅끄기
             case GameStateEnum.Setting:
                 GameState = _prevState;
-                SetControlActor(_uiManager.UiActor);
+                ControlActor = _uiManager.UiActor;
                 WwiseSoundManager.instance.ResumeAllSound();
                 break;
         }
@@ -232,7 +244,7 @@ public class GameManager : MonoBehaviour
         WwiseSoundManager.instance.StopInGameBgm();
         WwiseSoundManager.instance.PlayMainBgm();
         GameState = GameStateEnum.MainMenu;
-        SetControlActor(_uiManager.UiActor);
+        ControlActor = _uiManager.UiActor;
     }
 
     public void ExitGame()
@@ -254,4 +266,28 @@ public class GameManager : MonoBehaviour
         _uiManager.developerConsole?.SetConsoleUsage(_settingData.bUseDeveloperConsole);
         _uiManager.SetShowCommandInfo(!_settingData.bDontUseCommandAssist);
     }
+
+    //--------------------------------------------------
+
+    //---------- 맵의 진행 로직과 관련된 부분 ----------
+
+    // public으로 노출시키지 않은 것은 밖에서 Invoke 하는 것을 막기 위함
+    private UnityEvent _mapStartEvents = new UnityEvent();
+    private UnityEvent _mapEndEvents = new UnityEvent();
+
+    public void AddMapStartEventListener(UnityAction action)
+    {
+        _mapStartEvents.AddListener(action);
+    }
+    public void AddMapEndEventListener(UnityAction action)
+    {
+        _mapEndEvents.AddListener(action);
+    }
+
+    public void DebugLogger()
+    {
+        Debug.Log("MapEndEventInvoked!");
+    }
+
+    //--------------------------------------------------
 }

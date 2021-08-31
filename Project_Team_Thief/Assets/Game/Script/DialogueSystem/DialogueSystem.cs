@@ -138,7 +138,7 @@ public class DialogueSystem : MonoBehaviour
         {
             if (!bAutoPass)
             {
-                GameManager.instance.SetControlActor(inputProcess);
+                GameManager.instance.ControlActor = inputProcess;
             }
             bCodeRuning = true;
             bPaused = false;
@@ -206,7 +206,7 @@ public class DialogueSystem : MonoBehaviour
         if (!bAutoPass)
         {
             GameManager.instance?.TimeMng.ResumeTime(); 
-            GameManager.instance?.ChangeActorToPlayer();
+            GameManager.instance?.ChangeCurActorToPlayer();
             bAutoPass = true;
         }
         PC = 0;
@@ -297,14 +297,14 @@ public class DialogueSystem : MonoBehaviour
                 case 0x10:
                     ui.ShowInteractiveButton(true);
                     GameManager.instance?.TimeMng.StopTime();
-                    GameManager.instance?.SetControlActor(inputProcess);
+                    GameManager.instance.ControlActor = inputProcess;
                     GameManager.instance?.UIMng.SetShowCommandInfo(false);
                     bAutoPass = false;
                     break;
                 case 0x11:
                     ui.ShowInteractiveButton(false);
                     GameManager.instance?.TimeMng.ResumeTime();
-                    GameManager.instance?.ChangeActorToPlayer();
+                    GameManager.instance?.ChangeCurActorToPlayer();
                     GameManager.instance?.UIMng.SetShowCommandInfo(!GameManager.instance.SettingData.bDontUseCommandAssist);
                     bAutoPass = true;
                     break;

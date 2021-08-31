@@ -48,7 +48,7 @@ public class GameEventSystem : MonoBehaviour
     {
         int leftCount = data.playCount;
 
-        // 이벤트가 남은 횟수만큼 반복
+        // 이벤트 싸이클
         while (data.playAmount == PlayAmount.Infinite || (data.playAmount == PlayAmount.Finite && leftCount-- > 0))
         {
             if (data.bFollowed)
@@ -68,7 +68,7 @@ public class GameEventSystem : MonoBehaviour
                     case TriggerType.Queue:
                         returnValue = TalkCheck(data.trigger);
                         break;
-                    case TriggerType.TRUE:
+                    case TriggerType.Always:
                         returnValue = ArriveCheck();
                         break;
                     case TriggerType.Come:
@@ -193,10 +193,7 @@ public class GameEventSystem : MonoBehaviour
             }
 
             // 여기서 이벤트 종료조건 검사 해줘야 함
-            if (data.stopCondition != string.Empty)
-            {
-
-            }
+            // 종료조건을 사용하는 이벤트도 없으며 명시적인 조건들 또한 없어서 삭제.
 
             //if (data.stoptime)
             //{
@@ -223,9 +220,9 @@ public class GameEventSystem : MonoBehaviour
     }
     private bool ComeCheck(PS.Event.TriggerCondition trigger)
     {
-        Unit player = GameManager.instance?.GetControlActor()?.GetUnit();
+        Unit player = GameManager.instance.ControlActor.GetUnit();
         if (player == null) return false;
-        var pos = GameManager.instance.GetControlActor().GetUnit().transform.TileCoord();
+        var pos = GameManager.instance.ControlActor.GetUnit().transform.TileCoord();
         return ((trigger.xCmp == CmpType.Bigger && trigger.xValue < pos.x) ||
             (trigger.xCmp == CmpType.Equal && trigger.xValue == pos.x) ||
             (trigger.xCmp == CmpType.Smaller && trigger.xValue > pos.x) ||

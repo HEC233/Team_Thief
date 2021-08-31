@@ -65,9 +65,9 @@ public class SeraphimAI : MonoBehaviour
     IEnumerator TargetSetCoroutine()
     {
         yield return new WaitForSeconds(0.1f); 
-        if (GameManager.instance.GetControlActor() != null)
+        if (GameManager.instance.ControlActor != null)
         {
-            SetTarget(GameManager.instance.GetControlActor().GetUnit());
+            SetTarget(GameManager.instance.ControlActor.GetUnit());
         }
         var unit = (MonsterUnit)actor.GetUnit();
         while (!unit.IsOnGround)
