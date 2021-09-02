@@ -47,6 +47,11 @@ public class KeyManager : MonoBehaviour
             }
         }
 
+        if (GameManager.instance.GameState != GameStateEnum.InGame)
+        {
+            return;
+        }
+
         if (Input.anyKey || Input.anyKeyDown)
         {
             if (GameManager.instance.isPlayerDead)
