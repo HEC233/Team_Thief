@@ -77,6 +77,8 @@ AkWwiseProjectData.asset.meta
 # build info
 build_info.txt
 build_info.txt.meta
+build_info
+build_info.meta
 
 # https://kcmschool.com/194
 # to ignore file under tracking, remove it from tracking
