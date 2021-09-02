@@ -134,8 +134,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 68c203ba5eec3ac49a4a0f0a9de050b8, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 68c203ba5eec3ac49a4a0f0a9de050b8, type: 3}
   - m_GUID: 671e6ac71a94fcf45a18580b7e7a86da
     m_Address: Assets/Game/UI/Image/Portrait/Sp_PC_Portrait.png
     m_ReadOnly: 0
@@ -148,8 +148,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2800000, guid: dc93bbb2340e6b043bafd75f7a507131, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: dc93bbb2340e6b043bafd75f7a507131, type: 3}
   - m_GUID: 1776c788b5400b24dba083acc6a7c197
     m_Address: Assets/Game/Player/CSV/PlayerData.csv
     m_ReadOnly: 0
@@ -162,22 +162,22 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 4999c978e60064b49951d8a5b6694289, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 4999c978e60064b49951d8a5b6694289, type: 3}
   - m_GUID: a10d6e4995dffcb428d65ae2eae16a3e
     m_Address: Assets/Game/Player/SkillAxe/Image/UI_Skill_SpinAxe.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2800000, guid: a10d6e4995dffcb428d65ae2eae16a3e, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: a10d6e4995dffcb428d65ae2eae16a3e, type: 3}
   - m_GUID: 240979e984a050f40b447c412d8e1482
     m_Address: Assets/Game/Player/SkillDoubleCross/Image/UI_Skill_DoubleCross.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2800000, guid: 240979e984a050f40b447c412d8e1482, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 240979e984a050f40b447c412d8e1482, type: 3}
   - m_GUID: 36ceb1bf350d834469e76c0d3fdfbe1d
     m_Address: Assets/Game/Player/SkillTest/Image/none.png
     m_ReadOnly: 0

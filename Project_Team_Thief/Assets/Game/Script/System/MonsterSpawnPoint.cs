@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MonsterSpawnPoint : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class MonsterSpawnPoint : MonoBehaviour
     private List<GameObject> _spawnedMonsters = new List<GameObject>();
     private int _allMonsterCount = 0;
     private int _spawnedMonsterCount;
+
+    [SerializeField, Tooltip("몬스터가 모두 죽을 경우 발생하는 이벤트")]
+    private UnityEvent _monsterAllDeathEvent;
+    [SerializeField, Tooltip("몬스터가 모두 죽을 경우 이벤트 시스템에 넘겨주는 큐 (Empty일시 아무것도 전달되지 않음)")]
+    private string _monsterAllDeathQueue;
 
     /// <summary>
     /// 몬스터 풀을 순환하기 때문에 너무 자주 호출하지 말것
@@ -48,6 +54,23 @@ public class MonsterSpawnPoint : MonoBehaviour
         foreach(var data in _spawnDatas)
         {
             _allMonsterCount += data.count;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(!IsAllSpawned)
+        {
+            return;
+        }
+        if(CurMonsterCount == 0)
+        {
+            _monsterAllDeathEvent.Invoke();
+            if (_monsterAllDeathQueue != null)
+            {
+                // 여기서 처리
+            }
+            this.enabled = false;
         }
     }
 
