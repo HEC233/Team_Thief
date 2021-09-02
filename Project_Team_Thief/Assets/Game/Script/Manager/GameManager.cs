@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
         set { _prevState = _gameState; _gameState = value; _uiManager.ToggleUI(value); Debug.Log("GameState Changed : " + _gameState); }
     }
 
+    [SerializeField] 
+    private GameObject _playerPrefab;
+    private GameObject _playerGameObject;
+    
     [SerializeField]
     private FreameChecker _frameChecker;
     public FreameChecker FrameChecker => _frameChecker;
@@ -120,6 +124,18 @@ public class GameManager : MonoBehaviour
         get { return _playerActor; }
         set { _playerActor = value; }
     }
+
+    private void SpawnPlayer()
+    {
+        if (_playerGameObject == null)
+        {
+            _playerGameObject = GameObject.Instantiate(_playerPrefab);
+            _playerActor = _playerGameObject.GetComponent<PlayerFSMSystem>();
+            ChangeCurActorToPlayer();
+        }
+        
+        _playerGameObject.transform.position = Vector3.zero;
+    }
     
     /// <summary>
     /// Control Actor, 현재 플레이어의 입력을 받아 처리하는 액터
@@ -165,6 +181,10 @@ public class GameManager : MonoBehaviour
     IEnumerator StartGameCoroutine(string SceneName)
     {
         yield return GameLoader.instance.SceneLoad(SceneName);
+        //
+        SpawnPlayer();
+        //
+        
         ShadowParticle.UnRegistAllCollider();
         if (DialogueSystem.CheckRunning()) DialogueSystem.EndDialogue();
         GameState = GameStateEnum.InGame;
@@ -185,6 +205,8 @@ public class GameManager : MonoBehaviour
         var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
+        
+        
         // 맵 클리어 이벤트 인보커 할당
         var invoker = GameObject.FindObjectOfType<MapEndTrigger>();
         if (invoker != null)

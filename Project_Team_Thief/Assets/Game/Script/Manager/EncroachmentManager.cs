@@ -50,6 +50,9 @@ public class EncroachmentManager : MonoBehaviour
         _encroachmentZeroTimer = 0.0f;
         _encroachmentNumber = 5;
         SetPenaltyDataContent();
+        
+        GameManager.instance.AddMapStartEventListener(StartRoomSetting);
+        GameManager.instance.AddMapEndEventListener(EndRoomSetting);
     }
 
     private void SetPenaltyDataContent()
@@ -126,7 +129,7 @@ public class EncroachmentManager : MonoBehaviour
     {
         _encroachment = 0;
         _encroachmentNumber--;
-        StartCoroutine(EncroachmentZeroTimerCorotuine());
+        StartCoroutine(EncroachmentZeroTimerCoroutine());
         _isEncroachmentActiveDecreasedCoroutine = false;
     }
 
@@ -283,7 +286,7 @@ public class EncroachmentManager : MonoBehaviour
         _encroachmentProductionParticleSystems[particlefadeOutIndex].gameObject.SetActive(false);
     }
 
-    IEnumerator EncroachmentZeroTimerCorotuine()
+    IEnumerator EncroachmentZeroTimerCoroutine()
     {
         _encroachmentZeroTimer = 0.0f;
         

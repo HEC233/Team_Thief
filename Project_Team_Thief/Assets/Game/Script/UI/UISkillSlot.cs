@@ -21,6 +21,9 @@ public class UISkillSlot : MonoBehaviour
     {
         if (_skillData == null || _skillData.SkillDataBase == null)
         {
+            Debug.Log(_skillData);
+            Debug.Log(_skillData.SkillDataBase);
+
             return;
         }
         _skillCommandBox.InitCommandInfo(_skillData.CommandString);

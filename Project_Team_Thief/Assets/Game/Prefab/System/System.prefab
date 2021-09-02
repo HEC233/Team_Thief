@@ -9132,6 +9132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83aba1311f028e4b99edc9dd5c44206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerPrefab: {fileID: 1542053513835489097, guid: adf6ad9dc80def9439a1ac8287d0a9f5,
+    type: 3}
   _frameChecker: {fileID: 4858623434389476526}
   _cameraManager: {fileID: 1157280887251364677}
   _timeManager: {fileID: 4858623434389476525}
@@ -9215,7 +9217,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillDatabases:
   - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
-  - {fileID: 11400000, guid: 5d4868f48c06c1c468032faa0449a618, type: 2}
+  - {fileID: 11400000, guid: b3e212317b4b6ed4ea95ee825f723463, type: 2}
+  - {fileID: 11400000, guid: ee3a752e33e029e4fabced14c21f0a37, type: 2}
+  - {fileID: 11400000, guid: dc8ad55abde2bf44181d00ac08aba545, type: 2}
+  - {fileID: 11400000, guid: 17467cf713c51264398d74e7da4a11b4, type: 2}
+  - {fileID: 11400000, guid: b366ff89bcd1ad547a86cf5d09bf7d79, type: 2}
+  - {fileID: 11400000, guid: 32b29d5e90c4e4c4f9718f7d94abab38, type: 2}
+  - {fileID: 11400000, guid: 1b9b51138833d7f4fa8675fc961217a7, type: 2}
+  - {fileID: 11400000, guid: 5142d2669191123478c2fe2f66c299d3, type: 2}
+  - {fileID: 11400000, guid: 7be92052f2556e04b8d0ae0792aed92a, type: 2}
+  - {fileID: 11400000, guid: efcc9859b54bf6242b7101edad9bf3b6, type: 2}
 --- !u!114 &4858623434389476526
 MonoBehaviour:
   m_ObjectHideFlags: 0

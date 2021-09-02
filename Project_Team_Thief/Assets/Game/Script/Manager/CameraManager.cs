@@ -25,7 +25,7 @@ public class CameraManager : MonoBehaviour
     private void Start()
     {
         Bind();
-        GameLoader.instance.AddSceneLoadCallback(FindAndFollowPlayer);
+        GameManager.instance.AddMapStartEventListener(FindAndFollowPlayer);
     }
 
     public void Bind()
@@ -41,19 +41,10 @@ public class CameraManager : MonoBehaviour
     }
     
     
-    public bool FindAndFollowPlayer(ref string ErrorMessage)
+    public void FindAndFollowPlayer()
     {
         FindCameras();
-        playerUnit = GameManager.instance.PlayerActor.GetUnit();
-        
-        if (playerUnit == null)
-        {
-            playerUnit = GameObject.Find("Player").GetComponentInChildren<PlayerUnit>();
-        }
-
-        _mainVirtualCamera.Follow = playerUnit.transform;
-        
-        return true;
+        _mainVirtualCamera.Follow = GameManager.instance.PlayerActor.GetUnit().transform;
     }
 
     public void FindCameras()

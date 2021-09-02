@@ -69,6 +69,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
     private void Start()
     {
         Init();
+        DontDestroyOnLoad(this);
     }
 
     private void OnDestroy()
@@ -83,8 +84,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         //GameManager.instance.SetControlActor(this);
 
         //==================== 고재협이 편집함 ==================
-        GameManager.instance.PlayerActor = this;
-        GameManager.instance.ChangeCurActorToPlayer();
+        //GameManager.instance.PlayerActor = this;
+        //GameManager.instance.ChangeCurActorToPlayer();
 
         GameManager.instance.ShadowParticle.RegistCollider(GetComponent<BoxCollider2D>());
         //=======================================================

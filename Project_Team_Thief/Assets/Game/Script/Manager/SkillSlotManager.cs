@@ -48,20 +48,21 @@ public class SkillSlotManager : MonoBehaviour
             Debug.LogError("Is Not Same skillSlotCount and SkillSlotCommandData");
             return;
         }
-        
         for (int i = 0; i < _skillSlotNumber; i++)
         {
             var newSlot = new SkillSlot(_skillSlotCommandDatas[i], this);
             _skillSlots.Add(newSlot);
             GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.RegistSkillData(i, newSlot);
         }
-        
+
         //test code
         for (int i = 0; i < _skillSlots.Count; i++)
         {
             _skillSlots[i].InsertSkillDataBase(_skillDataBases[i]);
             GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.UpdateSkillData(i);
         }
+        
+
     }
 
     // 왼쪽부터 순서대로 빈 공간에 스킬 삽입
