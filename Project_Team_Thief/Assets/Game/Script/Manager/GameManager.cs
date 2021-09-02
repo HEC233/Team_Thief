@@ -122,7 +122,6 @@ public class GameManager : MonoBehaviour
     public IActor PlayerActor
     {
         get { return _playerActor; }
-        set { _playerActor = value; }
     }
 
     private void SpawnPlayer()
