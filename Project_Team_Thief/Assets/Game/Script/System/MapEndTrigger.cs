@@ -20,11 +20,11 @@ public class MapEndTrigger : MonoBehaviour
         {
             return;
         }    
-        if(collision.gameObject == GameManager.instance.PlayerActor.GetUnit().gameObject)
+        if(collision.gameObject.tag == "Player" && collision.gameObject.layer == 10)
         {
             Assert.IsNotNull(_mapEndEvent);
             _mapEndEvent.Invoke();
-            invoked = false;
+            invoked = true;
         }
     }
 }

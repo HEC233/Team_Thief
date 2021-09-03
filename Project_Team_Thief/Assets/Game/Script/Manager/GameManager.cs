@@ -103,6 +103,9 @@ public class GameManager : MonoBehaviour
         ApplySetting(_settingData);
 
         _mapEndEvents.AddListener(DebugLogger);
+
+        _mapStartEvents.AddListener(MapStartLogger);
+        _mapEndEvents.AddListener(MapEndLogger);
     }
 
     // 게임의 포커스가 나갔을 경우.
@@ -212,6 +215,10 @@ public class GameManager : MonoBehaviour
         {
             invoker.GetComponent<MapEndTrigger>().RegistUnityEvent(_mapEndEvents);
         }
+        else
+        {
+            Debug.LogWarning("There is no Map End Trigger!!!");
+        }
         _mapStartEvents.Invoke();
     }
 
@@ -295,6 +302,15 @@ public class GameManager : MonoBehaviour
     // public으로 노출시키지 않은 것은 밖에서 Invoke 하는 것을 막기 위함
     private UnityEvent _mapStartEvents = new UnityEvent();
     private UnityEvent _mapEndEvents = new UnityEvent();
+
+    private void MapStartLogger()
+    {
+        Debug.Log("Map Start Event Invoked");
+    }
+    private void MapEndLogger()
+    {
+        Debug.Log("Map End Event Invoked");
+    }
 
     public void AddMapStartEventListener(UnityAction action)
     {
