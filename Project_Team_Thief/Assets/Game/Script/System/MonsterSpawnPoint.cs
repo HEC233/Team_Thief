@@ -68,7 +68,7 @@ public class MonsterSpawnPoint : MonoBehaviour
             _monsterAllDeathEvent.Invoke();
             if (_monsterAllDeathQueue != null)
             {
-                // 여기서 처리
+                GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>().AddQueue(_monsterAllDeathQueue);
             }
             this.enabled = false;
         }
