@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class MonsterUnit : Unit
 {
     private bool _monsterIDregisted = false;
-    protected int _monsterID = 0;
+    protected int _monsterID = -1;
     public int MonsterID
     {
         get { return _monsterID; }
@@ -118,7 +118,7 @@ public class MonsterUnit : Unit
         GameManager.instance.UIMng?.GetMonsterHP().Init(this);
 
         //---------- for test ----------------
-        SetDamagePower(_unitData.skillDamage)/*.SetDamageKnockBack(new Vector2(200, 200))*/;
+        SetDamagePower(_unitData.attackDamage)/*.SetDamageKnockBack(new Vector2(200, 200))*/;
     }
 
     void Update()
