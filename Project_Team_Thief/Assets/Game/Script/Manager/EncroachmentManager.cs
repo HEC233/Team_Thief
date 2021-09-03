@@ -54,6 +54,7 @@ public class EncroachmentManager : MonoBehaviour
 
     private void Init()
     {
+        _encroachment = 100;
         _encroachmentZeroTimer = 0.0f;
         _encroachmentNumber = 5;
         SetPenaltyDataContent();
@@ -179,25 +180,25 @@ public class EncroachmentManager : MonoBehaviour
     
     private void SetEncroachmentProduction()
     {
-        if (_encroachment >= 80)
-        {
-            _encroachmentLevelIndex = 3;
-        }
-        else if (_encroachment >= 60)
-        {
-            _encroachmentLevelIndex = 2;
-        }
-        else if (_encroachment >= 40)
-        {
-            _encroachmentLevelIndex = 1;
-        }
-        else if (_encroachment >= 20)
+        if (_encroachment <= 80)
         {
             _encroachmentLevelIndex = 0;
         }
-        else if (_encroachment <= 10)
+        else if (_encroachment <= 60)
         {
-            _encroachmentLevelIndex = 99;
+            _encroachmentLevelIndex = 1;
+        }
+        else if (_encroachment <= 40)
+        {
+            _encroachmentLevelIndex = 2;
+        }
+        else if (_encroachment <= 20)
+        {
+            _encroachmentLevelIndex = 3;
+        }
+        else
+        {
+            _encroachmentLevelIndex = 4;
         }
 
         EncroachmentProduction();
@@ -205,9 +206,10 @@ public class EncroachmentManager : MonoBehaviour
     
     private void EncroachmentProduction()
     {
+        Debug.Log(_encroachmentLevelIndex + "Production");
         switch (_encroachmentLevelIndex)
         {
-            case 99:
+            case 4:
                 if (_nonEncroachment == true)
                 {
                     _nonEncroachment = false;
@@ -275,6 +277,7 @@ public class EncroachmentManager : MonoBehaviour
     IEnumerator EncroachmentProductionParticleFadeOut(int particlefadeOutIndex)
     {
         float timer = _encroachmentProductionFadeOutTime;
+        Debug.Log(particlefadeOutIndex);
         var particleChildrens = _encroachmentProductionParticleSystems[particlefadeOutIndex]
             .GetComponentsInChildren<ParticleSystem>();
 
@@ -332,7 +335,8 @@ public class EncroachmentManager : MonoBehaviour
             }
             
             timer += GameManager.instance.TimeMng.FixedDeltaTime;
-    
+            Debug.Log(timer);
+            
             if (timer >= _encroachmentDecreasedPerTime)
             {
                 timer = 0.0f;
