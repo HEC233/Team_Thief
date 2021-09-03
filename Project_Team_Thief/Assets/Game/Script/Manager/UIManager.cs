@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private UIComboInfo uiComboInfo;
     [SerializeField]
+    private UIPenalty uiPenalty;
+    [SerializeField]
     private CanvasGroup uiGameOver;
     [SerializeField]
     private GameObject playerDeadResumeButton;
@@ -128,6 +130,19 @@ public class UIManager : MonoBehaviour
     public void StopLoading()
     {
         uiLoading.Toggle(false);
+    }
+
+    public void ShowPenaltyScreen(BlessingPenaltyDataBase[] penaltyDatas)
+    {
+        GameManager.instance.TimeMng.StopTime();
+        uiPenalty.SetPenalties(penaltyDatas);
+        uiPenalty.ShowPenalties(true);
+    }
+
+    public void ActivePenalty(int id)
+    {
+        GameManager.instance.EncroachmentMng.ActivePenaltyFromId(id);
+        GameManager.instance.TimeMng.ResumeTime();
     }
 
     public void ToggleDeveloperConsole()

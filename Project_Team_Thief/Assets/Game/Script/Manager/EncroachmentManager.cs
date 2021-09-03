@@ -8,9 +8,9 @@ public class EncroachmentManager : MonoBehaviour
 {
     [Header("Data")]
     [SerializeField] 
-    private List<BlessingPenaltyDataBase> _blessingPenaltyDatas;
-    private List<BlessingPenaltyDataBase> _blessingPenaltyDataInGame;
-    private List<BlessingPenaltyDataBase> _randBlessingPenaltyDataBases;
+    private List<BlessingPenaltyDataBase> _blessingPenaltyDatas = new List<BlessingPenaltyDataBase>();
+    private List<BlessingPenaltyDataBase> _blessingPenaltyDataInGame = new List<BlessingPenaltyDataBase>();
+    private List<BlessingPenaltyDataBase> _randBlessingPenaltyDataBases = new List<BlessingPenaltyDataBase>();
 
     
     [Header("Encroachment")]
@@ -149,7 +149,7 @@ public class EncroachmentManager : MonoBehaviour
     // 잠식력이 0이되어 패털티 이벤트가 나온다는 이벤트를 던저 줄 함수.
     private void EncroachmentPenalty()
     {
-        
+        GameManager.instance.UIMng.ShowPenaltyScreen(GetRandomBlessingPenalty());
     }
 
     public void ActivePenaltyFromId(int penaltyId)

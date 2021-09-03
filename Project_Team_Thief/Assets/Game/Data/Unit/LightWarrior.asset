@@ -19,7 +19,7 @@ MonoBehaviour:
   _minJumpPower: 0
   _maxJumpPower: 0
   _jumpCount: 0
-  _hp: 8000
+  _hp: 80
   _reduceHit: 1
   _knockbackMultiply: 1
   _attackDamage: 60
