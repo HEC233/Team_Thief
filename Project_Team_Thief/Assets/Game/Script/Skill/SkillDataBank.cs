@@ -19,6 +19,8 @@ public class SkillDataBank : MonoBehaviour
     private GameLoader.SceneLoadCallback _sceneLoadCallback;
 
     private bool _isInit = false;
+
+    private List<SkillDataBase> _randomSkillDataBases = new List<SkillDataBase>();
     
     void Awake()
     {
@@ -211,11 +213,22 @@ public class SkillDataBank : MonoBehaviour
     }
 
     // 해당 함수로 랜덤한 데이터를 가져올 때 중복인지 체크가 외부에서 필요함.
-    public SkillDataBase GetRandomSKillDataBase()
+    public SkillDataBase[] GetRandomSKillDataBase()
     {
-        int randIndex = UnityEngine.Random.Range(0, _skillDatabases.Count);
+        _randomSkillDataBases.Clear();
+        while (_randomSkillDataBases.Count <= 2)
+        {
+            int randIndex = UnityEngine.Random.Range(0, _skillDatabases.Count);
+            if (_skillDatabases[randIndex].IsGet == true)
+            {
+                if (_randomSkillDataBases.Contains(_skillDatabases[randIndex]) == false)
+                {
+                    _randomSkillDataBases.Add(_skillDatabases[randIndex]);
+                }
+            }
+        }
 
-        return _skillDatabases[randIndex];
+        return _randomSkillDataBases.ToArray();
     }
     
 

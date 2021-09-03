@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EncroachmentManager : MonoBehaviour
@@ -8,6 +9,9 @@ public class EncroachmentManager : MonoBehaviour
     [Header("Data")]
     [SerializeField] 
     private List<BlessingPenaltyDataBase> _blessingPenaltyDatas;
+    private List<BlessingPenaltyDataBase> _blessingPenaltyDataInGame;
+    private List<BlessingPenaltyDataBase> _randBlessingPenaltyDataBases;
+
     
     [Header("Encroachment")]
     private float _encroachment;
@@ -23,6 +27,8 @@ public class EncroachmentManager : MonoBehaviour
 
     [SerializeField] 
     private float _encroachmentDecreasedPerTime;
+
+    private Coroutine _encroachmentCoroutine;
 
     private float _encroachmentRecoveryAmount;  // 해당 수치는 감소된 수치와 반비례해서 증가됨.
     
@@ -40,6 +46,7 @@ public class EncroachmentManager : MonoBehaviour
 
     private bool _isEndRoom;
     
+    
     private void Start()
     {
         Init();
@@ -50,6 +57,8 @@ public class EncroachmentManager : MonoBehaviour
         _encroachmentZeroTimer = 0.0f;
         _encroachmentNumber = 5;
         SetPenaltyDataContent();
+
+        _blessingPenaltyDataInGame = _blessingPenaltyDatas.ToList();
         
         GameManager.instance.AddMapStartEventListener(StartRoomSetting);
         GameManager.instance.AddMapEndEventListener(EndRoomSetting);
@@ -75,6 +84,7 @@ public class EncroachmentManager : MonoBehaviour
     {
         _isEncroachmentActiveDecreasedCoroutine = true;
         _isEndRoom = false;
+       _encroachmentCoroutine = StartCoroutine(EncroachmentDecreasedCoroutine());
     }
     
     // 방 전투가 끝나면 호출 되는 함수라 가정
@@ -92,6 +102,8 @@ public class EncroachmentManager : MonoBehaviour
         }
         
         _isEndRoom = true;
+        
+        StopCoroutine(_encroachmentCoroutine);
     }
 
     private void EncroachmentRecovery()
@@ -141,17 +153,27 @@ public class EncroachmentManager : MonoBehaviour
 
     public void ActivePenaltyFromId(int penaltyId)
     {
-        var penaltyData = _blessingPenaltyDatas.Find(x => x.ID == penaltyId);
+        var penaltyData = _blessingPenaltyDataInGame.Find(x => x.ID == penaltyId);
         penaltyData.ActivePenalty(GameManager.instance.PlayerActor.GetUnit());
 
-        _blessingPenaltyDatas.Remove(penaltyData);
+        _blessingPenaltyDataInGame.Remove(penaltyData);
     }
 
-    public BlessingPenaltyDataBase GetRandomBlessingPenalty()
+    public BlessingPenaltyDataBase[] GetRandomBlessingPenalty()
     {
-        int randIndex = UnityEngine.Random.Range(0, _blessingPenaltyDatas.Count);
+        _randBlessingPenaltyDataBases.Clear();
 
-        return _blessingPenaltyDatas[randIndex];
+        while (_randBlessingPenaltyDataBases.Count <= 2)
+        {
+            int randIndex = UnityEngine.Random.Range(0, _blessingPenaltyDataInGame.Count);
+
+            if (_randBlessingPenaltyDataBases.Contains(_blessingPenaltyDataInGame[randIndex]) == false)
+            {
+                _randBlessingPenaltyDataBases.Add(_blessingPenaltyDataInGame[randIndex]);
+            }
+        }
+
+        return _randBlessingPenaltyDataBases.ToArray();
     }
     
     
@@ -298,27 +320,27 @@ public class EncroachmentManager : MonoBehaviour
         }
     }
     
-    // IEnumerator EncroachmentRecoveryCoroutine()
-    // {
-    //     float timer = 0.0f;
-    //     while (true)
-    //     {
-    //         if (_isEncroachmentActiveDecreasedCoroutine == false)
-    //         {
-    //             timer = 0.0f;
-    //             yield return new WaitForFixedUpdate();
-    //         }
-    //         
-    //         timer += GameManager.instance.TimeMng.FixedDeltaTime;
-    //
-    //         if (timer >= _encroachmentDecreasedPerTime)
-    //         {
-    //             timer = 0.0f;
-    //             ChangeEncroachment(_encroachmentRecoveryAmount);
-    //         }
-    //
-    //         yield return new WaitForFixedUpdate();
-    //     }
-    // }
+    IEnumerator EncroachmentDecreasedCoroutine()
+    {
+        float timer = 0.0f;
+        while (true)
+        {
+            if (_isEncroachmentActiveDecreasedCoroutine == false)
+            {
+                timer = 0.0f;
+                yield return new WaitForFixedUpdate();
+            }
+            
+            timer += GameManager.instance.TimeMng.FixedDeltaTime;
+    
+            if (timer >= _encroachmentDecreasedPerTime)
+            {
+                timer = 0.0f;
+                ChangeEncroachment(_encroachmentDecreasedNumber);
+            }
+    
+            yield return new WaitForFixedUpdate();
+        }
+    }
     
 }
