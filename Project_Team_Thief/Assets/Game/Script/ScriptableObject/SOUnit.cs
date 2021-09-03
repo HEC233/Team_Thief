@@ -12,6 +12,8 @@ public class SOUnit : ScriptableObject
     private float _minSpeed;
     [SerializeField]
     private float _maxSpeed;
+    [SerializeField]
+    private float _accelation;
 
     [Space(8)]
     [SerializeField]
@@ -31,7 +33,7 @@ public class SOUnit : ScriptableObject
 
     [Space(8)]
     [SerializeField]
-    private float _skillDamage;
+    private float _attackDamage;
     [SerializeField]
     private float _criticalValue;
     [SerializeField]
@@ -72,13 +74,14 @@ public class SOUnit : ScriptableObject
     public string unitName => _unitName;
     public float minSpeed => _minSpeed;
     public float maxSpeed => _maxSpeed;
+    public float accelation => _accelation;
     public float minJumpPower => _minJumpPower;
     public float maxJumpPower => _maxJumpPower;
     public int jumpCount => _jumpCount;
     public float hp => _hp;
     public float reduceHit => _reduceHit;
     public float knockbackMultiply => _knockbackMultiply;
-    public float skillDamage => _skillDamage;
+    public float attackDamage => _attackDamage;
     public float criticalValue => _criticalValue;
     public int attackCount => _attackCount;
     public float attackInterval => _attackInterval;
