@@ -221,13 +221,11 @@ public class UIManager : MonoBehaviour
 
     public Vector3 GetScreenPos(Vector3 worldPos)
     {
-        float _screenRatio = Screen.currentResolution.width / Screen.currentResolution.height;
-        float final = 9 / 16 * _screenRatio;
-        float rcp = 1 / final;
+        float _screenRatio = (float)Screen.width / Screen.height;
+        float final = 9.0f / 16.0f * _screenRatio;
 
         var screenPos = GameManager.instance.CameraMng.mainCam.WorldToScreenPoint(worldPos);
-        screenPos = new Vector2(screenPos.x / Screen.width * 480 , screenPos.y / Screen.height * 270);
-
+        screenPos = new Vector2(screenPos.x / Screen.width * 480 * final, screenPos.y / Screen.height * 270);
 
         return screenPos;
     }
