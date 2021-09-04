@@ -137,7 +137,7 @@ public class EncroachmentManager : MonoBehaviour
         }
         else
         {
-            _encroachmentRecoveryAmount = 10;
+            _encroachmentRecoveryAmount = 20;
         }
         
         return _encroachmentRecoveryAmount;
@@ -146,6 +146,12 @@ public class EncroachmentManager : MonoBehaviour
     private void ChangeEncroachment(float encroachmentIncrease)
     {
         _encroachment += encroachmentIncrease;
+
+        if (_encroachment > 100)
+        {
+            _encroachment = 100;
+        }
+        
         SetEncroachmentProduction();
         
         // 한 칸이 모두 다 감소되는 경우
