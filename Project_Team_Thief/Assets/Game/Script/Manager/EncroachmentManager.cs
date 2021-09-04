@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EncroachmentManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EncroachmentManager : MonoBehaviour
 
     
     [Header("Encroachment")]
+    [SerializeField]
     private float _encroachment;
     public float Encroachment => _encroachment;
 
@@ -83,6 +85,12 @@ public class EncroachmentManager : MonoBehaviour
     // 방 전투가 시작되면 호출되는 함수라 가정
     private void StartRoomSetting()
     {
+        //튜토리얼 맵, 상점맵에서는 발동되면 안됨.
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            return;
+        }
+            
         _isEncroachmentActiveDecreasedCoroutine = true;
         _isEndRoom = false;
        _encroachmentCoroutine = StartCoroutine(EncroachmentDecreasedCoroutine());
@@ -91,6 +99,12 @@ public class EncroachmentManager : MonoBehaviour
     // 방 전투가 끝나면 호출 되는 함수라 가정
     private void EndRoomSetting()
     {
+        //튜토리얼 맵, 상점맵에서는 발동되면 안됨.
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            return;
+        }
+        
         _isEncroachmentActiveDecreasedCoroutine = false;
 
         if (_encroachment <= 0)
@@ -110,13 +124,22 @@ public class EncroachmentManager : MonoBehaviour
     private void EncroachmentRecovery()
     {
         _encroachmentRecoveryAmount = CalcEncroachmentRecoveryAmount();
-        
+        Debug.Log(_encroachmentRecoveryAmount);
         ChangeEncroachment(_encroachmentRecoveryAmount);
     }
 
     // 어떠한 공식으로 회복량을 정할 껀지 필요.
     private float CalcEncroachmentRecoveryAmount()
     {
+        if (_encroachment <= 0)
+        {
+            _encroachmentRecoveryAmount = 100;
+        }
+        else
+        {
+            _encroachmentRecoveryAmount = 10;
+        }
+        
         return _encroachmentRecoveryAmount;
     }
         
@@ -158,6 +181,7 @@ public class EncroachmentManager : MonoBehaviour
         penaltyData.ActivePenalty(GameManager.instance.PlayerActor.GetUnit());
 
         _blessingPenaltyDataInGame.Remove(penaltyData);
+        EncroachmentRecovery();
     }
 
     public BlessingPenaltyDataBase[] GetRandomBlessingPenalty()
@@ -180,25 +204,25 @@ public class EncroachmentManager : MonoBehaviour
     
     private void SetEncroachmentProduction()
     {
-        if (_encroachment <= 80)
+        if (_encroachment >= 80)
+        {
+            _encroachmentLevelIndex = 4;
+        }
+        else if (_encroachment >= 60)
         {
             _encroachmentLevelIndex = 0;
         }
-        else if (_encroachment <= 60)
+        else if (_encroachment >= 40)
         {
             _encroachmentLevelIndex = 1;
         }
-        else if (_encroachment <= 40)
+        else if (_encroachment >= 20)
         {
             _encroachmentLevelIndex = 2;
         }
-        else if (_encroachment <= 20)
-        {
-            _encroachmentLevelIndex = 3;
-        }
         else
         {
-            _encroachmentLevelIndex = 4;
+            _encroachmentLevelIndex = 3;
         }
 
         EncroachmentProduction();
@@ -215,9 +239,8 @@ public class EncroachmentManager : MonoBehaviour
                     _nonEncroachment = false;
                     StartCoroutine(EncroachmentProductionParticleFadeOut(0));
                 }
-
-                WwiseSoundManager.instance.PlayEventSound("Encroaching_End");
                 
+                WwiseSoundManager.instance.PlayEventSound("Encroaching_End");
                 break;
             case 3:
                 if (_encroachmentLevelArr[_encroachmentLevelIndex] == false)
@@ -258,20 +281,20 @@ public class EncroachmentManager : MonoBehaviour
                 }
                 break;
         }
-
-        for (int i = 0; i < _encroachmentLevelArr.Length; i++)
-        {
-            if (_encroachmentLevelArr[i] == true)
-            {
-                if (i != _encroachmentLevelIndex)
-                    StartCoroutine(EncroachmentProductionParticleFadeOut(i));
-            }
-            
-            _encroachmentLevelArr[i] = false;
-        }
-
-        if (_encroachmentLevelIndex != 99)
-            _encroachmentLevelArr[_encroachmentLevelIndex] = true;
+        //
+        // for (int i = 0; i < _encroachmentLevelArr.Length; i++)
+        // {
+        //     if (_encroachmentLevelArr[i] == true)
+        //     {
+        //         if (i != _encroachmentLevelIndex)
+        //             StartCoroutine(EncroachmentProductionParticleFadeOut(i));
+        //     }
+        //     
+        //     _encroachmentLevelArr[i] = false;
+        // }
+        //
+        // if (_encroachmentLevelIndex != 99)
+        //     _encroachmentLevelArr[_encroachmentLevelIndex] = true;
     }
     
     IEnumerator EncroachmentProductionParticleFadeOut(int particlefadeOutIndex)

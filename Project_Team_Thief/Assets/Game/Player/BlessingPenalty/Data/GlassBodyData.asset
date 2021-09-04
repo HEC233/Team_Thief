@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 6
   _name: "\uC720\uB9AC \uBAB8"
-  durationString: "\uB2E4\uC74C 2\uAC1C \uB9F5"
+  durationString: "\uB2E4\uC74C \uAC1C \uB9F5"
   contentString: "\uBC1B\uB294 \uD53C\uD574\uAC00 \uBC30 \uC911\uAC00\uD55C\uB2E4."
+  originalContentString: "\uBC1B\uB294 \uD53C\uD574\uAC00 \uBC30 \uC911\uAC00\uD55C\uB2E4."
+  originalDurationString: "\uB2E4\uC74C \uAC1C \uB9F5"
+  _spriteImageName: 
   _addDamagePerAmount: 1.5
   _duration: 2

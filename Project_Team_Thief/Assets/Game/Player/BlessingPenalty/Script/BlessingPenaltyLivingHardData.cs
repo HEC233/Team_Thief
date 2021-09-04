@@ -37,6 +37,7 @@ public class BlessingPenaltyLivingHardData : BlessingPenaltyDataBase
 
     public override void SetContentString()
     {
-        durationString = durationString.Insert(4, _duration.ToString());
+        durationString = originalContentString;
+        durationString = durationString.Insert(3, _duration.ToString());
     }
 }

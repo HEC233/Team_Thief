@@ -966,6 +966,8 @@ public class PlayerUnit : Unit
     public void MaxHpDegradation(int maxHpDegradationAmount)
     {
         _maxHp -= maxHpDegradationAmount;
+        playerInfo.MaxHP = _maxHp;
+
     }
 
     public void ChangeMoveSpeed(float changeMoveSpeed)

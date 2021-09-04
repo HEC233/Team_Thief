@@ -15,5 +15,8 @@ MonoBehaviour:
   _id: 0
   _name: "\uCCB4\uB825 \uC800\uD558"
   durationString: "\uC601\uAD6C"
-  contentString: "\uCD5C\uB300 \uCCB4\uB825\uC774  \uAC10\uC18C\uD55C\uB2E4."
+  contentString: "\uCD5C\uB300 \uCCB4\uB825\uC774 \uAC10\uC18C\uD55C\uB2E4."
+  originalContentString: "\uCD5C\uB300 \uCCB4\uB825\uC774 \uAC10\uC18C\uD55C\uB2E4."
+  originalDurationString: "\uC601\uAD6C"
+  _spriteImageName: 
   _maxHpDecreasedAmount: 50

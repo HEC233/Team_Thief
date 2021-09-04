@@ -19,6 +19,14 @@ public abstract class BlessingPenaltyDataBase : ScriptableObject
     [SerializeField]
     protected string contentString;
     public string ContentString => contentString;
+    
+    [SerializeField] 
+    protected string originalContentString;
+    public string OriginalContentString => originalContentString;
+
+    [SerializeField]
+    protected string originalDurationString;
+    public string OriginalDurationString => originalDurationString;
 
     [SerializeField]
     protected string _spriteImageName;

@@ -41,7 +41,10 @@ public class BlessingPenaltyMuscleLossData : BlessingPenaltyDataBase
 
     public override void SetContentString()
     {
+        contentString = originalContentString;
         contentString = contentString.Insert(9, _damageDecreasedAmount.ToString());
+        
+        durationString = originalDurationString;
         durationString = durationString.Insert(4, _duration.ToString());
     }
 }

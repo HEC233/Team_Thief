@@ -41,6 +41,7 @@ public class BlessingPenaltySealData : BlessingPenaltyDataBase
 
     public override void SetContentString()
     {
+        durationString = originalDurationString;
         durationString = durationString.Insert(4, _duration.ToString());
     }
 }

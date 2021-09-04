@@ -44,6 +44,9 @@ public class BlessingPenaltyGlassBodyData : BlessingPenaltyDataBase
 
     public override void SetContentString()
     {
-        contentString = contentString.Insert(8, _addDamagePerAmount.ToString());
+        durationString = originalDurationString;
+        durationString = durationString.Insert(2, _duration.ToString());
+        contentString = originalContentString;
+        contentString = contentString.Insert(7, _addDamagePerAmount.ToString());
     }
 }

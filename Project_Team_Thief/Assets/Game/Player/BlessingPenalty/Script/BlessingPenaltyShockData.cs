@@ -29,6 +29,7 @@ public class BlessingPenaltyShockData : BlessingPenaltyDataBase
 
     public override void SetContentString()
     {
+        contentString = originalContentString;
         contentString = contentString.Insert(0, _shockDamage.ToString());
 
     }

@@ -17,4 +17,8 @@ MonoBehaviour:
   durationString: "\uB2E4\uC74C \uAC1C \uB9F5"
   contentString: "\uB354 \uC774\uC0C1 \uCCB4\uB825\uC774 \uD68C\uBCF5\uB418\uC9C0
     \uC54A\uB294\uB2E4."
+  originalContentString: "\uB354 \uC774\uC0C1 \uCCB4\uB825\uC774 \uD68C\uBCF5\uB418\uC9C0
+    \uC54A\uB294\uB2E4."
+  originalDurationString: "\uB2E4\uC74C \uAC1C \uB9F5"
+  _spriteImageName: 
   _duration: 2

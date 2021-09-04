@@ -22,6 +22,7 @@ public class BlessingPenaltyHpDegradationData : BlessingPenaltyDataBase
 
     public override void SetContentString()
     {
+        contentString = originalContentString;
         contentString = contentString.Insert(7, _maxHpDecreasedAmount.ToString());
     }
 }

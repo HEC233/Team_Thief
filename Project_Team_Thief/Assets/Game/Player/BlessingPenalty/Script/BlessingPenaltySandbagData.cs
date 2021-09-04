@@ -42,7 +42,9 @@ public class BlessingPenaltySandbagData : BlessingPenaltyDataBase
 
     public override void SetContentString()
     {
-        contentString = contentString.Insert(12, MoveSpeedDecreasedAmount.ToString());
-        durationString = durationString.Insert(4, _duration.ToString());
+        contentString = originalContentString;
+        durationString = originalDurationString;
+        contentString = contentString.Insert(11, MoveSpeedDecreasedAmount.ToString());
+        durationString = durationString.Insert(3, _duration.ToString());
     }
 }

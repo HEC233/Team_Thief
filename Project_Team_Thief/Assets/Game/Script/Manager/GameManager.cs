@@ -219,6 +219,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogWarning("There is no Map End Trigger!!!");
         }
+        
         _mapStartEvents.Invoke();
     }
 
