@@ -9,7 +9,8 @@ public class BlessingPenaltyLivingHardData : BlessingPenaltyDataBase
 
     [SerializeField] 
     private int _duration;
-    public int Duration => _duration;
+    public int Duration => _useDuration;
+    private int _useDuration;
     
     public override void ActivePenalty(Unit unit)
     {
@@ -39,5 +40,23 @@ public class BlessingPenaltyLivingHardData : BlessingPenaltyDataBase
     {
         durationString = originalContentString;
         durationString = durationString.Insert(3, _duration.ToString());
+    }
+
+    public override void SetAddPenalty(float zeroTimer)
+    {
+        _useDuration = _duration;
+        
+        if (zeroTimer <= 10)
+        {
+            _useDuration += 1;
+        }
+        else if (zeroTimer <= 20)
+        {
+            _useDuration += 2;
+        }
+        else if (zeroTimer >= 30)
+        {
+            _useDuration += 3;
+        }
     }
 }

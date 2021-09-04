@@ -10,7 +10,8 @@ public class BlessingPenaltyGlassBodyData : BlessingPenaltyDataBase
 
     [SerializeField]
     private float _addDamagePerAmount;
-    public float AddDamagePerAmount => _addDamagePerAmount;
+    public float AddDamagePerAmount => _useAddDamagePerAmount;
+    private float _useAddDamagePerAmount;
     
     [SerializeField]
     private int _duration;
@@ -48,5 +49,23 @@ public class BlessingPenaltyGlassBodyData : BlessingPenaltyDataBase
         durationString = durationString.Insert(2, _duration.ToString());
         contentString = originalContentString;
         contentString = contentString.Insert(7, _addDamagePerAmount.ToString());
+    }
+
+    public override void SetAddPenalty(float zeroTimer)
+    {
+        _useAddDamagePerAmount = _addDamagePerAmount;
+        
+        if (zeroTimer <= 10)
+        {
+            _useAddDamagePerAmount += 0.2f;
+        }
+        else if (zeroTimer <= 20)
+        {
+            _useAddDamagePerAmount += 0.4f;
+        }
+        else if (zeroTimer >= 30)
+        {
+            _useAddDamagePerAmount += 0.6f;
+        }
     }
 }

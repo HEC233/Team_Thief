@@ -106,7 +106,7 @@ public class EncroachmentManager : MonoBehaviour
         }
         
         _isEncroachmentActiveDecreasedCoroutine = false;
-
+        
         if (_encroachment <= 0)
         {
             EncroachmentPenalty();
@@ -169,9 +169,18 @@ public class EncroachmentManager : MonoBehaviour
         _isEncroachmentActiveDecreasedCoroutine = false;
     }
 
+    private void SetPenaltyZero()
+    {
+        for (int i = 0; i < _blessingPenaltyDataInGame.Count; i++)
+        {
+            _blessingPenaltyDataInGame[i].SetAddPenalty(_encroachmentZeroTimer);
+        }
+    }
+
     // 잠식력이 0이되어 패털티 이벤트가 나온다는 이벤트를 던저 줄 함수.
     private void EncroachmentPenalty()
     {
+        SetPenaltyZero();
         GameManager.instance.UIMng.ShowPenaltyScreen(GetRandomBlessingPenalty());
     }
 
@@ -341,7 +350,7 @@ public class EncroachmentManager : MonoBehaviour
         while (!_isEndRoom)
         {
             _encroachmentZeroTimer += GameManager.instance.TimeMng.FixedDeltaTime;
-            
+            Debug.Log(_encroachmentZeroTimer);
             yield return new WaitForFixedUpdate();
         }
     }

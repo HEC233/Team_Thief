@@ -9,7 +9,8 @@ public class BlessingPenaltyMuscleLossData : BlessingPenaltyDataBase
 
     [SerializeField] 
     private float _damageDecreasedAmount;
-    public float DamageDecreasedAmount => _damageDecreasedAmount;
+    public float DamageDecreasedAmount => _useDamageDecreasedAmount;
+    private float _useDamageDecreasedAmount;
 
     [SerializeField]
     private int _duration;
@@ -46,5 +47,23 @@ public class BlessingPenaltyMuscleLossData : BlessingPenaltyDataBase
         
         durationString = originalDurationString;
         durationString = durationString.Insert(4, _duration.ToString());
+    }
+
+    public override void SetAddPenalty(float zeroTimer)
+    {
+        _useDamageDecreasedAmount = _damageDecreasedAmount;
+        
+        if (zeroTimer <= 10)
+        {
+            _useDamageDecreasedAmount += 0.1f;
+        }
+        else if (zeroTimer <= 20)
+        {
+            _useDamageDecreasedAmount += 0.1f;
+        }
+        else if (zeroTimer >= 30)
+        {
+            _useDamageDecreasedAmount += 0.1f;
+        }
     }
 }

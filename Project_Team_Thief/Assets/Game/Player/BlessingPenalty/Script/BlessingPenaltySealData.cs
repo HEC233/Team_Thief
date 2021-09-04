@@ -9,7 +9,8 @@ public class BlessingPenaltySealData : BlessingPenaltyDataBase
 
     [SerializeField] 
     private int _duration;
-    public int Duration => _duration;
+    public int Duration => _useDuration;
+    private int _useDuration;
 
     private int _randSkillSlotIndex;
 
@@ -43,5 +44,23 @@ public class BlessingPenaltySealData : BlessingPenaltyDataBase
     {
         durationString = originalDurationString;
         durationString = durationString.Insert(4, _duration.ToString());
+    }
+
+    public override void SetAddPenalty(float zeroTimer)
+    {
+        _useDuration = _duration;
+        
+        if (zeroTimer <= 10)
+        {
+            _useDuration += 1;
+        }
+        else if (zeroTimer <= 20)
+        {
+            _useDuration += 2;
+        }
+        else if (zeroTimer >= 30)
+        {
+            _useDuration += 3;
+        }
     }
 }

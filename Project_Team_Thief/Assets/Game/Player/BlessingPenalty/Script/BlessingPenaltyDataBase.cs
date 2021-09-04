@@ -35,4 +35,7 @@ public abstract class BlessingPenaltyDataBase : ScriptableObject
     public abstract void ActivePenalty(Unit unit);
 
     public abstract void SetContentString();
+
+    public abstract void SetAddPenalty(float zeroTimer);
+
 }

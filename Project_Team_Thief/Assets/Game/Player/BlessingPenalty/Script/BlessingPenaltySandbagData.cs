@@ -9,8 +9,9 @@ public class BlessingPenaltySandbagData : BlessingPenaltyDataBase
     
     [SerializeField] 
     private float _moveSpeedDecreasedAmount;
-    public float MoveSpeedDecreasedAmount => _moveSpeedDecreasedAmount;
-
+    public float MoveSpeedDecreasedAmount => _useMoveSpeedDecreasedAmount;
+    private float _useMoveSpeedDecreasedAmount;
+    
     [SerializeField] 
     private int _duration;
 
@@ -46,5 +47,23 @@ public class BlessingPenaltySandbagData : BlessingPenaltyDataBase
         durationString = originalDurationString;
         contentString = contentString.Insert(11, MoveSpeedDecreasedAmount.ToString());
         durationString = durationString.Insert(3, _duration.ToString());
+    }
+
+    public override void SetAddPenalty(float zeroTimer)
+    {
+        _useMoveSpeedDecreasedAmount = _moveSpeedDecreasedAmount;
+        
+        if (zeroTimer <= 10)
+        {
+            _useMoveSpeedDecreasedAmount += 0.1f;
+        }
+        else if (zeroTimer <= 20)
+        {
+            _useMoveSpeedDecreasedAmount += 0.2f;
+        }
+        else if (zeroTimer >= 30)
+        {
+            _useMoveSpeedDecreasedAmount += 0.3f;
+        }
     }
 }

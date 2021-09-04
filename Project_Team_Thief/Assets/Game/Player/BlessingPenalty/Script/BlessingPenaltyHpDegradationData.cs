@@ -7,7 +7,8 @@ public class BlessingPenaltyHpDegradationData : BlessingPenaltyDataBase
 {
     [SerializeField]
     private int _maxHpDecreasedAmount;
-    public int MAXHpDecreasedAmount => _maxHpDecreasedAmount;
+    public int MAXHpDecreasedAmount => _useHpDecreaseAmount;
+    private int _useHpDecreaseAmount;
 
     
     public override void ActivePenalty(Unit unit)
@@ -17,12 +18,30 @@ public class BlessingPenaltyHpDegradationData : BlessingPenaltyDataBase
         if(playerUnit == null)
             return;
 
-        playerUnit.MaxHpDegradation(MAXHpDecreasedAmount);
+        playerUnit.MaxHpDegradation(_useHpDecreaseAmount);
     }
 
     public override void SetContentString()
     {
         contentString = originalContentString;
         contentString = contentString.Insert(7, _maxHpDecreasedAmount.ToString());
+    }
+
+    public override void SetAddPenalty(float zeroTimer)
+    {
+        _useHpDecreaseAmount = _maxHpDecreasedAmount;
+        
+        if (zeroTimer <= 10)
+        {
+            _useHpDecreaseAmount += 10;
+        }
+        else if (zeroTimer <= 20)
+        {
+            _useHpDecreaseAmount += 20;
+        }
+        else if (zeroTimer >= 30)
+        {
+            _useHpDecreaseAmount += 30;
+        }
     }
 }

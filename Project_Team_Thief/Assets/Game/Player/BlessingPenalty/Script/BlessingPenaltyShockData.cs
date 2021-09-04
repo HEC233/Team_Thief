@@ -9,7 +9,8 @@ public class BlessingPenaltyShockData : BlessingPenaltyDataBase
 
     [SerializeField] 
     private float _shockDamage;
-    public float ShockDamage => _shockDamage;
+    public float ShockDamage => _useShockDamage;
+    private float _useShockDamage;
 
     public override void ActivePenalty(Unit unit)
     {
@@ -32,5 +33,23 @@ public class BlessingPenaltyShockData : BlessingPenaltyDataBase
         contentString = originalContentString;
         contentString = contentString.Insert(0, _shockDamage.ToString());
 
+    }
+
+    public override void SetAddPenalty(float zeroTimer)
+    {
+        _useShockDamage = _shockDamage;
+        
+        if (zeroTimer <= 10)
+        {
+            _useShockDamage += 5;
+        }
+        else if (zeroTimer <= 20)
+        {
+            _useShockDamage += 10;
+        }
+        else if (zeroTimer >= 30)
+        {
+            _useShockDamage += 15;
+        }
     }
 }
