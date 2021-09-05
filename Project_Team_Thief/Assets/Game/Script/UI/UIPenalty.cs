@@ -24,11 +24,11 @@ public class UIPenalty : MonoBehaviour
         _datas = penalties;
 
         _uiPenalties[0].SetInfo(Addressable.instance.GetSprite(
-            penalties[0].SpriteImageName), penalties[0].Name, penalties[0].ContentString);
+            penalties[0].SpriteImageName), penalties[0].Name, penalties[0].ContentString, penalties[0].DurationString);
         _uiPenalties[1].SetInfo(Addressable.instance.GetSprite(
-            penalties[1].SpriteImageName), penalties[1].Name, penalties[1].ContentString);
+            penalties[1].SpriteImageName), penalties[1].Name, penalties[1].ContentString, penalties[1].DurationString);
         _uiPenalties[2].SetInfo(Addressable.instance.GetSprite(
-            penalties[2].SpriteImageName), penalties[2].Name, penalties[2].ContentString);
+            penalties[2].SpriteImageName), penalties[2].Name, penalties[2].ContentString, penalties[2].DurationString);
     }
 
     public void ShowPenalties(bool value)
