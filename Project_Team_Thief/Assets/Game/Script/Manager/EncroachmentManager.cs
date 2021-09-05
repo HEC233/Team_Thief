@@ -59,7 +59,6 @@ public class EncroachmentManager : MonoBehaviour
         _encroachment = 100;
         _encroachmentZeroTimer = 0.0f;
         _encroachmentNumber = 5;
-        SetPenaltyDataContent();
 
         _blessingPenaltyDataInGame = _blessingPenaltyDatas.ToList();
         
@@ -187,6 +186,7 @@ public class EncroachmentManager : MonoBehaviour
     private void EncroachmentPenalty()
     {
         SetPenaltyZero();
+        SetPenaltyDataContent();
         GameManager.instance.UIMng.ShowPenaltyScreen(GetRandomBlessingPenalty());
     }
 
@@ -373,7 +373,6 @@ public class EncroachmentManager : MonoBehaviour
             }
             
             timer += GameManager.instance.TimeMng.FixedDeltaTime;
-            Debug.Log(timer);
             
             if (timer >= _encroachmentDecreasedPerTime)
             {

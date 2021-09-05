@@ -53,11 +53,11 @@ public class BlessingPenaltySandbagData : BlessingPenaltyDataBase
     {
         _useMoveSpeedDecreasedAmount = _moveSpeedDecreasedAmount;
         
-        if (zeroTimer <= 10)
+        if (zeroTimer >= 10)
         {
             _useMoveSpeedDecreasedAmount += 0.1f;
         }
-        else if (zeroTimer <= 20)
+        else if (zeroTimer >= 20)
         {
             _useMoveSpeedDecreasedAmount += 0.2f;
         }

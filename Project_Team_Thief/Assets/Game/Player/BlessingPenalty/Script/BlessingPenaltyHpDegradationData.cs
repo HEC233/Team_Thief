@@ -24,18 +24,18 @@ public class BlessingPenaltyHpDegradationData : BlessingPenaltyDataBase
     public override void SetContentString()
     {
         contentString = originalContentString;
-        contentString = contentString.Insert(7, _maxHpDecreasedAmount.ToString());
+        contentString = contentString.Insert(7, MAXHpDecreasedAmount.ToString());
     }
 
     public override void SetAddPenalty(float zeroTimer)
     {
         _useHpDecreaseAmount = _maxHpDecreasedAmount;
         
-        if (zeroTimer <= 10)
+        if (zeroTimer >= 10)
         {
             _useHpDecreaseAmount += 10;
         }
-        else if (zeroTimer <= 20)
+        else if (zeroTimer >= 20)
         {
             _useHpDecreaseAmount += 20;
         }

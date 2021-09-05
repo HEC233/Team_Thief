@@ -31,7 +31,7 @@ public class BlessingPenaltyShockData : BlessingPenaltyDataBase
     public override void SetContentString()
     {
         contentString = originalContentString;
-        contentString = contentString.Insert(0, _shockDamage.ToString());
+        contentString = contentString.Insert(0, ShockDamage.ToString());
 
     }
 
@@ -39,11 +39,11 @@ public class BlessingPenaltyShockData : BlessingPenaltyDataBase
     {
         _useShockDamage = _shockDamage;
         
-        if (zeroTimer <= 10)
+        if (zeroTimer >= 10)
         {
             _useShockDamage += 5;
         }
-        else if (zeroTimer <= 20)
+        else if (zeroTimer >= 20)
         {
             _useShockDamage += 10;
         }
@@ -51,5 +51,7 @@ public class BlessingPenaltyShockData : BlessingPenaltyDataBase
         {
             _useShockDamage += 15;
         }
+        
+        Debug.Log(_useShockDamage);
     }
 }

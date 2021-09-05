@@ -43,7 +43,7 @@ public class BlessingPenaltyMuscleLossData : BlessingPenaltyDataBase
     public override void SetContentString()
     {
         contentString = originalContentString;
-        contentString = contentString.Insert(9, _damageDecreasedAmount.ToString());
+        contentString = contentString.Insert(9, DamageDecreasedAmount.ToString());
         
         durationString = originalDurationString;
         durationString = durationString.Insert(4, _duration.ToString());
@@ -53,11 +53,11 @@ public class BlessingPenaltyMuscleLossData : BlessingPenaltyDataBase
     {
         _useDamageDecreasedAmount = _damageDecreasedAmount;
         
-        if (zeroTimer <= 10)
+        if (zeroTimer >= 10)
         {
             _useDamageDecreasedAmount += 0.1f;
         }
-        else if (zeroTimer <= 20)
+        else if (zeroTimer >= 20)
         {
             _useDamageDecreasedAmount += 0.1f;
         }

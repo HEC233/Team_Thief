@@ -43,18 +43,18 @@ public class BlessingPenaltySealData : BlessingPenaltyDataBase
     public override void SetContentString()
     {
         durationString = originalDurationString;
-        durationString = durationString.Insert(4, _duration.ToString());
+        durationString = durationString.Insert(4, Duration.ToString());
     }
 
     public override void SetAddPenalty(float zeroTimer)
     {
         _useDuration = _duration;
         
-        if (zeroTimer <= 10)
+        if (zeroTimer >= 10)
         {
             _useDuration += 1;
         }
-        else if (zeroTimer <= 20)
+        else if (zeroTimer >= 20)
         {
             _useDuration += 2;
         }
@@ -62,5 +62,7 @@ public class BlessingPenaltySealData : BlessingPenaltyDataBase
         {
             _useDuration += 3;
         }
+        
+        Debug.Log(_useDuration);
     }
 }

@@ -39,18 +39,18 @@ public class BlessingPenaltyLivingHardData : BlessingPenaltyDataBase
     public override void SetContentString()
     {
         durationString = originalContentString;
-        durationString = durationString.Insert(3, _duration.ToString());
+        durationString = durationString.Insert(3, Duration.ToString());
     }
 
     public override void SetAddPenalty(float zeroTimer)
     {
         _useDuration = _duration;
         
-        if (zeroTimer <= 10)
+        if (zeroTimer >= 10)
         {
             _useDuration += 1;
         }
-        else if (zeroTimer <= 20)
+        else if (zeroTimer >= 20)
         {
             _useDuration += 2;
         }
