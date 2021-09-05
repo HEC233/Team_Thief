@@ -132,7 +132,7 @@ public class EncroachmentManager : MonoBehaviour
     {
         if (_encroachment <= 0)
         {
-            _encroachmentRecoveryAmount = 100 + _encroachment;
+            _encroachmentRecoveryAmount = 100 + Mathf.Abs(_encroachment);
         }
         else
         {
