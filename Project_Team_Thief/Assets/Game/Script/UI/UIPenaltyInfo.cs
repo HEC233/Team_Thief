@@ -12,11 +12,14 @@ public class UIPenaltyInfo : MonoBehaviour
     private TextMeshProUGUI _penaltyName;
     [SerializeField]
     private TextMeshProUGUI _penaltyDescription;
+    [SerializeField]
+    private TextMeshProUGUI _penaltyDuation;
 
-    public void SetInfo(Sprite image, string name, string description)
+    public void SetInfo(Sprite image, string name, string description, string duration)
     {
         _image.sprite = image;
         _penaltyName.text = name;
         _penaltyDescription.text = description;
+        _penaltyDuation.text = duration;
     }
 }
