@@ -132,7 +132,7 @@ public class EncroachmentManager : MonoBehaviour
     {
         if (_encroachment <= 0)
         {
-            _encroachmentRecoveryAmount = 100;
+            _encroachmentRecoveryAmount = 100 + _encroachment;
         }
         else
         {
@@ -356,6 +356,7 @@ public class EncroachmentManager : MonoBehaviour
         while (!_isEndRoom)
         {
             _encroachmentZeroTimer += GameManager.instance.TimeMng.FixedDeltaTime;
+            _encroachment = -_encroachmentZeroTimer;
             Debug.Log(_encroachmentZeroTimer);
             yield return new WaitForFixedUpdate();
         }
