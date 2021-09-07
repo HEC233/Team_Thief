@@ -357,7 +357,7 @@ public class EncroachmentManager : MonoBehaviour
         {
             _encroachmentZeroTimer += GameManager.instance.TimeMng.FixedDeltaTime;
             _encroachment = -_encroachmentZeroTimer;
-            Debug.Log(_encroachmentZeroTimer);
+            //Debug.Log(_encroachmentZeroTimer);
             yield return new WaitForFixedUpdate();
         }
     }

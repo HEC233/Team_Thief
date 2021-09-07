@@ -16,4 +16,9 @@ public class NPCController : MonoBehaviour
     {
         interactorableNoticeIcon.gameObject.SetActive(bValue);
     }
+
+    public virtual bool Act()
+    {
+        return false;
+    }
 }

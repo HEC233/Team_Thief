@@ -73,10 +73,15 @@ public class SkillSlotManager : MonoBehaviour
 
     }
 
+    /*
+     * 고재협 수정 : 반환형 void -> bool
+     * 여기서 슬롯의 교체 가능 여부(잠금등)을 체크해서 불가시 false를 반환해줘야 할듯
+     */
     // 슬롯 인덱스와 스킬 데이터를 받아서 삽입.
-    public void InsertSkillBaseInSkillSlot(SkillDataBase skillDataBase, int slotIndex)
+    public bool InsertSkillBaseInSkillSlot(SkillDataBase skillDataBase, int slotIndex)
     {
         _skillSlots[slotIndex].InsertSkillDataBase(skillDataBase);
+        return true;
     }
 
     // 스킬이 사라지지 않도록 Rock.
