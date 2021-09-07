@@ -321,7 +321,7 @@ public class SkillSlotManager : MonoBehaviour
         
         public bool CheckCommand()
         {
-            if (_isActiveSkillSlot == false)
+            if (_isActiveSkillSlot == false || _skillDataBase == null)
             {
                 return false;
             }
