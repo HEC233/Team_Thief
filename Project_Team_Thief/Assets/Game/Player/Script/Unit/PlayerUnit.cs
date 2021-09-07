@@ -293,6 +293,7 @@ public class PlayerUnit : Unit
     void Init()
     {
         SetVariable();
+        GameManager.instance.AddMapStartEventListener(MapStartEventCall);
     }
 
     private void LoadPlayerData()
@@ -926,7 +927,7 @@ public class PlayerUnit : Unit
     }
     
 
-    private void MapEndEventCall()
+    private void MapStartEventCall()
     {
         _mapCount++;
     }
@@ -972,7 +973,11 @@ public class PlayerUnit : Unit
 
     public void ChangeMoveSpeed(float changeMoveSpeed)
     {
+        Debug.Log("Be _moveSpeed : " + _moveSpeed);
+
         _moveSpeed *= changeMoveSpeed;
+        Debug.Log("Af _moveSpeed : " + _moveSpeed);
+
     }
 
     public void ApplyLivingHard()

@@ -52,6 +52,11 @@ public class KeyManager : MonoBehaviour
             return;
         }
 
+        if (GameManager.instance.PlayerActor != controlUnit)
+        {
+            return;
+        }
+
         if (Input.anyKey || Input.anyKeyDown)
         {
             if (GameManager.instance.isPlayerDead)

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 1
   _name: "\uBAA8\uB798\uC8FC\uBA38\uB2C8"
-  durationString: "\uC601\uAD6C \uAC1C \uB9F5"
-  contentString: "\uC774\uB3D9 \uC18D\uB3C4\uAC00 \uD604\uC7AC\uC758 \uBC30\uB85C
+  durationString: "\uC601\uAD6C 1\uAC1C \uB9F5"
+  contentString: "\uC774\uB3D9 \uC18D\uB3C4\uAC00 \uD604\uC7AC\uC758 0.5\uBC30\uB85C
     \uAC10\uC18C\uD55C\uB2E4."
   originalContentString: "\uC774\uB3D9 \uC18D\uB3C4\uAC00 \uD604\uC7AC\uC758 \uBC30\uB85C
     \uAC10\uC18C\uD55C\uB2E4."
