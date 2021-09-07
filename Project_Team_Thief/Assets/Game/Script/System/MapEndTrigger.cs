@@ -13,6 +13,8 @@ public class MapEndTrigger : MonoBehaviour
     [Header("Prerequirements")]
     [SerializeField]
     private MonsterSpawnPoint[] _spawnPoints = new MonsterSpawnPoint[0];
+    [SerializeField]
+    private string _mapEndTriggerString;
 
     private void Start()
     {
@@ -56,6 +58,10 @@ public class MapEndTrigger : MonoBehaviour
                 return;
             Assert.IsNotNull(_mapEndEvent);
             _mapEndEvent.Invoke();
+            if (_mapEndTriggerString != null)
+            {
+                GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>().AddQueue(_mapEndTriggerString);
+            }
             invoked = true;
         }
     }

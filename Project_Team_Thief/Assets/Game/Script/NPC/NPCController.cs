@@ -5,7 +5,6 @@ using UnityEngine;
 public class NPCController : MonoBehaviour
 {
     public string npcName;
-    //private bool bInterActorable = false;
     public Transform interactorableNoticeIcon;
 
     private void Start()
