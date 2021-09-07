@@ -293,7 +293,7 @@ public class PlayerUnit : Unit
     void Init()
     {
         SetVariable();
-        GameManager.instance.AddMapStartEventListener(MapStartEventCall);
+        GameManager.instance.AddMapEndEventListener(MapEndEventCall);
     }
 
     private void LoadPlayerData()
@@ -927,7 +927,7 @@ public class PlayerUnit : Unit
     }
     
 
-    private void MapStartEventCall()
+    private void MapEndEventCall()
     {
         _mapCount++;
     }

@@ -17,7 +17,7 @@ public class BlessingPenaltySealData : BlessingPenaltyDataBase
     public override void ActivePenalty(Unit unit)
     {
         _randSkillSlotIndex = UnityEngine.Random.Range(0, GameManager.instance.SkillSlotMng.SkillSlots.Count);
-        GameManager.instance.SkillSlotMng.SealSkillSlot(_randSkillSlotIndex);
+        GameManager.instance.SkillSlotMng.SealSkillSlot();
 
         _playerUnit = unit as PlayerUnit;
 

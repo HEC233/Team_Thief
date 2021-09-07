@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class SkillSlotManager : MonoBehaviour
 {
@@ -23,8 +24,12 @@ public class SkillSlotManager : MonoBehaviour
     private float _commandInputTime = 5.0f;
     public float CommandInputTime => _commandInputTime;
 
+    [SerializeField] 
+    private int[] _slotInSkillLifeTimeArr;
+    
     private float _inputTime;
     private float _beInputTime;
+    
     
     public event UnityAction<TransitionCondition, bool> OnCommandCastEvent;
 
@@ -37,6 +42,7 @@ public class SkillSlotManager : MonoBehaviour
     private void Init()
     {
         CreateSkillSlotAndAddList();
+        GameManager.instance.AddMapEndEventListener(MapEndEventCall);
     }
 
     private void CreateSkillSlotAndAddList()
@@ -52,6 +58,8 @@ public class SkillSlotManager : MonoBehaviour
         {
             var newSlot = new SkillSlot(_skillSlotCommandDatas[i], this);
             _skillSlots.Add(newSlot);
+            _skillSlots[i].SkillLifeTime = _slotInSkillLifeTimeArr[i];
+            _skillSlots[i].SkillLifeTime = _slotInSkillLifeTimeArr[i];
             GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.RegistSkillData(i, newSlot);
         }
 
@@ -65,27 +73,33 @@ public class SkillSlotManager : MonoBehaviour
 
     }
 
-    // 왼쪽부터 순서대로 빈 공간에 스킬 삽입
-    public void InsertSkillBaseInSkillSlot(SkillDataBase skillDataBase)
+    // 슬롯 인덱스와 스킬 데이터를 받아서 삽입.
+    public void InsertSkillBaseInSkillSlot(SkillDataBase skillDataBase, int slotIndex)
     {
-        for (int i = 0; i < _skillSlots.Count; i++)
-        {
-            if (_skillSlots[i].SkillDataBase == null)
-            {
-                _skillSlots[i].InsertSkillDataBase(skillDataBase);
-                break;
-            }
-        }
+        _skillSlots[slotIndex].InsertSkillDataBase(skillDataBase);
     }
 
+    // 스킬이 사라지지 않도록 Rock.
     public void RockSkillSlot(int slotIndex)
     {
         _skillSlots[slotIndex].RockSlot();
     }
 
-    public void SealSkillSlot(int slotIndex)
+    
+    // 랜덤한 하나의 슬롯을 봉인.
+    public void SealSkillSlot()
     {
-        _skillSlots[slotIndex].SealSlot();
+        var isDone = false;
+        while (!isDone)
+        {
+            int slotIndex = Random.Range(0, _skillSlots.Count);
+
+            if (_skillSlots[slotIndex].IsSeal == false)
+            {
+                _skillSlots[slotIndex].SealSlot();
+                isDone = true;
+            }
+        }
     }
 
     public void UnSealingSkillSlot(int slotIndex)
@@ -159,6 +173,14 @@ public class SkillSlotManager : MonoBehaviour
         }
     }
 
+    private void MapEndEventCall()
+    {
+        for (int i = 0; i < _skillSlotNumber; i++)
+        {
+            _skillSlots[i].MapEndEventCall();
+        }
+    }
+
     private void DebugSlotInKeys()
     {
         string commandString = String.Empty;
@@ -207,6 +229,16 @@ public class SkillSlotManager : MonoBehaviour
             set => _skillSlotCurCoolTime = value;
         }
 
+        private int _skillLifeTime;
+
+        public int SkillLifeTime
+        {
+            get => _skillLifeTime;
+            set => _skillLifeTime = value;
+        }
+
+        private int _curSkillLifeTime;
+
         public SkillSlot(SOCommandData soCommandData, SkillSlotManager skillSlotManager)
         {
             _skillSlotManager = skillSlotManager;
@@ -224,7 +256,8 @@ public class SkillSlotManager : MonoBehaviour
             _skillSlotCurCoolTime = 0.0f;
             _commandCount = 0;
             _reversCommandCount = 0;
-            
+            _curSkillLifeTime = 0;
+
         }
         
         public List<char> CommandList
@@ -266,11 +299,9 @@ public class SkillSlotManager : MonoBehaviour
 
         public void RemoveSkillDataBase()
         {
-            if(_isRock)
-                return;
-
             _skillSlotCurCoolTime = 0.0f;
             _skillSlotCoolTime = 0.0f;
+            _curSkillLifeTime = 0;
 
             _skillDataBase = null;
             _isActiveSkillSlot = false;
@@ -346,6 +377,19 @@ public class SkillSlotManager : MonoBehaviour
             }
             
             return false;
+        }
+
+        public void MapEndEventCall()
+        {
+            if (_skillDataBase == null || _isRock)
+            {
+                return;
+            }
+
+            _curSkillLifeTime++;
+            
+            if(_curSkillLifeTime >= _skillLifeTime)
+                RemoveSkillDataBase();
         }
 
         IEnumerator SlotCoolTimeCoroutine()
