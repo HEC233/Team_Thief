@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MonsterSpawnPoint : MonoBehaviour
+public class MonsterSpawnPoint : MonoBehaviour, IEndTriggeCheck
 {
     [SerializeField]
     private SpawnData[] _spawnDatas;
@@ -12,9 +12,11 @@ public class MonsterSpawnPoint : MonoBehaviour
     private bool _startWhenBegin = true;
     private bool _spawned = false;
 
-    private List<GameObject> _spawnedMonsters = new List<GameObject>();
+    private List<MonsterUnit> _spawnedMonsters = new List<MonsterUnit>();
     private int _allMonsterCount = 0;
     private int _spawnedMonsterCount;
+
+    private int _curMonsterCount = 0;
 
     [SerializeField, Tooltip("몬스터가 모두 죽을 경우 발생하는 이벤트")]
     private UnityEvent _monsterAllDeathEvent;
@@ -28,15 +30,7 @@ public class MonsterSpawnPoint : MonoBehaviour
     {
         get
         {
-            for (int i = 0; i < _spawnedMonsters.Count; i++)
-            {
-                if (_spawnedMonsters[i] == null)
-                {
-                    _spawnedMonsters.RemoveAt(i);
-                    i--;
-                }
-            }
-            return _spawnedMonsters.Count; 
+            return _curMonsterCount; 
         }
     }
 
@@ -93,22 +87,39 @@ public class MonsterSpawnPoint : MonoBehaviour
 
         if (data.interval == 0)
         {
-            var list = GameManager.instance.Spawner.SpawnMany(data.unitName, data.position.position, data.count);
+            var list = GameManager.instance.Spawner.SpawnManyMU(data.unitName, data.position.position, data.count);
             _spawnedMonsters.AddRange(list);
             _spawnedMonsterCount += data.count;
+            _curMonsterCount += data.count;
+            foreach(var m in list)
+            {
+                m.DestroyEvent.AddListener(MonsterDeathCounter);
+            }
         }
         else
         {
             int left = data.count;
             while (left > 0)
             {
-                var obj = GameManager.instance.Spawner.Spawn(data.unitName, data.position.position);
+                var obj = GameManager.instance.Spawner.SpawnMU(data.unitName, data.position.position);
                 _spawnedMonsters.Add(obj);
                 _spawnedMonsterCount++;
+                _curMonsterCount ++;
+                obj.DestroyEvent.AddListener(MonsterDeathCounter);
 
                 left--;
                 yield return new WaitForSeconds(data.interval);
             }
         }
+    }
+
+    public void MonsterDeathCounter()
+    {
+        _curMonsterCount--;
+    }
+
+    bool IEndTriggeCheck.Check()
+    {
+        return CurMonsterCount == 0 && IsAllSpawned;
     }
 }
