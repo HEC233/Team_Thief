@@ -150,7 +150,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             if (condition == TransitionCondition.Wallslideing)
             {
                 //=============================
-                GameManager.instance.NPCMng.PushEventQueue();
+                GameManager.instance.NPCMng.InterAct();
                 return false;
                 //=============================
             }
@@ -2772,6 +2772,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         public override void StartState()
         {
             Init();
+            _gameSkillObject = InvokeSkill();
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillBaldoCast);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillBaldoCast);
@@ -2849,9 +2850,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillBaldo);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillBaldo);
-
-            
-            _gameSkillObject = InvokeSkill();
         }
         
         private void StopWaitEndDelayCoroutine()

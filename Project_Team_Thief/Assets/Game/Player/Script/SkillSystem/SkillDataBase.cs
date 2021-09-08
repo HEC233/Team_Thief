@@ -17,6 +17,10 @@ public abstract class SkillDataBase : ScriptableObject
     private SignalSourceAsset _cinemachineSignalSource;
     public SignalSourceAsset CinemachineSignalSource => _cinemachineSignalSource;
 
+    [SerializeField] 
+    private SOZoomInOutDataBase _zoomInOutData;
+    public SOZoomInOutDataBase ZoomInOutData => _zoomInOutData;
+
     //New Data -> skill Info
     [SerializeField]
     private string _name;

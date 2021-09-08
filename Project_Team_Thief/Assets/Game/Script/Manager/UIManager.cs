@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private UIPenalty uiPenalty;
     [SerializeField]
+    private UISkillSelect uiSkillSelect;
+    [SerializeField]
     private CanvasGroup uiGameOver;
     [SerializeField]
     private GameObject playerDeadResumeButton;
@@ -143,6 +145,42 @@ public class UIManager : MonoBehaviour
     {
         GameManager.instance.EncroachmentMng.ActivePenaltyFromId(id);
         GameManager.instance.TimeMng.ResumeTime();
+    }
+
+    public void StartSkillSelect()
+    {
+        StartCoroutine(SkillSelectCoroutine());
+    }
+
+    IEnumerator SkillSelectCoroutine()
+    {
+        GameManager.instance.TimeMng.StopTime();
+        uiPlayerInfo.SkillInfo.SkillIconInteractable(true);
+        uiSkillSelect.SetSkillData(SkillDataBank.instance.GetRandomSKillDataBase());
+        uiSkillSelect.ShowSkillSelect(true);
+
+        bool selectNotEnd = true;
+
+        while(selectNotEnd)
+        {
+            if(uiSkillSelect.IsSelected && uiPlayerInfo.SkillInfo.IsSelected)
+            {
+                selectNotEnd = !GameManager.instance.SkillSlotMng.InsertSkillBaseInSkillSlot(
+                    SkillDataBank.instance.GetSkillData(uiSkillSelect.CurID), uiPlayerInfo.SkillInfo.CurID);
+                uiPlayerInfo.SkillInfo.UpdateSkillData(uiPlayerInfo.SkillInfo.CurID);
+                uiSkillSelect.UnSelect();
+                uiPlayerInfo.SkillInfo.UnSelect();
+            }
+
+            yield return null;
+        }
+
+
+        uiSkillSelect.ShowSkillSelect(false);
+        uiPlayerInfo.SkillInfo.SkillIconInteractable(false);
+        GameManager.instance.TimeMng.ResumeTime();
+
+        yield break;
     }
 
     public void ToggleDeveloperConsole()

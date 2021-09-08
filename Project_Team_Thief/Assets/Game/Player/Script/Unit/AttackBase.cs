@@ -52,27 +52,45 @@ public class AttackBase : MonoBehaviour
     [SerializeField]
     protected string _sfxSoundName;
     protected uint _sfxSoundId;
-    [SerializeField] 
-    protected AnimationCurve _zoomInCurve;
-    [SerializeField] 
-    protected float _zoomInTime;
-    [SerializeField] 
+    // [SerializeField] 
+    // protected AnimationCurve _zoomInCurve;
+    // [SerializeField] 
+    // protected float _zoomInTime;
+    //[SerializeField] 
     protected float _zoomInSize;
-    [SerializeField] 
-    protected AnimationCurve _zoomOutCurve;
-    [SerializeField]
-    protected float _zoomOutTime;
+    // [SerializeField] 
+    // protected AnimationCurve _zoomOutCurve;
+    // [SerializeField]
+    // protected float _zoomOutTime;
     [SerializeField] 
     protected string _fxName;
 
     protected ContactFilter2D _contactFilter2D;
     protected List<Collider2D> result = new List<Collider2D>();
     
-    protected CinemachineBlendDefinition _cinemachineBlendDefinition;
+    protected CinemachineBlendDefinition _cinemachineBlendDefinitionZoomIn;
+    protected CinemachineBlendDefinition _cinemachineBlendDefinitionZoomOut;
+    private bool _isZoomInOutEnd = false;
+
+    public CinemachineBlendDefinition CinemachineBlendDefinitionZoomIn
+    {
+        get => _cinemachineBlendDefinitionZoomIn;
+        set => _cinemachineBlendDefinitionZoomIn = value;
+    }
+
+    public CinemachineBlendDefinition CinemachineBlendDefinitionZoomOut
+    {
+        get => _cinemachineBlendDefinitionZoomOut;
+        set => _cinemachineBlendDefinitionZoomOut = value;
+    }
+
+
     protected SignalSourceAsset _signalSourceAsset;
 
     protected bool _isEnter = false;
     protected bool _isInit = false;
+    protected bool _isBind = false;
+    protected bool _isAttackEnd = false;
 
     [SerializeField]
     protected LayerMask _hitLayerMask;
@@ -89,6 +107,7 @@ public class AttackBase : MonoBehaviour
     protected BoxCollider2D _attackCollider2D;
     [SerializeField]
     protected CinemachineImpulseSource _cinemachineImpulseSource;
+
 
     private List<int> _enterEnemyHashList = new List<int>();    // Hash를 key로 사용하려 한다. 이에 관해서 상의 필요할 듯.
     
@@ -176,22 +195,46 @@ public class AttackBase : MonoBehaviour
         _signalSourceAsset = signalSourceAsset;
         _cinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _signalSourceAsset;
     }
+    
+    public virtual void Init(Damage damage, SignalSourceAsset signalSourceAsset, SOZoomInOutDataBase zoomInOutDataBase)
+    {
+        Init(damage, signalSourceAsset);
+
+        _cinemachineBlendDefinitionZoomIn = zoomInOutDataBase.GetZoomInData();
+        _cinemachineBlendDefinitionZoomOut = zoomInOutDataBase.GetZoomOutData();
+        _zoomInSize = zoomInOutDataBase.ZoomInSize;
+    }
 
     public virtual void Init(Damage damage, SkillDataBase skillData)
     {
         Init(damage);
     }
     
+    public virtual void Init(Damage damage, SkillDataBase skillData, SOZoomInOutDataBase zoomInOutDataBase)
+    {
+        Init(damage);
+
+        _cinemachineBlendDefinitionZoomIn = zoomInOutDataBase.GetZoomInData();
+        _cinemachineBlendDefinitionZoomOut = zoomInOutDataBase.GetZoomOutData();
+        _zoomInSize = zoomInOutDataBase.ZoomInSize;
+    }
+    
     protected void Bind()
     {
         if (_isZoomIn == true)
+        {
             GameManager.instance.CameraMng.OnZoomInEndEvent += ZoomOut;
+            _isBind = true;
+        }
     }
 
     protected void UnBind()
     {
         if (_isZoomIn == true)
+        {
             GameManager.instance.CameraMng.OnZoomInEndEvent -= ZoomOut;
+            _isBind = false;
+        }
     }
 
     protected void Flash()
@@ -335,39 +378,64 @@ public class AttackBase : MonoBehaviour
         _cinemachineImpulseSource.GenerateImpulse();
     }
 
-    private void ZoomIn()
+    public void ZoomIn()
     {
         if (_isZoomIn == false)
         {
             return;
         }
+
+        if (_isBind == false)
+        {
+            Bind();
+        }
         
-        _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
-        _cinemachineBlendDefinition.m_CustomCurve = _zoomInCurve;
-        _cinemachineBlendDefinition.m_Time = _zoomInTime;
-
-        GameManager.instance.CameraMng.ZoomIn(_cinemachineBlendDefinition, _zoomInSize);
+        // _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
+        // _cinemachineBlendDefinition.m_CustomCurve = _zoomInCurve;
+        // _cinemachineBlendDefinition.m_Time = _zoomInTime;
+        _isZoomInOutEnd = true;
+        GameManager.instance.CameraMng.ZoomIn(_cinemachineBlendDefinitionZoomIn, _zoomInSize);
     }
     
-    private void ZoomOut()
+    public void ZoomOut()
     {
-        GameManager.instance.CameraMng.ZoomOut(ZoomOutBlendDefinition());
+        Debug.Log("AttackBase ZoomOut");
+        _isZoomInOutEnd = false;
+        if (_isAttackEnd)
+        {
+            UnBind();
+        }
+        GameManager.instance.CameraMng.ZoomOut(_cinemachineBlendDefinitionZoomOut);
     }
     
-    private CinemachineBlendDefinition ZoomOutBlendDefinition()
-    {
-        _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
-        _cinemachineBlendDefinition.m_CustomCurve = _zoomOutCurve;
-        _cinemachineBlendDefinition.m_Time = _zoomOutTime;
-
-        return _cinemachineBlendDefinition;
-    }
+    // private CinemachineBlendDefinition ZoomOutBlendDefinition()
+    // {
+    //     _cinemachineBlendDefinition.m_Style = CinemachineBlendDefinition.Style.Custom;
+    //     _cinemachineBlendDefinition.m_CustomCurve = _zoomOutCurve;
+    //     _cinemachineBlendDefinition.m_Time = _zoomOutTime;
+    //
+    //     return _cinemachineBlendDefinition;
+    // }
 
     public virtual void AttackEnd()
     {
-        ZoomOut();
+        //ZoomOut();
+        _isAttackEnd = true;
         _enterEnemyHashList.Clear();
+        StartCoroutine(WaitZoomInCoroutine());
+    }
+
+    IEnumerator WaitZoomInCoroutine()
+    {
+        float timer = 0.0f;
+        
+        while (_isZoomInOutEnd)
+        {
+            timer += GameManager.instance.TimeMng.FixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        Debug.Log("WaitZoomInCoroutine");
+        ZoomOut();
         UnBind();
     }
-    
 }

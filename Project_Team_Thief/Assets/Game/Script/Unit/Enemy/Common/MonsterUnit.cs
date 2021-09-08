@@ -41,6 +41,8 @@ public class MonsterUnit : Unit
     public UnityEvent hitEvent;
     [HideInInspector]
     public UnityEvent dieEvent;
+    [HideInInspector]
+    public UnityEvent DestroyEvent;
 
     [SerializeField]
     protected float _hp;
@@ -154,7 +156,7 @@ public class MonsterUnit : Unit
 
     private void OnDestroy()
     {
-        dieEvent.Invoke();
+        DestroyEvent.Invoke();
     }
 
     public float GetCurHp()

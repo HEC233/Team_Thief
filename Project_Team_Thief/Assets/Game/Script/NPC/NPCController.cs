@@ -5,7 +5,6 @@ using UnityEngine;
 public class NPCController : MonoBehaviour
 {
     public string npcName;
-    //private bool bInterActorable = false;
     public Transform interactorableNoticeIcon;
 
     private void Start()
@@ -16,5 +15,10 @@ public class NPCController : MonoBehaviour
     public void ActiveIcon(bool bValue)
     {
         interactorableNoticeIcon.gameObject.SetActive(bValue);
+    }
+
+    public virtual bool Act()
+    {
+        return false;
     }
 }

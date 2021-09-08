@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillCommandBox: {fileID: 7754413800037174737}
   _skillCooltimeBox: {fileID: 8923778565785358300}
+  _button: {fileID: 3741533888654075575}
 --- !u!1001 &7871793586183473790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -333,5 +334,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 368c15aa752773746846454688c1fba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3741533888654075575 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6832703565048580637, guid: dedb1fee6f6bffc4bbaaefa46e7f136e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7871793586659650730}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
