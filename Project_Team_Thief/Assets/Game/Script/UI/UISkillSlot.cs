@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Assertions;
 
 public class UISkillSlot : MonoBehaviour
@@ -10,6 +11,8 @@ public class UISkillSlot : MonoBehaviour
     private UISkillCommandBox _skillCommandBox;
     [SerializeField]
     private UISkillCooltimeBox _skillCooltimeBox;
+    [SerializeField]
+    private Button _button;
 
     public void Regist(SkillSlotManager.SkillSlot skillSlot)
     {
@@ -64,5 +67,10 @@ public class UISkillSlot : MonoBehaviour
         _skillCommandBox.CommandUpdate(count, length);
         float cooltimeRatio = Mathf.Clamp01(_skillData.SkillSlotCurCoolTime / _skillData.SkillSlotCoolTime);
         _skillCooltimeBox.CustomUpdate(cooltimeRatio);
+    }
+
+    public void SetButtonInteractable(bool value)
+    {
+        _button.interactable = value;
     }
 }

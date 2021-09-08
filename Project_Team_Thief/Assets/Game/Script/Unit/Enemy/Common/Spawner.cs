@@ -35,4 +35,18 @@ public class Spawner : MonoBehaviour
     {
         return Spawn(unitName, position, Quaternion.identity, count);
     }
+    public MonsterUnit SpawnMU(string unitName, Vector3 position)
+    {
+        return Spawn(unitName, position, Quaternion.identity, 1)[0].GetComponentInChildren<MonsterUnit>();
+    }
+    public MonsterUnit[] SpawnManyMU(string unitName, Vector3 position, int count)
+    {
+        var objs = Spawn(unitName, position, Quaternion.identity, count);
+        MonsterUnit[] ret = new MonsterUnit[objs.Length];
+        for(int i =0; i < objs.Length; i++)
+        {
+            ret[i] = objs[i].GetComponentInChildren<MonsterUnit>();
+        }
+        return ret;
+    }
 }
