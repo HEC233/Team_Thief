@@ -52,16 +52,16 @@ public class AttackBase : MonoBehaviour
     [SerializeField]
     protected string _sfxSoundName;
     protected uint _sfxSoundId;
-    [SerializeField] 
-    protected AnimationCurve _zoomInCurve;
-    [SerializeField] 
-    protected float _zoomInTime;
-    [SerializeField] 
+    // [SerializeField] 
+    // protected AnimationCurve _zoomInCurve;
+    // [SerializeField] 
+    // protected float _zoomInTime;
+    //[SerializeField] 
     protected float _zoomInSize;
-    [SerializeField] 
-    protected AnimationCurve _zoomOutCurve;
-    [SerializeField]
-    protected float _zoomOutTime;
+    // [SerializeField] 
+    // protected AnimationCurve _zoomOutCurve;
+    // [SerializeField]
+    // protected float _zoomOutTime;
     [SerializeField] 
     protected string _fxName;
 
