@@ -281,6 +281,11 @@ public class PlayerUnit : Unit
     
     [SerializeField, Header("")]
     private GameObject _SlideingFx;
+    
+       
+    // Zoom In and Out Event
+    public UnityAction ZoomInEvent;
+    public UnityAction ZoomOutEvent;
 
     void Start()
     {
@@ -1001,6 +1006,16 @@ public class PlayerUnit : Unit
     }
     
     //
+
+    public void OnZoomInEventCall()
+    {
+        ZoomInEvent.Invoke();
+    }
+
+    public void OnZoomOutEventCall()
+    {
+        ZoomOutEvent.Invoke();
+    }
 
     IEnumerator ComboCoroutine()
     {
