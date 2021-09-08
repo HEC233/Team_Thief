@@ -17,6 +17,8 @@ public class CameraManager : MonoBehaviour
     private CinemachineBlendDefinition _cinemachineBlendDefinition;
     public CinemachineVirtualCamera _zoomInVirtualCamera = null;
 
+    private bool _isZoomIn = false;
+    
     public event UnityAction OnZoomInEndEvent = null;
     private Unit playerUnit;
     
@@ -45,6 +47,7 @@ public class CameraManager : MonoBehaviour
     {
         FindCameras();
         _mainVirtualCamera.Follow = GameManager.instance.PlayerActor.GetUnit().transform;
+        _zoomInVirtualCamera.Follow = GameManager.instance.PlayerActor.GetUnit().transform;
     }
 
     public void FindCameras()
@@ -99,7 +102,12 @@ public class CameraManager : MonoBehaviour
         {
             FindCameras();
         }
-        
+
+        if (_isZoomIn == true)
+        {
+            return;
+        }
+        Debug.Log("ZoomIn");
         _cinemachineBlenderSettings.m_CustomBlends[0].m_Blend = customBlend;
         _zoomInVirtualCamera.m_Lens.OrthographicSize = zoomInSize;
         
@@ -114,7 +122,7 @@ public class CameraManager : MonoBehaviour
         {
             FindCameras();
         }
-
+        Debug.Log("ZOomOut");
         _cinemachineBlenderSettings.m_CustomBlends[1].m_Blend = customBlend;
         
         _mainVirtualCamera.m_Priority = 2;
@@ -132,15 +140,19 @@ public class CameraManager : MonoBehaviour
 
     IEnumerator WaitZoomInCoroutine()
     {
-        yield return new WaitForSeconds(0.04f);
+        float timer = 0.04f;
+        _isZoomIn = true;
         
+        yield return new WaitForSeconds(0.04f);
+
         while (_cinemachineBrain.IsBlending)
         {
-            Debug.Log(_cinemachineBrain.IsBlending);
+            timer += GameManager.instance.TimeMng.FixedDeltaTime;
             yield return new WaitForSeconds(GameManager.instance.TimeMng.FixedDeltaTime);
         }
-        
+        Debug.Log("코루틴End");
         OnZoomInEndEvent?.Invoke();
+        _isZoomIn = false;
     }   
 
     IEnumerator GetVirtualCamera()

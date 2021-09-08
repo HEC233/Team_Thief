@@ -8,7 +8,6 @@ public class NPCManager : MonoBehaviour
     private NPCController[] npcs;
     [SerializeField]
     private GameObject interActiveIcon;
-    private string nearestNpcName;
     private float nearestNpcDist;
     private int nearestNpcIndex;
     private bool bNearestNpcExist = false;
@@ -51,7 +50,6 @@ public class NPCManager : MonoBehaviour
             {
                 nearestNpcDist = dist;
                 nearestNpcIndex = i;
-                nearestNpcName = npcs[i].npcName;
             }
         }
 
@@ -62,12 +60,20 @@ public class NPCManager : MonoBehaviour
         }
     }
 
-    public string GetNearestNPC()
+    public NPCController GetNearestNPC()
     {
         if (bNearestNpcExist)
-            return nearestNpcName;
+            return npcs[nearestNpcIndex];
         else
-            return string.Empty;
+            return null;
+    }
+
+    public void InterAct()
+    {
+        if (!(bNearestNpcExist && GetNearestNPC().Act()))
+        {
+            PushEventQueue();
+        }
     }
 
     public void PushEventQueue()
@@ -77,8 +83,7 @@ public class NPCManager : MonoBehaviour
         var es = go.GetComponent<GameEventSystem>();
         if (es == null) return;
 
-        string nearest = GetNearestNPC();
-        if (nearest != string.Empty)
-            es.AddQueue(nearest);
+        if (bNearestNpcExist)
+            es.AddQueue(GetNearestNPC().npcName);
     }
 }

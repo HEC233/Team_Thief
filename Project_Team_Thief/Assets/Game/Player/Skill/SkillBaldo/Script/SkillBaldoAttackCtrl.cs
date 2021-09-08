@@ -19,8 +19,9 @@ public class SkillBaldoAttackCtrl : AttackBase
 
     public override void AttackEnd()
     {
+        
         base.AttackEnd();
-
+        Debug.Log("AttackEnd");
         OnEnemyHitEvent = null;
     }
 }
