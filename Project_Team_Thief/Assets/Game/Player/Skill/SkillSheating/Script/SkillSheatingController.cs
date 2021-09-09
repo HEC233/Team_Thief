@@ -22,6 +22,8 @@ public class SkillSheatingController : SkillControllerBase
         _skillSheatingData = SkillData as SkillSheatingData;
         _unit = Unit as PlayerUnit;
         SetDamage();
+        _unit.ZoomInEvent += ZoomInEventCall;
+        _unit.ZoomOutEvent += ZoomOutEventCall;
         _unit.SkillSheatingAttackBase.Init(_damage, _skillSheatingData.CinemachineSignalSource);
         _unit.OnSkillSheatingAttackEvent += ReceiveAttackEvent;
         ((SkillBaldoAttackCtrl)_unit.SkillSheatingAttackBase).OnEnemyHitEvent += ReceiveHitEvent;
@@ -89,8 +91,20 @@ public class SkillSheatingController : SkillControllerBase
     
     private void EndSkill()
     {
+        _unit.ZoomInEvent -= ZoomInEventCall;
+        _unit.ZoomOutEvent -= ZoomOutEventCall;
         ResetValue();
         OnEndSkillAction?.Invoke();
+    }
+    
+    private void ZoomInEventCall()
+    {
+        _unit.SkillSheatingAttackBase.ZoomIn();        
+    }
+
+    private void ZoomOutEventCall()
+    {
+        _unit.SkillSheatingAttackBase.ZoomOut();                
     }
 
     private IEnumerator SpecialStateCoroutine()

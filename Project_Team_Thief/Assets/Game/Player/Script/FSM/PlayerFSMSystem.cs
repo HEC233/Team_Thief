@@ -3214,6 +3214,43 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         }
     }
 
+    private class SkillChaosHallState : CustomFSMStateBase, ISkillStateBase
+    {
+        public SkillChaosHallState(PlayerFSMSystem system) : base(system)
+        {
+        }
+
+        public override void StartState()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void EndState()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Transition(TransitionCondition condition)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool InputKey(TransitionCondition condition)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsAbleTransition()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     protected override void RegisterState()
     {
         AddState(TransitionCondition.Idle, new IdleState(this));
@@ -3239,6 +3276,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         AddState(TransitionCondition.SkillBaldo, new SkillBaldoState(this));
         AddState(TransitionCondition.SkillSheating, new SkillSheatingState(this));
         AddState(TransitionCondition.SkillMagicMissile, new SkillMagicMissileState(this));
+        AddState(TransitionCondition.SkillChaosHall, new SkillChaosHallState(this));
         AddState(TransitionCondition.Die, new DieState(this));
     }
     

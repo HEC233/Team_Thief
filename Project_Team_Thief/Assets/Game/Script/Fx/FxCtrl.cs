@@ -31,6 +31,9 @@ public enum FxAniEnum
     SkillSheatingDelay, // 23
     SkillSheating,      // 24
     SkillMagicMissile,  // 25
+    SkillChaosHallCast, // 26
+    SkillChaosHallDelay,// 27
+    SkillChaosHall,     // 28
 
 }
 

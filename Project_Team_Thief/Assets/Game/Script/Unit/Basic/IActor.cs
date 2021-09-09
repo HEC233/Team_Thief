@@ -40,6 +40,7 @@ public enum TransitionCondition
     SkillBaldo,
     SkillSheating,
     SkillMagicMissile,
+    SkillChaosHall,
     Action,
 
     // Shadow
