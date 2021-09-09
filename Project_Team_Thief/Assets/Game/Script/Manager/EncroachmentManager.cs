@@ -142,7 +142,7 @@ public class EncroachmentManager : MonoBehaviour
         return _encroachmentRecoveryAmount;
     }
         
-    private void ChangeEncroachment(float encroachmentIncrease)
+    public void ChangeEncroachment(float encroachmentIncrease)
     {
         _encroachment += encroachmentIncrease;
 
