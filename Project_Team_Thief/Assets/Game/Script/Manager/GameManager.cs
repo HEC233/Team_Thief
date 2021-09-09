@@ -129,6 +129,12 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayer()
     {
+        if (isPlayerDead == true)
+        {
+            Destroy(_playerGameObject);
+            _playerGameObject = null;
+        }
+        
         if (_playerGameObject == null)
         {
             _playerGameObject = GameObject.Instantiate(_playerPrefab);
@@ -175,9 +181,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 플레이어가 죽으면 메인씬, (현재 튜토리얼이 그 역활 중)으로 이동
     public void ReloadScene()
     {
-        LoadScene(SceneManager.GetActiveScene().name);
+        LoadScene("Tutorial");
     }
 
     IEnumerator StartGameCoroutine(string SceneName)
