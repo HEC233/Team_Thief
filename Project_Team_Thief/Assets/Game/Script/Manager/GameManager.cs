@@ -26,10 +26,10 @@ public class GameManager : MonoBehaviour
         set { _prevState = _gameState; _gameState = value; _uiManager.ToggleUI(value); Debug.Log("GameState Changed : " + _gameState); }
     }
 
-    [SerializeField] 
+    [SerializeField]
     private GameObject _playerPrefab;
     private GameObject _playerGameObject;
-    
+
     [SerializeField]
     private FreameChecker _frameChecker;
     public FreameChecker FrameChecker => _frameChecker;
@@ -79,7 +79,6 @@ public class GameManager : MonoBehaviour
     private NewGameEventSystem _gameEventSys;
     public NewGameEventSystem GameEventSys => _gameEventSys;
     private Grid grid;
-
     private GameSettingData _settingData;
     public GameSettingData SettingData
     {
@@ -106,6 +105,7 @@ public class GameManager : MonoBehaviour
         ApplySetting(_settingData);
         _gameEventSys.EstablishEventMap();
 
+        _mapStartEvents.AddListener(SetNPCReward);
         _mapEndEvents.AddListener(DebugLogger);
     }
 
@@ -168,6 +168,7 @@ public class GameManager : MonoBehaviour
     public void StartNewGame()
     {
         StartCoroutine(StartGameCoroutine("Tutorial"));
+        InitNPCReward();
     }
 
     public void LoadScene(string SceneName)
@@ -311,6 +312,38 @@ public class GameManager : MonoBehaviour
     // public으로 노출시키지 않은 것은 밖에서 Invoke 하는 것을 막기 위함
     private UnityEvent _mapStartEvents = new UnityEvent();
     private UnityEvent _mapEndEvents = new UnityEvent();
+
+    private NPCRewardType[] _nextMapReward = new NPCRewardType[2];
+
+    private void InitNPCReward()
+    {
+        var setter = FindObjectOfType<RewardNPCSetter>();
+        if (setter == null)
+        {
+            return;
+        }
+        NPCRewardType[] rewardTypes = new NPCRewardType[2];
+        rewardTypes[0] = NPCRewardType.skill;
+        rewardTypes[1] = (NPCRewardType)UnityEngine.Random.Range(1, 5);
+        _nextMapReward = setter.GetRandomType();
+        setter.Set(rewardTypes, _nextMapReward);
+        Debug.Log(_nextMapReward[0]);
+        Debug.Log(_nextMapReward[1]);
+    }
+    private void SetNPCReward()
+    {
+        var setter = FindObjectOfType<RewardNPCSetter>();
+        if (setter == null)
+        {
+            return;
+        }
+        var curReward = _nextMapReward;
+        _nextMapReward = setter.GetRandomType();
+        setter.Set(curReward, _nextMapReward);
+        Debug.Log(_nextMapReward[0]);
+        Debug.Log(_nextMapReward[1]);
+    }
+
 
     public void AddMapStartEventListener(UnityAction action)
     {
