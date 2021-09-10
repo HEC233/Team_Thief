@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level/RandomMapTest3.unity
     guid: db609c4087b402a43ab639c708e383da
+  - enabled: 1
+    path: Assets/Scenes/HHG/Level/Level1.unity
+    guid: 4234d39d1f919e8418d0dccb87c8bdae
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: b674431793c56ba4bb4f1ebde6a6acfa,
       type: 2}
