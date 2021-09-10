@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5623813672781d648940f5c75d0f6afb, type: 3}
+  m_Name: Boss1_1
+  m_EditorClassIdentifier: 
+  bFollowed: 0
+  eventIndex: Boss1_1
+  name: "\uBCF4\uC2A4\uC8041 \uB3C4\uCC29"
+  stopCondition: 
+  eventType: 0
+  triggerType: 1
+  trigger:
+    NPCname: 
+    xCmp: 0
+    xValue: 0
+    yCmp: 0
+    yValue: 0
+  playAmount: 0
+  playCount: 1
+  stoptime: 1
+  skipable: 0
+  followingEvent: 
+  cutScenes:
+  - cutSceneIndex: Boss1_0
+    actionTime: 0
+    skipable: 1
+    autopass: 1
+    actions:
+    - type: 5
+      actionLength: 0
+      dialogName: Boss1
+      image: {fileID: 0}
+      leftDown: {x: 0, y: 0}
+      rightUp: {x: 0, y: 0}
+      unitName: 
+      spawnPos: {x: 0, y: 0}
+      count: 0
+      cameraName: Boss
+      intensity: 0
+      cameraSize: 0
+      movePos: {x: 0, y: 0}
+      animationName: 
+      effectName: 
+      positionSetMethod: 0
+      originPointObject: 
+      effectPos: {x: 0, y: 0}
+      sfxName: 
+      bgmName: 
+      sceneName: 
+    - type: 0
+      actionLength: 0
+      dialogName: Boss1_01
+      image: {fileID: 0}
+      leftDown: {x: 0, y: 0}
+      rightUp: {x: 0, y: 0}
+      unitName: 
+      spawnPos: {x: 0, y: 0}
+      count: 0
+      cameraName: 
+      intensity: 0
+      cameraSize: 0
+      movePos: {x: 0, y: 0}
+      animationName: 
+      effectName: 
+      positionSetMethod: 0
+      originPointObject: 
+      effectPos: {x: 0, y: 0}
+      sfxName: 
+      bgmName: 
+      sceneName: 
+    - type: 5
+      actionLength: 0
+      dialogName: Boss1
+      image: {fileID: 0}
+      leftDown: {x: 0, y: 0}
+      rightUp: {x: 0, y: 0}
+      unitName: 
+      spawnPos: {x: 0, y: 0}
+      count: 0
+      cameraName: Player
+      intensity: 0
+      cameraSize: 0
+      movePos: {x: 0, y: 0}
+      animationName: 
+      effectName: 
+      positionSetMethod: 0
+      originPointObject: 
+      effectPos: {x: 0, y: 0}
+      sfxName: 
+      bgmName: 
+      sceneName: 
+    - type: 2
+      actionLength: 0
+      dialogName: Boss1
+      image: {fileID: 0}
+      leftDown: {x: -3, y: -3}
+      rightUp: {x: 38, y: 12}
+      unitName: 
+      spawnPos: {x: 0, y: 0}
+      count: 0
+      cameraName: Player
+      intensity: 0
+      cameraSize: 0
+      movePos: {x: 0, y: 0}
+      animationName: 
+      effectName: 
+      positionSetMethod: 0
+      originPointObject: 
+      effectPos: {x: 0, y: 0}
+      sfxName: 
+      bgmName: 
+      sceneName: 
+    - type: 16
+      actionLength: 0
+      dialogName: Boss1
+      image: {fileID: 0}
+      leftDown: {x: -3, y: -3}
+      rightUp: {x: 39, y: 12}
+      unitName: Boss
+      spawnPos: {x: 0, y: 0}
+      count: 0
+      cameraName: Player
+      intensity: 0
+      cameraSize: 0
+      movePos: {x: 0, y: 0}
+      animationName: 
+      effectName: 
+      positionSetMethod: 0
+      originPointObject: 
+      effectPos: {x: 0, y: 0}
+      sfxName: 
+      bgmName: 
+      sceneName: 

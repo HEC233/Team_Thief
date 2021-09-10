@@ -75,6 +75,9 @@ public class GameManager : MonoBehaviour
     public NPCManager NPCMng => _npcManager;
     [SerializeField]
     private GameSettingController _gameSettingCtrl;
+    [SerializeField]
+    private NewGameEventSystem _gameEventSys;
+    public NewGameEventSystem GameEventSys => _gameEventSys;
     private Grid grid;
 
     private GameSettingData _settingData;
@@ -101,11 +104,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ApplySetting(_settingData);
+        _gameEventSys.EstablishEventMap();
 
         _mapEndEvents.AddListener(DebugLogger);
-
-        _mapStartEvents.AddListener(MapStartLogger);
-        _mapEndEvents.AddListener(MapEndLogger);
     }
 
     // 게임의 포커스가 나갔을 경우.
@@ -310,15 +311,6 @@ public class GameManager : MonoBehaviour
     // public으로 노출시키지 않은 것은 밖에서 Invoke 하는 것을 막기 위함
     private UnityEvent _mapStartEvents = new UnityEvent();
     private UnityEvent _mapEndEvents = new UnityEvent();
-
-    private void MapStartLogger()
-    {
-        Debug.Log("Map Start Event Invoked");
-    }
-    private void MapEndLogger()
-    {
-        Debug.Log("Map End Event Invoked");
-    }
 
     public void AddMapStartEventListener(UnityAction action)
     {

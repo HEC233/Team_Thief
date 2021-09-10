@@ -60,7 +60,7 @@ public class MapEndTrigger : MonoBehaviour
             _mapEndEvent.Invoke();
             if (_mapEndTriggerString != null)
             {
-                GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>().AddQueue(_mapEndTriggerString);
+                GameManager.instance.GameEventSys.AddQueue(_mapEndTriggerString);
             }
             invoked = true;
         }

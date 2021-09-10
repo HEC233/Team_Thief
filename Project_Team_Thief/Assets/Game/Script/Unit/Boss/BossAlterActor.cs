@@ -101,7 +101,7 @@ public class BossAlterActor : MonoBehaviour, IActor
     private IEnumerator Pattern1Coroutine()
     {
         //WwiseSoundManager.instance.ChangeBGMState("Boss_Phase", "Phase2");
-        GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddQueue("BOSS_PHASE2");
+        GameManager.instance.GameEventSys.AddQueue("BOSS_PHASE2");
 
         float timeCheck = 0;
         while (true)
@@ -118,7 +118,7 @@ public class BossAlterActor : MonoBehaviour, IActor
 
     private IEnumerator Pattern2Coroutine()
     {
-        GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddQueue("BOSS_PHASE3");
+        GameManager.instance.GameEventSys.AddQueue("BOSS_PHASE3");
         float timeCheck = 0;
         while(true)
         {
@@ -244,7 +244,7 @@ public class BossAlterActor : MonoBehaviour, IActor
                 StartCoroutine(IdleAnimation());
                 break;
             case TransitionCondition.Die:
-                GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddQueue(unit.GetUnitName());
+                GameManager.instance.GameEventSys.AddQueue(unit.GetUnitName());
                 GameManager.instance.UIMng.BossDie();
                 unit.SetInvincibility(true);
                 animCtrl.PlayAni(AniState.Die);
@@ -273,7 +273,7 @@ public class BossAlterActor : MonoBehaviour, IActor
         if (3 < wave)
         {
             Transition(TransitionCondition.Die);
-            GameObject.Find("GameEventSystem")?.GetComponent<GameEventSystem>()?.AddQueue("DEAD");
+            GameManager.instance.GameEventSys.AddQueue("DEAD");
             StopAllCoroutines();
         }
         else
