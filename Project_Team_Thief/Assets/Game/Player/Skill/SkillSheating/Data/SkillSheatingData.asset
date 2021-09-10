@@ -15,9 +15,10 @@ MonoBehaviour:
   _id: 18
   _skillCondition: 34
   _cinemachineSignalSource: {fileID: 0}
+  _zoomInOutData: {fileID: 11400000, guid: 3c92693d591cd7747923bbafe9470ab2, type: 2}
   _name: "\uB0A9\uB3C4"
   _grade: "\uB808\uC5B4"
-  _isGet: 0
+  _isGet: 1
   _class: "\uBB34\uC0AC"
   _coolTime: 8
   _castingTime: 2
@@ -45,7 +46,7 @@ MonoBehaviour:
   - 1.5
   _stiffness: 2
   _moveTimes:
-  - 0
+  - 0.06
   _moveXs:
   - -0.5
   _moveYs:

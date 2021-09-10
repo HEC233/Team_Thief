@@ -782,8 +782,12 @@ public class PlayerUnit : Unit
     {
         skillSnakeSwordFlurryEndEvent?.Invoke();
     }
-    
 
+    public void SkillChaosHallAttackEventCall()
+    {
+        
+    }
+    
     //  리팩토링 할 때  skillData를 다 따로 가지고 있지 말고
     // skillDataBase 리스트를 하나 만들어서 거기 담아놓자.
     public void OnAddComboEventCall()
@@ -1016,6 +1020,12 @@ public class PlayerUnit : Unit
     {
         ZoomOutEvent.Invoke();
     }
+
+    public void OnCameraShakeEventCall()
+    {
+        
+    }
+    
 
     IEnumerator ComboCoroutine()
     {

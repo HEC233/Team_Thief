@@ -2939,6 +2939,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             Init();
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
+            _gameSkillObject = InvokeSkill();
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSheatingCast);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSheatingCast);
         }
@@ -3017,9 +3018,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSheating);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSheating);
-
-            
-            _gameSkillObject = InvokeSkill();
         }
         
         private void StopWaitEndDelayCoroutine()
@@ -3216,38 +3214,174 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     private class SkillChaosHallState : CustomFSMStateBase, ISkillStateBase
     {
-        public SkillChaosHallState(PlayerFSMSystem system) : base(system)
-        {
-        }
+         private GameSkillObject _gameSkillObject;
+         private SkillChaosHallData _skillChaosHallData;
+        private bool _isInit = false;
+        private bool _isSkillEnd = false;
+        private bool _isStartDelayEnd = false;
+        private int _aniIndex = 0;
+        private Coroutine _waitDelayCoroutine;
+        
+        public SkillChaosHallState(PlayerFSMSystem system) : base(system) { }
 
+        private void Init()
+        {
+            if(_isInit == true)
+                return;
+
+            _isInit = true;
+            _skillChaosHallData = SkillDataBank.instance.GetSkillData(23) as SkillChaosHallData;
+            
+        }
+        
         public override void StartState()
         {
-            throw new NotImplementedException();
+            Init();
+            SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillChaosHallCast);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillChaosHallCast);
         }
 
         public override void Update()
         {
-            throw new NotImplementedException();
+            SystemMgr.Unit.Progress();
         }
 
         public override void EndState()
         {
-            throw new NotImplementedException();
+            StopWaitEndDelayCoroutine();
+            ResetValue();
+            SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
         }
 
         public override bool Transition(TransitionCondition condition)
         {
-            throw new NotImplementedException();
+            if (condition == TransitionCondition.SkillAxe)
+                return true;
+            if (condition == TransitionCondition.SkillDoubleCross)
+                return true;
+            if (condition == TransitionCondition.SkillSnakeSwordSting)
+                return true;
+            if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+                return true;
+            if (condition == TransitionCondition.SkillBaldo)
+                return true;
+            if (condition == TransitionCondition.SkillSheating)
+                return true;
+            if (condition == TransitionCondition.SkillChaosHall)
+                return true;
+            
+            if (_isSkillEnd == false)
+            {
+                return false;
+            }
+            return true;
         }
 
         public override bool InputKey(TransitionCondition condition)
         {
-            throw new NotImplementedException();
+            return true;
+        }
+        
+        private void ResetValue()
+        {
+            _isSkillEnd = false;
+            _waitDelayCoroutine = null;
+            _isStartDelayEnd = false;
+            _aniIndex = 0;
+        }
+        
+        private void OnAnimationEndEventCall()
+        {
+            if (_aniIndex == 0)
+            {
+                _aniIndex++;
+                SystemMgr.AnimationCtrl.PlayAni(AniState.SkillChaosHallDelay);
+                SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillChaosHallDelay);
+
+                //BulletTime();
+                SystemMgr.StartCoroutine(WaitStartDelay());
+            }
+            else
+            {
+                _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
+            }
+        }
+
+        private void BulletTime()
+        {
+            //GameManager.instance.TimeMng.BulletTime(_skillSheatingData.BulletTimeScale, _skillSheatingData.BulletTimeAmount);
+        }
+        
+        private void Action()
+        {
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillChaosHall);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillChaosHall);
+
+            
+            _gameSkillObject = InvokeSkill();
+        }
+        
+        private void StopWaitEndDelayCoroutine()
+        {
+            if (_waitDelayCoroutine == null)
+            {
+                return;
+            }
+            
+            if (_isSkillEnd == false)
+            {
+                SystemMgr.StopCoroutine(_waitDelayCoroutine);
+            }
+        }
+        
+        private GameSkillObject InvokeSkill()
+        {
+            var skillObejct = GameManager.instance.GameSkillMng.GetSkillObject();
+
+            if (skillObejct == null)
+            {
+                Debug.LogError("SkillObj is Null");
+                return null;
+            }
+
+            skillObejct.InitSkill(_skillChaosHallData.GetSkillController(skillObejct, SystemMgr.Unit));
+            return skillObejct;
+        }
+        
+        
+        IEnumerator WaitStartDelay()
+        {
+            float timer = 0.0f;
+            while (_skillChaosHallData.FristDelay >= timer)
+            {
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isStartDelayEnd = true;
+            Action();
+        }
+        
+        IEnumerator WaitEndDelay()
+        {
+            float timer = 0.0f;
+            _isSkillEnd = false;
+            _isStartDelayEnd = false;
+            while (_skillChaosHallData.EndDelay >= timer)
+            {
+                timer += GameManager.instance.TimeMng.FixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            _isSkillEnd = true;
+            SystemMgr.Transition(TransitionCondition.Idle);
         }
 
         public bool IsAbleTransition()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 

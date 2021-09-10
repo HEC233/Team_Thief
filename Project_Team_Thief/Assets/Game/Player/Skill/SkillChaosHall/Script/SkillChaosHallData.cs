@@ -16,6 +16,5 @@ public class SkillChaosHallData : SkillDataBase
     public override SkillControllerBase GetSkillController(GameSkillObject skillObject, Unit unit)
     {
         return new SkillChaosHallController(skillObject, this, unit);
-
     }
 }
