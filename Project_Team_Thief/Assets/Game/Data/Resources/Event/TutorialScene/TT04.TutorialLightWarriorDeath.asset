@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bFollowed: 0
   eventIndex: TT_04
-  name: "\uD29C\uD1A0\uB9AC\uC5BC \uAD11\uC804\uC0AC \uC0AC\uB9DD"
-  stopCondition: 
-  eventType: 0
+  eventScene: Tutorial
   triggerType: 0
   trigger:
     NPCname: TUTORIAL_LIGHTWARRIOR

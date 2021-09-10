@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bFollowed: 0
   eventIndex: TT_01
-  name: "\uD29C\uD1A0\uB9AC\uC5BC \uC2A4\uD0B5"
-  stopCondition: 
-  eventType: 0
+  eventScene: Tutorial
   triggerType: 0
   trigger:
     NPCname: STAGE_SKIP

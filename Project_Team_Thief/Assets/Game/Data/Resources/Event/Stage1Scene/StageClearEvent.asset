@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bFollowed: 0
   eventIndex: 01_01
-  name: "\uBA54\uC778\uC52C \uC2A4\uD14C\uC774\uC9C0 \uD074\uB9AC\uC5B4"
-  stopCondition: 
-  eventType: 0
+  eventScene:
   triggerType: 0
   trigger:
     NPCname: CLEAR_POINT

@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bFollowed: 0
   eventIndex: Boss1_2
-  name: "\uBCF4\uC2A41 \uD074\uB9AC\uC5B4"
-  stopCondition: 
-  eventType: 0
+  eventScene: BossStage
   triggerType: 0
   trigger:
     NPCname: BossAlter

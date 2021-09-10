@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bFollowed: 0
   eventIndex: TT_02
-  name: 
-  stopCondition: 
-  eventType: 0
+  eventScene: Tutorial
   triggerType: 0
   trigger:
     NPCname: SCARECROW

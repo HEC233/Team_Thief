@@ -66,6 +66,8 @@ public class NewGameEventSystem : MonoBehaviour
     public void MapStartEvent()
     {
         StopAllCoroutines();
+        nextEventQueue.Clear();
+        evnetQueue.Clear();
 
         string curScene = SceneManager.GetActiveScene().name;
         if (_eventMap.ContainsKey(curScene))

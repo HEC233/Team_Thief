@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bFollowed: 0
   eventIndex: TT_01
-  name: "\uD29C\uD1A0\uB9AC\uC5BC"
-  stopCondition: 
-  eventType: 0
+  eventScene: Tutorial
   triggerType: 2
   trigger:
     NPCname: 

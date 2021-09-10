@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bFollowed: 0
   eventIndex: Boss1_3
-  name: "\uBCF4\uC2A4 \uC2A4\uD14C\uC774\uC9C0 \uD1F4\uC7A5"
-  stopCondition: 
-  eventType: 0
+  eventScene: BossStage
   triggerType: 0
   trigger:
     NPCname: STAGE_CLEAR

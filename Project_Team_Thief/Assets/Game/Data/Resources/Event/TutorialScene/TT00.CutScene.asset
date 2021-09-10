@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bFollowed: 0
   eventIndex: TT00
-  name: CutScene
-  stopCondition: 
-  eventType: 0
+  eventScene: Tutorial
   triggerType: 1
   trigger:
     NPCname: 
