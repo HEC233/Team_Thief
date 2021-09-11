@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -350,6 +350,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5deecead1db8543b7c4c0e8d1cd629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mapEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _spawnPoints:
   - {fileID: 221432569}
   - {fileID: 966929960}
@@ -757,7 +760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1211507658
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3537,7 +3540,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 11
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6859,9 +6862,8 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: -5921851656502337801, guid: 8c8540c05874a0446b5e8dc65afebf83,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -7667467267357537254, guid: 8c8540c05874a0446b5e8dc65afebf83,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 3
     m_Data: {fileID: -2232486872163334276, guid: 8c8540c05874a0446b5e8dc65afebf83,
       type: 3}
@@ -6879,8 +6881,9 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 82ae7cf33a7e51945957f873c70c73f7, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300000, guid: bc86ad34a60cf0d4abe61106a2689bbc, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -7667467267357537254, guid: 8c8540c05874a0446b5e8dc65afebf83,
+      type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -2733209339850297987, guid: 411c0030de59d2049920103383c58270,
       type: 3}
