@@ -250,6 +250,11 @@ public class MonsterUnit : Unit
     {
         GameManager.instance.ShadowParticle.UnregistCollider(_rigid.GetComponent<CapsuleCollider2D>());
 
+        if (Random.value <= _unitData.LightFragProbablity)
+        {
+            LightFragmentGenerator.Get(transform.parent.position + Vector3.up, Random.Range(_unitData.LightFragAmountMin, _unitData.LightFragAmountMax));
+        }
+
         DestroyImmediate(transform.parent.gameObject);
     }
 

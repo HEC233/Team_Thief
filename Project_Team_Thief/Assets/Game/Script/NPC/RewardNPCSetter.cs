@@ -49,8 +49,8 @@ public class RewardNPCSetter : MonoBehaviour
     {
         NPCRewardType[] types = new NPCRewardType[2];
 
-        int first = Random.Range(0, 5);
-        int second = Random.Range(0, 5);
+        int first = Random.Range(1, 5);
+        int second = Random.Range(1, 5);
         while(first == second)
         {
             second = Random.Range(0, 5);

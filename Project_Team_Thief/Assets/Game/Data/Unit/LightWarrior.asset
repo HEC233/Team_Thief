@@ -38,3 +38,6 @@ MonoBehaviour:
   _cameraShakeCount: 0
   _hitstopLength: 0
   _bulletTimeLength: 0
+  _lightFragProbablity: 1
+  _lightFragAmountMin: 10
+  _lightFragAmountMax: 100

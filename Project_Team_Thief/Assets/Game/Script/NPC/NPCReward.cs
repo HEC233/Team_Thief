@@ -43,24 +43,26 @@ public class NPCReward : NPCController
 
         switch (_type)
         {
+            case NPCRewardType.shop:
+
+                break;
+
             case NPCRewardType.skill:
                 yield return GameManager.instance.UIMng.SkillSelectCoroutine();
                 break;
 
             case NPCRewardType.hp:
-
+                Damage damage = new Damage();
+                damage.power = 10;
+                GameManager.instance.ControlActor.GetUnit().HandleHpRecovery(damage);
                 break;
 
             case NPCRewardType.encroachment:
-
-                break;
-
-            case NPCRewardType.shop:
-
+                GameManager.instance.EncroachmentMng.ChangeEncroachment(100);
                 break;
 
             case NPCRewardType.coin:
-
+                GameManager.instance.AddMoney(1000);
                 break;
         }
 

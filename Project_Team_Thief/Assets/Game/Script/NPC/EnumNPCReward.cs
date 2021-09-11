@@ -1,8 +1,8 @@
 ﻿public enum NPCRewardType
 {
-    skill = 0,
+    shop = 0,
+    skill,
     hp,
     encroachment,
-    shop,
     coin,
 }

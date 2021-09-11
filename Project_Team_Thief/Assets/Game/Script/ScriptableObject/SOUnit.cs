@@ -71,6 +71,14 @@ public class SOUnit : ScriptableObject
     [SerializeField]
     private float _bulletTimeLength;
 
+    [Space(8)]
+    [SerializeField]
+    private float _lightFragProbablity;
+    [SerializeField]
+    private int _lightFragAmountMin;
+    [SerializeField]
+    private int _lightFragAmountMax;
+
     public string unitName => _unitName;
     public float minSpeed => _minSpeed;
     public float maxSpeed => _maxSpeed;
@@ -97,4 +105,7 @@ public class SOUnit : ScriptableObject
     public int cameraShakeCount => _cameraShakeCount;
     public float hitstopLength => _hitstopLength;
     public float bulletTimeLength => _bulletTimeLength;
+    public float LightFragProbablity => _lightFragProbablity;
+    public int LightFragAmountMin => _lightFragAmountMin;
+    public int LightFragAmountMax => _lightFragAmountMax;
 }
