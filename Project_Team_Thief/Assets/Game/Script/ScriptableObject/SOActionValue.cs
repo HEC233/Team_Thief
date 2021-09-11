@@ -15,6 +15,10 @@ public class SOActionValue : ScriptableObject
     public SOZoomInOutDataBase ZoomOutInData => _zoomOutInData; 
     
     [SerializeField]
+    private SignalSourceAsset _cinemachineSignalSource;
+    public SignalSourceAsset CinemachineSignalSource => _cinemachineSignalSource;
+    
+    [SerializeField]
     private float _hitstopTime;
     public float HitstopTime => _hitstopTime;
 

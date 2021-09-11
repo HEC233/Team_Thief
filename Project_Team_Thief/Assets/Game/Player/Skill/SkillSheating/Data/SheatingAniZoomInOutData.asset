@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba7e11d3faf4d31488e859446e3a71c9, type: 3}
-  m_Name: SheatingZoomOutInData
+  m_Name: SheatingAniZoomInOutData
   m_EditorClassIdentifier: 
   _zoomInCurve:
     serializedVersion: 2
@@ -36,8 +36,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _zoomInTime: 0.1
-  _zoomInSize: 10
+  _zoomInTime: 0.08
+  _zoomInSize: 3
   _zoomOutCurve:
     serializedVersion: 2
     m_Curve:

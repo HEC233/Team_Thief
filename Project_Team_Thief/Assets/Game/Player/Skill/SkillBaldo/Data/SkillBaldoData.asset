@@ -16,9 +16,11 @@ MonoBehaviour:
   _skillCondition: 33
   _cinemachineSignalSource: {fileID: 0}
   _zoomInOutData: {fileID: 11400000, guid: f8350b8d7d7b93043bdd42bfd1a05e67, type: 2}
+  _zoomOutInData: {fileID: 0}
+  _soActionValue: {fileID: 11400000, guid: 4697448a6bb9fb74985908c8ad60d7e2, type: 2}
   _name: "\uBC1C\uB3C4"
   _grade: "\uB808\uC5B4"
-  _isGet: 0
+  _isGet: 1
   _class: "\uBB34\uC0AC"
   _coolTime: 6
   _castingTime: 2
@@ -58,8 +60,8 @@ MonoBehaviour:
   _fristDelay: 1
   _endDelay: 2
   nextSkill: 0
-  _iconName: UI_Skill_baldo
-  _icon: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}
+  _iconName: SP_UI_Skill_Baldo
+  _icon: {fileID: 21300000, guid: 2c264c1c7b0f5ef4687b6e370c30dd41, type: 3}
   _addCriticalAmount: 0.7
   _addCriticalTime: 2.5
   _bulletTimeScale: 0.4

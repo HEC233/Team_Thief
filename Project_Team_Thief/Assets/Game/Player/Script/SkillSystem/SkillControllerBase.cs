@@ -66,6 +66,9 @@ public abstract class SkillControllerBase
 
     public virtual void Invoke()
     {
+        if(_skillData.SOActionValue == null)
+            return;
+        
         var playerUnit = GameManager.instance.PlayerActor.GetUnit() as PlayerUnit;
         
         if(playerUnit == null)
@@ -82,9 +85,8 @@ public abstract class SkillControllerBase
 
     public virtual void Release()
     {
-        _skillData = null;
-        _skillObject = null;
-        OnEndSkillAction = null;
+        if(_skillData.SOActionValue == null)
+            return;
         
         var playerUnit = GameManager.instance.PlayerActor.GetUnit() as PlayerUnit;
         
@@ -97,54 +99,58 @@ public abstract class SkillControllerBase
         playerUnit.OnHitStopEvent -= HitStopEventCall;
         playerUnit.OnFlashEvent -= FlashEventCall;
         playerUnit.OnCameraShakeEvent -= CameraShakeEventCall;
-
+        
+        _skillData = null;
+        _skillObject = null;
+        OnEndSkillAction = null;
     }
 
     public virtual void ZoomInEventCall()
     {
         GameManager.instance.CameraMng.OnZoomInEndEvent += ZoomInBackEventCall;
 
-        GameManager.instance.CameraMng.ZoomIn(_skillData.ActionValue.ZoomInOutData.GetZoomInData(),
-            _skillData.ActionValue.ZoomInOutData.ZoomInSize);
+        GameManager.instance.CameraMng.ZoomIn(_skillData.SOActionValue.ZoomInOutData.GetZoomInData(),
+            _skillData.SOActionValue.ZoomInOutData.ZoomInSize);
     }
 
     public virtual void ZoomInBackEventCall()
     {
         GameManager.instance.CameraMng.OnZoomInEndEvent -= ZoomInBackEventCall;
 
-        GameManager.instance.CameraMng.ZoomOut(_skillData.ActionValue.ZoomInOutData.GetZoomOutData());
+        GameManager.instance.CameraMng.ZoomOut(_skillData.SOActionValue.ZoomInOutData.GetZoomOutData());
     }
 
     public virtual void ZoomOutEventCall()
     {
         GameManager.instance.CameraMng.OnZoomInEndEvent += ZoomOutBackEventCall;
 
-        GameManager.instance.CameraMng.ZoomIn(_skillData.ActionValue.ZoomOutInData.GetZoomInData(),
-            _skillData.ActionValue.ZoomOutInData.ZoomInSize);
+        GameManager.instance.CameraMng.ZoomIn(_skillData.SOActionValue.ZoomOutInData.GetZoomInData(),
+            _skillData.SOActionValue.ZoomOutInData.ZoomInSize);
     }
 
     public virtual void ZoomOutBackEventCall()
     {
         GameManager.instance.CameraMng.OnZoomInEndEvent -= ZoomOutBackEventCall;
 
-        GameManager.instance.CameraMng.ZoomOut(_skillData.ActionValue.ZoomOutInData.GetZoomOutData());
+        GameManager.instance.CameraMng.ZoomOut(_skillData.SOActionValue.ZoomOutInData.GetZoomOutData());
     }
 
     public virtual void BulletTimeEventCall()
     {
-        GameManager.instance.TimeMng.BulletTime(_skillData.ActionValue.BulletTimeAmount,
-            _skillData.ActionValue.BulletTimeScale);
+        GameManager.instance.TimeMng.BulletTime(_skillData.SOActionValue.BulletTimeAmount,
+            _skillData.SOActionValue.BulletTimeScale);
     }
 
     public virtual void HitStopEventCall()
     {
-        GameManager.instance.TimeMng.HitStop(_skillData.ActionValue.HitstopTime);
+        GameManager.instance.TimeMng.HitStop(_skillData.SOActionValue.HitstopTime);
     }
 
     public virtual void CameraShakeEventCall()
     {
         _skillObjectCinemachineImpulseSource = _skillObject.AddCinemachineImpulseComponent();
-        _skillObjectCinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal = _skillData.CinemachineSignalSource;
+        _skillObjectCinemachineImpulseSource.m_ImpulseDefinition.m_RawSignal =
+            _skillData.SOActionValue.CinemachineSignalSource;
         _skillObjectCinemachineImpulseSource.GenerateImpulse();
         _skillObject.DestroyComponent(_skillObjectCinemachineImpulseSource);
     }
