@@ -726,6 +726,11 @@ public class PlayerUnit : Unit
         playerInfo.CurHP = _curHp;
     }
 
+    public override void HandleDeath()
+    {
+        Dead();
+    }
+
     private void Dead()
     {
         _isPlayerDead = true;

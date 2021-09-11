@@ -2442,7 +2442,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSnakeSwordStingDelay);
-            //GameManager.instance.uiMng.TurnXButtonUI(true);
+            GameManager.instance.UIMng.TurnXButtonUI(true);
             _attackBeInputTime = Time.time;
             //_gameSkillObject = InvokeSkill();
 
@@ -2460,6 +2460,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             ResetValue();
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+            GameManager.instance.UIMng.TurnXButtonUI(false);
             SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
         }
         
@@ -2572,8 +2573,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private void NextAction()
         {
             SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr._fxCtrl.SetSpeed(1);   
-            
+            SystemMgr._fxCtrl.SetSpeed(1);
+
             SystemMgr.AnimationCtrl.PlayAni(_skillSnakeSwordStingAniArr[_curSkillIndex]);
             SystemMgr._fxCtrl.PlayAni(_skillSnakeSwordStingFxAniArr[_curSkillIndex]);
             
@@ -2668,6 +2669,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             StopWaitEndDelayCoroutine();
             ResetValue();
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
         }
 
         public override bool Transition(TransitionCondition condition)

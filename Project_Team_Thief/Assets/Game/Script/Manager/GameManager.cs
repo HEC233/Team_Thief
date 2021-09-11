@@ -273,6 +273,8 @@ public class GameManager : MonoBehaviour
     public void ExitToMainMenu()
     {
         isPlayerDead = false;
+        PlayerActor.GetUnit().HandleDeath();
+        Destroy(_playerGameObject);
         _uiManager.TurnOffGameOverScreen();
         DialogueSystem.EndDialogue();
         StartCoroutine(LoadMainMenuCoroutine());
