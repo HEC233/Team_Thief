@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
     private NewGameEventSystem _gameEventSys;
     public NewGameEventSystem GameEventSys => _gameEventSys;
     private Grid grid;
+    private OneWayTile _onewayTile;
     private GameSettingData _settingData;
     public GameSettingData SettingData
     {
@@ -221,7 +222,7 @@ public class GameManager : MonoBehaviour
         var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
-
+        _onewayTile = GameObject.FindObjectOfType<OneWayTile>();
 
         // 맵 클리어 이벤트 인보커 할당
         var invoker = GameObject.FindObjectOfType<MapEndTrigger>();
@@ -360,6 +361,14 @@ public class GameManager : MonoBehaviour
     public void DebugLogger()
     {
         Debug.Log("MapEndEventInvoked!");
+    }
+
+    public void SetOnewayTile(bool up)
+    {
+        if(_onewayTile)
+        {
+            _onewayTile.FlipDirection(up);
+        }
     }
 
     //--------------------------------------------------

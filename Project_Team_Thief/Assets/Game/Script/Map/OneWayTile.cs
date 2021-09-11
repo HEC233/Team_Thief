@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class OneWayTile : MonoBehaviour
 {
+    [SerializeField]
     private PlatformEffector2D platformEfc = null;
     public LayerMask playerLayer;
 
@@ -13,37 +14,34 @@ public class OneWayTile : MonoBehaviour
     {
         Init();
         // 첫 생성시 작동을 안하고 껐다 다시 켜야 작동을 한다. 이유는 모름
-        gameObject.SetActive(false);
-        gameObject.SetActive(true);
+        //gameObject.SetActive(false);
+        //gameObject.SetActive(true);
     }
 
     private void Init()
     {
         // 부모 오브젝트만 실행하기 위해서
         if (transform.parent.GetComponent<Tilemap>() != null)
-            return;
+        {
+            DestroyImmediate(this);
+        }
 
-        // assertion 부분
-        Assert.IsNotNull(GetComponent<Tilemap>());
-        Assert.IsNotNull(GetComponent<TilemapRenderer>());
-
+        /*
         gameObject.AddComponent<TilemapCollider2D>();
         gameObject.AddComponent<PlatformEffector2D>();
         GetComponent<TilemapCollider2D>().usedByEffector = true;
         platformEfc = GetComponent<PlatformEffector2D>();
+        */
 
         // 플레이어만 통과시키기 위해 같은 오브젝트를 복사한다.
+        // 이 오브젝트는 플레이어 외의 다른 오브젝트들과 상호작용하며 플레이어가 아래로 이동할때 다른 오브젝트들도 함께 떨어지지 않도록 한다.
         GameObject go = Instantiate(this.gameObject, transform);
         PlatformEffector2D childPlatformEfc = go.GetComponent<PlatformEffector2D>();
 
-        //go.GetComponent<TilemapRenderer>().enabled = false;
-        //platformEfc.colliderMask = (int)0x00000100;
-        //childPlatformEfc.colliderMask = (int)0x7FFFFEFF;
-        //childPlatformEfc.surfaceArc = 360;
-        go.GetComponent<TilemapRenderer>().enabled = false;
+        DestroyImmediate(go.GetComponent<TilemapRenderer>());
         platformEfc.colliderMask = playerLayer;
         childPlatformEfc.colliderMask = (int)0x7FFFFFFF - playerLayer;
-        childPlatformEfc.surfaceArc = 360;
+        childPlatformEfc.surfaceArc = 180;
         FlipDirection(true);
     }
 
