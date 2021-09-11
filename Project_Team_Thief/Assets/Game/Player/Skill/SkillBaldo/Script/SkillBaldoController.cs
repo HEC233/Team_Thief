@@ -24,7 +24,7 @@ public class SkillBaldoController : SkillControllerBase
         _skillBaldoData = SkillData as SkillBaldoData;
         _unit = Unit as PlayerUnit;
         SetDamage();
-        _unit.SkillBaldoAttackBase.Init(_damage, _skillBaldoData.CinemachineSignalSource);
+        _unit.SkillBaldoAttackBase.Init(_damage, _skillBaldoData.CinemachineSignalSource, _skillBaldoData.ZoomInOutData);
         _unit.OnSkillBaldoAttackEvent += ReceiveAttackEvent;
         ((SkillBaldoAttackCtrl)_unit.SkillBaldoAttackBase).OnEnemyHitEvent += ReceiveHitEvent;
     }

@@ -23,7 +23,7 @@ public class SkillSheatingController : SkillControllerBase
         _skillSheatingData = SkillData as SkillSheatingData;
         _unit = Unit as PlayerUnit;
         SetDamage();
-        _unit.SkillSheatingAttackBase.Init(_damage, _skillSheatingData.CinemachineSignalSource);
+        _unit.SkillSheatingAttackBase.Init(_damage, _skillSheatingData.CinemachineSignalSource, _skillSheatingData.ZoomInOutData);
         _unit.OnSkillSheatingAttackEvent += ReceiveAttackEvent;
         ((SkillBaldoAttackCtrl)_unit.SkillSheatingAttackBase).OnEnemyHitEvent += ReceiveHitEvent;
     }
