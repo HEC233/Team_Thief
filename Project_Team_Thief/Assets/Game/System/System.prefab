@@ -3534,9 +3534,9 @@ MonoBehaviour:
   _sceneData:
   - theme: Test
     sceneNames:
+    - Level1
+    - Level2
     - Level3
-    - RandomMapTest2
-    - RandomMapTest3
     loadCount: 2
     endSceneName: HHG
 --- !u!1 &780453113
@@ -10870,9 +10870,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5035b95b0a874442b060379f93c69e3, type: 2}
   - {fileID: 11400000, guid: 4f0d414cf7063914aae17456fba37949, type: 2}
   _skillDataBases:
-  - {fileID: 11400000, guid: b366ff89bcd1ad547a86cf5d09bf7d79, type: 2}
-  - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
-  - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
+  - {fileID: 11400000, guid: b3e212317b4b6ed4ea95ee825f723463, type: 2}
+  - {fileID: 11400000, guid: 1b9b51138833d7f4fa8675fc961217a7, type: 2}
+  - {fileID: 11400000, guid: 7be92052f2556e04b8d0ae0792aed92a, type: 2}
   - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
   _commandInputTime: 0.1
   _slotInSkillLifeTimeArr: 03000000030000000200000001000000
@@ -14174,12 +14174,12 @@ PrefabInstance:
     - target: {fileID: 8112213948129348115, guid: 34b75c9f7d9dc264f862c3cbe670e570,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.95
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8112213948129348115, guid: 34b75c9f7d9dc264f862c3cbe670e570,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8112213948129348115, guid: 34b75c9f7d9dc264f862c3cbe670e570,
         type: 3}
@@ -14678,12 +14678,12 @@ PrefabInstance:
     - target: {fileID: 7260877962462582348, guid: 005d8633bdd43d7438effcb1a5f9ee49,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.95
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7260877962462582348, guid: 005d8633bdd43d7438effcb1a5f9ee49,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7260877962462582348, guid: 005d8633bdd43d7438effcb1a5f9ee49,
         type: 3}
