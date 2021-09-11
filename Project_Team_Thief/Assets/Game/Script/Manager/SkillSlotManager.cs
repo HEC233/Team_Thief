@@ -58,7 +58,7 @@ public class SkillSlotManager : MonoBehaviour
         {
             var newSlot = new SkillSlot(_skillSlotCommandDatas[i], this);
             _skillSlots.Add(newSlot);
-            _skillSlots[i].SkillLifeTime = _slotInSkillLifeTimeArr[i];
+            Debug.Log(_skillSlots[i]);
             _skillSlots[i].SkillLifeTime = _slotInSkillLifeTimeArr[i];
             GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.RegistSkillData(i, newSlot);
         }
