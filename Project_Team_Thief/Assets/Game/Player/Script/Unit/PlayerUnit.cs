@@ -284,8 +284,8 @@ public class PlayerUnit : Unit
     
        
     // Zoom In and Out Event
-    public UnityAction ZoomInEvent;
-    public UnityAction ZoomOutEvent;
+    public event UnityAction ZoomInEvent;
+    public event UnityAction ZoomOutEvent;
 
     void Start()
     {

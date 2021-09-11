@@ -24,7 +24,8 @@ public class SkillSheatingController : SkillControllerBase
         SetDamage();
         _unit.ZoomInEvent += ZoomInEventCall;
         _unit.ZoomOutEvent += ZoomOutEventCall;
-        _unit.SkillSheatingAttackBase.Init(_damage, _skillSheatingData.CinemachineSignalSource);
+        _unit.SkillSheatingAttackBase.Init(_damage, _skillSheatingData.CinemachineSignalSource,
+            _skillSheatingData.ZoomInOutData);
         _unit.OnSkillSheatingAttackEvent += ReceiveAttackEvent;
         ((SkillBaldoAttackCtrl)_unit.SkillSheatingAttackBase).OnEnemyHitEvent += ReceiveHitEvent;
     }
@@ -99,12 +100,25 @@ public class SkillSheatingController : SkillControllerBase
     
     private void ZoomInEventCall()
     {
+        _unit.SkillSheatingAttackBase.CinemachineBlendDefinitionZoomIn =
+            _skillSheatingData.ZoomInOutData.GetZoomInData();
+        _unit.SkillSheatingAttackBase.CinemachineBlendDefinitionZoomOut =
+            _skillSheatingData.ZoomInOutData.GetZoomOutData();
+
+        _unit.SkillSheatingAttackBase.ZoomInSize = _skillSheatingData.ZoomInOutData.ZoomInSize;
+        
         _unit.SkillSheatingAttackBase.ZoomIn();        
     }
 
     private void ZoomOutEventCall()
     {
-        _unit.SkillSheatingAttackBase.ZoomOut();                
+        _unit.SkillSheatingAttackBase.CinemachineBlendDefinitionZoomIn =
+            _skillSheatingData.ZoomOutInData.GetZoomInData();
+        _unit.SkillSheatingAttackBase.CinemachineBlendDefinitionZoomOut =
+            _skillSheatingData.ZoomOutInData.GetZoomOutData();
+
+        _unit.SkillSheatingAttackBase.ZoomInSize = _skillSheatingData.ZoomOutInData.ZoomInSize;
+        _unit.SkillSheatingAttackBase.ZoomIn();                
     }
 
     private IEnumerator SpecialStateCoroutine()

@@ -58,6 +58,11 @@ public class AttackBase : MonoBehaviour
     // protected float _zoomInTime;
     //[SerializeField] 
     protected float _zoomInSize;
+    public float ZoomInSize
+    {
+        get => _zoomInSize;
+        set => _zoomInSize = value;
+    }
     // [SerializeField] 
     // protected AnimationCurve _zoomOutCurve;
     // [SerializeField]
@@ -218,6 +223,8 @@ public class AttackBase : MonoBehaviour
         _cinemachineBlendDefinitionZoomOut = zoomInOutDataBase.GetZoomOutData();
         _zoomInSize = zoomInOutDataBase.ZoomInSize;
     }
+    
+    
     
     protected void Bind()
     {

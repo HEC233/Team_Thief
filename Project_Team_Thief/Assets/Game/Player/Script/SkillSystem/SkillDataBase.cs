@@ -20,6 +20,10 @@ public abstract class SkillDataBase : ScriptableObject
     [SerializeField] 
     private SOZoomInOutDataBase _zoomInOutData;
     public SOZoomInOutDataBase ZoomInOutData => _zoomInOutData;
+    
+    [SerializeField]
+    private SOZoomInOutDataBase _zoomOutInData;
+    public SOZoomInOutDataBase ZoomOutInData => _zoomOutInData; 
 
     //New Data -> skill Info
     [SerializeField]
