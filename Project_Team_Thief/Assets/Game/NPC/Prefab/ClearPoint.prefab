@@ -181,8 +181,7 @@ MonoBehaviour:
   _npcName: CLEAR_POINT
   interactorableNoticeIcon: {fileID: 744808703889969191}
   _sendQueue: 1
-  skillSprite: {fileID: 1844930031600458311, guid: 676f23c856670bc4fb28bf631359292d,
-    type: 3}
+  skillSprite: {fileID: 21300000, guid: c9df55db9c3cf7b4b86d0cf77db199f3, type: 3}
   hpSprite: {fileID: 3595080784486838277, guid: b5234537e0e1de84ab29a13c953bd51a,
     type: 3}
   coinSprite: {fileID: 1775260725260953657, guid: b5234537e0e1de84ab29a13c953bd51a,
