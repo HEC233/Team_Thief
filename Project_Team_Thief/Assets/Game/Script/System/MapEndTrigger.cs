@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 public class MapEndTrigger : MonoBehaviour
 {
-    private UnityEvent _mapEndEvent;
+    public UnityEvent _mapEndEvent;
     private bool invoked = false;
     private IEndTriggeCheck[] _prerequires;
 

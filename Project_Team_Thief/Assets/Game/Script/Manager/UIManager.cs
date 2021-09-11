@@ -147,12 +147,7 @@ public class UIManager : MonoBehaviour
         GameManager.instance.TimeMng.ResumeTime();
     }
 
-    public void StartSkillSelect()
-    {
-        StartCoroutine(SkillSelectCoroutine());
-    }
-
-    IEnumerator SkillSelectCoroutine()
+    public IEnumerator SkillSelectCoroutine()
     {
         GameManager.instance.TimeMng.StopTime();
         uiPlayerInfo.SkillInfo.SkillIconInteractable(true);

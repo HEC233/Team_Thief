@@ -26,10 +26,10 @@ public class GameManager : MonoBehaviour
         set { _prevState = _gameState; _gameState = value; _uiManager.ToggleUI(value); Debug.Log("GameState Changed : " + _gameState); }
     }
 
-    [SerializeField] 
+    [SerializeField]
     private GameObject _playerPrefab;
     private GameObject _playerGameObject;
-    
+
     [SerializeField]
     private FreameChecker _frameChecker;
     public FreameChecker FrameChecker => _frameChecker;
@@ -79,7 +79,6 @@ public class GameManager : MonoBehaviour
     private NewGameEventSystem _gameEventSys;
     public NewGameEventSystem GameEventSys => _gameEventSys;
     private Grid grid;
-
     private GameSettingData _settingData;
     public GameSettingData SettingData
     {
@@ -106,6 +105,7 @@ public class GameManager : MonoBehaviour
         ApplySetting(_settingData);
         _gameEventSys.EstablishEventMap();
 
+        _mapStartEvents.AddListener(SetNPCReward);
         _mapEndEvents.AddListener(DebugLogger);
     }
 
@@ -135,17 +135,17 @@ public class GameManager : MonoBehaviour
             Destroy(_playerGameObject);
             _playerGameObject = null;
         }
-        
+
         if (_playerGameObject == null)
         {
             _playerGameObject = GameObject.Instantiate(_playerPrefab);
             _playerActor = _playerGameObject.GetComponent<PlayerFSMSystem>();
             ChangeCurActorToPlayer();
         }
-        
+
         _playerGameObject.transform.position = Vector3.zero;
     }
-    
+
     /// <summary>
     /// Control Actor, 현재 플레이어의 입력을 받아 처리하는 액터
     /// </summary>
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeCurActorToPlayer()
     {
-        if(_playerActor != null)
+        if (_playerActor != null)
         {
             _keyManager.SetControlActor(_playerActor);
         }
@@ -167,7 +167,13 @@ public class GameManager : MonoBehaviour
     //---------- 씬(맵)과 관련된 로직 --------------
     public void StartNewGame()
     {
-        StartCoroutine(StartGameCoroutine("Tutorial"));
+        StartCoroutine(StartGame());
+    }
+
+    private IEnumerator StartGame()
+    {
+        yield return StartGameCoroutine("Tutorial");
+        InitNPCReward();
     }
 
     public void LoadScene(string SceneName)
@@ -194,7 +200,7 @@ public class GameManager : MonoBehaviour
         //
         SpawnPlayer();
         //
-        
+
         ShadowParticle.UnRegistAllCollider();
         if (DialogueSystem.CheckRunning()) DialogueSystem.EndDialogue();
         GameState = GameStateEnum.InGame;
@@ -215,8 +221,8 @@ public class GameManager : MonoBehaviour
         var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
-        
-        
+
+
         // 맵 클리어 이벤트 인보커 할당
         var invoker = GameObject.FindObjectOfType<MapEndTrigger>();
         if (invoker != null)
@@ -227,13 +233,13 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogWarning("There is no Map End Trigger!!!");
         }
-        
+
         _mapStartEvents.Invoke();
     }
 
     public void PauseGame()
     {
-        switch (_gameState) 
+        switch (_gameState)
         {
             // 인게임에서 정지로
             case GameStateEnum.InGame:
@@ -312,6 +318,34 @@ public class GameManager : MonoBehaviour
     private UnityEvent _mapStartEvents = new UnityEvent();
     private UnityEvent _mapEndEvents = new UnityEvent();
 
+    private NPCRewardType[] _nextMapReward = new NPCRewardType[2];
+
+    private void InitNPCReward()
+    {
+        var setter = FindObjectOfType<RewardNPCSetter>();
+        if (setter == null)
+        {
+            return;
+        }
+        NPCRewardType[] rewardTypes = new NPCRewardType[2];
+        rewardTypes[0] = NPCRewardType.skill;
+        rewardTypes[1] = (NPCRewardType)UnityEngine.Random.Range(2, 5);
+        _nextMapReward = setter.GetRandomType();
+        setter.Set(rewardTypes, _nextMapReward);
+    }
+    private void SetNPCReward()
+    {
+        var setter = FindObjectOfType<RewardNPCSetter>();
+        if (setter == null)
+        {
+            return;
+        }
+        var curReward = _nextMapReward;
+        _nextMapReward = setter.GetRandomType();
+        setter.Set(curReward, _nextMapReward);
+    }
+
+
     public void AddMapStartEventListener(UnityAction action)
     {
         _mapStartEvents.AddListener(action);
@@ -324,6 +358,23 @@ public class GameManager : MonoBehaviour
     public void DebugLogger()
     {
         Debug.Log("MapEndEventInvoked!");
+    }
+
+    //--------------------------------------------------
+
+    //----- 게임의 전반적인 상태(돈등)에 대한 관리 -----
+
+    private int _money;
+    public int Money => _money;
+    public void AddMoney(int amount)
+    {
+        _money += amount;
+        Debug.Log("money : " + _money);
+    }
+    public void SubMoney(int amount)
+    {
+        _money -= amount;
+        Debug.Log("money : " + _money);
     }
 
     //--------------------------------------------------

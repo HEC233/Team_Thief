@@ -70,17 +70,13 @@ public class NPCManager : MonoBehaviour
 
     public void InterAct()
     {
-        if (!(bNearestNpcExist && GetNearestNPC().Act()))
+        if(bNearestNpcExist)
         {
-            PushEventQueue();
-        }
-    }
-
-    public void PushEventQueue()
-    {
-        if (bNearestNpcExist)
-        {
-            GameManager.instance.GameEventSys.AddQueue(GetNearestNPC().npcName);
+            GetNearestNPC().Act();
+            if (GetNearestNPC().DoesSendQueue)
+            {
+                GameManager.instance.GameEventSys.AddQueue(GetNearestNPC().npcName);
+            }
         }
     }
 }
