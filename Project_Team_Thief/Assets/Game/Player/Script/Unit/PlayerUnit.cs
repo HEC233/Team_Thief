@@ -284,8 +284,12 @@ public class PlayerUnit : Unit
     
        
     // Zoom In and Out Event
-    public UnityAction ZoomInEvent;
-    public UnityAction ZoomOutEvent;
+    public event UnityAction ZoomInEvent;
+    public event UnityAction ZoomOutEvent;
+    public event UnityAction OnCameraShakeEvent;
+    public event UnityAction OnBulletTimeEvent;
+    public event UnityAction OnHitStopEvent;
+    public event UnityAction OnFlashEvent;
 
     void Start()
     {
@@ -726,6 +730,11 @@ public class PlayerUnit : Unit
         playerInfo.CurHP = _curHp;
     }
 
+    public override void HandleDeath()
+    {
+        Dead();
+    }
+
     private void Dead()
     {
         _isPlayerDead = true;
@@ -1013,17 +1022,32 @@ public class PlayerUnit : Unit
 
     public void OnZoomInEventCall()
     {
-        ZoomInEvent.Invoke();
+        ZoomInEvent?.Invoke();
     }
 
     public void OnZoomOutEventCall()
     {
-        ZoomOutEvent.Invoke();
+        ZoomOutEvent?.Invoke();
     }
 
     public void OnCameraShakeEventCall()
     {
-        
+        OnCameraShakeEvent?.Invoke();
+    }
+
+    public void OnBulletTimeEventCall()
+    {
+        OnBulletTimeEvent?.Invoke();
+    }
+
+    public void OnHitStopEventCall()
+    {
+        OnHitStopEvent?.Invoke();
+    }
+
+    public void OnFlashEventCall()
+    {
+        OnFlashEvent?.Invoke();
     }
     
 

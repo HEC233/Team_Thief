@@ -14,6 +14,8 @@ public class SkillBaldoController : SkillControllerBase
 
     public override void Invoke()
     {
+        base.Invoke();
+        
         Init();
     }
 
@@ -23,8 +25,6 @@ public class SkillBaldoController : SkillControllerBase
         _unit = Unit as PlayerUnit;
         SetDamage();
         _unit.SkillBaldoAttackBase.Init(_damage, _skillBaldoData.CinemachineSignalSource, _skillBaldoData.ZoomInOutData);
-        _unit.ZoomInEvent += ZoomInEventCall;
-        _unit.ZoomOutEvent += ZoomOutEventCall;
         _unit.OnSkillBaldoAttackEvent += ReceiveAttackEvent;
         ((SkillBaldoAttackCtrl)_unit.SkillBaldoAttackBase).OnEnemyHitEvent += ReceiveHitEvent;
     }
@@ -83,9 +83,7 @@ public class SkillBaldoController : SkillControllerBase
     private void ResetValue()
     {
         _unit.OnSkillBaldoAttackEvent -= ReceiveAttackEvent;
-        _unit.ZoomInEvent -= ZoomInEventCall;
-        _unit.ZoomOutEvent -= ZoomOutEventCall;
-        
+
         _isHit = false;
         _moveSpeed = 0.0f;
     }
@@ -95,17 +93,7 @@ public class SkillBaldoController : SkillControllerBase
         ResetValue();
         OnEndSkillAction?.Invoke();
     }
-
-    private void ZoomInEventCall()
-    {
-        _unit.SkillBaldoAttackBase.ZoomIn();        
-    }
-
-    private void ZoomOutEventCall()
-    {
-        _unit.SkillBaldoAttackBase.ZoomOut();                
-    }
-
+    
     private IEnumerator SpecialStateCoroutine()
     {
         float timer = 0.0f;

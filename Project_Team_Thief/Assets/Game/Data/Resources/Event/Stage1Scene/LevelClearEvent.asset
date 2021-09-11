@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5623813672781d648940f5c75d0f6afb, type: 3}
-  m_Name: StageClearEvent
+  m_Name: LevelClearEvent
   m_EditorClassIdentifier: 
   bFollowed: 0
-  eventIndex: 01_01
-  eventScene:
+  eventIndex: 01_02
+  eventScene: Level1,Level2,Level3
   triggerType: 0
   trigger:
     NPCname: CLEAR_POINT
@@ -55,4 +55,4 @@ MonoBehaviour:
       bgmName: 
       bgmStateGroupName: 
       bgmStateName: 
-      sceneName: BossStage
+      sceneName: Stage1

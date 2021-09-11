@@ -15,6 +15,8 @@ public class SkillAxeController : SkillControllerBase
 
     public override void Invoke()
     {
+        base.Invoke();
+        
         Init();
         Progress();
     }

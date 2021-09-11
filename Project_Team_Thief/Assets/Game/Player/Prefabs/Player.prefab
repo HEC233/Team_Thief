@@ -206,21 +206,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: 
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2
@@ -372,7 +357,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -2472999698215755357, guid: b1271299c0bc1ae40a37efa0d8941f49,
+  m_Sprite: {fileID: 6250971365981632026, guid: 7c3dd8c6d52f3d0428b499127a551c65,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -381,7 +366,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &1542053513506992559
@@ -524,6 +509,58 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1542053513848848401}
         m_MethodName: OnZoomOutEventCall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1542053513848848401}
+        m_MethodName: OnCameraShakeEventCall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1542053513848848401}
+        m_MethodName: OnBulletTimeEventCall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1542053513848848401}
+        m_MethodName: OnHitStopEventCall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1542053513848848401}
+        m_MethodName: OnFlashEventCall
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -873,21 +910,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: 
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0
   _fxName: PC_JA1
   _hitLayerMask:
     serializedVersion: 2
@@ -1153,57 +1175,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: PC_BA1
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0.02
-  _zoomInSize: 2
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0.1
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2
@@ -1473,7 +1444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7624106574930786513
 Transform:
   m_ObjectHideFlags: 0
@@ -1542,57 +1513,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: PC_Snake_Sword3
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0.2
-  _zoomInSize: 6
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0.16
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2
@@ -1730,21 +1650,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: 
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2
@@ -1825,7 +1730,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8114190704867105074}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5123219588738899992
 BoxCollider2D:
@@ -1881,21 +1786,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: 
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2
@@ -2032,21 +1922,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: 
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2
@@ -2184,21 +2059,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: 
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0
   _fxName: PC_JA2
   _hitLayerMask:
     serializedVersion: 2
@@ -2308,7 +2168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8652530670963873314
 Transform:
   m_ObjectHideFlags: 0
@@ -2377,21 +2237,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: PC_Snake_Sword2
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2
@@ -2460,7 +2305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &170868997189839136
 Transform:
   m_ObjectHideFlags: 0
@@ -2529,57 +2374,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: PC_Snake_Sword1
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0.04
-  _zoomInSize: 7
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0.04
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2
@@ -2788,8 +2582,8 @@ Transform:
   - {fileID: 170868997189839136}
   - {fileID: 8652530670963873314}
   - {fileID: 7624106574930786513}
-  - {fileID: 8886252971218979349}
   - {fileID: 4104865925060628037}
+  - {fileID: 8886252971218979349}
   - {fileID: 1632805504231969339}
   - {fileID: 3778185268532719185}
   - {fileID: 4275863233706727302}
@@ -2878,28 +2672,13 @@ MonoBehaviour:
   _isDisplyFx: 0
   _isPlaySFX: 1
   _isAlwaysPlaySFX: 1
-  _isZoomIn: 0
+  _isZoomIn: 1
   _hitStopTime: 0
   _bulltTime: 0
   _bulletTimeScale: 0
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: 
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2
@@ -3036,21 +2815,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: 
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2
@@ -3203,7 +2967,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8114190704867105074}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4790776607527754245
 BoxCollider2D:
@@ -3251,7 +3015,7 @@ MonoBehaviour:
   _isAbleCameraShake: 1
   _isDisplyFx: 0
   _isPlaySFX: 1
-  _isAlwaysPlaySFX: 1
+  _isAlwaysPlaySFX: 0
   _isZoomIn: 0
   _hitStopTime: 0
   _bulltTime: 0.5
@@ -3259,21 +3023,6 @@ MonoBehaviour:
   _flashTime: 0
   _criticalPercentage: 0
   _sfxSoundName: 
-  _zoomInCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomInTime: 0
-  _zoomInSize: 0
-  _zoomOutCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _zoomOutTime: 0
   _fxName: 
   _hitLayerMask:
     serializedVersion: 2

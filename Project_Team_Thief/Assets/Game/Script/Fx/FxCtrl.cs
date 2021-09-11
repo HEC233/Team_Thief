@@ -23,7 +23,7 @@ public enum FxAniEnum
     SkillKopsh3,    // 15
     SkillPlainSword,    // 16
     SkillPlainSword2,   // 17
-    SkillPlainSword3,   // 18
+    SkillSnakeSwordFulrry,   // 18
     SkillBaldoCast,     // 19
     SkillBaldoDelay,    // 20
     SkillBaldo,         // 21
@@ -36,7 +36,8 @@ public enum FxAniEnum
     SkillChaosHall,     // 28
     SkillDoubleCross,   // 29
     SkillDoubleCross2,  // 30
-    
+    SkillSnakeSwordSting,   // 31
+    SkillSnakeSwordSting2,  // 32
 
 }
 

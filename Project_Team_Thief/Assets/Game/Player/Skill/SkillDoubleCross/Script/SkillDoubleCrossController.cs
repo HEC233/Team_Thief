@@ -15,6 +15,7 @@ public class SkillDoubleCrossController : SkillControllerBase
     
     public override void Invoke()
     {
+        base.Invoke();
         Init();
     }
 

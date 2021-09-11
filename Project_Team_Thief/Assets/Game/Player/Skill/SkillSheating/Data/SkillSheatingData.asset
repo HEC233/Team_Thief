@@ -15,7 +15,9 @@ MonoBehaviour:
   _id: 18
   _skillCondition: 34
   _cinemachineSignalSource: {fileID: 0}
-  _zoomInOutData: {fileID: 11400000, guid: 3c92693d591cd7747923bbafe9470ab2, type: 2}
+  _zoomInOutData: {fileID: 11400000, guid: 2f4f6376dd481eb4d8aa1b24e895a5ec, type: 2}
+  _zoomOutInData: {fileID: 11400000, guid: 3c92693d591cd7747923bbafe9470ab2, type: 2}
+  _soActionValue: {fileID: 11400000, guid: 3c95d887cea9acc43995047436f810f9, type: 2}
   _name: "\uB0A9\uB3C4"
   _grade: "\uB808\uC5B4"
   _isGet: 1
@@ -58,7 +60,7 @@ MonoBehaviour:
   _fristDelay: 1
   _endDelay: 2
   nextSkill: 0
-  _iconName: UI_Skill_Sheating
-  _icon: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}
+  _iconName: SP_UI_Skill_Sheating
+  _icon: {fileID: 21300000, guid: bfda990186887e24ca561e5c00e23c7c, type: 3}
   _addCriticalAmount: 0.7
   _addCriticalTime: 2

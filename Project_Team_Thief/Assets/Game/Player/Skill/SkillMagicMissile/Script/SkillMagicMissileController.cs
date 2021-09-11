@@ -15,6 +15,7 @@ public class SkillMagicMissileController : SkillControllerBase
 
     public override void Invoke()
     {
+        base.Invoke();
         Init();
     }
 

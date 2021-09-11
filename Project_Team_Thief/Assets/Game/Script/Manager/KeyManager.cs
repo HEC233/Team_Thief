@@ -98,6 +98,19 @@ public class KeyManager : MonoBehaviour
             if (Input.GetKey(KeyCode.RightArrow))
                 controlUnit.Transition(TransitionCondition.RightMove);
 
+            /*
+            // one way 타일 뒤집기 부분
+            if(Input.GetKey(KeyCode.DownArrow))
+            {
+                GameManager.instance.SetOnewayTile(false);
+            }
+            else
+            {
+                GameManager.instance.SetOnewayTile(true);
+            }
+            //GameManager.instance.SetOnewayTile(!Input.GetKey(KeyCode.DownArrow));
+            */
+
             if (Input.GetKeyDown(KeyCode.Z))
                 controlUnit.Transition(TransitionCondition.Dash);
 

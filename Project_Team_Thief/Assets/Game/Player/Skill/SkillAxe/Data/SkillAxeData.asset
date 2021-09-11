@@ -16,6 +16,9 @@ MonoBehaviour:
   _skillCondition: 25
   _cinemachineSignalSource: {fileID: 11400000, guid: eb351fd8ca44c3c4db67561a895cdc01,
     type: 2}
+  _zoomInOutData: {fileID: 0}
+  _zoomOutInData: {fileID: 0}
+  _actionValue: {fileID: 11400000, guid: 6124900088c9d7e44b1832a93cf14810, type: 2}
   _name: "\uD68C\uC804\uB3C4\uB07C \uB358\uC9C0\uAE30"
   _grade: "\uB808\uC5B4"
   _isGet: 0

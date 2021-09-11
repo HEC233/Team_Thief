@@ -434,11 +434,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             if (condition == TransitionCondition.SkillAxe)
                 return true;
-            if (condition == TransitionCondition.SkillSpear)
-                return true;
-            if (condition == TransitionCondition.SkillKopsh)
-                return true;
-            
+
             if (SystemMgr.Unit.IsGround == true)
             {
                 if (condition == TransitionCondition.Wallslideing)
@@ -1209,16 +1205,26 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             if (condition == TransitionCondition.Hit)
                 return true;
+
+            if (SystemMgr.IsSkillCheck(condition))
+            {
+                return true;
+            }
             
-            
-            if (condition == TransitionCondition.SkillAxe)
-                return true;
-            if (condition == TransitionCondition.SkillDoubleCross)
-                return true;
-            if (condition == TransitionCondition.SkillSnakeSwordSting)
-                return true;
-            if (condition == TransitionCondition.SkillKopsh)
-                return true;
+            // if (condition == TransitionCondition.SkillAxe)
+            //     return true;
+            // if (condition == TransitionCondition.SkillDoubleCross)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordSting)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+            //     return true;
+            // if (condition == TransitionCondition.SkillBaldo)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSheating)
+            //     return true;
+            // if (condition == TransitionCondition.SkillChaosHall)
+            //     return true;
 
             if (_isBasicAttackEnd == true)
             {
@@ -1812,11 +1818,26 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             if (condition == TransitionCondition.Hit)
                 return true;
+            
+            if (SystemMgr.IsSkillCheck(condition))
+            {
+                return true;
+            }
 
-            if (condition == TransitionCondition.SkillAxe)
-                return true;
-            if (condition == TransitionCondition.SkillSnakeSwordSting)
-                return true;
+            // if (condition == TransitionCondition.SkillAxe)
+            //     return true;
+            // if (condition == TransitionCondition.SkillDoubleCross)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordSting)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+            //     return true;
+            // if (condition == TransitionCondition.SkillBaldo)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSheating)
+            //     return true;
+            // if (condition == TransitionCondition.SkillChaosHall)
+            //     return true;
 
             if (_isSkillEnd == false)
                 return false;
@@ -2229,10 +2250,18 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.SkillAxe)
+            if (condition == TransitionCondition.Hit)
                 return true;
-            if (condition == TransitionCondition.SkillSnakeSwordSting)
+            
+            if (SystemMgr.IsSkillCheck(condition))
+            {
                 return true;
+            }
+            
+            // if (condition == TransitionCondition.SkillAxe)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordSting)
+            //     return true;
             
             if (_isSkillEnd == false)
             {
@@ -2394,7 +2423,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             new AniState[] {AniState.SkillSnakeSwordSting1, AniState.SkillSnakeSwordSting2};
         
         private FxAniEnum[] _skillSnakeSwordStingFxAniArr =
-            new FxAniEnum[] {FxAniEnum.Idle, FxAniEnum.SkillPlainSword2};
+            new FxAniEnum[] {FxAniEnum.SkillSnakeSwordSting, FxAniEnum.SkillSnakeSwordSting2};
         
         public SkillSnakeSwordStingState(PlayerFSMSystem system) : base(system) { }
         private void Init()
@@ -2413,7 +2442,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSnakeSwordStingDelay);
-            //GameManager.instance.uiMng.TurnXButtonUI(true);
+            GameManager.instance.UIMng.TurnXButtonUI(true);
             _attackBeInputTime = Time.time;
             //_gameSkillObject = InvokeSkill();
 
@@ -2431,6 +2460,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             
             ResetValue();
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+            GameManager.instance.UIMng.TurnXButtonUI(false);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
         }
         
         private void ResetValue()
@@ -2443,14 +2474,23 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.SkillAxe)
+            if (condition == TransitionCondition.Hit)
                 return true;
-            if (condition == TransitionCondition.SkillDoubleCross)
+            
+            if (SystemMgr.IsSkillCheck(condition))
+            {
                 return true;
-            if (condition == TransitionCondition.SkillSnakeSwordFlurry)
-                return true;
-            if (condition == TransitionCondition.SkillSnakeSwordSting)
-                return true;
+            }
+
+            
+            // if (condition == TransitionCondition.SkillAxe)
+            //     return true;
+            // if (condition == TransitionCondition.SkillDoubleCross)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordSting)
+            //     return true;
             
             if (_isSkillEnd == false)
             {
@@ -2533,10 +2573,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private void NextAction()
         {
             SystemMgr.AnimationCtrl.SetSpeed(1);
-            SystemMgr._fxCtrl.SetSpeed(1);   
-            
+            SystemMgr._fxCtrl.SetSpeed(1);
+
             SystemMgr.AnimationCtrl.PlayAni(_skillSnakeSwordStingAniArr[_curSkillIndex]);
-            //SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            SystemMgr._fxCtrl.PlayAni(_skillSnakeSwordStingFxAniArr[_curSkillIndex]);
             
             _gameSkillObject = InvokeSkill();
         }
@@ -2629,18 +2669,28 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             StopWaitEndDelayCoroutine();
             ResetValue();
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
         }
 
         public override bool Transition(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.SkillAxe)
+            if (condition == TransitionCondition.Hit)
                 return true;
-            if (condition == TransitionCondition.SkillDoubleCross)
+            
+            if (SystemMgr.IsSkillCheck(condition))
+            {
                 return true;
-            if (condition == TransitionCondition.SkillSnakeSwordSting)
-                return true;
-            if (condition == TransitionCondition.SkillSnakeSwordFlurry)
-                return true;
+            }
+
+            
+            // if (condition == TransitionCondition.SkillAxe)
+            //     return true;
+            // if (condition == TransitionCondition.SkillDoubleCross)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordSting)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+            //     return true;
             
             if (_isSkillEnd == false)
             {
@@ -2691,6 +2741,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private void Action()
         {
             SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSnakeSwordFlurry);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSnakeSwordFulrry);
             //SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
             
             _gameSkillObject = InvokeSkill();
@@ -2797,16 +2848,25 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.SkillAxe)
+            if (condition == TransitionCondition.Hit)
                 return true;
-            if (condition == TransitionCondition.SkillDoubleCross)
+            
+            if (SystemMgr.IsSkillCheck(condition))
+            {
                 return true;
-            if (condition == TransitionCondition.SkillSnakeSwordSting)
-                return true;
-            if (condition == TransitionCondition.SkillSnakeSwordFlurry)
-                return true;
-            if (condition == TransitionCondition.SkillBaldo)
-                return true;
+            }
+
+            
+            // if (condition == TransitionCondition.SkillAxe)
+            //     return true;
+            // if (condition == TransitionCondition.SkillDoubleCross)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordSting)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+            //     return true;
+            // if (condition == TransitionCondition.SkillBaldo)
+            //     return true;
             
             if (_isSkillEnd == false)
             {
@@ -2963,18 +3023,27 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.SkillAxe)
+            if (condition == TransitionCondition.Hit)
                 return true;
-            if (condition == TransitionCondition.SkillDoubleCross)
+            
+            if (SystemMgr.IsSkillCheck(condition))
+            {
                 return true;
-            if (condition == TransitionCondition.SkillSnakeSwordSting)
-                return true;
-            if (condition == TransitionCondition.SkillSnakeSwordFlurry)
-                return true;
-            if (condition == TransitionCondition.SkillBaldo)
-                return true;
-            if (condition == TransitionCondition.SkillSheating)
-                return true;
+            }
+
+            
+            // if (condition == TransitionCondition.SkillAxe)
+            //     return true;
+            // if (condition == TransitionCondition.SkillDoubleCross)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordSting)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+            //     return true;
+            // if (condition == TransitionCondition.SkillBaldo)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSheating)
+            //     return true;
             
             if (_isSkillEnd == false)
             {
@@ -3130,20 +3199,29 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.SkillAxe)
+            if (condition == TransitionCondition.Hit)
                 return true;
-            if (condition == TransitionCondition.SkillDoubleCross)
+            
+            if (SystemMgr.IsSkillCheck(condition))
+            {
                 return true;
-            if (condition == TransitionCondition.SkillSnakeSwordSting)
-                return true;
-            if (condition == TransitionCondition.SkillSnakeSwordFlurry)
-                return true;
-            if (condition == TransitionCondition.SkillBaldo)
-                return true;
-            if (condition == TransitionCondition.SkillSheating)
-                return true;
-            if (condition == TransitionCondition.SkillMagicMissile)
-                return true;
+            }
+
+            
+            // if (condition == TransitionCondition.SkillAxe)
+            //     return true;
+            // if (condition == TransitionCondition.SkillDoubleCross)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordSting)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+            //     return true;
+            // if (condition == TransitionCondition.SkillBaldo)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSheating)
+            //     return true;
+            // if (condition == TransitionCondition.SkillMagicMissile)
+            //     return true;
             
             if (_isSkillEnd == false)
             {
@@ -3261,20 +3339,29 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            if (condition == TransitionCondition.SkillAxe)
+            if (condition == TransitionCondition.Hit)
                 return true;
-            if (condition == TransitionCondition.SkillDoubleCross)
+            
+            if (SystemMgr.IsSkillCheck(condition))
+            {
                 return true;
-            if (condition == TransitionCondition.SkillSnakeSwordSting)
-                return true;
-            if (condition == TransitionCondition.SkillSnakeSwordFlurry)
-                return true;
-            if (condition == TransitionCondition.SkillBaldo)
-                return true;
-            if (condition == TransitionCondition.SkillSheating)
-                return true;
-            if (condition == TransitionCondition.SkillChaosHall)
-                return true;
+            }
+
+            
+            // if (condition == TransitionCondition.SkillAxe)
+            //     return true;
+            // if (condition == TransitionCondition.SkillDoubleCross)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordSting)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSnakeSwordFlurry)
+            //     return true;
+            // if (condition == TransitionCondition.SkillBaldo)
+            //     return true;
+            // if (condition == TransitionCondition.SkillSheating)
+            //     return true;
+            // if (condition == TransitionCondition.SkillChaosHall)
+            //     return true;
             
             if (_isSkillEnd == false)
             {
@@ -3554,6 +3641,16 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
     }
 
+    private bool IsSkillCheck(TransitionCondition condition)
+    {
+        if (GetState(condition) is ISkillStateBase state)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    
     // private TransitionCondition ChangeSkillNameToTransitionCondition(string skillName)
     // {
     //     switch (skillName)

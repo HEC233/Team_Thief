@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
-    public string npcName;
+    [SerializeField]
+    protected string _npcName;
+    public string NpcName => _npcName;
     public Transform interactorableNoticeIcon;
     [SerializeField]
-    private bool _sendQueue = true;
+    protected bool _sendQueue = true;
     public bool DoesSendQueue => _sendQueue;
 
     private void Start()
