@@ -78,12 +78,9 @@ public class NPCManager : MonoBehaviour
 
     public void PushEventQueue()
     {
-        var go = GameObject.Find("GameEventSystem");
-        if (go == null) return;
-        var es = go.GetComponent<GameEventSystem>();
-        if (es == null) return;
-
         if (bNearestNpcExist)
-            es.AddQueue(GetNearestNPC().npcName);
+        {
+            GameManager.instance.GameEventSys.AddQueue(GetNearestNPC().npcName);
+        }
     }
 }
