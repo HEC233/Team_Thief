@@ -219,7 +219,7 @@ public class GameManager : MonoBehaviour
         _cameraManager.FindCameras();
         _cameraManager.Bind();
         // 맵 그리드 할당
-        var grid = GameObject.Find("Grid")?.GetComponent<Grid>();
+        var grid = GameObject.FindObjectOfType<Grid>();
         this.grid = grid;
         TileCoordClass.SetGrid(grid);
         _onewayTile = GameObject.FindObjectOfType<OneWayTile>();

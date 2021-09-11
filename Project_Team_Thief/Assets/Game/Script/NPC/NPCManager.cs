@@ -23,6 +23,8 @@ public class NPCManager : MonoBehaviour
     {
         npcs = GameObject.FindObjectsOfType<NPCController>();
 
+        this.enabled = npcs.Length != 0;
+
         foreach (var npc in npcs)
         {
             var go = Instantiate(interActiveIcon, npc.interactorableNoticeIcon);
