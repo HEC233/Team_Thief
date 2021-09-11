@@ -12,6 +12,8 @@ public class AttackSkillController : SkillControllerBase
 
     public override void Invoke()
     {
+        base.Invoke();
+        
         SkillObject.StartCoroutine(AttackRoutine());
     }
 

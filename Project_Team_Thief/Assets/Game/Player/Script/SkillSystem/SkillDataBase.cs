@@ -23,7 +23,12 @@ public abstract class SkillDataBase : ScriptableObject
     
     [SerializeField]
     private SOZoomInOutDataBase _zoomOutInData;
-    public SOZoomInOutDataBase ZoomOutInData => _zoomOutInData; 
+    public SOZoomInOutDataBase ZoomOutInData => _zoomOutInData;
+
+    [SerializeField]
+    private SOActionValue _actionValue;
+    public SOActionValue ActionValue => _actionValue; 
+    
 
     //New Data -> skill Info
     [SerializeField]

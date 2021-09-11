@@ -429,7 +429,8 @@ public class AttackBase : MonoBehaviour
         //ZoomOut();
         _isAttackEnd = true;
         _enterEnemyHashList.Clear();
-        StartCoroutine(WaitZoomInCoroutine());
+        if (_isZoomIn == true)
+            StartCoroutine(WaitZoomInCoroutine());
     }
 
     IEnumerator WaitZoomInCoroutine()

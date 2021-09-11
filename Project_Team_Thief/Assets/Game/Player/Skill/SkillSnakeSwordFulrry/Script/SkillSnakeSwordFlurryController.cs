@@ -13,6 +13,7 @@ public class SkillSnakeSwordFlurryController : SkillControllerBase
 
     public override void Invoke()
     {
+        base.Invoke();
         Init();
     }
     

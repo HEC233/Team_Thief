@@ -10,6 +10,8 @@ public class SkillChaosHallController : SkillControllerBase
 
     public override void Invoke()
     {
+        base.Invoke();
+        
         throw new System.NotImplementedException();
     }
 }

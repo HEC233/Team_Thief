@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class GameSkillObject : MonoBehaviour
@@ -20,6 +22,19 @@ public class GameSkillObject : MonoBehaviour
         Release();
     }
 
+    private void OnDestroy()
+    {
+        _controller?.Release();
+        Release();
+    }
+
+    public CinemachineImpulseSource AddCinemachineImpulseComponent()
+    {
+        this.gameObject.AddComponent<CinemachineImpulseSource>();
+        
+        return gameObject.GetComponent<CinemachineImpulseSource>();
+    }
+    
     public void DestroyComponent(UnityEngine.Object component)
     {
         Destroy(component);
