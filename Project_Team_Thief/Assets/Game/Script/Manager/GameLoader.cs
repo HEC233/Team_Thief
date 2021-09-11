@@ -24,8 +24,29 @@ public class GameLoader : MonoBehaviour
     [SerializeField]
     private SceneGroup[] _sceneData;
     private string _curTheme = string.Empty;
-    private Dictionary<string, bool[]> _sceneLoadCheck;
-    private int[] _sceneLoadCount;
+
+    private class UsingSceneData
+    {
+        public List<string> unloadedScenes;
+        public int loadCount;
+        public string endSceneName;
+
+        public UsingSceneData(SceneGroup data)
+        {
+            unloadedScenes = new List<string>(data.sceneNames);
+            loadCount = data.loadCount;
+            endSceneName = data.endSceneName;
+        }
+
+        public UsingSceneData(UsingSceneData previousData)
+        {
+            unloadedScenes = previousData.unloadedScenes.ConvertAll(s => s);
+            loadCount = previousData.loadCount;
+            endSceneName = previousData.endSceneName;
+        }
+    }
+    private Dictionary<string, UsingSceneData> _unloadedSceneData;
+    private UsingSceneData curUsingData;
 
     private void Awake()
     {
@@ -50,17 +71,12 @@ public class GameLoader : MonoBehaviour
     private void InitializeInternalSceneData()
     {
         // 인스펙터 창에서 넣은 씬에 대한 데이터를 힙공간에 구축
-        _sceneLoadCheck = new Dictionary<string, bool[]>();
-        foreach (var data in _sceneData)
+        _unloadedSceneData = new Dictionary<string, UsingSceneData>();
+        foreach(var data in _sceneData)
         {
-            var sceneLoadCheckBoolean = new bool[data.sceneNames.Length];
-            for (int i = 0; i < sceneLoadCheckBoolean.Length; i++)
-            {
-                sceneLoadCheckBoolean[i] = false;
-            }
-            _sceneLoadCheck.Add(data.theme, sceneLoadCheckBoolean);
+            UsingSceneData unloadSceneData = new UsingSceneData(data);
+            _unloadedSceneData.Add(data.theme, unloadSceneData);
         }
-        _sceneLoadCount = new int[_sceneData.Length];
     }
 
     /// <summary>
@@ -83,56 +99,40 @@ public class GameLoader : MonoBehaviour
         gameDataLoaded = true;
     }
 
-    public IEnumerator SceneLoad(string SceneName)
+    private IEnumerator LoadRandomScene(string themeName)
     {
-        GameManager.instance.UIMng.AddTextToDeveloperConsole(SceneName + " Scene Load Start");
+        if(_curTheme != themeName)
+        {
+            curUsingData = new UsingSceneData(_unloadedSceneData[themeName]);
+        }
+        if(curUsingData.loadCount <= 0 || curUsingData.unloadedScenes.Count == 0)
+        {
+            yield return SceneManager.LoadSceneAsync(curUsingData.endSceneName, LoadSceneMode.Single);
+        }
+        else
+        {
+            string newSceneName = curUsingData.unloadedScenes[Random.Range(0, curUsingData.unloadedScenes.Count)];
+            curUsingData.unloadedScenes.Remove(newSceneName);
+            curUsingData.loadCount--;
+            yield return SceneManager.LoadSceneAsync(newSceneName, LoadSceneMode.Single);
+        }
+    }
+
+    public IEnumerator SceneLoad(string sceneName)
+    {
+        GameManager.instance.UIMng.AddTextToDeveloperConsole(sceneName + " Scene Load Start");
         GameManager.instance.UIMng.ShowLoading();
         if (!gameDataLoaded)
             yield return StartCoroutine(LoadGameData());
 
-        if (_sceneLoadCheck.ContainsKey(SceneName))
+        if (_unloadedSceneData.ContainsKey(sceneName))
         {
-            if(_curTheme != SceneName)
-            {
-                var sceneCheck = _sceneLoadCheck[SceneName];
-                for(int i = 0; i < sceneCheck.Length; i++)
-                {
-                    sceneCheck[i] = false;
-                }
-            }    
-            int index = 0;
-            while(_sceneData[index].theme != SceneName)
-            {
-                index++;
-            }
-            if (_sceneLoadCount[index] == _sceneData[index].loadCount)
-            {
-                yield return SceneManager.LoadSceneAsync(_sceneData[index].endSceneName, LoadSceneMode.Single);
-            }
-            else
-            {
-                var sceneCheck = _sceneLoadCheck[SceneName];
-                int randomIndex = 0;
-                // 이 부분은 랜덤맵을 찾는 것을 10회만 하겠다는 구문
-                // 혹여나 랜덤맵이 개수가 로드 횟수보다 적을 경우 무한히 맵을 찾기 위해 루프를 도는 것을 방지 하기 위함
-                // 그래서 혹여나 10회 안에 랜덤한 맵을 찾아내지 못하는 경우 중복한 맵이 나올수 있음
-                for (int i = 0; i < 10; i++)
-                {
-                    randomIndex = Random.Range(0, sceneCheck.Length);
-                    if (!sceneCheck[randomIndex])
-                    {
-                        sceneCheck[randomIndex] = true;
-                        break;
-                    }
-                }
-                _sceneLoadCount[index]++;
-                yield return SceneManager.LoadSceneAsync(_sceneData[index].sceneNames[randomIndex], LoadSceneMode.Single);
-            }
-            _curTheme = SceneName;
+            yield return LoadRandomScene(sceneName);
+            _curTheme = sceneName;
         }
         else
         {
-            yield return SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
+            yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
             _curTheme = string.Empty;
         }
         
@@ -150,6 +150,6 @@ public class GameLoader : MonoBehaviour
         }
 
         GameManager.instance.UIMng.StopLoading();
-        GameManager.instance.UIMng.AddTextToDeveloperConsole(SceneName + " Scene Load Finished");
+        GameManager.instance.UIMng.AddTextToDeveloperConsole(sceneName + " Scene Load Finished");
     }
 }
