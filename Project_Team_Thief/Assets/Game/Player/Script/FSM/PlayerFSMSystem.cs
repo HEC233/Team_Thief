@@ -2180,13 +2180,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private AniState[] _skillDoubleCrossAniArr =
             new AniState[] {AniState.SkillDoubleCross, AniState.SkillDoubleCross2};
 
-        // private FxAniEnum[] _skillPlainSwordFxAniArr = new FxAniEnum[]
-        //     {FxAniEnum.SkillPlainSword, FxAniEnum.SkillPlainSword2, FxAniEnum.SkillPlainSword3};
+         private FxAniEnum[] _skillDoubleCrossFxAniArr = new FxAniEnum[]
+             {FxAniEnum.SkillDoubleCross, FxAniEnum.SkillDoubleCross2};
         
-        public SkillDoubleCrossState(PlayerFSMSystem system) : base(system)
-        {
-            
-        }
+        public SkillDoubleCrossState(PlayerFSMSystem system) : base(system) { }
 
         private void Init()
         {
@@ -2203,8 +2200,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
-            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillDoubleCross);
-            //GameManager.instance.uiMng.TurnXButtonUI(true);
+            SystemMgr.AnimationCtrl.PlayAni(_skillDoubleCrossAniArr[_curSkillIndex]);
+            SystemMgr._fxCtrl.PlayAni(_skillDoubleCrossFxAniArr[_curSkillIndex]);
+            GameManager.instance.UIMng.TurnXButtonUI(true);
             _attackBeInputTime = Time.time;
             _gameSkillObject = InvokeSkill();
         }
@@ -2218,7 +2216,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         {
             SystemMgr.OnAnimationEndEvent -= OnAnimationEndEventCall;
             ResetValue();
-            //GameManager.instance.uiMng.TurnXButtonUI(false);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.Idle);
+            GameManager.instance.UIMng.TurnXButtonUI(false);
         }
 
         private void ResetValue()
@@ -2251,6 +2250,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
                 if (_attackInputTime - _attackBeInputTime <= _attackTime)
                 {
+                    Debug.Log("aTTACK");
                     _nextSkillIndex = _curSkillIndex + 1;
                     SystemMgr.AnimationCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
                     SystemMgr._fxCtrl.SetSpeed(SystemMgr.Unit.AniFastAmount);
@@ -2289,11 +2289,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         
         private void NextAction()
         {
+            Debug.Log(_curSkillIndex);
             SystemMgr.AnimationCtrl.SetSpeed(1);
             SystemMgr._fxCtrl.SetSpeed(1);   
             
             SystemMgr.AnimationCtrl.PlayAni(_skillDoubleCrossAniArr[_curSkillIndex]);
-            //SystemMgr._fxCtrl.PlayAni(_skillPlainSwordFxAniArr[SystemMgr.Unit.skillPlainSwordIndex]);
+            SystemMgr._fxCtrl.PlayAni(_skillDoubleCrossFxAniArr[_curSkillIndex]);
             
             _gameSkillObject = InvokeSkill();
         }

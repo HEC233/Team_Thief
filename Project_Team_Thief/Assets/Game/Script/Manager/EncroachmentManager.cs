@@ -123,7 +123,6 @@ public class EncroachmentManager : MonoBehaviour
     private void EncroachmentRecovery()
     {
         _encroachmentRecoveryAmount = CalcEncroachmentRecoveryAmount();
-        Debug.Log(_encroachmentRecoveryAmount);
         ChangeEncroachment(_encroachmentRecoveryAmount);
     }
 
@@ -245,7 +244,6 @@ public class EncroachmentManager : MonoBehaviour
     
     private void EncroachmentProduction()
     {
-        Debug.Log(_encroachmentLevelIndex + "Production");
         switch (_encroachmentLevelIndex)
         {
             case 4:

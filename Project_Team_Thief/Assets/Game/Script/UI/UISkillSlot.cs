@@ -13,11 +13,16 @@ public class UISkillSlot : MonoBehaviour
     private UISkillCooltimeBox _skillCooltimeBox;
     [SerializeField]
     private Button _button;
+    
+    // 김태성
+    [SerializeField]
+    private Sprite _nullIcon;
 
     public void Regist(SkillSlotManager.SkillSlot skillSlot)
     {
         Assert.IsNotNull(skillSlot);
         _skillData = skillSlot;
+
     }
 
     public void UpdateData()
@@ -26,7 +31,6 @@ public class UISkillSlot : MonoBehaviour
         {
             Debug.Log(_skillData);
             Debug.Log(_skillData.SkillDataBase);
-
             return;
         }
         _skillCommandBox.InitCommandInfo(_skillData.CommandString);
@@ -41,7 +45,7 @@ public class UISkillSlot : MonoBehaviour
         }
         if (_skillData.SkillDataBase == null)
         {
-            _skillCooltimeBox.SetSkillIcon(null);
+            _skillCooltimeBox.SetSkillIcon(_nullIcon);
             return;
         }
         if(_skillData.IsSeal)

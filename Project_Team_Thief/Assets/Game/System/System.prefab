@@ -3534,7 +3534,7 @@ MonoBehaviour:
   _sceneData:
   - theme: Test
     sceneNames:
-    - RandomMapTest1
+    - Level3
     - RandomMapTest2
     - RandomMapTest3
     loadCount: 2
@@ -10870,12 +10870,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5035b95b0a874442b060379f93c69e3, type: 2}
   - {fileID: 11400000, guid: 4f0d414cf7063914aae17456fba37949, type: 2}
   _skillDataBases:
-  - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
+  - {fileID: 11400000, guid: b366ff89bcd1ad547a86cf5d09bf7d79, type: 2}
   - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
   - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
   - {fileID: 11400000, guid: 6640528b22a6b0542b9e0eb7957e77c1, type: 2}
   _commandInputTime: 0.1
-  _slotInSkillLifeTimeArr: 
+  _slotInSkillLifeTimeArr: 03000000030000000200000001000000
 --- !u!114 &8106726959300338560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14557,6 +14557,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7871793586457344497, guid: 5e2afb0159e5c12449a559ae7230c62a,
+        type: 3}
+      propertyPath: _nullIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d,
+        type: 3}
     - target: {fileID: 7871793586457344503, guid: 5e2afb0159e5c12449a559ae7230c62a,
         type: 3}
       propertyPath: m_Name
@@ -14879,6 +14885,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7871793586457344497, guid: 5e2afb0159e5c12449a559ae7230c62a,
+        type: 3}
+      propertyPath: _nullIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d,
+        type: 3}
     - target: {fileID: 7871793586457344503, guid: 5e2afb0159e5c12449a559ae7230c62a,
         type: 3}
       propertyPath: m_Name
@@ -15051,6 +15063,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7871793586457344497, guid: 5e2afb0159e5c12449a559ae7230c62a,
+        type: 3}
+      propertyPath: _nullIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d,
+        type: 3}
     - target: {fileID: 7871793586457344503, guid: 5e2afb0159e5c12449a559ae7230c62a,
         type: 3}
       propertyPath: m_Name
@@ -15223,6 +15241,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7871793586457344497, guid: 5e2afb0159e5c12449a559ae7230c62a,
+        type: 3}
+      propertyPath: _nullIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d,
+        type: 3}
     - target: {fileID: 7871793586457344503, guid: 5e2afb0159e5c12449a559ae7230c62a,
         type: 3}
       propertyPath: m_Name

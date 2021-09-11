@@ -56,9 +56,8 @@ public class SkillSlotManager : MonoBehaviour
         }
         for (int i = 0; i < _skillSlotNumber; i++)
         {
-            var newSlot = new SkillSlot(_skillSlotCommandDatas[i], this);
+            var newSlot = new SkillSlot(_skillSlotCommandDatas[i], this, i);
             _skillSlots.Add(newSlot);
-            Debug.Log(_skillSlots[i]);
             _skillSlots[i].SkillLifeTime = _slotInSkillLifeTimeArr[i];
             GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.RegistSkillData(i, newSlot);
         }
@@ -70,6 +69,7 @@ public class SkillSlotManager : MonoBehaviour
             GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.UpdateSkillData(i);
         }
         
+        _skillSlots[0].RockSlot();
 
     }
 
@@ -219,6 +219,7 @@ public class SkillSlotManager : MonoBehaviour
         private readonly string _reverseCommandString;
         private int _commandCount;
         private int _reversCommandCount;
+        private int _slotIndex;
         private bool _isActiveSkillSlot;
         private float _skillSlotCoolTime;
         private float _skillSlotCurCoolTime;
@@ -244,7 +245,7 @@ public class SkillSlotManager : MonoBehaviour
 
         private int _curSkillLifeTime;
 
-        public SkillSlot(SOCommandData soCommandData, SkillSlotManager skillSlotManager)
+        public SkillSlot(SOCommandData soCommandData, SkillSlotManager skillSlotManager, int slotIndex)
         {
             _skillSlotManager = skillSlotManager;
             
@@ -256,6 +257,7 @@ public class SkillSlotManager : MonoBehaviour
             _isActiveSkillSlot = false;
             _isRock = false;
             _isSeal = false;
+            _slotIndex = slotIndex;
             
             _skillSlotCoolTime = 0.0f;
             _skillSlotCurCoolTime = 0.0f;
@@ -300,6 +302,7 @@ public class SkillSlotManager : MonoBehaviour
             _skillSlotCoolTime = _skillDataBase.CoolTime;
             _skillSlotCurCoolTime = _skillSlotCoolTime;
             _isActiveSkillSlot = true;
+            GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.UpdateSkillData(_slotIndex);
         }
 
         public void RemoveSkillDataBase()
@@ -310,6 +313,7 @@ public class SkillSlotManager : MonoBehaviour
 
             _skillDataBase = null;
             _isActiveSkillSlot = false;
+            GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.UpdateSkillData(_slotIndex);
         }
         
         public void InsertKey(char key)

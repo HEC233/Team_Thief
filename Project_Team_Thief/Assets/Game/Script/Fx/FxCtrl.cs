@@ -34,6 +34,9 @@ public enum FxAniEnum
     SkillChaosHallCast, // 26
     SkillChaosHallDelay,// 27
     SkillChaosHall,     // 28
+    SkillDoubleCross,   // 29
+    SkillDoubleCross2,  // 30
+    
 
 }
 
