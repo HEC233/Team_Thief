@@ -25,6 +25,7 @@ public class NPCManager : MonoBehaviour
 
         this.enabled = npcs.Length != 0;
 
+
         foreach (var npc in npcs)
         {
             var go = Instantiate(interActiveIcon, npc.interactorableNoticeIcon);
@@ -77,7 +78,7 @@ public class NPCManager : MonoBehaviour
             GetNearestNPC().Act();
             if (GetNearestNPC().DoesSendQueue)
             {
-                GameManager.instance.GameEventSys.AddQueue(GetNearestNPC().npcName);
+                GameManager.instance.GameEventSys.AddQueue(GetNearestNPC().NpcName);
             }
         }
     }
