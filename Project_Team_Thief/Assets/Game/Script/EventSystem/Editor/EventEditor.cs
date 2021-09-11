@@ -132,6 +132,7 @@ namespace PS.Event
             _event.followingEvent = EditorGUILayout.TextField(_event.followingEvent);
             EditorGUILayout.EndHorizontal();
 
+            EditorUtility.SetDirty(target);
 
             reorderableList.DoLayoutList();
 

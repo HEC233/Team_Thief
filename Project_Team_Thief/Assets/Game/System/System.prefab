@@ -3532,13 +3532,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneData:
-  - theme: Test
+  - theme: Stage1
     sceneNames:
     - Level1
     - Level2
     - Level3
     loadCount: 2
-    endSceneName: HHG
+    endSceneName: BossStage
 --- !u!1 &780453113
 GameObject:
   m_ObjectHideFlags: 0

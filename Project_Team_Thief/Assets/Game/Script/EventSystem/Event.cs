@@ -30,7 +30,7 @@ namespace PS.Event
         public int yValue;
     }
 
-    [CreateAssetMenu(fileName = "Event", menuName = "ScriptableObject/Event")]
+    [CreateAssetMenu(fileName = "Event", menuName = "ScriptableObject/Event/Event")]
     public class Event : ScriptableObject
     {
         public bool bFollowed;

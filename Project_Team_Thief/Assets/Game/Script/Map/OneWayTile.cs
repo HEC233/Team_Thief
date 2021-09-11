@@ -6,7 +6,6 @@ using UnityEngine.Tilemaps;
 
 public class OneWayTile : MonoBehaviour
 {
-    [SerializeField]
     private PlatformEffector2D platformEfc = null;
     public LayerMask playerLayer;
 
@@ -24,8 +23,11 @@ public class OneWayTile : MonoBehaviour
         if (transform.parent.GetComponent<Tilemap>() != null)
         {
             DestroyImmediate(this);
+            return;
         }
-
+        platformEfc = gameObject.AddComponent<PlatformEffector2D>();
+        platformEfc.useOneWay = true;
+        platformEfc.surfaceArc = 170.0f;
         /*
         gameObject.AddComponent<TilemapCollider2D>();
         gameObject.AddComponent<PlatformEffector2D>();
