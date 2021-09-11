@@ -2393,6 +2393,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
         private AniState[] _skillSnakeSwordStingAniArr =
             new AniState[] {AniState.SkillSnakeSwordSting1, AniState.SkillSnakeSwordSting2};
         
+        private FxAniEnum[] _skillSnakeSwordStingFxAniArr =
+            new FxAniEnum[] {FxAniEnum.Idle, FxAniEnum.SkillPlainSword2};
+        
         public SkillSnakeSwordStingState(PlayerFSMSystem system) : base(system) { }
         private void Init()
         {
