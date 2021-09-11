@@ -45,6 +45,8 @@ public class OneWayTile : MonoBehaviour
         childPlatformEfc.colliderMask = (int)0x7FFFFFFF - playerLayer;
         childPlatformEfc.surfaceArc = 180;
         FlipDirection(true);
+
+        StartCoroutine(Flip());
     }
 
     public void FlipDirection(bool isUp)
@@ -57,5 +59,27 @@ public class OneWayTile : MonoBehaviour
         {
             platformEfc.rotationalOffset = 180;
         }
+    }
+
+    IEnumerator Flip()
+    {
+        while (true)
+        {
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                FlipDirection(false);
+                yield return new WaitForSeconds(0.3f);
+            }
+            else
+            {
+                FlipDirection(true);
+            }
+            yield return null;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }
