@@ -1373,6 +1373,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             else
             {
+                Debug.Log("This IS : " + _isBasicjumpAttackAniEnd);
                 TransitionIdleOrFalling();
             }
         }
@@ -1399,9 +1400,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            if (_isBasicjumpAttackAniEnd == false)
-                return false;
-            
+            // if (_isBasicjumpAttackAniEnd == false)
+            //     return false;
+            //
             if (condition == TransitionCondition.Idle)
                 return true;
             if (condition == TransitionCondition.Falling)
@@ -1457,18 +1458,20 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         private void TransitionIdleOrFalling()
         {
-            if(SystemMgr.CurrState != TransitionCondition.JumpAttack)
+            if (SystemMgr.CurrState != TransitionCondition.JumpAttack)
                 return;
-            
-            if (_isBasicjumpAttackAniEnd == true)
+
+
+            if (SystemMgr.Unit.IsGround == true)
             {
-                if (SystemMgr.Unit.IsGround == true)
-                {
-                    SystemMgr.Transition(TransitionCondition.Idle);
-                }
-                else
-                    SystemMgr.Transition(TransitionCondition.Falling);
+                SystemMgr.Transition(TransitionCondition.Idle);
             }
+            else
+            {
+                SystemMgr.Transition(TransitionCondition.Falling);
+            }
+
+
         }
 
         private void BasicJumpAttackMove()
