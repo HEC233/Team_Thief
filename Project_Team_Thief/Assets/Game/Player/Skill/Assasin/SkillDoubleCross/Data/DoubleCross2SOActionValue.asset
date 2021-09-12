@@ -15,7 +15,7 @@ MonoBehaviour:
   _zoomInOutData: {fileID: 0}
   _zoomOutInData: {fileID: 0}
   _cinemachineSignalSource: {fileID: 0}
-  _hitstopTime: 0.07
+  _hitstopTime: 0.2
   _bulletTimeAmount: 0.1
   _bulletTimeScale: 0.2
   _flashCtrl: {fileID: 0}

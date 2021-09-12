@@ -13,34 +13,45 @@ MonoBehaviour:
   m_Name: SkillJumpAttackData2
   m_EditorClassIdentifier: 
   _id: 2
+  _skillCondition: 0
   _cinemachineSignalSource: {fileID: 0}
-  _name: 
-  _grade: 
+  _zoomInOutData: {fileID: 11400000, guid: 68bef0c47d27081449d31af4aa96b0dd, type: 2}
+  _zoomOutInData: {fileID: 0}
+  _soActionValue: {fileID: 0}
+  _name: "\uC810\uD504\uACF5\uACA92\uD0C0"
+  _grade: "\uB178\uB9D0"
   _isGet: 0
-  _class: 
+  _class: "\uAE30\uBCF8"
   _coolTime: 0
   _castingTime: 0
   _attackRange: 0
   _target: 0
-  _description: 
+  _description: none
   _buffTime: 0
-  _skillNumberOfTimes: 0
-  _damages: 
-  _hitIntervals: []
-  _hitNumberOfTimes: 
-  _knockBackTimes: []
-  _knockBackXs: []
-  _knockBackYs: []
-  _stiffness: 0
-  _moveTimes: []
-  _moveXs: []
-  _moveYs: []
+  _skillNumberOfTimes: 1
+  _damages: 14000000
+  _hitIntervals:
+  - 0
+  _hitNumberOfTimes: 01000000
+  _knockBackTimes:
+  - 0.05
+  _knockBackXs:
+  - 0.5
+  _knockBackYs:
+  - -16
+  _stiffness: 0.3
+  _moveTimes:
+  - 0.24
+  _moveXs:
+  - 0
+  _moveYs:
+  - -15
   _projectileMoveTime: 0
   projectileMoveX: 0
   projectileMoveY: 0
-  _statusEffects: 
+  _statusEffects: 00000000
   _fristDelay: 0
   _endDelay: 0
   nextSkill: 0
-  _iconName: 
-  _icon: {fileID: 0}
+  _iconName: none
+  _icon: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}
