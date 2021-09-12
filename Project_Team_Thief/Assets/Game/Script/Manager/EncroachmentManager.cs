@@ -56,14 +56,19 @@ public class EncroachmentManager : MonoBehaviour
 
     private void Init()
     {
+        ResetValue();
+        
+        GameManager.instance.AddMapStartEventListener(StartRoomSetting);
+        GameManager.instance.AddMapEndEventListener(EndRoomSetting);
+    }
+
+    public void ResetValue()
+    {
         _encroachment = 100;
         _encroachmentZeroTimer = 0.0f;
         _encroachmentNumber = 5;
 
         _blessingPenaltyDataInGame = _blessingPenaltyDatas.ToList();
-        
-        GameManager.instance.AddMapStartEventListener(StartRoomSetting);
-        GameManager.instance.AddMapEndEventListener(EndRoomSetting);
     }
 
     private void SetPenaltyDataContent()

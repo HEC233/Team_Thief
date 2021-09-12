@@ -193,6 +193,7 @@ public class GameManager : MonoBehaviour
     public void ReloadScene()
     {
         LoadScene("Tutorial");
+        EncroachmentMng.ResetValue();
     }
 
     IEnumerator StartGameCoroutine(string SceneName)
@@ -275,6 +276,7 @@ public class GameManager : MonoBehaviour
     {
         isPlayerDead = false;
         PlayerActor.GetUnit().HandleDeath();
+        EncroachmentMng.ResetValue();
         Destroy(_playerGameObject);
         _uiManager.TurnOffGameOverScreen();
         DialogueSystem.EndDialogue();
