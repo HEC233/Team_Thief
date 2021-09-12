@@ -1302,6 +1302,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isBasicAttackEnd = true;
+
+            if (SystemMgr.CurrState != TransitionCondition.Attack)
+                yield break;
+            
             SystemMgr.Transition(TransitionCondition.Idle);
         }
     }
@@ -1369,6 +1373,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
             else
             {
+                Debug.Log("This IS : " + _isBasicjumpAttackAniEnd);
                 TransitionIdleOrFalling();
             }
         }
@@ -1395,9 +1400,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         public override bool Transition(TransitionCondition condition)
         {
-            if (_isBasicjumpAttackAniEnd == false)
-                return false;
-            
+            // if (_isBasicjumpAttackAniEnd == false)
+            //     return false;
+            //
             if (condition == TransitionCondition.Idle)
                 return true;
             if (condition == TransitionCondition.Falling)
@@ -1453,18 +1458,20 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
         private void TransitionIdleOrFalling()
         {
-            if(SystemMgr.CurrState != TransitionCondition.JumpAttack)
+            if (SystemMgr.CurrState != TransitionCondition.JumpAttack)
                 return;
-            
-            if (_isBasicjumpAttackAniEnd == true)
+
+
+            if (SystemMgr.Unit.IsGround == true)
             {
-                if (SystemMgr.Unit.IsGround == true)
-                {
-                    SystemMgr.Transition(TransitionCondition.Idle);
-                }
-                else
-                    SystemMgr.Transition(TransitionCondition.Falling);
+                SystemMgr.Transition(TransitionCondition.Idle);
             }
+            else
+            {
+                SystemMgr.Transition(TransitionCondition.Falling);
+            }
+
+
         }
 
         private void BasicJumpAttackMove()
@@ -1541,6 +1548,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             _isBasicjumpAttackAniEnd = true;
             _isWaitDelay = false;
+
+            if (SystemMgr.CurrState != TransitionCondition.JumpAttack)
+                yield break;
+            
             TransitionIdleOrFalling();
         }
     }
@@ -1975,6 +1986,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isSkillEnd = true;
+            
+            if(SystemMgr.CurrState != _skillAxeDataArr[0].SkillCondition)
+                yield break;
+            
             SystemMgr.Transition(TransitionCondition.Idle);
         }
     }
@@ -2365,6 +2380,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isSkillEnd = true;
+            
+            if(SystemMgr.CurrState != _skillDoubleCrossData[0].SkillCondition)
+                yield break;
+            
             SystemMgr.Transition(TransitionCondition.Idle);
         }
     }
@@ -2590,6 +2609,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
                 yield return new WaitForFixedUpdate();
             }
             
+            if(SystemMgr.CurrState != _skillSnakeSwordStingDatas[0].SkillCondition)
+                yield break;
+            
             NextAction();
         }
         
@@ -2617,6 +2639,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isSkillEnd = true;
+            
+            if(SystemMgr.CurrState != _skillSnakeSwordStingDatas[0].SkillCondition)
+                yield break;
             SystemMgr.Transition(TransitionCondition.Idle);
         }
     }
@@ -2783,6 +2808,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isStartDelayEnd = true;
+            
+            if(SystemMgr.CurrState != _skillSnakeSwordFlurryData.SkillCondition)
+                yield break;
             Action();
         }
         
@@ -2798,6 +2826,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isSkillEnd = true;
+            
+            if(SystemMgr.CurrState != _skillSnakeSwordFlurryData.SkillCondition)
+                yield break;
+            
             SystemMgr.Transition(TransitionCondition.Idle);
         }
     }
@@ -2953,6 +2985,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isStartDelayEnd = true;
+
+            if (SystemMgr.CurrState != _skillBaldoData.SkillCondition)
+                yield break;
             Action();
         }
         
@@ -2968,6 +3003,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isSkillEnd = true;
+            
+            if (SystemMgr.CurrState != _skillBaldoData.SkillCondition)
+                yield break;
+            
             SystemMgr.Transition(TransitionCondition.Idle);
         }
 
@@ -3131,6 +3170,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isStartDelayEnd = true;
+            
+            if (SystemMgr.CurrState != _skillSheatingData.SkillCondition)
+                yield break;
             Action();
         }
         
@@ -3146,6 +3188,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isSkillEnd = true;
+            if (SystemMgr.CurrState != _skillSheatingData.SkillCondition)
+                yield break;
             SystemMgr.Transition(TransitionCondition.Idle);
         }
 
@@ -3290,6 +3334,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isSkillEnd = true;
+            if (SystemMgr.CurrState != _skillMagicMissileData.SkillCondition)
+                yield break;
             SystemMgr.Transition(TransitionCondition.Idle);
         }
     }
@@ -3452,6 +3498,9 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isStartDelayEnd = true;
+            
+            if (SystemMgr.CurrState != _skillChaosHallData.SkillCondition)
+                yield break;
             Action();
         }
         
@@ -3467,6 +3516,10 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             }
 
             _isSkillEnd = true;
+            
+            if (SystemMgr.CurrState != _skillChaosHallData.SkillCondition)
+                yield break;
+            
             SystemMgr.Transition(TransitionCondition.Idle);
         }
 
