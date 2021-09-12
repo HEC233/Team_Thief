@@ -17,6 +17,6 @@ MonoBehaviour:
   _cinemachineSignalSource: {fileID: 0}
   _hitstopTime: 0.07
   _bulletTimeAmount: 0.1
-  _bulletTimeScale: 60
+  _bulletTimeScale: 0.2
   _flashCtrl: {fileID: 0}
   _flashGO: {fileID: 0}

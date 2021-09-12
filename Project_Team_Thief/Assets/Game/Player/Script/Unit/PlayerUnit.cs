@@ -420,10 +420,13 @@ public class PlayerUnit : Unit
 
     public void MoveStop()
     {
-        if (GameManager.instance.TimeMng.IsBulletTime == false)
-        {
-            _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-        }
+        // if (GameManager.instance.TimeMng.IsBulletTime == false)
+        // {
+        //     _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+        // }
+        
+        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+
         // if (GameManager.instance.timeMng.IsBulletTime == false)
         //     _rigidbody2D.velocity = new Vector2(_moveStopSpeed * _facingDir, _rigidbody2D.velocity.y);
     }
