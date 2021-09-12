@@ -3,17 +3,17 @@ guid: 964f7d0e9a45d6541a92f9e14383ad57
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6070269868906294439
-    second: SP_PC_JumpAttack2FX_0
+      213: -8934179448885496557
+    second: Sp_PC_JumpAttack2FX_0
   - first:
-      213: -6359184682891771623
-    second: SP_PC_JumpAttack2FX_1
+      213: 1285924868313333107
+    second: Sp_PC_JumpAttack2FX_1
   - first:
-      213: -5628299248928250372
-    second: SP_PC_JumpAttack2FX_2
+      213: 3982844820855258866
+    second: Sp_PC_JumpAttack2FX_2
   - first:
-      213: 259660571975643011
-    second: SP_PC_JumpAttack2FX_3
+      213: 4014913849731205864
+    second: Sp_PC_JumpAttack2FX_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -55,8 +55,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
   spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -99,54 +99,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SP_PC_JumpAttack2FX_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7acaaeab84eed3450800000000000000
-      internalID: 6070269868906294439
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SP_PC_JumpAttack2FX_1
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 911812b2933afb7a0800000000000000
-      internalID: -6359184682891771623
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SP_PC_JumpAttack2FX_2
+      name: Sp_PC_JumpAttack2FX_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
+        width: 240
         height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -155,19 +113,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf5a80237a344e1b0800000000000000
-      internalID: -5628299248928250372
+      spriteID: 315b595602b630480800000000000000
+      internalID: -8934179448885496557
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SP_PC_JumpAttack2FX_3
+      name: Sp_PC_JumpAttack2FX_1
       rect:
         serializedVersion: 2
-        x: 96
+        x: 240
         y: 0
-        width: 96
+        width: 240
         height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -176,8 +134,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38f68ca1aef7a9300800000000000000
-      internalID: 259660571975643011
+      spriteID: 37d38a7cad588d110800000000000000
+      internalID: 1285924868313333107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sp_PC_JumpAttack2FX_2
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 240
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fef4963348e54730800000000000000
+      internalID: 3982844820855258866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sp_PC_JumpAttack2FX_3
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 240
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ea4609dfd6d7b730800000000000000
+      internalID: 4014913849731205864
       vertices: []
       indices: 
       edges: []
@@ -185,15 +185,13 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b35b7000cf0ec824d82cccd88a49500e
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: 838f8c37ecd49f1458f647f4b7212795, type: 3}
-      name: _Emission
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
