@@ -22,7 +22,7 @@ MonoBehaviour:
   _hp: 6000
   _reduceHit: 1
   _knockbackMultiply: 1
-  _attackDamage: 90
+  _attackDamage: 10
   _criticalValue: 0
   _attackCount: 0
   _attackInterval: 0
@@ -38,3 +38,6 @@ MonoBehaviour:
   _cameraShakeCount: 0
   _hitstopLength: 0
   _bulletTimeLength: 0
+  _lightFragProbablity: 0
+  _lightFragAmountMin: 0
+  _lightFragAmountMax: 0
