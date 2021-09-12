@@ -113,8 +113,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 4900000, guid: fb61cdf9ff8e56e4fa7129dba3d13d67, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: fb61cdf9ff8e56e4fa7129dba3d13d67, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 064c53a2eed793942932a7e4cd317384
     m_Address: Assets/Game/Prefab/HpOrb.prefab
     m_ReadOnly: 0
@@ -134,15 +134,15 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Text
-    m_MainAsset: {fileID: 4900000, guid: 68c203ba5eec3ac49a4a0f0a9de050b8, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 68c203ba5eec3ac49a4a0f0a9de050b8, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 671e6ac71a94fcf45a18580b7e7a86da
     m_Address: Assets/Game/UI/Image/Portrait/Sp_PC_Portrait.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-    m_MainAsset: {fileID: 2800000, guid: 671e6ac71a94fcf45a18580b7e7a86da, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 671e6ac71a94fcf45a18580b7e7a86da, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: dc93bbb2340e6b043bafd75f7a507131
     m_Address: Assets/Game/UI/Image/Portrait/Sp_NPC_GoD_Portrait.png
     m_ReadOnly: 0
@@ -164,66 +164,22 @@ MonoBehaviour:
     - Text
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 2c264c1c7b0f5ef4687b6e370c30dd41
-    m_Address: Assets/Game/UI/Image/Skill Icon/SP_UI_Skill_Baldo.png
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Sprite
-    m_MainAsset: {fileID: 2800000, guid: 2c264c1c7b0f5ef4687b6e370c30dd41, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 2c264c1c7b0f5ef4687b6e370c30dd41, type: 3}
-  - m_GUID: de0e37721a6765e489659955b5c24a8e
-    m_Address: Assets/Game/UI/Image/Skill Icon/SP_UI_Skill_DoubleCross.png
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Sprite
-    m_MainAsset: {fileID: 2800000, guid: de0e37721a6765e489659955b5c24a8e, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: de0e37721a6765e489659955b5c24a8e, type: 3}
   - m_GUID: 36ceb1bf350d834469e76c0d3fdfbe1d
     m_Address: Assets/Game/Player/SkillTest/Image/none.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-    m_MainAsset: {fileID: 2800000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: fd31ca746fbf34b49984484fda3611dd
     m_Address: Assets/Game/Object/LightFragment(coin).prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Prefab
-    m_MainAsset: {fileID: 717805981154453991, guid: fd31ca746fbf34b49984484fda3611dd,
-      type: 3}
-    m_TargetAsset: {fileID: 717805981154453991, guid: fd31ca746fbf34b49984484fda3611dd,
-      type: 3}
-  - m_GUID: 5e7296991c1993b4380e65c83cc658e2
-    m_Address: Assets/Game/UI/Image/Skill Icon/SP_UI_Skill_PlainSwordFlurry.png
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Sprite
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: b9cce34d434d77c4882e7651c06c5eff
-    m_Address: Assets/Game/UI/Image/Skill Icon/SP_UI_Skill_PlainSwordSting.png
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Sprite
-    m_MainAsset: {fileID: 2800000, guid: b9cce34d434d77c4882e7651c06c5eff, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: b9cce34d434d77c4882e7651c06c5eff, type: 3}
-  - m_GUID: bfda990186887e24ca561e5c00e23c7c
-    m_Address: Assets/Game/UI/Image/Skill Icon/SP_UI_Skill_Sheating.png
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Sprite
-    m_MainAsset: {fileID: 2800000, guid: bfda990186887e24ca561e5c00e23c7c, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: bfda990186887e24ca561e5c00e23c7c, type: 3}
   - m_GUID: 61078496021d9c448bb7e771dd3aa84e
     m_Address: Assets/Game/UI/Image/Skill Icon/SP_UI_Skill_RotationAxe.png
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Sprite
-    m_MainAsset: {fileID: 2800000, guid: 61078496021d9c448bb7e771dd3aa84e, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 61078496021d9c448bb7e771dd3aa84e, type: 3}
-  - m_GUID: 965e7584e6f681541b776d41f52a311a
-    m_Address: Assets/Game/UI/Image/Skill Icon/SP_UI_Skill_MagicMissile.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
