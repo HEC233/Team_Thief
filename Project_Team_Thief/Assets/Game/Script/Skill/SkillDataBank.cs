@@ -176,7 +176,8 @@ public class SkillDataBank : MonoBehaviour
             {
                 _skillDatabases[i].Icon = Addressable.instance.GetSprite("none");
             }
-                
+
+            Debug.Log("Name : " + _skillDatabases[i].Name + " Icon : " + _skillDatabases[i].Icon);
         }
         
     }

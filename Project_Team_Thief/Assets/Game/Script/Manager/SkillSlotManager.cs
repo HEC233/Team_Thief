@@ -66,7 +66,7 @@ public class SkillSlotManager : MonoBehaviour
         for (int i = 0; i < _skillSlots.Count; i++)
         {
             _skillSlots[i].InsertSkillDataBase(_skillDataBases[i]);
-            GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.UpdateSkillData(i);
+            //GameManager.instance.UIMng.UIPlayerInfo.SkillInfo.UpdateSkillData(i);
         }
         
         _skillSlots[0].RockSlot();

@@ -17,6 +17,7 @@ public class UISkillCooltimeBox : MonoBehaviour
     public void SetSkillIcon(Sprite sprite)
     {
         skillIcon.sprite = sprite;
+        Debug.Log(sprite.name);
         bCoolTimeFlag = true;
     }
 
