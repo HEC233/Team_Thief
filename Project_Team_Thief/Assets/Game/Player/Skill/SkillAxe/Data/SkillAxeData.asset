@@ -17,26 +17,27 @@ MonoBehaviour:
   _cinemachineSignalSource: {fileID: 11400000, guid: eb351fd8ca44c3c4db67561a895cdc01,
     type: 2}
   _zoomInOutData: {fileID: 0}
-  _zoomOutInData: {fileID: 0}
-  _actionValue: {fileID: 11400000, guid: 6124900088c9d7e44b1832a93cf14810, type: 2}
-  _name: "\uD68C\uC804\uB3C4\uB07C \uB358\uC9C0\uAE30"
-  _grade: "\uB808\uC5B4"
-  _isGet: 0
-  _class: "\uC554\uC0B4\uC790"
+  _zoomOutInData: {fileID: 11400000, guid: 8ed21f35609f5f14d89ee1168583b999, type: 2}
+  _soActionValue: {fileID: 11400000, guid: 882c7e7d73b4eb640b62a60f05a7e465, type: 2}
+  _name: "\u0238\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD \uFFFD\uFFFD\uFFFD\uFFFD\uFFFD"
+  _grade: "\uFFFD\uFFFD\uFFFD\uFFFD"
+  _isGet: 1
+  _class: "\uFFFD\u03FB\uFFFD\uFFFD\uFFFD"
   _coolTime: 3
   _castingTime: 0
   _attackRange: 0
   _target: 0
-  _description: "\uC815\uBA74\uC744 \uD5A5\uD574 \uD68C\uC804\uD558\uB294 \uCE74\uC624\uC2A4
-    \uB3C4\uB07C\uB97C \uB358\uC838 \uB9DE\uC740\uC801\uC5D0\uAC8C \uB2E4\uB2E8\uD788\uD2B8
-    \uD53C\uD574\uB97C \uC785\uD78C\uB2E4.\uB3C4\uB07C\uC5D0 \uB9DE\uC740 \uC801\uC740
-    \uD45C\uC2DD\uC774 \uBD80\uC5EC\uB41C\uB2E4.\uB3C4\uB07C\uB97C \uD55C\uBC88 \uB354
-    \uB358\uC838 \uB2E4\uB2E8\uD788\uD2B8 \uD53C\uD574\uB97C \uC785\uD78C\uB2E4."
+  _description: "\uFFFD\uFFFD\uFFFD \uFFFD\uFFFD\uFFFD\uFFFD \u0238\uFFFD\uFFFD\uFFFD\u03F4\uFFFD
+    \u012B\uFFFD\uFFFD \uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD \uFFFD\uFFFD\uFFFD \uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD
+    \uFFFD\u0674\uFFFD\uFFFD\uFFFD\u01AE \uFFFD\uFFFD\uFFFD\u0638\uFFFD \uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD.\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD
+    \uFFFD\uFFFD\uFFFD \uFFFD\uFFFD\uFFFD \u01E5\uFFFD\uFFFD\uFFFD\uFFFD \uFFFD\u03BF\uFFFD\uFFFD\u0234\uFFFD.\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD
+    \uFFFD\u0479\uFFFD \uFFFD\uFFFD \uFFFD\uFFFD\uFFFD \uFFFD\u0674\uFFFD\uFFFD\uFFFD\u01AE
+    \uFFFD\uFFFD\uFFFD\u0638\uFFFD \uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD."
   _buffTime: 0
   _skillNumberOfTimes: 1
-  _damages: 64000000
+  _damages: 14000000
   _hitIntervals:
-  - 0.5
+  - 0.1
   _hitNumberOfTimes: 03000000
   _knockBackTimes:
   - 0.04
@@ -56,9 +57,9 @@ MonoBehaviour:
   projectileMoveY: 0
   _statusEffects: 00000000
   _fristDelay: 0
-  _endDelay: 1
+  _endDelay: 0
   nextSkill: 0
-  _iconName: UI_Skill_ThrowSpinAxe
-  _icon: {fileID: 21300000, guid: 36ceb1bf350d834469e76c0d3fdfbe1d, type: 3}
+  _iconName: SP_UI_Skill_ThrowSpinAxe
+  _icon: {fileID: 21300000, guid: 61078496021d9c448bb7e771dd3aa84e, type: 3}
   _axeGameObject: {fileID: 3841240397383621464, guid: 3624dd1e695c1004e96f2ca043568a51,
     type: 3}

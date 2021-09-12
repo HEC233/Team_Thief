@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 38cd8accaa3807c40995837c4445f3b4
+guid: 1bde7935fe2721344b0e8f923e9a602f
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: -2682932821048358154
     second: Sp_PC_JumpAttack1_2
+  - first:
+      213: -1346147096099895556
+    second: Sp_PC_JumpAttack1_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -99,10 +102,10 @@ TextureImporter:
       name: Sp_PC_JumpAttack1_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 29
         y: 0
-        width: 96
-        height: 96
+        width: 31
+        height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,10 +123,10 @@ TextureImporter:
       name: Sp_PC_JumpAttack1_1
       rect:
         serializedVersion: 2
-        x: 96
+        x: 195
         y: 0
-        width: 96
-        height: 96
+        width: 50
+        height: 34
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +144,10 @@ TextureImporter:
       name: Sp_PC_JumpAttack1_2
       rect:
         serializedVersion: 2
-        x: 192
+        x: 363
         y: 0
-        width: 96
-        height: 96
+        width: 50
+        height: 34
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,10 +161,31 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Sp_PC_JumpAttack1_3
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 0
+        width: 33
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf6ca892956815de0800000000000000
+      internalID: -1346147096099895556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 76b71de0db7810b4eb6bd9d0cb78325e
     internalID: 0
     vertices: []
     indices: 
