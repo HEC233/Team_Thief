@@ -23,6 +23,7 @@ public struct Damage
 {
     public float power;
     public Vector2 knockBack;
+    public Vector2 knockBackTime;
     public int abnormal;
     [HideInInspector]
     public Vector3 hitPosition;
