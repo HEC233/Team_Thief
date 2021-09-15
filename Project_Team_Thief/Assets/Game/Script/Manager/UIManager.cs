@@ -30,6 +30,8 @@ public class UIManager : MonoBehaviour
     private CanvasGroup uiGameOver;
     [SerializeField]
     private GameObject playerDeadResumeButton;
+    [SerializeField]
+    private UILeftEnemyInfo uiLeftEnemy;
     public ConsoleComponent developerConsole;
     public DialogueUIController uiDialogue;
     public EventSystem eventSystem;
@@ -228,7 +230,9 @@ public class UIManager : MonoBehaviour
     {
         uiPlayerInfo.CommandUpdate();
         uiDynamic.Init();
+        uiLeftEnemy.Init();
         bossHp.SetActive(false);
+
         return true;
     }
 

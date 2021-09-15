@@ -128,11 +128,11 @@ public class UIPlayerInfo : MonoBehaviour
     private void UpdateUIHP()
     {
         float ratio = _displayHP / _maxHP;
-        float width = Mathf.Clamp((int)(ratio * 108.0f), 3, 108);
+        //float width = Mathf.Clamp((int)(ratio * 108.0f), 3, 108);
 
-        var size = currentHP.sizeDelta;
-        currentHP.sizeDelta = new Vector2(width, size.y);
-        //currentHP.fillAmount = ratio;
+        //var size = currentHP.sizeDelta;
+        //currentHP.sizeDelta = new Vector2(width, size.y);
+        currentHPImage.fillAmount = ratio;
 
         maxHPText.text = ((int)_maxHP).ToString();
         curHPText.text = ((int)_curHP).ToString();
