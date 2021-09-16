@@ -53,6 +53,8 @@ MonoBehaviour:
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 
+      bgmStateGroupName: 
+      bgmStateName: 
       sceneName: 
     - type: 0
       actionLength: 0
@@ -74,6 +76,8 @@ MonoBehaviour:
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 
+      bgmStateGroupName: 
+      bgmStateName: 
       sceneName: 
     - type: 5
       actionLength: 0
@@ -95,6 +99,8 @@ MonoBehaviour:
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 
+      bgmStateGroupName: 
+      bgmStateName: 
       sceneName: 
     - type: 2
       actionLength: 0
@@ -116,6 +122,8 @@ MonoBehaviour:
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 
+      bgmStateGroupName: 
+      bgmStateName: 
       sceneName: 
     - type: 16
       actionLength: 0
@@ -137,4 +145,6 @@ MonoBehaviour:
       effectPos: {x: 0, y: 0}
       sfxName: 
       bgmName: 
+      bgmStateGroupName: 
+      bgmStateName: 
       sceneName: 

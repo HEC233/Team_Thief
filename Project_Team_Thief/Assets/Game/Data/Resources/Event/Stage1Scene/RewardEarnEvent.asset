@@ -26,5 +26,5 @@ MonoBehaviour:
   playCount: 1
   stoptime: 0
   skipable: 0
-  followingEvent: LevelClearEvent
+  followingEvent: 01_02
   cutScenes: []
