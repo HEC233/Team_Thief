@@ -18,6 +18,9 @@ public class CameraManager : MonoBehaviour
     public CinemachineVirtualCamera _zoomInVirtualCamera = null;
 
     private bool _isZoomIn = false;
+
+    [SerializeField] 
+    private CinemachineSetDeadZone _setDeadZone;
     
     public event UnityAction OnZoomInEndEvent = null;
     private Unit playerUnit;
@@ -48,6 +51,7 @@ public class CameraManager : MonoBehaviour
         FindCameras();
         _mainVirtualCamera.Follow = GameManager.instance.PlayerActor.GetUnit().transform;
         _zoomInVirtualCamera.Follow = GameManager.instance.PlayerActor.GetUnit().transform;
+        _setDeadZone.SetDeadZone();
     }
 
     public void FindCameras()
