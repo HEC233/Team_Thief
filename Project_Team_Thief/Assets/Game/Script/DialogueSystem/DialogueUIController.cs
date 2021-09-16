@@ -116,14 +116,14 @@ public class DialogueUIController : MonoBehaviour
             bPortraitEnable = portraitObject.activeSelf;
             EnablePortrait(false);
             SetShowName(false);
-            dialogueTextBox.sizeDelta = new Vector2(330, 50);
-            dialogueBox.anchoredPosition = new Vector2(0, 88);
+            dialogueTextBox.sizeDelta = new Vector2(1320, 200);
+            dialogueBox.anchoredPosition = new Vector2(0, 352);
         }
         else
         {
             EnablePortrait(bPortraitEnable);
-            dialogueTextBox.sizeDelta = new Vector2(200, 50);
-            dialogueBox.anchoredPosition = new Vector2(0, -85);
+            dialogueTextBox.sizeDelta = new Vector2(800, 200);
+            dialogueBox.anchoredPosition = new Vector2(0, -340);
         }
     }
 
@@ -203,7 +203,7 @@ public class DialogueUIController : MonoBehaviour
         //RightPortraitImage.color = bLeftHighlighted ? Color.gray : Color.white;
         leftPortraitImage.gameObject.SetActive(bLeftHighlighted);
         rightPortraitRect.gameObject.SetActive(!bLeftHighlighted);
-        nameBoxRect.anchoredPosition = bLeftHighlighted ? new Vector3(-160f, 1.3f, 0f) : new Vector3(160f, 1.3f, 0f);
+        nameBoxRect.anchoredPosition = bLeftHighlighted ? new Vector3(-640f, 5.2f, 0f) : new Vector3(640f, 5.2f, 0f);
     }
 
     public void SetShowName(bool bValue)
