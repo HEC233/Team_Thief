@@ -2861,8 +2861,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             Init();
             _gameSkillObject = InvokeSkill();
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
-            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillBaldoCast);
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillBaldoCast);
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillBaldo);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillBaldo);
         }
 
         public override void Update()
@@ -2919,35 +2919,17 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isStartDelayEnd = false;
             _aniIndex = 0;
         }
-        
+
         private void OnAnimationEndEventCall()
         {
-            if (_aniIndex == 0)
-            {
-                _aniIndex++;
-                SystemMgr.AnimationCtrl.PlayAni(AniState.SkillBaldoDelay);
-                SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillBaldoDelay);
-
-                BulletTime();
-                SystemMgr.StartCoroutine(WaitStartDelay());
-            }
-            else
-            {
-                _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
-            }
+            _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
         }
 
         private void BulletTime()
         {
             GameManager.instance.TimeMng.BulletTime(_skillBaldoData.BulletTimeScale, _skillBaldoData.BulletTimeAmount);
         }
-        
-        private void Action()
-        {
-            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillBaldo);
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillBaldo);
-        }
-        
+
         private void StopWaitEndDelayCoroutine()
         {
             if (_waitDelayCoroutine == null)
@@ -2973,22 +2955,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
 
             skillObejct.InitSkill(_skillBaldoData.GetSkillController(skillObejct, SystemMgr.Unit));
             return skillObejct;
-        }
-        
-        IEnumerator WaitStartDelay()
-        {
-            float timer = 0.0f;
-            while (_skillBaldoData.FristDelay >= timer)
-            {
-                timer += GameManager.instance.TimeMng.FixedDeltaTime;
-                yield return new WaitForFixedUpdate();
-            }
-
-            _isStartDelayEnd = true;
-
-            if (SystemMgr.CurrState != _skillBaldoData.SkillCondition)
-                yield break;
-            Action();
         }
         
         IEnumerator WaitEndDelay()
@@ -3043,8 +3009,8 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             Init();
             SystemMgr.OnAnimationEndEvent += OnAnimationEndEventCall;
             _gameSkillObject = InvokeSkill();
-            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSheatingCast);
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSheatingCast);
+            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSheating);
+            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSheating);
         }
 
         public override void Update()
@@ -3103,35 +3069,12 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isStartDelayEnd = false;
             _aniIndex = 0;
         }
-        
+
         private void OnAnimationEndEventCall()
         {
-            if (_aniIndex == 0)
-            {
-                _aniIndex++;
-                SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSheatingDelay);
-                SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSheatingDelay);
-
-                //BulletTime();
-                SystemMgr.StartCoroutine(WaitStartDelay());
-            }
-            else
-            {
-                _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
-            }
+            _waitDelayCoroutine = SystemMgr.StartCoroutine(WaitEndDelay());
         }
 
-        private void BulletTime()
-        {
-            //GameManager.instance.TimeMng.BulletTime(_skillSheatingData.BulletTimeScale, _skillSheatingData.BulletTimeAmount);
-        }
-        
-        private void Action()
-        {
-            SystemMgr.AnimationCtrl.PlayAni(AniState.SkillSheating);
-            SystemMgr._fxCtrl.PlayAni(FxAniEnum.SkillSheating);
-        }
-        
         private void StopWaitEndDelayCoroutine()
         {
             if (_waitDelayCoroutine == null)
@@ -3159,23 +3102,6 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             return skillObejct;
         }
         
-        
-        IEnumerator WaitStartDelay()
-        {
-            float timer = 0.0f;
-            while (_skillSheatingData.FristDelay >= timer)
-            {
-                timer += GameManager.instance.TimeMng.FixedDeltaTime;
-                yield return new WaitForFixedUpdate();
-            }
-
-            _isStartDelayEnd = true;
-            
-            if (SystemMgr.CurrState != _skillSheatingData.SkillCondition)
-                yield break;
-            Action();
-        }
-        
         IEnumerator WaitEndDelay()
         {
             float timer = 0.0f;
@@ -3190,6 +3116,7 @@ public class PlayerFSMSystem : FSMSystem<TransitionCondition, CustomFSMStateBase
             _isSkillEnd = true;
             if (SystemMgr.CurrState != _skillSheatingData.SkillCondition)
                 yield break;
+            
             SystemMgr.Transition(TransitionCondition.Idle);
         }
 
