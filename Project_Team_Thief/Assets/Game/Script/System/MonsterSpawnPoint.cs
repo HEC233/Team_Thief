@@ -17,6 +17,7 @@ public class MonsterSpawnPoint : MonoBehaviour, IEndTriggeCheck
     private int _spawnedMonsterCount;
 
     private int _curMonsterCount = 0;
+    private int _remainMonsterCount = 0;
 
     [SerializeField, Tooltip("몬스터가 모두 죽을 경우 발생하는 이벤트")]
     private UnityEvent _monsterAllDeathEvent;
@@ -31,6 +32,14 @@ public class MonsterSpawnPoint : MonoBehaviour, IEndTriggeCheck
         get
         {
             return _curMonsterCount; 
+        }
+    }
+
+    public int CurRemainMonsterCount
+    {
+        get
+        {
+            return _remainMonsterCount;
         }
     }
 
@@ -49,6 +58,7 @@ public class MonsterSpawnPoint : MonoBehaviour, IEndTriggeCheck
         {
             _allMonsterCount += data.count;
         }
+        _remainMonsterCount = _allMonsterCount;
     }
 
     private void FixedUpdate()
@@ -116,6 +126,7 @@ public class MonsterSpawnPoint : MonoBehaviour, IEndTriggeCheck
     public void MonsterDeathCounter()
     {
         _curMonsterCount--;
+        _remainMonsterCount--;
     }
 
     bool IEndTriggeCheck.Check()
