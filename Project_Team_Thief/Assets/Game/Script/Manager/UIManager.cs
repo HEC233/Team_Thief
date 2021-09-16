@@ -277,7 +277,7 @@ public class UIManager : MonoBehaviour
         float final = 9.0f / 16.0f * _screenRatio;
 
         var screenPos = GameManager.instance.CameraMng.mainCam.WorldToScreenPoint(worldPos);
-        screenPos = new Vector2(screenPos.x / Screen.width * 480 * final, screenPos.y / Screen.height * 270);
+        screenPos = new Vector2(screenPos.x / Screen.width * 1920 * final, screenPos.y / Screen.height * 1080);
 
         return screenPos;
     }

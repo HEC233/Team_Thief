@@ -51,7 +51,7 @@ public class UIComboInfo : MonoBehaviour
     {
         comboRect.anchoredPosition = Vector2.zero;
         float timeCheck = 0;
-        var startPos = new Vector2(96.0f, 0);
+        var startPos = new Vector2(384.0f, 0);
         var endPos = Vector2.zero;
         while(timeCheck <= 0.1f)
         {
