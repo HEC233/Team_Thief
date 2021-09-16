@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SkillBasicAttackData", menuName = "ScriptableObject/SkillBasicAttackData")]
+[CreateAssetMenu(fileName = "SkillBasicAttackData", menuName = "ScriptableObject/SkillData/SkillBasicAttackData")]
 
 public class SkillBasicAttackData : SkillDataBase
 {

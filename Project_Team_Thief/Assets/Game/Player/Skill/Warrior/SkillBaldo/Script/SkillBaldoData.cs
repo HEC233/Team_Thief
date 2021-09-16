@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SkillBaldoData", menuName = "ScriptableObject/SkillBaldoData")]
+[CreateAssetMenu(fileName = "SkillBaldoData", menuName = "ScriptableObject/SkillData/SkillBaldoData")]
 public class SkillBaldoData : SkillDataBase
 {
     [SerializeField] 

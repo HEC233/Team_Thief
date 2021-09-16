@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SkillSnakeSwordFlurryData", menuName = "ScriptableObject/SkillSnakeSwordFlurryData")]
+[CreateAssetMenu(fileName = "SkillSnakeSwordFlurryData", menuName = "ScriptableObject/SkillData/SkillSnakeSwordFlurryData")]
 public class SkillSnakeSwordFlurryData : SkillDataBase
 {
     private float animationTime = 0.0f;

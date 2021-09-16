@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-[CreateAssetMenu(fileName = "SkillAxeData", menuName = "ScriptableObject/SkillAxeData")]
+[CreateAssetMenu(fileName = "SkillAxeData", menuName = "ScriptableObject/SkillData/SkillAxeData")]
 public class SkillAxeData : SkillDataBase
 {
     [SerializeField] 

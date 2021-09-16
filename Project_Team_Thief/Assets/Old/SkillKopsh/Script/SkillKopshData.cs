@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-[CreateAssetMenu(fileName = "SkillKopshData", menuName = "ScriptableObject/SkillKopshData")]
+[CreateAssetMenu(fileName = "SkillKopshData", menuName = "ScriptableObject/SkillData/Old/SkillKopshData")]
 public class SkillKopshData : SkillDataBase
 {
     [SerializeField]

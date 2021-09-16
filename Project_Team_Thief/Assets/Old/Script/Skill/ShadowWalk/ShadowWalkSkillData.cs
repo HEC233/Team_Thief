@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ShadowWalkSkillData", menuName = "ScriptableObject/ShadowWalkSkillData")]
+[CreateAssetMenu(fileName = "ShadowWalkSkillData", menuName = "ScriptableObject/SkillData/Old/ShadowWalkSkillData")]
 public class ShadowWalkSkillData : SkillDataBase
 {
     [SerializeField]

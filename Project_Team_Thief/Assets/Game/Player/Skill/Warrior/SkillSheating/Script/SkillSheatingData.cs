@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SkillSheatingData", menuName = "ScriptableObject/SkillSheatingData")]
+[CreateAssetMenu(fileName = "SkillSheatingData", menuName = "ScriptableObject/SkillData/SkillSheatingData")]
 public class SkillSheatingData : SkillDataBase
 {
     [SerializeField] 

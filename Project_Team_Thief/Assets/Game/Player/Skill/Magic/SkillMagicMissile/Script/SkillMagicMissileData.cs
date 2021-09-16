@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SkillMagicMissileData", menuName = "ScriptableObject/SkillMagicMissileData")]
+[CreateAssetMenu(fileName = "SkillMagicMissileData", menuName = "ScriptableObject/SkillData/SkillMagicMissileData")]
 public class SkillMagicMissileData : SkillDataBase
 {
     [SerializeField] 

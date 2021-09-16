@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SkillHammerData", menuName = "ScriptableObject/SkillHammerData")]
+[CreateAssetMenu(fileName = "SkillHammerData", menuName = "ScriptableObject/SkillData/Old/SkillHammerData")]
 public class SkillHammerData : SkillDataBase
 {
 
