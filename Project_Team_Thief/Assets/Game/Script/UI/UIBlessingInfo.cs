@@ -6,7 +6,8 @@ using System;
 
 public class UIBlessingInfo : MonoBehaviour
 {
-    private Color[] _color = new Color[2] { new Color(1, 0.2156863f, 0.2745098f), new Color(0.4392157f, 0.1882353f, 0.627451f) };
+    [SerializeField]
+    private Sprite[] _sprites = new Sprite[2];
     private EncroachmentManager _encroMng;
 
     [SerializeField]
@@ -38,7 +39,7 @@ public class UIBlessingInfo : MonoBehaviour
          */
         int result = Convert.ToInt32(_encroMng.Encroachment > 0);
         float encroament = _encroMng.Encroachment + 2 * (result - 1) * _encroMng.Encroachment;
-        _gaugebar.color = _color[result];
+        _gaugebar.sprite = _sprites[result];
 
         _gaugebar.fillAmount = encroament / 100;
 

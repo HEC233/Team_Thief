@@ -33,9 +33,7 @@ public class UIPenalty : MonoBehaviour
 
     public void ShowPenalties(bool value)
     {
-        _uiPenalties[0].gameObject.SetActive(value);
-        _uiPenalties[1].gameObject.SetActive(value);
-        _uiPenalties[2].gameObject.SetActive(value);
+        this.gameObject.SetActive(value);
     }
 
     public void ButtonDown(int index)

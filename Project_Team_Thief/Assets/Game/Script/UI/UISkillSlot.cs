@@ -33,7 +33,7 @@ public class UISkillSlot : MonoBehaviour
             Debug.Log(_skillData.SkillDataBase);
             return;
         }
-        _skillCommandBox.InitCommandInfo(_skillData.CommandString);
+        //_skillCommandBox.InitCommandInfo(_skillData.CommandString);
         _skillCooltimeBox.SetSkillIcon(_skillData.SkillDataBase.Icon);
     }
 
@@ -68,7 +68,7 @@ public class UISkillSlot : MonoBehaviour
             }
         }
 
-        _skillCommandBox.CommandUpdate(count, length);
+        //_skillCommandBox.CommandUpdate(count, length);
         float cooltimeRatio = Mathf.Clamp01(_skillData.SkillSlotCurCoolTime / _skillData.SkillSlotCoolTime);
         _skillCooltimeBox.CustomUpdate(cooltimeRatio);
     }
@@ -76,5 +76,10 @@ public class UISkillSlot : MonoBehaviour
     public void SetButtonInteractable(bool value)
     {
         _button.interactable = value;
+    }
+
+    private void Start()
+    {
+        _skillCommandBox.gameObject.SetActive(false);
     }
 }
