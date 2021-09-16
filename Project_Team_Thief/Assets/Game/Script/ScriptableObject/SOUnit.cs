@@ -50,6 +50,8 @@ public class SOUnit : ScriptableObject
     private float _coolTime;
     [SerializeField]
     private Vector2 _knockback;
+    [SerializeField]
+    private Vector2 _knockbackTime;
 
     [Space(8)]
     [SerializeField]
@@ -97,6 +99,7 @@ public class SOUnit : ScriptableObject
     public float endDelay => _endDelay;
     public float coolTime => _coolTime;
     public Vector2 knockback => _knockback;
+    public Vector2 knockbackTime => _knockbackTime;
     public float attackMoveX => _attackMoveX;
     public float attackMoveXTime => _attackMoveXTime;
     public float attackMoveY => _attackMoveY;

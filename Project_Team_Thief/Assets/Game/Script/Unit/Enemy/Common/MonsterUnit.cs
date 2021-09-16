@@ -114,6 +114,7 @@ public class MonsterUnit : Unit
         _jumpPower = _unitData.minJumpPower;
 
         _damage.knockBack = _unitData.knockback;
+        _damage.knockBackTime = _unitData.knockbackTime;
 
         GameManager.instance.ShadowParticle.RegistCollider(_rigid.GetComponent<CapsuleCollider2D>());
 
@@ -259,12 +260,13 @@ public class MonsterUnit : Unit
     }
 
     IEnumerator attackMoveCoroutine = null;
-    IEnumerator AttackMove()
+    IEnumerator knockbackCoroutine = null;
+    IEnumerator MoveSequentially(Vector2 moveAmount, Vector2 moveTime)
     {
-        var moveX = _unitData.attackMoveX;
-        var moveY = _unitData.attackMoveX;
-        var moveXtime = _unitData.attackMoveXTime;
-        var moveYtime = _unitData.attackMoveYTime;
+        var moveX = moveAmount.x;
+        var moveY = moveAmount.y;
+        var moveXtime = moveTime.x;
+        var moveYtime = moveTime.y;
 
         float timeCheck = 0;
         float deltaTime;
@@ -328,7 +330,7 @@ public class MonsterUnit : Unit
         }
         if (attackMoveCoroutine != null)
             StopCoroutine(attackMoveCoroutine);
-        attackMoveCoroutine = AttackMove();
+        attackMoveCoroutine = MoveSequentially(new Vector2(_unitData.attackMoveX,_unitData.attackMoveY), new Vector2(_unitData.attackMoveXTime, _unitData.attackMoveYTime));
         StartCoroutine(attackMoveCoroutine);
     }
 
@@ -340,11 +342,18 @@ public class MonsterUnit : Unit
         var finalDamage = inputDamage.power * _unitData.reduceHit;
 
         var knockback = inputDamage.knockBack * _unitData.knockbackMultiply;
+        /* 넉백 구현 방식 변경
         if(knockback.magnitude != 0)
         {
             _rigid.velocity = Vector2.zero;
         }
         _rigid.AddForce(inputDamage.knockBack * _unitData.knockbackMultiply, ForceMode2D.Impulse);
+        */
+        if (knockbackCoroutine != null)
+            StopCoroutine(knockbackCoroutine);
+        knockbackCoroutine = MoveSequentially(inputDamage.knockBack, inputDamage.knockBackTime);
+        StartCoroutine(knockbackCoroutine);
+
         isOnGround = false;
         skipGroundCheck = true;
         skipGroundCheckTime = 0.1f;
