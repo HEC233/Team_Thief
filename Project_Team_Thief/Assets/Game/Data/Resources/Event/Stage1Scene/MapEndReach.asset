@@ -26,5 +26,5 @@ MonoBehaviour:
   playCount: 1
   stoptime: 0
   skipable: 0
-  followingEvent: RewardEarnEvent
+  followingEvent: 01_03
   cutScenes: []

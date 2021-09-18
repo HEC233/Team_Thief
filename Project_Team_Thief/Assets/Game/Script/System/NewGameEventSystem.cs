@@ -118,7 +118,7 @@ public class NewGameEventSystem : MonoBehaviour
                 {
                     yield return null;
                 }
-                evnetQueue.RemoveAll(str => str == data.trigger.NPCname);
+                //evnetQueue.RemoveAll(str => str == data.trigger.NPCname);
             }
             // 이벤트가 발동조건을 만족 할때까지 반복
             bool returnValue = false;
@@ -296,8 +296,8 @@ public class NewGameEventSystem : MonoBehaviour
     private bool NextCheck(string name)
     {
         bool returnValue = nextEventQueue.Contains(name);
-        if (returnValue)
-            nextEventQueue.RemoveAll(str => str == name);
+        //if (returnValue)
+        //    nextEventQueue.RemoveAll(str => str == name);
         return returnValue;
     }
 

@@ -67,15 +67,12 @@ namespace PS.FX
             var pool = effectPool[effectName];
             EffectController effect = null;
 
-            for(int i = 0; i < pool.Count; i++)
+            if(pool.Count != 0)
             {
-                if(!pool[i].gameObject.activeSelf)
-                {
-                    effect = pool[i];
-                    pool.Remove(effect);
-                }
+                effect = pool[0];
+                pool.Remove(effect);
             }
-            if(effect == null)
+            else
             {
                 foreach(var e in effects)
                 {
@@ -87,18 +84,17 @@ namespace PS.FX
                 }
             }
 
-            var particle = effect;
-            if (particle)
+            if (effect)
             {
                 effect.gameObject.SetActive(true);
                 effect.transform.position = position;
                 effect.transform.rotation = quaternion;
-                
-                particle.Play();
+
+                effect.Play();
 
                 activeEffectPool[effectName].Add(effect);
             }
-            return particle;
+            return effect;
         }
 
         public EffectController Play(string effectName, Vector3 position)

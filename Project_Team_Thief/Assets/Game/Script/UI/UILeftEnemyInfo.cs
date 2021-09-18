@@ -60,7 +60,7 @@ public class UILeftEnemyInfo : MonoBehaviour
             int count = 0;
             foreach (var spawner in _monsterSpawners)
             {
-                count += spawner.CurMonsterCount;
+                count += spawner.CurRemainMonsterCount;
             }
 
             return count;
