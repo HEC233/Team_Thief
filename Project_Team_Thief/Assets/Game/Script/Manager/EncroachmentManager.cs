@@ -47,7 +47,10 @@ public class EncroachmentManager : MonoBehaviour
     public float EncroachmentZeroTimer => _encroachmentZeroTimer;
 
     private bool _isEndRoom;
-    
+    private bool _isComboContinue;
+
+    [SerializeField]
+    private float _comboRecoveryAmount;
     
     private void Start()
     {
@@ -144,6 +147,20 @@ public class EncroachmentManager : MonoBehaviour
         }
         
         return _encroachmentRecoveryAmount;
+    }
+
+    public void StartComboSet()
+    {
+        _isComboContinue = true;
+    }
+
+    public void EndComboSet(int comboCount)
+    {
+        _isComboContinue = false;
+
+        var recoveryAmount = comboCount * _comboRecoveryAmount;
+        
+        ChangeEncroachment(recoveryAmount);
     }
         
     public void ChangeEncroachment(float encroachmentIncrease)
@@ -370,7 +387,7 @@ public class EncroachmentManager : MonoBehaviour
         float timer = 0.0f;
         while (true)
         {
-            if (_isEncroachmentActiveDecreasedCoroutine == false)
+            if (_isEncroachmentActiveDecreasedCoroutine == false || _isComboContinue == true)
             {
                 timer = 0.0f;
                 yield return new WaitForFixedUpdate();

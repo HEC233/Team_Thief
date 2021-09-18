@@ -329,6 +329,7 @@ public class AttackBase : MonoBehaviour
                 item.GetComponentInParent<Unit>().HandleHit(_damage);
                 // 리팩토링 할 때 참고할 점
                 // 이렇게 스트링으로 박지말고 각 공격을 관리하는 친구가 스킬에 관한 정보를 가지고 있자.
+                GameManager.instance.ComboMng.AddCombo();
                 OnEnemyHitEvent?.Invoke();
             }
         }
@@ -340,7 +341,8 @@ public class AttackBase : MonoBehaviour
         _damage.hitPosition = target.ClosestPoint(_attackCollider2D.bounds.center);
         //=====================================================
         target.GetComponentInParent<Unit>().HandleHit(_damage);
-        
+
+        GameManager.instance.ComboMng.AddCombo();
         OnEnemyHitEvent?.Invoke();
     }
     

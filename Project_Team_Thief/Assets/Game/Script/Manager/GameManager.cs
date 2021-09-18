@@ -77,6 +77,10 @@ public class GameManager : MonoBehaviour
     private GameSettingController _gameSettingCtrl;
     [SerializeField]
     private NewGameEventSystem _gameEventSys;
+    [SerializeField] 
+    private ComboManager _comboManager;
+    public ComboManager ComboMng => _comboManager;
+    
     public NewGameEventSystem GameEventSys => _gameEventSys;
     private Grid grid;
     private OneWayTile _onewayTile;

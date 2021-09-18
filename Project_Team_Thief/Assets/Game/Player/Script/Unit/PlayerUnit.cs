@@ -804,24 +804,24 @@ public class PlayerUnit : Unit
     // skillDataBase 리스트를 하나 만들어서 거기 담아놓자.
     public void OnAddComboEventCall()
     {
-        _curCombo++;
-
-        if (_isContinuingCombo == true)
-        {
-            _comboTimer = _comboTime;
-        }
-        else
-        {
-            _comboCoroutine = StartCoroutine(ComboCoroutine());    
-        }
-        
-        // 기능 삭제
-        // if (_curCombo >= _encroachmentDecreaseCombo)
+        // _curCombo++;
+        //
+        // if (_isContinuingCombo == true)
         // {
-        //     FindEncroachmentDecreaseFromSkillData(skillname);
+        //     _comboTimer = _comboTime;
         // }
-
-        GameManager.instance.UIMng.SetCombo(_curCombo);
+        // else
+        // {
+        //     _comboCoroutine = StartCoroutine(ComboCoroutine());    
+        // }
+        //
+        // // 기능 삭제
+        // // if (_curCombo >= _encroachmentDecreaseCombo)
+        // // {
+        // //     FindEncroachmentDecreaseFromSkillData(skillname);
+        // // }
+        //
+        // GameManager.instance.UIMng.SetCombo(_curCombo);
     }
     
     public void StartBulletTime(float timeScale)
