@@ -30,6 +30,9 @@ public class EncroachmentManager : MonoBehaviour
     [SerializeField] 
     private float _encroachmentDecreasedPerTime;
 
+    [SerializeField]
+    private float _comboRecoveryAmount;
+    
     private Coroutine _encroachmentCoroutine;
 
     private float _encroachmentRecoveryAmount;  // 해당 수치는 감소된 수치와 반비례해서 증가됨.
@@ -49,9 +52,6 @@ public class EncroachmentManager : MonoBehaviour
     private bool _isEndRoom;
     private bool _isComboContinue;
 
-    [SerializeField]
-    private float _comboRecoveryAmount;
-    
     private void Start()
     {
         Init();

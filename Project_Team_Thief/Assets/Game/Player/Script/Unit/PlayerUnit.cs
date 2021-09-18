@@ -187,19 +187,19 @@ public class PlayerUnit : Unit
     public float BasicAttackCancelTime => _basicAttackCancelTime;
     public bool isBasicJumpAttackAble = true;
 
-    [Header("Combo Variable")]
-    [SerializeField]
-    private float _comboTime;
-    [SerializeField]
-    private int _comboRecoveryAmount;
-    
-    private float _comboTimer;
-    private int _curCombo = 0;
-    private int _comboRemainder = 0;
-    private int _drainSaveCombo = 0;
-    private int _drainCombo = 0;
-    private bool _isContinuingCombo = false;
-    private Coroutine _comboCoroutine;
+    // [Header("Combo Variable")]
+    // [SerializeField]
+    // private float _comboTime;
+    // [SerializeField]
+    // private int _comboRecoveryAmount;
+    //
+    // private float _comboTimer;
+    // private int _curCombo = 0;
+    // private int _comboRemainder = 0;
+    // private int _drainSaveCombo = 0;
+    // private int _drainCombo = 0;
+    // private bool _isContinuingCombo = false;
+    // private Coroutine _comboCoroutine;
     
     // hit Variable
     [Header("Hit Variable")]
@@ -577,35 +577,35 @@ public class PlayerUnit : Unit
         }
     }
 
-    private Damage CalcDamageAbnormalIsDrain(Damage damage)
-    {
-        if (_comboRecoveryAmount == 0)
-        {
-            return damage;
-        }
-
-        _drainCombo = _curCombo;
-        
-        if (_drainCombo == 0 || (_drainCombo - _drainSaveCombo) <= 19)
-        {
-            damage.abnormal = 0;
-            return damage;
-        }
-
-
-        
-        _comboRemainder = (_drainCombo - _drainSaveCombo) & _comboRecoveryAmount;
-
-        if (_comboRemainder >= 0)
-        {
-            _drainSaveCombo = _drainCombo;
-            damage.abnormal = (int)AbnormalState.Spare8;
-        }
-
-        _comboRemainder = 0;
-        
-        return damage;
-    }
+    // private Damage CalcDamageAbnormalIsDrain(Damage damage)
+    // {
+    //     if (_comboRecoveryAmount == 0)
+    //     {
+    //         return damage;
+    //     }
+    //
+    //     _drainCombo = _curCombo;
+    //     
+    //     if (_drainCombo == 0 || (_drainCombo - _drainSaveCombo) <= 19)
+    //     {
+    //         damage.abnormal = 0;
+    //         return damage;
+    //     }
+    //
+    //
+    //     
+    //     _comboRemainder = (_drainCombo - _drainSaveCombo) & _comboRecoveryAmount;
+    //
+    //     if (_comboRemainder >= 0)
+    //     {
+    //         _drainSaveCombo = _drainCombo;
+    //         damage.abnormal = (int)AbnormalState.Spare8;
+    //     }
+    //
+    //     _comboRemainder = 0;
+    //     
+    //     return damage;
+    // }
 
     public float GetDamageWeightFromEencroachment()
     {
@@ -1054,22 +1054,22 @@ public class PlayerUnit : Unit
     }
     
 
-    IEnumerator ComboCoroutine()
-    {
-        _isContinuingCombo = true;
-        _comboTimer = _comboTime;
-
-
-        while (_comboTimer >= 0)
-        {
-            _comboTimer -= GameManager.instance.TimeMng.FixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-        
-        _isContinuingCombo = false;
-        _curCombo = 0;
-        _drainSaveCombo = 0;
-    }
+    // IEnumerator ComboCoroutine()
+    // {
+    //     _isContinuingCombo = true;
+    //     _comboTimer = _comboTime;
+    //
+    //
+    //     while (_comboTimer >= 0)
+    //     {
+    //         _comboTimer -= GameManager.instance.TimeMng.FixedDeltaTime;
+    //         yield return new WaitForFixedUpdate();
+    //     }
+    //     
+    //     _isContinuingCombo = false;
+    //     _curCombo = 0;
+    //     _drainSaveCombo = 0;
+    // }
 
     IEnumerator HitstopMoveCoroutine()
     {
