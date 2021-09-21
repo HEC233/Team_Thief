@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 17
   _skillCondition: 33
-  _cinemachineSignalSource: {fileID: 0}
+  _cinemachineSignalSource: {fileID: 11400000, guid: 61613bdf6a366dd4a82930fda67f2ba0,
+    type: 2}
   _zoomInOutData: {fileID: 11400000, guid: f8350b8d7d7b93043bdd42bfd1a05e67, type: 2}
   _zoomOutInData: {fileID: 0}
   _soActionValue: {fileID: 11400000, guid: 3155b1c2772f8534dacc6c4aae9d9b2c, type: 2}

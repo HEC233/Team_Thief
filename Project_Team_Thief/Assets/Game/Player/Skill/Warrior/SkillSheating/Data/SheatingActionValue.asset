@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0606bce51b67401499575f5d9b9134d1, type: 3}
+  m_Script: {fileID: 11500000, guid: aae59a46ed4dbfb44b923ae4160dc792, type: 3}
   m_Name: SheatingActionValue
   m_EditorClassIdentifier: 
-  _zoomInOutData: {fileID: 11400000, guid: 2f4f6376dd481eb4d8aa1b24e895a5ec, type: 2}
-  _zoomOutInData: {fileID: 11400000, guid: 3c92693d591cd7747923bbafe9470ab2, type: 2}
-  _hitstopTime: 0
+  _zoomInOutData: {fileID: 11400000, guid: 3c92693d591cd7747923bbafe9470ab2, type: 2}
+  _zoomOutInData: {fileID: 0}
+  _cinemachineSignalSource: {fileID: 11400000, guid: 987115c4b65e3d54aa1cf47d82ce3926,
+    type: 2}
+  _hitstopTime: 0.4
   _bulletTimeAmount: 0
   _bulletTimeScale: 0
   _flashCtrl: {fileID: 0}

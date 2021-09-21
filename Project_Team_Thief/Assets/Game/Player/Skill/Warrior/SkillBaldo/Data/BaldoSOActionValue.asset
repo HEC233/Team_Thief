@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _zoomInOutData: {fileID: 0}
   _zoomOutInData: {fileID: 0}
-  _cinemachineSignalSource: {fileID: 0}
-  _hitstopTime: 0.16
+  _cinemachineSignalSource: {fileID: 11400000, guid: 61613bdf6a366dd4a82930fda67f2ba0,
+    type: 2}
+  _hitstopTime: 0.4
   _bulletTimeAmount: 0
   _bulletTimeScale: 0
   _flashCtrl: {fileID: 0}
