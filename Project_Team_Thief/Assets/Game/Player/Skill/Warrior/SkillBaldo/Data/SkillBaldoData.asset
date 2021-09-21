@@ -17,12 +17,12 @@ MonoBehaviour:
   _cinemachineSignalSource: {fileID: 0}
   _zoomInOutData: {fileID: 11400000, guid: f8350b8d7d7b93043bdd42bfd1a05e67, type: 2}
   _zoomOutInData: {fileID: 0}
-  _soActionValue: {fileID: 11400000, guid: 4697448a6bb9fb74985908c8ad60d7e2, type: 2}
+  _soActionValue: {fileID: 11400000, guid: 3155b1c2772f8534dacc6c4aae9d9b2c, type: 2}
   _name: "\uBC1C\uB3C4"
   _grade: "\uB808\uC5B4"
   _isGet: 1
   _class: "\uBB34\uC0AC"
-  _coolTime: 6
+  _coolTime: 0
   _castingTime: 2
   _attackRange: 0
   _target: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   projectileMoveY: 0
   _statusEffects: 00000000
   _fristDelay: 1
-  _endDelay: 2
+  _endDelay: 0
   nextSkill: 0
   _iconName: SP_UI_Skill_Baldo
   _icon: {fileID: 21300000, guid: 2c264c1c7b0f5ef4687b6e370c30dd41, type: 3}
