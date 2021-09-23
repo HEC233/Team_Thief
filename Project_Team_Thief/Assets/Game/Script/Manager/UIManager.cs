@@ -28,10 +28,13 @@ public class UIManager : MonoBehaviour
     private UISkillSelect uiSkillSelect;
     [SerializeField]
     private CanvasGroup uiGameOver;
+    [SerializeField] 
+    private UICharacteristic uiCharacteristic;
     [SerializeField]
     private GameObject playerDeadResumeButton;
     [SerializeField]
     private UILeftEnemyInfo uiLeftEnemy;
+
     public ConsoleComponent developerConsole;
     public DialogueUIController uiDialogue;
     public EventSystem eventSystem;
